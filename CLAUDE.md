@@ -248,6 +248,12 @@ Ba giai đoạn độc lập: `retrieve` (không gọi API) → `generate` (API)
 
 Quy trình mỗi module: một nhánh `mXX-<ten>` → plan (liệt kê file, interface, test) → viết test từ tiêu chí xong → code đến khi `pytest` và `ruff` sạch → chạy trên dữ liệu thật, ghi số liệu chính vào mô tả PR → commit. Không bắt đầu module khi module phụ thuộc chưa đạt tiêu chí xong. Thêm quy ước mới phát sinh vào file này.
 
+Git/GitHub (repo public `vn-traffic-law-graphrag`):
+- Push nhánh `mXX-<ten>` sau mỗi commit đã sạch `ruff` + `pytest` (sao lưu, CI chạy mỗi lần push).
+- Chỉ merge vào `main` khi module đạt tiêu chí xong: PR `mXX-<ten>` → `main`, CI xanh, dùng **merge commit** (không squash). Module sau tách nhánh từ `main` mới nhất.
+- Không commit tới thẳng `main`; không force-push nhánh đã có PR.
+- Email commit dùng địa chỉ noreply của GitHub (repo public).
+
 Logic pháp lý (regex sửa đổi, lọc hiệu lực, đối chiếu con số) phải được giải thích rõ trong PR để người dùng đọc lại — đây là chỗ sai khó phát hiện nhất.
 
 ## 16. Không được làm
