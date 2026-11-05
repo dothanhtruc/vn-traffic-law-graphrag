@@ -3,8 +3,8 @@
 #
 # Quy ước:
 # - Mọi ngày lấy từ chính văn bản trong data/raw/ (đối chiếu ngày 05/11/2026). Không có căn cứ → null.
-# - Các trường thuộc "vấn đề dữ liệu đã biết" (CLAUDE.md mục 6) GIỮ null dù file gốc có ghi ngày;
-#   ngày tìm thấy được ghi vào notes để người dùng xác nhận rồi mới điền.
+# - Giá trị không có trong file gốc nhưng có trong data/raw/TongHopThongTinDataset_Phase2.docx
+#   được dùng khi người dùng đồng ý (05/11/2026); notes ghi "Nguồn: bản tổng hợp Phase 2, mục N".
 # - hieu_luc_den: ngày cuối còn hiệu lực (bao gồm). Bị thay từ ngày D → hieu_luc_den = D − 1.
 # - relations đi TỪ văn bản này TỚI target. Quan hệ tới Khoản/Điểm cụ thể làm ở M5.
 # - is_amendment: true → không chỉ mục độc lập; nội dung đi vào phiên bản điều khoản bị sửa (M4).
@@ -79,6 +79,8 @@ documents:
     notes: >-
       Điểm m khoản 3 Điều 6, điểm e khoản 4 Điều 26, điểm b khoản 1 Điều 27 có hiệu lực từ
       01/01/2026; điểm b khoản 1 Điều 32 theo pháp luật bảo vệ môi trường (khoản 2 Điều 53).
+    issues:
+      - Bản tổng hợp Phase 2 ghi "khoản 2 Điều 53 có hiệu lực từ 01/01/2026" — đọc sai; khoản 2 Điều 53 quy định ngày hiệu lực riêng của các điểm nêu trong notes.
 
   - doc_id: ND151-2024
     so_hieu: 151/2024/NĐ-CP
@@ -148,7 +150,7 @@ documents:
     ten: Quy định về sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế
     loai: thong_tu
     co_quan: Bộ Công an
-    ngay_ban_hanh: null
+    ngay_ban_hanh: 2025-02-28
     hieu_luc_tu: 2025-03-01
     hieu_luc_den: null
     tier: A
@@ -159,10 +161,11 @@ documents:
         effective_from: 2025-03-01
         note: Phần sát hạch, cấp GPLX (theo bản tổng hợp Phase 2).
     source_path: data/raw/ThongTu/TT12 ngay 28.2.docx
-    notes: File gốc ghi "Hà Nội, ngày 28 tháng 02 năm 2025" — chờ người dùng xác nhận để điền ngay_ban_hanh.
+    notes: >-
+      Ngày ban hành theo file gốc ("Hà Nội, ngày 28 tháng 02 năm 2025"; Phase 2 để trống), người
+      dùng xác nhận điền 05/11/2026.
     issues:
-      - "Vấn đề đã biết (mục 6): thiếu ngày ban hành."
-      - Văn bản không có điều khoản nêu đích danh việc thay thế TT 35/2024 — quan hệ THAY_THE một phần lấy từ bản tổng hợp Phase 2, cần xác minh căn cứ.
+      - Văn bản không có điều khoản nêu đích danh việc thay thế TT 35/2024 — quan hệ THAY_THE một phần lấy từ bản tổng hợp Phase 2 (mục 24, 26).
 
   - doc_id: TT14-2025-BXD
     so_hieu: 14/2025/TT-BXD
@@ -184,7 +187,7 @@ documents:
     source_path: data/raw/ThongTu/Thông tư số 14.2025.TT-BXD.docx
     notes: >-
       File gốc là bản chưa ghi số/ngày ("Số: /2025/TT-BXD"); ngày ban hành 30/06/2025 lấy từ
-      trích yếu của TT 17/2026/TT-BXD.
+      trích yếu của TT 17/2026/TT-BXD, khớp bản tổng hợp Phase 2 (mục 28).
     issues:
       - File gốc là bản chưa ghi số và ngày ký — nên thay bằng bản đã ký.
 
@@ -347,12 +350,14 @@ documents:
       cứu phát triển có nhu cầu tham gia giao thông đường bộ
     loai: thong_tu
     co_quan: Bộ Giao thông vận tải
-    ngay_ban_hanh: null
+    ngay_ban_hanh: 2024-11-15
     hieu_luc_tu: 2025-01-01
     hieu_luc_den: null
     tier: B
     source_path: data/raw/ThongTu/TT 52-bgtvt.pdf
-    notes: 'File gốc ghi "Số: /2024/TT-BGTVT", "ngày tháng năm 2024" (bản chưa ghi số/ngày).'
+    notes: >-
+      File gốc ghi "Số: /2024/TT-BGTVT", "ngày tháng năm 2024" (bản chưa ghi số/ngày). Ngày ban
+      hành: Nguồn: bản tổng hợp Phase 2 (03/11/2026), mục 16.
     issues:
       - File gốc là bản chưa ghi số và ngày ký; lớp chữ PDF bị tách ký tự — nên thay bằng bản đã ký.
 
@@ -374,14 +379,14 @@ documents:
       thông đường bộ của Cảnh sát giao thông
     loai: thong_tu
     co_quan: Bộ Công an
-    ngay_ban_hanh: null
+    ngay_ban_hanh: 2024-11-15
     hieu_luc_tu: 2025-01-01
     hieu_luc_den: null
     tier: B
     source_path: data/raw/ThongTu/Thông tư 73 ngày 15.11.doc
-    notes: File gốc ghi "Hà Nội, ngày 15 tháng 11 năm 2024" — chờ người dùng xác nhận để điền ngay_ban_hanh.
-    issues:
-      - "Vấn đề đã biết (mục 6): thiếu ngày ban hành."
+    notes: >-
+      Ngày ban hành theo file gốc ("Hà Nội, ngày 15 tháng 11 năm 2024"; Phase 2 để trống), người
+      dùng xác nhận điền 05/11/2026.
 
   - doc_id: TT13-2025-BCA
     so_hieu: 13/2025/TT-BCA
@@ -442,20 +447,18 @@ documents:
     loai: nghi_dinh
     co_quan: Chính phủ
     ngay_ban_hanh: 2026-06-19
-    hieu_luc_tu: null
+    hieu_luc_tu: 2026-08-10
     hieu_luc_den: null
     tier: B
     is_amendment: true
     relations:
       - type: SUA_DOI
         target: ND158-2024
-        effective_from: null
+        effective_from: 2026-08-10
     source_path: data/raw/NghiDinh/218_2026_ND-CP_711730.docx
     notes: >-
-      File gốc ghi "Nghị định này có hiệu lực thi hành từ ngày 10 tháng 8 năm 2026" (khoản 1 Điều
-      39) — chờ người dùng xác nhận để điền hieu_luc_tu và effective_from.
-    issues:
-      - "Vấn đề đã biết (mục 6): thiếu ngày hiệu lực."
+      Ngày hiệu lực theo file gốc, khoản 1 Điều 39 ("có hiệu lực thi hành từ ngày 10 tháng 8 năm
+      2026"; Phase 2 để trống), người dùng xác nhận điền 05/11/2026.
 
   # ───────────────────────────── Tier C ─────────────────────────────
   - doc_id: TT71-2024-BCA
@@ -465,15 +468,15 @@ documents:
       và thiết bị ghi nhận hình ảnh người lái xe
     loai: thong_tu
     co_quan: Bộ Công an
-    ngay_ban_hanh: null
+    ngay_ban_hanh: 2024-11-12
     hieu_luc_tu: 2025-01-01
     hieu_luc_den: null
     tier: C
     source_path: >-
       data/raw/ThongTu/3. Thong tu 71.TT-BCA ngay 12.11.2024 quy dinh quan ly van hanh thiet bi giam sat hanh trinh.DOC
-    notes: File gốc ghi "Hà Nội, ngày 12 tháng 11 năm 2024" — chờ người dùng xác nhận để điền ngay_ban_hanh.
-    issues:
-      - "Vấn đề đã biết (mục 6): thiếu ngày ban hành."
+    notes: >-
+      Ngày ban hành theo file gốc ("Hà Nội, ngày 12 tháng 11 năm 2024"; Phase 2 để trống), người
+      dùng xác nhận điền 05/11/2026.
 
   - doc_id: TT72-2024-BCA
     so_hieu: 72/2024/TT-BCA
@@ -481,14 +484,14 @@ documents:
       Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông
     loai: thong_tu
     co_quan: Bộ Công an
-    ngay_ban_hanh: null
+    ngay_ban_hanh: 2024-11-13
     hieu_luc_tu: 2025-01-01
     hieu_luc_den: null
     tier: C
     source_path: data/raw/ThongTu/Thông tư 72.doc
-    notes: File gốc ghi "Hà Nội, ngày 13 tháng 11 năm 2024" — chờ người dùng xác nhận để điền ngay_ban_hanh.
-    issues:
-      - "Vấn đề đã biết (mục 6): thiếu ngày ban hành."
+    notes: >-
+      Ngày ban hành theo file gốc ("Hà Nội, ngày 13 tháng 11 năm 2024"; Phase 2 để trống), người
+      dùng xác nhận điền 05/11/2026.
 
   - doc_id: TT83-2024-BCA
     so_hieu: 83/2024/TT-BCA
@@ -505,30 +508,40 @@ documents:
 
   # ─────────────────────────── Historical ───────────────────────────
   - doc_id: LUAT26-2001
-    so_hieu: null
+    so_hieu: 26/2001/QH10
     ten: Luật Giao thông đường bộ (2001)
     loai: luat
     co_quan: Quốc hội
-    ngay_ban_hanh: null
+    ngay_ban_hanh: 2001-06-29
     hieu_luc_tu: null
-    hieu_luc_den: null
+    hieu_luc_den: 2009-06-30
     tier: historical
     source_path: null
-    notes: Chỉ biết "Luật 26/2001" từ bản tổng hợp Phase 2; chưa có file gốc để lấy số hiệu đầy đủ và các ngày.
+    notes: >-
+      Chưa có file gốc. Số hiệu, ngày ban hành và ngày hết hiệu lực (01/07/2009, bị Luật
+      23/2008/QH12 thay thế): Nguồn: bản tổng hợp Phase 2 (03/11/2026), mục 36. Ngày có hiệu lực không có trong Phase 2.
 
   - doc_id: LUAT23-2008
     so_hieu: 23/2008/QH12
     ten: Luật Giao thông đường bộ (2008)
     loai: luat
     co_quan: Quốc hội
-    ngay_ban_hanh: null
+    ngay_ban_hanh: 2008-11-13
     hieu_luc_tu: null
     hieu_luc_den: 2024-12-31
     tier: historical
+    relations:
+      - type: THAY_THE
+        target: LUAT26-2001
+        scope: toan_bo
+        effective_from: 2009-07-01
+        note: "Nguồn: bản tổng hợp Phase 2 (03/11/2026), mục 36."
     source_path: null
     notes: >-
-      Số hiệu và ngày hết hiệu lực (01/01/2025, trừ chuyển tiếp) lấy từ Điều 85 Luật 35/2024 và
-      Điều 88 Luật 36/2024. Đã được sửa bởi Luật 35/2018/QH14 và Luật 44/2019/QH14.
+      Chưa có file gốc. Số hiệu và ngày hết hiệu lực (01/01/2025, trừ chuyển tiếp) lấy từ Điều 85
+      Luật 35/2024 và Điều 88 Luật 36/2024. Ngày ban hành: Nguồn: bản tổng hợp Phase 2 (03/11/2026), mục 34. Ngày có hiệu lực
+      không có trong Phase 2 (không suy từ ngày Luật 26/2001 hết hiệu lực). Đã được sửa bởi Luật
+      35/2018/QH14 và Luật 44/2019/QH14.
 
   - doc_id: ND100-2019
     so_hieu: 100/2019/NĐ-CP
@@ -546,6 +559,8 @@ documents:
       Ngày ban hành lấy từ Điều 52 NĐ 168/2024 và Điều 25 NĐ 336/2025. Hết hiệu lực theo phần
       (sửa bởi NĐ 168/2024 từ 01/01/2025, bãi bỏ một phần bởi NĐ 336/2025 từ 01/03/2026) → để
       hieu_luc_den null, biểu diễn ở cấp Khoản (M4).
+    issues:
+      - Bản tổng hợp Phase 2 (mục 35) ghi phần GTĐB hết hiệu lực 01/01/2025, mâu thuẫn với Điều 25 NĐ 336/2025 bãi bỏ thêm nhiều điều, khoản của NĐ 100/2019 từ 01/03/2026 — không dùng ngày của Phase 2.
 
   - doc_id: TT35-2024-BGTVT
     so_hieu: 35/2024/TT-BGTVT
@@ -569,7 +584,7 @@ documents:
     ten: Luật Trật tự, an toàn giao thông đường bộ (văn bản hợp nhất)
     loai: vbhn
     co_quan: Văn phòng Quốc hội
-    ngay_ban_hanh: null
+    ngay_ban_hanh: 2026-03-23
     tier: vbhn
     relations:
       - type: HOP_NHAT
@@ -578,9 +593,9 @@ documents:
     source_path: data/raw/VBHopNhat/55-vbhn-vpqh.pdf
     notes: >-
       Trang xác thực trong file để trống số và ngày ("Số: /VBHN-VPQH", "ngày tháng năm 2026");
-      số 55 lấy theo tên file và bản tổng hợp Phase 2.
+      số hiệu và ngày xác thực 23/03/2026: Nguồn: bản tổng hợp Phase 2 (03/11/2026), mục 31.
     issues:
-      - Số hiệu và ngày xác thực không có trong file — cần xác minh.
+      - Số hiệu và ngày xác thực chỉ có trong bản tổng hợp Phase 2, không có trong file.
       - Khi đối chiếu ở M4, phải loại các Khoản do Luật 118/2025 sửa (Luật 118 không có trong danh mục).
 
   - doc_id: VBHN144-2026-LQ-VPQH
@@ -596,23 +611,26 @@ documents:
         note: Hợp nhất Luật 35/2024 với Luật 118/2025/QH15 và Luật 24/2026/QH16.
     source_path: data/raw/VBHopNhat/2026_528-VBHN_144_2026_VBHN-LQ-VPQH.docx
     notes: >-
-      Đã mở file xác minh (05/11/2026): đây là VBHN Luật Đường bộ 35/2024, không phải Luật TTATGTĐB.
-    issues:
-      - "Vấn đề đã biết (mục 6): số hiệu từng được ghi cho cả Luật Đường bộ và Luật TTATGTĐB — đã xác minh là Luật Đường bộ 35/2024; cần người dùng xác nhận."
+      Đã mở file xác minh (05/11/2026): đây là VBHN Luật Đường bộ 35/2024, khớp bản tổng hợp
+      Phase 2 mục 32. Câu ở Phase 2 mục 31 ("bản mới hơn [của VBHN Luật TTATGTĐB] có thể là
+      144/2026") là sai.
 
   - doc_id: VBHN65-2026-BXD
     so_hieu: 65/2026/VBHN-NĐ-BXD
     ten: Nghị định 165/2024/NĐ-CP (văn bản hợp nhất)
     loai: vbhn
     co_quan: Bộ Xây dựng
-    ngay_ban_hanh: null
+    ngay_ban_hanh: 2026-08-01
     tier: vbhn
     relations:
       - type: HOP_NHAT
         target: ND165-2024
         note: Hợp nhất NĐ 165/2024 với NĐ 243/2025 (không có trong danh mục) và NĐ 241/2026.
     source_path: data/raw/VBHopNhat/65-vbhn-bxd.signed.pdf
-    notes: 'File ghi "Số: /2026/VBHN-NĐ-BXD", "ngày tháng năm 2026" — số 65 lấy theo tên file.'
+    notes: >-
+      File ghi "Số: /2026/VBHN-NĐ-BXD", "ngày tháng năm 2026" — số 65 lấy theo tên file và Phase 2
+      mục 33. Ngày xác thực 01/08/2026 là NGÀY QUY ƯỚC: Phase 2 chỉ ghi "~08/2026", người dùng chốt
+      01/08/2026 (05/11/2026).
     issues:
-      - "Vấn đề đã biết (mục 6): thiếu ngày xác thực."
+      - Ngày xác thực là ngày quy ước (Phase 2 chỉ ghi "~08/2026") — thay khi có bản đã ghi ngày.
       - Khi đối chiếu ở M4, phải loại các Khoản do NĐ 243/2025 sửa (không có trong danh mục).

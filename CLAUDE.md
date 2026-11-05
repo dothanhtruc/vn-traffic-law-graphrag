@@ -110,12 +110,15 @@ Nếu một script chưa tồn tại, tạo nó theo đúng tên trên thay vì 
 Văn bản sửa đổi (NĐ 184/2025, 236/2026, 238/2026, 241/2026, 218/2026, TT 13/2025, TT 17/2026) **không được chỉ mục như văn bản độc lập**: nội dung của chúng đi vào phiên bản mới của điều khoản bị sửa.
 
 **Vấn đề dữ liệu đã biết** (validator phải báo, không tự sửa, không tự điền):
-- Thiếu ngày: NĐ 218/2026 (hiệu lực); TT 71, 72, 73/2024 và TT 12/2025-BCA (ban hành); VBHN 65/2026 (ngày xác thực).
-- Số hiệu VBHN 144/2026/VBHN-LQ-VPQH được ghi cho cả Luật Đường bộ và Luật TTATGTĐB — cần xác minh.
+- Chưa có file gốc: Luật 26/2001, Luật 23/2008, NĐ 100/2019 → ngày có hiệu lực vẫn `null`.
+- PDF scan không có lớp chữ: NĐ 336/2025, TT 79/2024 (M2 cần OCR). Bản chưa ghi số/ngày: TT 52/2024, TT 14/2025-BXD.
+- VBHN 65/2026: ngày xác thực 01/08/2026 là **ngày quy ước** (Phase 2 chỉ ghi "~08/2026").
+- NĐ 100/2019: Phase 2 ghi phần GTĐB hết hiệu lực 01/01/2025, mâu thuẫn với NĐ 336/2025 bãi bỏ thêm từ 01/03/2026 → không dùng.
 - TT 13/2025-BCA sửa cả văn bản đường sắt, đường thủy → chỉ nhập phần sửa văn bản đường bộ.
+- Đã giải quyết (05/11/2026): ngày của NĐ 218/2026, TT 71/72/73/2024, TT 12/2025-BCA điền theo văn bản gốc; 144/2026/VBHN-LQ-VPQH đã xác minh là VBHN Luật Đường bộ.
 
 **Quy ước danh mục** (M1, `src/trafficlaw/registry/`):
-- Ngày/số hiệu chỉ điền khi có căn cứ trong văn bản ở `data/raw/`; trường thuộc vấn đề đã biết giữ `null`, ngày tìm thấy ghi vào `notes` chờ người dùng xác nhận.
+- Ngày/số hiệu chỉ điền khi có căn cứ: văn bản ở `data/raw/`, hoặc bản tổng hợp `data/raw/TongHopThongTinDataset_Phase2.docx` (ghi "Nguồn: … Phase 2, mục N" trong `notes`). Không suy ngày từ văn bản khác (vd. không lấy ngày hết hiệu lực của luật cũ làm ngày hiệu lực của luật mới).
 - `relations` đi **từ** văn bản chứa nó **tới** `target` (cấp văn bản; cấp Khoản/Điểm làm ở M5). Thay thế/bãi bỏ `toan_bo` từ ngày D ⇒ đích có `hieu_luc_den = D − 1` (validator kiểm tra).
 - `is_amendment: true` = văn bản sửa đổi, mang tier của văn bản bị sửa, không chỉ mục độc lập. `DocumentMeta.indexable` loại VBHN và văn bản sửa đổi.
 - `issues`: vấn đề máy không tự phát hiện được, validator in ra ở mức `info`. Mức `error` làm script thoát mã 1; `warning` (thiếu dữ liệu) chỉ chặn khi `--strict`.
@@ -134,7 +137,7 @@ MaVB: LUAT36-2024, LUAT35-2024, ND168-2024, ND238-2026, ND100-2019,
 - `units.jsonl` (bản gốc khi ban hành): `id, doc_id, level, number, title, text, parent_id, source_path`.
 - `unit_versions.jsonl`: `unit_id, version, text, effective_from, effective_to, status (active|amended|repealed), source_unit_id` — `source_unit_id` là điều khoản của văn bản gây ra phiên bản này (null với bản gốc).
 - Hàm chuẩn: `get_version(unit_id, as_of) -> UnitVersion | None`. Mọi chỗ cần nội dung điều khoản đều đi qua hàm này.
-- Hiệu lực đặc biệt phải biểu diễn ở cấp Khoản: ví dụ khoản 2 Điều 53 NĐ 168/2024 có hiệu lực từ 01/01/2026; NĐ 100/2019 hết hiệu lực theo phần; TT 35/2024 bị thay thế một phần bởi TT 12/2025-BCA (01/03/2025), phần còn lại bởi TT 14/2025-BXD (01/09/2025).
+- Hiệu lực đặc biệt phải biểu diễn ở cấp Khoản/Điểm: ví dụ theo khoản 2 Điều 53 NĐ 168/2024, điểm m khoản 3 Điều 6, điểm e khoản 4 Điều 26, điểm b khoản 1 Điều 27 có hiệu lực từ 01/01/2026; NĐ 100/2019 hết hiệu lực theo phần; TT 35/2024 bị thay thế một phần bởi TT 12/2025-BCA (01/03/2025), phần còn lại bởi TT 14/2025-BXD (01/09/2025).
 - Các mốc sửa đổi dùng trong test: 01/01/2025, 01/01/2026, 01/07/2026, 15/08/2026.
 - Ngày dùng `datetime.date`, lưu ISO `YYYY-MM-DD`; `effective_to = null` nghĩa là còn hiệu lực.
 - Khoảng hiệu lực `[effective_from, effective_to]` **bao gồm cả hai đầu**: phiên bản bị thay từ ngày D có `effective_to = D − 1`. `effective_from = null` (thiếu ngày) → không coi là có hiệu lực. Dùng `utils/dates.in_effect`, `day_before`.
