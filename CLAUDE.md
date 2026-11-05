@@ -195,7 +195,7 @@ Ba giai đoạn độc lập: `retrieve` (không gọi API) → `generate` (API)
 - Cấu hình: B0 (không RAG), B1 (BM25), B2 (vector gốc), B3 (hybrid + rerank), G (Graph RAG đầy đủ), A1–A3 (G bỏ lần lượt: graph expand · lọc hiệu lực · embedding/reranker fine-tune), A4 phụ (LLM 3–4B fine-tune).
 
 **Tập test** (`data/qa/test.jsonl`, 500 câu, viết tay):
-- Phân bổ tier: A ~70%, B ~15%, C ~5%, historical ~10%.
+- Phân bổ tier: A ~75%, B ~15%, C ~5%, historical ~5% (historical chỉ còn TT 35/2024-BGTVT; 5% dư chuyển sang A).
 - Câu hỏi theo thời điểm bám 4 mốc ở mục 7; mỗi câu loại này có hai ngày hỏi (trước và sau mốc).
 - Mỗi câu: `question, as_of, question_type, tier, answer, gold_units, required_numbers`. Validator kiểm tra mọi `gold_units` tồn tại và có phiên bản hiệu lực tại `as_of`.
 - **Không bao giờ dùng để train, sinh dữ liệu, hay chỉnh prompt.** Kiểm tra trùng gần (cosine > 0,9) với train. Claude không sinh câu hỏi test — chỉ viết công cụ.
