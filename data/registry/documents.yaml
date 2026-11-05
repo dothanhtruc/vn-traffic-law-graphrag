@@ -1,4 +1,5 @@
-# Danh mục 36 văn bản (bản tổng hợp Phase 2, tra cứu 03/11/2026). Schema:
+# Danh mục 33 văn bản: 36 văn bản của bản tổng hợp Phase 2 (tra cứu 03/11/2026) bỏ Luật 26/2001,
+# Luật 23/2008, NĐ 100/2019 — đã hết hiệu lực, người dùng quyết định không dùng (05/11/2026). Schema:
 # src/trafficlaw/registry/schema.py (DocumentMeta). Kiểm tra: uv run python -m scripts.validate_registry
 #
 # Quy ước:
@@ -22,16 +23,11 @@ documents:
     hieu_luc_tu: 2025-01-01
     hieu_luc_den: null
     tier: A
-    relations:
-      - type: THAY_THE
-        target: LUAT23-2008
-        scope: toan_bo
-        effective_from: 2025-01-01
-        note: Khoản 3 Điều 88; trừ các trường hợp chuyển tiếp tại khoản 1, 2, 5, 6 Điều 89.
     source_path: data/raw/Luat/luat trật tự 36-2024-QH15.doc
     notes: >-
-      Khoản 3 Điều 10 có hiệu lực từ 01/01/2026 (khoản 2 Điều 88). Đã được sửa bởi Luật
-      118/2025/QH15 (hiệu lực 01/07/2026) — Luật 118 không nằm trong 36 văn bản.
+      Khoản 3 Điều 10 có hiệu lực từ 01/01/2026 (khoản 2 Điều 88). Thay thế Luật Giao thông đường
+      bộ 23/2008/QH12 từ 01/01/2025 (khoản 3 Điều 88; ngoài danh mục). Đã được sửa bởi Luật
+      118/2025/QH15 (hiệu lực 01/07/2026) — Luật 118 không nằm trong danh mục.
     issues:
       - Luật 118/2025/QH15 sửa đổi văn bản này nhưng không có trong danh mục; phần sửa chỉ thấy qua VBHN 55.
 
@@ -44,18 +40,13 @@ documents:
     hieu_luc_tu: 2025-01-01
     hieu_luc_den: null
     tier: A
-    relations:
-      - type: THAY_THE
-        target: LUAT23-2008
-        scope: toan_bo
-        effective_from: 2025-01-01
-        note: Khoản 3 Điều 85; trừ trường hợp chuyển tiếp tại Điều 86.
     source_path: data/raw/Luat/Luật-35-2024-QH15.docx
     notes: >-
       Ngày ban hành lấy theo câu "thông qua ngày 27 tháng 6 năm 2024" cuối Luật. Điểm a, b khoản 2
       Điều 42, Điều 43, Điều 50, khoản 1 Điều 84 có hiệu lực từ 01/10/2024 (khoản 2 Điều 85).
-      Đã được sửa bởi Luật 118/2025/QH15 (01/07/2026) và Luật 24/2026/QH16 (01/03/2027) — cả hai
-      không nằm trong 36 văn bản.
+      Thay thế Luật 23/2008/QH12 từ 01/01/2025 (khoản 3 Điều 85; ngoài danh mục). Đã được sửa bởi
+      Luật 118/2025/QH15 (01/07/2026) và Luật 24/2026/QH16 (01/03/2027) — cả hai không nằm trong
+      danh mục.
     issues:
       - Luật 118/2025/QH15 và Luật 24/2026/QH16 sửa văn bản này nhưng không có trong danh mục; phần sửa chỉ thấy qua VBHN 144/2026.
 
@@ -70,15 +61,11 @@ documents:
     hieu_luc_tu: 2025-01-01
     hieu_luc_den: null
     tier: A
-    relations:
-      - type: SUA_DOI
-        target: ND100-2019
-        effective_from: 2025-01-01
-        note: Điều 52.
     source_path: data/raw/NghiDinh/168.2024.NĐ.CP.doc
     notes: >-
       Điểm m khoản 3 Điều 6, điểm e khoản 4 Điều 26, điểm b khoản 1 Điều 27 có hiệu lực từ
       01/01/2026; điểm b khoản 1 Điều 32 theo pháp luật bảo vệ môi trường (khoản 2 Điều 53).
+      Điều 52 sửa NĐ 100/2019/NĐ-CP (ngoài danh mục).
     issues:
       - Bản tổng hợp Phase 2 ghi "khoản 2 Điều 53 có hiệu lực từ 01/01/2026" — đọc sai; khoản 2 Điều 53 quy định ngày hiệu lực riêng của các điểm nêu trong notes.
 
@@ -319,13 +306,8 @@ documents:
     hieu_luc_tu: 2026-03-01
     hieu_luc_den: null
     tier: B
-    relations:
-      - type: BAI_BO
-        target: ND100-2019
-        scope: mot_phan
-        effective_from: 2026-03-01
-        note: Điều 25 bãi bỏ một số điều, khoản, điểm của NĐ 100/2019.
     source_path: data/raw/NghiDinh/VanBanGoc_Nghị định số 336.2025.NĐ-CP.pdf
+    notes: Điều 25 bãi bỏ một số điều, khoản, điểm của NĐ 100/2019/NĐ-CP (ngoài danh mục).
     issues:
       - File PDF là bản scan (không có lớp chữ) — M2 cần OCR hoặc tìm bản .doc/.docx.
 
@@ -507,61 +489,6 @@ documents:
     source_path: data/raw/ThongTu/2. Thông tư 83.2024.TT.BCA hệ thống giám sát ngày 15.11.2024.docx
 
   # ─────────────────────────── Historical ───────────────────────────
-  - doc_id: LUAT26-2001
-    so_hieu: 26/2001/QH10
-    ten: Luật Giao thông đường bộ (2001)
-    loai: luat
-    co_quan: Quốc hội
-    ngay_ban_hanh: 2001-06-29
-    hieu_luc_tu: null
-    hieu_luc_den: 2009-06-30
-    tier: historical
-    source_path: null
-    notes: >-
-      Chưa có file gốc. Số hiệu, ngày ban hành và ngày hết hiệu lực (01/07/2009, bị Luật
-      23/2008/QH12 thay thế): Nguồn: bản tổng hợp Phase 2 (03/11/2026), mục 36. Ngày có hiệu lực không có trong Phase 2.
-
-  - doc_id: LUAT23-2008
-    so_hieu: 23/2008/QH12
-    ten: Luật Giao thông đường bộ (2008)
-    loai: luat
-    co_quan: Quốc hội
-    ngay_ban_hanh: 2008-11-13
-    hieu_luc_tu: null
-    hieu_luc_den: 2024-12-31
-    tier: historical
-    relations:
-      - type: THAY_THE
-        target: LUAT26-2001
-        scope: toan_bo
-        effective_from: 2009-07-01
-        note: "Nguồn: bản tổng hợp Phase 2 (03/11/2026), mục 36."
-    source_path: null
-    notes: >-
-      Chưa có file gốc. Số hiệu và ngày hết hiệu lực (01/01/2025, trừ chuyển tiếp) lấy từ Điều 85
-      Luật 35/2024 và Điều 88 Luật 36/2024. Ngày ban hành: Nguồn: bản tổng hợp Phase 2 (03/11/2026), mục 34. Ngày có hiệu lực
-      không có trong Phase 2 (không suy từ ngày Luật 26/2001 hết hiệu lực). Đã được sửa bởi Luật
-      35/2018/QH14 và Luật 44/2019/QH14.
-
-  - doc_id: ND100-2019
-    so_hieu: 100/2019/NĐ-CP
-    ten: >-
-      Quy định xử phạt vi phạm hành chính trong lĩnh vực giao thông đường bộ và đường sắt
-      (phần giao thông đường bộ)
-    loai: nghi_dinh
-    co_quan: Chính phủ
-    ngay_ban_hanh: 2019-12-30
-    hieu_luc_tu: null
-    hieu_luc_den: null
-    tier: historical
-    source_path: null
-    notes: >-
-      Ngày ban hành lấy từ Điều 52 NĐ 168/2024 và Điều 25 NĐ 336/2025. Hết hiệu lực theo phần
-      (sửa bởi NĐ 168/2024 từ 01/01/2025, bãi bỏ một phần bởi NĐ 336/2025 từ 01/03/2026) → để
-      hieu_luc_den null, biểu diễn ở cấp Khoản (M4).
-    issues:
-      - Bản tổng hợp Phase 2 (mục 35) ghi phần GTĐB hết hiệu lực 01/01/2025, mâu thuẫn với Điều 25 NĐ 336/2025 bãi bỏ thêm nhiều điều, khoản của NĐ 100/2019 từ 01/03/2026 — không dùng ngày của Phase 2.
-
   - doc_id: TT35-2024-BGTVT
     so_hieu: 35/2024/TT-BGTVT
     ten: >-

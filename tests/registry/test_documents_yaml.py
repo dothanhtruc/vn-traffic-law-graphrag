@@ -33,16 +33,21 @@ def issues(reg: Registry) -> list[Issue]:
     return validate_registry(reg)
 
 
-def test_36_documents(reg: Registry) -> None:
-    assert len(reg) == 36
-    assert len({d.doc_id for d in reg}) == 36
+EXCLUDED = {"LUAT26-2001", "LUAT23-2008", "ND100-2019"}
+
+
+def test_33_documents(reg: Registry) -> None:
+    # 36 văn bản của Phase 2 bỏ 3 văn bản đã hết hiệu lực (quyết định người dùng 05/11/2026).
+    assert len(reg) == 33
+    assert len({d.doc_id for d in reg}) == 33
+    assert not EXCLUDED & {d.doc_id for d in reg}
 
 
 def test_tiers_match_claude_md(reg: Registry) -> None:
-    # Bảng mục 6: A 11 + B 9 + C 3 + historical 4 + vbhn 3, cộng 7 văn bản sửa đổi
+    # Bảng mục 6: A 11 + B 9 + C 3 + historical 1 + vbhn 3, cộng 7 văn bản sửa đổi
     # (TT 13/2025 đã nằm trong danh sách B).
     primary = Counter(d.tier for d in reg if not d.is_amendment or d.doc_id == "TT13-2025-BCA")
-    assert primary == {"A": 11, "B": 9, "C": 3, "historical": 4, "vbhn": 3}
+    assert primary == {"A": 11, "B": 9, "C": 3, "historical": 1, "vbhn": 3}
     assert {d.doc_id for d in reg if d.is_amendment} == AMENDMENTS
 
 
@@ -63,10 +68,6 @@ def test_no_errors(issues: list[Issue]) -> None:
         # Theo bản tổng hợp Phase 2.
         ("TT52-2024-BGTVT", "ngay_ban_hanh", date(2024, 11, 15)),
         ("VBHN55-VPQH", "ngay_ban_hanh", date(2026, 3, 23)),
-        ("LUAT26-2001", "so_hieu", "26/2001/QH10"),
-        ("LUAT26-2001", "ngay_ban_hanh", date(2001, 6, 29)),
-        ("LUAT26-2001", "hieu_luc_den", date(2009, 6, 30)),
-        ("LUAT23-2008", "ngay_ban_hanh", date(2008, 11, 13)),
         # Ngày quy ước do người dùng chốt (Phase 2 chỉ ghi "~08/2026").
         ("VBHN65-2026-BXD", "ngay_ban_hanh", date(2026, 8, 1)),
     ],
@@ -75,37 +76,17 @@ def test_resolved_values(reg: Registry, doc_id: str, field: str, value: object) 
     assert getattr(reg[doc_id], field) == value
 
 
-@pytest.mark.parametrize("doc_id", ["LUAT26-2001", "LUAT23-2008", "ND100-2019"])
-def test_unknown_dates_stay_null_and_warned(
-    reg: Registry, issues: list[Issue], doc_id: str
-) -> None:
-    # Không có căn cứ (kể cả Phase 2) → không tự điền, không suy luận.
-    assert reg[doc_id].hieu_luc_tu is None
-    assert any(
-        i.doc_id == doc_id and i.code == "MISSING_HIEU_LUC_TU" and i.level == "warning"
-        for i in issues
-    )
+def test_no_warnings(issues: list[Issue]) -> None:
+    assert [str(i) for i in issues if i.level == "warning"] == []
 
 
-def test_only_expected_warnings(issues: list[Issue]) -> None:
-    warned = {(i.code, i.doc_id) for i in issues if i.level == "warning"}
-    assert warned == {
-        (code, d)
-        for d in ("LUAT26-2001", "LUAT23-2008", "ND100-2019")
-        for code in ("MISSING_HIEU_LUC_TU", "MISSING_SOURCE")
-    }
-
-
-def test_historical_chain(reg: Registry) -> None:
-    rel = reg["LUAT23-2008"].relations
-    assert [(r.type, r.target, r.scope, r.effective_from) for r in rel] == [
-        ("THAY_THE", "LUAT26-2001", "toan_bo", date(2009, 7, 1))
-    ]
+def test_no_relation_to_excluded(reg: Registry) -> None:
+    assert not {r.target for d in reg for r in d.relations} & EXCLUDED
     nd218 = reg["ND218-2026"].relations[0]
     assert nd218.effective_from == date(2026, 8, 10)
 
 
-@pytest.mark.parametrize("doc_id", ["TT13-2025-BCA", "ND100-2019", "ND168-2024", "VBHN65-2026-BXD"])
+@pytest.mark.parametrize("doc_id", ["TT13-2025-BCA", "ND168-2024", "VBHN65-2026-BXD"])
 def test_known_issues_listed(issues: list[Issue], doc_id: str) -> None:
     assert any(i.doc_id == doc_id and i.code == "KNOWN_ISSUE" for i in issues)
 
@@ -121,7 +102,7 @@ def test_vbhn_targets(reg: Registry) -> None:
 
 def test_indexable_excludes_vbhn_and_amendments(reg: Registry) -> None:
     ids = {d.doc_id for d in reg.indexable()}
-    assert len(ids) == 26
+    assert len(ids) == 23
     assert not ids & AMENDMENTS
     assert not any(i.startswith("VBHN") for i in ids)
 

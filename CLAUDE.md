@@ -6,7 +6,7 @@ Hướng dẫn cho Claude Code khi làm việc trong repo này. Đọc hết fil
 
 Hệ thống hỏi đáp **Luật Giao thông đường bộ Việt Nam** dựa trên **Graph RAG**: trả lời câu hỏi tiếng Việt, mỗi ý có trích dẫn tới Điều/Khoản/Điểm, có xét **hiệu lực điều khoản theo ngày áp dụng** (kể cả sau các lần sửa đổi).
 
-- Dữ liệu: **36 văn bản** theo bản tổng hợp Phase 2 (tra cứu 03/11/2026). Danh mục chuẩn: `data/registry/documents.yaml`.
+- Dữ liệu: **33 văn bản** = 36 văn bản của bản tổng hợp Phase 2 (tra cứu 03/11/2026) bỏ Luật 26/2001, Luật 23/2008, NĐ 100/2019 (đã hết hiệu lực, không dùng). Danh mục chuẩn: `data/registry/documents.yaml`.
 - Văn bản trục: Luật TTATGTĐB 36/2024/QH15, Luật Đường bộ 35/2024/QH15, NĐ 168/2024/NĐ-CP (xử phạt, trừ điểm GPLX). Nhiều văn bản trục đã bị sửa đổi trong 2025–2026 → nội dung điều khoản được lưu **theo phiên bản thời gian**.
 - Mốc chốt dữ liệu: **03/11/2026**. Văn bản ban hành sau mốc chỉ nhập nếu sửa văn bản mức A.
 - Đây là đồ án tốt nghiệp: **số liệu đánh giá phải tái lập được** là ưu tiên hàng đầu.
@@ -41,7 +41,7 @@ registry (documents.yaml)                      question (+ ngày áp dụng, m�
 ```
 configs/            # YAML: paths, retrieval (B1..B3, G, A1..A3), llm, train_*, eval
 data/
-  registry/         # documents.yaml (36 văn bản), vbhn_map.yaml
+  registry/         # documents.yaml (33 văn bản), vbhn_map.yaml
   raw/              # văn bản gốc (Luat/, NghiDinh/, ThongTu/, QuyetDinh/, VBHopNhat/) — KHÔNG sửa, gitignored
   interim/          # <doc_id>.txt sau chuẩn hoá
   processed/        # units.jsonl (bản gốc), unit_versions.jsonl, amendment_todo.csv
@@ -104,16 +104,15 @@ Nếu một script chưa tồn tại, tạo nó theo đúng tên trên thay vì 
 | `A` | Luật 36/2024, Luật 35/2024, NĐ 168/2024, NĐ 151/2024, TT 38/2024, TT 53/2024, TT 65/2024, TT 79/2024, TT 12/2025-BCA, TT 14/2025-BXD, TT 36/2024-BYT + các văn bản sửa đổi của chúng | Cấu trúc + dẫn chiếu + trích xuất thực thể đầy đủ |
 | `B` | NĐ 165/2024, NĐ 158/2024, NĐ 336/2025, NĐ 130/2024, TT 52/2024, TT 69/2024, TT 73/2024, TT 13/2025-BCA, QĐ 19/2024 + văn bản sửa đổi | Cấu trúc + dẫn chiếu; trích xuất chỉ điều có chế tài/định nghĩa |
 | `C` | TT 71/2024, TT 72/2024, TT 83/2024 | Chỉ cấu trúc + chỉ mục |
-| `historical` | Luật 26/2001, Luật 23/2008, NĐ 100/2019 (phần GTĐB), TT 35/2024-BGTVT | Cấu trúc + THAY_THE, cho câu hỏi theo thời điểm |
+| `historical` | TT 35/2024-BGTVT | Cấu trúc + THAY_THE, cho câu hỏi theo thời điểm |
 | `vbhn` | 55/VBHN-VPQH, 144/2026/VBHN-LQ-VPQH, 65/2026/VBHN-NĐ-BXD | **Không đưa vào chỉ mục/đồ thị**; chỉ dùng để đối chiếu |
 
 Văn bản sửa đổi (NĐ 184/2025, 236/2026, 238/2026, 241/2026, 218/2026, TT 13/2025, TT 17/2026) **không được chỉ mục như văn bản độc lập**: nội dung của chúng đi vào phiên bản mới của điều khoản bị sửa.
 
 **Vấn đề dữ liệu đã biết** (validator phải báo, không tự sửa, không tự điền):
-- Chưa có file gốc: Luật 26/2001, Luật 23/2008, NĐ 100/2019 → ngày có hiệu lực vẫn `null`.
+- **Không dùng** Luật 26/2001, Luật 23/2008, NĐ 100/2019 (đã hết hiệu lực; quyết định người dùng 05/11/2026): không có trong danh mục, không tạo quan hệ tới chúng; chỉ nhắc trong `notes` của văn bản thay thế/sửa đổi chúng.
 - PDF scan không có lớp chữ: NĐ 336/2025, TT 79/2024 (M2 cần OCR). Bản chưa ghi số/ngày: TT 52/2024, TT 14/2025-BXD.
 - VBHN 65/2026: ngày xác thực 01/08/2026 là **ngày quy ước** (Phase 2 chỉ ghi "~08/2026").
-- NĐ 100/2019: Phase 2 ghi phần GTĐB hết hiệu lực 01/01/2025, mâu thuẫn với NĐ 336/2025 bãi bỏ thêm từ 01/03/2026 → không dùng.
 - TT 13/2025-BCA sửa cả văn bản đường sắt, đường thủy → chỉ nhập phần sửa văn bản đường bộ.
 - Đã giải quyết (05/11/2026): ngày của NĐ 218/2026, TT 71/72/73/2024, TT 12/2025-BCA điền theo văn bản gốc; 144/2026/VBHN-LQ-VPQH đã xác minh là VBHN Luật Đường bộ.
 
@@ -137,7 +136,7 @@ MaVB: LUAT36-2024, LUAT35-2024, ND168-2024, ND238-2026, ND100-2019,
 - `units.jsonl` (bản gốc khi ban hành): `id, doc_id, level, number, title, text, parent_id, source_path`.
 - `unit_versions.jsonl`: `unit_id, version, text, effective_from, effective_to, status (active|amended|repealed), source_unit_id` — `source_unit_id` là điều khoản của văn bản gây ra phiên bản này (null với bản gốc).
 - Hàm chuẩn: `get_version(unit_id, as_of) -> UnitVersion | None`. Mọi chỗ cần nội dung điều khoản đều đi qua hàm này.
-- Hiệu lực đặc biệt phải biểu diễn ở cấp Khoản/Điểm: ví dụ theo khoản 2 Điều 53 NĐ 168/2024, điểm m khoản 3 Điều 6, điểm e khoản 4 Điều 26, điểm b khoản 1 Điều 27 có hiệu lực từ 01/01/2026; NĐ 100/2019 hết hiệu lực theo phần; TT 35/2024 bị thay thế một phần bởi TT 12/2025-BCA (01/03/2025), phần còn lại bởi TT 14/2025-BXD (01/09/2025).
+- Hiệu lực đặc biệt phải biểu diễn ở cấp Khoản/Điểm: ví dụ theo khoản 2 Điều 53 NĐ 168/2024, điểm m khoản 3 Điều 6, điểm e khoản 4 Điều 26, điểm b khoản 1 Điều 27 có hiệu lực từ 01/01/2026; TT 35/2024 bị thay thế một phần bởi TT 12/2025-BCA (01/03/2025), phần còn lại bởi TT 14/2025-BXD (01/09/2025).
 - Các mốc sửa đổi dùng trong test: 01/01/2025, 01/01/2026, 01/07/2026, 15/08/2026.
 - Ngày dùng `datetime.date`, lưu ISO `YYYY-MM-DD`; `effective_to = null` nghĩa là còn hiệu lực.
 - Khoảng hiệu lực `[effective_from, effective_to]` **bao gồm cả hai đầu**: phiên bản bị thay từ ngày D có `effective_to = D − 1`. `effective_from = null` (thiếu ngày) → không coi là có hiệu lực. Dùng `utils/dates.in_effect`, `day_before`.
