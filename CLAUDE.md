@@ -114,6 +114,13 @@ Văn bản sửa đổi (NĐ 184/2025, 236/2026, 238/2026, 241/2026, 218/2026, T
 - Số hiệu VBHN 144/2026/VBHN-LQ-VPQH được ghi cho cả Luật Đường bộ và Luật TTATGTĐB — cần xác minh.
 - TT 13/2025-BCA sửa cả văn bản đường sắt, đường thủy → chỉ nhập phần sửa văn bản đường bộ.
 
+**Quy ước danh mục** (M1, `src/trafficlaw/registry/`):
+- Ngày/số hiệu chỉ điền khi có căn cứ trong văn bản ở `data/raw/`; trường thuộc vấn đề đã biết giữ `null`, ngày tìm thấy ghi vào `notes` chờ người dùng xác nhận.
+- `relations` đi **từ** văn bản chứa nó **tới** `target` (cấp văn bản; cấp Khoản/Điểm làm ở M5). Thay thế/bãi bỏ `toan_bo` từ ngày D ⇒ đích có `hieu_luc_den = D − 1` (validator kiểm tra).
+- `is_amendment: true` = văn bản sửa đổi, mang tier của văn bản bị sửa, không chỉ mục độc lập. `DocumentMeta.indexable` loại VBHN và văn bản sửa đổi.
+- `issues`: vấn đề máy không tự phát hiện được, validator in ra ở mức `info`. Mức `error` làm script thoát mã 1; `warning` (thiếu dữ liệu) chỉ chặn khi `--strict`.
+- 144/2026/VBHN-LQ-VPQH đã mở file xác minh: là VBHN **Luật Đường bộ 35/2024**; VBHN 55 là Luật 36/2024.
+
 ## 7. Đơn vị pháp lý và phiên bản
 
 **Mã định danh** (ổn định, dùng làm khóa ở mọi nơi), tạo và parse trong `utils/ids.py`:

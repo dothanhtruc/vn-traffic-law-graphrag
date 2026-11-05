@@ -1,0 +1,618 @@
+# Danh mục 36 văn bản (bản tổng hợp Phase 2, tra cứu 03/11/2026). Schema:
+# src/trafficlaw/registry/schema.py (DocumentMeta). Kiểm tra: uv run python -m scripts.validate_registry
+#
+# Quy ước:
+# - Mọi ngày lấy từ chính văn bản trong data/raw/ (đối chiếu ngày 05/11/2026). Không có căn cứ → null.
+# - Các trường thuộc "vấn đề dữ liệu đã biết" (CLAUDE.md mục 6) GIỮ null dù file gốc có ghi ngày;
+#   ngày tìm thấy được ghi vào notes để người dùng xác nhận rồi mới điền.
+# - hieu_luc_den: ngày cuối còn hiệu lực (bao gồm). Bị thay từ ngày D → hieu_luc_den = D − 1.
+# - relations đi TỪ văn bản này TỚI target. Quan hệ tới Khoản/Điểm cụ thể làm ở M5.
+# - is_amendment: true → không chỉ mục độc lập; nội dung đi vào phiên bản điều khoản bị sửa (M4).
+# - Hiệu lực riêng của từng Khoản/Điểm (vd. khoản 3 Điều 10 Luật 36) chỉ ghi trong notes;
+#   biểu diễn thật ở unit_versions.jsonl (M4).
+
+documents:
+  # ───────────────────────────── Tier A ─────────────────────────────
+  - doc_id: LUAT36-2024
+    so_hieu: 36/2024/QH15
+    ten: Luật Trật tự, an toàn giao thông đường bộ
+    loai: luat
+    co_quan: Quốc hội
+    ngay_ban_hanh: 2024-06-27
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: null
+    tier: A
+    relations:
+      - type: THAY_THE
+        target: LUAT23-2008
+        scope: toan_bo
+        effective_from: 2025-01-01
+        note: Khoản 3 Điều 88; trừ các trường hợp chuyển tiếp tại khoản 1, 2, 5, 6 Điều 89.
+    source_path: data/raw/Luat/luat trật tự 36-2024-QH15.doc
+    notes: >-
+      Khoản 3 Điều 10 có hiệu lực từ 01/01/2026 (khoản 2 Điều 88). Đã được sửa bởi Luật
+      118/2025/QH15 (hiệu lực 01/07/2026) — Luật 118 không nằm trong 36 văn bản.
+    issues:
+      - Luật 118/2025/QH15 sửa đổi văn bản này nhưng không có trong danh mục; phần sửa chỉ thấy qua VBHN 55.
+
+  - doc_id: LUAT35-2024
+    so_hieu: 35/2024/QH15
+    ten: Luật Đường bộ
+    loai: luat
+    co_quan: Quốc hội
+    ngay_ban_hanh: 2024-06-27
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: null
+    tier: A
+    relations:
+      - type: THAY_THE
+        target: LUAT23-2008
+        scope: toan_bo
+        effective_from: 2025-01-01
+        note: Khoản 3 Điều 85; trừ trường hợp chuyển tiếp tại Điều 86.
+    source_path: data/raw/Luat/Luật-35-2024-QH15.docx
+    notes: >-
+      Ngày ban hành lấy theo câu "thông qua ngày 27 tháng 6 năm 2024" cuối Luật. Điểm a, b khoản 2
+      Điều 42, Điều 43, Điều 50, khoản 1 Điều 84 có hiệu lực từ 01/10/2024 (khoản 2 Điều 85).
+      Đã được sửa bởi Luật 118/2025/QH15 (01/07/2026) và Luật 24/2026/QH16 (01/03/2027) — cả hai
+      không nằm trong 36 văn bản.
+    issues:
+      - Luật 118/2025/QH15 và Luật 24/2026/QH16 sửa văn bản này nhưng không có trong danh mục; phần sửa chỉ thấy qua VBHN 144/2026.
+
+  - doc_id: ND168-2024
+    so_hieu: 168/2024/NĐ-CP
+    ten: >-
+      Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao
+      thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe
+    loai: nghi_dinh
+    co_quan: Chính phủ
+    ngay_ban_hanh: 2024-12-26
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: null
+    tier: A
+    relations:
+      - type: SUA_DOI
+        target: ND100-2019
+        effective_from: 2025-01-01
+        note: Điều 52.
+    source_path: data/raw/NghiDinh/168.2024.NĐ.CP.doc
+    notes: >-
+      Điểm m khoản 3 Điều 6, điểm e khoản 4 Điều 26, điểm b khoản 1 Điều 27 có hiệu lực từ
+      01/01/2026; điểm b khoản 1 Điều 32 theo pháp luật bảo vệ môi trường (khoản 2 Điều 53).
+
+  - doc_id: ND151-2024
+    so_hieu: 151/2024/NĐ-CP
+    ten: Quy định chi tiết một số điều và biện pháp thi hành Luật Trật tự, an toàn giao thông đường bộ
+    loai: nghi_dinh
+    co_quan: Chính phủ
+    ngay_ban_hanh: 2024-11-15
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: null
+    tier: A
+    source_path: data/raw/NghiDinh/151.2024.ND.CP.doc
+
+  - doc_id: TT38-2024-BGTVT
+    so_hieu: 38/2024/TT-BGTVT
+    ten: >-
+      Quy định về tốc độ và khoảng cách an toàn của xe cơ giới, xe máy chuyên dùng tham gia giao
+      thông trên đường bộ
+    loai: thong_tu
+    co_quan: Bộ Giao thông vận tải
+    ngay_ban_hanh: 2024-11-15
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: null
+    tier: A
+    source_path: data/raw/ThongTu/Thông tư số 38.2024.TT-BGTVT.docx
+
+  - doc_id: TT53-2024-BGTVT
+    so_hieu: 53/2024/TT-BGTVT
+    ten: >-
+      Quy định về phân loại phương tiện giao thông đường bộ và dấu hiệu nhận biết xe cơ giới sử
+      dụng năng lượng sạch, năng lượng xanh, thân thiện môi trường
+    loai: thong_tu
+    co_quan: Bộ Giao thông vận tải
+    ngay_ban_hanh: 2024-11-15
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: null
+    tier: A
+    source_path: data/raw/ThongTu/TT 53.2024 phan loai PT_TTr ky.docx
+
+  - doc_id: TT65-2024-BCA
+    so_hieu: 65/2024/TT-BCA
+    ten: >-
+      Quy định kiểm tra kiến thức pháp luật về trật tự, an toàn giao thông đường bộ để được phục
+      hồi điểm giấy phép lái xe
+    loai: thong_tu
+    co_quan: Bộ Công an
+    ngay_ban_hanh: 2024-11-12
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: null
+    tier: A
+    source_path: data/raw/ThongTu/TT65.2024.docx
+
+  - doc_id: TT79-2024-BCA
+    so_hieu: 79/2024/TT-BCA
+    ten: Quy định về cấp, thu hồi chứng nhận đăng ký xe, biển số xe cơ giới, xe máy chuyên dùng
+    loai: thong_tu
+    co_quan: Bộ Công an
+    ngay_ban_hanh: 2024-11-15
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: null
+    tier: A
+    source_path: data/raw/ThongTu/TT 79-bca.signed.pdf
+    issues:
+      - File PDF là bản scan (không có lớp chữ) — M2 cần OCR hoặc tìm bản .doc/.docx.
+
+  - doc_id: TT12-2025-BCA
+    so_hieu: 12/2025/TT-BCA
+    ten: Quy định về sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế
+    loai: thong_tu
+    co_quan: Bộ Công an
+    ngay_ban_hanh: null
+    hieu_luc_tu: 2025-03-01
+    hieu_luc_den: null
+    tier: A
+    relations:
+      - type: THAY_THE
+        target: TT35-2024-BGTVT
+        scope: mot_phan
+        effective_from: 2025-03-01
+        note: Phần sát hạch, cấp GPLX (theo bản tổng hợp Phase 2).
+    source_path: data/raw/ThongTu/TT12 ngay 28.2.docx
+    notes: File gốc ghi "Hà Nội, ngày 28 tháng 02 năm 2025" — chờ người dùng xác nhận để điền ngay_ban_hanh.
+    issues:
+      - "Vấn đề đã biết (mục 6): thiếu ngày ban hành."
+      - Văn bản không có điều khoản nêu đích danh việc thay thế TT 35/2024 — quan hệ THAY_THE một phần lấy từ bản tổng hợp Phase 2, cần xác minh căn cứ.
+
+  - doc_id: TT14-2025-BXD
+    so_hieu: 14/2025/TT-BXD
+    ten: >-
+      Quy định về đào tạo lái xe; bồi dưỡng, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật
+      về giao thông đường bộ
+    loai: thong_tu
+    co_quan: Bộ Xây dựng
+    ngay_ban_hanh: 2025-06-30
+    hieu_luc_tu: 2025-09-01
+    hieu_luc_den: null
+    tier: A
+    relations:
+      - type: BAI_BO
+        target: TT35-2024-BGTVT
+        scope: toan_bo
+        effective_from: 2025-09-01
+        note: Khoản 2 Điều 33.
+    source_path: data/raw/ThongTu/Thông tư số 14.2025.TT-BXD.docx
+    notes: >-
+      File gốc là bản chưa ghi số/ngày ("Số: /2025/TT-BXD"); ngày ban hành 30/06/2025 lấy từ
+      trích yếu của TT 17/2026/TT-BXD.
+    issues:
+      - File gốc là bản chưa ghi số và ngày ký — nên thay bằng bản đã ký.
+
+  - doc_id: TT36-2024-BYT
+    so_hieu: 36/2024/TT-BYT
+    ten: >-
+      Quy định về tiêu chuẩn sức khỏe, việc khám sức khỏe đối với người lái xe, người điều khiển
+      xe máy chuyên dùng; việc khám sức khỏe định kỳ đối với người hành nghề lái xe ô tô; cơ sở dữ
+      liệu về sức khỏe của người lái xe, người điều khiển xe máy chuyên dùng
+    loai: thong_tu
+    co_quan: Bộ Y tế
+    ngay_ban_hanh: 2024-11-16
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: null
+    tier: A
+    source_path: data/raw/ThongTu/36_2024_TT-BYT_m_622478.doc
+
+  # ───────────────────── Văn bản sửa đổi văn bản tier A ─────────────────────
+  - doc_id: ND184-2025
+    so_hieu: 184/2025/NĐ-CP
+    ten: >-
+      Quy định phân định thẩm quyền khi tổ chức chính quyền địa phương 02 cấp và sửa đổi, bổ sung
+      một số điều của các nghị định của Chính phủ trong lĩnh vực an ninh trật tự
+    loai: nghi_dinh
+    co_quan: Chính phủ
+    ngay_ban_hanh: 2025-07-01
+    hieu_luc_tu: 2025-07-01
+    hieu_luc_den: null
+    tier: A
+    is_amendment: true
+    relations:
+      - type: SUA_DOI
+        target: ND151-2024
+        effective_from: 2025-07-01
+        note: Điều 27.
+    source_path: data/raw/NghiDinh/184_2025_ND-CP_664032.doc
+    notes: Điều 2 hết hiệu lực từ 01/03/2027 (khoản 2 Điều 28), trừ các trường hợp nêu tại đó.
+    issues:
+      - Văn bản sửa 25 nghị định; chỉ Điều 27 (sửa NĐ 151/2024) thuộc phạm vi đồ án.
+
+  - doc_id: ND236-2026
+    so_hieu: 236/2026/NĐ-CP
+    ten: Sửa đổi, bổ sung một số điều của Nghị định số 151/2024/NĐ-CP
+    loai: nghi_dinh
+    co_quan: Chính phủ
+    ngay_ban_hanh: 2026-06-26
+    hieu_luc_tu: 2026-07-01
+    hieu_luc_den: null
+    tier: A
+    is_amendment: true
+    relations:
+      - type: SUA_DOI
+        target: ND151-2024
+        effective_from: 2026-07-01
+    source_path: data/raw/NghiDinh/236.2026.NĐ.CP.doc
+    notes: >-
+      Phần cơ sở dữ liệu tại khoản 2 Điều 2 có hiệu lực từ 01/07/2027 (khoản 2 Điều 18).
+
+  - doc_id: ND238-2026
+    so_hieu: 238/2026/NĐ-CP
+    ten: Sửa đổi, bổ sung một số điều của Nghị định số 168/2024/NĐ-CP
+    loai: nghi_dinh
+    co_quan: Chính phủ
+    ngay_ban_hanh: 2026-06-26
+    hieu_luc_tu: 2026-08-15
+    hieu_luc_den: null
+    tier: A
+    is_amendment: true
+    relations:
+      - type: SUA_DOI
+        target: ND168-2024
+        effective_from: 2026-08-15
+    source_path: data/raw/NghiDinh/238.2026.NĐ.CP.doc
+    notes: >-
+      Quy định về thiết bị ghi nhận hình ảnh khoang chở khách (điểm n khoản 5 Điều 20; điểm k, l
+      khoản 7 Điều 26 NĐ 168 sau sửa) có hiệu lực từ 01/01/2029.
+
+  - doc_id: TT17-2026-BXD
+    so_hieu: 17/2026/TT-BXD
+    ten: Sửa đổi, bổ sung một số điều của Thông tư số 14/2025/TT-BXD
+    loai: thong_tu
+    co_quan: Bộ Xây dựng
+    ngay_ban_hanh: 2026-04-29
+    hieu_luc_tu: 2026-07-01
+    hieu_luc_den: null
+    tier: A
+    is_amendment: true
+    relations:
+      - type: SUA_DOI
+        target: TT14-2025-BXD
+        effective_from: 2026-07-01
+    source_path: data/raw/ThongTu/Thông tư 17 ban trinh ky.docx
+    issues:
+      - Tên file là "ban trinh ky" — cần xác nhận nội dung trùng bản đã ký.
+
+  # ───────────────────────────── Tier B ─────────────────────────────
+  - doc_id: ND165-2024
+    so_hieu: 165/2024/NĐ-CP
+    ten: >-
+      Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật
+      tự, an toàn giao thông đường bộ
+    loai: nghi_dinh
+    co_quan: Chính phủ
+    ngay_ban_hanh: 2024-12-26
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: null
+    tier: B
+    source_path: data/raw/NghiDinh/Nghị định 165.2024.NĐ-CP.docx
+    issues:
+      - NĐ 243/2025/NĐ-CP sửa văn bản này nhưng không có trong danh mục; phần sửa chỉ thấy qua VBHN 65/2026.
+
+  - doc_id: ND158-2024
+    so_hieu: 158/2024/NĐ-CP
+    ten: Quy định về hoạt động vận tải đường bộ
+    loai: nghi_dinh
+    co_quan: Chính phủ
+    ngay_ban_hanh: 2024-12-18
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: null
+    tier: B
+    source_path: data/raw/NghiDinh/Nghị định số 158.2024.NĐ-CP.docx
+
+  - doc_id: ND336-2025
+    so_hieu: 336/2025/NĐ-CP
+    ten: Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ
+    loai: nghi_dinh
+    co_quan: Chính phủ
+    ngay_ban_hanh: 2025-12-22
+    hieu_luc_tu: 2026-03-01
+    hieu_luc_den: null
+    tier: B
+    relations:
+      - type: BAI_BO
+        target: ND100-2019
+        scope: mot_phan
+        effective_from: 2026-03-01
+        note: Điều 25 bãi bỏ một số điều, khoản, điểm của NĐ 100/2019.
+    source_path: data/raw/NghiDinh/VanBanGoc_Nghị định số 336.2025.NĐ-CP.pdf
+    issues:
+      - File PDF là bản scan (không có lớp chữ) — M2 cần OCR hoặc tìm bản .doc/.docx.
+
+  - doc_id: ND130-2024
+    so_hieu: 130/2024/NĐ-CP
+    ten: >-
+      Quy định về thu phí sử dụng đường bộ cao tốc đối với phương tiện lưu thông trên tuyến đường
+      bộ cao tốc thuộc sở hữu toàn dân do nhà nước đại diện chủ sở hữu và trực tiếp quản lý, khai
+      thác
+    loai: nghi_dinh
+    co_quan: Chính phủ
+    ngay_ban_hanh: 2024-10-10
+    hieu_luc_tu: 2024-10-10
+    hieu_luc_den: null
+    tier: B
+    source_path: data/raw/NghiDinh/Nghị định số 130.2024.NĐ-CP.doc
+
+  - doc_id: TT52-2024-BGTVT
+    so_hieu: 52/2024/TT-BGTVT
+    ten: >-
+      Quy định về yêu cầu kỹ thuật đối với xe cơ giới, xe máy chuyên dùng thuộc đối tượng nghiên
+      cứu phát triển có nhu cầu tham gia giao thông đường bộ
+    loai: thong_tu
+    co_quan: Bộ Giao thông vận tải
+    ngay_ban_hanh: null
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: null
+    tier: B
+    source_path: data/raw/ThongTu/TT 52-bgtvt.pdf
+    notes: 'File gốc ghi "Số: /2024/TT-BGTVT", "ngày tháng năm 2024" (bản chưa ghi số/ngày).'
+    issues:
+      - File gốc là bản chưa ghi số và ngày ký; lớp chữ PDF bị tách ký tự — nên thay bằng bản đã ký.
+
+  - doc_id: TT69-2024-BCA
+    so_hieu: 69/2024/TT-BCA
+    ten: Quy định về chỉ huy, điều khiển giao thông đường bộ của Cảnh sát giao thông
+    loai: thong_tu
+    co_quan: Bộ Công an
+    ngay_ban_hanh: 2024-11-12
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: null
+    tier: B
+    source_path: data/raw/ThongTu/Thông tư 69.2024.TT-BCA.doc
+
+  - doc_id: TT73-2024-BCA
+    so_hieu: 73/2024/TT-BCA
+    ten: >-
+      Quy định công tác tuần tra, kiểm soát, xử lý vi phạm pháp luật về trật tự, an toàn giao
+      thông đường bộ của Cảnh sát giao thông
+    loai: thong_tu
+    co_quan: Bộ Công an
+    ngay_ban_hanh: null
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: null
+    tier: B
+    source_path: data/raw/ThongTu/Thông tư 73 ngày 15.11.doc
+    notes: File gốc ghi "Hà Nội, ngày 15 tháng 11 năm 2024" — chờ người dùng xác nhận để điền ngay_ban_hanh.
+    issues:
+      - "Vấn đề đã biết (mục 6): thiếu ngày ban hành."
+
+  - doc_id: TT13-2025-BCA
+    so_hieu: 13/2025/TT-BCA
+    ten: >-
+      Sửa đổi, bổ sung một số điều của các thông tư quy định về trật tự, an toàn giao thông đường
+      bộ, đường sắt và đường thủy nội địa
+    loai: thong_tu
+    co_quan: Bộ Công an
+    ngay_ban_hanh: 2025-02-28
+    hieu_luc_tu: 2025-03-01
+    hieu_luc_den: null
+    tier: B
+    is_amendment: true
+    relations:
+      - {type: SUA_DOI, target: TT65-2024-BCA, effective_from: 2025-03-01, note: Điều 6.}
+      - {type: SUA_DOI, target: TT69-2024-BCA, effective_from: 2025-03-01, note: Điều 9.}
+      - {type: SUA_DOI, target: TT72-2024-BCA, effective_from: 2025-03-01, note: Điều 10.}
+      - {type: SUA_DOI, target: TT73-2024-BCA, effective_from: 2025-03-01, note: Điều 11.}
+      - {type: SUA_DOI, target: TT79-2024-BCA, effective_from: 2025-03-01, note: Điều 12.}
+    source_path: >-
+      data/raw/ThongTu/0. Thong tu 13.2025.TT-BCA ngay 28.02.2025 sua doi, bo sung mot so dieu cua cac thong tu quy dinh ve TTATGT DB, DS, DTND.doc
+    issues:
+      - "Vấn đề đã biết (mục 6): văn bản sửa cả thông tư đường sắt, đường thủy — chỉ nhập Điều 6, 9, 10, 11, 12 (sửa thông tư đường bộ trong danh mục)."
+
+  - doc_id: QD19-2024-TTG
+    so_hieu: 19/2024/QĐ-TTg
+    ten: >-
+      Quy định lộ trình áp dụng mức tiêu chuẩn khí thải đối với xe cơ giới nhập khẩu và sản xuất,
+      lắp ráp
+    loai: quyet_dinh
+    co_quan: Thủ tướng Chính phủ
+    ngay_ban_hanh: 2024-11-15
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: null
+    tier: B
+    source_path: data/raw/QuyetDinh/Quyết định-19-2024-QĐ-TTg.docx
+
+  # ───────────────────── Văn bản sửa đổi văn bản tier B ─────────────────────
+  - doc_id: ND241-2026
+    so_hieu: 241/2026/NĐ-CP
+    ten: Sửa đổi, bổ sung một số điều của Nghị định số 165/2024/NĐ-CP
+    loai: nghi_dinh
+    co_quan: Chính phủ
+    ngay_ban_hanh: 2026-06-26
+    hieu_luc_tu: 2026-07-01
+    hieu_luc_den: null
+    tier: B
+    is_amendment: true
+    relations:
+      - type: SUA_DOI
+        target: ND165-2024
+        effective_from: 2026-07-01
+    source_path: data/raw/NghiDinh/241_2026_ND-CP_712584.docx
+
+  - doc_id: ND218-2026
+    so_hieu: 218/2026/NĐ-CP
+    ten: Sửa đổi, bổ sung một số điều của Nghị định số 158/2024/NĐ-CP
+    loai: nghi_dinh
+    co_quan: Chính phủ
+    ngay_ban_hanh: 2026-06-19
+    hieu_luc_tu: null
+    hieu_luc_den: null
+    tier: B
+    is_amendment: true
+    relations:
+      - type: SUA_DOI
+        target: ND158-2024
+        effective_from: null
+    source_path: data/raw/NghiDinh/218_2026_ND-CP_711730.docx
+    notes: >-
+      File gốc ghi "Nghị định này có hiệu lực thi hành từ ngày 10 tháng 8 năm 2026" (khoản 1 Điều
+      39) — chờ người dùng xác nhận để điền hieu_luc_tu và effective_from.
+    issues:
+      - "Vấn đề đã biết (mục 6): thiếu ngày hiệu lực."
+
+  # ───────────────────────────── Tier C ─────────────────────────────
+  - doc_id: TT71-2024-BCA
+    so_hieu: 71/2024/TT-BCA
+    ten: >-
+      Quy định quản lý, vận hành, sử dụng hệ thống quản lý dữ liệu thiết bị giám sát hành trình
+      và thiết bị ghi nhận hình ảnh người lái xe
+    loai: thong_tu
+    co_quan: Bộ Công an
+    ngay_ban_hanh: null
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: null
+    tier: C
+    source_path: >-
+      data/raw/ThongTu/3. Thong tu 71.TT-BCA ngay 12.11.2024 quy dinh quan ly van hanh thiet bi giam sat hanh trinh.DOC
+    notes: File gốc ghi "Hà Nội, ngày 12 tháng 11 năm 2024" — chờ người dùng xác nhận để điền ngay_ban_hanh.
+    issues:
+      - "Vấn đề đã biết (mục 6): thiếu ngày ban hành."
+
+  - doc_id: TT72-2024-BCA
+    so_hieu: 72/2024/TT-BCA
+    ten: >-
+      Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông
+    loai: thong_tu
+    co_quan: Bộ Công an
+    ngay_ban_hanh: null
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: null
+    tier: C
+    source_path: data/raw/ThongTu/Thông tư 72.doc
+    notes: File gốc ghi "Hà Nội, ngày 13 tháng 11 năm 2024" — chờ người dùng xác nhận để điền ngay_ban_hanh.
+    issues:
+      - "Vấn đề đã biết (mục 6): thiếu ngày ban hành."
+
+  - doc_id: TT83-2024-BCA
+    so_hieu: 83/2024/TT-BCA
+    ten: >-
+      Quy định về xây dựng, quản lý, vận hành, khai thác và sử dụng hệ thống giám sát bảo đảm an
+      ninh, trật tự, an toàn giao thông đường bộ
+    loai: thong_tu
+    co_quan: Bộ Công an
+    ngay_ban_hanh: 2024-11-15
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: null
+    tier: C
+    source_path: data/raw/ThongTu/2. Thông tư 83.2024.TT.BCA hệ thống giám sát ngày 15.11.2024.docx
+
+  # ─────────────────────────── Historical ───────────────────────────
+  - doc_id: LUAT26-2001
+    so_hieu: null
+    ten: Luật Giao thông đường bộ (2001)
+    loai: luat
+    co_quan: Quốc hội
+    ngay_ban_hanh: null
+    hieu_luc_tu: null
+    hieu_luc_den: null
+    tier: historical
+    source_path: null
+    notes: Chỉ biết "Luật 26/2001" từ bản tổng hợp Phase 2; chưa có file gốc để lấy số hiệu đầy đủ và các ngày.
+
+  - doc_id: LUAT23-2008
+    so_hieu: 23/2008/QH12
+    ten: Luật Giao thông đường bộ (2008)
+    loai: luat
+    co_quan: Quốc hội
+    ngay_ban_hanh: null
+    hieu_luc_tu: null
+    hieu_luc_den: 2024-12-31
+    tier: historical
+    source_path: null
+    notes: >-
+      Số hiệu và ngày hết hiệu lực (01/01/2025, trừ chuyển tiếp) lấy từ Điều 85 Luật 35/2024 và
+      Điều 88 Luật 36/2024. Đã được sửa bởi Luật 35/2018/QH14 và Luật 44/2019/QH14.
+
+  - doc_id: ND100-2019
+    so_hieu: 100/2019/NĐ-CP
+    ten: >-
+      Quy định xử phạt vi phạm hành chính trong lĩnh vực giao thông đường bộ và đường sắt
+      (phần giao thông đường bộ)
+    loai: nghi_dinh
+    co_quan: Chính phủ
+    ngay_ban_hanh: 2019-12-30
+    hieu_luc_tu: null
+    hieu_luc_den: null
+    tier: historical
+    source_path: null
+    notes: >-
+      Ngày ban hành lấy từ Điều 52 NĐ 168/2024 và Điều 25 NĐ 336/2025. Hết hiệu lực theo phần
+      (sửa bởi NĐ 168/2024 từ 01/01/2025, bãi bỏ một phần bởi NĐ 336/2025 từ 01/03/2026) → để
+      hieu_luc_den null, biểu diễn ở cấp Khoản (M4).
+
+  - doc_id: TT35-2024-BGTVT
+    so_hieu: 35/2024/TT-BGTVT
+    ten: >-
+      Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế;
+      đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ
+    loai: thong_tu
+    co_quan: Bộ Giao thông vận tải
+    ngay_ban_hanh: 2024-11-15
+    hieu_luc_tu: 2025-01-01
+    hieu_luc_den: 2025-08-31
+    tier: historical
+    source_path: data/raw/ThongTu/VanBanGoc_Thông tư số 35.2024.TT-BGTVT.pdf
+    notes: >-
+      Bị thay thế một phần bởi TT 12/2025/TT-BCA từ 01/03/2025, bãi bỏ toàn bộ bởi TT
+      14/2025/TT-BXD từ 01/09/2025.
+
+  # ─────────────────── VBHN (chỉ để đối chiếu, không chỉ mục) ───────────────────
+  - doc_id: VBHN55-VPQH
+    so_hieu: 55/VBHN-VPQH
+    ten: Luật Trật tự, an toàn giao thông đường bộ (văn bản hợp nhất)
+    loai: vbhn
+    co_quan: Văn phòng Quốc hội
+    ngay_ban_hanh: null
+    tier: vbhn
+    relations:
+      - type: HOP_NHAT
+        target: LUAT36-2024
+        note: Hợp nhất Luật 36/2024 với Luật 118/2025/QH15 (hiệu lực 01/07/2026).
+    source_path: data/raw/VBHopNhat/55-vbhn-vpqh.pdf
+    notes: >-
+      Trang xác thực trong file để trống số và ngày ("Số: /VBHN-VPQH", "ngày tháng năm 2026");
+      số 55 lấy theo tên file và bản tổng hợp Phase 2.
+    issues:
+      - Số hiệu và ngày xác thực không có trong file — cần xác minh.
+      - Khi đối chiếu ở M4, phải loại các Khoản do Luật 118/2025 sửa (Luật 118 không có trong danh mục).
+
+  - doc_id: VBHN144-2026-LQ-VPQH
+    so_hieu: 144/2026/VBHN-LQ-VPQH
+    ten: Luật Đường bộ (văn bản hợp nhất)
+    loai: vbhn
+    co_quan: Văn phòng Quốc hội
+    ngay_ban_hanh: 2026-09-23
+    tier: vbhn
+    relations:
+      - type: HOP_NHAT
+        target: LUAT35-2024
+        note: Hợp nhất Luật 35/2024 với Luật 118/2025/QH15 và Luật 24/2026/QH16.
+    source_path: data/raw/VBHopNhat/2026_528-VBHN_144_2026_VBHN-LQ-VPQH.docx
+    notes: >-
+      Đã mở file xác minh (05/11/2026): đây là VBHN Luật Đường bộ 35/2024, không phải Luật TTATGTĐB.
+    issues:
+      - "Vấn đề đã biết (mục 6): số hiệu từng được ghi cho cả Luật Đường bộ và Luật TTATGTĐB — đã xác minh là Luật Đường bộ 35/2024; cần người dùng xác nhận."
+
+  - doc_id: VBHN65-2026-BXD
+    so_hieu: 65/2026/VBHN-NĐ-BXD
+    ten: Nghị định 165/2024/NĐ-CP (văn bản hợp nhất)
+    loai: vbhn
+    co_quan: Bộ Xây dựng
+    ngay_ban_hanh: null
+    tier: vbhn
+    relations:
+      - type: HOP_NHAT
+        target: ND165-2024
+        note: Hợp nhất NĐ 165/2024 với NĐ 243/2025 (không có trong danh mục) và NĐ 241/2026.
+    source_path: data/raw/VBHopNhat/65-vbhn-bxd.signed.pdf
+    notes: 'File ghi "Số: /2026/VBHN-NĐ-BXD", "ngày tháng năm 2026" — số 65 lấy theo tên file.'
+    issues:
+      - "Vấn đề đã biết (mục 6): thiếu ngày xác thực."
+      - Khi đối chiếu ở M4, phải loại các Khoản do NĐ 243/2025 sửa (không có trong danh mục).
