@@ -1,0 +1,14 @@
+# Đường dẫn dữ liệu, tương đối với gốc repo.
+registry_dir: data/registry
+documents: data/registry/documents.yaml
+vbhn_map: data/registry/vbhn_map.yaml
+raw_dir: data/raw
+interim_dir: data/interim
+processed_dir: data/processed
+units: data/processed/units.jsonl
+unit_versions: data/processed/unit_versions.jsonl
+amendment_todo: data/processed/amendment_todo.csv
+graph_dir: data/graph
+qa_dir: data/qa
+index_dir: data/index
+results_dir: results
