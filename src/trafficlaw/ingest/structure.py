@@ -26,11 +26,15 @@ Quy tắc chính (giải thích chi tiết trong PR M3):
    khi lấy số; bỏ khỏi ``title`` nhưng giữ trong ``text``.
 7. ``text`` của unit = phần riêng của nó, giữ nguyên nhãn (``"Điều 9. …"``, ``"1. …"``,
    ``"a) …"``); dòng trống bị bỏ. Unit ``van_ban`` (mã = ``doc_id``) chứa phần mở đầu.
+8. **Sửa nhãn thủ công** (``LabelOverride``): nhãn Khoản/Điểm ghi sai trong bản gốc (ND168
+   "đ)" thay "d)") được đổi số hiệu/mã unit; ``text`` giữ nguyên văn, ``label_in_source`` ghi
+   nhãn gốc. Áp trước khi kiểm tra thứ tự.
 """
 
 from __future__ import annotations
 
 import re
+from collections.abc import Callable, Sequence
 from dataclasses import dataclass, field
 from typing import Literal
 
@@ -41,6 +45,7 @@ from trafficlaw.utils.ids import (
     UnitId,
     make_appendix_id,
     make_unit_id,
+    parse_unit_id,
     roman_to_int,
 )
 
@@ -56,6 +61,7 @@ _FRAME = re.compile(
 _DIEU = re.compile(r"^Điều\s+(\d+[a-z]?)\s*\.((?:\[\^\d+\])*)\s*(.*)$")
 _KHOAN = re.compile(r"^(\d+[a-z]?)\.((?:\[\^\d+\])*)\s+\S")
 _DIEM = re.compile(r"^([a-zđ]\d*)\)((?:\[\^\d+\])*)\s+\S")
+_LABEL_PREFIX = re.compile(r"^(?:\d+[a-z]?\.|[a-zđ]\d*\))(?:\[\^\d+\])*\s+")
 _APPENDIX = re.compile(
     r"^(?:PHỤ LỤC|Phụ lục)(?:\s+(?:SỐ|Số|số))?(?:\s+([IVXLC]+|\d+[a-z]?))?\s*[.:]?$"
 )
@@ -87,6 +93,38 @@ class Unit(BaseModel):
     footnotes: dict[str, str] = {}
     #: Dòng (1-based) trong ``data/interim/<doc_id>.txt`` nơi unit bắt đầu.
     line_start: int
+    #: Nhãn ghi trong bản gốc khi số hiệu đã được sửa thủ công (``label_overrides.yaml``);
+    #: ``text`` vẫn giữ nguyên văn nhãn gốc.
+    label_in_source: str | None = None
+
+
+class LabelOverride(BaseModel):
+    """Sửa thủ công nhãn Khoản/Điểm ghi sai trong bản gốc (``data/registry/label_overrides.yaml``).
+
+    Dòng được nhận diện bằng ``label_in_source`` + đầu câu ``text_starts_with`` (sau nhãn) trong
+    Điều/Khoản cha của ``unit_id``; số hiệu mới = cấp cuối của ``unit_id``. Không khớp đúng
+    một lần → ``overrides_unapplied`` (script thoát mã 1).
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    unit_id: str
+    label_in_source: str
+    text_starts_with: str
+    reason: str
+    evidence: str
+
+    @property
+    def doc_id(self) -> str:
+        return self.unit_id.split("/", 1)[0]
+
+    @property
+    def label(self) -> str:
+        uid = parse_unit_id(self.unit_id)
+        label = uid.diem if uid.diem is not None else uid.khoan
+        if label is None:
+            raise ValueError(f"override chỉ áp dụng cho Khoản/Điểm: {self.unit_id}")
+        return label
 
 
 class Anomaly(BaseModel):
@@ -121,6 +159,8 @@ class StructureReport(BaseModel):
     orphan_footnotes: list[str] = []
     missing_footnotes: list[str] = []
     anomalies: list[Anomaly] = []
+    overrides_applied: list[str] = []
+    overrides_unapplied: list[str] = []
 
 
 @dataclass
@@ -138,6 +178,7 @@ class _Builder:
     parent_id: str | None
     line_start: int
     lines: list[str] = field(default_factory=list)
+    label_in_source: str | None = None
 
 
 def strip_footnote_refs(s: str) -> str:
@@ -214,8 +255,16 @@ def _dieu_follows(prev: tuple[int, str] | None, new: tuple[int, str]) -> bool:
 
 
 class _Parser:
-    def __init__(self, doc_id: str, text: str, source_path: str | None) -> None:
+    def __init__(
+        self,
+        doc_id: str,
+        text: str,
+        source_path: str | None,
+        overrides: Sequence[LabelOverride] = (),
+    ) -> None:
         self.doc_id = doc_id
+        self.overrides = [o for o in overrides if o.doc_id == doc_id]
+        self.override_hits: dict[str, int] = {o.unit_id: 0 for o in self.overrides}
         self.source_path = source_path
         self.lines = text.split("\n")
         self.report = StructureReport(doc_id=doc_id, n_lines=len(self.lines))
@@ -465,8 +514,25 @@ class _Parser:
         self.frame_title = None
         return True
 
+    def _override(self, label: str, line: str, i: int, make_id: Callable[[str], str]) -> str:
+        """Nhãn sau khi áp ``label_overrides`` (không khớp → giữ nguyên ``label``)."""
+        content = _LABEL_PREFIX.sub("", line, count=1)
+        for o in self.overrides:
+            if o.label_in_source != label or not content.startswith(o.text_starts_with):
+                continue
+            if make_id(o.label) != o.unit_id:
+                self._anomaly(i, "label_override_mismatch", f"{o.unit_id} ≠ {make_id(o.label)}")
+                continue
+            self.override_hits[o.unit_id] += 1
+            self._anomaly(i, "label_override", f"{label} → {o.label}: {o.unit_id}")
+            return o.label
+        return label
+
     def _khoan(self, number: str, line: str, i: int) -> bool:
         assert self.dieu is not None
+        dieu = self.dieu.number
+        src = number
+        number = self._override(number, line, i, lambda n: make_unit_id(self.doc_id, dieu, n))
         key = _num_key(number)
         uid = make_unit_id(self.doc_id, self.dieu.number, number)
         # Khoản đầu tiên: 1 hoặc mục bổ sung đứng trước nó (1a — "bổ sung khoản 1a vào trước").
@@ -479,6 +545,7 @@ class _Parser:
             self._anomaly(i, "khoan_gap", f"{self.dieu.id}: {line}")
         b = self._add(uid, "khoan", number, None, self.dieu.id, i)
         b.lines.append(line)
+        b.label_in_source = src if src != number else None
         self.khoan, self.diem = b, None
         self.prev_khoan, self.prev_diem = key, None
         self.target = b
@@ -486,11 +553,12 @@ class _Parser:
 
     def _diem(self, label: str, line: str, i: int) -> bool:
         assert self.dieu is not None
+        dieu, khoan = self.dieu.number, self.khoan.number if self.khoan else None
+        src = label
+        label = self._override(label, line, i, lambda x: make_unit_id(self.doc_id, dieu, khoan, x))
         key = _diem_key(label)
         parent = self.khoan or self.dieu
-        uid = make_unit_id(
-            self.doc_id, self.dieu.number, self.khoan.number if self.khoan else None, label
-        )
+        uid = make_unit_id(self.doc_id, dieu, khoan, label)
         first = self.prev_diem is None and key[0] == 0  # a hoặc a1
         step = "ok" if first else _step(self.prev_diem or (-1, 0), key, 0)
         if uid in self.ids or step == "bad":
@@ -500,6 +568,7 @@ class _Parser:
             self._anomaly(i, "diem_gap", f"{parent.id}: {line}")
         b = self._add(uid, "diem", label, None, parent.id, i)
         b.lines.append(line)
+        b.label_in_source = src if src != label else None
         self.diem = b
         self.prev_diem = key
         self.target = b
@@ -563,6 +632,7 @@ class _Parser:
                     source_path=self.source_path,
                     footnotes=fns,
                     line_start=b.line_start,
+                    label_in_source=b.label_in_source,
                 )
             )
         r = self.report
@@ -578,9 +648,19 @@ class _Parser:
         r.n_footnotes = len(self.footnotes)
         r.orphan_footnotes = sorted(set(self.footnotes) - referenced, key=int)
         r.missing_footnotes = sorted(missing, key=int)
+        r.overrides_applied = [k for k, n in self.override_hits.items() if n == 1]
+        r.overrides_unapplied = [k for k, n in self.override_hits.items() if n != 1]
         return StructureResult(units, r)
 
 
-def parse_structure(doc_id: str, text: str, source_path: str | None = None) -> StructureResult:
-    """Tách cấu trúc một văn bản (nội dung file interim, đã NFC). Hàm thuần."""
-    return _Parser(doc_id, text, source_path).run()
+def parse_structure(
+    doc_id: str,
+    text: str,
+    source_path: str | None = None,
+    overrides: Sequence[LabelOverride] = (),
+) -> StructureResult:
+    """Tách cấu trúc một văn bản (nội dung file interim, đã NFC). Hàm thuần.
+
+    ``overrides``: sửa nhãn Khoản/Điểm ghi sai trong bản gốc (chỉ mục của ``doc_id`` được dùng).
+    """
+    return _Parser(doc_id, text, source_path, overrides).run()

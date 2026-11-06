@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from trafficlaw.ingest.structure import Unit, parse_structure, quote_scan
+from trafficlaw.ingest.structure import LabelOverride, Unit, parse_structure, quote_scan
 
 FIXTURES = Path(__file__).resolve().parents[1] / "fixtures"
 
@@ -383,3 +383,59 @@ def test_report_counts_and_footnote_bookkeeping() -> None:
     assert u["VBHN55-VPQH/D1"].title == "A" and u["VBHN55-VPQH/D1"].footnotes == {
         "1": "Điều này được sửa đổi."
     }
+
+
+# ---------------------------------------------------------------- sửa nhãn thủ công
+
+
+def _ov(unit_id: str, src: str, start: str) -> LabelOverride:
+    return LabelOverride(
+        unit_id=unit_id, label_in_source=src, text_starts_with=start, reason="r", evidence="e"
+    )
+
+
+# Trích nguyên văn ND168 Điều 16 khoản 2 (file .doc gốc ghi "đ)" hai lần).
+_ND168_D16 = (
+    "Điều 16. Xử phạt\n2. Phạt tiền đối với một trong các hành vi sau đây:\n"
+    "a) Điều khiển xe hoạt động không đúng phạm vi quy định;\n"
+    "b) Điều khiển xe không có giấy chứng nhận;\n"
+    "c) Điều khiển xe không có chứng nhận đăng ký xe;\n"
+    "đ) Điều khiển xe gắn biển số không đúng với chứng nhận đăng ký xe;\n"
+    "đ) Sử dụng chứng nhận đăng ký xe đã hết hạn sử dụng.\n"
+)
+
+
+def test_label_override_fixes_diem_label_keeps_text() -> None:
+    ov = _ov("ND168-2024/D16/K2/d", "đ", "Điều khiển xe gắn biển số không đúng")
+    res = parse_structure("ND168-2024", "Điều 15. A\n" + _ND168_D16, overrides=[ov])
+    u = _by_id(res.units)
+    d, dd = u["ND168-2024/D16/K2/d"], u["ND168-2024/D16/K2/đ"]
+    assert d.number == "d" and d.label_in_source == "đ"
+    assert d.text == "đ) Điều khiển xe gắn biển số không đúng với chứng nhận đăng ký xe;"
+    assert dd.label_in_source is None and dd.text.startswith("đ) Sử dụng chứng nhận")
+    assert res.report.overrides_applied == ["ND168-2024/D16/K2/d"]
+    assert res.report.overrides_unapplied == []
+    # Không còn diem_gap / diem_out_of_sequence (trích đoạn bắt đầu ở Điều 15, khoản 2).
+    assert [k for k in _kinds(res) if "diem" in k or "label" in k] == ["label_override"]
+
+
+def test_label_override_without_match_is_reported() -> None:
+    ovs = [
+        _ov("ND168-2024/D16/K2/d", "đ", "Văn bản không có câu này"),
+        _ov("ND168-2024/D17/K2/d", "đ", "Điều khiển xe gắn biển số"),  # sai Điều cha
+        _ov("TT12-2025-BCA/D3/K4", "5", "Giấy phép"),  # văn bản khác: bỏ qua
+    ]
+    res = parse_structure("ND168-2024", "Điều 15. A\n" + _ND168_D16, overrides=ovs)
+    assert res.report.overrides_applied == []
+    assert res.report.overrides_unapplied == ["ND168-2024/D16/K2/d", "ND168-2024/D17/K2/d"]
+    assert "label_override_mismatch" in _kinds(res)
+    assert "ND168-2024/D16/K2/d" not in _by_id(res.units)
+
+
+def test_label_override_khoan() -> None:
+    text = "Điều 1. A\n1. Một.\n2. Hai.\n3. Ba.\n5. Bốn bị ghi nhầm.\n6. Sáu."
+    ov = _ov("TT12-2025-BCA/D1/K4", "5", "Bốn bị ghi nhầm")
+    res = parse_structure("TT12-2025-BCA", text, overrides=[ov])
+    nums = [x.number for x in res.units if x.level == "khoan"]
+    assert nums == ["1", "2", "3", "4", "6"]
+    assert "khoan_gap" in _kinds(res)  # 4 → 6 vẫn thiếu một mục, vẫn báo

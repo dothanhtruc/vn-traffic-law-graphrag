@@ -1,0 +1,45 @@
+# Sửa thủ công nhãn Khoản/Điểm ghi sai trong bản gốc (M3, scripts.ingest --stage structure).
+#
+# - Chỉ đổi số hiệu + mã unit; `text` của unit giữ nguyên văn (vẫn bắt đầu bằng nhãn gốc),
+#   unit có thêm `label_in_source` = nhãn gốc.
+# - Dòng được nhận diện bằng `label_in_source` + `text_starts_with` (phần sau nhãn) nằm trong
+#   đúng Điều/Khoản cha của `unit_id`. Mục nào không khớp đúng một dòng → script thoát mã 1
+#   (văn bản nguồn đã đổi, cần xem lại).
+# - Mỗi mục phải có `evidence`: căn cứ kiểm chứng được, không suy đoán nội dung.
+# Người dùng quyết định sửa ngày 07/11/2026.
+
+overrides:
+  # NĐ 168/2024, Điều 16 khoản 2: file .doc gốc ghi "a) b) c) đ) đ)".
+  - unit_id: ND168-2024/D16/K2/d
+    label_in_source: "đ"
+    text_starts_with: "Điều khiển xe gắn biển số không đúng với chứng nhận đăng ký xe"
+    reason: 'Bản gốc (.doc) ghi "đ)" ở vị trí điểm d (sau c, trước đ).'
+    evidence: >-
+      Chính Điều 16 dẫn chiếu "hành vi quy định tại điểm d khoản 2 Điều này bị tịch thu biển
+      số xe" (khớp hành vi gắn biển số) và "điểm đ khoản 2 Điều này buộc nộp lại chứng nhận
+      đăng ký xe" (khớp điểm tiếp theo: sử dụng chứng nhận đăng ký xe).
+
+  # NĐ 168/2024, Điều 39 khoản 9: file .doc gốc ghi "a) b) c) đ)".
+  - unit_id: ND168-2024/D39/K9/d
+    label_in_source: "đ"
+    text_starts_with: "Trung tâm sát hạch lái xe thực hiện hành vi quy định tại điểm k khoản 5"
+    reason: 'Bản gốc (.doc) ghi "đ)" ngay sau "c)"; khoản 9 không có điểm d.'
+    evidence: >-
+      Thứ tự chữ cái (a, b, c, d); cùng kiểu lỗi gõ "đ" thay "d" ở Điều 16 và Điều 40 của văn
+      bản này. Không tìm thấy dẫn chiếu tới điểm d/đ khoản 9 Điều 39 trong 33 văn bản.
+
+  # NĐ 168/2024, Điều 40 khoản 3: file .doc gốc ghi "a) b) c) đ) đ) c)".
+  - unit_id: ND168-2024/D40/K3/d
+    label_in_source: "đ"
+    text_starts_with: "Sử dụng thiết bị, dụng cụ không đảm bảo theo quy định của pháp luật"
+    reason: 'Bản gốc (.doc) ghi "đ)" ở vị trí điểm d (sau c, trước đ).'
+    evidence: >-
+      Thứ tự chữ cái (a, b, c, d, đ, e). Không tìm thấy dẫn chiếu tới các điểm của khoản 3
+      Điều 40 trong 33 văn bản.
+  - unit_id: ND168-2024/D40/K3/e
+    label_in_source: "c"
+    text_starts_with: "Lưu trữ hồ sơ, tài liệu, dữ liệu chứng nhận không đúng quy định"
+    reason: 'Bản gốc (.doc) ghi "c)" lần thứ hai ở vị trí điểm e (sau đ, cuối khoản).'
+    evidence: >-
+      Thứ tự chữ cái (a, b, c, d, đ, e); khoản 3 đã có điểm c ("Phân công người không đủ điều
+      kiện…").

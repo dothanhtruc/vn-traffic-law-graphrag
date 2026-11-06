@@ -39,6 +39,7 @@ class IngestConfig(BaseModel):
     # M3 (--stage structure); units.jsonl lấy từ configs/paths.yaml.
     structure_report: str = "data/processed/structure_report.jsonl"
     structure_summary: str = "data/processed/structure_summary.md"
+    label_overrides: str = "data/registry/label_overrides.yaml"
     expected_dieu: dict[str, ExpectedDieu] = {}
 
 

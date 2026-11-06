@@ -20,6 +20,8 @@ so_hieu_unsigned:
 # ---------------------------------------------------------------- M3: --stage structure
 structure_report: data/processed/structure_report.jsonl
 structure_summary: data/processed/structure_summary.md
+# Sửa thủ công nhãn Khoản/Điểm ghi sai trong bản gốc (có căn cứ), xem file.
+label_overrides: data/registry/label_overrides.yaml
 
 # Số Điều thân văn bản kỳ vọng + Điều cuối (đếm tay trên data/interim, 06/11/2026).
 # Lệch → script thoát mã 1. VBHN65 có Điều 52a bổ sung nên count = last + 1.

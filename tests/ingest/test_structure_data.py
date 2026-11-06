@@ -56,3 +56,19 @@ def test_vbhn65_has_dieu_52a() -> None:
         "VBHN65-2026-BXD", (INTERIM / "VBHN65-2026-BXD.txt").read_text(encoding="utf-8")
     )
     assert "52a" in res.report.dieu_numbers
+
+
+def test_nd168_label_overrides_applied() -> None:
+    from trafficlaw.ingest.structure_pipeline import load_overrides
+
+    ovs = load_overrides(REPO_ROOT / CFG.label_overrides)
+    text = (INTERIM / "ND168-2024.txt").read_text(encoding="utf-8")
+    res = parse_structure("ND168-2024", text, overrides=ovs.get("ND168-2024", ()))
+    assert res.report.overrides_unapplied == [] and len(res.report.overrides_applied) == 4
+    for parent, labels in [
+        ("ND168-2024/D16/K2", "abcdđ"),
+        ("ND168-2024/D39/K9", "abcd"),
+        ("ND168-2024/D40/K3", "abcdđe"),
+    ]:
+        assert "".join(u.number or "" for u in res.units if u.parent_id == parent) == labels
+    assert not [a for a in res.report.anomalies if a.kind.startswith("diem_")]

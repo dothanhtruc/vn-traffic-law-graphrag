@@ -8,7 +8,7 @@ import pytest
 import yaml
 
 from scripts import ingest as ingest_script
-from trafficlaw.ingest.structure_pipeline import latest_reports, run_structure
+from trafficlaw.ingest.structure_pipeline import latest_reports, load_overrides, run_structure
 from trafficlaw.utils.jsonl import append_jsonl, read_jsonl
 
 FIXTURES = Path(__file__).resolve().parents[1] / "fixtures"
@@ -141,3 +141,50 @@ def test_script_exit_codes(repo: Path, capsys: pytest.CaptureFixture[str]) -> No
     argv_bad = ["--stage", "structure", "--repo-root", str(repo), "--config", str(_cfg(repo, bad))]
     assert ingest_script.main(argv_bad) == 1
     assert "≠ kỳ vọng 4" in capsys.readouterr().out
+
+
+def _write_overrides(repo: Path, items: list[dict]) -> Path:
+    path = repo / "data/registry/label_overrides.yaml"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(yaml.safe_dump({"overrides": items}, allow_unicode=True), encoding="utf-8")
+    return path
+
+
+_OV = {
+    "unit_id": "LUAT36-2024/D1/K2",
+    "label_in_source": "2",
+    "text_starts_with": "Điều khiển phương tiện",
+    "reason": "thử",
+    "evidence": "thử",
+}
+
+
+def test_changed_overrides_rerun_only_that_doc(repo: Path) -> None:
+    _run(repo)
+    path = _write_overrides(repo, [_OV])
+    ovs = load_overrides(path)
+    assert _actions(_run(repo, overrides=ovs)) == {
+        "LUAT36-2024": "processed",
+        "ND238-2026": "skipped",
+    }
+    assert set(_actions(_run(repo, overrides=ovs)).values()) == {"skipped"}
+    rep = latest_reports(repo / "data/processed/structure_report.jsonl")
+    assert rep["LUAT36-2024"]["report"]["overrides_applied"] == ["LUAT36-2024/D1/K2"]
+
+
+def test_load_overrides_validation(tmp_path: Path) -> None:
+    assert load_overrides(tmp_path / "khong-co.yaml") == {}
+    with pytest.raises(ValueError):
+        load_overrides(_write_overrides(tmp_path, [_OV, _OV]))  # trùng unit_id
+    with pytest.raises(ValueError):
+        load_overrides(_write_overrides(tmp_path, [{**_OV, "unit_id": "LUAT36-2024/D1"}]))
+    with pytest.raises(ValueError):
+        load_overrides(_write_overrides(tmp_path, [{**_OV, "ly_do": "thiếu trường"}]))
+
+
+def test_script_fails_on_unapplied_override(repo: Path, capsys: pytest.CaptureFixture[str]) -> None:
+    _write_overrides(repo, [{**_OV, "text_starts_with": "Không khớp"}])
+    good = {"LUAT36-2024": {"count": 1, "last": "1"}, "ND238-2026": {"count": 3, "last": "3"}}
+    argv = ["--stage", "structure", "--repo-root", str(repo), "--config", str(_cfg(repo, good))]
+    assert ingest_script.main(argv) == 1
+    assert "sửa nhãn không áp dụng được: LUAT36-2024/D1/K2" in capsys.readouterr().out

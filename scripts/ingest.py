@@ -24,7 +24,7 @@ import yaml
 
 from trafficlaw.ingest.manifest import IngestConfig, latest_records
 from trafficlaw.ingest.pipeline import run_normalize
-from trafficlaw.ingest.structure_pipeline import latest_reports, run_structure
+from trafficlaw.ingest.structure_pipeline import latest_reports, load_overrides, run_structure
 from trafficlaw.registry.loader import load_registry
 from trafficlaw.utils.git import git_commit
 from trafficlaw.utils.logging import setup_logging
@@ -75,6 +75,8 @@ def structure_problems(rec: dict[str, Any], cfg: IngestConfig) -> list[str]:
         )
     if any(a["kind"] == "unclosed_quote" for a in r["anomalies"]):
         out.append("trích dẫn chưa đóng")
+    if r.get("overrides_unapplied"):
+        out.append(f"sửa nhãn không áp dụng được: {', '.join(r['overrides_unapplied'])}")
     return out
 
 
@@ -124,6 +126,7 @@ def _main_structure(
         git_commit=git_commit(root),
         doc_ids=args.doc_id,
         force=args.force,
+        overrides=load_overrides(root / cfg.label_overrides),
     )
     n_proc = sum(o.action == "processed" for o in outcomes)
     latest = latest_reports(report_path)
