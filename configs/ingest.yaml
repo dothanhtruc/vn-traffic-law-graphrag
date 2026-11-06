@@ -16,3 +16,46 @@ so_hieu_unsigned:
   - TT52-2024-BGTVT
   - VBHN55-VPQH
   - VBHN65-2026-BXD
+
+# ---------------------------------------------------------------- M3: --stage structure
+structure_report: data/processed/structure_report.jsonl
+structure_summary: data/processed/structure_summary.md
+# Sửa thủ công nhãn Khoản/Điểm ghi sai trong bản gốc (có căn cứ), xem file.
+label_overrides: data/registry/label_overrides.yaml
+
+# Số Điều thân văn bản kỳ vọng + Điều cuối (đếm tay trên data/interim, 06/11/2026).
+# Lệch → script thoát mã 1. VBHN65 có Điều 52a bổ sung nên count = last + 1.
+expected_dieu:
+  LUAT36-2024: {count: 89, last: "89"}
+  LUAT35-2024: {count: 86, last: "86"}
+  ND168-2024: {count: 55, last: "55"}
+  ND151-2024: {count: 39, last: "39"}
+  TT38-2024-BGTVT: {count: 12, last: "12"}
+  TT53-2024-BGTVT: {count: 12, last: "12"}
+  TT65-2024-BCA: {count: 11, last: "11"}
+  TT79-2024-BCA: {count: 40, last: "40"}
+  TT12-2025-BCA: {count: 39, last: "39"}
+  TT14-2025-BXD: {count: 34, last: "34"}
+  TT36-2024-BYT: {count: 10, last: "10"}
+  ND184-2025: {count: 28, last: "28"}
+  ND236-2026: {count: 19, last: "19"}
+  ND238-2026: {count: 21, last: "21"}
+  TT17-2026-BXD: {count: 16, last: "16"}
+  ND165-2024: {count: 70, last: "70"}
+  ND158-2024: {count: 78, last: "78"}
+  ND336-2025: {count: 28, last: "28"}
+  ND130-2024: {count: 13, last: "13"}
+  TT52-2024-BGTVT: {count: 7, last: "7"}
+  TT69-2024-BCA: {count: 24, last: "24"}
+  TT73-2024-BCA: {count: 33, last: "33"}
+  TT13-2025-BCA: {count: 14, last: "14"}
+  QD19-2024-TTG: {count: 7, last: "7"}
+  ND241-2026: {count: 28, last: "28"}
+  ND218-2026: {count: 39, last: "39"}
+  TT71-2024-BCA: {count: 15, last: "15"}
+  TT72-2024-BCA: {count: 29, last: "29"}
+  TT83-2024-BCA: {count: 14, last: "14"}
+  TT35-2024-BGTVT: {count: 67, last: "67"}
+  VBHN55-VPQH: {count: 89, last: "89"}
+  VBHN144-2026-LQ-VPQH: {count: 86, last: "86"}
+  VBHN65-2026-BXD: {count: 71, last: "70"}
