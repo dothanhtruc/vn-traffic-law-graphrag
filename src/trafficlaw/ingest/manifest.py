@@ -19,6 +19,15 @@ Status = Literal["ok", "error", "scanned"]
 RESUME_KEY = ("doc_id", "source_sha256")
 
 
+class ExpectedDieu(BaseModel):
+    """Số Điều thân văn bản kỳ vọng (đếm tay) và số hiệu Điều cuối."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    count: int
+    last: str
+
+
 class IngestConfig(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
@@ -27,6 +36,10 @@ class IngestConfig(BaseModel):
     min_chars_per_page: int = 50
     single_char_ratio_max: float = 0.05
     so_hieu_unsigned: frozenset[str] = frozenset()
+    # M3 (--stage structure); units.jsonl lấy từ configs/paths.yaml.
+    structure_report: str = "data/processed/structure_report.jsonl"
+    structure_summary: str = "data/processed/structure_summary.md"
+    expected_dieu: dict[str, ExpectedDieu] = {}
 
 
 class ManifestRecord(BaseModel):
