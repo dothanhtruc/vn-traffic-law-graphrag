@@ -128,9 +128,10 @@ documents:
     hieu_luc_tu: 2025-01-01
     hieu_luc_den: null
     tier: A
-    source_path: data/raw/ThongTu/TT 79-bca.signed.pdf
-    issues:
-      - File PDF là bản scan (không có lớp chữ) — M2 cần OCR hoặc tìm bản .doc/.docx.
+    source_path: data/raw/ThongTu/79_2024_TT-BCA_634265.docx
+    notes: >-
+      Bản Word thay bản PDF scan (đã đối chiếu nội dung 06/11/2026). Phụ lục có mẫu Quyết định
+      chứa tiêu đề "Điều 1–3." không phải Điều thật — phần thân văn bản dừng ở "Nơi nhận" (M3).
 
   - doc_id: TT12-2025-BCA
     so_hieu: 12/2025/TT-BCA
@@ -306,10 +307,10 @@ documents:
     hieu_luc_tu: 2026-03-01
     hieu_luc_den: null
     tier: B
-    source_path: data/raw/NghiDinh/VanBanGoc_Nghị định số 336.2025.NĐ-CP.pdf
-    notes: Điều 25 bãi bỏ một số điều, khoản, điểm của NĐ 100/2019/NĐ-CP (ngoài danh mục).
-    issues:
-      - File PDF là bản scan (không có lớp chữ) — M2 cần OCR hoặc tìm bản .doc/.docx.
+    source_path: data/raw/NghiDinh/336_2025_ND-CP_670893.docx
+    notes: >-
+      Điều 25 bãi bỏ một số điều, khoản, điểm của NĐ 100/2019/NĐ-CP (ngoài danh mục).
+      Bản Word thay bản PDF scan (đã đối chiếu nội dung 06/11/2026).
 
   - doc_id: ND130-2024
     so_hieu: 130/2024/NĐ-CP
@@ -341,7 +342,7 @@ documents:
       File gốc ghi "Số: /2024/TT-BGTVT", "ngày tháng năm 2024" (bản chưa ghi số/ngày). Ngày ban
       hành: Nguồn: bản tổng hợp Phase 2 (03/11/2026), mục 16.
     issues:
-      - File gốc là bản chưa ghi số và ngày ký; lớp chữ PDF bị tách ký tự — nên thay bằng bản đã ký.
+      - File gốc là bản chưa ghi số và ngày ký — nên thay bằng bản đã ký. (Lớp chữ PDF chỉ bị tách ký tự khi đọc bằng pypdf; PyMuPDF đọc sạch.)
 
   - doc_id: TT69-2024-BCA
     so_hieu: 69/2024/TT-BCA
@@ -547,7 +548,7 @@ documents:
     ten: Nghị định 165/2024/NĐ-CP (văn bản hợp nhất)
     loai: vbhn
     co_quan: Bộ Xây dựng
-    ngay_ban_hanh: 2026-08-01
+    ngay_ban_hanh: 2026-08-27
     tier: vbhn
     relations:
       - type: HOP_NHAT
@@ -555,9 +556,9 @@ documents:
         note: Hợp nhất NĐ 165/2024 với NĐ 243/2025 (không có trong danh mục) và NĐ 241/2026.
     source_path: data/raw/VBHopNhat/65-vbhn-bxd.signed.pdf
     notes: >-
-      File ghi "Số: /2026/VBHN-NĐ-BXD", "ngày tháng năm 2026" — số 65 lấy theo tên file và Phase 2
-      mục 33. Ngày xác thực 01/08/2026 là NGÀY QUY ƯỚC: Phase 2 chỉ ghi "~08/2026", người dùng chốt
-      01/08/2026 (05/11/2026).
+      Số 65 và ngày xác thực 27/08/2026 theo file gốc: mẫu in "Số: /2026/VBHN-NĐ-BXD", "ngày tháng
+      năm 2026", số "65", "27", "8" được điền bằng lớp chữ riêng cùng hàng; chữ ký số của Văn phòng
+      Chính phủ 28/08/2026 (xác minh ở M2, người dùng xác nhận 06/11/2026; thay ngày quy ước
+      01/08/2026 chốt ngày 05/11/2026).
     issues:
-      - Ngày xác thực là ngày quy ước (Phase 2 chỉ ghi "~08/2026") — thay khi có bản đã ghi ngày.
       - Khi đối chiếu ở M4, phải loại các Khoản do NĐ 243/2025 sửa (không có trong danh mục).

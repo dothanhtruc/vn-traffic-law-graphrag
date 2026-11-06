@@ -111,10 +111,10 @@ Văn bản sửa đổi (NĐ 184/2025, 236/2026, 238/2026, 241/2026, 218/2026, T
 
 **Vấn đề dữ liệu đã biết** (validator phải báo, không tự sửa, không tự điền):
 - **Không dùng** Luật 26/2001, Luật 23/2008, NĐ 100/2019 (đã hết hiệu lực; quyết định người dùng 05/11/2026): không có trong danh mục, không tạo quan hệ tới chúng; chỉ nhắc trong `notes` của văn bản thay thế/sửa đổi chúng.
-- PDF scan không có lớp chữ: NĐ 336/2025, TT 79/2024 (M2 cần OCR). Bản chưa ghi số/ngày: TT 52/2024, TT 14/2025-BXD.
-- VBHN 65/2026: ngày xác thực 01/08/2026 là **ngày quy ước** (Phase 2 chỉ ghi "~08/2026").
+- Bản chưa ghi số/ngày ký: TT 52/2024, TT 14/2025-BXD, VBHN 55. VBHN 65 có số/ngày nhưng điền bằng lớp chữ riêng, nên text không chứa nguyên chuỗi số hiệu. Với cả 4 văn bản, M2 chỉ báo warning khi không thấy số hiệu trong text.
 - TT 13/2025-BCA sửa cả văn bản đường sắt, đường thủy → chỉ nhập phần sửa văn bản đường bộ.
 - Đã giải quyết (05/11/2026): ngày của NĐ 218/2026, TT 71/72/73/2024, TT 12/2025-BCA điền theo văn bản gốc; 144/2026/VBHN-LQ-VPQH đã xác minh là VBHN Luật Đường bộ.
+- Đã giải quyết (06/11/2026): VBHN 65/2026 ngày xác thực **27/08/2026** theo file gốc (số "65", ngày "27" tháng "8" điền vào mẫu; chữ ký số 28/08/2026), thay ngày quy ước 01/08/2026.
 
 **Quy ước danh mục** (M1, `src/trafficlaw/registry/`):
 - Ngày/số hiệu chỉ điền khi có căn cứ: văn bản ở `data/raw/`, hoặc bản tổng hợp `data/raw/TongHopThongTinDataset_Phase2.docx` (ghi "Nguồn: … Phase 2, mục N" trong `notes`). Không suy ngày từ văn bản khác (vd. không lấy ngày hết hiệu lực của luật cũ làm ngày hiệu lực của luật mới).
@@ -122,6 +122,17 @@ Văn bản sửa đổi (NĐ 184/2025, 236/2026, 238/2026, 241/2026, 218/2026, T
 - `is_amendment: true` = văn bản sửa đổi, mang tier của văn bản bị sửa, không chỉ mục độc lập. `DocumentMeta.indexable` loại VBHN và văn bản sửa đổi.
 - `issues`: vấn đề máy không tự phát hiện được, validator in ra ở mức `info`. Mức `error` làm script thoát mã 1; `warning` (thiếu dữ liệu) chỉ chặn khi `--strict`.
 - 144/2026/VBHN-LQ-VPQH đã mở file xác minh: là VBHN **Luật Đường bộ 35/2024**; VBHN 55 là Luật 36/2024.
+
+**Quy ước đọc + chuẩn hoá** (M2, `src/trafficlaw/ingest/`, `configs/ingest.yaml`):
+- Mọi văn bản có `source_path` (kể cả VBHN, văn bản sửa đổi) → `data/interim/<doc_id>.txt`: UTF-8, LF, NFC, kết thúc bằng `\n`. `scripts.ingest --stage normalize [--doc-id ID] [--force]`.
+- Reader theo đuôi file: `.docx` → python-docx, duyệt `body` theo thứ tự (`w:p`/`w:tbl` xen kẽ), bảng mỗi hàng 1 dòng `ô | ô` (bỏ ô tiếp nối của gộp dọc), các đoạn trong một ô nối bằng dấu cách. `.doc` → `antiword -m UTF-8.txt -w 0` qua file tạm tên ASCII (antiword trên Windows lỗi với đường dẫn có dấu; CI cài `antiword` bằng apt); byte 0xC2 lẻ (NBSP bị antiword cắt) → dấu cách, ghi vào warnings. `.pdf` → PyMuPDF (không dùng pypdf: tách ký tự); trung bình < 50 ký tự/trang → `ScannedPdfError` (status `scanned`, không OCR).
+- **Chú thích** (VBHN): tham chiếu trong thân → `[^N]` (docx: `w:footnoteReference`; PDF: chữ số superscript/cỡ nhỏ), nội dung → dòng riêng `[^N] …` đặt **ngay sau đoạn** chứa tham chiếu. M3 phải bỏ qua dòng `[^N]` và chấp nhận dạng `18.[^6]`, `c)[^3]`.
+- Chỉ với PDF: bỏ dòng số trang (dòng đầu/cuối trang khớp số thứ tự trang ± độ lệch chung của văn bản) và dòng chữ ký số; nối dòng in bị ngắt, trừ trước `Điều N.`, `N.`, `a)`/`đ)`, tiêu đề Chương/Mục/Phần/Phụ lục (phần sau số thứ tự không có chữ thường), `[^N]`, gạch đầu dòng, dòng toàn chữ hoa; sau `.` không nối; sau `:`/`;` chỉ nối khi dòng sau bắt đầu bằng chữ thường.
+- Không xoá U+FFFD hay ký tự symbol-font (Private Use); chỉ đếm vào manifest.
+- Manifest `data/interim/manifest.jsonl` (append-only; bản ghi mới nhất của mỗi `doc_id` là hiện hành): `doc_id, source_path, source_sha256, output_path, reader, n_pages, n_chars, n_dieu_headings, has_dieu_1, n_replacement_chars, n_symbol_chars, single_char_ratio, so_hieu_found, so_hieu_required, warnings, status (ok|error|scanned), error, ingested_at, git_commit`. Resume theo `(doc_id, source_sha256)` của bản ghi `ok` + file interim còn tồn tại — khoá không chứa phiên bản code, nên **sửa reader/normalize thì chạy lại với `--force`**. Bảng tổng hợp: `data/interim/ingest_summary.md`.
+- Script thoát mã 1 nếu có văn bản không `ok`, hoặc không thấy số hiệu trong text ở văn bản ngoài `so_hieu_unsigned` (TT 14/2025, TT 52/2024, VBHN 55, VBHN 65 — chỉ warning).
+- `single_char_ratio` không tính nhãn Điểm ("điểm a, b") và "ô" (ô tô); ngưỡng cảnh báo 0,05.
+- Ghi chú cho M3: `n_dieu_headings` đếm cả "Điều N." trong phụ lục/mẫu (TT 79/2024 có 6 tiêu đề "Điều 1–3." trong mẫu Quyết định); phần thân văn bản dừng ở "Nơi nhận" / phụ lục.
 
 ## 7. Đơn vị pháp lý và phiên bản
 

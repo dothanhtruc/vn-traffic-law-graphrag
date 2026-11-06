@@ -68,8 +68,8 @@ def test_no_errors(issues: list[Issue]) -> None:
         # Theo bản tổng hợp Phase 2.
         ("TT52-2024-BGTVT", "ngay_ban_hanh", date(2024, 11, 15)),
         ("VBHN55-VPQH", "ngay_ban_hanh", date(2026, 3, 23)),
-        # Ngày quy ước do người dùng chốt (Phase 2 chỉ ghi "~08/2026").
-        ("VBHN65-2026-BXD", "ngay_ban_hanh", date(2026, 8, 1)),
+        # Theo file gốc: số/ngày điền vào mẫu, chữ ký số 28/08/2026 (xác nhận 06/11/2026).
+        ("VBHN65-2026-BXD", "ngay_ban_hanh", date(2026, 8, 27)),
     ],
 )
 def test_resolved_values(reg: Registry, doc_id: str, field: str, value: object) -> None:
