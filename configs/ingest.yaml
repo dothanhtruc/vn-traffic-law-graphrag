@@ -1,0 +1,17 @@
+# M2: đọc + chuẩn hoá văn bản (scripts/ingest.py --stage normalize).
+manifest: data/interim/manifest.jsonl
+summary: data/interim/ingest_summary.md
+
+# PDF trung bình ít hơn ngần này ký tự/trang → coi là bản scan (status=scanned, không OCR).
+min_chars_per_page: 50
+
+# Tỷ lệ token 1 ký tự tối đa (cao hơn ⇒ nghi chữ bị tách kiểu "đ ến") → warning.
+single_char_ratio_max: 0.05
+
+# Văn bản là bản chưa ghi số/ngày ký: không thấy số hiệu trong text chỉ là warning.
+# Văn bản khác không thấy số hiệu → script thoát mã 1 (status vẫn ok).
+so_hieu_unsigned:
+  - TT14-2025-BXD
+  - TT52-2024-BGTVT
+  - VBHN55-VPQH
+  - VBHN65-2026-BXD
