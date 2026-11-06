@@ -111,10 +111,10 @@ Văn bản sửa đổi (NĐ 184/2025, 236/2026, 238/2026, 241/2026, 218/2026, T
 
 **Vấn đề dữ liệu đã biết** (validator phải báo, không tự sửa, không tự điền):
 - **Không dùng** Luật 26/2001, Luật 23/2008, NĐ 100/2019 (đã hết hiệu lực; quyết định người dùng 05/11/2026): không có trong danh mục, không tạo quan hệ tới chúng; chỉ nhắc trong `notes` của văn bản thay thế/sửa đổi chúng.
-- Bản chưa ghi số/ngày ký: TT 52/2024, TT 14/2025-BXD, VBHN 55, VBHN 65 (M2 chỉ báo warning khi không thấy số hiệu trong text).
-- VBHN 65/2026: ngày xác thực 01/08/2026 là **ngày quy ước** (Phase 2 chỉ ghi "~08/2026").
+- Bản chưa ghi số/ngày ký: TT 52/2024, TT 14/2025-BXD, VBHN 55. VBHN 65 có số/ngày nhưng điền bằng lớp chữ riêng, nên text không chứa nguyên chuỗi số hiệu. Với cả 4 văn bản, M2 chỉ báo warning khi không thấy số hiệu trong text.
 - TT 13/2025-BCA sửa cả văn bản đường sắt, đường thủy → chỉ nhập phần sửa văn bản đường bộ.
 - Đã giải quyết (05/11/2026): ngày của NĐ 218/2026, TT 71/72/73/2024, TT 12/2025-BCA điền theo văn bản gốc; 144/2026/VBHN-LQ-VPQH đã xác minh là VBHN Luật Đường bộ.
+- Đã giải quyết (06/11/2026): VBHN 65/2026 ngày xác thực **27/08/2026** theo file gốc (số "65", ngày "27" tháng "8" điền vào mẫu; chữ ký số 28/08/2026), thay ngày quy ước 01/08/2026.
 
 **Quy ước danh mục** (M1, `src/trafficlaw/registry/`):
 - Ngày/số hiệu chỉ điền khi có căn cứ: văn bản ở `data/raw/`, hoặc bản tổng hợp `data/raw/TongHopThongTinDataset_Phase2.docx` (ghi "Nguồn: … Phase 2, mục N" trong `notes`). Không suy ngày từ văn bản khác (vd. không lấy ngày hết hiệu lực của luật cũ làm ngày hiệu lực của luật mới).

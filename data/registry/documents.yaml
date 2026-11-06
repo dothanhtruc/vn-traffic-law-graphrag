@@ -548,7 +548,7 @@ documents:
     ten: Nghị định 165/2024/NĐ-CP (văn bản hợp nhất)
     loai: vbhn
     co_quan: Bộ Xây dựng
-    ngay_ban_hanh: 2026-08-01
+    ngay_ban_hanh: 2026-08-27
     tier: vbhn
     relations:
       - type: HOP_NHAT
@@ -556,9 +556,9 @@ documents:
         note: Hợp nhất NĐ 165/2024 với NĐ 243/2025 (không có trong danh mục) và NĐ 241/2026.
     source_path: data/raw/VBHopNhat/65-vbhn-bxd.signed.pdf
     notes: >-
-      File ghi "Số: /2026/VBHN-NĐ-BXD", "ngày tháng năm 2026" — số 65 lấy theo tên file và Phase 2
-      mục 33. Ngày xác thực 01/08/2026 là NGÀY QUY ƯỚC: Phase 2 chỉ ghi "~08/2026", người dùng chốt
-      01/08/2026 (05/11/2026).
+      Số 65 và ngày xác thực 27/08/2026 theo file gốc: mẫu in "Số: /2026/VBHN-NĐ-BXD", "ngày tháng
+      năm 2026", số "65", "27", "8" được điền bằng lớp chữ riêng cùng hàng; chữ ký số của Văn phòng
+      Chính phủ 28/08/2026 (xác minh ở M2, người dùng xác nhận 06/11/2026; thay ngày quy ước
+      01/08/2026 chốt ngày 05/11/2026).
     issues:
-      - Ngày xác thực là ngày quy ước (Phase 2 chỉ ghi "~08/2026") — thay khi có bản đã ghi ngày.
       - Khi đối chiếu ở M4, phải loại các Khoản do NĐ 243/2025 sửa (không có trong danh mục).

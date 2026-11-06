@@ -8,7 +8,8 @@ min_chars_per_page: 50
 # Tỷ lệ token 1 ký tự tối đa (cao hơn ⇒ nghi chữ bị tách kiểu "đ ến") → warning.
 single_char_ratio_max: 0.05
 
-# Văn bản là bản chưa ghi số/ngày ký: không thấy số hiệu trong text chỉ là warning.
+# Văn bản chưa ghi số/ngày ký (VBHN 65: số/ngày điền bằng lớp chữ riêng, text không chứa
+# nguyên chuỗi số hiệu): không thấy số hiệu trong text chỉ là warning.
 # Văn bản khác không thấy số hiệu → script thoát mã 1 (status vẫn ok).
 so_hieu_unsigned:
   - TT14-2025-BXD
