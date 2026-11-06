@@ -9,6 +9,8 @@ Quy ước đầu ra (normalize dựa vào các quy ước này):
 - PDF: các trang ngăn cách bằng ``\\f``; dòng thuộc vùng chú thích cuối trang có tiền tố
   :data:`FOOTNOTE_PREFIX` để normalize không nối nó vào thân văn bản.
 - Bảng (.docx): mỗi hàng một dòng ``ô | ô``.
+- Đánh số tự động của Word (.docx, ``w:numPr``) được in thành nhãn như Word hiển thị
+  (``"1. "``, ``"a) "``) ở đầu đoạn.
 """
 
 from __future__ import annotations
@@ -73,12 +75,131 @@ def _local(tag: Any) -> str:
     return tag.rsplit("}", 1)[-1] if isinstance(tag, str) else ""
 
 
+def _int_to_roman(n: int) -> str:
+    vals = ((1000, "M"), (900, "CM"), (500, "D"), (400, "CD"), (100, "C"), (90, "XC"))
+    vals += ((50, "L"), (40, "XL"), (10, "X"), (9, "IX"), (5, "V"), (4, "IV"), (1, "I"))
+    out = ""
+    for v, s in vals:
+        while n >= v:
+            out += s
+            n -= v
+    return out
+
+
+def _format_number(n: int, fmt: str) -> str:
+    """Số thứ tự theo ``w:numFmt`` như Word hiển thị (lowerLetter: a…z, aa… — không có "đ")."""
+    if fmt in ("lowerLetter", "upperLetter"):
+        s = chr(ord("a") + (n - 1) % 26) * ((n - 1) // 26 + 1)
+        return s.upper() if fmt == "upperLetter" else s
+    if fmt in ("lowerRoman", "upperRoman"):
+        s = _int_to_roman(n)
+        return s.lower() if fmt == "lowerRoman" else s
+    if fmt == "decimalZero":
+        return f"{n:02d}"
+    return str(n)
+
+
+class _Numbering:
+    """Đánh số tự động của Word (``word/numbering.xml``): ``w:numPr`` → nhãn ``"1."``, ``"a)"``.
+
+    Chỉ xử lý ``w:numPr`` gắn trực tiếp vào đoạn (không lấy đánh số từ style). Bộ đếm theo
+    ``numId``; lên một cấp thì các cấp sâu hơn đếm lại. Kiểu ``bullet``/``none`` → không nhãn.
+    """
+
+    def __init__(self, numbering_xml: bytes | None) -> None:
+        # numId → {ilvl: (start, numFmt, lvlText)}
+        self.levels: dict[str, dict[int, tuple[int, str, str]]] = {}
+        self.counters: dict[str, dict[int, int]] = {}
+        self.n_labels = 0
+        if numbering_xml is None:
+            return
+        from lxml import etree
+
+        root = etree.fromstring(numbering_xml)
+
+        def lvl_defs(el: Any) -> dict[int, tuple[int, str, str]]:
+            out: dict[int, tuple[int, str, str]] = {}
+            for lvl in el.iterchildren(f"{_W}lvl"):
+                il = int(lvl.get(f"{_W}ilvl", "0"))
+                start = lvl.find(f"{_W}start")
+                fmt = lvl.find(f"{_W}numFmt")
+                text = lvl.find(f"{_W}lvlText")
+                out[il] = (
+                    int(start.get(f"{_W}val", "1")) if start is not None else 1,
+                    fmt.get(f"{_W}val", "decimal") if fmt is not None else "decimal",
+                    text.get(f"{_W}val", "") if text is not None else "",
+                )
+            return out
+
+        abstract = {
+            a.get(f"{_W}abstractNumId"): lvl_defs(a) for a in root.iterchildren(f"{_W}abstractNum")
+        }
+        for num in root.iterchildren(f"{_W}num"):
+            ref = num.find(f"{_W}abstractNumId")
+            defs = dict(abstract.get(ref.get(f"{_W}val") if ref is not None else None, {}))
+            for ov in num.iterchildren(f"{_W}lvlOverride"):
+                il = int(ov.get(f"{_W}ilvl", "0"))
+                inner = ov.find(f"{_W}lvl")
+                if inner is not None:
+                    defs.update(lvl_defs(ov))
+                so = ov.find(f"{_W}startOverride")
+                if so is not None and il in defs:
+                    _, fmt, text = defs[il]
+                    defs[il] = (int(so.get(f"{_W}val", "1")), fmt, text)
+            self.levels[num.get(f"{_W}numId", "")] = defs
+
+    def label(self, p: Any) -> str | None:
+        num_pr = p.find(f"{_W}pPr/{_W}numPr")
+        if num_pr is None:
+            return None
+        nid_el, ilvl_el = num_pr.find(f"{_W}numId"), num_pr.find(f"{_W}ilvl")
+        nid = nid_el.get(f"{_W}val", "0") if nid_el is not None else "0"
+        ilvl = int(ilvl_el.get(f"{_W}val", "0")) if ilvl_el is not None else 0
+        defs = self.levels.get(nid)
+        if not defs or ilvl not in defs:
+            return None
+        counters = self.counters.setdefault(nid, {})
+        counters[ilvl] = counters.get(ilvl, defs[ilvl][0] - 1) + 1
+        for deeper in [k for k in counters if k > ilvl]:
+            del counters[deeper]
+        _, fmt, text = defs[ilvl]
+        if fmt in ("bullet", "none") or not text:
+            return None
+
+        def sub(m: re.Match[str]) -> str:
+            k = int(m.group(1)) - 1
+            if k not in defs:
+                return ""
+            n = counters.get(k, defs[k][0])
+            return _format_number(n, defs[k][1])
+
+        self.n_labels += 1
+        return re.sub(r"%(\d)", sub, text)
+
+
 class _DocxState:
-    def __init__(self, footnotes: dict[str, str]) -> None:
+    def __init__(self, footnotes: dict[str, str], numbering: _Numbering | None = None) -> None:
         self.footnotes = footnotes  # w:id → nội dung
+        self.numbering = numbering or _Numbering(None)
         self.n_ref = 0
         self.n_sym = 0
         self.pending: list[str] = []  # chú thích chờ in sau đoạn hiện tại
+
+
+def _load_numbering(doc: Any) -> bytes | None:
+    for rel in doc.part.rels.values():
+        if rel.reltype.endswith("/numbering") and not rel.is_external:
+            return bytes(rel.target_part.blob)
+    return None
+
+
+def _body_para_text(p: Any, st: _DocxState) -> str:
+    """Chữ của đoạn thân văn bản/ô bảng, kèm nhãn đánh số tự động nếu có (``"1. …"``)."""
+    text = _para_text(p, st)
+    label = st.numbering.label(p)
+    if label and text.strip():
+        return f"{label} {text.lstrip()}"
+    return text
 
 
 def _load_footnotes(doc: Any) -> dict[str, str]:
@@ -141,7 +262,7 @@ def _cell_text(tc: Any, st: _DocxState) -> str:
     for child in tc:
         tag = _local(child.tag)
         if tag == "p":
-            chunks.append(_para_text(child, st))
+            chunks.append(_body_para_text(child, st))
         elif tag == "tbl":
             chunks.extend(_table_lines(child, st))
     return " ".join(c.replace("\n", " ").strip() for c in chunks if c.strip())
@@ -175,7 +296,7 @@ def _block_lines(container: Any, st: _DocxState) -> list[str]:
     for child in container.iterchildren():
         tag = _local(child.tag)
         if tag == "p":
-            lines.append(_para_text(child, st))
+            lines.append(_body_para_text(child, st))
         elif tag == "tbl":
             lines.extend(_table_lines(child, st))
         elif tag == "sdt":
@@ -202,9 +323,11 @@ def read_docx(path: str | Path) -> RawText:
         doc = docx.Document(str(path))
     except Exception as e:  # file hỏng, không phải docx
         raise ReaderError(f"python-docx không mở được {path}: {e}") from e
-    st = _DocxState(_load_footnotes(doc))
+    st = _DocxState(_load_footnotes(doc), _Numbering(_load_numbering(doc)))
     lines = _block_lines(doc.element.body, st)
     warnings: list[str] = []
+    if st.numbering.n_labels:
+        warnings.append(f"{st.numbering.n_labels} nhãn đánh số tự động (w:numPr)")
     if st.n_sym:
         warnings.append(f"{st.n_sym} ký tự w:sym (symbol font)")
     if st.footnotes and st.n_ref != len(st.footnotes):

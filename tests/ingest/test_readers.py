@@ -152,6 +152,76 @@ def test_docx_footnotes_real_vbhn(tmp_path: Path) -> None:
     assert not raw.warnings
 
 
+_NUMBERING_XML = f"""<w:numbering xmlns:w="{_W_NS}">
+<w:abstractNum w:abstractNumId="0">
+ <w:lvl w:ilvl="0"><w:start w:val="1"/><w:numFmt w:val="decimal"/><w:lvlText w:val="%1."/></w:lvl>
+ <w:lvl w:ilvl="1"><w:start w:val="1"/><w:numFmt w:val="lowerLetter"/>
+  <w:lvlText w:val="%2)"/></w:lvl>
+</w:abstractNum>
+<w:abstractNum w:abstractNumId="1">
+ <w:lvl w:ilvl="0"><w:start w:val="1"/><w:numFmt w:val="bullet"/><w:lvlText w:val="-"/></w:lvl>
+</w:abstractNum>
+<w:num w:numId="1"><w:abstractNumId w:val="0"/></w:num>
+<w:num w:numId="2"><w:abstractNumId w:val="0"/>
+ <w:lvlOverride w:ilvl="0"><w:startOverride w:val="5"/></w:lvlOverride></w:num>
+<w:num w:numId="3"><w:abstractNumId w:val="1"/></w:num>
+</w:numbering>"""
+
+
+def _numbered(d: docx.document.Document, text: str, num_id: int | None, ilvl: int = 0) -> None:
+    from docx.oxml import parse_xml
+
+    p = d.add_paragraph(text)
+    if num_id is not None:
+        p._p.get_or_add_pPr().append(
+            parse_xml(
+                f'<w:numPr xmlns:w="{_W_NS}"><w:ilvl w:val="{ilvl}"/>'
+                f'<w:numId w:val="{num_id}"/></w:numPr>'
+            )
+        )
+
+
+def test_docx_auto_numbering_rendered(tmp_path: Path) -> None:
+    """TT38/TT12/TT14: Khoản/Điểm đánh số tự động (``w:numPr``) phải có nhãn trong text."""
+    from docx.oxml import parse_xml
+
+    d = docx.Document()
+    d.part.numbering_part._element = parse_xml(_NUMBERING_XML)
+    _numbered(d, "Điều 5. Tốc độ thiết kế", None)
+    _numbered(d, "Tốc độ thiết kế của đường bộ.", 1)
+    _numbered(d, "Tốc độ thiết kế đường cao tốc:", 1)
+    _numbered(d, "Đường đô thị;", 1, ilvl=1)
+    _numbered(d, "Đường nông thôn.", 1, ilvl=1)
+    _numbered(d, "Khoản ba.", 1)
+    _numbered(d, "Khoản ba sau điểm: a) lại đếm từ đầu.", 1, ilvl=1)
+    _numbered(d, "Bắt đầu từ 5.", 2)
+    _numbered(d, "Gạch đầu dòng không có nhãn.", 3)
+    p = tmp_path / "num.docx"
+    d.save(str(p))
+    raw = read_docx(p)
+    assert raw.text.split("\n") == [
+        "Điều 5. Tốc độ thiết kế",
+        "1. Tốc độ thiết kế của đường bộ.",
+        "2. Tốc độ thiết kế đường cao tốc:",
+        "a) Đường đô thị;",
+        "b) Đường nông thôn.",
+        "3. Khoản ba.",
+        "a) Khoản ba sau điểm: a) lại đếm từ đầu.",
+        "5. Bắt đầu từ 5.",
+        "Gạch đầu dòng không có nhãn.",
+    ]
+    assert raw.warnings == ["7 nhãn đánh số tự động (w:numPr)"]
+
+
+def test_docx_auto_numbering_real_tt38() -> None:
+    src = REPO_ROOT / "data/raw/ThongTu/Thông tư số 38.2024.TT-BGTVT.docx"
+    if not src.is_file():
+        pytest.skip("không có file raw TT 38/2024")
+    lines = read_docx(src).text.split("\n")
+    i = lines.index(next(ln for ln in lines if ln.startswith("Điều 5.")))
+    assert [ln[:3] for ln in lines[i + 1 : i + 6]] == ["1. ", "2. ", "3. ", "4. ", "5. "]
+
+
 # --------------------------------------------------------------------------- .pdf
 
 
