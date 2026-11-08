@@ -18,6 +18,8 @@ from collections.abc import Sequence
 from dataclasses import dataclass, field
 from datetime import date
 
+from pydantic import BaseModel, ConfigDict
+
 from trafficlaw.ingest.amendments import Todo, parse_vn_date_in
 from trafficlaw.ingest.refs import SELF, RefContext, RefError, normalize, parse_refs
 from trafficlaw.ingest.structure import Unit
@@ -113,3 +115,40 @@ def _todo(doc_id: str, unit_id: str, detail: str) -> Todo:
         reason="hieu_luc_khong_ro",
         detail=detail[:500],
     )
+
+
+class EffectOverride(BaseModel):
+    """Câu hiệu lực có mô tả phạm vi được **người dùng duyệt** áp như hiệu lực riêng.
+
+    ``data/registry/amendment_overrides.yaml`` → ``effect_overrides``. ``unit_id`` là Khoản
+    hiệu lực của văn bản đích do chỉ dẫn ``source_unit_id`` bổ sung/sửa (vd ND168 Đ53 K3 do
+    ND238 Đ18 bổ sung). Dẫn chiếu vẫn đọc tự động từ câu (:func:`parse_accepted_clause`).
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    unit_id: str
+    source_unit_id: str
+    reason: str
+    evidence: str
+
+
+_ACCEPTED = re.compile(
+    rf"(?:^|\s)tại\s+(?P<refs>(?:(?!\stại\s).)+?)\s+(?:của\s+)?{_DOC}\s+này\s+có\s+hiệu\s+lực\s+"
+    rf"(?:thi\s+hành\s+)?(?:kể\s+)?từ\s+(?P<d>{_D})(?P<tail>.*)$"
+)
+
+
+def parse_accepted_clause(doc_id: str, text: str) -> tuple[list[str], date, str]:
+    """ "Quy định … tại <REFS> của Nghị định này có hiệu lực … từ ngày D[ và …]" →
+    (mã unit, D, phần điều kiện còn lại). Không đọc được → ``ValueError``."""
+    s = normalize(_LABEL.sub("", " ".join(text.split("\n")).strip())).rstrip(".;").strip()
+    m = _ACCEPTED.search(s)
+    if not m:
+        raise ValueError(f"không đọc được câu hiệu lực: {s[:120]!r}")
+    d = parse_vn_date_in(m["d"])
+    assert d is not None
+    refs = parse_refs(m["refs"], RefContext())
+    if any(r.doc not in (None, SELF) or r.mau is not None or r.part for r in refs):
+        raise ValueError(f"dẫn chiếu ngoài văn bản trong câu hiệu lực: {m['refs']!r}")
+    return [r.unit_id(doc_id) for r in refs], d, m["tail"].strip()

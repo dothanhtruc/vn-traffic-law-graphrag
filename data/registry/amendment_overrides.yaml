@@ -11,3 +11,25 @@ label_fixes:
       Câu dẫn ghi "Bổ sung các điểm đ, điểm e, điểm g và điểm h khoản 1"; khoản 1 Điều 64
       NĐ 165/2024 đã có điểm a–d (ND165-2024/D64/K1/d tồn tại); VBHN 65/2026 ghi điểm này là
       điểm đ (chú thích [^88]).
+
+# Câu hiệu lực riêng có mô tả phạm vi ("Quy định xử phạt … liên quan đến … tại <dẫn chiếu> của
+# Nghị định này có hiệu lực … từ ngày D") mà người dùng duyệt áp như hiệu lực riêng (08/11/2026).
+# unit_id = Khoản hiệu lực của văn bản đích do chỉ dẫn source_unit_id đưa vào; dẫn chiếu và ngày
+# đọc tự động từ câu. Phiên bản do văn bản sửa đổi tạo cho các unit được dẫn chiếu bắt đầu từ D
+# (bản trước kéo dài tới D − 1). Câu không đọc được / không có chỉ dẫn → apply_amendments lỗi.
+effect_overrides:
+  - unit_id: ND168-2024/D53/K3
+    source_unit_id: ND238-2026/D18
+    reason: >-
+      ND238 Đ18 bổ sung khoản 3 Điều 53 NĐ 168: quy định xử phạt liên quan thiết bị ghi nhận
+      hình ảnh người lái xe tại điểm l khoản 5 Điều 20, điểm b khoản 3 Điều 21, điểm b khoản 9a
+      Điều 32 có hiệu lực từ 01/01/2028.
+    evidence: "Người dùng quyết định áp ngày riêng cho toàn bộ điểm được dẫn chiếu (08/11/2026)."
+  - unit_id: ND168-2024/D53/K4
+    source_unit_id: ND238-2026/D18
+    reason: >-
+      ND238 Đ18 bổ sung khoản 4 Điều 53 NĐ 168: quy định xử phạt liên quan thiết bị ghi nhận
+      hình ảnh khoang chở khách tại điểm n khoản 5 Điều 20; điểm k, điểm l khoản 7 Điều 26 có
+      hiệu lực từ 01/01/2029 "và theo quy định của pháp luật về thiết bị ghi nhận hình ảnh
+      khoang chở khách" (điều kiện này chỉ ghi todo, không biểu diễn).
+    evidence: "Người dùng quyết định áp ngày riêng cho toàn bộ điểm được dẫn chiếu (08/11/2026)."

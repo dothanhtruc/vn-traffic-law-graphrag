@@ -57,6 +57,20 @@ class VersionResult:
 
 
 @dataclass(frozen=True)
+class Delay:
+    """Hiệu lực riêng cho phần do văn bản sửa đổi ``source_doc`` đưa vào unit ``unit_id``.
+
+    Phiên bản do ``source_doc`` tạo cho unit (và cây con) bắt đầu từ ``effective_from`` thay vì
+    ngày chung; phiên bản liền trước kéo dài tới ``effective_from − 1``.
+    """
+
+    unit_id: str
+    source_doc: str
+    effective_from: date
+    origin: str  # unit chứa câu hiệu lực
+
+
+@dataclass(frozen=True)
 class Repeal:
     """Văn bản bị bãi bỏ/thay thế toàn bộ từ ``effective_from`` bởi ``source_unit_id``."""
 
@@ -469,6 +483,7 @@ def build_versions(
     repeal: Repeal | None = None,
     amending_appendices: Mapping[str, Unit] | None = None,
     source_paths: Mapping[str, str | None] | None = None,
+    delays: Sequence[Delay] = (),
 ) -> VersionResult:
     """Phiên bản của mọi unit văn bản ``doc``. ``instructions`` chỉ gồm chỉ dẫn nhắm ``doc``.
 
@@ -499,6 +514,8 @@ def build_versions(
         ap.apply(ins)
     if day is not None:
         ap.commit(day)
+    for dl in delays:
+        _apply_delay(ap, dl)
     if repeal is not None:
         for uid in ap.ordered_ids():
             if ap.nodes[uid].status == "active":
@@ -507,3 +524,40 @@ def build_versions(
     versions = [v for uid in ap.ordered_ids() for v in ap.history.get(uid, [])]
     added = [ap.added[u] for u in ap.ordered_ids() if u in ap.added]
     return VersionResult(versions, added, ap.todos, ap.applied, ap.superseded)
+
+
+def _apply_delay(ap: _Applier, dl: Delay) -> None:
+    def todo(reason: TodoReason, detail: str) -> None:
+        ap.todos.append(
+            Todo(
+                doc_id=ap.doc.doc_id,
+                unit_id=dl.unit_id,
+                source_unit_id=dl.origin,
+                reason=reason,
+                detail=detail[:500],
+            )
+        )
+
+    if dl.unit_id not in ap.nodes:
+        todo("khong_tim_thay_dich", f"hiệu lực riêng {dl.effective_from} cho unit không có")
+        return
+    hit = False
+    for u in [dl.unit_id, *ap._all_desc(dl.unit_id)]:
+        hist = ap.history.get(u, [])
+        for i, v in enumerate(hist):
+            if not v.source_unit_id or v.source_unit_id.split("/")[0] != dl.source_doc:
+                continue
+            hit = True
+            if v.effective_from is not None and v.effective_from >= dl.effective_from:
+                continue
+            if v.effective_to is not None and v.effective_to < dl.effective_from:
+                todo(
+                    "xung_dot_ngay",
+                    f"phiên bản {v.version} của {u} hết hiệu lực trước {dl.effective_from}",
+                )
+                continue
+            v.effective_from = dl.effective_from
+            if i > 0:
+                hist[i - 1].effective_to = day_before(dl.effective_from)
+    if not hit:
+        todo("khong_tim_thay_dich", f"{dl.unit_id} không có phiên bản do {dl.source_doc} tạo")

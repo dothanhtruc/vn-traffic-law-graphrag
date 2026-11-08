@@ -42,6 +42,11 @@ def test_four_dates(store: VersionStore) -> None:
     assert around("LUAT36-2024/D10/K3") == [(None, None), (None, 0), (0, 0), (0, 0)]
     assert _ver(store, "TT35-2024-BGTVT/D1", date(2025, 8, 31)) == 0
     assert _ver(store, "TT35-2024-BGTVT/D1", date(2025, 9, 1)) is None
+    # ND238 Đ18 (effect_overrides, người dùng duyệt 08/11/2026)
+    assert around("ND168-2024/D20/K5/l")[-1] == (0, 0)
+    assert _ver(store, "ND168-2024/D20/K5/l", date(2028, 1, 1)) == 1
+    assert _ver(store, "ND168-2024/D26/K7/k", date(2028, 12, 31)) is None
+    assert _ver(store, "ND168-2024/D26/K7/k", date(2029, 1, 1)) == 1
 
 
 def test_luat36_d9_k18_stays_original_and_listed_in_todo(store: VersionStore) -> None:

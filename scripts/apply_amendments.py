@@ -21,6 +21,7 @@ import yaml
 
 from trafficlaw.ingest.amendment_pipeline import (
     latest_reports,
+    load_effect_overrides,
     load_label_fixes,
     run_amendments,
     summary_markdown,
@@ -62,6 +63,7 @@ def main(argv: list[str] | None = None) -> int:
         registry=load_registry(root / paths["documents"]),
         vbhn_map=load_vbhn_map(root / paths["vbhn_map"]),
         label_fixes=load_label_fixes(root / paths["amendment_overrides"]),
+        effect_overrides=load_effect_overrides(root / paths["amendment_overrides"]),
         git_commit=git_commit(root),
         doc_ids=args.doc_id,
         force=args.force,

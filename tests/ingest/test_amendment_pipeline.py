@@ -36,7 +36,7 @@ def _write_units(path: Path, nd165_extra: bool = False) -> None:
     write_jsonl(path, units)
 
 
-def _run(tmp: Path, **kw):  # type: ignore[no-untyped-def]
+def _run(tmp: Path, effect_overrides=(), **kw):  # type: ignore[no-untyped-def]
     vbhn = [
         VbhnEntry(
             vbhn="VBHN65-2026-BXD",
@@ -55,6 +55,7 @@ def _run(tmp: Path, **kw):  # type: ignore[no-untyped-def]
         vbhn_map=vbhn,
         label_fixes=[],
         git_commit="abc",
+        effect_overrides=effect_overrides,
         **kw,
     )
 
@@ -101,3 +102,19 @@ def test_outputs_are_consistent(tmp_path: Path) -> None:
     reasons = {(t["doc_id"], t["reason"]) for t in todos}
     assert ("ND168-2024", "hieu_luc_sua_doi") in reasons  # ND238 Đ18 sửa Điều 53
     assert ("ND165-2024", "ngoai_danh_muc") in reasons  # ND241 Đ26 K2 (NĐ 140/2025)
+
+
+def test_effect_override_applies_amendment_dates(tmp_path: Path) -> None:
+    from trafficlaw.ingest.effect import EffectOverride
+
+    _write_units(tmp_path / "units.jsonl")
+    o = EffectOverride(
+        unit_id="ND168-2024/D53/K4", source_unit_id="ND238-2026/D18", reason="r", evidence="e"
+    )
+    _run(tmp_path, effect_overrides=[o])
+    rep = latest_reports(tmp_path / "amendment_report.jsonl")["ND168-2024"]
+    assert rep["amendment_effects"]["ND168-2024/D20/K5/n"] == "2029-01-01"
+    reasons = {(t["unit_id"], t["reason"]) for t in rep["todos"]}
+    assert ("ND168-2024/D53/K4", "hieu_luc_sua_doi") not in reasons  # đã duyệt
+    assert ("ND168-2024/D53/K4", "hieu_luc_khong_ro") in reasons  # điều kiện "và theo …"
+    assert ("ND168-2024/D53/K3", "hieu_luc_sua_doi") in reasons  # chưa duyệt

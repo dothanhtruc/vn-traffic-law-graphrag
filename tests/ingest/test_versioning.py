@@ -136,3 +136,23 @@ def test_insert_existing_unit_is_todo(op: str) -> None:
     dup = ins.model_copy(update={"target_id": "ND168-2024/D6/K1", "seq": 999})
     res = build_versions(REG["ND168-2024"], base, [dup])
     assert [t.reason for t in res.todos] == ["dich_da_ton_tai"]
+
+
+def test_delay_moves_amendment_version_start() -> None:
+    from trafficlaw.ingest.versioning import Delay
+
+    base = units_of("ND168-2024", "nd168_dieu6_k1_k3.txt")
+    amend = units_of("ND238-2026", "nd238_dieu1_2.txt")
+    ex = extract_instructions(REG["ND238-2026"], amend, REG)
+    delays = [
+        Delay("ND168-2024/D6/K3/m", "ND238-2026", date(2028, 1, 1), "X"),
+        Delay("ND168-2024/D6/K1a", "ND238-2026", date(2029, 1, 1), "X"),
+        Delay("ND168-2024/D99", "ND238-2026", date(2029, 1, 1), "X"),
+    ]
+    res = build_versions(REG["ND168-2024"], base, ex.instructions, delays=delays)
+    st = VersionStore(res.versions)
+    m = st.versions_of("ND168-2024/D6/K3/m")
+    assert (m[0].effective_to, m[1].effective_from) == (date(2027, 12, 31), date(2028, 1, 1))
+    assert st.get_version("ND168-2024/D6/K1a", date(2028, 12, 31)) is None
+    assert st.get_version("ND168-2024/D6/K1a", date(2029, 1, 1)) is not None
+    assert [t.reason for t in res.todos if t.unit_id == "ND168-2024/D99"] == ["khong_tim_thay_dich"]

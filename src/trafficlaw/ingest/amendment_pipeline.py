@@ -36,10 +36,10 @@ from trafficlaw.ingest.amendments import (
     Todo,
     extract_instructions,
 )
-from trafficlaw.ingest.effect import parse_effects
+from trafficlaw.ingest.effect import EffectOverride, parse_accepted_clause, parse_effects
 from trafficlaw.ingest.structure import Unit
 from trafficlaw.ingest.vbhn import VbhnEntry, footnotes_of, map_id
-from trafficlaw.ingest.versioning import Repeal, build_versions
+from trafficlaw.ingest.versioning import Delay, Repeal, build_versions
 from trafficlaw.registry.loader import Registry
 from trafficlaw.registry.schema import DocumentMeta
 from trafficlaw.utils.jsonl import JsonlWriter, done_keys, read_jsonl, write_jsonl
@@ -59,6 +59,14 @@ def load_label_fixes(path: str | Path) -> list[LabelFix]:
     return [LabelFix.model_validate(x) for x in data.get("label_fixes") or []]
 
 
+def load_effect_overrides(path: str | Path) -> list[EffectOverride]:
+    path = Path(path)
+    if not path.is_file():
+        return []
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    return [EffectOverride.model_validate(x) for x in data.get("effect_overrides") or []]
+
+
 class AmendmentRecord(BaseModel):
     """Một dòng ``amendment_report.jsonl`` (append-only; bản ghi mới nhất của đích là hiện hành)."""
 
@@ -76,6 +84,8 @@ class AmendmentRecord(BaseModel):
     #: ``{văn bản sửa đổi: {op: [số chỉ dẫn, số áp được]}}``.
     instructions: dict[str, dict[str, list[int]]] = {}
     special_effects: dict[str, date] = {}
+    #: Hiệu lực riêng của phần do văn bản sửa đổi đưa vào (effect_overrides đã duyệt).
+    amendment_effects: dict[str, date] = {}
     general_effect: date | None = None
     todos: list[Todo] = []
     fixes_unapplied: list[str] = []
@@ -133,6 +143,7 @@ def _plans(
     units: Mapping[str, Sequence[Unit]],
     vbhn_map: Sequence[VbhnEntry],
     label_fixes: Sequence[LabelFix],
+    effect_overrides: Sequence[EffectOverride] = (),
 ) -> list[_Plan]:
     plans: list[_Plan] = []
     for doc in registry.indexable():
@@ -176,6 +187,11 @@ def _plans(
                 ],
                 "fixes": [
                     f.model_dump() for f in label_fixes if f.source_unit_id.split("/")[0] in a_ids
+                ],
+                "effect_overrides": [
+                    o.model_dump()
+                    for o in effect_overrides
+                    if o.unit_id.split("/")[0] == doc.doc_id
                 ],
             }
         )
@@ -245,6 +261,7 @@ def process_target(
     registry: Registry,
     label_fixes: Sequence[LabelFix],
     extraction_cache: dict[str, Extraction],
+    effect_overrides: Sequence[EffectOverride] = (),
 ) -> tuple[AmendmentRecord, list[Any], list[Any]]:
     """Một văn bản đích → (report, phiên bản, unit bổ sung). Hàm không ghi file."""
     doc = plan.doc
@@ -293,9 +310,44 @@ def process_target(
             st.setdefault(i.op, [0, 0])[0] += 1
         stats[a.doc_id] = st
 
+    # Câu hiệu lực riêng do văn bản sửa đổi đưa vào, người dùng đã duyệt (effect_overrides).
+    delays: list[Delay] = []
+    amendment_effects: dict[str, date] = {}
+    accepted: set[tuple[str, str]] = set()
+    for o in effect_overrides:
+        if o.unit_id.split("/")[0] != doc.doc_id:
+            continue
+        src_ins = [
+            i
+            for i in instructions
+            if i.target_id == o.unit_id and i.source_unit_id == o.source_unit_id and i.block
+        ]
+        if len(src_ins) != 1:
+            raise ValueError(f"effect_overrides: không có chỉ dẫn {o.source_unit_id} → {o.unit_id}")
+        block = src_ins[0].block
+        assert block is not None
+        ids, d, tail = parse_accepted_clause(doc.doc_id, block.text)
+        accepted.add((o.unit_id, o.source_unit_id))
+        src_doc = o.source_unit_id.split("/")[0]
+        for uid in ids:
+            delays.append(Delay(uid, src_doc, d, o.unit_id))
+            amendment_effects[uid] = d
+        if tail:
+            todos.append(
+                Todo(
+                    doc_id=doc.doc_id,
+                    unit_id=o.unit_id,
+                    source_unit_id=o.source_unit_id,
+                    reason="hieu_luc_khong_ro",
+                    detail=f"đã áp từ {d}; điều kiện còn lại chưa biểu diễn: {tail}"[:500],
+                )
+            )
+
     # Chỉ dẫn sửa Điều hiệu lực của đích → cần rà tay (ngày hiệu lực riêng mới).
     effect_dieu = {u.id for u in base if u.level == "dieu" and _EFFECT_TITLE.search(u.title or "")}
     for i in instructions:
+        if (i.target_id, i.source_unit_id) in accepted:
+            continue
         if "/".join(i.target_id.split("/")[:2]) in effect_dieu:
             todos.append(
                 Todo(
@@ -336,6 +388,7 @@ def process_target(
         repeal=repeal,
         amending_appendices=appendices,
         source_paths={a.doc_id: a.source_path for a in plan.amenders},
+        delays=delays,
     )
     todos.extend(res.todos)
     for i in instructions:
@@ -361,6 +414,7 @@ def process_target(
         n_changed_units=len(changed),
         instructions=stats,
         special_effects=eff.special,
+        amendment_effects=amendment_effects,
         general_effect=eff.general,
         todos=_dedupe(todos),
         fixes_unapplied=fixes_unapplied,
@@ -383,11 +437,12 @@ def run_amendments(
     vbhn_map: Sequence[VbhnEntry],
     label_fixes: Sequence[LabelFix],
     git_commit: str | None,
+    effect_overrides: Sequence[EffectOverride] = (),
     doc_ids: Iterable[str] | None = None,
     force: bool = False,
 ) -> list[AmendmentOutcome]:
     units = load_units(units_path)
-    plans = _plans(registry, units, vbhn_map, label_fixes)
+    plans = _plans(registry, units, vbhn_map, label_fixes, effect_overrides)
     wanted = set(doc_ids) if doc_ids else None
     if wanted:
         unknown = wanted - {p.doc.doc_id for p in plans}
@@ -417,7 +472,9 @@ def run_amendments(
                 outcomes.append(AmendmentOutcome(p.doc.doc_id, "skipped", None))
                 continue
             try:
-                rec, versions, added = process_target(p, units, registry, label_fixes, cache)
+                rec, versions, added = process_target(
+                    p, units, registry, label_fixes, cache, effect_overrides
+                )
             except Exception as e:  # lỗi của một đích không dừng cả job
                 logger.exception("Lỗi khi áp sửa đổi cho %s", p.doc.doc_id)
                 rec = AmendmentRecord(
@@ -439,7 +496,7 @@ def run_amendments(
     write_todo_csv(
         todo_path,
         latest_reports(report_path),
-        {p.doc.doc_id for p in _plans(registry, units, vbhn_map, label_fixes)},
+        {p.doc.doc_id for p in _plans(registry, units, vbhn_map, label_fixes, effect_overrides)},
     )
     return outcomes
 

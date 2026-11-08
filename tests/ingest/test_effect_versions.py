@@ -93,3 +93,17 @@ def test_missing_start_date_never_in_effect_and_repealed_hidden() -> None:
     rep = st.get_version("X1-2024/D1", date(2025, 9, 1), include_repealed=True)
     assert rep is not None and rep.status == "repealed"
     assert st.get_version("KHONG-CO/D1", date(2025, 9, 1)) is None
+
+
+def test_parse_accepted_clause_nd238_dieu18() -> None:
+    from trafficlaw.ingest.effect import parse_accepted_clause
+
+    text = (
+        "4. Quy định xử phạt vi phạm hành chính liên quan đến thiết bị ghi nhận hình ảnh khoang "
+        "chở khách tại điểm n khoản 5 Điều 20; điểm k, điểm l khoản 7 Điều 26 của Nghị định này "
+        "có hiệu lực thi hành từ ngày 01 tháng 01 năm 2029 và theo quy định của pháp luật về "
+        "thiết bị ghi nhận hình ảnh khoang chở khách trên phương tiện giao thông đường bộ."
+    )
+    ids, d, tail = parse_accepted_clause("ND168-2024", text)
+    assert ids == ["ND168-2024/D20/K5/n", "ND168-2024/D26/K7/k", "ND168-2024/D26/K7/l"]
+    assert d == date(2029, 1, 1) and tail.startswith("và theo quy định")
