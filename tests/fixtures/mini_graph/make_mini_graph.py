@@ -75,14 +75,15 @@ def main() -> None:
     out_nodes = [n for n in nodes if n["id"] in keep]
     for name, edges in ((FILES[1], struct), (FILES[2], legal)):
         rows = [e for e in edges if e["src"] in keep and e["dst"] in keep]
-        (OUT / name).write_text(
-            "".join(json.dumps(e, ensure_ascii=False) + "\n" for e in rows), encoding="utf-8"
-        )
+        write(OUT / name, rows)
         print(name, len(rows))
-    (OUT / FILES[0]).write_text(
-        "".join(json.dumps(n, ensure_ascii=False) + "\n" for n in out_nodes), encoding="utf-8"
-    )
+    write(OUT / FILES[0], out_nodes)
     print(FILES[0], len(out_nodes))
+
+
+def write(path: Path, rows: list[dict]) -> None:
+    text = "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows)
+    path.write_bytes(text.encode("utf-8"))  # luôn LF (write_text trên Windows ghi CRLF)
 
 
 if __name__ == "__main__":
