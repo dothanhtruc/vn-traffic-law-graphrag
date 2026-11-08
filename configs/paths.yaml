@@ -19,3 +19,12 @@ amendment_summary: data/processed/amendment_summary.md
 amendment_overrides: data/registry/amendment_overrides.yaml
 vbhn_compare: data/processed/vbhn_compare.jsonl
 vbhn_compare_summary: data/processed/vbhn_compare_summary.md
+# M5: đồ thị (JSONL) + báo cáo
+doc_aliases: data/registry/doc_aliases.yaml
+graph_nodes: data/graph/nodes.jsonl
+graph_edges_struct: data/graph/edges_struct.jsonl
+graph_edges_legal: data/graph/edges_legal.jsonl
+graph_unresolved: data/graph/unresolved.jsonl
+graph_report: data/graph/graph_report.jsonl
+graph_summary: data/graph/graph_summary.md
+graph_review: data/graph/review_sample.md
