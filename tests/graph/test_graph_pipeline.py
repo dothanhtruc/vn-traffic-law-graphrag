@@ -76,4 +76,4 @@ def test_loi_du_lieu_bao_trong_record(tmp_path: Path) -> None:
 
 
 def test_script_co_chua_cai_dat() -> None:
-    assert build_graph_main(["--load-neo4j"]) == 2
+    assert build_graph_main(["--extract"]) == 2  # M8; --load-neo4j đã có từ M6

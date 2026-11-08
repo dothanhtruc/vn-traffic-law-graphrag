@@ -1,0 +1,12 @@
+# M6: GraphStore (EmbeddedStore + Neo4jStore). Kết nối Neo4j đọc từ biến môi trường / .env:
+# NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD (+ NEO4J_DATABASE, tuỳ chọn) — không ghi vào đây.
+neo4j:
+  batch_size: 1000          # số dòng mỗi lô UNWIND khi nạp/đọc
+  delete_batch_size: 5000   # số cạnh/nút mỗi lô khi xoá
+  label_prefix: ""          # dữ liệu thật; test slow dùng "T_" (không gian tên riêng)
+# --verify-store: so EmbeddedStore ↔ Neo4jStore
+parity:
+  n_units: 200              # unit phân tầng theo văn bản (+ mọi VanBan)
+  seed: 42
+  dates: ["2025-01-01", "2026-01-01", "2026-07-01", "2026-08-15"]
+  workers: 8                # luồng song song gọi Neo4j
