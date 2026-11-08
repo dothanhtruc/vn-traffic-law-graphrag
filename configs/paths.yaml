@@ -12,3 +12,10 @@ graph_dir: data/graph
 qa_dir: data/qa
 index_dir: data/index
 results_dir: results
+# M4: áp sửa đổi + đối chiếu VBHN
+units_added: data/processed/units_added.jsonl
+amendment_report: data/processed/amendment_report.jsonl
+amendment_summary: data/processed/amendment_summary.md
+amendment_overrides: data/registry/amendment_overrides.yaml
+vbhn_compare: data/processed/vbhn_compare.jsonl
+vbhn_compare_summary: data/processed/vbhn_compare_summary.md

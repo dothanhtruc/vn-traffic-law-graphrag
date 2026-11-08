@@ -1,0 +1,13 @@
+# Sửa nhãn ghi sai trong KHỐI NỘI DUNG của văn bản sửa đổi (M4).
+# Chỉ đổi nhãn đầu dòng; nội dung giữ nguyên văn. Mỗi mục cần căn cứ kiểm chứng được.
+# Mục không khớp đúng một dòng → scripts.apply_amendments thoát mã 1.
+label_fixes:
+  - source_unit_id: ND241-2026/D24/K1
+    label_in_source: d
+    label: đ
+    text_starts_with: "An toàn giao thông và ứng cứu khẩn cấp"
+    reason: "Khối nội dung ghi \"d)\" cho điểm đầu tiên được bổ sung."
+    evidence: >-
+      Câu dẫn ghi "Bổ sung các điểm đ, điểm e, điểm g và điểm h khoản 1"; khoản 1 Điều 64
+      NĐ 165/2024 đã có điểm a–d (ND165-2024/D64/K1/d tồn tại); VBHN 65/2026 ghi điểm này là
+      điểm đ (chú thích [^88]).

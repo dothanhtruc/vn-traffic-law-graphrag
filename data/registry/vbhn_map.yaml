@@ -1,0 +1,41 @@
+# Ánh xạ văn bản hợp nhất (VBHN) → văn bản gốc, dùng cho scripts.compare_vbhn (M4).
+# VBHN không đưa vào chỉ mục/đồ thị; chỉ dùng để đối chiếu phiên bản tại ngày as_of.
+# Mã unit ánh xạ thẳng: VBHN55-VPQH/D9/K18 ↔ LUAT36-2024/D9/K18.
+vbhn:
+  - vbhn: VBHN55-VPQH
+    base_doc: LUAT36-2024
+    as_of: 2026-07-01
+    in_registry_sources: []
+    out_of_registry_sources: [118/2025/QH15]
+    known_issues:
+      # M3: phần cuối Điều 89 (khoản 4–7) lỗi font trong PDF.
+      - VBHN55-VPQH/D89/K4
+      - VBHN55-VPQH/D89/K5
+      - VBHN55-VPQH/D89/K6
+      - VBHN55-VPQH/D89/K7
+    notes: >-
+      Luật 36/2024 + Luật 118/2025 (01/07/2026, ngoài danh mục). Không có sửa đổi trong danh mục:
+      phép so kiểm tra độ trung thực của unit không bị sửa.
+
+  - vbhn: VBHN144-2026-LQ-VPQH
+    base_doc: LUAT35-2024
+    as_of: 2026-07-01
+    in_registry_sources: []
+    out_of_registry_sources: [118/2025/QH15, 24/2026/QH16]
+    known_issues: []
+    notes: >-
+      Luật 35/2024 + Luật 118/2025 (01/07/2026) + Luật 24/2026/QH16 (01/03/2027), đều ngoài
+      danh mục.
+
+  - vbhn: VBHN65-2026-BXD
+    base_doc: ND165-2024
+    as_of: 2026-07-01
+    in_registry_sources: [241/2026/NĐ-CP]
+    out_of_registry_sources: [243/2025/NĐ-CP]
+    crosscheck_source: 241/2026/NĐ-CP
+    known_issues:
+      # M3: chú thích [^1]/[^2] của PDF tràn vào phần mở đầu và Điều 1 khoản 7.
+      - VBHN65-2026-BXD/D1/K7
+    notes: >-
+      NĐ 165/2024 + NĐ 243/2025 (ngoài danh mục) + NĐ 241/2026 (trong danh mục): phép thử
+      thật của bộ áp sửa đổi.
