@@ -28,3 +28,6 @@ graph_unresolved: data/graph/unresolved.jsonl
 graph_report: data/graph/graph_report.jsonl
 graph_summary: data/graph/graph_summary.md
 graph_review: data/graph/review_sample.md
+# M6: GraphStore
+graph_config: configs/graph.yaml
+graph_store_parity: data/graph/store_parity.jsonl

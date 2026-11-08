@@ -6,7 +6,12 @@ import logging
 import os
 from pathlib import Path
 
-SECRET_ENV_VARS: tuple[str, ...] = ("GEMINI_API_KEY", "GROQ_API_KEY", "OPENROUTER_API_KEY")
+SECRET_ENV_VARS: tuple[str, ...] = (
+    "GEMINI_API_KEY",
+    "GROQ_API_KEY",
+    "OPENROUTER_API_KEY",
+    "NEO4J_PASSWORD",
+)
 MASK = "***"
 _FORMAT = "%(asctime)s %(levelname)s %(name)s: %(message)s"
 _HANDLER_ATTR = "_trafficlaw_handler"
