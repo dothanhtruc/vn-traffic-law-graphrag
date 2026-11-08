@@ -1,0 +1,45 @@
+# Bảng tên văn bản cho M5 (dẫn chiếu theo tên, src/trafficlaw/graph/doc_names.py).
+#
+# - Tên chính thức của các Luật trong danh mục lấy tự động từ `ten` trong documents.yaml.
+# - `aliases`: cách viết khác gặp trong văn bản thật → doc_id trong danh mục.
+# - `external_names`: tên luật NGOÀI danh mục mà cách cắt tên tự động làm sai (tên có dấu phẩy,
+#   "và", "theo", "điều"…). Luật ngoài danh mục khác vẫn được nhận bằng cách cắt tự động.
+# Tên được so khớp không phân biệt hoa/thường (chữ đầu "Luật"/"Bộ luật" phải viết hoa),
+# khoảng trắng linh hoạt, tên dài nhất thắng.
+# Không thêm luật cũ đã hết hiệu lực vào `aliases` (vd "Luật Giao thông đường bộ" ≠ Luật 36/2024).
+# - `excluded`: văn bản đã hết hiệu lực, KHÔNG dùng (CLAUDE.md mục 6, quyết định 05/11/2026): vẫn
+#   nhận diện (để dẫn chiếu trong cây con "Sửa đổi … Nghị định số 100/2019" không bị gán nhầm
+#   sang văn bản chứa câu) nhưng không xuất hiện trong đồ thị lẫn báo cáo (không nút, không cạnh,
+#   không bộ đếm).
+
+aliases:
+  LUAT36-2024:
+    # TT72 (phần căn cứ, Đ3 K2 b): thiếu dấu phẩy; căn cứ ghi "ngày 27 tháng 6 năm 2024".
+    - Luật Trật tự an toàn giao thông đường bộ
+    # TT53 Đ8: "khoản 4 Điều 34 Luật Trật tự, an toàn giao thông được phân loại…" — bản gốc
+    # thiếu "đường bộ"; Điều 34 Luật 36/2024 là "Phân loại phương tiện giao thông đường bộ".
+    - Luật Trật tự, an toàn giao thông
+
+external_names:
+  - Luật Đầu tư theo phương thức đối tác công tư
+  - Luật Đê điều
+  - Luật Phí và lệ phí
+  - Luật Khám bệnh, chữa bệnh
+  - Luật Phòng, chống thiên tai
+  - Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ
+  - Luật Quy hoạch đô thị và nông thôn
+  - Luật Tổ chức cơ quan điều tra hình sự
+  - Luật Tổ chức chính quyền địa phương
+  - Luật Ban hành văn bản quy phạm pháp luật
+  - Luật Quản lý, sử dụng tài sản công
+  - Luật Tiêu chuẩn và quy chuẩn kỹ thuật
+  - Luật Du lịch
+  - Bộ luật Hình sự
+  # TT72 Đ6 K8 b viết thường "tố tụng".
+  - Bộ luật Tố tụng hình sự
+
+excluded:
+  - 26/2001/QH10
+  - 23/2008/QH12
+  - 100/2019/NĐ-CP
+  - Luật Giao thông đường bộ

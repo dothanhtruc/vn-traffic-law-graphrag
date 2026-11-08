@@ -41,17 +41,17 @@ registry (documents.yaml)                      question (+ ngày áp dụng, m�
 ```
 configs/            # YAML: paths, retrieval (B1..B3, G, A1..A3), llm, train_*, eval
 data/
-  registry/         # documents.yaml (33 văn bản), vbhn_map.yaml, label_overrides.yaml, amendment_overrides.yaml
+  registry/         # documents.yaml (33 văn bản), vbhn_map.yaml, label_overrides.yaml, amendment_overrides.yaml, doc_aliases.yaml (M5)
   raw/              # văn bản gốc (Luat/, NghiDinh/, ThongTu/, QuyetDinh/, VBHopNhat/) — KHÔNG sửa, gitignored
   interim/          # <doc_id>.txt sau chuẩn hoá
   processed/        # units.jsonl (bản gốc), unit_versions.jsonl, units_added.jsonl, amendment_todo.csv, vbhn_compare.jsonl
-  graph/            # nodes.jsonl, edges_struct.jsonl, edges_semantic.jsonl
+  graph/            # nodes.jsonl, edges_struct.jsonl, edges_legal.jsonl (M5), edges_semantic.jsonl (M8), unresolved.jsonl, graph_report.jsonl, graph_summary.md, review_sample.md
   qa/               # train.jsonl, val.jsonl, test.jsonl (500 câu, viết tay), gold_extraction.jsonl
   index/            # faiss, bm25 + manifest.json (artifact build, không commit)
 src/trafficlaw/
   registry/         # DocumentMeta (pydantic), load + validate
   ingest/           # readers (docx/pdf/html), normalize, structure, amendments
-  graph/            # schema, references, extract, store (GraphStore, EmbeddedStore, Neo4jStore)
+  graph/            # schema, doc_names, references, build, pipeline (M5); extract, store (GraphStore, EmbeddedStore, Neo4jStore)
   retrieval/        # chunking, bm25, dense, analyze, hybrid, graph_expand, validity_filter, rerank
   llm/              # providers/, rate_limiter, cache, prompts/
   pipeline/         # answer.py: ghép các bước online
@@ -198,9 +198,10 @@ Phụ lục:    <MaVB>/PL<n>[-k]                         ví dụ: TT53-2024-BGT
 
 | Nhãn nút | Thuộc tính chính |
 | --- | --- |
-| VanBan | `doc_id`, `so_hieu`, `loai`, `co_quan`, `tier`, `hieu_luc_tu`, `hieu_luc_den` |
-| Chuong, Dieu, Khoan, Diem | `id`, `title` |
-| PhienBan | `unit_id`, `version`, `text`, `effective_from`, `effective_to` |
+| VanBan | `doc_id`, `so_hieu`, `ten`, `loai`, `co_quan`, `tier`, `hieu_luc_tu`, `hieu_luc_den`, `is_amendment`, `indexable` |
+| VanBanNgoai | `id` (`EXT:…`), `so_hieu`, `ten`, `loai`, `n_refs` — văn bản ngoài danh mục, không nội dung |
+| Phan, Chuong, Muc, Dieu, Khoan, Diem, PhuLuc | `id`, `doc_id`, `level`, `number`, `title`, `uy_quyen` (nếu có), `bo_sung`/`source_unit_id` (unit bổ sung) |
+| PhienBan | `unit_id`, `version`, `text`, `effective_from`, `effective_to`, `status`, `source_unit_id` |
 | HanhVi, ChuThe, PhuongTien, KhaiNiem | `id`, `name`, `aliases` |
 | CheTai | `min_vnd`, `max_vnd`, `loai` (phạt tiền, tước GPLX…) |
 | DiemGPLX | `so_diem` |
@@ -214,6 +215,19 @@ Quan hệ: `THUOC, KE_TIEP, CO_PHIEN_BAN` (cấu trúc) · `SUA_DOI, THAY_THE, B
 - Mọi truy vấn lấy điều khoản phải nhận `as_of` và trả về phiên bản đúng ngày.
 - Code đồ thị đi qua interface `GraphStore` với `EmbeddedStore` (NetworkX) và `Neo4jStore`; cùng truy vấn phải cho cùng kết quả. Test dùng `EmbeddedStore`.
 - Cơ quan ban hành chỉ là thuộc tính; không suy luận quan hệ thay thế từ việc đổi bộ (GTVT → Xây dựng/Công an).
+
+**Quy ước đồ thị** (M5, `src/trafficlaw/graph/`: `doc_names.py`, `references.py`, `build.py`, `pipeline.py`, `schema.py`; người dùng chốt 08/11/2026):
+- `scripts.build_graph [--force]` → `data/graph/`: `nodes.jsonl` (`{id, label, props}`), `edges_struct.jsonl` + `edges_legal.jsonl` (`{type, src, dst, props}`), `unresolved.jsonl` (dẫn chiếu không phân giải: `reason` = `loi_doc` | `dich_khong_ton_tai` | `phu_luc_khong_co_unit` | `huong_dan_*`), `graph_report.jsonl` (append-only), `graph_summary.md`, `review_sample.md` (50 DAN_CHIEU phân tầng theo văn bản, seed 42, + toàn bộ HUONG_DAN để rà tay). Resume theo hash nội dung `units.jsonl`, `unit_versions.jsonl`, `units_added.jsonl`, `documents.yaml`, `doc_aliases.yaml` + hash file đầu ra; khoá không chứa phiên bản code ⇒ **sửa code M5 thì chạy lại với `--force`**. Đầu ra đã sắp xếp, tất định. Thoát mã 1 nếu có cạnh treo, phiên bản không có unit, hoặc vượt 200k nút / 400k cạnh. `--load-neo4j` (M6), `--extract` (M8) chưa có.
+- **Mã nút**: VanBan = `doc_id` (unit `van_ban` gộp vào nút này); unit = `unit_id`; PhienBan = `<unit_id>@v<version>`; VanBanNgoai = `EXT:<số hiệu chuẩn hoá>` (`EXT:135/2021/NĐ-CP`) hoặc `EXT:<TEN-KHONG-DAU>` (`EXT:LUAT-XU-LY-VI-PHAM-HANH-CHINH`).
+- **Nút**: mọi văn bản danh mục → VanBan (`is_amendment`, `indexable`); **văn bản sửa đổi và VBHN chỉ có nút VanBan** (không unit, không PhienBan, không vào chỉ mục). Unit của văn bản `indexable` + `units_added` → nút theo cấp (unit bổ sung có `bo_sung`, `source_unit_id`). Văn bản ngoài danh mục được nhắc → VanBanNgoai (không nội dung; cạnh tới nó chỉ ở cấp văn bản, cụm Điều/Khoản giữ trong `props.target_ref`). Văn bản **không dùng** (`excluded` trong `doc_aliases.yaml`: Luật 26/2001, Luật 23/2008, NĐ 100/2019, "Luật Giao thông đường bộ") được nhận diện (để dẫn chiếu trong cây con "Sửa đổi … NĐ 100/2019" không bị gán nhầm) nhưng **không để dấu vết**: không nút, không cạnh, không bộ đếm trong báo cáo (quyết định 08/11/2026); cụm tới chúng tính là đọc được.
+- **THUOC** con → `parent_id` (không có → văn bản); **KE_TIEP** anh em liền nhau theo `versions.unit_tree` (gồm unit bổ sung theo `after_id`/`before_id`; hàm chuyển từ `vbhn.py`, vẫn import được từ đó); **CO_PHIEN_BAN** unit → PhienBan.
+- **SUA_DOI / BAI_BO cấp unit**: mỗi phiên bản `version > 0` có `source_unit_id` → cạnh từ VanBan văn bản sửa đổi tới unit (`effective_from` = ngày phiên bản, `source_unit_id`, `version`, `thao_tac` = `sua_doi` | `bo_sung` | `bai_bo`; `repealed` → BAI_BO). Cha có phiên bản cùng `source_unit_id` + cùng ngày → bỏ cạnh của con (thay cả Khoản). Bãi bỏ/thay thế **toàn bộ** (`relations` `toan_bo`, TT14 → TT35) → chỉ cạnh cấp văn bản. Mọi `relations` của danh mục (SUA_DOI, BAI_BO, THAY_THE, HOP_NHAT) → cạnh cấp văn bản `props.cap = "van_ban"`.
+- **DAN_CHIEU** đi từ **PhienBan** (text đổi theo phiên bản), `effective_from/to` của phiên bản nguồn, `pham_vi` = `noi_bo` | `van_ban_khac` | `ngoai`, `can_cu` (dòng "Căn cứ …" của phần mở đầu — **không** là HUONG_DAN), `span`. Dẫn chiếu tới chính unit nguồn ("khoản này") hoặc tổ tiên ("Điều này" trong một Khoản) **vẫn tạo cạnh**, có `props.quan_he = chinh_unit | to_tien` (cạnh khác không có thuộc tính này; quyết định 08/11/2026). Phiên bản `repealed` không có cạnh.
+- **Tìm span** (`references.find_spans`): neo `điểm <nhãn>` / `khoản <số>` / `Điều <số>` / `Phụ lục <số>` / `Mẫu số N` (chỉ khi ngay sau là `Phụ lục <số>`) / `điểm|khoản|Điều này` — **bắt buộc có số/nhãn hoặc "này"** ("Điều khiển", "điểm kiểm tra", "trừ điểm giấy phép" không phải neo; "thời/địa/đặc… điểm này" bị loại). Mở rộng qua: neo liền sau (khoảng trắng: "điểm b khoản 5 Điều 6"); dấu nối `, ; và hoặc` / `đến|tới` + neo hoặc số/nhãn trần **cùng loại** (nhãn sau "điểm", số sau "khoản/Điều" — "và y tế" không bị nuốt); ngoặc đơn chứa dẫn chiếu ("Điều 13 (điểm a khoản 4; …)") hoặc ngoặc giải thích khi cụm còn tiếp sau ngoặc; từ nối `của|tại|thuộc|quy định tại|(ban hành) kèm theo` + neo/tên văn bản; tên văn bản kết thúc span. "Điều/khoản/điểm này" kết thúc span. Đọc span bằng `ingest.refs.parse_refs` (M4, không đổi) sau khi: thay "… này" bằng số của unit nguồn, khai triển khoảng ("khoản 1 đến khoản 3"), `;` → `,` (Điều cuối áp cho mọi nhóm), "Điều N (REFS)" → "REFS Điều N", bỏ ngoặc khác (gồm "(trừ …)"). Mẫu → Phụ lục chứa nó. Dẫn chiếu tới Chương/Mục (10 chỗ) chưa xử lý.
+- **Ngữ cảnh**: mục thiếu Điều/Khoản lấy Điều/Khoản chứa unit nguồn (mã unit), chỉ khi span không nêu văn bản khác (nêu văn bản khác mà thiếu Điều → `loi_doc`). **Phạm vi văn bản** (`references.header_scope`): dòng bắt đầu "Sửa đổi|Bổ sung|Bãi bỏ|Thay thế … của|tại <văn bản khác>" → dẫn chiếu không nêu văn bản trong **cây con và chính unit đó** thuộc văn bản kia (ND168 Đ52 → NĐ 100/2019; LUAT35 Đ84 K3/K4 → luật được sửa); Điều 1 "… quy định chi tiết … <đúng một văn bản> … bao gồm:" → cây con thuộc văn bản được hướng dẫn (ND151 Đ1). Trong phạm vi văn bản khác, "Điều/khoản này" → `loi_doc`.
+- **Bảng tên** (`doc_names.DocNameTable`, `data/registry/doc_aliases.yaml`): số hiệu so với `so_hieu` danh mục sau chuẩn hoá (chữ hoa, `ND`→`NĐ`); tên chỉ cho Luật/Bộ luật/Pháp lệnh (chữ đầu viết hoa): `ten` của Luật trong danh mục + `aliases` + `external_names`, khớp không phân biệt hoa/thường, **tên dài nhất thắng**; không có → cắt tự động tới dấu câu/từ chức năng (`ngày, năm, số, và, theo, …`). Số hiệu sau tên quyết định văn bản ("Luật Giao thông đường bộ số 23/2008/QH12"). "Luật sửa đổi, bổ sung một số điều của Luật X (và Luật Y)" → một VanBanNgoai riêng. Tên luật ngoài danh mục có dấu phẩy/"và"/"theo"/"điều" phải thêm vào `external_names` (nếu không sẽ bị cắt ngắn); nối dòng bị ngắt giữa tên (dòng sau viết thường).
+- **HUONG_DAN** (chỉ nghị định/thông tư/quyết định `indexable`): dòng của unit `van_ban` hoặc Điều 1 có "quy định chi tiết" / "hướng dẫn thi hành|thực hiện", **không** bắt đầu bằng "Căn cứ", và trước cụm đó không nhắc văn bản khác (nếu có thì đó là trích yếu của văn bản được nhắc, vd ND158 Đ7 K8) → VanBan → văn bản được nhắc sau cụm (`cap = van_ban`) + unit cụ thể nếu nêu (`cap = unit`, "Điều 77 Luật …"); cộng danh sách dưới Điều 1 có phạm vi `huong_dan` (ND151 "1. Điều 6 về …"). `effective_from/to` = hiệu lực văn bản hướng dẫn. Câu ủy quyền trong Luật ("Chính phủ quy định chi tiết khoản 2 Điều này") **không** tạo HUONG_DAN → `props.uy_quyen = [{co_quan, source_unit_id}]` trên unit được dẫn chiếu.
+- Kết quả 08/11/2026: 20.129 nút (VanBan 33, VanBanNgoai 137, Dieu 815, Khoan 3.328, Diem 4.873, PhuLuc 9, PhienBan 10.767), 31.771 cạnh (THUOC 9.192, KE_TIEP 6.991, CO_PHIEN_BAN 10.767, DAN_CHIEU 4.133 — gồm 4 `chinh_unit`, 43 `to_tien`, SUA_DOI 630, BAI_BO 43, HUONG_DAN 11, HOP_NHAT 3, THAY_THE 1), 0 cạnh treo, 52 `uy_quyen`; span phân giải 83,49%, **99,55% nếu bỏ span tới Phụ lục chưa có unit** (388 span — M3 chỉ tách Phụ lục có dòng tiêu đề đúng mẫu: ND158, ND165, TT12, TT14, TT35… thiếu); rà tay 50 DAN_CHIEU + 11 HUONG_DAN: 100% đúng (Claude rà, người dùng xác nhận 08/11/2026). Vấn đề đã biết: TT35 ghi số La Mã sai ("Phụ lục XXXXI") → 6 `loi_doc`; ND151 Đ38 K2 c (danh sách bãi bỏ của văn bản khác, không nêu văn bản trong câu) → 3 `dich_khong_ton_tai`.
 
 ## 9. Huấn luyện (GPU đơn 16 GB)
 

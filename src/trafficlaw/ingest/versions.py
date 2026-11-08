@@ -12,7 +12,7 @@ Quy ước (CLAUDE.md mục 7):
 
 from __future__ import annotations
 
-from collections.abc import Iterable
+from collections.abc import Iterable, Sequence
 from datetime import date
 from pathlib import Path
 from typing import Literal
@@ -104,3 +104,25 @@ class VersionStore:
         return select_version(
             self._by_unit.get(unit_id, ()), as_of, include_repealed=include_repealed
         )
+
+
+def unit_tree(units: Sequence[Unit], added: Sequence[AddedUnit] = ()) -> dict[str, list[str]]:
+    """``parent_id → [con theo thứ tự]``, gồm cả unit bổ sung.
+
+    Unit bổ sung đặt theo ``after_id``/``before_id``; không có cả hai → cuối danh sách con.
+    """
+    children: dict[str, list[str]] = {}
+    for u in units:
+        if u.parent_id:
+            children.setdefault(u.parent_id, []).append(u.id)
+    for a in added:
+        sib = children.setdefault(a.parent_id or a.doc_id, [])
+        if a.id in sib:
+            continue
+        if a.before_id in sib:
+            sib.insert(sib.index(a.before_id), a.id)
+        elif a.after_id in sib:
+            sib.insert(sib.index(a.after_id) + 1, a.id)
+        else:
+            sib.append(a.id)
+    return children

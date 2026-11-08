@@ -30,7 +30,7 @@ from pydantic import BaseModel, ConfigDict
 
 from trafficlaw.ingest.amendments import parse_vn_date_in
 from trafficlaw.ingest.structure import Unit
-from trafficlaw.ingest.versions import AddedUnit, VersionStore
+from trafficlaw.ingest.versions import AddedUnit, VersionStore, unit_tree
 
 # ---------------------------------------------------------------- vbhn_map.yaml
 
@@ -192,31 +192,6 @@ _REPEALED_MARK = re.compile(r"^\(?\s*(?:được|đã được)\s+bãi\s+bỏ\s*
 def is_repealed_placeholder(text: str) -> bool:
     """VBHN giữ nhãn unit bị bãi bỏ kèm "(được bãi bỏ)" — coi như không có unit."""
     return bool(_REPEALED_MARK.match(light_norm(text)))
-
-
-# ---------------------------------------------------------------- cây unit
-
-
-def unit_tree(units: Sequence[Unit], added: Sequence[AddedUnit] = ()) -> dict[str, list[str]]:
-    """``parent_id → [con theo thứ tự]``, gồm cả unit bổ sung.
-
-    Unit bổ sung đặt theo ``after_id``/``before_id``; không có cả hai → cuối danh sách con.
-    """
-    children: dict[str, list[str]] = {}
-    for u in units:
-        if u.parent_id:
-            children.setdefault(u.parent_id, []).append(u.id)
-    for a in added:
-        sib = children.setdefault(a.parent_id or a.doc_id, [])
-        if a.id in sib:
-            continue
-        if a.before_id in sib:
-            sib.insert(sib.index(a.before_id), a.id)
-        elif a.after_id in sib:
-            sib.insert(sib.index(a.after_id) + 1, a.id)
-        else:
-            sib.append(a.id)
-    return children
 
 
 # ---------------------------------------------------------------- so khớp
