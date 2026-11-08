@@ -118,7 +118,12 @@ class Neo4jStore(BaseGraphStore):
         if driver is None:
             from neo4j import GraphDatabase
 
-            driver = GraphDatabase.driver(config.uri, auth=(config.username, config.password))
+            # Tắt thông báo của server (vd. "label _Meta does not exist" ở lần nạp đầu).
+            driver = GraphDatabase.driver(
+                config.uri,
+                auth=(config.username, config.password),
+                notifications_min_severity="OFF",
+            )
         self._driver = driver
 
     @classmethod
