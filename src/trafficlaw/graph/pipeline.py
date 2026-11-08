@@ -132,6 +132,15 @@ def make_record(data: GraphData, input_hash: str, git_commit: str | None) -> dic
                 ).items()
             )
         ),
+        "dan_chieu_by_quan_he": dict(
+            sorted(
+                Counter(
+                    e.props["quan_he"]
+                    for e in data.edges_legal
+                    if e.type == "DAN_CHIEU" and "quan_he" in e.props
+                ).items()
+            )
+        ),
         "ref_stats": {d: dict(sorted(c.items())) for d, c in sorted(data.ref_stats.items())},
         "ref_rate_total": _ref_rate(total),
         "ref_rate_excl_appendix": _ref_rate(total, excl_appendix=True),
@@ -174,7 +183,9 @@ def summary_markdown(rec: Mapping[str, Any]) -> str:
         *[f"| {k} | {v:,} |" for k, v in rec["edges_by_type"].items()],
         "",
         "DAN_CHIEU theo phạm vi: "
-        + ", ".join(f"{k} {v:,}" for k, v in rec["dan_chieu_by_scope"].items()),
+        + ", ".join(f"{k} {v:,}" for k, v in rec["dan_chieu_by_scope"].items())
+        + "; tới chính unit / tổ tiên (props.quan_he): "
+        + ", ".join(f"{k} {v:,}" for k, v in rec["dan_chieu_by_quan_he"].items()),
         "",
         "## Dẫn chiếu theo văn bản nguồn",
         "",
@@ -182,7 +193,7 @@ def summary_markdown(rec: Mapping[str, Any]) -> str:
         "`phân giải` = đọc được và mọi đích tồn tại.",
         "",
         "| Văn bản | span | phân giải | tỷ lệ | tỷ lệ (bỏ PL) | lỗi đọc | đích không tồn tại "
-        "| PL chưa có unit | tự trỏ/tổ tiên | nhắc văn bản | VB không dùng |",
+        "| PL chưa có unit | → chính unit | → tổ tiên | nhắc văn bản |",
         "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
     for d, c in rec["ref_stats"].items():
@@ -190,8 +201,7 @@ def summary_markdown(rec: Mapping[str, Any]) -> str:
             f"| {d} | {c.get('spans', 0)} | {c.get('resolved', 0)} | {_pct(_ref_rate(c))} | "
             f"{_pct(_ref_rate(c, excl_appendix=True))} | {c.get('loi_doc', 0)} | "
             f"{c.get('dich_khong_ton_tai', 0)} | {c.get('phu_luc_khong_co_unit', 0)} | "
-            f"{c.get('tu_tro', 0)} | {c.get('nhac_van_ban', 0)} | "
-            f"{c.get('van_ban_khong_dung', 0)} |"
+            f"{c.get('chinh_unit', 0)} | {c.get('to_tien', 0)} | {c.get('nhac_van_ban', 0)} |"
         )
     lines += [
         "",

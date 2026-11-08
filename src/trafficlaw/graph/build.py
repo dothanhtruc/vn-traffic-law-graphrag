@@ -15,8 +15,9 @@ Quy tắc (CLAUDE.md "Quy ước đồ thị (M5)"):
 - **SUA_DOI / BAI_BO / THAY_THE / HOP_NHAT cấp văn bản**: từ ``relations`` của danh mục
   (``props.cap = "van_ban"``).
 - **DAN_CHIEU**: từ ``PhienBan`` (text đổi theo phiên bản) tới unit / ``VanBan`` /
-  ``VanBanNgoai``; ``effective_from/to`` của phiên bản nguồn. Bỏ dẫn chiếu tới chính unit
-  nguồn hoặc tổ tiên của nó ("quy định tại Điều này" trong một Khoản — đã có ``THUOC``).
+  ``VanBanNgoai``; ``effective_from/to`` của phiên bản nguồn. Dẫn chiếu tới chính unit nguồn
+  ("khoản này") hoặc tổ tiên ("Điều này" trong một Khoản) vẫn tạo cạnh, đánh dấu
+  ``props.quan_he = "chinh_unit" | "to_tien"`` (quyết định 08/11/2026).
   Đích không tồn tại → ``unresolved`` (không tạo cạnh).
 - **HUONG_DAN**: từ ``VanBan`` của nghị định/thông tư/quyết định tới văn bản (và unit cụ thể)
   mà phần mở đầu / Điều 1 nói là "quy định chi tiết / hướng dẫn thi hành".
@@ -61,7 +62,7 @@ class GraphData:
     edges_struct: list[Edge]
     edges_legal: list[Edge]
     #: ``{doc_id: Counter}``: spans, resolved, loi_doc, dich_khong_ton_tai,
-    #: phu_luc_khong_co_unit, tu_tro, nhac_van_ban, van_ban_khong_dung.
+    #: phu_luc_khong_co_unit, chinh_unit, to_tien, nhac_van_ban.
     ref_stats: dict[str, Counter[str]]
     unresolved: list[dict[str, Any]]
     #: Lỗi dữ liệu đầu vào (phiên bản không có unit…) — pipeline thoát mã 1.
@@ -271,27 +272,32 @@ class _Builder:
 
     def _targets(
         self, ref: Reference, src_unit: str
-    ) -> tuple[list[tuple[str, str | None]], list[str], int]:
-        """``([(đích, target_ref)], [đích không tồn tại], số dẫn chiếu tự trỏ/tổ tiên)``."""
+    ) -> tuple[list[tuple[str, str | None, str | None]], list[str]]:
+        """``([(đích, target_ref, quan_he)], [đích không tồn tại])``.
+
+        ``quan_he``: ``chinh_unit`` (đích là unit nguồn), ``to_tien`` (đích là tổ tiên của unit
+        nguồn), ``None`` (còn lại).
+        """
         if ref.doc_kind == "external":
             self._ext_node(ref)
-            return [(ref.doc, ref.ref_text)], [], 0
+            return [(ref.doc, ref.ref_text, None)], []
         if ref.doc not in self.indexable:  # văn bản sửa đổi / VBHN: chỉ có nút VanBan
-            return [(ref.doc, ref.ref_text)], [], 0
+            return [(ref.doc, ref.ref_text, None)], []
         if not ref.unit_ids:
-            return ([(ref.doc, None)] if ref.doc != src_unit.split("/")[0] else []), [], 0
-        found: list[tuple[str, str | None]] = []
+            return ([(ref.doc, None, None)] if ref.doc != src_unit.split("/")[0] else []), []
+        found: list[tuple[str, str | None, str | None]] = []
         missing: list[str] = []
-        skipped = 0
         anc = self._ancestors(src_unit)
         for t in ref.unit_ids:
             if t not in self.node_ids:
                 missing.append(t)
-            elif t == src_unit or t in anc:
-                skipped += 1
+            elif t == src_unit:
+                found.append((t, None, "chinh_unit"))
+            elif t in anc:
+                found.append((t, None, "to_tien"))
             else:
-                found.append((t, None))
-        return found, missing, skipped
+                found.append((t, None, None))
+        return found, missing
 
     def reference_edges(self) -> None:
         scopes = self._scopes()
@@ -311,12 +317,11 @@ class _Builder:
                         stats["loi_doc"] += 1
                         self.unresolved.append({**base, "reason": "loi_doc", "detail": ref.error})
                         continue
-                    if ref.doc in self.names.excluded:  # văn bản không dùng: không tạo cạnh
-                        stats["van_ban_khong_dung"] += 1
+                    if ref.doc in self.names.excluded:
+                        # Văn bản không dùng (CLAUDE.md mục 6): đọc được nhưng không để dấu vết.
                         stats["resolved"] += is_span
                         continue
-                    found, missing, skipped = self._targets(ref, uid)
-                    stats["tu_tro"] += skipped
+                    found, missing = self._targets(ref, uid)
                     if missing:
                         # Phụ lục chưa có unit (M3 chỉ tách Phụ lục có dòng tiêu đề đúng mẫu):
                         # giới hạn dữ liệu, thống kê riêng.
@@ -331,7 +336,7 @@ class _Builder:
                         )
                     elif is_span:
                         stats["resolved"] += 1
-                    for dst, target_ref in found:
+                    for dst, target_ref, quan_he in found:
                         dst_doc = dst.split("/")[0]
                         pham_vi = (
                             "noi_bo"
@@ -349,6 +354,9 @@ class _Builder:
                         }
                         if target_ref:
                             props["target_ref"] = target_ref
+                        if quan_he is not None:
+                            props["quan_he"] = quan_he
+                            stats[quan_he] += 1
                         if scope is not None and ref.mention is None:
                             props["pham_vi_tu"] = scope.source_unit_id
                         self._add("DAN_CHIEU", vid, dst, props)

@@ -240,4 +240,37 @@ def test_van_ban_khong_dung_khong_co_nut_canh() -> None:
     assert not any("100/2019" in e.dst for e in g.edges_legal)
     # "điểm d khoản 6 Điều 28" trong Điều 52 thuộc NĐ 100, không bị gán sang ND168 Đ28.
     assert not any(e.dst.startswith("ND168-2024/D28") for e in g.edges_legal)
-    assert g.ref_stats["ND168-2024"]["van_ban_khong_dung"] >= 4
+    # Không để dấu vết trong thống kê; cụm vẫn tính là đọc được.
+    assert all("van_ban_khong_dung" not in c for c in g.ref_stats.values())
+    assert g.ref_stats["ND168-2024"]["resolved"] >= 4
+
+
+def test_dan_chieu_toi_chinh_unit_va_to_tien() -> None:
+    """Câu nguyên văn LUAT36 Đ51 K6, LUAT35 Đ9 K6: vẫn tạo cạnh, đánh dấu ``quan_he``."""
+    reg = registry()
+    names = DocNameTable(reg, *load_doc_aliases(REPO_ROOT / "data/registry/doc_aliases.yaml"))
+    units = [
+        unit("LUAT36-2024/D51", "dieu", "Điều 51. Bảo đảm trật tự, an toàn giao thông …", "BĐ"),
+        unit("LUAT36-2024/D51/K6", "khoan", "6. Chính phủ quy định chi tiết Điều này."),
+        unit("LUAT35-2024/D9", "dieu", "Điều 9. Phân loại đường bộ theo chức năng phục vụ", "PL"),
+        unit(
+            "LUAT35-2024/D9/K6",
+            "khoan",
+            "6. Đường nội bộ là đường trong phạm vi khu chung cư, … và chỉ phục vụ các đối tượng "
+            "được phép vào, ra bên trong phạm vi các khu vực quy định tại khoản này.",
+        ),
+    ]
+    g = build_graph(reg, units, [], [_v0(u) for u in units], names)
+    [anc] = _edges(g, "DAN_CHIEU", "LUAT36-2024/D51/K6@v0", "LUAT36-2024/D51")
+    assert anc.props["quan_he"] == "to_tien" and anc.props["pham_vi"] == "noi_bo"
+    [self_] = _edges(g, "DAN_CHIEU", "LUAT35-2024/D9/K6@v0", "LUAT35-2024/D9/K6")
+    assert self_.props["quan_he"] == "chinh_unit"
+    ids = {n.id: n for n in g.nodes}
+    assert ids["LUAT36-2024/D51"].props["uy_quyen"][0]["co_quan"] == "Chính phủ"
+    assert g.ref_stats["LUAT36-2024"]["to_tien"] == 1
+    assert g.ref_stats["LUAT35-2024"]["chinh_unit"] == 1
+
+
+def test_dan_chieu_thuong_khong_co_quan_he(graph: GraphData) -> None:
+    [e] = _edges(graph, "DAN_CHIEU", "ND168-2024/D6/K1/a@v0", "ND168-2024/D6/K2/a")
+    assert "quan_he" not in e.props

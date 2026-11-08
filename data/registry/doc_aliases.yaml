@@ -9,7 +9,8 @@
 # Không thêm luật cũ đã hết hiệu lực vào `aliases` (vd "Luật Giao thông đường bộ" ≠ Luật 36/2024).
 # - `excluded`: văn bản đã hết hiệu lực, KHÔNG dùng (CLAUDE.md mục 6, quyết định 05/11/2026): vẫn
 #   nhận diện (để dẫn chiếu trong cây con "Sửa đổi … Nghị định số 100/2019" không bị gán nhầm
-#   sang văn bản chứa câu) nhưng không tạo nút VanBanNgoai và cạnh tới chúng; chỉ đếm trong báo cáo.
+#   sang văn bản chứa câu) nhưng không xuất hiện trong đồ thị lẫn báo cáo (không nút, không cạnh,
+#   không bộ đếm).
 
 aliases:
   LUAT36-2024:

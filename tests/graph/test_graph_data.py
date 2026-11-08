@@ -47,3 +47,14 @@ def test_khong_canh_treo_va_trong_gioi_han(legal: list[dict]) -> None:  # type: 
     assert len(ids) <= MAX_NODES
     assert len(struct) + len(legal) <= MAX_EDGES
     assert all(e["src"] in ids and e["dst"] in ids for e in [*struct, *legal])
+
+
+def test_dan_chieu_to_tien(legal: list[dict]) -> None:  # type: ignore[type-arg]
+    assert _has(legal, "DAN_CHIEU", "LUAT36-2024/D51/K6@v0", "LUAT36-2024/D51", quan_he="to_tien")
+
+
+def test_khong_co_van_ban_khong_dung(legal: list[dict]) -> None:  # type: ignore[type-arg]
+    bad = ("100/2019", "23/2008", "26/2001", "LUAT-GIAO-THONG-DUONG-BO")
+    nodes = [n["id"] for n in read_jsonl(GRAPH / "nodes.jsonl")]
+    assert not any(b in x for b in bad for x in nodes)
+    assert not any(b in e["dst"] for b in bad for e in legal)
