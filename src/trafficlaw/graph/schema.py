@@ -7,6 +7,9 @@ Mỗi dòng nút: ``{id, label, props}``; mỗi dòng cạnh: ``{type, src, dst,
 - ``Phan``/``Chuong``/``Muc``/``Dieu``/``Khoan``/``Diem``/``PhuLuc``: ``unit_id``;
 - ``PhienBan``: ``<unit_id>@v<version>``;
 - ``VanBanNgoai``: ``EXT:<số hiệu chuẩn hoá>`` hoặc ``EXT:<TEN-KHONG-DAU>``.
+
+M8 thêm ``nodes_semantic.jsonl`` + ``edges_semantic.jsonl`` (nhãn/cạnh ngữ nghĩa, xem
+``graph/extract.py``).
 """
 
 from __future__ import annotations
@@ -26,9 +29,19 @@ NodeLabel = Literal[
     "Diem",
     "PhuLuc",
     "PhienBan",
+    "HanhVi",
+    "ChuThe",
+    "PhuongTien",
+    "KhaiNiem",
+    "CheTai",
+    "DiemGPLX",
+    "BienPhapBoSung",
 ]
 StructEdgeType = Literal["THUOC", "KE_TIEP", "CO_PHIEN_BAN"]
 LegalEdgeType = Literal["SUA_DOI", "THAY_THE", "BAI_BO", "HUONG_DAN", "DAN_CHIEU", "HOP_NHAT"]
+SemanticEdgeType = Literal[
+    "QUY_DINH_HANH_VI", "AP_DUNG_CHO", "BI_XU_PHAT", "BI_TRU_DIEM", "DINH_NGHIA"
+]
 
 NODE_LABEL_ORDER: tuple[str, ...] = (
     "VanBan",
@@ -41,6 +54,30 @@ NODE_LABEL_ORDER: tuple[str, ...] = (
     "Diem",
     "PhuLuc",
     "PhienBan",
+    "HanhVi",
+    "ChuThe",
+    "PhuongTien",
+    "KhaiNiem",
+    "CheTai",
+    "DiemGPLX",
+    "BienPhapBoSung",
+)
+#: Nhãn ngữ nghĩa (M8) — ``data/graph/nodes_semantic.jsonl``.
+SEMANTIC_LABELS: tuple[str, ...] = (
+    "HanhVi",
+    "ChuThe",
+    "PhuongTien",
+    "KhaiNiem",
+    "CheTai",
+    "DiemGPLX",
+    "BienPhapBoSung",
+)
+SEMANTIC_EDGE_TYPES: tuple[str, ...] = (
+    "QUY_DINH_HANH_VI",
+    "AP_DUNG_CHO",
+    "BI_XU_PHAT",
+    "BI_TRU_DIEM",
+    "DINH_NGHIA",
 )
 STRUCT_EDGE_TYPES: tuple[str, ...] = ("THUOC", "KE_TIEP", "CO_PHIEN_BAN")
 LEGAL_EDGE_TYPES: tuple[str, ...] = (
@@ -79,7 +116,7 @@ class Node(BaseModel):
 class Edge(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    type: StructEdgeType | LegalEdgeType
+    type: StructEdgeType | LegalEdgeType | SemanticEdgeType
     src: str
     dst: str
     props: dict[str, Any] = {}

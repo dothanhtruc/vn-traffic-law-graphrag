@@ -33,3 +33,5 @@ graph_config: configs/graph.yaml
 graph_store_parity: data/graph/store_parity.jsonl
 # M7: lớp LLM
 llm_config: configs/llm.yaml
+# M8: trích xuất thực thể
+extract_config: configs/extract.yaml

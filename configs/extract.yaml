@@ -1,0 +1,103 @@
+# M8: trích xuất thực thể ngữ nghĩa (rule + LLM). Xem CLAUDE.md mục 8 "Quy ước trích xuất (M8)".
+
+# ---- phạm vi
+tiers_full: [A]          # trích xuất đầy đủ
+tiers_selective: [B]     # chỉ Khoản/Điều có chế tài hoặc định nghĩa
+# Điều sửa/bãi bỏ văn bản khác (ND168 Đ52, ND336 Đ25 → NĐ 100/2019) không trích xuất
+skip_dieu_title: '^(?:Sửa đổi|Bãi bỏ|Bổ sung|Thay thế)\b.*\b(?:số|Nghị định|Thông tư|Luật)\b'
+sanction_dieu_title: '^Xử phạt'            # regex chế tài chỉ chạy trong các Điều này
+definition_dieu_title: 'Giải thích từ ngữ' # regex khái niệm chỉ chạy trong các Điều này
+selective_hint: '[Pp]hạt tiền|[Pp]hạt cảnh cáo|trừ điểm giấy phép lái|[Tt]ước quyền sử dụng|[Tt]ịch thu|biện pháp khắc phục hậu quả'
+definition_hint: '^\d+[a-z]?\.\s*[^.:;]{2,160}?\s(?:là|được hiểu là)\s'
+
+# ---- gom lô gọi LLM (item cùng Điều)
+batch:
+  max_items: 20
+  max_chars: 12000
+
+# ---- LLM trích xuất (provider/model null = main trong configs/llm.yaml)
+llm:
+  provider: null
+  model_id: null
+  prompt: extract_items
+  max_output_tokens: 8192
+
+# ---- đường dẫn
+catalog_path: data/registry/extract_catalog.yaml
+out_dir: data/processed/extraction
+
+# ---- danh mục đóng PhuongTien / ChuThe (dựng bằng rule → người dùng duyệt)
+catalog:
+  pt_list_dieu: [LUAT36-2024/D34]
+  pt_def_docs: [LUAT36-2024, LUAT35-2024]
+  evidence_docs: [LUAT36-2024, LUAT35-2024, ND168-2024, ND336-2025]
+  pt_extra:
+    - {name: xe tương tự xe ô tô, nhom: xe-co-gioi, can_cu: LUAT36-2024/D34/K5}
+    - {name: xe tương tự xe mô tô, nhom: xe-co-gioi, can_cu: LUAT36-2024/D34/K5}
+    - {name: xe tương tự xe gắn máy, nhom: xe-co-gioi, can_cu: LUAT36-2024/D34/K5}
+    - {name: xe ô tô chở hành khách, nhom: xe-co-gioi}
+    - {name: xe ô tô tải, nhom: xe-co-gioi}
+    - {name: xe ô tô đầu kéo, nhom: xe-co-gioi}
+    - {name: xe ô tô kinh doanh vận tải, nhom: xe-co-gioi}
+    - {name: xe buýt, nhom: xe-co-gioi}
+    - {name: xe cứu thương, nhom: xe-co-gioi}
+    - {name: xe ưu tiên}
+    - {name: xe bánh xích}
+    - {name: xe đạp điện, nhom: xe-tho-so}
+  ct_seed:
+    - cá nhân
+    - tổ chức
+    - người điều khiển xe
+    - người đi bộ
+    - người được chở
+    - hành khách
+    - chủ phương tiện
+    - chủ xe
+    - người dẫn dắt vật nuôi
+    - người đua xe trái phép
+    - tổ chức kinh doanh vận tải
+    - đơn vị kinh doanh vận tải
+    - nhân viên phục vụ trên xe
+    - người thuê vận tải
+    - cơ sở đào tạo lái xe
+    - trung tâm sát hạch lái xe
+    - sát hạch viên
+    - giáo viên dạy thực hành lái xe
+    - cơ sở đăng kiểm
+    - đăng kiểm viên
+    - cơ sở sản xuất
+    - Cảnh sát giao thông
+    - người có thẩm quyền xử phạt
+    - Ủy ban nhân dân cấp tỉnh
+    - Bộ Công an
+    - Bộ Xây dựng
+    - cơ quan quản lý đường bộ
+
+# ---- tập vàng + chấm điểm
+gold:
+  path: data/qa/gold_extraction.jsonl
+  sample_path: data/qa/gold_extraction_sample.jsonl
+  review_path: data/qa/gold_extraction_review.md   # bản đọc dễ cho người rà (sinh lại mỗi lần)
+  as_of: 2026-11-03         # mốc chốt dữ liệu
+  seed: 42
+  max_units: 12             # bỏ Khoản có > 12 unit (Khoản + Điểm) để tập vàng vừa sức rà tay
+  strata:                   # tên → số Khoản; định nghĩa tầng trong eval/extraction_gold.py
+    nd168_che_tai: 25
+    nd168_bo_sung_tru_diem: 6
+    dinh_nghia_luat: 10
+    nd336: 5
+    tt_tier_a: 8
+    tier_b: 6
+  preannotate:
+    provider: groq          # model KHÁC model trích xuất (quyết định 09/11/2026)
+    model_id: null          # null = providers.groq.model_id
+    prompt: gold_preannotate
+    max_output_tokens: 8192
+
+eval:
+  span_f1: 0.5              # HanhVi/BienPhapBoSung khớp khi token-F1 của span ≥ ngưỡng (chốt trước khi chấm)
+  min_entity_f1: 0.85
+  min_relation_f1: 0.80
+  bootstrap: 1000
+  seed: 42
+  report_path: data/processed/extraction/eval_report.json

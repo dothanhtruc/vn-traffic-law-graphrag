@@ -14,7 +14,17 @@ theo lô rồi nạp lại. ``--verify-store``: so mọi API đọc giữa Embed
 mẫu unit × 4 mốc ngày → ``data/graph/store_parity.jsonl``.
 
 Mã thoát 1 nếu có cạnh treo, phiên bản không có unit, vượt giới hạn AuraDB Free (200k nút /
-400k cạnh), số đếm Neo4j lệch JSONL, hoặc hai store lệch nhau. ``--extract`` (M8) chưa có (mã 2).
+400k cạnh), số đếm Neo4j lệch JSONL, hoặc hai store lệch nhau.
+
+M8 (``--extract``, xem ``scripts/_extract_cli.py``)::
+
+    uv run python -m scripts.build_graph --extract --catalog            # bản nháp danh mục PT/CT
+    uv run python -m scripts.build_graph --extract --dry-run [--gold-only] [--doc-id ID]
+    uv run python -m scripts.build_graph --extract [--gold-only] [--doc-id ID] [--max-calls N]
+    uv run python -m scripts.build_graph --extract --publish            # sau eval_extraction đạt
+
+File ngữ nghĩa ``data/graph/{nodes,edges}_semantic.jsonl`` (nếu có) được ``--load-neo4j`` và
+``--verify-store`` nạp cùng 3 file M5.
 """
 
 from __future__ import annotations
@@ -30,7 +40,13 @@ import yaml
 
 from trafficlaw.graph.embedded import EmbeddedStore
 from trafficlaw.graph.neo4j_store import Neo4jStore
-from trafficlaw.graph.parity import build_checks, doc_ids, run_parity, sample_units
+from trafficlaw.graph.parity import (
+    build_checks,
+    doc_ids,
+    run_parity,
+    sample_semantic,
+    sample_units,
+)
 from trafficlaw.graph.pipeline import GraphPaths, run_build_graph
 from trafficlaw.graph.store import data_hash, load_graph
 from trafficlaw.utils.env import load_dotenv
@@ -72,7 +88,16 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument(
         "--verify-store", action="store_true", help="(M6) so EmbeddedStore ↔ Neo4jStore"
     )
-    ap.add_argument("--extract", action="store_true", help="(M8) trích xuất thực thể bằng LLM")
+    ap.add_argument("--extract", action="store_true", help="(M8) trích xuất thực thể (rule + LLM)")
+    ap.add_argument("--catalog", action="store_true", help="(M8) dựng bản nháp danh mục PT/CT")
+    ap.add_argument("--dry-run", action="store_true", help="(M8) chỉ in ước tính số lượt/token")
+    ap.add_argument("--doc-id", action="append", help="(M8) chỉ văn bản này (lặp được)")
+    ap.add_argument("--gold-only", action="store_true", help="(M8) chỉ item thuộc tập vàng")
+    ap.add_argument("--max-calls", type=int, default=None, help="(M8) tối đa N lượt gọi LLM")
+    ap.add_argument(
+        "--retry-format-error", action="store_true", help="(M8) gọi lại lô format_error"
+    )
+    ap.add_argument("--publish", action="store_true", help="(M8) ghi file ngữ nghĩa nếu đạt F1")
     ap.add_argument("--repo-root", type=Path, default=REPO_ROOT, help=argparse.SUPPRESS)
     args = ap.parse_args(argv)
     set_seed()
@@ -81,8 +106,9 @@ def main(argv: list[str] | None = None) -> int:
         if hasattr(stream, "reconfigure"):
             stream.reconfigure(errors="replace")
     if args.extract:
-        print("build_graph: --extract (M8) chưa được cài đặt", file=sys.stderr)
-        return 2
+        from scripts._extract_cli import run_extract_cli
+
+        return run_extract_cli(args, args.repo_root)
 
     root: Path = args.repo_root
     gp = graph_paths(root, _load_yaml(REPO_ROOT / "configs" / "paths.yaml"))
@@ -174,11 +200,18 @@ def _verify(store: Neo4jStore, graph_dir: Path, out_path: Path, pcfg: dict[str, 
     units = sample_units(emb, int(pcfg["n_units"]), int(pcfg["seed"]))
     docs = doc_ids(emb)
     c = emb.count()
+    sem = sample_semantic(emb, int(pcfg.get("n_semantic", 200)), int(pcfg["seed"]))
     checks = build_checks(
-        units, docs, dates, node_labels=list(c["nodes"]), edge_types=list(c["edges"])
+        units,
+        docs,
+        dates,
+        node_labels=list(c["nodes"]),
+        edge_types=list(c["edges"]),
+        semantic=sem,
     )
     print(
-        f"verify-store: {len(units)} unit + {len(docs)} văn bản × {len(dates)} mốc "
+        f"verify-store: {len(units)} unit + {len(docs)} văn bản × {len(dates)} mốc"
+        f" + {len(sem)} nút ngữ nghĩa "
         f"→ {len(checks):,} truy vấn"
     )
     t0 = time.monotonic()

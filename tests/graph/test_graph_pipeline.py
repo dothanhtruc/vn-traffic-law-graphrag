@@ -75,5 +75,9 @@ def test_loi_du_lieu_bao_trong_record(tmp_path: Path) -> None:
     assert any("ND168-2024/D99" in x for x in rec["problems"])
 
 
-def test_script_co_chua_cai_dat() -> None:
-    assert build_graph_main(["--extract"]) == 2  # M8; --load-neo4j đã có từ M6
+def test_script_extract_can_danh_muc(tmp_path: Path) -> None:
+    """M8: --extract chưa có danh mục PT/CT → mã 1 (không gọi LLM)."""
+    import shutil
+
+    shutil.copytree(Path(__file__).resolve().parents[2] / "configs", tmp_path / "configs")
+    assert build_graph_main(["--extract", "--repo-root", str(tmp_path)]) == 1
