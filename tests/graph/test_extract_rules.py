@@ -177,3 +177,38 @@ def test_name_normalisation_keeps_vehicle_types_apart() -> None:
     assert norm_name("xe gắn máy") != norm_name("xe mô tô")
     assert slugify("Xe gắn máy") == "xe-gan-may" != slugify("Xe mô tô")
     assert slugify("Đường bộ") == "duong-bo"
+
+
+# ND168 Đ26 K5 (nguyên văn) — mức riêng cho tổ chức không lặp chữ "Phạt tiền".
+ND168_D26_K5 = (
+    "5. Phạt tiền từ 4.000.000 đồng đến 5.000.000 đồng đối với cá nhân, từ 8.000.000 đồng đến "
+    "10.000.000 đồng đối với tổ chức xếp hàng hóa lên mỗi xe ô tô (kể cả rơ moóc và sơ mi rơ moóc) "
+    "vượt quá trọng tải (khối lượng hàng chuyên chở) cho phép tham gia giao thông được ghi trong "
+    "chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 100%."
+)
+# ND168 Đ32 K19 e (rút gọn danh sách dẫn chiếu) — biện pháp khắc phục viết "phải khôi phục".
+ND168_D32_K19_E = (
+    "e) Thực hiện hành vi vi phạm quy định tại điểm đ, điểm e, điểm g khoản 7 Điều này nếu gây "
+    "hư hại cầu, đường phải khôi phục lại tình trạng ban đầu đã bị thay đổi do vi phạm hành "
+    "chính gây ra;"
+)
+
+
+def test_fine_for_individual_and_organization() -> None:
+    a, b = find_sanctions(ND168_D26_K5)
+    assert (a.min_vnd, a.max_vnd, a.doi_tuong) == (4_000_000, 5_000_000, "cá nhân")
+    assert (b.min_vnd, b.max_vnd, b.doi_tuong) == (8_000_000, 10_000_000, "tổ chức")
+    assert b.span == "từ 8.000.000 đồng đến 10.000.000 đồng đối với tổ chức"
+    assert ND168_D26_K5[b.start : b.end] == b.span and a.end <= b.start
+    org = {"type": "CheTai", "loai": "phat_tien", "min_vnd": 8_000_000, "max_vnd": 10_000_000}
+    assert verify_numeric_entity(org, ND168_D26_K5) is None  # nhãn vàng mức tổ chức khớp regex
+    (only,) = find_sanctions(ND168_D6_K1)  # câu thường: một mức, không gán đối tượng
+    assert only.doi_tuong is None
+
+
+def test_remedy_phai_khoi_phuc() -> None:
+    (r,) = find_remedies(ND168_D32_K19_E)
+    assert (
+        r.name
+        == "phải khôi phục lại tình trạng ban đầu đã bị thay đổi do vi phạm hành chính gây ra"
+    )

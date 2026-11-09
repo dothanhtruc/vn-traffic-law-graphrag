@@ -108,7 +108,13 @@ def find_verbatim(span: str, text: str) -> str | None:
 
 SanctionKind = Literal["phat_tien", "canh_cao", "tuoc_quyen", "tich_thu", "dinh_chi"]
 
-_FINE_RE = re.compile(r"[Pp]hạt tiền từ (\d[\d.]*) đồng đến (\d[\d.]*) đồng")
+_FINE_RE = re.compile(
+    r"[Pp]hạt tiền từ (?P<a>\d[\d.]*) đồng đến (?P<b>\d[\d.]*) đồng"
+    r"(?: đối với (?P<who1>cá nhân))?"
+    # Mức riêng cho tổ chức trong cùng câu: "…, từ Z đồng đến T đồng đối với tổ chức" (NĐ 168,
+    # NĐ 336 — câu không lặp chữ "Phạt tiền").
+    r"(?P<org>, từ (?P<c>\d[\d.]*) đồng đến (?P<d>\d[\d.]*) đồng đối với (?P<who2>tổ chức))?"
+)
 _WARN_RE = re.compile(r"[Pp]hạt cảnh cáo")
 _REVOKE_RE = re.compile(
     r"[Tt]ước quyền sử dụng (?P<obj>(?:(?!tháng)[^;.:]){1,160}?) từ (?P<a>\d+) tháng đến "
@@ -122,7 +128,11 @@ _CONFISCATE_RE = re.compile(r"[Tt]ịch thu (?P<obj>[^;.]{1,200}?)(?=;|\.(?:\s|$
 _POINTS_RE = re.compile(
     r"trừ điểm giấy phép lái(?: xe)?(?:\s*\((?P<cond>[^)]*)\))? (?P<n>\d+) điểm"
 )
-_REMEDY_RE = re.compile(r"(?<!bắt )(?<![\w])[Bb]uộc (?P<body>[^;]{2,400}?)(?=;|\.(?:\s|$)|$)")
+# Biện pháp khắc phục hậu quả: "buộc …" (không "bắt buộc"), và "phải khôi phục …" (NĐ 168 Đ32 K19 e
+# viết không có chữ "buộc"). Chỉ áp trong ngữ cảnh "biện pháp khắc phục hậu quả".
+_REMEDY_RE = re.compile(
+    r"(?<!bắt )(?<![\w])(?:[Bb]uộc|[Pp]hải khôi phục) (?P<body>[^;]{2,400}?)(?=;|\.(?:\s|$)|$)"
+)
 REMEDY_CONTEXT_RE = re.compile(r"biện pháp khắc phục hậu quả")
 _DEF_RE = re.compile(
     r"^\d+[a-z]?\.\s*(?P<term>[^.:;()]{2,160}?)\s*"
@@ -192,16 +202,31 @@ def find_sanctions(text: str) -> list[Sanction]:
     t = nfc(text)
     out: list[Sanction] = []
     for m in _FINE_RE.finditer(t):
+        end1 = m.start("org") if m["org"] else m.end()
         out.append(
             Sanction(
                 "phat_tien",
-                m.group(0),
+                t[m.start() : end1],
                 m.start(),
-                m.end(),
-                min_vnd=parse_vnd(m.group(1)),
-                max_vnd=parse_vnd(m.group(2)),
+                end1,
+                min_vnd=parse_vnd(m["a"]),
+                max_vnd=parse_vnd(m["b"]),
+                doi_tuong=m["who1"],
             )
         )
+        if m["org"]:
+            s0 = m.start("org") + 2  # bỏ ", "
+            out.append(
+                Sanction(
+                    "phat_tien",
+                    t[s0 : m.end()],
+                    s0,
+                    m.end(),
+                    min_vnd=parse_vnd(m["c"]),
+                    max_vnd=parse_vnd(m["d"]),
+                    doi_tuong=m["who2"],
+                )
+            )
     for m in _WARN_RE.finditer(t):
         out.append(Sanction("canh_cao", m.group(0), m.start(), m.end()))
     for m in _REVOKE_RE.finditer(t):
@@ -246,7 +271,8 @@ def find_points(text: str) -> list[Points]:
 
 
 def find_remedies(text: str) -> list[Remedy]:
-    """Cụm "buộc …" (chỉ gọi khi ngữ cảnh là "biện pháp khắc phục hậu quả")."""
+    """Cụm "buộc …" / "phải khôi phục …" (chỉ gọi khi ngữ cảnh là "biện pháp khắc phục hậu
+    quả")."""
     t = nfc(text)
     out = []
     for m in _REMEDY_RE.finditer(t):
