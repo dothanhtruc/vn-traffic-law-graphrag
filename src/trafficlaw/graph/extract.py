@@ -293,8 +293,11 @@ def find_clauses(text: str) -> list[Clause]:
 
 class BatchConfig(BaseModel):
     model_config = ConfigDict(extra="forbid")
-    max_items: int = 20
-    max_chars: int = 12000
+    group_by: Literal["doc", "dieu"] = "doc"
+    """``doc``: gom nhiều Điều cùng văn bản vào một lượt (quota Gemini free 20 lượt/ngày);
+    ``dieu``: mỗi lượt chỉ một Điều."""
+    max_items: int = 80
+    max_chars: int = 40000
 
 
 class ExtractLLMConfig(BaseModel):
@@ -302,7 +305,7 @@ class ExtractLLMConfig(BaseModel):
     provider: str | None = None
     model_id: str | None = None
     prompt: str = "extract_items"
-    max_output_tokens: int = 8192
+    max_output_tokens: int = 32768
 
 
 class ExtractConfig(BaseModel):
@@ -526,7 +529,8 @@ def select_items(
 @dataclass
 class Batch:
     batch_id: str
-    dieu_id: str
+    group_id: str
+    """``doc_id`` (``group_by: doc``) hoặc mã Điều (``group_by: dieu``)."""
     items: list[Item]
 
     @property
@@ -545,17 +549,19 @@ class Batch:
 def make_batches(
     items: Iterable[Item], cfg: BatchConfig, *, skip_keys: set[str] | None = None
 ) -> list[Batch]:
-    """Gom item cùng Điều (thứ tự gốc), bỏ khoá trùng (toàn cục) và khoá đã xong; mỗi lô
-    ≤ ``max_items`` item và ≤ ``max_chars`` ký tự (item lớn hơn ngưỡng vẫn đi một mình)."""
+    """Gom item cùng văn bản (hoặc cùng Điều, theo ``group_by``), giữ thứ tự gốc, bỏ khoá trùng
+    (toàn cục) và khoá đã xong; mỗi lô ≤ ``max_items`` item và ≤ ``max_chars`` ký tự (item lớn
+    hơn ngưỡng vẫn đi một mình). Lô không cắt giữa một Điều nếu Điều đó vừa một lô mới."""
     seen = set(skip_keys or ())
-    by_dieu: dict[str, list[Item]] = {}
+    groups: dict[str, list[Item]] = {}
     for it in items:
         if it.key in seen:
             continue
         seen.add(it.key)
-        by_dieu.setdefault(it.dieu_id, []).append(it)
+        g = it.doc_id if cfg.group_by == "doc" else it.dieu_id
+        groups.setdefault(g, []).append(it)
     out: list[Batch] = []
-    for dieu, its in by_dieu.items():
+    for dieu, its in groups.items():
         cur: list[Item] = []
         size = 0
         n = 0
@@ -641,11 +647,15 @@ def batch_schema(catalog: Catalog) -> type[BatchOut]:
 
 
 def render_items(batch: Batch) -> str:
-    """Khối item cho prompt: Điều một lần; câu dẫn Khoản in lại khi đổi."""
-    first = batch.items[0]
-    lines = [f"Điều: {first.dieu_title} ({first.dieu_id})", ""]
+    """Khối item cho prompt: tiêu đề Điều in mỗi khi sang Điều mới; câu dẫn Khoản in lại khi
+    đổi."""
+    lines: list[str] = []
+    last_dieu: str | None = None
     last_parent: str | None = None
     for i, it in enumerate(batch.items, 1):
+        if it.dieu_id != last_dieu:
+            lines += [f"## Điều: {it.dieu_title} ({it.dieu_id})", ""]
+            last_dieu, last_parent = it.dieu_id, None
         if it.parent_text and it.parent_text != last_parent:
             lines += [f"[Câu dẫn của khoản] {norm_ws(it.parent_text)}", ""]
         last_parent = it.parent_text
@@ -763,7 +773,7 @@ def map_batch_output(
         rej += rj
     extra = sorted(set(by_id) - {f"I{i}" for i in range(1, len(batch.items) + 1)})
     for x in extra:
-        rej.append(Rejection("", batch.dieu_id, "item", x, "item_khong_ton_tai"))
+        rej.append(Rejection("", batch.group_id, "item", x, "item_khong_ton_tai"))
     return res, rej
 
 

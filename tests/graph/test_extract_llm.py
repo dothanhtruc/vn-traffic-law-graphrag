@@ -105,18 +105,51 @@ def _item(key: str, dieu: str = "X/D1", n: int = 10) -> Item:
 
 def test_make_batches_groups_by_dieu_and_dedupes() -> None:
     its = [_item("a"), _item("b"), _item("a"), _item("c", "X/D2"), _item("d"), _item("e")]
-    bs = make_batches(its, BatchConfig(max_items=2, max_chars=10_000))
+    cfg = BatchConfig(group_by="dieu", max_items=2, max_chars=10_000)
+    bs = make_batches(its, cfg)
     assert [(b.batch_id, b.keys) for b in bs] == [
         ("X/D1#0", ["a", "b"]),
         ("X/D1#1", ["d", "e"]),
         ("X/D2#0", ["c"]),
     ]
-    assert [b.keys for b in make_batches(its, BatchConfig(), skip_keys={"a", "d"})] == [
+    assert [
+        b.keys
+        for b in make_batches(its, cfg.model_copy(update={"max_items": 20}), skip_keys={"a", "d"})
+    ] == [
         ["b", "e"],
         ["c"],
     ]
-    big = make_batches([_item("p", n=50), _item("q", n=50)], BatchConfig(max_items=9, max_chars=60))
+    big = make_batches(
+        [_item("p", n=50), _item("q", n=50)],
+        BatchConfig(group_by="dieu", max_items=9, max_chars=60),
+    )
     assert [b.keys for b in big] == [["p"], ["q"]]
+
+
+def test_make_batches_groups_many_dieu_per_doc() -> None:
+    """Mặc định gom nhiều Điều cùng văn bản vào một lượt (quota 20 lượt/ngày)."""
+    its = [_item("a"), _item("b", "X/D2"), _item("c", "X/D3")]
+    other = Item("z", "z", "Y", "A", "Y/D1", "t", None, "x", "2025-01-01", None, "z")
+    bs = make_batches([*its, other], BatchConfig())
+    assert [(b.batch_id, b.group_id, b.keys) for b in bs] == [
+        ("X#0", "X", ["a", "b", "c"]),
+        ("Y#0", "Y", ["z"]),
+    ]
+    two = make_batches(its, BatchConfig(max_items=2))
+    assert [b.keys for b in two] == [["a", "b"], ["c"]]
+
+
+def test_render_items_prints_each_dieu_title(store: EmbeddedStore) -> None:
+    from trafficlaw.graph.extract import render_items
+
+    items = select_items(store, CFG, ["ND168-2024"])
+    (b, *_) = make_batches(items, BatchConfig(max_items=500, max_chars=10**7))
+    txt = render_items(b)
+    dieus = sorted({i.dieu_id for i in b.items})
+    assert len(dieus) >= 2  # mini_graph: ND168 Đ6 + Đ12
+    for d in dieus:
+        assert txt.count(f"({d})") == 1
+    assert txt.count("### I") == len(b.items)
 
 
 def test_item_key_nfc() -> None:

@@ -3,8 +3,9 @@
 
 Luồng ``scripts.build_graph --extract``:
 
-1. ``select_items`` + ``make_batches`` (bỏ item đã có kết quả ``ok``/``format_error`` cùng
-   ``model_id`` + ``prompt_hash`` + ``schema_hash`` trong ``raw.jsonl``).
+1. ``select_items`` + ``make_batches`` (lô = nhiều Điều cùng văn bản; bỏ item đã có kết quả
+   ``ok``/``format_error`` cùng ``model_id`` + ``prompt_hash`` + ``schema_hash`` trong
+   ``raw.jsonl``).
 2. Mỗi lô: ``client.generate`` (JSON schema có enum danh mục) → một dòng ``raw.jsonl`` (flush
    ngay). ``QuotaExhaustedError`` → dừng sạch, in lệnh chạy tiếp.
 3. ``assemble``: rule (toàn bộ phạm vi) + kết quả LLM đã có → ``candidates_{nodes,edges}.jsonl``,
@@ -187,7 +188,7 @@ def estimate(
     by: dict[str, dict[str, Any]] = {}
     for b in batches:
         tok = len(build_messages(prompt, b, catalog)[0]["content"]) // 4
-        doc = b.dieu_id.split("/")[0]
+        doc = b.group_id.split("/")[0]
         tier = b.items[0].tier
         for k in (f"tier:{tier}", f"doc:{doc}", "total"):
             s = by.setdefault(k, {"batches": 0, "items": 0, "prompt_tokens": 0})
@@ -312,7 +313,7 @@ def load_results(
         its = [by_key[k] for k in rec["item_keys"] if k in by_key]
         if len(its) != len(rec["item_keys"]):
             continue  # lô của phạm vi cũ (item đã đổi) — bỏ qua
-        b = Batch(rec["batch_id"], its[0].dieu_id, its)
+        b = Batch(rec["batch_id"], its[0].doc_id, its)
         res, rej = map_batch_output(b, rec["parsed"] or {}, catalog)
         results.update(res)
         rejections += rej

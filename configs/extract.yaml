@@ -10,17 +10,19 @@ definition_dieu_title: 'Giải thích từ ngữ' # regex khái niệm chỉ ch�
 selective_hint: '[Pp]hạt tiền|[Pp]hạt cảnh cáo|trừ điểm giấy phép lái|[Tt]ước quyền sử dụng|[Tt]ịch thu|biện pháp khắc phục hậu quả'
 definition_hint: '^\d+[a-z]?\.\s*[^.:;]{2,160}?\s(?:là|được hiểu là)\s'
 
-# ---- gom lô gọi LLM (item cùng Điều)
+# ---- gom lô gọi LLM. Gemini free tier = 20 lượt/ngày/model (429 thật 09/11/2026) ⇒ gom
+# nhiều Điều cùng văn bản vào một lượt (người dùng chốt 09/11/2026).
 batch:
-  max_items: 20
-  max_chars: 12000
+  group_by: doc
+  max_items: 80
+  max_chars: 40000
 
 # ---- LLM trích xuất (provider/model null = main trong configs/llm.yaml)
 llm:
   provider: null
   model_id: null
   prompt: extract_items
-  max_output_tokens: 8192
+  max_output_tokens: 32768   # lô ~80 item; Gemini Flash cho tối đa 65.536
 
 # ---- đường dẫn
 catalog_path: data/registry/extract_catalog.yaml

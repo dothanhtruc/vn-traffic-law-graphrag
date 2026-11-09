@@ -33,7 +33,7 @@ providers:
     model_id: gemini-3.5-flash
     rpm: 10
     tpm: 250000
-    rpd: 250
+    rpd: 20                 # free tier thật: GenerateRequestsPerDayPerProjectPerModel = 20 (429 ngày 09/11/2026)
     timeout_s: 90
     json_mode: schema       # responseMimeType + responseJsonSchema
     reset_utc_offset_h: -8
