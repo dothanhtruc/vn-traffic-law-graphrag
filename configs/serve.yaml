@@ -1,0 +1,54 @@
+# Model tự host bằng vLLM trên GPU thuê (aidev.edu.vn, 1× RTX 3090 24 GB), gọi từ máy local qua
+# SSH tunnel (quyết định người dùng 09/11/2026: mọi model đều tự host, không dùng API ngoài).
+#
+# - Server chỉ nghe 127.0.0.1 trên máy thuê; máy local: scripts/gpu/tunnel.sh (ssh -L).
+# - API key: VLLM_API_KEY trong env_file trên máy thuê (= LOCAL_LLM_API_KEY trong .env ở local),
+#   không nằm trong dòng lệnh. HF_TOKEN cũng ở env_file (model gated, đẩy HF Hub).
+# - Ghim revision (commit HF) trước mọi run chính thức; null chỉ dùng khi thử nghiệm chọn model.
+# - prefill_tps / decode_tps: token/giây gộp đo trên 3090 (null → default_*), cập nhật sau mỗi phiên.
+
+vllm_version: null          # điền sau lần cài đầu (scripts/gpu/gpu.sh setup in ra phiên bản) rồi ghim
+
+remote:
+  ssh_host: gpu-aidev       # alias trong ~/.ssh/config (xem scripts/gpu/ssh_config.example)
+  remote_dir: ~/GraphRAG
+  vllm_venv: ~/.venvs/vllm  # venv riêng cho vLLM (tránh xung đột torch với môi trường dự án)
+  env_file: ~/.config/graphrag/env
+  local_port: 8000
+  price_vnd_per_hour: 15000 # RTX 3090 · Standard (giá bán 09/11/2026)
+
+default_prefill_tps: 4000   # giả định thận trọng, đo lại ở phiên đầu
+default_decode_tps: 400
+
+# Ứng viên — KIỂM LẠI trên Hugging Face trước khi thuê máy (repo còn tồn tại, giấy phép, bản mới
+# hơn cùng họ). Model chính chọn bằng chạy thử trên 179 item tập vàng (CLAUDE.md mục 11).
+# Model gán nháp tập vàng / judge phải KHÁC HỌ (family) với model chính.
+models:
+  qwen3-14b-awq:
+    hf_repo: Qwen/Qwen3-14B-AWQ
+    revision: null
+    served_model_name: qwen3-14b-awq
+    quantization: awq_marlin
+    max_model_len: 16384
+    gpu_memory_utilization: 0.90
+    family: qwen
+    role: candidate
+  qwen3-8b:
+    hf_repo: Qwen/Qwen3-8B
+    revision: null
+    served_model_name: qwen3-8b
+    dtype: bfloat16
+    max_model_len: 16384
+    gpu_memory_utilization: 0.90
+    family: qwen
+    role: candidate
+  gemma3-12b-bnb4:
+    hf_repo: google/gemma-3-12b-it        # gated: chấp nhận giấy phép trên HF bằng tài khoản có HF_TOKEN
+    revision: null
+    served_model_name: gemma3-12b
+    quantization: bitsandbytes            # 4-bit nạp lúc chạy (~8 GB), chậm hơn AWQ nhưng vừa 24 GB
+    dtype: bfloat16
+    max_model_len: 16384
+    gpu_memory_utilization: 0.90
+    family: gemma
+    role: annotator                       # gán nháp tập vàng + judge (khác họ với Qwen)

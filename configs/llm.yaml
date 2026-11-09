@@ -1,17 +1,22 @@
 # M7: lớp gọi LLM. API key KHÔNG ghi ở đây — chỉ tên biến môi trường (đọc từ môi trường / .env).
 #
 # main = model CHỐT cho đánh giá + demo (một model_id; đánh giá không fallback).
+# 09/11/2026: mọi model TỰ HOST bằng vLLM trên GPU thuê, gọi qua SSH tunnel (provider local,
+# configs/serve.yaml). model_id = served_model_name; null cho tới khi người dùng chốt sau chạy thử
+# (mọi lệnh gọi LLM chính sẽ báo "chưa chốt model_id" — dùng --model khi chạy thử).
+# Lịch sử: gemini-3.5-flash (duyệt 09/11) bị bỏ — free tier 20 lượt/ngày, tên model bị trỏ sang
+# gemini-3.6-flash (không tái lập); API trả phí vượt ngân sách.
 main:
-  provider: gemini
-  model_id: gemini-3.5-flash  # người dùng duyệt 09/11/2026 (ping thật qua scripts.llm_check)
+  provider: local
+  model_id: null
 
 # Tham số chung (mọi provider); providers.<p>.params ghi đè/bổ sung.
 params:
   temperature: 0
   max_output_tokens: 2048
 
-# Fallback chỉ cho demo (FallbackClient); main luôn được thử trước.
-fallback_order: [gemini, groq, openrouter]
+# Fallback chỉ cho demo (FallbackClient). Không dùng API ngoài (09/11/2026) ⇒ rỗng.
+fallback_order: []
 
 retry:
   max_retries: 5            # 429 theo phút / 5xx / timeout; tối đa 1 + 5 lượt
@@ -26,6 +31,22 @@ repair_prompt: format_repair               # src/trafficlaw/llm/prompts/format_r
 # Giới hạn = mức free tier đã tra (đặt thấp hơn/bằng mức công bố); null = không giới hạn phía mình.
 # reset_utc_offset_h: giờ reset quota ngày (Gemini: 0h Pacific ≈ UTC−8, bỏ qua giờ mùa hè).
 providers:
+  # Server vLLM tự host trên máy thuê, qua `ssh -L 8000:127.0.0.1:8000` (scripts/gpu/tunnel.sh).
+  # LOCAL_LLM_API_KEY (.env) = VLLM_API_KEY trên máy thuê. Không giới hạn rpm/tpm/rpd phía mình.
+  local:
+    kind: openai_compat
+    base_url: http://127.0.0.1:8000/v1
+    api_key_env: LOCAL_LLM_API_KEY
+    model_id: null
+    timeout_s: 300           # lô dài + hàng đợi khi gọi song song
+    json_mode: schema        # response_format json_schema → vLLM guided decoding
+    reset_utc_offset_h: 0
+    params:
+      seed: 42
+    extra_body:
+      chat_template_kwargs:
+        enable_thinking: false   # Qwen3: tắt thinking (tái lập, ít token); model khác bỏ qua
+  # ---- API ngoài: KHÔNG dùng từ 09/11/2026 (giữ cấu hình để tham khảo/so sánh) ----
   gemini:
     kind: gemini
     base_url: https://generativelanguage.googleapis.com/v1beta

@@ -11,6 +11,8 @@ SECRET_ENV_VARS: tuple[str, ...] = (
     "GROQ_API_KEY",
     "OPENROUTER_API_KEY",
     "NEO4J_PASSWORD",
+    "LOCAL_LLM_API_KEY",
+    "HF_TOKEN",
 )
 MASK = "***"
 _FORMAT = "%(asctime)s %(levelname)s %(name)s: %(message)s"

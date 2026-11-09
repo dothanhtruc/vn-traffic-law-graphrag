@@ -98,6 +98,9 @@ def main(argv: list[str] | None = None) -> int:
         "--retry-format-error", action="store_true", help="(M8) gọi lại lô format_error"
     )
     ap.add_argument("--publish", action="store_true", help="(M8) ghi file ngữ nghĩa nếu đạt F1")
+    ap.add_argument("--provider", help="(M8) provider LLM (mặc định main trong configs/llm.yaml)")
+    ap.add_argument("--model", help="(M8) model_id / served_model_name (chạy thử ứng viên)")
+    ap.add_argument("--workers", type=int, default=1, help="(M8) số request song song")
     ap.add_argument("--repo-root", type=Path, default=REPO_ROOT, help=argparse.SUPPRESS)
     args = ap.parse_args(argv)
     set_seed()

@@ -3,7 +3,8 @@
 Quy trình (quyết định người dùng 09/11/2026):
 
 1. ``sample``: ~60 Khoản phân tầng, seed 42, tất định → ``gold_extraction_sample.jsonl``.
-2. ``preannotate``: model KHÁC model trích xuất (Groq) gán nháp → ``gold_extraction.jsonl`` với
+2. ``preannotate``: model tự host KHÁC HỌ với model trích xuất gán nháp →
+   ``gold_extraction.jsonl`` với
    ``annotator: "llm:<model_id>"``, ``reviewed: false`` và bản sao ``draft`` (để đo tỷ lệ sửa).
    Con số trong nháp phải khớp regex trên text unit, span phải nguyên văn, id danh mục phải hợp
    lệ — sai thì bỏ, ghi vào ``draft_dropped``.

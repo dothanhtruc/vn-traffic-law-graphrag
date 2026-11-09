@@ -23,7 +23,7 @@ import shutil
 import statistics
 import time
 from collections import Counter
-from collections.abc import Callable, Sequence
+from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -53,6 +53,7 @@ from trafficlaw.graph.extract import (
 from trafficlaw.graph.schema import MAX_EDGES, MAX_NODES
 from trafficlaw.graph.store import BaseGraphStore, canonical_json
 from trafficlaw.llm import LLMResult, Prompt, QuotaExhaustedError, load_prompt
+from trafficlaw.llm.parallel import map_parallel
 from trafficlaw.utils.jsonl import JsonlWriter, append_jsonl, read_jsonl, write_jsonl
 
 logger = logging.getLogger(__name__)
@@ -181,20 +182,42 @@ def done_item_keys(raw: Path, key: RunKey, *, retry_format_error: bool = False) 
 # --------------------------------------------------------------------------- ước tính
 
 
+DEFAULT_OUTPUT_TOKENS_PER_ITEM = 200
+"""Token đầu ra / item khi chưa có bản ghi để hiệu chỉnh (đo thật 09/11/2026: ~193)."""
+
+
+def output_tokens_per_item(raw: Path, default: float = DEFAULT_OUTPUT_TOKENS_PER_ITEM) -> float:
+    """Hiệu chỉnh từ các bản ghi ``ok`` không cache đã có (mọi model); chưa có → ``default``."""
+    n_items = 0
+    n_tok = 0
+    for rec in read_jsonl(raw):
+        if rec.get("status") == "ok" and not rec.get("cached"):
+            n_items += len(rec.get("item_keys") or [])
+            n_tok += int((rec.get("usage") or {}).get("completion_tokens") or 0)
+    return n_tok / n_items if n_items >= 20 and n_tok else default
+
+
 def estimate(
-    batches: Sequence[Batch], items: Sequence[Item], prompt: Prompt, catalog: Catalog
+    batches: Sequence[Batch],
+    items: Sequence[Item],
+    prompt: Prompt,
+    catalog: Catalog,
+    *,
+    out_per_item: float = DEFAULT_OUTPUT_TOKENS_PER_ITEM,
 ) -> dict[str, Any]:
-    """Số item/lô/token ước tính (``len/4``) theo tier và văn bản (CLAUDE.md mục 11)."""
+    """Số item/lô/token ước tính theo tier và văn bản (CLAUDE.md mục 11): token prompt =
+    ``len/4`` (thận trọng), token đầu ra = ``out_per_item`` × số item."""
     by: dict[str, dict[str, Any]] = {}
     for b in batches:
         tok = len(build_messages(prompt, b, catalog)[0]["content"]) // 4
         doc = b.group_id.split("/")[0]
         tier = b.items[0].tier
         for k in (f"tier:{tier}", f"doc:{doc}", "total"):
-            s = by.setdefault(k, {"batches": 0, "items": 0, "prompt_tokens": 0})
+            s = by.setdefault(k, {"batches": 0, "items": 0, "prompt_tokens": 0, "output_tokens": 0})
             s["batches"] += 1
             s["items"] += len(b.items)
             s["prompt_tokens"] += tok
+            s["output_tokens"] += round(out_per_item * len(b.items))
     n_all = len(items)
     n_unique = len({i.key for i in items})
     return {"n_items": n_all, "n_unique": n_unique, "groups": dict(sorted(by.items()))}
@@ -227,7 +250,12 @@ def run_llm(
     git_commit: str | None = None,
     resume_cmd: str = RESUME_HINT,
     progress: Callable[[int, int, Batch, LLMResult], None] | None = None,
+    workers: int = 1,
+    run_meta: Mapping[str, Any] | None = None,
 ) -> RunOutcome:
+    """Gọi LLM cho các lô chưa xong. ``workers`` > 1: gọi song song (server vLLM tự host gộp
+    batch); chỉ luồng này ghi ``raw.jsonl``. ``run_meta`` (model/revision/vLLM phục vụ) được ghi
+    vào mỗi bản ghi để tái lập."""
     prompt = load_prompt(cfg.llm.prompt)
     key = run_key(client.model_id, prompt, catalog)
     items = select_items(store, cfg, doc_ids)
@@ -239,16 +267,19 @@ def run_llm(
     todo = batches if max_calls is None else batches[: max(0, max_calls)]
     schema = batch_schema(catalog)
     params = {"max_output_tokens": cfg.llm.max_output_tokens}
+
+    def call(b: Batch) -> LLMResult:
+        return client.generate(
+            build_messages(prompt, b, catalog), json_schema=schema, params=params
+        )
+
+    meta = dict(run_meta or {})
     with JsonlWriter(paths.raw) as w:
-        for i, b in enumerate(todo, 1):
-            try:
-                r = client.generate(
-                    build_messages(prompt, b, catalog), json_schema=schema, params=params
-                )
-            except QuotaExhaustedError as e:
+        for b, r in map_parallel(todo, call, workers):
+            if isinstance(r, QuotaExhaustedError):
                 out.stopped = "quota"
                 out.hint = (
-                    f"Hết quota ngày ({e}). Đã xong {out.n_called}/{len(todo)} lô của lần chạy "
+                    f"Hết quota ngày ({r}). Đã xong {out.n_called}/{len(todo)} lô của lần chạy "
                     f"này; chạy lại sau khi quota reset: {resume_cmd}"
                 )
                 logger.error(out.hint)
@@ -273,6 +304,7 @@ def run_llm(
                     "attempts": r.attempts,
                     "cached": r.cached,
                     "repair_prompt_hash": r.repair_prompt_hash,
+                    **({"serve": meta} if meta else {}),
                     "git_commit": git_commit,
                     "run_at": datetime.now().astimezone().isoformat(timespec="seconds"),
                 }
@@ -280,7 +312,7 @@ def run_llm(
             out.n_called += 1
             out.by_status[r.status] += 1
             if progress is not None:
-                progress(i, len(todo), b, r)
+                progress(out.n_called, len(todo), b, r)
     return out
 
 
@@ -493,7 +525,7 @@ def summarize_estimate(est: dict[str, Any]) -> list[str]:
     for k, v in est["groups"].items():
         rows.append(
             f"  {k:<24} {v['batches']:>5} lượt  {v['items']:>6} item  "
-            f"~{v['prompt_tokens']:>9,} token prompt"
+            f"~{v['prompt_tokens']:>9,} token vào  ~{v['output_tokens']:>8,} token ra"
         )
     return rows
 
@@ -510,6 +542,7 @@ __all__ = [
     "canonical_json",
     "done_item_keys",
     "estimate",
+    "output_tokens_per_item",
     "load_catalog",
     "load_results",
     "publish",

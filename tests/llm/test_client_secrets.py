@@ -26,7 +26,10 @@ def _cfg(tmp_path: Path) -> LLMConfig:
     cfg = load_llm_config(REPO / "configs" / "llm.yaml")
     for p in cfg.providers.values():
         p.model_id = "test-model"
+    # Test cơ chế client với provider Gemini giả lập (config thật từ 09/11/2026 dùng main = local).
+    cfg.main.provider = "gemini"
     cfg.main.model_id = "main-model"  # khác providers.gemini.model_id: main phải thắng
+    cfg.fallback_order = ["gemini", "groq", "openrouter"]
     cfg.cache_path = str(tmp_path / "cache.sqlite")
     cfg.usage_db_path = str(tmp_path / "usage.sqlite")
     return cfg

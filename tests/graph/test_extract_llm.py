@@ -31,7 +31,7 @@ from trafficlaw.graph.extract_pipeline import (
     publish,
     run_llm,
 )
-from trafficlaw.llm import LLMClient, QuotaExhaustedError
+from trafficlaw.llm import LLMClient, LLMTimeoutError, QuotaExhaustedError
 from trafficlaw.llm.providers.fake import FakeClient
 from trafficlaw.llm.retry import RetryPolicy
 from trafficlaw.llm.types import LLMRequest, ProviderResponse, Usage
@@ -325,3 +325,115 @@ def test_publish_gate(tmp_path: Path, store: EmbeddedStore) -> None:
     assert publish(p, rp, **kw).ok
     assert p.sem_nodes.read_bytes() == p.cand_nodes.read_bytes()
     assert p.sem_edges.read_bytes() == p.cand_edges.read_bytes()
+
+
+# --------------------------------------------------------------------------- tự host: song song
+
+
+def _records(p: ExtractPaths) -> dict[str, object]:
+    return {r["batch_key"]: (r["status"], r["parsed"]) for r in read_jsonl(p.raw)}
+
+
+def test_workers_same_result_as_sequential(tmp_path: Path, store: EmbeddedStore) -> None:
+    p1, p4 = paths(tmp_path / "w1"), paths(tmp_path / "w4")
+    o1 = run_llm(
+        store, CFG, CAT, make_client(FakeClient(responder=responder)), p1, doc_ids=["ND168-2024"]
+    )
+    o4 = run_llm(
+        store,
+        CFG,
+        CAT,
+        make_client(FakeClient(responder=responder)),
+        p4,
+        doc_ids=["ND168-2024"],
+        workers=4,
+    )
+    assert o1.n_called == o4.n_called == o1.n_todo_batches
+    assert _records(p1) == _records(p4)
+
+
+class FlakyConnection:
+    """Provider giả: request chứa ``marker`` mất kết nối (như tunnel SSH rớt) khi ``down``."""
+
+    name = "local"
+    model_id = "fake-model"
+
+    def __init__(self, marker: str) -> None:
+        self.marker, self.down, self.calls = marker, True, 0
+
+    def complete(self, request: LLMRequest) -> ProviderResponse:
+        self.calls += 1
+        if self.down and self.marker in request.messages[-1].content:
+            raise LLMTimeoutError("lỗi kết nối (ConnectError)", provider="local")
+        return ProviderResponse(text=responder(request), usage=Usage(total_tokens=10))
+
+
+def test_connection_loss_then_rerun_only_failed(tmp_path: Path, store: EmbeddedStore) -> None:
+    p = paths(tmp_path)
+    prov = FlakyConnection(f"{D6}/K1/a\n")  # lô chứa Điểm a khoản 1 Điều 6
+    meta = {"served_model": "fake-model", "revision": "r1", "vllm_version": "0.0.test"}
+    o = run_llm(
+        store, CFG, CAT, make_client(prov), p, doc_ids=["ND168-2024"], workers=4, run_meta=meta
+    )
+    assert o.stopped is None and o.by_status["error"] == 1  # hết retry → ghi error, không dừng
+    assert o.by_status["ok"] == o.n_todo_batches - 1
+    recs = list(read_jsonl(p.raw))
+    assert all(r["serve"] == meta for r in recs)
+    prov.down = False
+    calls = prov.calls
+    o2 = run_llm(store, CFG, CAT, make_client(prov), p, doc_ids=["ND168-2024"], workers=4)
+    assert o2.n_todo_batches == 1 and o2.by_status["ok"] == 1  # chỉ lô lỗi được gọi lại
+    assert prov.calls == calls + 1
+
+
+def test_quota_with_workers_keeps_finished(tmp_path: Path, store: EmbeddedStore) -> None:
+    p = paths(tmp_path)
+    o = run_llm(
+        store, CFG, CAT, make_client(QuotaAfter(3, responder)), p, doc_ids=["ND168-2024"], workers=4
+    )
+    assert o.stopped == "quota"
+    n = len(list(read_jsonl(p.raw)))
+    assert n == o.n_called >= 3
+    o2 = run_llm(
+        store,
+        CFG,
+        CAT,
+        make_client(FakeClient(responder=responder)),
+        p,
+        doc_ids=["ND168-2024"],
+        workers=4,
+    )
+    assert o2.n_todo_batches == o.n_todo_batches - n
+
+
+def test_output_tokens_per_item_calibration(tmp_path: Path) -> None:
+    from trafficlaw.graph.extract_pipeline import output_tokens_per_item
+    from trafficlaw.utils.jsonl import write_jsonl
+
+    raw = tmp_path / "raw.jsonl"
+    assert output_tokens_per_item(raw) == 200  # chưa có bản ghi → mặc định
+    write_jsonl(
+        raw,
+        [
+            {
+                "status": "ok",
+                "cached": False,
+                "item_keys": ["k"] * 10,
+                "usage": {"completion_tokens": 1500},
+            },
+            {
+                "status": "ok",
+                "cached": False,
+                "item_keys": ["k"] * 10,
+                "usage": {"completion_tokens": 2500},
+            },
+            {
+                "status": "ok",
+                "cached": True,
+                "item_keys": ["k"] * 10,
+                "usage": {"completion_tokens": 99999},
+            },
+            {"status": "error", "item_keys": ["k"] * 10, "usage": {"completion_tokens": 7}},
+        ],
+    )
+    assert output_tokens_per_item(raw) == pytest.approx(200.0)  # (1500+2500)/20

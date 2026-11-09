@@ -1,14 +1,16 @@
 """M8: công cụ tập vàng trích xuất ``data/qa/gold_extraction.jsonl``.
 
     uv run python -m scripts.extraction_gold sample        # ~60 Khoản phân tầng, seed 42
-    uv run python -m scripts.extraction_gold preannotate [--max-calls N]   # Groq gán nháp
+    uv run python -m scripts.extraction_gold preannotate [--workers N] [--model M] [--max-calls N]
     uv run python -m scripts.extraction_gold validate      # kiểm tra schema/unit/phiên bản
     uv run python -m scripts.extraction_gold diff          # tỷ lệ người sửa (mục reviewed)
     uv run python -m scripts.extraction_gold review        # sinh lại bản đọc .md
 
-``preannotate`` dùng model KHÁC model trích xuất (``gold.preannotate`` trong configs/extract.yaml),
-chỉ thêm bản ghi chưa có (không bao giờ ghi đè bản người dùng đã sửa), resume được; hết quota
-ngày → dừng sạch (mã 3). Claude không sửa nhãn và không đặt ``reviewed: true``.
+``preannotate`` dùng model tự host KHÁC model trích xuất — khác họ (``family`` trong
+configs/serve.yaml), cấu hình ở ``gold.preannotate`` trong configs/extract.yaml; server vLLM phải
+đang chạy và tunnel SSH đã mở. Chỉ thêm bản ghi chưa có (không bao giờ ghi đè bản người dùng đã
+sửa), resume được; hết quota → dừng sạch (mã 3). Claude không sửa nhãn và không đặt
+``reviewed: true``.
 """
 
 from __future__ import annotations
@@ -20,6 +22,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
+from scripts._llm_local import check_local_server, family_of, is_local, resolve_model
 from trafficlaw.eval.extraction_gold import (
     DraftOut,
     GoldRecord,
@@ -33,7 +36,14 @@ from trafficlaw.eval.extraction_gold import (
 from trafficlaw.eval.extraction_metrics import edit_stats
 from trafficlaw.graph.extract import render_catalog
 from trafficlaw.graph.extract_env import ExtractEnv
-from trafficlaw.llm import QuotaExhaustedError, build_client, load_llm_config, load_prompt
+from trafficlaw.llm import (
+    LLMResult,
+    QuotaExhaustedError,
+    build_client,
+    load_llm_config,
+    load_prompt,
+)
+from trafficlaw.llm.parallel import map_parallel
 from trafficlaw.utils.dates import parse_iso
 from trafficlaw.utils.env import load_dotenv
 from trafficlaw.utils.jsonl import JsonlWriter, read_jsonl, write_jsonl
@@ -93,50 +103,70 @@ def cmd_preannotate(env: ExtractEnv, args: argparse.Namespace) -> int:
         todo = todo[: args.max_calls]
     pre = env.gold.get("preannotate") or {}
     llm_cfg = load_llm_config(env.llm_config_path)
-    provider = pre.get("provider") or "groq"
-    model_id = pre.get("model_id") or llm_cfg.providers[provider].model_id
+    provider, model_id = resolve_model(
+        llm_cfg, args.provider or pre.get("provider"), args.model or pre.get("model_id")
+    )
+    if not model_id:
+        print(f"preannotate: chưa có model cho provider '{provider}'", file=sys.stderr)
+        return 1
+    # Bản nháp phải do model KHÁC model trích xuất gán (khác họ khi tự host).
+    ext = env.cfg.llm
+    _, ext_model = resolve_model(llm_cfg, ext.provider, ext.model_id)
+    if ext_model and (
+        model_id == ext_model
+        or (family_of(model_id) is not None and family_of(model_id) == family_of(ext_model))
+    ):
+        print(
+            f"preannotate: model gán nháp '{model_id}' trùng model/họ với model trích xuất "
+            f"'{ext_model}' — chọn model khác họ (configs/serve.yaml: family)",
+            file=sys.stderr,
+        )
+        return 1
     prompt = load_prompt(pre.get("prompt", "gold_preannotate"))
     pt, ct = render_catalog(catalog)
     print(f"preannotate: {len(todo)} bản ghi cần gán (đã có {len(have)}), {provider}:{model_id}")
     if args.dry_run or not todo:
         return 0
     load_dotenv(env.root / ".env")
+    if is_local(llm_cfg, provider) and check_local_server(llm_cfg, provider, model_id) is None:
+        return 1
     client = build_client(llm_cfg, provider, model_id=model_id, root=env.root)
     st = env.store
+    params = {"max_output_tokens": int(pre.get("max_output_tokens", 8192))}
+
+    def context(row: SampleRow) -> tuple[list[Any], str, str]:
+        pairs = subtree_versions(st, row.unit_id, row.as_of)
+        dieu = st.get_node("/".join(row.unit_id.split("/")[:2]))
+        return pairs, render_text(pairs), str((dieu.props.get("title") if dieu else "") or "")
+
+    ctx = {row.gold_id: context(row) for row in todo}
+
+    def call(row: SampleRow) -> LLMResult:
+        _, text, dieu_title = ctx[row.gold_id]
+        content = prompt.render(catalog_pt=pt, catalog_ct=ct, dieu_title=dieu_title, text=text)
+        return client.generate(
+            [{"role": "user", "content": content}], json_schema=DraftOut, params=params
+        )
+
     n_ok = 0
+    n_done = 0
     with JsonlWriter(gpath) as w:
-        for i, row in enumerate(todo, 1):
-            pairs = subtree_versions(st, row.unit_id, row.as_of)
-            text = render_text(pairs)
-            dieu = st.get_node("/".join(row.unit_id.split("/")[:2]))
-            dieu_title = str((dieu.props.get("title") if dieu else "") or "")
-            msgs = [
-                {
-                    "role": "user",
-                    "content": prompt.render(
-                        catalog_pt=pt, catalog_ct=ct, dieu_title=dieu_title, text=text
-                    ),
-                }
-            ]
-            try:
-                r = client.generate(
-                    msgs,
-                    json_schema=DraftOut,
-                    params={"max_output_tokens": int(pre.get("max_output_tokens", 8192))},
-                )
-            except QuotaExhaustedError as e:
+        for row, r in map_parallel(todo, call, args.workers):
+            if isinstance(r, QuotaExhaustedError):
                 print(
-                    f"preannotate: hết quota ngày ({e}); đã xong {i - 1}/{len(todo)}. Chạy lại "
-                    "sau khi reset: uv run python -m scripts.extraction_gold preannotate",
+                    f"preannotate: hết quota ({r}); đã xong {n_done}/{len(todo)}. Chạy lại: "
+                    "uv run python -m scripts.extraction_gold preannotate",
                     file=sys.stderr,
                 )
                 return 3
+            n_done += 1
             if r.status == "error":
-                print(f"  [{i}/{len(todo)}] {row.gold_id}: error {r.error} — bỏ qua, chạy lại sau")
+                print(f"  [{n_done}/{len(todo)}] {row.gold_id}: error {r.error} — chạy lại sau")
                 continue
+            pairs, text, dieu_title = ctx[row.gold_id]
             texts = {u: str(v.props.get("text") or "") for u, v in pairs}
 
-            def known(u: str, as_of=row.as_of) -> bool:  # type: ignore[no-untyped-def]
+            def known(u: str, as_of: Any = row.as_of) -> bool:
                 return st.version_at(u, as_of) is not None
 
             draft, dropped = clean_draft(r.parsed or {}, texts, catalog, known)
@@ -162,9 +192,9 @@ def cmd_preannotate(env: ExtractEnv, args: argparse.Namespace) -> int:
             w.write(rec.model_dump(mode="json"))
             n_ok += 1
             print(
-                f"  [{i}/{len(todo)}] {row.gold_id}: {r.status} · {len(draft.entities)} thực thể, "
-                f"{len(draft.relations)} quan hệ, bỏ {len(dropped)} · {r.latency_ms} ms · "
-                f"{r.usage.total_tokens} tok",
+                f"  [{n_done}/{len(todo)}] {row.gold_id}: {r.status} · {len(draft.entities)} "
+                f"thực thể, {len(draft.relations)} quan hệ, bỏ {len(dropped)} · "
+                f"{r.latency_ms} ms · {r.usage.total_tokens} tok",
                 flush=True,
             )
     print(f"preannotate: ghi {n_ok} bản ghi → {gpath}")
@@ -280,6 +310,9 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--max-calls", type=int, default=None)
+    ap.add_argument("--provider", help="preannotate: ghi đè gold.preannotate.provider")
+    ap.add_argument("--model", help="preannotate: ghi đè gold.preannotate.model_id")
+    ap.add_argument("--workers", type=int, default=1, help="preannotate: số request song song")
     ap.add_argument("--repo-root", type=Path, default=REPO_ROOT, help=argparse.SUPPRESS)
     args = ap.parse_args(argv)
     set_seed()
