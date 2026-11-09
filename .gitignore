@@ -22,6 +22,7 @@ data/graph/**
 !data/graph/.gitkeep
 data/index/**
 !data/index/.gitkeep
+data/cache/**
 results/**
 !results/.gitkeep
 
