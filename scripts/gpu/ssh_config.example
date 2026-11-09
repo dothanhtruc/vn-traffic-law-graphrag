@@ -1,21 +1,29 @@
-# Mẫu khối SSH cho máy GPU thuê (aidev.edu.vn). Chép vào ~/.ssh/config (Windows:
-# C:\Users\<tên>\.ssh\config — Git Bash và OpenSSH của Windows dùng chung file này), sửa HostName /
-# Port / User theo thông tin máy thuê. KHÔNG commit file đã điền (host/IP/key không vào repo).
+# Khối SSH cho máy GPU thuê (aidev.edu.vn). KHÔNG cần sửa tay — dùng script:
 #
-# Tạo key (một lần):   ssh-keygen -t ed25519 -f ~/.ssh/aidev_ed25519 -C "graphrag-gpu"
-# Đăng ký public key (~/.ssh/aidev_ed25519.pub) trên trang quản lý SSH key của aidev trước khi
-# tạo máy, hoặc: ssh-copy-id -i ~/.ssh/aidev_ed25519.pub -p <PORT> <USER>@<HOST>
-# Kiểm tra:            ssh gpu-aidev nvidia-smi
+#   scripts/gpu/gpu.sh key init                          # tạo ~/.ssh/aidev_ed25519 (ed25519, không
+#                                                        # passphrase), in public key
+#   → dán public key vào trang quản lý SSH key của aidev TRƯỚC khi tạo máy
+#   scripts/gpu/gpu.sh key config <IP> [cổng] [user]     # ghi khối dưới đây vào đầu ~/.ssh/config
+#   scripts/gpu/gpu.sh key check                         # xác nhận đăng nhập CHỈ bằng key
+#   scripts/gpu/gpu.sh key install                       # nếu máy chưa nhận key: gõ mật khẩu 1 lần
+#   scripts/gpu/gpu.sh key harden                        # (tuỳ chọn) tắt đăng nhập bằng mật khẩu
+#
+# Windows: ~/.ssh = C:\Users\<tên>\.ssh (Git Bash và OpenSSH của Windows dùng chung). Host/IP và
+# key KHÔNG vào repo. Key không passphrase: ai có file key là vào được máy thuê khi máy đang bật
+# ⇒ giữ file key riêng tư, xoá key trên trang aidev khi không dùng nữa.
+#
+# Khối mà `gpu.sh key config` ghi (giữa hai dòng đánh dấu; chạy lại thì thay đúng khối này):
 
+# >>> graphrag gpu-aidev (scripts/gpu/gpu.sh key config) >>>
 Host gpu-aidev
-    HostName 203.0.113.10          # IP/hostname máy thuê (đổi sau mỗi lần thuê nếu không có IP tĩnh)
-    Port 22                        # cổng SSH (máy NAT có thể là cổng khác)
-    User root                      # hoặc ubuntu — theo thông tin aidev
+    HostName 203.0.113.10
+    Port 22
+    User root
     IdentityFile ~/.ssh/aidev_ed25519
     IdentitiesOnly yes
+    PreferredAuthentications publickey
     ServerAliveInterval 30
     ServerAliveCountMax 3
     ExitOnForwardFailure yes
     StrictHostKeyChecking accept-new
-    # Máy thuê mới mỗi lần có thể đổi host key cho cùng IP: xoá dòng cũ bằng
-    #   ssh-keygen -R "[203.0.113.10]:22"
+# <<< graphrag gpu-aidev <<<

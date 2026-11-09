@@ -19,8 +19,9 @@ fi
 trap 'echo; echo "tunnel: dừng"; exit 0' INT TERM
 while true; do
     echo "tunnel: $(date '+%H:%M:%S') nối ${HOST} (${FWD[*]})"
-    ssh -N -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 -o ServerAliveCountMax=3 \
-        "${FWD[@]}" "$HOST"
+    # BatchMode: chỉ đăng nhập bằng SSH key, không bao giờ kẹt ở dấu nhắc mật khẩu khi tự nối lại.
+    ssh -N -o BatchMode=yes -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 \
+        -o ServerAliveCountMax=3 "${FWD[@]}" "$HOST"
     echo "tunnel: $(date '+%H:%M:%S') rớt (mã $?) — nối lại sau 5 giây"
     sleep 5
 done
