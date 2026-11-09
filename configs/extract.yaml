@@ -93,7 +93,7 @@ gold:
     tier_b: 6
   preannotate:
     provider: local         # tự host (09/11/2026); model KHÁC HỌ với model trích xuất
-    model_id: gemma3-12b    # served_model_name trong configs/serve.yaml (family: gemma)
+    model_id: mistral-small-3.2   # served_model_name trong configs/serve.yaml (family: mistral)
     prompt: gold_preannotate
     max_output_tokens: 8192
 

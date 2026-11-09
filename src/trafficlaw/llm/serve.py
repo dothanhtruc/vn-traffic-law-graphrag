@@ -135,6 +135,8 @@ def remote_serve_script(cfg: ServeConfig, key: str) -> str:
             "#!/usr/bin/env bash",
             "set -euo pipefail",
             f"set -a; . {shell_path(r.env_file)}; set +a",
+            # venv vLLM vào PATH: Triton/torch.compile gọi `ninja` của venv lúc khởi động.
+            f'export PATH={shell_path(r.vllm_venv + "/bin")}:"$PATH"',
             f"mkdir -p {shell_path(r.remote_dir + '/logs')}",
             f"{cmd} 2>&1 | tee -a {shell_path(f'{r.remote_dir}/logs/vllm-{key}.log')}",
             "",

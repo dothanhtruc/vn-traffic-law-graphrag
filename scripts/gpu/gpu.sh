@@ -200,8 +200,15 @@ print(l('configs/serve.yaml').vllm_version or '')")"
         "${SSH[@]}" "$HOST" "umask 077; mkdir -p \"\$(dirname $R_ENVF)\"; cat > $R_ENVF"
     remote "
         set -euo pipefail
-        command -v tmux >/dev/null || { sudo -n apt-get update -qq && sudo -n apt-get install -y -qq tmux; } \
-            || apt-get install -y -qq tmux
+        # Gói hệ thống: tmux (job nền) + python3-dev/build-essential (Triton của vLLM biên dịch
+        # module C lúc khởi động, cần Python.h — image Ubuntu 24.04 của aidev không có sẵn).
+        S=''; [ \"\$(id -u)\" = 0 ] || S='sudo -n'
+        PY_INC=\$(python3 -c 'import sysconfig; print(sysconfig.get_paths()[\"include\"])')
+        if ! command -v tmux >/dev/null || ! command -v gcc >/dev/null || [ ! -f \"\$PY_INC/Python.h\" ]; then
+            export DEBIAN_FRONTEND=noninteractive
+            \$S apt-get update -qq
+            \$S apt-get install -y -qq tmux build-essential python3-dev >/dev/null
+        fi
         command -v uv >/dev/null || curl -LsSf https://astral.sh/uv/install.sh | sh
         export PATH=\"\$HOME/.local/bin:\$PATH\"
         if [ -d $R_DIR/.git ]; then

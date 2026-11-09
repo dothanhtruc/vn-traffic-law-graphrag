@@ -171,3 +171,37 @@ def test_sample_deterministic_and_disjoint(store: EmbeddedStore) -> None:
     assert bo_sung == {f"{D6}/K15", f"{D6}/K16"}
     c = sample_gold(store, ExtractConfig(), strata, as_of=AS_OF, seed=7, max_units=30)
     assert {r.stratum for r in c} == set(strata)
+
+
+def test_clean_draft_strips_fields_not_valid_for_type(store: EmbeddedStore) -> None:
+    """Model gán nháp điền thừa (vd ``loai: "HanhVi"`` cho HanhVi) → bỏ trường thừa, giữ
+    thực thể."""
+    pairs = subtree_versions(store, f"{D6}/K16", AS_OF)
+    texts = {u: str(v.props["text"]) for u, v in pairs}
+    span = texts[f"{D6}/K16/b"][3:40]
+    parsed = {
+        "entities": [
+            {
+                "id": "e1",
+                "type": "HanhVi",
+                "unit_id": f"{D6}/K16/b",
+                "span": span,
+                "ten": "x",
+                "loai": "HanhVi",
+                "so_diem": 4,
+            },
+            {
+                "id": "e2",
+                "type": "DiemGPLX",
+                "unit_id": f"{D6}/K16/b",
+                "so_diem": 4,
+                "loai": "DiemGPLX",
+                "catalog_id": "PT:xe-o-to",
+            },
+        ],
+        "relations": [],
+    }
+    draft, dropped = clean_draft(parsed, texts, CAT, lambda u: True)
+    assert [e.id for e in draft.entities] == ["e1", "e2"] and dropped == []
+    assert draft.entities[0].loai is None and draft.entities[0].so_diem is None
+    assert draft.entities[1].catalog_id is None and draft.entities[1].so_diem == 4

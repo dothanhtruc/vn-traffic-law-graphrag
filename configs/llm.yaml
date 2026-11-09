@@ -8,7 +8,7 @@
 # gemini-3.6-flash (không tái lập); API trả phí vượt ngân sách.
 main:
   provider: local
-  model_id: null
+  model_id: qwen3-14b-awq   # chốt 09/11/2026 (revision ghim trong configs/serve.yaml)
 
 # Tham số chung (mọi provider); providers.<p>.params ghi đè/bổ sung.
 params:

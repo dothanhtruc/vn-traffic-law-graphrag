@@ -49,6 +49,17 @@ REL_DST: dict[str, tuple[str, ...]] = {
 }
 SANCTION_LOAI = ("phat_tien", "canh_cao", "tuoc_quyen", "tich_thu", "dinh_chi")
 
+#: Trường được giữ theo loại thực thể khi hậu kiểm bản nháp (ngoài ``id``, ``type``, ``unit_id``).
+ENTITY_FIELDS: dict[str, tuple[str, ...]] = {
+    "HanhVi": ("ten", "span", "dieu_kien"),
+    "CheTai": ("loai", "min_vnd", "max_vnd", "min_thang", "max_thang", "doi_tuong"),
+    "DiemGPLX": ("so_diem", "dieu_kien"),
+    "BienPhapBoSung": ("ten",),
+    "KhaiNiem": ("ten",),
+    "PhuongTien": ("catalog_id",),
+    "ChuThe": ("catalog_id",),
+}
+
 
 class GoldEntity(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -325,10 +336,17 @@ def clean_draft(
         if e.type in valid_cat and e.catalog_id not in valid_cat[e.type]:
             drop("entity", d, "ngoai_danh_muc")
             continue
+        # Chỉ giữ trường hợp lệ cho loại thực thể (model gán nháp hay điền thừa, vd
+        # ``loai: "HanhVi"`` cho HanhVi) — trường thừa bị bỏ, không làm hỏng cả bản ghi.
+        allowed = ENTITY_FIELDS[e.type]
+        kept = {k: v for k, v in d.items() if k in ("id", "type", "unit_id") or k in allowed}
+        try:
+            ent = GoldEntity.model_validate(kept)
+        except Exception:  # noqa: BLE001
+            drop("entity", d, "sai_schema")
+            continue
         seen_ids.add(e.id)
-        ents.append(
-            GoldEntity.model_validate({k: v for k, v in d.items() if k in GoldEntity.model_fields})
-        )
+        ents.append(ent)
     by_id = {e.id: e for e in ents}
     rels: list[GoldRelation] = []
     seen_rel: set[tuple[str, str, str]] = set()
