@@ -2,7 +2,7 @@
 # Người dùng duyệt: sửa/xoá mục, rồi đặt approved: true. Trích xuất thật và preannotate từ chối
 # chạy khi approved: false. Alias chỉ thêm khi có căn cứ trong văn bản ("sau đây gọi là …").
 # Sửa danh mục ⇒ schema/prompt đổi ⇒ các lô LLM chạy lại (khoá resume chứa schema_hash).
-approved: false
+approved: true
 phuong_tien:
 - id: PT:cac-loai-xe-dac-chung-su-dung-vao-muc-dich-quoc-phong-an-ninh-co-tham-gia-giao-thong-duong-bo
   name: các loại xe đặc chủng sử dụng vào mục đích quốc phòng, an ninh có tham gia giao thông đường bộ

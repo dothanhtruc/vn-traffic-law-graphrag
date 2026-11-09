@@ -7,7 +7,8 @@ người sửa bản nháp.
   ``ten`` ≥ ``span_f1``;
 - CheTai: ``loai`` + ``min_vnd``, ``max_vnd``, ``min_thang``, ``max_thang`` bằng nhau tuyệt đối;
 - DiemGPLX: ``so_diem`` bằng nhau; KhaiNiem: ``norm_name(ten)`` bằng nhau;
-- PhuongTien/ChuThe: ``catalog_id`` bằng nhau.
+- PhuongTien/ChuThe: ``catalog_id`` bằng nhau, ở **cấp bản ghi** (``collapse_record_level``:
+  không xét unit nào trong Khoản; AP_DUNG_CHO cũng vậy).
 
 Ghép tham lam theo điểm giảm dần (mỗi thực thể vàng/dự đoán dùng tối đa một lần). **Khớp quan hệ**
 = cùng loại, cùng unit nguồn, đích là cặp thực thể đã ghép. Micro-average; CI 95% bootstrap theo
@@ -144,6 +145,39 @@ class RecordScore:
         return c
 
 
+RECORD_LEVEL = ("PhuongTien", "ChuThe")
+RECORD_UNIT = "*"
+
+
+def collapse_record_level(ents: Sequence[Ent], rels: Sequence[Rel]) -> tuple[list[Ent], list[Rel]]:
+    """PhuongTien/ChuThe + AP_DUNG_CHO chấm ở **cấp bản ghi (Khoản)**: một thực thể cho mỗi
+    ``(loại, catalog_id)``, unit = ``*``. Lý do: hệ thống gắn AP_DUNG_CHO vào từng unit lá, còn
+    người gán có thể gắn vào câu dẫn Khoản — cả hai cùng nghĩa "Khoản này áp dụng cho X"."""
+    out: list[Ent] = []
+    remap: dict[str, str] = {}
+    seen: dict[tuple[str, Any], str] = {}
+    for e in ents:
+        if e.type not in RECORD_LEVEL:
+            out.append(e)
+            continue
+        k = (e.type, e.get("catalog_id"))
+        if k not in seen:
+            nid = f"{e.type}|{e.get('catalog_id')}"
+            seen[k] = nid
+            out.append(Ent(nid, e.type, RECORD_UNIT, (("catalog_id", e.get("catalog_id")),)))
+        remap[e.id] = seen[k]
+    new_rels: list[Rel] = []
+    seen_r: set[tuple[str, str, str]] = set()
+    for r in rels:
+        if r.type == "AP_DUNG_CHO" and r.dst in remap:
+            r = Rel(r.type, RECORD_UNIT, remap[r.dst])
+        key = (r.type, r.src_unit, r.dst)
+        if key not in seen_r:
+            seen_r.add(key)
+            new_rels.append(r)
+    return out, new_rels
+
+
 def score_record(
     gold_id: str,
     tier: str,
@@ -154,6 +188,8 @@ def score_record(
     pred_rels: Sequence[Rel],
     span_f1: float,
 ) -> RecordScore:
+    gold_ents, gold_rels = collapse_record_level(gold_ents, gold_rels)
+    pred_ents, pred_rels = collapse_record_level(pred_ents, pred_rels)
     m = align(gold_ents, pred_ents, span_f1)
     rs = RecordScore(gold_id, tier, stratum)
     matched_g = set(m.values())
@@ -362,8 +398,8 @@ def edit_stats(
 ) -> dict[str, int]:
     """So bản nháp LLM với bản người sửa: thực thể thêm/xoá/đổi (ghép được nhưng khác trường),
     quan hệ thêm/xoá."""
-    de, dr = gold_entities(draft)
-    fe, fr = gold_entities(final)
+    de, dr = collapse_record_level(*gold_entities(draft))
+    fe, fr = collapse_record_level(*gold_entities(final))
     m = align(fe, de, span_f1)
     fmap = {e.id: e for e in fe}
     changed = sum(
@@ -393,6 +429,7 @@ __all__ = [
     "aggregate",
     "align",
     "bootstrap_ci",
+    "collapse_record_level",
     "edit_stats",
     "gold_entities",
     "match_score",

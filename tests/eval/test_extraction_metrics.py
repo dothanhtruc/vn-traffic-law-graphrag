@@ -195,3 +195,23 @@ def test_pred_for_record_filters_scope_and_date() -> None:
     )
     rs = score_record("g", "A", "s", g_ents, g_rels, ents, rels, 0.5)
     assert rs.ent["PhuongTien"].tp == 1 and rs.rel["AP_DUNG_CHO"].tp == 1
+
+
+def test_vehicle_and_subject_scored_per_record() -> None:
+    """Gold gắn ChuThe vào câu dẫn Khoản, hệ thống gắn vào từng Điểm → vẫn khớp (cấp Khoản)."""
+    g = [E("e1", "ChuThe", K, catalog_id="CT:nguoi-di-bo")]
+    gr = [Rel("AP_DUNG_CHO", K, "e1")]
+    p = [
+        E("p1", "ChuThe", U, catalog_id="CT:nguoi-di-bo"),
+        E("p2", "ChuThe", V, catalog_id="CT:nguoi-di-bo"),
+        E("p3", "PhuongTien", U, catalog_id="PT:xe-gan-may"),
+    ]
+    pr = [Rel("AP_DUNG_CHO", U, "p1"), Rel("AP_DUNG_CHO", V, "p2"), Rel("AP_DUNG_CHO", U, "p3")]
+    rs = score_record("g", "A", "s", g, gr, p, pr, 0.5)
+    assert (rs.ent["ChuThe"].tp, rs.ent["ChuThe"].fp) == (1, 0)
+    assert rs.ent["PhuongTien"].fp == 1
+    assert (rs.rel["AP_DUNG_CHO"].tp, rs.rel["AP_DUNG_CHO"].fp, rs.rel["AP_DUNG_CHO"].fn) == (
+        1,
+        1,
+        0,
+    )

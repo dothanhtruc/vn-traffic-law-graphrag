@@ -36,7 +36,7 @@ Chi tiết:
    - Câu dẫn của Khoản ("Phạt tiền … đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:") không phải HanhVi.
    - Khi chấm, HanhVi khớp nếu cùng unit và token-F1 của `span` ≥ 0,5. Vì vậy chọn span **đủ ý**, không cần chính xác từng chữ ở hai đầu.
 2. **CheTai**: mức phạt nêu ở câu dẫn Khoản gắn `unit_id` = Khoản. "Phạt cảnh cáo hoặc phạt tiền từ …" → hai CheTai.
-3. **PhuongTien / ChuThe**: chọn mục **cụ thể nhất** có trong danh mục, đúng như chữ trong văn bản/tiêu đề Điều. Mục không có trong danh mục → ghi vào `notes`, không tự thêm id.
+3. **PhuongTien / ChuThe**: chọn mục **cụ thể nhất** có trong danh mục, đúng như chữ trong văn bản/tiêu đề Điều. Mục không có trong danh mục → ghi vào `notes`, không tự thêm id. Được chấm ở **cấp Khoản** (mỗi `catalog_id` tính một lần cho cả bản ghi, không xét gắn vào Khoản hay Điểm nào), nên chỉ cần gán mỗi loại một lần, ở unit nào cũng được.
 4. **KhaiNiem**: chỉ thuật ngữ được định nghĩa trong chính unit; tên gọi tắt "(sau đây gọi là …)" không phải thực thể riêng.
 
 ## Quan hệ (`relations`)
