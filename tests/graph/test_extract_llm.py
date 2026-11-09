@@ -437,3 +437,51 @@ def test_output_tokens_per_item_calibration(tmp_path: Path) -> None:
         ],
     )
     assert output_tokens_per_item(raw) == pytest.approx(200.0)  # (1500+2500)/20
+
+
+def test_postfilter_reference_only_exception_and_generic_pt() -> None:
+    it = Item(
+        "v",
+        "U/D1/K2/a",
+        "U",
+        "A",
+        "U/D1",
+        "t",
+        None,
+        "a) Đi vào đường cao tốc, trừ người phục vụ việc quản lý, bảo trì đường cao tốc; "
+        "Thực hiện hành vi quy định tại khoản 12 Điều này bị tước quyền sử dụng giấy phép.",
+        "2025-01-01",
+        None,
+        "k",
+    )
+    cat = CAT.model_copy(
+        update={
+            "phuong_tien": [
+                *CAT.phuong_tien,
+                CatalogEntry(
+                    id="PT:phuong-tien-giao-thong-duong-bo", name="phương tiện giao thông đường bộ"
+                ),
+            ]
+        }
+    )
+    out = {
+        "hanh_vi": [
+            {
+                "span": "Đi vào đường cao tốc, trừ người phục vụ việc quản lý, bảo trì "
+                "đường cao tốc",
+                "ten": "đi vào cao tốc",
+            },
+            {"span": "Thực hiện hành vi quy định tại khoản 12 Điều này", "ten": "x"},
+        ],
+        "phuong_tien": ["PT:phuong-tien-giao-thong-duong-bo", "PT:xe-o-to"],
+    }
+    res, rej = validate_item_output(it, out, cat)
+    assert [h["span"] for h in res.hanh_vi] == ["Đi vào đường cao tốc"]  # cắt ngoại lệ
+    assert res.phuong_tien == ["PT:xe-o-to"]  # bỏ mục chung chung khi có loại cụ thể
+    assert sorted(r.reason for r in rej) == ["chi_dan_chieu", "pt_chung_chung"]
+    only_generic, _ = validate_item_output(
+        it, {"phuong_tien": ["PT:phuong-tien-giao-thong-duong-bo"]}, cat
+    )
+    assert only_generic.phuong_tien == [
+        "PT:phuong-tien-giao-thong-duong-bo"
+    ]  # không có gì cụ thể hơn

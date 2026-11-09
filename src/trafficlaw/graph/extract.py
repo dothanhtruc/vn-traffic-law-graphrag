@@ -733,6 +733,20 @@ class ItemResult:
     de_xuat_moi: list[dict[str, Any]] = field(default_factory=list)
 
 
+# Hậu kiểm theo hướng dẫn gán nhãn (data/qa/gold_extraction_guide.md), áp cho mọi item:
+# - span chỉ DẪN CHIẾU hành vi ở nơi khác ("Thực hiện hành vi quy định tại …", "Vi phạm quy định
+#   tại … mà …", "hành vi vi phạm hành chính quy định tại …") không phải HanhVi;
+# - cụm ngoại lệ ", trừ …" ở cuối span bị cắt bỏ (ngoại lệ không gán nhãn);
+# - PhuongTien chung chung bị bỏ khi item đã có loại xe cụ thể (chọn mục cụ thể nhất).
+_REF_ONLY_RE = re.compile(
+    r"(?i)hành vi (?:vi phạm )?(?:hành chính )?quy định tại |(?<![\w])vi phạm quy định tại "
+)
+_EXCEPT_TAIL_RE = re.compile(r",?\s+trừ (?:các |hành vi |trường hợp |người |xe |loại )")
+GENERIC_PT: frozenset[str] = frozenset(
+    {"PT:phuong-tien-giao-thong-duong-bo", "PT:phuong-tien-tham-gia-giao-thong-duong-bo"}
+)
+
+
 def validate_item_output(
     item: Item, out: Mapping[str, Any], catalog: Catalog
 ) -> tuple[ItemResult, list[Rejection]]:
@@ -740,7 +754,10 @@ def validate_item_output(
 
     - HanhVi: ``span`` phải có nguyên văn trong text (không phân biệt khoảng trắng) → lưu đoạn
       nguyên văn; ``ten``/``dieu_kien`` có con số không có trong text → loại (``so_lech_van_ban``).
-    - PhuongTien/ChuThe: id ngoài danh mục → loại (``ngoai_danh_muc``).
+    - HanhVi chỉ dẫn chiếu hành vi nơi khác → loại (``chi_dan_chieu``); cụm ngoại lệ ", trừ …"
+      cuối span → cắt bỏ.
+    - PhuongTien/ChuThe: id ngoài danh mục → loại (``ngoai_danh_muc``); PhuongTien chung chung
+      khi đã có loại xe cụ thể → loại (``pt_chung_chung``).
     - KhaiNiem: thuật ngữ + định nghĩa phải nguyên văn.
     """
     res = ItemResult()
@@ -755,6 +772,12 @@ def validate_item_output(
         if span is None:
             reject("HanhVi", hv.get("span"), "span_khong_nguyen_van")
             continue
+        if _REF_ONLY_RE.search(span):
+            reject("HanhVi", span, "chi_dan_chieu")
+            continue
+        m = _EXCEPT_TAIL_RE.search(span)
+        if m and m.start() > 0:
+            span = span[: m.start()].rstrip(" ,;")
         ten = norm_ws(str(hv.get("ten") or "")) or norm_ws(span)
         cond = norm_ws(str(hv.get("dieu_kien") or "")) or None
         if not numbers_ok(ten, text) or not numbers_ok(cond, text):
@@ -768,6 +791,10 @@ def validate_item_output(
                 getattr(res, kind).append(x)
             else:
                 reject("PhuongTien" if kind == "phuong_tien" else "ChuThe", x, "ngoai_danh_muc")
+    if any(x not in GENERIC_PT for x in res.phuong_tien):
+        for x in [x for x in res.phuong_tien if x in GENERIC_PT]:
+            res.phuong_tien.remove(x)
+            reject("PhuongTien", x, "pt_chung_chung")
     for kn in out.get("khai_niem") or []:
         term = find_verbatim(str(kn.get("thuat_ngu") or ""), text)
         span = find_verbatim(str(kn.get("dinh_nghia") or ""), text)

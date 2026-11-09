@@ -124,7 +124,7 @@ Bản nháp bị bỏ 4 mục:
 | e11 | PhuongTien | D13/K6 | {"catalog_id": "PT:xe-cho-hang-bon-banh-co-gan-dong-co"} |
 | e12 | PhuongTien | D13/K6 | {"catalog_id": "PT:xe-tuong-tu-xe-o-to"} |
 | e4 | CheTai | D13/K6 | {"loai": "phat_tien", "min_vnd": 4000000, "max_vnd": 6000000} |
-| e6 | ChuThe | D13/K6 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| e6 | ChuThe | D13/K6 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 | e7 | PhuongTien | D13/K6 | {"catalog_id": "PT:xe-o-to"} |
 | e8 | PhuongTien | D13/K6 | {"catalog_id": "PT:ro-mooc"} |
 | e9 | PhuongTien | D13/K6 | {"catalog_id": "PT:so-mi-ro-mooc"} |
@@ -160,7 +160,7 @@ Bản nháp bị bỏ 4 mục:
 | e10 | PhuongTien | D13/K8 | {"catalog_id": "PT:xe-cho-nguoi-bon-banh-co-gan-dong-co"} |
 | e11 | PhuongTien | D13/K8 | {"catalog_id": "PT:xe-cho-hang-bon-banh-co-gan-dong-co"} |
 | e12 | PhuongTien | D13/K8 | {"catalog_id": "PT:xe-tuong-tu-xe-o-to"} |
-| e13 | ChuThe | D13/K8 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| e13 | ChuThe | D13/K8 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 | e6 | CheTai | D13/K8 | {"loai": "phat_tien", "min_vnd": 20000000, "max_vnd": 26000000} |
 | e7 | PhuongTien | D13/K8 | {"catalog_id": "PT:xe-o-to"} |
 | e8 | PhuongTien | D13/K8 | {"catalog_id": "PT:ro-mooc"} |
@@ -202,7 +202,7 @@ Bản nháp bị bỏ 2 mục:
 | --- | --- | --- | --- |
 | e1 | HanhVi | D17/K3 | {"ten": "đổ trái phép rác, đất, cát, đá, vật liệu, chất phế thải", "span": "đổ trái phép rác, đất, cát, đá, vật liệu, chất phế thải trong phạm vi đất dành cho đường bộ ở đoạn đường ngoài đô thị"} |
 | e2 | CheTai | D17/K3 | {"loai": "phat_tien", "min_vnd": 4000000, "max_vnd": 6000000} |
-| e4 | ChuThe | D17/K3 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| e4 | ChuThe | D17/K3 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 | e5 | PhuongTien | D17/K3 | {"catalog_id": "PT:xe-o-to"} |
 | e6 | PhuongTien | D17/K3 | {"catalog_id": "PT:may-keo"} |
 | e7 | PhuongTien | D17/K3 | {"catalog_id": "PT:xe-tuong-tu-xe-o-to"} |
@@ -229,7 +229,7 @@ Bản nháp bị bỏ 2 mục:
 | e3 | PhuongTien | D17/K4 | {"catalog_id": "PT:xe-o-to"} |
 | e4 | PhuongTien | D17/K4 | {"catalog_id": "PT:may-keo"} |
 | e5 | PhuongTien | D17/K4 | {"catalog_id": "PT:xe-tuong-tu-xe-o-to"} |
-| e6 | ChuThe | D17/K4 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| e6 | ChuThe | D17/K4 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 
 - QUY_DINH_HANH_VI: unit:ND168-2024/D17/K4 → e1
 - BI_XU_PHAT: unit:ND168-2024/D17/K4 → e2
@@ -259,7 +259,7 @@ Bản nháp bị bỏ 2 mục:
 | id | loại | unit | nội dung |
 | --- | --- | --- | --- |
 | c1 | CheTai | D20/K3 | {"loai": "phat_tien", "min_vnd": 600000, "max_vnd": 800000} |
-| ct1 | ChuThe | D20/K3 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| ct1 | ChuThe | D20/K3 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 | p1 | PhuongTien | D20/K3 | {"catalog_id": "PT:xe-o-to-cho-hanh-khach"} |
 | p2 | PhuongTien | D20/K3 | {"catalog_id": "PT:xe-o-to"} |
 | p3 | PhuongTien | D20/K3 | {"catalog_id": "PT:xe-o-to-kinh-doanh-van-tai"} |
@@ -324,7 +324,7 @@ Bản nháp bị bỏ 6 mục:
 | e1 | HanhVi | D20/K7 | {"ten": "điều khiển xe chở hành khách không có hoặc không gắn phù hiệu", "span": "điều khiển xe chở hành khách không có hoặc không gắn phù hiệu theo quy định hoặc có nhưng đã hết giá trị sử dụng hoặc sử dụng phù hiệu không do cơ quan có thẩm quyền cấp"} |
 | e2 | CheTai | D20/K7 | {"loai": "phat_tien", "min_vnd": 5000000, "max_vnd": 7000000} |
 | e3 | PhuongTien | D20/K7 | {"catalog_id": "PT:xe-o-to-cho-hanh-khach"} |
-| e4 | ChuThe | D20/K7 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| e4 | ChuThe | D20/K7 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 
 - QUY_DINH_HANH_VI: unit:ND168-2024/D20/K7 → e1
 - BI_XU_PHAT: unit:ND168-2024/D20/K7 → e2
@@ -344,7 +344,7 @@ Bản nháp bị bỏ 6 mục:
 | e1 | HanhVi | D23/K5 | {"ten": "vận chuyển hàng hóa nguy hiểm không có giấy phép hoặc hết hiệu lực", "span": "vận chuyển hàng hóa nguy hiểm không có giấy phép vận chuyển hàng hóa nguy hiểm hoặc có nhưng hết hiệu lực hoặc không thực hiện đúng quy định trong giấy phép vận chuyển hàng hóa nguy hiểm"} |
 | e2 | CheTai | D23/K5 | {"loai": "phat_tien", "min_vnd": 12000000, "max_vnd": 14000000} |
 | e3 | PhuongTien | D23/K5 | {"catalog_id": "PT:xe-o-to"} |
-| e4 | ChuThe | D23/K5 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| e4 | ChuThe | D23/K5 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 
 - QUY_DINH_HANH_VI: unit:ND168-2024/D23/K5 → e1
 - BI_XU_PHAT: unit:ND168-2024/D23/K5 → e2
@@ -364,7 +364,7 @@ Bản nháp bị bỏ 6 mục:
 | e1 | HanhVi | D24/K2 | {"ten": "vận chuyển thực phẩm tươi sống không chấp hành quy định về an toàn thực phẩm, vệ sinh dịch tễ", "span": "vận chuyển thực phẩm tươi sống không chấp hành quy định về an toàn thực phẩm, vệ sinh dịch tễ, phòng dịch và bảo đảm vệ sinh môi trường"} |
 | e2 | CheTai | D24/K2 | {"loai": "phat_tien", "min_vnd": 3000000, "max_vnd": 5000000} |
 | e3 | PhuongTien | D24/K2 | {"catalog_id": "PT:xe-o-to"} |
-| e4 | ChuThe | D24/K2 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| e4 | ChuThe | D24/K2 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 
 - QUY_DINH_HANH_VI: unit:ND168-2024/D24/K2 → e1
 - BI_XU_PHAT: unit:ND168-2024/D24/K2 → e2
@@ -435,7 +435,7 @@ Bản nháp bị bỏ 2 mục:
 | e2 | CheTai | D28/K1 | {"loai": "phat_tien", "min_vnd": 1000000, "max_vnd": 2000000} |
 | e3 | PhuongTien | D28/K1 | {"catalog_id": "PT:xe-cho-nguoi-bon-banh-co-gan-dong-co"} |
 | e4 | PhuongTien | D28/K1 | {"catalog_id": "PT:xe-cho-hang-bon-banh-co-gan-dong-co"} |
-| e5 | ChuThe | D28/K1 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| e5 | ChuThe | D28/K1 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 
 - QUY_DINH_HANH_VI: unit:ND168-2024/D28/K1 → e1
 - BI_XU_PHAT: unit:ND168-2024/D28/K1 → e2
@@ -457,7 +457,7 @@ Bản nháp bị bỏ 2 mục:
 | --- | --- | --- | --- |
 | e3 | CheTai | D37/K1 | {"loai": "phat_tien", "min_vnd": 1000000, "max_vnd": 2000000} |
 | e4 | PhuongTien | D37/K1 | {"catalog_id": "PT:xe-co-gioi"} |
-| e5 | ChuThe | D37/K1 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| e5 | ChuThe | D37/K1 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 | e1 | HanhVi | D37/K1/a | {"span": "Giấy tờ của phương tiện không có bản dịch sang tiếng Anh hoặc tiếng Việt theo quy định"} |
 | e2 | HanhVi | D37/K1/b | {"span": "Điều khiển xe chở hành khách không có danh sách hành khách theo quy định"} |
 
@@ -486,7 +486,7 @@ Bản nháp bị bỏ 2 mục:
 | --- | --- | --- | --- |
 | e3 | CheTai | D37/K4 | {"loai": "phat_tien", "min_vnd": 8000000, "max_vnd": 10000000} |
 | e4 | PhuongTien | D37/K4 | {"catalog_id": "PT:xe-co-gioi"} |
-| e6 | ChuThe | D37/K4 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| e6 | ChuThe | D37/K4 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 | e1 | HanhVi | D37/K4/a | {"span": "Điều khiển phương tiện không gắn biển số tạm thời hoặc gắn biển số tạm thời không do cơ quan có thẩm quyền cấp", "dieu_kien": "nếu có quy định phải gắn biển số tạm thời"} |
 | e2 | HanhVi | D37/K4/b | {"span": "Điều khiển xe ô tô có tay lái bên phải tham gia giao thông mà không đi theo đoàn, không có người, phương tiện hỗ trợ, hướng dẫn giao thông theo quy định"} |
 | e5 | PhuongTien | D37/K4/b | {"catalog_id": "PT:xe-o-to"} |
@@ -514,7 +514,7 @@ Bản nháp bị bỏ 2 mục:
 | e4 | PhuongTien | D6/K12 | {"catalog_id": "PT:xe-cho-nguoi-bon-banh-co-gan-dong-co"} |
 | e5 | PhuongTien | D6/K12 | {"catalog_id": "PT:xe-cho-hang-bon-banh-co-gan-dong-co"} |
 | e6 | PhuongTien | D6/K12 | {"catalog_id": "PT:xe-tuong-tu-xe-o-to"} |
-| e7 | ChuThe | D6/K12 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| e7 | ChuThe | D6/K12 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 | h1 | HanhVi | D6/K12 | {"ten": "điều khiển xe lạng lách, đánh võng", "span": "điều khiển xe lạng lách, đánh võng trên đường bộ"} |
 | h2 | HanhVi | D6/K12 | {"ten": "chạy quá tốc độ đuổi nhau", "span": "chạy quá tốc độ đuổi nhau trên đường bộ"} |
 | h3 | HanhVi | D6/K12 | {"ten": "dùng chân điều khiển vô lăng xe khi xe đang chạy", "span": "dùng chân điều khiển vô lăng xe khi xe đang chạy trên đường bộ"} |
@@ -633,7 +633,7 @@ Bản nháp bị bỏ 2 mục:
 | --- | --- | --- | --- |
 | e10 | CheTai | D8/K6 | {"loai": "phat_tien", "min_vnd": 3000000, "max_vnd": 5000000} |
 | e11 | PhuongTien | D8/K6 | {"catalog_id": "PT:xe-may-chuyen-dung"} |
-| e12 | ChuThe | D8/K6 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| e12 | ChuThe | D8/K6 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 | e1 | HanhVi | D8/K6/a | {"ten": "chạy quá tốc độ quy định trên 20 km/h", "span": "Chạy quá tốc độ quy định trên 20 km/h"} |
 | b1 | HanhVi | D8/K6/b | {"ten": "dừng, đỗ xe trên đường cao tốc không đúng nơi quy định", "span": "Dừng xe, đỗ xe trên đường cao tốc không đúng nơi quy định"} |
 | b2 | HanhVi | D8/K6/b | {"ten": "không báo hiệu đèn khẩn cấp khi dừng ở làn khẩn cấp cao tốc", "span": "không có báo hiệu bằng đèn khẩn cấp khi gặp sự cố kỹ thuật hoặc bất khả kháng khác buộc phải dừng xe, đỗ xe ở làn dừng xe khẩn cấp hoặc dải dừng xe khẩn cấp trên đường cao tốc"} |
@@ -690,7 +690,7 @@ Bản nháp bị bỏ 2 mục:
 
 | id | loại | unit | nội dung |
 | --- | --- | --- | --- |
-| c1 | ChuThe | D7/K5 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| c1 | ChuThe | D7/K5 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 | e4 | CheTai | D7/K5 | {"loai": "phat_tien", "min_vnd": 1000000, "max_vnd": 2000000} |
 | p1 | PhuongTien | D7/K5 | {"catalog_id": "PT:xe-mo-to"} |
 | p2 | PhuongTien | D7/K5 | {"catalog_id": "PT:xe-gan-may"} |
@@ -771,7 +771,7 @@ Bản nháp bị bỏ 4 mục:
 
 | id | loại | unit | nội dung |
 | --- | --- | --- | --- |
-| e3 | ChuThe | D16/K5 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| e3 | ChuThe | D16/K5 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 | e4 | PhuongTien | D16/K5 | {"catalog_id": "PT:xe-may-chuyen-dung"} |
 | e5 | PhuongTien | D16/K5 | {"catalog_id": "PT:ro-mooc"} |
 | e1 | BienPhapBoSung | D16/K5/a | {"ten": "buộc lắp đầy đủ thiết bị hoặc thay thế thiết bị đủ tiêu chuẩn, quy chuẩn an toàn kỹ thuật hoặc khôi phục lại tính năng kỹ thuật của thiết bị theo quy định"} |
@@ -883,7 +883,7 @@ Bản nháp bị bỏ 4 mục:
 
 | id | loại | unit | nội dung |
 | --- | --- | --- | --- |
-| c1 | ChuThe | D7/K10 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| c1 | ChuThe | D7/K10 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 | e5 | CheTai | D7/K10 | {"loai": "phat_tien", "min_vnd": 10000000, "max_vnd": 14000000} |
 | p1 | PhuongTien | D7/K10 | {"catalog_id": "PT:xe-mo-to"} |
 | p2 | PhuongTien | D7/K10 | {"catalog_id": "PT:xe-gan-may"} |
@@ -923,7 +923,7 @@ Bản nháp bị bỏ 4 mục:
 | e5 | PhuongTien | D7/K8 | {"catalog_id": "PT:xe-gan-may"} |
 | e6 | PhuongTien | D7/K8 | {"catalog_id": "PT:xe-tuong-tu-xe-mo-to"} |
 | e7 | PhuongTien | D7/K8 | {"catalog_id": "PT:xe-tuong-tu-xe-gan-may"} |
-| e8 | ChuThe | D7/K8 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| e8 | ChuThe | D7/K8 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 | e1 | HanhVi | D7/K8/a | {"span": "Điều khiển xe chạy quá tốc độ quy định trên 20 km/h"} |
 | e2 | HanhVi | D7/K8/b | {"span": "Điều khiển xe trên đường mà trong máu hoặc hơi thở có nồng độ cồn vượt quá 50 miligam đến 80 miligam/100 mililít máu hoặc vượt quá 0,25 miligam đến 0,4 miligam/1 lít khí thở"} |
 
@@ -947,7 +947,7 @@ Bản nháp bị bỏ 4 mục:
 
 | id | loại | unit | nội dung |
 | --- | --- | --- | --- |
-| c1 | ChuThe | D20/K9 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| c1 | ChuThe | D20/K9 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 | p1 | PhuongTien | D20/K9 | {"catalog_id": "PT:xe-o-to-cho-hanh-khach"} |
 
 - AP_DUNG_CHO: unit:ND168-2024/D20/K9 → c1
@@ -1034,7 +1034,7 @@ Bản nháp bị bỏ 4 mục:
 | id | loại | unit | nội dung |
 | --- | --- | --- | --- |
 | b1 | BienPhapBoSung | D38/K4 | {"ten": "buộc đưa phương tiện quay trở lại Khu kinh tế thương mại đặc biệt, Khu kinh tế cửa khẩu quốc tế"} |
-| c1 | ChuThe | D38/K4 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| c1 | ChuThe | D38/K4 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 
 - BI_XU_PHAT: unit:ND168-2024/D38/K1/a → b1
 - BI_XU_PHAT: unit:ND168-2024/D38/K1/b → b1
@@ -1052,7 +1052,7 @@ Bản nháp bị bỏ 4 mục:
 
 | id | loại | unit | nội dung |
 | --- | --- | --- | --- |
-| c1 | ChuThe | D38/K5 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| c1 | ChuThe | D38/K5 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 
 - AP_DUNG_CHO: unit:ND168-2024/D38/K5 → c1
 
@@ -1361,7 +1361,7 @@ Bản nháp bị bỏ 1 mục:
 
 | id | loại | unit | nội dung |
 | --- | --- | --- | --- |
-| c1 | ChuThe | D11/K1 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| c1 | ChuThe | D11/K1 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 | e1 | HanhVi | D11/K1 | {"ten": "không mặc đồng phục, không đeo thẻ tên lái xe", "span": "không mặc đồng phục, không đeo thẻ tên của lái xe theo đúng mẫu đơn vị kinh doanh vận tải đã quy định"} |
 | e2 | CheTai | D11/K1 | {"loai": "phat_tien", "min_vnd": 300000, "max_vnd": 500000} |
 | e3 | PhuongTien | D11/K1 | {"catalog_id": "PT:xe-o-to-kinh-doanh-van-tai"} |
@@ -1557,7 +1557,7 @@ Bản nháp bị bỏ 4 mục:
 | e5 | CheTai | D11/K2 | {"loai": "phat_tien", "min_vnd": 1000000, "max_vnd": 2000000} |
 | e6 | PhuongTien | D11/K2 | {"catalog_id": "PT:xe-o-to-kinh-doanh-van-tai"} |
 | e7 | PhuongTien | D11/K2 | {"catalog_id": "PT:xe-cho-nguoi-bon-banh-co-gan-dong-co"} |
-| e8 | ChuThe | D11/K2 | {"catalog_id": "CT:nguoi-dieu-khien-xe"} |
+| e8 | ChuThe | D11/K2 | {"catalog_id": "CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo"} |
 | e1 | HanhVi | D11/K2/a | {"span": "Điều khiển xe taxi không có đồng hồ tính tiền cước (đối với loại xe đăng ký sử dụng đồng hồ tính tiền) hoặc có nhưng không đúng quy định hoặc có nhưng không sử dụng đồng hồ để tính tiền cước theo yêu cầu của hành khách hoặc can thiệp để điều chỉnh tiền cước hiển thị trên đồng hồ"} |
 | e2 | HanhVi | D11/K2/b | {"span": "Điều khiển xe taxi sử dụng phần mềm tính tiền mà trên xe không có thiết bị để kết nối trực tiếp với hành khách theo quy định"} |
 | e3 | HanhVi | D11/K2/c | {"span": "Điều khiển xe taxi không sử dụng phần mềm tính tiền (đối với loại xe đăng ký sử dụng phần mềm tính tiền) hoặc sử dụng phần mềm tính tiền không bảo đảm các yêu cầu theo quy định"} |

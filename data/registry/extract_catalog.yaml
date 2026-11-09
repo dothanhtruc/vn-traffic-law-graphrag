@@ -3,6 +3,9 @@
 # chạy khi approved: false. Alias chỉ thêm khi có căn cứ trong văn bản ("sau đây gọi là …").
 # Sửa danh mục ⇒ schema/prompt đổi ⇒ các lô LLM chạy lại (khoá resume chứa schema_hash).
 approved: true
+# 10/11/2026 (người dùng duyệt): gộp CT:nguoi-dieu-khien-xe vào CT:nguoi-dieu-khien-phuong-tien-tham-gia-giao-thong-duong-bo
+# — LUAT36 Đ2 K9 định nghĩa khái niệm này 'bao gồm' người điều khiển xe cơ giới, xe thô sơ, xe máy chuyên dùng;
+# hai mục gần trùng nghĩa làm model và người gán chọn khác nhau (ChuThe F1 0,40).
 phuong_tien:
 - id: PT:cac-loai-xe-dac-chung-su-dung-vao-muc-dich-quoc-phong-an-ninh-co-tham-gia-giao-thong-duong-bo
   name: các loại xe đặc chủng sử dụng vào mục đích quốc phòng, an ninh có tham gia giao thông đường bộ
@@ -454,19 +457,16 @@ chu_the:
   name: người điều khiển phương tiện tham gia giao thông đường bộ
   nhom: null
   can_cu: LUAT36-2024/D2/K9
-  aliases: []
-  bao_gom: []
+  aliases:
+  - người điều khiển phương tiện
+  - người điều khiển xe
+  bao_gom:
+  - người điều khiển xe cơ giới (người lái xe)
+  - người điều khiển xe thô sơ
+  - người điều khiển xe máy chuyên dùng
   evidence: '9. Người điều khiển phương tiện tham gia giao thông đường bộ bao gồm: người điều khiển xe
     cơ giới (sau đây gọi là người lái xe), người điều khiển xe thô sơ, người điều khiển xe máy chuyên
     dùng.'
-- id: CT:nguoi-dieu-khien-xe
-  name: người điều khiển xe
-  nhom: null
-  can_cu: null
-  aliases: []
-  bao_gom: []
-  evidence: 'LUAT36-2024/D12/K1: 1. Người lái xe, người điều khiển xe máy chuyên dùng phải chấp hành quy
-    định về tốc độ, khoảng c'
 - id: CT:nguoi-dua-xe-trai-phep
   name: người đua xe trái phép
   nhom: null
