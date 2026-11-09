@@ -31,3 +31,5 @@ graph_review: data/graph/review_sample.md
 # M6: GraphStore
 graph_config: configs/graph.yaml
 graph_store_parity: data/graph/store_parity.jsonl
+# M7: lớp LLM
+llm_config: configs/llm.yaml

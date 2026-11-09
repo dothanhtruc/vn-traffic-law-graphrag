@@ -1,0 +1,65 @@
+# M7: lớp gọi LLM. API key KHÔNG ghi ở đây — chỉ tên biến môi trường (đọc từ môi trường / .env).
+#
+# main = model CHỐT cho đánh giá + demo (một model_id; đánh giá không fallback).
+main:
+  provider: gemini
+  model_id: gemini-3.5-flash  # người dùng duyệt 09/11/2026 (ping thật qua scripts.llm_check)
+
+# Tham số chung (mọi provider); providers.<p>.params ghi đè/bổ sung.
+params:
+  temperature: 0
+  max_output_tokens: 2048
+
+# Fallback chỉ cho demo (FallbackClient); main luôn được thử trước.
+fallback_order: [gemini, groq, openrouter]
+
+retry:
+  max_retries: 5            # 429 theo phút / 5xx / timeout; tối đa 1 + 5 lượt
+  base_s: 1.0               # chờ lần n = max(Retry-After, U(0, min(cap, base·2^n)))
+  cap_s: 60.0
+  seed: 42
+
+cache_path: data/cache/llm.sqlite          # chỉ lưu kết quả ok (gitignored)
+usage_db_path: data/cache/llm_usage.sqlite # bộ đếm request/token theo ngày (RPD/TPD)
+repair_prompt: format_repair               # src/trafficlaw/llm/prompts/format_repair.md
+
+# Giới hạn = mức free tier đã tra (đặt thấp hơn/bằng mức công bố); null = không giới hạn phía mình.
+# reset_utc_offset_h: giờ reset quota ngày (Gemini: 0h Pacific ≈ UTC−8, bỏ qua giờ mùa hè).
+providers:
+  gemini:
+    kind: gemini
+    base_url: https://generativelanguage.googleapis.com/v1beta
+    api_key_env: GEMINI_API_KEY
+    model_id: gemini-3.5-flash
+    rpm: 10
+    tpm: 250000
+    rpd: 250
+    timeout_s: 90
+    json_mode: schema       # responseMimeType + responseJsonSchema
+    reset_utc_offset_h: -8
+    params:
+      thinking_level: low   # Gemini 3.x; cố định để tái lập (mặc định tốn ~320 token thinking/ping)
+  groq:
+    kind: openai_compat
+    base_url: https://api.groq.com/openai/v1
+    api_key_env: GROQ_API_KEY
+    model_id: openai/gpt-oss-120b   # chỉ fallback demo
+    rpm: 30
+    tpm: 12000
+    rpd: 1000
+    tpd: 100000
+    timeout_s: 60
+    json_mode: object       # response_format json_object (prompt phải nhắc "JSON")
+    reset_utc_offset_h: 0
+  openrouter:
+    kind: openai_compat
+    base_url: https://openrouter.ai/api/v1
+    api_key_env: OPENROUTER_API_KEY
+    model_id: nvidia/nemotron-3-ultra-550b-a55b:free   # chỉ fallback demo
+    rpm: 20
+    rpd: 50
+    timeout_s: 90
+    json_mode: object
+    reset_utc_offset_h: 0
+    extra_headers:
+      X-Title: vn-traffic-law-graphrag
