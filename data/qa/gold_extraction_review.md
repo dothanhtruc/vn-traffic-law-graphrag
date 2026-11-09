@@ -1,6 +1,6 @@
 # Tập vàng trích xuất — bản đọc (sinh tự động, sửa trong gold_extraction.jsonl)
 
-## ND168-2024/D10/K2@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D10/K2@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt người đi bộ vi phạm quy tắc giao thông đường bộ
 
@@ -27,7 +27,7 @@
 - BI_XU_PHAT: unit:ND168-2024/D10/K2/c → e4
 - AP_DUNG_CHO: unit:ND168-2024/D10/K2 → e5
 
-## ND168-2024/D12/K1@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D12/K1@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái xe các hành vi vi phạm khác về quy tắc giao thông đường bộ; sử dụng lòng đường, vỉa hè vào mục đích khác
 
@@ -49,7 +49,7 @@
 - AP_DUNG_CHO: unit:ND168-2024/D12/K1 → e4
 - AP_DUNG_CHO: unit:ND168-2024/D12/K1 → e5
 
-## ND168-2024/D12/K13@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D12/K13@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái xe các hành vi vi phạm khác về quy tắc giao thông đường bộ; sử dụng lòng đường, vỉa hè vào mục đích khác
 
@@ -77,7 +77,7 @@ Bản nháp bị bỏ 4 mục:
 - dich_khong_hop_le: {"type": "QUY_DINH_HANH_VI", "src": "unit:ND168-2024/D12/K13", "dst": "e1"}
 - dich_khong_hop_le: {"type": "BI_XU_PHAT", "src": "unit:ND168-2024/D12/K13", "dst": "e3"}
 
-## ND168-2024/D12/K5@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D12/K5@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái xe các hành vi vi phạm khác về quy tắc giao thông đường bộ; sử dụng lòng đường, vỉa hè vào mục đích khác
 
@@ -108,7 +108,7 @@ Bản nháp bị bỏ 4 mục:
 - AP_DUNG_CHO: unit:ND168-2024/D12/K5 → e7
 - AP_DUNG_CHO: unit:ND168-2024/D12/K5 → e8
 
-## ND168-2024/D13/K6@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D13/K6@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
 
@@ -145,7 +145,7 @@ Bản nháp bị bỏ 4 mục:
 - AP_DUNG_CHO: unit:ND168-2024/D13/K6 → e8
 - AP_DUNG_CHO: unit:ND168-2024/D13/K6 → e9
 
-## ND168-2024/D13/K8@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D13/K8@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
 
@@ -190,7 +190,7 @@ Bản nháp bị bỏ 2 mục:
 - span_khong_nguyen_van: {"id": "e5", "type": "HanhVi", "unit_id": "ND168-2024/D13/K8/b", "ten": "sử dụng chất liệu làm thay đổi khả năng nhận diện biển số", "span": "sử dụng chất liệu, vật liệu, thiết bị làm thay đổi khả năn
 - dich_khong_hop_le: {"type": "QUY_DINH_HANH_VI", "src": "unit:ND168-2024/D13/K8/b", "dst": "e5"}
 
-## ND168-2024/D17/K3@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D17/K3@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, máy kéo và các loại xe tương tự xe ô tô vi phạm quy định về bảo vệ môi trường khi tham gia giao thông
 
@@ -214,7 +214,7 @@ Bản nháp bị bỏ 2 mục:
 - AP_DUNG_CHO: unit:ND168-2024/D17/K3 → e6
 - AP_DUNG_CHO: unit:ND168-2024/D17/K3 → e7
 
-## ND168-2024/D17/K4@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D17/K4@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, máy kéo và các loại xe tương tự xe ô tô vi phạm quy định về bảo vệ môi trường khi tham gia giao thông
 
@@ -238,7 +238,7 @@ Bản nháp bị bỏ 2 mục:
 - AP_DUNG_CHO: unit:ND168-2024/D17/K4 → e5
 - AP_DUNG_CHO: unit:ND168-2024/D17/K4 → e6
 
-## ND168-2024/D20/K3@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D20/K3@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
 
@@ -311,7 +311,7 @@ Bản nháp bị bỏ 6 mục:
 - dich_khong_hop_le: {"type": "QUY_DINH_HANH_VI", "src": "unit:ND168-2024/D20/K3/d", "dst": "e5"}
 - dich_khong_hop_le: {"type": "QUY_DINH_HANH_VI", "src": "unit:ND168-2024/D20/K3/d", "dst": "e6"}
 
-## ND168-2024/D20/K7@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D20/K7@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
 
@@ -331,7 +331,7 @@ Bản nháp bị bỏ 6 mục:
 - AP_DUNG_CHO: unit:ND168-2024/D20/K7 → e3
 - AP_DUNG_CHO: unit:ND168-2024/D20/K7 → e4
 
-## ND168-2024/D23/K5@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D23/K5@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển hàng hóa nguy hiểm
 
@@ -351,7 +351,7 @@ Bản nháp bị bỏ 6 mục:
 - AP_DUNG_CHO: unit:ND168-2024/D23/K5 → e3
 - AP_DUNG_CHO: unit:ND168-2024/D23/K5 → e4
 
-## ND168-2024/D24/K2@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D24/K2@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển động vật sống, thực phẩm tươi sống
 
@@ -371,7 +371,7 @@ Bản nháp bị bỏ 6 mục:
 - AP_DUNG_CHO: unit:ND168-2024/D24/K2 → e3
 - AP_DUNG_CHO: unit:ND168-2024/D24/K2 → e4
 
-## ND168-2024/D26/K5@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D26/K5@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
 
@@ -403,7 +403,7 @@ Bản nháp bị bỏ 2 mục:
 - so_lech_regex: {"id": "e3", "type": "CheTai", "unit_id": "ND168-2024/D26/K5", "ten": null, "span": null, "dieu_kien": null, "catalog_id": null, "loai": "phat_tien", "min_vnd": 8000000, "max_vnd": 10000000, "min_than
 - dich_khong_hop_le: {"type": "BI_XU_PHAT", "src": "unit:ND168-2024/D26/K5", "dst": "e3"}
 
-## ND168-2024/D33/K3@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D33/K3@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt hành khách đi xe vi phạm quy định về trật tự, an toàn giao thông
 
@@ -421,7 +421,7 @@ Bản nháp bị bỏ 2 mục:
 - BI_XU_PHAT: unit:ND168-2024/D33/K3 → e2
 - AP_DUNG_CHO: unit:ND168-2024/D33/K3 → e3
 
-## ND168-2024/D28/K1@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D28/K1@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ
 
@@ -443,7 +443,7 @@ Bản nháp bị bỏ 2 mục:
 - AP_DUNG_CHO: unit:ND168-2024/D28/K1 → e4
 - AP_DUNG_CHO: unit:ND168-2024/D28/K1 → e5
 
-## ND168-2024/D37/K1@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D37/K1@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt người điều khiển phương tiện giao thông cơ giới đường bộ gắn biển số nước ngoài
 
@@ -472,7 +472,7 @@ Bản nháp bị bỏ 2 mục:
 - ngoai_danh_muc: {"id": "e4", "type": "PhuongTien", "unit_id": "ND168-2024/D37/K1", "ten": null, "span": null, "dieu_kien": null, "catalog_id": "PT:phuong-tien-giao-thong-co-gioi-duong-bo", "loai": null, "min_vnd": nu
 - dich_khong_hop_le: {"type": "AP_DUNG_CHO", "src": "unit:ND168-2024/D37/K1", "dst": "e4"}
 
-## ND168-2024/D37/K4@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D37/K4@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt người điều khiển phương tiện giao thông cơ giới đường bộ gắn biển số nước ngoài
 
@@ -499,7 +499,7 @@ Bản nháp bị bỏ 2 mục:
 - AP_DUNG_CHO: unit:ND168-2024/D37/K4 → e6
 - AP_DUNG_CHO: unit:ND168-2024/D37/K4/b → e5
 
-## ND168-2024/D6/K12@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D6/K12@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
 
@@ -529,7 +529,7 @@ Bản nháp bị bỏ 2 mục:
 - AP_DUNG_CHO: unit:ND168-2024/D6/K12 → e6
 - AP_DUNG_CHO: unit:ND168-2024/D6/K12 → e7
 
-## ND168-2024/D32/K10@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D32/K10@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
 
@@ -565,7 +565,7 @@ Bản nháp bị bỏ 2 mục:
 - so_lech_regex: {"id": "e3", "type": "CheTai", "unit_id": "ND168-2024/D32/K10", "ten": null, "span": null, "dieu_kien": null, "catalog_id": null, "loai": "phat_tien", "min_vnd": 16000000, "max_vnd": 20000000, "min_th
 - dich_khong_hop_le: {"type": "BI_XU_PHAT", "src": "unit:ND168-2024/D32/K10", "dst": "e3"}
 
-## ND168-2024/D32/K3@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D32/K3@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
 
@@ -612,7 +612,7 @@ Bản nháp bị bỏ 2 mục:
 - so_lech_regex: {"id": "e5", "type": "CheTai", "unit_id": "ND168-2024/D32/K3", "ten": null, "span": null, "dieu_kien": null, "catalog_id": null, "loai": "phat_tien", "min_vnd": 1600000, "max_vnd": 2000000, "min_thang
 - dich_khong_hop_le: {"type": "BI_XU_PHAT", "src": "unit:ND168-2024/D32/K3", "dst": "e5"}
 
-## ND168-2024/D8/K6@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D8/K6@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt người điều khiển xe máy chuyên dùng vi phạm quy tắc giao thông đường bộ
 
@@ -677,7 +677,7 @@ Bản nháp bị bỏ 2 mục:
 - AP_DUNG_CHO: unit:ND168-2024/D8/K6 → e11
 - AP_DUNG_CHO: unit:ND168-2024/D8/K6 → e12
 
-## ND168-2024/D7/K5@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D7/K5@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
 
@@ -712,7 +712,7 @@ Bản nháp bị bỏ 2 mục:
 - AP_DUNG_CHO: unit:ND168-2024/D7/K5 → p3
 - AP_DUNG_CHO: unit:ND168-2024/D7/K5 → p4
 
-## ND168-2024/D40/K3@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D40/K3@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt các hành vi vi phạm quy định về hoạt động đăng kiểm xe cơ giới, xe máy chuyên dùng, phụ tùng xe cơ giới
 
@@ -759,7 +759,7 @@ Bản nháp bị bỏ 4 mục:
 - dich_khong_hop_le: {"type": "AP_DUNG_CHO", "src": "unit:ND168-2024/D40/K3", "dst": "e10"}
 - dich_khong_hop_le: {"type": "AP_DUNG_CHO", "src": "unit:ND168-2024/D40/K3", "dst": "e11"}
 
-## ND168-2024/D16/K5@2026-11-03 · nd168_bo_sung_tru_diem · tier A · chưa duyệt
+## ND168-2024/D16/K5@2026-11-03 · nd168_bo_sung_tru_diem · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt người điều khiển xe máy chuyên dùng (kể cả rơ moóc được kéo theo) vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
 
@@ -785,7 +785,7 @@ Bản nháp bị bỏ 4 mục:
 - AP_DUNG_CHO: unit:ND168-2024/D16/K5 → e4
 - AP_DUNG_CHO: unit:ND168-2024/D16/K5 → e5
 
-## ND168-2024/D32/K19@2026-11-03 · nd168_bo_sung_tru_diem · tier A · chưa duyệt
+## ND168-2024/D32/K19@2026-11-03 · nd168_bo_sung_tru_diem · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
 
@@ -871,7 +871,7 @@ Bản nháp bị bỏ 4 mục:
 - AP_DUNG_CHO: unit:ND168-2024/D32/K19 → c2
 - AP_DUNG_CHO: unit:ND168-2024/D32/K19 → c3
 
-## ND168-2024/D7/K10@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D7/K10@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
 
@@ -906,7 +906,7 @@ Bản nháp bị bỏ 4 mục:
 - AP_DUNG_CHO: unit:ND168-2024/D7/K10 → p3
 - AP_DUNG_CHO: unit:ND168-2024/D7/K10 → p4
 
-## ND168-2024/D7/K8@2026-11-03 · nd168_che_tai · tier A · chưa duyệt
+## ND168-2024/D7/K8@2026-11-03 · nd168_che_tai · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
 
@@ -937,7 +937,7 @@ Bản nháp bị bỏ 4 mục:
 - AP_DUNG_CHO: unit:ND168-2024/D7/K8 → e7
 - AP_DUNG_CHO: unit:ND168-2024/D7/K8 → e8
 
-## ND168-2024/D20/K9@2026-11-03 · nd168_bo_sung_tru_diem · tier A · chưa duyệt
+## ND168-2024/D20/K9@2026-11-03 · nd168_bo_sung_tru_diem · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
 
@@ -953,7 +953,7 @@ Bản nháp bị bỏ 4 mục:
 - AP_DUNG_CHO: unit:ND168-2024/D20/K9 → c1
 - AP_DUNG_CHO: unit:ND168-2024/D20/K9 → p1
 
-## ND168-2024/D32/K21@2026-11-03 · nd168_bo_sung_tru_diem · tier A · chưa duyệt
+## ND168-2024/D32/K21@2026-11-03 · nd168_bo_sung_tru_diem · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
 
@@ -1023,7 +1023,7 @@ Bản nháp bị bỏ 4 mục:
 - AP_DUNG_CHO: unit:ND168-2024/D32/K21 → c2
 - AP_DUNG_CHO: unit:ND168-2024/D32/K21 → c3
 
-## ND168-2024/D38/K4@2026-11-03 · nd168_bo_sung_tru_diem · tier A · chưa duyệt
+## ND168-2024/D38/K4@2026-11-03 · nd168_bo_sung_tru_diem · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt người điều khiển phương tiện đăng ký hoạt động trong Khu kinh tế thương mại đặc biệt, Khu kinh tế cửa khẩu quốc tế
 
@@ -1042,7 +1042,7 @@ Bản nháp bị bỏ 4 mục:
 - BI_XU_PHAT: unit:ND168-2024/D38/K2/b → b1
 - AP_DUNG_CHO: unit:ND168-2024/D38/K4 → c1
 
-## ND168-2024/D38/K5@2026-11-03 · nd168_bo_sung_tru_diem · tier A · chưa duyệt
+## ND168-2024/D38/K5@2026-11-03 · nd168_bo_sung_tru_diem · tier A · ĐÃ DUYỆT
 
 Điều: Xử phạt người điều khiển phương tiện đăng ký hoạt động trong Khu kinh tế thương mại đặc biệt, Khu kinh tế cửa khẩu quốc tế
 
@@ -1056,7 +1056,7 @@ Bản nháp bị bỏ 4 mục:
 
 - AP_DUNG_CHO: unit:ND168-2024/D38/K5 → c1
 
-## LUAT35-2024/D2/K1@2026-11-03 · dinh_nghia_luat · tier A · chưa duyệt
+## LUAT35-2024/D2/K1@2026-11-03 · dinh_nghia_luat · tier A · ĐÃ DUYỆT
 
 Điều: Giải thích từ ngữ
 
@@ -1070,7 +1070,7 @@ Bản nháp bị bỏ 4 mục:
 
 - DINH_NGHIA: unit:LUAT35-2024/D2/K1 → k1
 
-## LUAT35-2024/D2/K6@2026-11-03 · dinh_nghia_luat · tier A · chưa duyệt
+## LUAT35-2024/D2/K6@2026-11-03 · dinh_nghia_luat · tier A · ĐÃ DUYỆT
 
 Điều: Giải thích từ ngữ
 
@@ -1087,7 +1087,7 @@ Bản nháp bị bỏ 4 mục:
 Bản nháp bị bỏ 1 mục:
 - loai_khong_hop_le: {"type": "DINH_NGHI", "src": "unit:LUAT35-2024/D2/K6", "dst": "e1"}
 
-## LUAT35-2024/D2/K5@2026-11-03 · dinh_nghia_luat · tier A · chưa duyệt
+## LUAT35-2024/D2/K5@2026-11-03 · dinh_nghia_luat · tier A · ĐÃ DUYỆT
 
 Điều: Giải thích từ ngữ
 
@@ -1104,7 +1104,7 @@ Bản nháp bị bỏ 1 mục:
 Bản nháp bị bỏ 1 mục:
 - loai_khong_hop_le: {"type": "DINH_NGhia", "src": "unit:LUAT35-2024/D2/K5", "dst": "e1"}
 
-## LUAT35-2024/D2/K7@2026-11-03 · dinh_nghia_luat · tier A · chưa duyệt
+## LUAT35-2024/D2/K7@2026-11-03 · dinh_nghia_luat · tier A · ĐÃ DUYỆT
 
 Điều: Giải thích từ ngữ
 
@@ -1121,7 +1121,7 @@ Bản nháp bị bỏ 1 mục:
 Bản nháp bị bỏ 1 mục:
 - loai_khong_hop_le: {"type": "DINH_NGHI", "src": "unit:LUAT35-2024/D2/K7", "dst": "e1"}
 
-## LUAT36-2024/D2/K3@2026-11-03 · dinh_nghia_luat · tier A · chưa duyệt
+## LUAT36-2024/D2/K3@2026-11-03 · dinh_nghia_luat · tier A · ĐÃ DUYỆT
 
 Điều: Giải thích từ ngữ
 
@@ -1138,7 +1138,7 @@ Bản nháp bị bỏ 1 mục:
 Bản nháp bị bỏ 1 mục:
 - loai_khong_hop_le: {"type": "DINH_NGHI", "src": "unit:LUAT36-2024/D2/K3", "dst": "e1"}
 
-## LUAT36-2024/D2/K5@2026-11-03 · dinh_nghia_luat · tier A · chưa duyệt
+## LUAT36-2024/D2/K5@2026-11-03 · dinh_nghia_luat · tier A · ĐÃ DUYỆT
 
 Điều: Giải thích từ ngữ
 
@@ -1155,7 +1155,7 @@ Bản nháp bị bỏ 1 mục:
 Bản nháp bị bỏ 1 mục:
 - loai_khong_hop_le: {"type": "DINH_NGHI", "src": "unit:LUAT36-2024/D2/K5", "dst": "e1"}
 
-## LUAT36-2024/D2/K12@2026-11-03 · dinh_nghia_luat · tier A · chưa duyệt
+## LUAT36-2024/D2/K12@2026-11-03 · dinh_nghia_luat · tier A · ĐÃ DUYỆT
 
 Điều: Giải thích từ ngữ
 
@@ -1172,7 +1172,7 @@ Bản nháp bị bỏ 1 mục:
 Bản nháp bị bỏ 1 mục:
 - loai_khong_hop_le: {"type": "DINH_NGHI", "src": "unit:LUAT36-2024/D2/K12", "dst": "e1"}
 
-## LUAT36-2024/D2/K13@2026-11-03 · dinh_nghia_luat · tier A · chưa duyệt
+## LUAT36-2024/D2/K13@2026-11-03 · dinh_nghia_luat · tier A · ĐÃ DUYỆT
 
 Điều: Giải thích từ ngữ
 
@@ -1189,7 +1189,7 @@ Bản nháp bị bỏ 1 mục:
 Bản nháp bị bỏ 1 mục:
 - loai_khong_hop_le: {"type": "DINH_NGHI", "src": "unit:LUAT36-2024/D2/K13", "dst": "e1"}
 
-## TT14-2025-BXD/D23/K3@2026-11-03 · tt_tier_a · tier A · chưa duyệt
+## TT14-2025-BXD/D23/K3@2026-11-03 · tt_tier_a · tier A · ĐÃ DUYỆT
 
 Điều: Cấp lại chứng chỉ
 
@@ -1207,7 +1207,7 @@ Bản nháp bị bỏ 1 mục:
 
 - AP_DUNG_CHO: unit:TT14-2025-BXD/D23/K3 → c1
 
-## LUAT36-2024/D2/K11@2026-11-03 · dinh_nghia_luat · tier A · chưa duyệt
+## LUAT36-2024/D2/K11@2026-11-03 · dinh_nghia_luat · tier A · ĐÃ DUYỆT
 
 Điều: Giải thích từ ngữ
 
@@ -1224,7 +1224,7 @@ Bản nháp bị bỏ 1 mục:
 Bản nháp bị bỏ 1 mục:
 - loai_khong_hop_le: {"type": "DINH_NGHI", "src": "unit:LUAT36-2024/D2/K11", "dst": "e1"}
 
-## LUAT36-2024/D2/K4@2026-11-03 · dinh_nghia_luat · tier A · chưa duyệt
+## LUAT36-2024/D2/K4@2026-11-03 · dinh_nghia_luat · tier A · ĐÃ DUYỆT
 
 Điều: Giải thích từ ngữ
 
@@ -1241,7 +1241,7 @@ Bản nháp bị bỏ 1 mục:
 Bản nháp bị bỏ 1 mục:
 - loai_khong_hop_le: {"type": "DINH_NGHI", "src": "unit:LUAT36-2024/D2/K4", "dst": "e1"}
 
-## TT14-2025-BXD/D30/K2@2026-11-03 · tt_tier_a · tier A · chưa duyệt
+## TT14-2025-BXD/D30/K2@2026-11-03 · tt_tier_a · tier A · ĐÃ DUYỆT
 
 Điều: Cơ sở đào tạo lái xe
 
@@ -1275,7 +1275,7 @@ Bản nháp bị bỏ 1 mục:
 - QUY_DINH_HANH_VI: unit:TT14-2025-BXD/D30/K2/đ → h6
 - AP_DUNG_CHO: unit:TT14-2025-BXD/D30/K2 → c1
 
-## TT14-2025-BXD/D8/K1@2026-11-03 · tt_tier_a · tier A · chưa duyệt
+## TT14-2025-BXD/D8/K1@2026-11-03 · tt_tier_a · tier A · ĐÃ DUYỆT
 
 Điều: Tiêu chuẩn của cơ sở đào tạo lái xe mô tô
 
@@ -1295,7 +1295,7 @@ Bản nháp bị bỏ 1 mục:
 - AP_DUNG_CHO: unit:TT14-2025-BXD/D8/K1 → c1
 - AP_DUNG_CHO: unit:TT14-2025-BXD/D8/K1 → p1
 
-## TT65-2024-BCA/D2/K4@2026-11-03 · tt_tier_a · tier A · chưa duyệt
+## TT65-2024-BCA/D2/K4@2026-11-03 · tt_tier_a · tier A · ĐÃ DUYỆT
 
 Điều: Đối tượng áp dụng
 
@@ -1311,7 +1311,7 @@ Bản nháp bị bỏ 1 mục:
 - AP_DUNG_CHO: unit:TT65-2024-BCA/D2/K4 → c1
 - AP_DUNG_CHO: unit:TT65-2024-BCA/D2/K4 → c2
 
-## TT79-2024-BCA/D30/K3@2026-11-03 · tt_tier_a · tier A · chưa duyệt
+## TT79-2024-BCA/D30/K3@2026-11-03 · tt_tier_a · tier A · ĐÃ DUYỆT
 
 Điều: Quản lý biển số xe trúng đấu giá, sau khi đăng ký xe
 
@@ -1327,7 +1327,7 @@ Bản nháp bị bỏ 1 mục:
 - QUY_DINH_HANH_VI: unit:TT79-2024-BCA/D30/K3 → h1
 - AP_DUNG_CHO: unit:TT79-2024-BCA/D30/K3 → c1
 
-## TT79-2024-BCA/D32/K2@2026-11-03 · tt_tier_a · tier A · chưa duyệt
+## TT79-2024-BCA/D32/K2@2026-11-03 · tt_tier_a · tier A · ĐÃ DUYỆT
 
 Điều: Giải quyết đăng ký sang tên xe đối với xe đã chuyển quyền sở hữu qua nhiều tổ chức, cá nhân
 
@@ -1339,7 +1339,7 @@ Bản nháp bị bỏ 1 mục:
 | --- | --- | --- | --- |
 
 
-## TT79-2024-BCA/D39/K1@2026-11-03 · tt_tier_a · tier A · chưa duyệt
+## TT79-2024-BCA/D39/K1@2026-11-03 · tt_tier_a · tier A · ĐÃ DUYỆT
 
 Điều: Điều khoản chuyển tiếp
 
@@ -1351,7 +1351,7 @@ Bản nháp bị bỏ 1 mục:
 | --- | --- | --- | --- |
 
 
-## ND336-2025/D11/K1@2026-11-03 · nd336 · tier B · chưa duyệt
+## ND336-2025/D11/K1@2026-11-03 · nd336 · tier B · ĐÃ DUYỆT
 
 Điều: Xử phạt người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ kinh doanh vận tải vi phạm quy định về vận tải đường bộ
 
@@ -1377,7 +1377,7 @@ Bản nháp bị bỏ 2 mục:
 - ngoai_danh_muc: {"id": "e4", "type": "ChuThe", "unit_id": "ND336-2025/D11/K1", "ten": null, "span": null, "dieu_kien": null, "catalog_id": "CT:lai-xe", "loai": null, "min_vnd": null, "max_vnd": null, "min_thang": nul
 - dich_khong_hop_le: {"type": "AP_DUNG_CHO", "src": "unit:ND336-2025/D11/K1", "dst": "e4"}
 
-## ND336-2025/D20/K1@2026-11-03 · tier_b · tier B · chưa duyệt
+## ND336-2025/D20/K1@2026-11-03 · tier_b · tier B · ĐÃ DUYỆT
 
 Điều: Nguyên tắc xác định thẩm quyền xử phạt vi phạm hành chính và áp dụng biện pháp khắc phục hậu quả
 
@@ -1389,7 +1389,7 @@ Bản nháp bị bỏ 2 mục:
 | --- | --- | --- | --- |
 
 
-## ND336-2025/D22/K5@2026-11-03 · tier_b · tier B · chưa duyệt
+## ND336-2025/D22/K5@2026-11-03 · tier_b · tier B · ĐÃ DUYỆT
 
 Điều: Thủ tục xử phạt, thi hành quyết định xử phạt và biện pháp khắc phục hậu quả
 
@@ -1408,7 +1408,7 @@ Bản nháp bị bỏ 2 mục:
 | --- | --- | --- | --- |
 
 
-## ND336-2025/D7/K3@2026-11-03 · nd336 · tier B · chưa duyệt
+## ND336-2025/D7/K3@2026-11-03 · nd336 · tier B · ĐÃ DUYỆT
 
 Điều: Xử phạt hành vi vi phạm quy định về đào tạo thẩm tra viên, điều kiện kinh doanh dịch vụ thẩm tra an toàn giao thông đường bộ
 
@@ -1439,7 +1439,7 @@ Bản nháp bị bỏ 2 mục:
 - ngoai_danh_muc: {"id": "e5", "type": "ChuThe", "unit_id": "ND336-2025/D7/K3", "ten": null, "span": null, "dieu_kien": null, "catalog_id": "CT:to-chuc-kinh-doanh-dich-vu-tham-tra-an-toan-giao-thong-duong-bo", "loai": 
 - dich_khong_hop_le: {"type": "AP_DUNG_CHO", "src": "unit:ND336-2025/D7/K3", "dst": "e5"}
 
-## ND336-2025/D6/K1@2026-11-03 · tier_b · tier B · chưa duyệt
+## ND336-2025/D6/K1@2026-11-03 · tier_b · tier B · ĐÃ DUYỆT
 
 Điều: Xử phạt hành vi vi phạm quy định về quản lý, vận hành, khai thác, bảo trì công trình hạ tầng kỹ thuật sử dụng chung với đường bộ
 
@@ -1464,7 +1464,7 @@ Bản nháp bị bỏ 2 mục:
 Bản nháp bị bỏ 1 mục:
 - dich_khong_hop_le: {"type": "BI_XU_PHAT", "src": "unit:ND336-2025/D6/K1", "dst": "e1"}
 
-## ND336-2025/D12/K7@2026-11-03 · nd336 · tier B · chưa duyệt
+## ND336-2025/D12/K7@2026-11-03 · nd336 · tier B · ĐÃ DUYỆT
 
 Điều: Xử phạt các hành vi vi phạm quy định về vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
 
@@ -1501,7 +1501,7 @@ Bản nháp bị bỏ 1 mục:
 - BI_XU_PHAT: unit:ND336-2025/D12/K7/e → e7
 - BI_XU_PHAT: unit:ND336-2025/D12/K7/đ → e7
 
-## ND336-2025/D9/K4@2026-11-03 · nd336 · tier B · chưa duyệt
+## ND336-2025/D9/K4@2026-11-03 · nd336 · tier B · ĐÃ DUYỆT
 
 Điều: Xử phạt các hành vi vi phạm quy định về quản lý, khai thác, bảo trì, bảo vệ kết cấu hạ tầng đường bộ
 
@@ -1540,7 +1540,7 @@ Bản nháp bị bỏ 4 mục:
 - dich_khong_hop_le: {"type": "BI_XU_PHAT", "src": "unit:ND336-2025/D9/K4/b", "dst": "e5"}
 - dich_khong_hop_le: {"type": "BI_XU_PHAT", "src": "unit:ND336-2025/D9/K4/c", "dst": "e5"}
 
-## ND336-2025/D11/K2@2026-11-03 · tier_b · tier B · chưa duyệt
+## ND336-2025/D11/K2@2026-11-03 · tier_b · tier B · ĐÃ DUYỆT
 
 Điều: Xử phạt người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ kinh doanh vận tải vi phạm quy định về vận tải đường bộ
 
@@ -1575,7 +1575,7 @@ Bản nháp bị bỏ 4 mục:
 - AP_DUNG_CHO: unit:ND336-2025/D11/K2 → e7
 - AP_DUNG_CHO: unit:ND336-2025/D11/K2 → e8
 
-## ND336-2025/D5/K2@2026-11-03 · tier_b · tier B · chưa duyệt
+## ND336-2025/D5/K2@2026-11-03 · tier_b · tier B · ĐÃ DUYỆT
 
 Điều: Xử phạt các hành vi vi phạm quy định về sử dụng, khai thác trong phạm vi đất dành cho kết cấu hạ tầng đường bộ
 
@@ -1620,7 +1620,7 @@ Bản nháp bị bỏ 5 mục:
 - dich_khong_hop_le: {"type": "BI_XU_PHAT", "src": "unit:ND336-2025/D5/K2/c", "dst": "e6"}
 - dich_khong_hop_le: {"type": "BI_XU_PHAT", "src": "unit:ND336-2025/D5/K2/d", "dst": "e6"}
 
-## ND336-2025/D14/K2@2026-11-03 · nd336 · tier B · chưa duyệt
+## ND336-2025/D14/K2@2026-11-03 · nd336 · tier B · ĐÃ DUYỆT
 
 Điều: Xử phạt các hành vi vi phạm về vận tải nội bộ
 
@@ -1680,7 +1680,7 @@ Bản nháp bị bỏ 8 mục:
 - dich_khong_hop_le: {"type": "AP_DUNG_CHO", "src": "unit:ND336-2025/D14/K2", "dst": "e11"}
 - dich_khong_hop_le: {"type": "BI_XU_PHAT", "src": "unit:ND336-2025/D14/K2", "dst": "e8"}
 
-## TT79-2024-BCA/D27/K1@2026-11-03 · tt_tier_a · tier A · chưa duyệt
+## TT79-2024-BCA/D27/K1@2026-11-03 · tt_tier_a · tier A · ĐÃ DUYỆT
 
 Điều: Trách nhiệm của Công an các đơn vị, địa phương trong việc thu hồi chứng nhận đăng ký xe, biển số xe
 
@@ -1722,7 +1722,7 @@ Bản nháp bị bỏ 4 mục:
 - dich_khong_hop_le: {"type": "AP_DUNG_CHO", "src": "unit:TT79-2024-BCA/D27/K1/c", "dst": "e13"}
 - dich_khong_hop_le: {"type": "AP_DUNG_CHO", "src": "unit:TT79-2024-BCA/D27/K1/d", "dst": "e15"}
 
-## ND336-2025/D12/K6@2026-11-03 · tier_b · tier B · chưa duyệt
+## ND336-2025/D12/K6@2026-11-03 · tier_b · tier B · ĐÃ DUYỆT
 
 Điều: Xử phạt các hành vi vi phạm quy định về vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
 
