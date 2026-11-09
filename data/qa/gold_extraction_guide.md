@@ -39,6 +39,25 @@ Chi tiết:
 3. **PhuongTien / ChuThe**: chọn mục **cụ thể nhất** có trong danh mục, đúng như chữ trong văn bản/tiêu đề Điều. Mục không có trong danh mục → ghi vào `notes`, không tự thêm id. Được chấm ở **cấp Khoản** (mỗi `catalog_id` tính một lần cho cả bản ghi, không xét gắn vào Khoản hay Điểm nào), nên chỉ cần gán mỗi loại một lần, ở unit nào cũng được.
 4. **KhaiNiem**: chỉ thuật ngữ được định nghĩa trong chính unit; tên gọi tắt "(sau đây gọi là …)" không phải thực thể riêng.
 
+### Quy tắc làm rõ khi rà (Claude, 10/11/2026 — người dùng kiểm lại)
+
+Các quy tắc dưới đây được áp nhất quán khi rà 60 bản ghi nháp; chỗ nào bạn không đồng ý thì sửa cả quy tắc lẫn bản ghi.
+
+1. **Tách HanhVi**: chỉ tách khi các vế ngăn bởi ";" là **các hành vi độc lập** (ND168 Đ6 K12, Đ8 K6 b/đ/e). Không tách khi:
+   - ";" chỉ ngăn các tân ngữ của cùng một động từ ("không nhường đường cho: A; B" — ND168 Đ7 K5 b, c);
+   - các hành vi chỉ liệt kê bằng dấu phẩy trong một mệnh đề (ND168 Đ12 K5 a).
+2. **Ngoại lệ** ("trừ các hành vi … quy định tại …", "(trừ xe buýt nội tỉnh)") **không gán nhãn**: không đưa vào `span`, cũng không vào `dieu_kien`. `dieu_kien` chỉ dành cho tình tiết đi kèm ("mà gây tai nạn", "trong trường hợp …", "nếu …"); không chép lại chính hành vi hay từ khoá.
+3. **Phạt tiền riêng cho cá nhân và tổ chức** ("từ X đến Y đối với cá nhân, từ Z đến T đối với tổ chức") → **hai CheTai** `phat_tien`, không ghi `doi_tuong`. Validator báo cảnh báo "con số không khớp regex" cho mức của tổ chức vì regex hệ thống chỉ bắt cụm có chữ "Phạt tiền" — đây là hạn chế của hệ thống, nhãn vẫn đúng.
+4. **Mức phạt ở câu dẫn Khoản** → `BI_XU_PHAT` từ **từng Điểm**, không từ chính Khoản. Điểm chỉ dẫn chiếu hành vi khác "mà gây tai nạn" (ND168 Đ7 K10 b) không có HanhVi nhưng vẫn nhận mức phạt.
+5. **Biện pháp khắc phục hậu quả**: kể cả khi không có chữ "buộc" ("phải khôi phục lại tình trạng ban đầu…", ND168 Đ32 K19 e), nếu câu dẫn khoản nói đó là biện pháp khắc phục hậu quả.
+6. **"Thu hồi phù hiệu / giấy phép"** không phải CheTai cũng không phải BienPhapBoSung (NĐ 168 Điều 3 tách riêng) → không gán (ND168 Đ20 K9, Đ38 K5).
+7. **ChuThe** là chủ thể **bị điều chỉnh / bị xử phạt / có nghĩa vụ**, không phải người được nhắc tới (người nhận thông báo, tổ chức trong tân ngữ). Chủ thể không có trong danh mục (cơ sở thử nghiệm, đơn vị cung cấp phần mềm, cơ quan đăng ký xe…) → không gán, ghi ở `notes`. Có "cá nhân … tổ chức" thì gán cả `CT:ca-nhan`, `CT:to-chuc`.
+8. **PhuongTien** theo tiêu đề Điều + nội dung Khoản, cụ thể nhất có thể (không dùng "phương tiện giao thông đường bộ" khi tiêu đề nêu loại xe). "Phương tiện giao thông cơ giới đường bộ" = `PT:xe-co-gioi` (LUAT36 Đ2 K2).
+9. **Thông tư / điều khoản không phải xử phạt**:
+   - điều về **trách nhiệm/nghĩa vụ** của một chủ thể → mỗi nghĩa vụ là một HanhVi;
+   - **trình tự thủ tục**, **tiêu chuẩn**, đối tượng áp dụng, chuyển tiếp, nguyên tắc, cách tính → không có HanhVi.
+10. **Điều "Giải thích từ ngữ"**: chỉ KhaiNiem (không gán PT/CT cho thuật ngữ được định nghĩa).
+
 ## Quan hệ (`relations`)
 
 Mỗi mục: `{"type": ..., "src": "unit:<mã unit>", "dst": "<id thực thể>"}`. `src` luôn là unit (có thể thuộc Khoản khác, khi được dẫn chiếu).
