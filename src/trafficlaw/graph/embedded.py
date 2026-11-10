@@ -14,6 +14,7 @@ from typing import Any, Literal
 import networkx as nx
 
 from trafficlaw.graph.store import (
+    GRAPH_FILES,
     BaseGraphStore,
     GraphEdge,
     GraphNode,
@@ -22,6 +23,7 @@ from trafficlaw.graph.store import (
     load_graph,
     sort_edges,
 )
+from trafficlaw.utils.jsonl import read_jsonl
 
 
 class EmbeddedStore(BaseGraphStore):
@@ -38,6 +40,15 @@ class EmbeddedStore(BaseGraphStore):
         if not out.ok:  # pragma: no cover - chỉ xảy ra khi có cạnh trùng khoá
             raise ValueError(f"Số đếm lệch sau khi nạp {graph_dir}: {out.actual} ≠ {out.expected}")
         assert out.data_hash == data_hash(graph_dir)
+        return s
+
+    @classmethod
+    def from_dir_base(cls, graph_dir: str | Path) -> EmbeddedStore:
+        """Chỉ 3 file M5 (bỏ file ngữ nghĩa M8 nếu đã publish) — đầu vào của trích xuất."""
+        d = Path(graph_dir)
+        s = cls()
+        s.upsert_nodes([GraphNode.from_dict(r) for r in read_jsonl(d / GRAPH_FILES[0])])
+        s.upsert_edges([GraphEdge.from_dict(r) for n in GRAPH_FILES[1:] for r in read_jsonl(d / n)])
         return s
 
     # ---- nguyên thuỷ -------------------------------------------------------------------

@@ -35,6 +35,7 @@ from pathlib import Path
 from types import TracebackType
 from typing import Any, Literal, Protocol, runtime_checkable
 
+from trafficlaw.graph.schema import SEMANTIC_LABELS
 from trafficlaw.utils.dates import in_effect, parse_iso
 from trafficlaw.utils.jsonl import read_jsonl
 
@@ -43,6 +44,8 @@ logger = logging.getLogger(__name__)
 #: Đổi khi cách lưu trong store thay đổi → ``data_hash`` đổi → Neo4j nạp lại.
 LOADER_VERSION = "m6-1"
 GRAPH_FILES: tuple[str, ...] = ("nodes.jsonl", "edges_struct.jsonl", "edges_legal.jsonl")
+#: M8 (tuỳ chọn): chỉ được ghi khi trích xuất đạt ngưỡng F1. Thiếu file → như M6.
+SEMANTIC_FILES: tuple[str, ...] = ("nodes_semantic.jsonl", "edges_semantic.jsonl")
 
 UNIT_LABELS: tuple[str, ...] = ("Phan", "Chuong", "Muc", "Dieu", "Khoan", "Diem", "PhuLuc")
 DOC_LABELS: tuple[str, ...] = ("VanBan", "VanBanNgoai")
@@ -194,22 +197,36 @@ def unit_of_version_id(node_id: str) -> str:
 # --------------------------------------------------------------------------- file JSONL
 
 
+def graph_files(graph_dir: str | Path) -> list[str]:
+    """3 file M5 + 2 file ngữ nghĩa M8 nếu có (phải có đủ cả hai hoặc không có file nào)."""
+    d = Path(graph_dir)
+    present = [n for n in SEMANTIC_FILES if (d / n).is_file()]
+    if present and len(present) != len(SEMANTIC_FILES):
+        raise FileNotFoundError(f"Thiếu một file ngữ nghĩa trong {d}: có {present}")
+    return [*GRAPH_FILES, *present]
+
+
 def load_graph_dir(graph_dir: str | Path) -> tuple[list[GraphNode], list[GraphEdge]]:
-    """Đọc ``nodes.jsonl`` + ``edges_struct.jsonl`` + ``edges_legal.jsonl``."""
+    """Đọc ``nodes.jsonl`` + ``edges_struct.jsonl`` + ``edges_legal.jsonl`` (+ hai file ngữ
+    nghĩa của M8 nếu có)."""
     d = Path(graph_dir)
     missing = [n for n in GRAPH_FILES if not (d / n).is_file()]
     if missing:
         raise FileNotFoundError(f"Thiếu file đồ thị trong {d}: {missing}")
-    nodes = [GraphNode.from_dict(r) for r in read_jsonl(d / GRAPH_FILES[0])]
-    edges = [GraphEdge.from_dict(r) for n in GRAPH_FILES[1:] for r in read_jsonl(d / n)]
+    files = graph_files(d)
+    node_files = [n for n in files if n.startswith("nodes")]
+    edge_files = [n for n in files if n.startswith("edges")]
+    nodes = [GraphNode.from_dict(r) for n in node_files for r in read_jsonl(d / n)]
+    edges = [GraphEdge.from_dict(r) for n in edge_files for r in read_jsonl(d / n)]
     return nodes, edges
 
 
 def data_hash(graph_dir: str | Path) -> str:
-    """sha256 của ``LOADER_VERSION`` + nội dung 3 file đồ thị."""
+    """sha256 của ``LOADER_VERSION`` + nội dung các file đồ thị (file ngữ nghĩa chỉ khi có —
+    không có thì hash trùng M6)."""
     d = Path(graph_dir)
     h = hashlib.sha256(LOADER_VERSION.encode())
-    for name in GRAPH_FILES:
+    for name in graph_files(d):
         h.update(name.encode())
         h.update(hashlib.sha256((d / name).read_bytes()).digest())
     return h.hexdigest()
@@ -478,7 +495,8 @@ class BaseGraphStore(ABC):
         lực). Cạnh có trường hiệu lực bị lọc theo ``as_of``; cạnh có ``props.quan_he`` bị bỏ trừ
         khi ``include_self``. Đầu kia là PhienBan → quy về unit của nó (có ``as_of`` → phiên bản
         đó phải hiệu lực). Đầu kia là VanBan/VanBanNgoai → ghi vào kết quả nhưng không mở rộng
-        tiếp (trừ khi ``through_documents``). Seed là id PhienBan → quy về unit.
+        tiếp (trừ khi ``through_documents``). Nút ngữ nghĩa (M8: CheTai, DiemGPLX, HanhVi…) →
+        ghi vào kết quả, không bao giờ mở rộng tiếp. Seed là id PhienBan → quy về unit.
         """
         if not 1 <= hops <= MAX_HOPS:
             raise ValueError(f"hops phải trong [1, {MAX_HOPS}], nhận {hops}")
@@ -529,6 +547,8 @@ class BaseGraphStore(ABC):
                 edges[e.key] = e
                 if target not in dist:
                     dist[target] = hop
+                    if n.label in SEMANTIC_LABELS:
+                        continue
                     if through_documents or n.label not in DOC_LABELS:
                         nxt.add(target)
             frontier = sorted(nxt)
@@ -582,7 +602,7 @@ def load_graph(
     force: bool = False,
     git_commit: str | None = None,
 ) -> LoadOutcome:
-    """Nạp 3 file JSONL vào ``store`` — idempotent, resume được.
+    """Nạp các file JSONL đồ thị vào ``store`` — idempotent, resume được.
 
     ``meta().data_hash`` trùng và số đếm khớp → bỏ qua. Ngược lại (đổi dữ liệu, lần nạp trước bị
     ngắt — meta chỉ được ghi **sau cùng**) → ``clear()`` rồi nạp lại toàn bộ.

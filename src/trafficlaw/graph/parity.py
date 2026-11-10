@@ -14,6 +14,7 @@ from dataclasses import asdict, dataclass, is_dataclass
 from datetime import date
 from typing import Any
 
+from trafficlaw.graph.schema import SEMANTIC_LABELS
 from trafficlaw.graph.store import (
     UNIT_LABELS,
     BaseGraphStore,
@@ -89,6 +90,7 @@ def build_checks(
     *,
     node_labels: Sequence[str],
     edge_types: Sequence[str],
+    semantic: Sequence[str] = (),
 ) -> list[Check]:
     cs: list[Check] = [Check("count", {})]
     cs += [Check("nodes_by_label", {"label": lb}) for lb in node_labels]
@@ -144,7 +146,33 @@ def build_checks(
                     {"seeds": [doc], "edge_types": ["HUONG_DAN", "SUA_DOI"], "as_of": d},
                 ),
             ]
+    # M8: nút ngữ nghĩa (chỉ khi đã publish file ngữ nghĩa)
+    for nid in semantic:
+        cs += [
+            Check("get_node", {"node_id": nid}),
+            Check("in_edges", {"node_id": nid}),
+            Check("out_edges", {"node_id": nid}),
+        ]
+        cs += [Check("in_edges", {"node_id": nid, "as_of": d}) for d in dates]
     return cs
+
+
+def sample_semantic(store: BaseGraphStore, n: int, seed: int = 42) -> list[str]:
+    """``n`` nút ngữ nghĩa phân tầng theo nhãn (rỗng nếu chưa publish)."""
+    rng = random.Random(seed)
+    pools = []
+    for label in SEMANTIC_LABELS:
+        ids = sorted(x.id for x in store.nodes_by_label(label))
+        rng.shuffle(ids)
+        pools.append(ids)
+    out: list[str] = []
+    i = 0
+    while len(out) < n and any(i < len(p) for p in pools):
+        for p in pools:
+            if i < len(p) and len(out) < n:
+                out.append(p[i])
+        i += 1
+    return sorted(out)
 
 
 def _call(store: BaseGraphStore, c: Check) -> Any:
@@ -187,5 +215,6 @@ __all__ = [
     "canon",
     "doc_ids",
     "run_parity",
+    "sample_semantic",
     "sample_units",
 ]

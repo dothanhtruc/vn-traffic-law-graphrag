@@ -1,0 +1,68 @@
+# Model tự host bằng vLLM trên GPU thuê (aidev.edu.vn, 1× RTX 3090 24 GB), gọi từ máy local qua
+# SSH tunnel (quyết định người dùng 09/11/2026: mọi model đều tự host, không dùng API ngoài).
+#
+# - Server chỉ nghe 127.0.0.1 trên máy thuê; máy local: scripts/gpu/tunnel.sh (ssh -L).
+# - API key: VLLM_API_KEY trong env_file trên máy thuê (= LOCAL_LLM_API_KEY trong .env ở local),
+#   không nằm trong dòng lệnh. HF_TOKEN cũng ở env_file (model gated, đẩy HF Hub).
+# - Ghim revision (commit HF) trước mọi run chính thức; null chỉ dùng khi thử nghiệm chọn model.
+# - prefill_tps / decode_tps: token/giây gộp đo trên 3090 (null → default_*), cập nhật sau mỗi phiên.
+
+vllm_version: "0.33.0"     # cài 09/11/2026 trên aidev (driver 610.43.02, CUDA 12.9)
+
+remote:
+  ssh_host: gpu-aidev       # alias trong ~/.ssh/config (xem scripts/gpu/ssh_config.example)
+  remote_dir: ~/GraphRAG
+  vllm_venv: ~/.venvs/vllm  # venv riêng cho vLLM (tránh xung đột torch với môi trường dự án)
+  env_file: ~/.config/graphrag/env
+  local_port: 8000
+  price_vnd_per_hour: 15000 # RTX 3090 · Standard (giá bán 09/11/2026)
+
+default_prefill_tps: 4000   # giả định thận trọng, đo lại ở phiên đầu
+default_decode_tps: 400
+
+# Model chính chốt 09/11/2026 (người dùng) sau chạy thử 179 item tập vàng trên 3090:
+#   qwen3-14b-awq: 43/43 lô ok, 76 s, 8 mục bị loại (span không nguyên văn) — CHỐT
+#   qwen3-8b:      43/43 lô ok nhưng bỏ sót 22 item (đánh sai mã item), 99 s — loại
+# Model gán nháp tập vàng / judge phải KHÁC HỌ (family) với model chính.
+models:
+  qwen3-14b-awq:
+    hf_repo: Qwen/Qwen3-14B-AWQ               # apache-2.0
+    revision: 31c69efc29464b6bb0aee1398b5a7b50a99340c3
+    served_model_name: qwen3-14b-awq
+    quantization: awq_marlin
+    max_model_len: 16384
+    gpu_memory_utilization: 0.90
+    family: qwen
+    role: main
+    decode_tps: 450                           # đo 09/11: 34.350 token ra / 76 s, 16 luồng (gồm prefill)
+  qwen3-8b:
+    hf_repo: Qwen/Qwen3-8B
+    revision: null
+    served_model_name: qwen3-8b
+    dtype: bfloat16
+    max_model_len: 16384
+    gpu_memory_utilization: 0.90
+    family: qwen
+    role: candidate                           # loại 09/11/2026 (bỏ sót 12% item)
+  mistral-small-3.2-awq:
+    # Gán nháp tập vàng + LLM judge (khác họ Qwen). apache-2.0, không gated, có tiếng Việt.
+    # Bản AWQ int4 cộng đồng (compressed-tensors, group 128) của mistralai/Mistral-Small-3.2-
+    # 24B-Instruct-2506 — vLLM tự nhận định dạng lượng tử hoá. Chỉ dùng văn bản (tắt ảnh).
+    hf_repo: jeffcookio/Mistral-Small-3.2-24B-Instruct-2506-awq-sym
+    revision: 49ec31ec0975e46a1aeef24186a45f11be3042b8
+    served_model_name: mistral-small-3.2
+    max_model_len: 16384
+    gpu_memory_utilization: 0.92
+    extra_args: ["--limit-mm-per-prompt", '{"image": 0}', "--max-num-seqs", "16"]
+    family: mistral
+    role: annotator
+  gemma3-12b-bnb4:
+    hf_repo: google/gemma-3-12b-it            # gated — tài khoản HF chưa được cấp quyền (403, 09/11)
+    revision: null
+    served_model_name: gemma3-12b
+    quantization: bitsandbytes
+    dtype: bfloat16
+    max_model_len: 16384
+    gpu_memory_utilization: 0.90
+    family: gemma
+    role: candidate

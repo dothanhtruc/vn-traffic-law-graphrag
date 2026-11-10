@@ -1,17 +1,25 @@
 """M7: kiểm tra provider LLM — có key không, liệt kê model, gọi ping JSON thật.
 
-    uv run python -m scripts.llm_check                       # ping mọi provider có key + model_id
+    uv run python -m scripts.llm_check                       # ping provider chính (local)
+    uv run python -m scripts.llm_check --provider local [--model qwen3-14b-awq] --n 3
     uv run python -m scripts.llm_check --list-models [--provider gemini] [--all]
     uv run python -m scripts.llm_check --provider groq --model llama-3.3-70b-versatile --n 3
 
 Key đọc từ môi trường / ``.env``; chỉ in **tên** biến, không in giá trị. Ping mặc định không dùng
 cache (``--cache`` để dùng). Mã thoát 1 nếu một ping không ``ok`` hoặc trả sai nội dung.
+
+Provider ``local`` (vLLM tự host qua SSH tunnel, 09/11/2026): trước khi ping, gọi
+``/v1/models`` + ``/version`` — không kết nối được ⇒ báo tunnel chưa mở / server chưa chạy;
+in model đang phục vụ (repo HF, độ dài ngữ cảnh, phiên bản vLLM). Không ``--model`` mà server
+chỉ phục vụ một model ⇒ ping model đó. Mỗi ping in thêm token/giây (đầu ra ÷ latency).
+Mặc định chỉ kiểm tra provider chính (API ngoài không còn dùng).
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import statistics
 import sys
@@ -23,6 +31,7 @@ from pydantic import BaseModel
 from trafficlaw.llm.client import build_client, has_key, make_provider
 from trafficlaw.llm.config import LLMConfig, load_llm_config
 from trafficlaw.llm.prompt_loader import load_prompt
+from trafficlaw.llm.serve import probe
 from trafficlaw.llm.types import LLMError, QuotaExhaustedError
 from trafficlaw.utils.env import load_dotenv
 from trafficlaw.utils.logging import setup_logging
@@ -95,11 +104,12 @@ def _ping(cfg: LLMConfig, provider: str, model_id: str | None, n: int, use_cache
         correct = r.status == "ok" and r.parsed == {"ok": True, "echo": word, "sum": a + b}
         good &= correct
         lat.append(r.latency_ms)
+        tps = r.usage.completion_tokens * 1000 / r.latency_ms if r.latency_ms else 0.0
         print(
             f"  [{provider}:{r.model_id}] #{i + 1} status={r.status} correct={correct} "
             f"attempts={r.attempts} cached={r.cached} latency_ms={r.latency_ms} "
             f"usage={r.usage.prompt_tokens}+{r.usage.completion_tokens}={r.usage.total_tokens}"
-            f"{' (ước tính)' if r.usage.estimated else ''}"
+            f"{' (ước tính)' if r.usage.estimated else ''} · {tps:.0f} token ra/giây"
         )
         if r.status != "ok" or not correct:
             print(f"    text={r.text[:300]!r} error={r.error}")
@@ -108,6 +118,12 @@ def _ping(cfg: LLMConfig, provider: str, model_id: str | None, n: int, use_cache
     req, tok = client.limiter.usage_today() if client.limiter else (0, 0)
     print(f"  [{provider}] bộ đếm hôm nay (cục bộ): {req} request, {tok} token")
     return good
+
+
+def _is_local(cfg: LLMConfig, provider: str) -> bool:
+    pc = cfg.providers[provider]
+    hosts = ("127.0.0.1", "localhost")
+    return pc.kind == "openai_compat" and any(h in pc.base_url for h in hosts)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -126,7 +142,8 @@ def main(argv: list[str] | None = None) -> int:
     set_seed()
     load_dotenv(REPO_ROOT / ".env")
     cfg = load_llm_config(args.config)
-    providers = args.provider or list(cfg.providers)
+    # Mặc định chỉ provider chính (09/11/2026: mọi model tự host, API ngoài không dùng).
+    providers = args.provider or [cfg.main.provider]
     if args.model and len(providers) != 1:
         ap.error("--model cần đúng một --provider")
 
@@ -144,6 +161,14 @@ def main(argv: list[str] | None = None) -> int:
             continue
         print(f"\n[{p}]")
         try:
+            served: list[str] = []
+            if _is_local(cfg, p):
+                pc = cfg.providers[p]
+                info = probe(pc.base_url, os.environ.get(pc.api_key_env, ""))
+                print(f"  vLLM {info['vllm_version']} @ {pc.base_url}")
+                for m in info["models"]:
+                    print(f"  đang phục vụ: {m['id']}  repo={m['root']}  ctx={m['max_model_len']}")
+                served = [str(m["id"]) for m in info["models"]]
             if args.list_models:
                 rows = _list_models(cfg, p, args.all)
                 listing[p] = rows
@@ -154,6 +179,8 @@ def main(argv: list[str] | None = None) -> int:
             mid = args.model
             if mid is None and p == cfg.main.provider:
                 mid = cfg.main.model_id
+            if mid is None and len(served) == 1:
+                mid = served[0]
             if not (mid or cfg.providers[p].model_id):
                 print("  bỏ qua ping: chưa có model_id (dùng --model)")
                 continue

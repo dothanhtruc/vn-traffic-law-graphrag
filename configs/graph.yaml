@@ -7,6 +7,7 @@ neo4j:
 # --verify-store: so EmbeddedStore ↔ Neo4jStore
 parity:
   n_units: 200              # unit phân tầng theo văn bản (+ mọi VanBan)
+  n_semantic: 200           # M8: nút ngữ nghĩa phân tầng theo nhãn (khi đã publish)
   seed: 42
   dates: ["2025-01-01", "2026-01-01", "2026-07-01", "2026-08-15"]
   workers: 8                # luồng song song gọi Neo4j

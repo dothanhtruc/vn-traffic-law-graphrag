@@ -1,0 +1,29 @@
+# Khối SSH cho máy GPU thuê (aidev.edu.vn). KHÔNG cần sửa tay — dùng script:
+#
+#   scripts/gpu/gpu.sh key init                          # tạo ~/.ssh/aidev_ed25519 (ed25519, không
+#                                                        # passphrase), in public key
+#   → dán public key vào trang quản lý SSH key của aidev TRƯỚC khi tạo máy
+#   scripts/gpu/gpu.sh key config <IP> [cổng] [user]     # ghi khối dưới đây vào đầu ~/.ssh/config
+#   scripts/gpu/gpu.sh key check                         # xác nhận đăng nhập CHỈ bằng key
+#   scripts/gpu/gpu.sh key install                       # nếu máy chưa nhận key: gõ mật khẩu 1 lần
+#   scripts/gpu/gpu.sh key harden                        # (tuỳ chọn) tắt đăng nhập bằng mật khẩu
+#
+# Windows: ~/.ssh = C:\Users\<tên>\.ssh (Git Bash và OpenSSH của Windows dùng chung). Host/IP và
+# key KHÔNG vào repo. Key không passphrase: ai có file key là vào được máy thuê khi máy đang bật
+# ⇒ giữ file key riêng tư, xoá key trên trang aidev khi không dùng nữa.
+#
+# Khối mà `gpu.sh key config` ghi (giữa hai dòng đánh dấu; chạy lại thì thay đúng khối này):
+
+# >>> graphrag gpu-aidev (scripts/gpu/gpu.sh key config) >>>
+Host gpu-aidev
+    HostName 203.0.113.10
+    Port 22
+    User root
+    IdentityFile ~/.ssh/aidev_ed25519
+    IdentitiesOnly yes
+    PreferredAuthentications publickey
+    ServerAliveInterval 30
+    ServerAliveCountMax 3
+    ExitOnForwardFailure yes
+    StrictHostKeyChecking accept-new
+# <<< graphrag gpu-aidev <<<
