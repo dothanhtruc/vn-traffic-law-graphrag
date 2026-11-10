@@ -1,0 +1,159 @@
+{
+  "git_commit": "f0bac4e742bdd161b40ac2b5cf5da7145f4cd7d0-dirty",
+  "model_id": "mistral-small-3.2",
+  "prompt_hash": "603e12db4b7a6d717710048955d87c56a105d84cfc00eb2712835d49228f1f9d",
+  "schema_hash": "415b103e5f9f38d294b2e64033210ed98df977fb2217b0c21b1e82b9894cd66d",
+  "test_sha256": "",
+  "n_test": 0,
+  "data_version": "f3297e64b9e4485537d78822a2dd8cfe50477e0a9be92b7f432ee06a2fa99583",
+  "config": {
+    "provider": "local",
+    "model_id": "mistral-small-3.2",
+    "prompt": "qa_generate",
+    "n_questions": 3,
+    "max_output_tokens": 1024,
+    "max_chunk_chars": 6000,
+    "min_words": 5,
+    "max_words": 50,
+    "max_chars": 300,
+    "verbatim_ngram": 10,
+    "min_coverage": 0.5,
+    "near_dup": 0.9,
+    "val_fraction": 0.05,
+    "seed": 42,
+    "as_of_cutoff": "2026-11-03"
+  },
+  "runs": [
+    {
+      "started_at": "2026-11-10T10:24:22+07:00",
+      "seconds": 11.9,
+      "model_id": "mistral-small-3.2",
+      "prompt_hash": "b3ffbe77f6014e79bde0958e58826af4d9085763ca547916f72841096c335171",
+      "schema_hash": "415b103e5f9f38d294b2e64033210ed98df977fb2217b0c21b1e82b9894cd66d",
+      "workers": 16,
+      "n_todo": 3773,
+      "n_called": 32,
+      "by_status": {
+        "ok": 32
+      },
+      "serve": {
+        "served_model": "mistral-small-3.2",
+        "hf_repo": "jeffcookio/Mistral-Small-3.2-24B-Instruct-2506-awq-sym",
+        "revision": "49ec31ec0975e46a1aeef24186a45f11be3042b8",
+        "quantization": null,
+        "vllm_version": "0.33.0"
+      },
+      "git_commit": "a481df5d74a343b83787f2cc5bad8b313dc3240a"
+    },
+    {
+      "started_at": "2026-11-10T10:25:38+07:00",
+      "seconds": 20.6,
+      "model_id": "mistral-small-3.2",
+      "prompt_hash": "603e12db4b7a6d717710048955d87c56a105d84cfc00eb2712835d49228f1f9d",
+      "schema_hash": "415b103e5f9f38d294b2e64033210ed98df977fb2217b0c21b1e82b9894cd66d",
+      "workers": 16,
+      "n_todo": 3773,
+      "n_called": 64,
+      "by_status": {
+        "ok": 64
+      },
+      "serve": {
+        "served_model": "mistral-small-3.2",
+        "hf_repo": "jeffcookio/Mistral-Small-3.2-24B-Instruct-2506-awq-sym",
+        "revision": "49ec31ec0975e46a1aeef24186a45f11be3042b8",
+        "quantization": null,
+        "vllm_version": "0.33.0"
+      },
+      "git_commit": "a481df5d74a343b83787f2cc5bad8b313dc3240a-dirty"
+    },
+    {
+      "started_at": "2026-11-10T10:26:12+07:00",
+      "seconds": 1247.0,
+      "model_id": "mistral-small-3.2",
+      "prompt_hash": "603e12db4b7a6d717710048955d87c56a105d84cfc00eb2712835d49228f1f9d",
+      "schema_hash": "415b103e5f9f38d294b2e64033210ed98df977fb2217b0c21b1e82b9894cd66d",
+      "workers": 16,
+      "n_todo": 3709,
+      "n_called": 3709,
+      "by_status": {
+        "ok": 3709
+      },
+      "serve": {
+        "served_model": "mistral-small-3.2",
+        "hf_repo": "jeffcookio/Mistral-Small-3.2-24B-Instruct-2506-awq-sym",
+        "revision": "49ec31ec0975e46a1aeef24186a45f11be3042b8",
+        "quantization": null,
+        "vllm_version": "0.33.0"
+      },
+      "git_commit": "a481df5d74a343b83787f2cc5bad8b313dc3240a-dirty"
+    }
+  ],
+  "built_at": "2026-11-10T10:52:29+07:00",
+  "train_sha256": "2068aaef94c41d27722bf1d28504d6768a878db861fac16697a985d5428d5082",
+  "val_sha256": "51b164307a32d1b39293feda61390fdf5b4a087885661f2a4b8980b25b17543a",
+  "n_chunks": 3775,
+  "n_chunks_unique": 3773,
+  "n_chunks_done": 3773,
+  "n_questions_raw": 11319,
+  "n_train": 8566,
+  "n_val": 489,
+  "n_in_test_gold": 0,
+  "n_dieu_train": 764,
+  "n_dieu_val": 44,
+  "rejected_by_reason": {
+    "chep_nguyen_van": 1444,
+    "hoi_che_tai_khong_co": 164,
+    "khong_lien_quan": 26,
+    "qua_ngan": 2,
+    "so_khong_co_trong_unit": 70,
+    "tham_chieu_ngu_canh": 164,
+    "trung_lap": 388,
+    "trung_trong_chunk": 6
+  },
+  "question_type": {
+    "train": {
+      "bien_phap": 575,
+      "dinh_nghia": 1498,
+      "hanh_vi_cam_nghia_vu": 3043,
+      "khac": 2,
+      "muc_phat": 464,
+      "thu_tuc_tham_quyen": 2896,
+      "tru_diem": 88
+    },
+    "val": {
+      "bien_phap": 29,
+      "dinh_nghia": 57,
+      "hanh_vi_cam_nghia_vu": 183,
+      "muc_phat": 17,
+      "thu_tuc_tham_quyen": 200,
+      "tru_diem": 3
+    }
+  },
+  "tier": {
+    "train": {
+      "A": 4716,
+      "B": 2904,
+      "C": 485,
+      "historical": 461
+    },
+    "val": {
+      "A": 214,
+      "B": 199,
+      "C": 42,
+      "historical": 34
+    }
+  },
+  "llm": {
+    "records_by_status": {
+      "ok": 3773
+    },
+    "usage": {
+      "prompt_tokens": 5019769,
+      "completion_tokens": 497918,
+      "total_tokens": 5517687
+    },
+    "latency_ms_median": 5270,
+    "latency_ms_max": 10056,
+    "n_http_calls": 3773
+  }
+}

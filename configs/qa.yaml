@@ -1,0 +1,68 @@
+# M9: bộ dữ liệu hỏi–đáp. Xem CLAUDE.md mục 10 "Quy ước bộ dữ liệu hỏi–đáp (M9)".
+
+paths:
+  test: data/qa/test.jsonl              # VIẾT TAY — công cụ chỉ đọc
+  train: data/qa/train.jsonl
+  val: data/qa/val.jsonl
+  subsets: data/qa/subsets.json
+  worksheet: data/qa/test_worksheet.md
+  summary: data/qa/qa_summary.md
+  review: data/qa/train_review.md
+  manifest: data/qa/train_manifest.json
+  generate_summary: data/qa/generate_summary.md
+  gen_dir: data/processed/qa_gen        # raw.jsonl, rejected.jsonl, runs.jsonl (artifact Release)
+  validate_dir: data/processed/qa       # validate_<split>.json, <split>_resolved.jsonl
+
+as_of_default: 2026-11-03               # mốc chốt dữ liệu
+seed: 42
+milestones: [2025-01-01, 2026-01-01, 2026-07-01, 2026-08-15]
+near_dup: 0.9                           # cosine TF-IDF n-gram ký tự (M10/M14 kiểm lại bằng embedding)
+
+# Hạn mức tập test (người dùng chốt 10/11/2026). Tier áp cho câu có tier (ngoai_pham_vi không
+# có tier) theo tỷ lệ 70/20/5/5.
+targets:
+  total: 500
+  tolerance: 0.1
+  tier: {A: 350, B: 100, C: 25, historical: 25}
+  question_type:
+    muc_phat: 80
+    tru_diem: 30
+    bien_phap: 35
+    hanh_vi_cam_nghia_vu: 70
+    dinh_nghia: 40
+    thu_tuc_tham_quyen: 70
+    theo_thoi_diem: 50                  # 25 cặp trước/sau mốc
+    da_buoc: 60
+    so_sanh: 30
+    ngoai_pham_vi: 35
+
+plan:
+  factor: 1.0                           # số gợi ý = hạn mức × factor
+  max_text_chars: 1200
+
+# Sinh train/val (người dùng chốt 10/11/2026): model KHÁC HỌ với model trả lời (qwen3-14b-awq).
+generate:
+  provider: local
+  model_id: mistral-small-3.2
+  prompt: qa_generate
+  n_questions: 3
+  max_output_tokens: 1024
+  max_chunk_chars: 6000
+  min_words: 5
+  max_words: 50
+  max_chars: 300
+  verbatim_ngram: 10
+  min_coverage: 0.5                     # độ phủ âm tiết câu hỏi trong chunk (lọc câu lạc đề)
+  near_dup: 0.9
+  val_fraction: 0.05                    # chia theo Điều
+  seed: 42
+  as_of_cutoff: 2026-11-03
+
+subsets:
+  ablation_200: {n: 200}
+  judge_200: {n: 200}
+  variance_100: {n: 100}
+  regression_100: {n: 100, exclude_types: [ngoai_pham_vi]}
+
+review:
+  n: 50
