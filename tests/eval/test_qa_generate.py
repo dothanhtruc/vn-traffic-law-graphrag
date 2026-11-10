@@ -35,7 +35,7 @@ from trafficlaw.utils.jsonl import read_jsonl
 
 MINI = Path(__file__).resolve().parents[1] / "fixtures/mini_graph"
 D6 = "ND168-2024/D6"
-CFG = GenerateConfig(model_id="fake-model")
+CFG = GenerateConfig(model_id="fake-model", min_coverage=0.0)  # câu giả không bám chunk
 
 
 @pytest.fixture(scope="module")
@@ -256,3 +256,17 @@ def test_build_splits(tmp_path: Path, store: EmbeddedStore, chunks: list[GenChun
     assert res2.stats["rejected_by_reason"]["gan_trung_test"] == 1
     flagged = {i.gold_units[0] for i in [*res2.train, *res2.val] if i.in_test_gold}
     assert f"{D6}/K5" in flagged and all(u.startswith(f"{D6}/K5") for u in flagged)
+
+
+def test_filter_off_topic(chunks: list[GenChunk]) -> None:
+    gc = next(c for c in chunks if c.chunk.unit_id == f"{D6}/K5")
+    cfg = GenerateConfig(model_id="fake-model")
+    qs = [
+        {"question": "Đăng ký kết hôn cần chuẩn bị giấy tờ gì ở xã?", "question_type": "khac"},
+        {
+            "question": "Người điều khiển xe ô tô vi phạm bị phạt tiền bao nhiêu?",
+            "question_type": "muc_phat",
+        },
+    ]
+    keep, rej = filter_questions(gc, qs, cfg)
+    assert [r.reason for r in rej] == ["khong_lien_quan"] and len(keep) == 1

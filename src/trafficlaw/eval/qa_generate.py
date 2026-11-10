@@ -84,6 +84,9 @@ class GenerateConfig(BaseModel):
     max_words: int = 50
     max_chars: int = 300
     verbatim_ngram: int = 10
+    min_coverage: float = 0.5
+    """Tỷ lệ âm tiết nội dung của câu hỏi (bỏ hư từ) có trong chunk + tên văn bản; thấp hơn →
+    ``khong_lien_quan`` (câu lạc đề, vd model chép ví dụ khi chunk quá ngắn)."""
     """Câu hỏi chứa ≥ N từ liên tiếp chép từ chunk → loại (``chep_nguyen_van``)."""
     near_dup: float = 0.9
     val_fraction: float = 0.05
@@ -356,6 +359,56 @@ def allowed_numbers(gc: GenChunk) -> set[Any]:
     )
 
 
+STOPWORDS = frozenset(
+    [
+        "có",
+        "không",
+        "được",
+        "bị",
+        "thì",
+        "là",
+        "của",
+        "và",
+        "các",
+        "những",
+        "gì",
+        "nào",
+        "ai",
+        "bao",
+        "nhiêu",
+        "như",
+        "thế",
+        "khi",
+        "nếu",
+        "phải",
+        "cho",
+        "với",
+        "trong",
+        "theo",
+        "về",
+        "để",
+        "này",
+        "đó",
+        "một",
+        "hay",
+        "hoặc",
+        "ở",
+        "tại",
+        "do",
+        "bởi",
+        "sao",
+        "vậy",
+        "ạ",
+        "người",
+    ]
+)
+
+
+def coverage(question: str, vocab: set[str]) -> float:
+    w = [x for x in normalize(question).split() if x not in STOPWORDS]
+    return sum(x in vocab for x in w) / len(w) if w else 0.0
+
+
 def _word_ngrams(text: str, n: int) -> set[tuple[str, ...]]:
     w = normalize(text).split()
     return {tuple(w[i : i + n]) for i in range(len(w) - n + 1)}
@@ -370,6 +423,7 @@ def filter_questions(
     rej: list[Rejected] = []
     nums = allowed_numbers(gc)
     grams = _word_ngrams(gc.chunk.text, cfg.verbatim_ngram)
+    vocab = set(normalize(f"{gc.chunk.text} {gc.doc_label}").split())
     cid = gc.chunk.chunk_id
     for pos, raw in enumerate(questions):
         q = clean_question(str(raw.get("question") or ""))
@@ -389,6 +443,8 @@ def filter_questions(
             bad("qua_dai", f"{n_words} từ / {len(q)} ký tự")
         elif extra := parse_numbers(q) - nums:
             bad("so_khong_co_trong_unit", ", ".join(sorted(str(x) for x in extra)))
+        elif (cov := coverage(q, vocab)) < cfg.min_coverage:
+            bad("khong_lien_quan", f"độ phủ từ {cov:.2f}")
         elif _CONTEXT_RE.search(q):
             bad("tham_chieu_ngu_canh", _CONTEXT_RE.search(q).group(0))  # type: ignore[union-attr]
         elif grams and _word_ngrams(q, cfg.verbatim_ngram) & grams:

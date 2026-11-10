@@ -52,6 +52,7 @@ generate:
   max_words: 50
   max_chars: 300
   verbatim_ngram: 10
+  min_coverage: 0.5                     # độ phủ âm tiết câu hỏi trong chunk (lọc câu lạc đề)
   near_dup: 0.9
   val_fraction: 0.05                    # chia theo Điều
   seed: 42
