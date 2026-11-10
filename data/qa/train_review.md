@@ -4,7 +4,7 @@
 
 Tiêu chí: **Đ** = chunk trả lời được câu hỏi (positive đúng); **T** = câu tự nhiên, tự đứng được, không chép nguyên văn; **L** = loại câu đúng. Ghi ✓/✗ và nhận xét.
 
-## Kết quả rà (Claude, 10/11/2026 — chờ người dùng xác nhận)
+## Kết quả rà (Claude rà, người dùng xác nhận 10/11/2026)
 
 | Tiêu chí | Đạt |
 | --- | ---: |
