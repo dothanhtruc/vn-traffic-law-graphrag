@@ -203,7 +203,9 @@ print(l('configs/serve.yaml').vllm_version or '')")"
         # Gói hệ thống: tmux (job nền) + python3-dev/build-essential (Triton của vLLM biên dịch
         # module C lúc khởi động, cần Python.h — image Ubuntu 24.04 của aidev không có sẵn).
         S=''; [ \"\$(id -u)\" = 0 ] || S='sudo -n'
-        PY_INC=\$(python3 -c 'import sysconfig; print(sysconfig.get_paths()[\"include\"])')
+        # Kiểm tra Python.h của python3.12 hệ thống (venv vLLM), không phải \`python3\` trong PATH:
+        # image 10/11/2026 có miniconda (3.13, có Python.h) đứng trước trong PATH của shell login.
+        PY_INC=\$(/usr/bin/python3.12 -c 'import sysconfig; print(sysconfig.get_paths()[\"include\"])' 2>/dev/null || echo /nonexistent)
         if ! command -v tmux >/dev/null || ! command -v gcc >/dev/null || [ ! -f \"\$PY_INC/Python.h\" ]; then
             export DEBIAN_FRONTEND=noninteractive
             \$S apt-get update -qq
@@ -220,6 +222,8 @@ print(l('configs/serve.yaml').vllm_version or '')")"
         cd $R_DIR && uv sync -q
         [ -x $R_VENV/bin/python ] || uv venv -q --python 3.12 $R_VENV
         uv pip install -q --python $R_VENV/bin/python $(printf '%q' "vllm${ver:+==$ver}") bitsandbytes
+        V_INC=\$($R_VENV/bin/python -c 'import sysconfig; print(sysconfig.get_paths()[\"include\"])')
+        [ -f \"\$V_INC/Python.h\" ] || { echo \"thiếu \$V_INC/Python.h (Triton của vLLM cần) — cài gói dev cho Python của venv\" >&2; exit 1; }
         echo \"vLLM: \$($R_VENV/bin/python -c 'import vllm; print(vllm.__version__)')\"
         nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader
         nvcc --version 2>/dev/null | tail -n1 || true

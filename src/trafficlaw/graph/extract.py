@@ -334,6 +334,9 @@ class ExtractLLMConfig(BaseModel):
     max_output_tokens: int = 32768
 
 
+DEFAULT_DEFINITION_TITLE = r"Giải thích từ ngữ"
+
+
 class ExtractConfig(BaseModel):
     """``configs/extract.yaml`` (phần trích xuất)."""
 
@@ -344,7 +347,7 @@ class ExtractConfig(BaseModel):
         r"^(?:Sửa đổi|Bãi bỏ|Bổ sung|Thay thế)\b.*\b(?:số|Nghị định|Thông tư|Luật)\b"
     )
     sanction_dieu_title: str = r"^Xử phạt"
-    definition_dieu_title: str = r"Giải thích từ ngữ"
+    definition_dieu_title: str = DEFAULT_DEFINITION_TITLE
     selective_hint: str = (
         r"[Pp]hạt tiền|[Pp]hạt cảnh cáo|trừ điểm giấy phép lái|[Tt]ước quyền sử dụng|"
         r"[Tt]ịch thu|biện pháp khắc phục hậu quả"
@@ -748,7 +751,11 @@ GENERIC_PT: frozenset[str] = frozenset(
 
 
 def validate_item_output(
-    item: Item, out: Mapping[str, Any], catalog: Catalog
+    item: Item,
+    out: Mapping[str, Any],
+    catalog: Catalog,
+    *,
+    definition_title: str = DEFAULT_DEFINITION_TITLE,
 ) -> tuple[ItemResult, list[Rejection]]:
     """Kiểm tra một ``ItemOut`` (dict) với text của item:
 
@@ -757,7 +764,8 @@ def validate_item_output(
     - HanhVi chỉ dẫn chiếu hành vi nơi khác → loại (``chi_dan_chieu``); cụm ngoại lệ ", trừ …"
       cuối span → cắt bỏ.
     - PhuongTien/ChuThe: id ngoài danh mục → loại (``ngoai_danh_muc``); PhuongTien chung chung
-      khi đã có loại xe cụ thể → loại (``pt_chung_chung``).
+      khi đã có loại xe cụ thể → loại (``pt_chung_chung``); item thuộc Điều "Giải thích từ
+      ngữ" → loại mọi PT/CT (``dieu_dinh_nghia``, quy tắc 10 của hướng dẫn gán nhãn).
     - KhaiNiem: thuật ngữ + định nghĩa phải nguyên văn.
     """
     res = ItemResult()
@@ -795,6 +803,11 @@ def validate_item_output(
         for x in [x for x in res.phuong_tien if x in GENERIC_PT]:
             res.phuong_tien.remove(x)
             reject("PhuongTien", x, "pt_chung_chung")
+    if re.search(definition_title, item.dieu_title):
+        for kind, label in (("phuong_tien", "PhuongTien"), ("chu_the", "ChuThe")):
+            for x in getattr(res, kind):
+                reject(label, x, "dieu_dinh_nghia")
+            setattr(res, kind, [])
     for kn in out.get("khai_niem") or []:
         term = find_verbatim(str(kn.get("thuat_ngu") or ""), text)
         span = find_verbatim(str(kn.get("dinh_nghia") or ""), text)
@@ -808,7 +821,11 @@ def validate_item_output(
 
 
 def map_batch_output(
-    batch: Batch, parsed: Mapping[str, Any], catalog: Catalog
+    batch: Batch,
+    parsed: Mapping[str, Any],
+    catalog: Catalog,
+    *,
+    definition_title: str = DEFAULT_DEFINITION_TITLE,
 ) -> tuple[dict[str, ItemResult], list[Rejection]]:
     """``BatchOut`` → item_key → kết quả đã hậu kiểm. Item thiếu trong phản hồi → kết quả rỗng
     + rejection ``thieu_item`` (vẫn coi là đã xử lý để không gọi lại vô hạn)."""
@@ -821,7 +838,7 @@ def map_batch_output(
             rej.append(Rejection(it.key, it.unit_id, "item", f"I{i}", "thieu_item"))
             res[it.key] = ItemResult()
             continue
-        r, rj = validate_item_output(it, o, catalog)
+        r, rj = validate_item_output(it, o, catalog, definition_title=definition_title)
         res[it.key] = r
         rej += rj
     extra = sorted(set(by_id) - {f"I{i}" for i in range(1, len(batch.items) + 1)})

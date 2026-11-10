@@ -32,6 +32,7 @@ from typing import Any, Protocol
 import yaml
 
 from trafficlaw.graph.extract import (
+    DEFAULT_DEFINITION_TITLE,
     Assembly,
     Batch,
     Catalog,
@@ -320,7 +321,12 @@ def run_llm(
 
 
 def load_results(
-    raw: Path, key: RunKey, items: Sequence[Item], catalog: Catalog
+    raw: Path,
+    key: RunKey,
+    items: Sequence[Item],
+    catalog: Catalog,
+    *,
+    definition_title: str = DEFAULT_DEFINITION_TITLE,
 ) -> tuple[dict[str, ItemResult], list[Any], dict[str, Any]]:
     """Kết quả LLM đã hậu kiểm (bản ghi ``ok`` mới nhất của mỗi lô) + rejection + thống kê."""
     by_key = {}
@@ -346,7 +352,9 @@ def load_results(
         if len(its) != len(rec["item_keys"]):
             continue  # lô của phạm vi cũ (item đã đổi) — bỏ qua
         b = Batch(rec["batch_id"], its[0].doc_id, its)
-        res, rej = map_batch_output(b, rec["parsed"] or {}, catalog)
+        res, rej = map_batch_output(
+            b, rec["parsed"] or {}, catalog, definition_title=definition_title
+        )
         results.update(res)
         rejections += rej
     stats = {
@@ -387,7 +395,9 @@ def assemble(
     asm = Assembly()
     assemble_catalog(asm, catalog)
     assemble_rules(store, cfg, asm, doc_ids)
-    results, rej, llm_stats = load_results(paths.raw, key, items, catalog)
+    results, rej, llm_stats = load_results(
+        paths.raw, key, items, catalog, definition_title=cfg.definition_dieu_title
+    )
     asm.rejections += rej
     assemble_llm(asm, items, results, model_id=model_id)
     prune_dangling(asm, store)

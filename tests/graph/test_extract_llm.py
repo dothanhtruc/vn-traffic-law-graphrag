@@ -485,3 +485,29 @@ def test_postfilter_reference_only_exception_and_generic_pt() -> None:
     assert only_generic.phuong_tien == [
         "PT:phuong-tien-giao-thong-duong-bo"
     ]  # không có gì cụ thể hơn
+
+
+def test_postfilter_definition_article_drops_pt_ct() -> None:
+    """Quy tắc 10 của hướng dẫn gán nhãn: Điều "Giải thích từ ngữ" chỉ có KhaiNiem."""
+    it = Item(
+        "v",
+        "U/D2/K3",
+        "U",
+        "A",
+        "U/D2",
+        "Điều 2. Giải thích từ ngữ",
+        None,
+        "3. Xe ô tô là phương tiện có từ bốn bánh trở lên.",
+        "2025-01-01",
+        None,
+        "k",
+    )
+    out = {"phuong_tien": ["PT:xe-o-to"], "chu_the": []}
+    res, rej = validate_item_output(it, out, CAT)
+    assert res.phuong_tien == [] and res.chu_the == []
+    assert [r.reason for r in rej] == ["dieu_dinh_nghia"]
+    other = Item(
+        *[*it.__dict__.values()][:5], "Điều 5. Quy tắc chung", *[*it.__dict__.values()][6:]
+    )
+    kept, _ = validate_item_output(other, out, CAT)
+    assert kept.phuong_tien == ["PT:xe-o-to"]
