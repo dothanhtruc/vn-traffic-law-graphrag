@@ -34,7 +34,7 @@ from pydantic import BaseModel, ConfigDict, Field, create_model
 from trafficlaw.eval.qa_schema import QUESTION_TYPE_DOC, QAItem, item_dict
 from trafficlaw.eval.qa_validate import parse_numbers
 from trafficlaw.eval.textsim import near_pairs, normalize
-from trafficlaw.graph.store import BaseGraphStore, canonical_json
+from trafficlaw.graph.store import BaseGraphStore, canonical_json, unit_of_version_id
 from trafficlaw.llm import LLMResult, Prompt, QuotaExhaustedError, load_prompt
 from trafficlaw.llm.parallel import map_parallel
 from trafficlaw.retrieval.chunking import Chunk, iter_chunks
@@ -323,6 +323,7 @@ _VI_RE = re.compile(r"[àáạảãâầấậẩẫăằắặẳẵèéẹẻ�
 _LEAD_RE = re.compile(r"^\s*(?:\d+[.)]|[-*•])\s*")
 _CONTEXT_RE = re.compile(
     r"\b(?:điều|khoản|điểm|đoạn|văn bản|quy định|nội dung)\s+(?:này|trên|nêu trên|đã cho)\b"
+    r"|\b(?:thông tư|nghị định|luật|quyết định)\s+này\b"
     r"|\btheo đoạn\b|\bđoạn văn\b",
     re.IGNORECASE,
 )
@@ -351,11 +352,13 @@ def clean_question(q: str) -> str:
 
 
 def allowed_numbers(gc: GenChunk) -> set[Any]:
-    """Số được phép trong câu hỏi: số trong chunk + số hiệu văn bản + số Điều/Khoản của unit."""
+    """Số được phép trong câu hỏi: số trong chunk + số hiệu văn bản + số Điều (không gồm số
+    Khoản: "hết hạn 2 tháng" lọt qua vì Khoản 2 — rà tay 10/11/2026)."""
+    body = re.sub(r"(?m)^\s*\d+[a-z]?\.\s*", "", gc.chunk.text)  # bỏ nhãn Khoản/Điều đầu dòng
     return (
-        parse_numbers(gc.chunk.text)
+        parse_numbers(body)
         | parse_numbers(gc.doc_label)
-        | parse_numbers(gc.chunk.unit_id.replace("/", " ").replace("-", " "))
+        | parse_numbers(_dieu(gc.chunk.unit_id).split("/")[-1])
     )
 
 
@@ -409,6 +412,24 @@ def coverage(question: str, vocab: set[str]) -> float:
     return sum(x in vocab for x in w) / len(w) if w else 0.0
 
 
+_ASK_POINTS = re.compile(r"\btrừ\b.{0,40}?\bđiểm\b", re.IGNORECASE)
+_ASK_FINE = re.compile(r"\bphạt\b.{0,25}?\b(?:bao nhiêu|mức nào|mức bao nhiêu)", re.IGNORECASE)
+_HAS_POINTS = re.compile(r"trừ điểm", re.IGNORECASE)
+_HAS_FINE = re.compile(r"phạt tiền|phạt cảnh cáo", re.IGNORECASE)
+
+
+def _sanction_mismatch(question: str, chunk_text: str) -> str:
+    """Câu hỏi về trừ điểm / mức phạt mà chunk không nêu trừ điểm / phạt tiền → positive sai
+    (rà tay 10/11/2026: model hỏi "bị trừ bao nhiêu điểm" cho Khoản chỉ có mức phạt tiền). Chỉ
+    xét thân chunk — tiêu đề Điều xử phạt luôn có chữ "trừ điểm"."""
+    chunk_text = "\n".join(chunk_text.split("\n")[1:])
+    if _ASK_POINTS.search(question) and not _HAS_POINTS.search(chunk_text):
+        return "hỏi trừ điểm, chunk không có trừ điểm"
+    if _ASK_FINE.search(question) and not _HAS_FINE.search(chunk_text):
+        return "hỏi mức phạt, chunk không có phạt tiền/cảnh cáo"
+    return ""
+
+
 def _word_ngrams(text: str, n: int) -> set[tuple[str, ...]]:
     w = normalize(text).split()
     return {tuple(w[i : i + n]) for i in range(len(w) - n + 1)}
@@ -445,6 +466,8 @@ def filter_questions(
             bad("so_khong_co_trong_unit", ", ".join(sorted(str(x) for x in extra)))
         elif (cov := coverage(q, vocab)) < cfg.min_coverage:
             bad("khong_lien_quan", f"độ phủ từ {cov:.2f}")
+        elif reason := _sanction_mismatch(q, gc.chunk.text):
+            bad("hoi_che_tai_khong_co", reason)
         elif _CONTEXT_RE.search(q):
             bad("tham_chieu_ngu_canh", _CONTEXT_RE.search(q).group(0))  # type: ignore[union-attr]
         elif grams and _word_ngrams(q, cfg.verbatim_ngram) & grams:
@@ -562,15 +585,15 @@ def build_splits(
             rejected.append(Rejected(c.chunk_id, q, "gan_trung_test"))
             continue
         d = pick_as_of(c, cfg.as_of_cutoff)
-        v = store.version_at(c.unit_id, d)
+        gold, gvers = gold_of(store, c, d)
         item = QAItem(
             qid=qid_for(c.chunk_id, i),
             question=q,
             as_of=d,
             question_type=qt,  # type: ignore[arg-type]
             tier=c.tier,  # type: ignore[arg-type]
-            gold_units=[c.unit_id],
-            gold_versions=[v.id] if v is not None else [],
+            gold_units=gold,
+            gold_versions=gvers,
             source=f"llm:{key.model_id}",
             chunk_id=c.chunk_id,
             in_test_gold=any(_related(c.unit_id, g) for g in test_gold),
@@ -605,6 +628,18 @@ def build_splits(
 
 def _dieu(unit_id: str) -> str:
     return "/".join(unit_id.split("/")[:2])
+
+
+def gold_of(store: BaseGraphStore, c: Chunk, d: date) -> tuple[list[str], list[str]]:
+    """Positive của câu sinh từ chunk: unit gốc của chunk nếu hiệu lực tại ``d``; nếu không (vd
+    LUAT35 Đ42 K2: Điểm a, b hiệu lực từ 01/10/2024, Khoản từ 01/01/2025) → các unit cao nhất
+    có phiên bản trong chunk."""
+    v = store.version_at(c.unit_id, d)
+    if v is not None:
+        return [c.unit_id], [v.id]
+    units = [unit_of_version_id(x) for x in c.version_ids]
+    top = [u for u in units if not any(u != o and u.startswith(o + "/") for o in units)]
+    return top, [x for x, u in zip(c.version_ids, units, strict=True) if u in top]
 
 
 def write_build(

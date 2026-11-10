@@ -18,8 +18,8 @@ Mã thoát: 1 = có lỗi (hoặc cảnh báo khi ``--strict``); 3 = dừng sạ
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
-import random
 import sys
 import time
 from datetime import date, datetime
@@ -479,12 +479,14 @@ def cmd_review(env: QAEnv, args: argparse.Namespace) -> int:
         return 1
     seed = int(env.cfg.get("seed", 42))
     n = args.n or int((env.cfg.get("review") or {}).get("n", 50))
-    pick = sorted(random.Random(seed).sample(items, min(n, len(items))), key=lambda x: x.qid)
+    # Xếp hạng theo sha256(seed:qid): ổn định khi tập train đổi (bỏ/thêm câu chỉ đổi ít phần tử).
+    ranked = sorted(items, key=lambda x: hashlib.sha256(f"{seed}:{x.qid}".encode()).hexdigest())
+    pick = sorted(ranked[:n], key=lambda x: x.qid)
     chunks = {c.chunk.chunk_id: c for c in select_chunks(env.store)}
     lines = [
         "# Rà tay câu hỏi train (M9)",
         "",
-        f"{len(pick)} câu ngẫu nhiên (seed {seed}) trong {len(items):,} câu train · "
+        f"{len(pick)} câu (xếp hạng sha256(seed:qid), seed {seed}) / {len(items):,} câu train · "
         f"`{env.p('train').name}` sha256 `{file_sha256(env.p('train'))[:12]}`.",
         "",
         "Tiêu chí: **Đ** = chunk trả lời được câu hỏi (positive đúng); **T** = câu tự nhiên, "

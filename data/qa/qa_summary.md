@@ -1,14 +1,14 @@
 # Bộ dữ liệu hỏi–đáp (M9)
 
-- Cập nhật: 2026-11-10T10:08:20+07:00 · commit `740f6fff1c6696c3a297d41bc932ceba2b23caef`
-- `qa_version` = `ed72a2a156381c95` (hash test/train/val/subsets) · `data_version` = `f3297e64b9e44855`
+- Cập nhật: 2026-11-10T10:53:38+07:00 · commit `f0bac4e742bdd161b40ac2b5cf5da7145f4cd7d0-dirty`
+- `qa_version` = `692d8987a07f8aab` (hash test/train/val/subsets) · `data_version` = `f3297e64b9e44855`
 - subsets: **missing**
 
 | Split | Dòng | sha256 | Kiểm tra lần cuối | Lỗi | Cảnh báo |
 | --- | ---: | --- | --- | ---: | ---: |
-| test | 0 | `` | 2026-11-10T10:08:20+07:00 | 0 | 0 |
-| train | 0 | `` | — | — | — |
-| val | 0 | `` | — | — | — |
+| test | 0 | `` | 2026-11-10T10:52:32+07:00 | 0 | 0 |
+| train | 8,566 | `2068aaef94c4` | 2026-11-10T10:52:32+07:00 | 0 | 0 |
+| val | 489 | `51b164307a32` | 2026-11-10T10:52:33+07:00 | 0 | 7 |
 
 ## Phân bổ test so với hạn mức
 
@@ -33,3 +33,8 @@
 | historical | 0 | 23 |
 
 Tier × loại: {}
+
+## train/val
+
+- Dựng 2026-11-10T10:52:29+07:00 bằng `mistral-small-3.2`: train 8,566, val 489; lọc rò rỉ theo test ``
+- Xem `data/qa/generate_summary.md`.

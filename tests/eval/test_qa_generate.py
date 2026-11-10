@@ -270,3 +270,60 @@ def test_filter_off_topic(chunks: list[GenChunk]) -> None:
     ]
     keep, rej = filter_questions(gc, qs, cfg)
     assert [r.reason for r in rej] == ["khong_lien_quan"] and len(keep) == 1
+
+
+def test_gold_of_partial_chunk(store: EmbeddedStore) -> None:
+    from trafficlaw.eval.qa_generate import gold_of
+
+    k1a = f"{D6}/K1a"  # Khoản bổ sung từ 15/08/2026
+    c = Chunk(
+        f"{k1a}#x",
+        k1a,
+        "ND168-2024",
+        "A",
+        D6,
+        "t",
+        "x",
+        date(2026, 1, 1),
+        None,
+        (f"{k1a}/a@v0", f"{k1a}/a/x@v0", f"{k1a}/b@v0"),
+    )
+    assert gold_of(store, c, date(2026, 1, 1)) == (
+        [f"{k1a}/a", f"{k1a}/b"],
+        [f"{k1a}/a@v0", f"{k1a}/b@v0"],
+    )
+    assert gold_of(store, c, date(2026, 9, 1)) == ([k1a], [f"{k1a}@v1"]) or gold_of(
+        store, c, date(2026, 9, 1)
+    )[0] == [k1a]
+
+
+def test_filter_doc_self_reference_and_khoan_number(chunks: list[GenChunk]) -> None:
+    gc = next(c for c in chunks if c.chunk.unit_id == f"{D6}/K16")
+    qs = [
+        {
+            "question": "Nghị định này quy định gì về người điều khiển xe ô tô?",
+            "question_type": "khac",
+        },
+        {
+            "question": "Người điều khiển xe ô tô vi phạm 16 lần bị phạt tiền thế nào?",
+            "question_type": "khac",
+        },
+    ]
+    _, rej = filter_questions(gc, qs, CFG)
+    assert [r.reason for r in rej] == ["tham_chieu_ngu_canh", "so_khong_co_trong_unit"]
+
+
+def test_filter_sanction_mismatch(chunks: list[GenChunk]) -> None:
+    gc = next(c for c in chunks if c.chunk.unit_id == f"{D6}/K5")  # phạt tiền, không trừ điểm
+    qs = [
+        {
+            "question": "Người điều khiển xe ô tô vi phạm bị trừ bao nhiêu điểm giấy phép lái xe?",
+            "question_type": "tru_diem",
+        },
+        {
+            "question": "Người điều khiển xe ô tô vi phạm bị phạt bao nhiêu tiền?",
+            "question_type": "muc_phat",
+        },
+    ]
+    keep, rej = filter_questions(gc, qs, CFG)
+    assert [r.reason for r in rej] == ["hoi_che_tai_khong_co"] and len(keep) == 1
