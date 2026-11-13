@@ -8,7 +8,8 @@
 #   scripts/gpu/gpu.sh key install           # cài key lên máy thuê (gõ mật khẩu MỘT lần)
 #   scripts/gpu/gpu.sh key check             # xác nhận đăng nhập CHỈ bằng key
 #   scripts/gpu/gpu.sh key harden            # tắt đăng nhập bằng mật khẩu trên máy thuê
-#   scripts/gpu/gpu.sh setup                 # cài trên máy thuê: tmux, uv, repo, vLLM, file env
+#   scripts/gpu/gpu.sh setup [--no-vllm] [--group embed]   # cài trên máy thuê: tmux, uv, repo,
+#                                            # vLLM (trừ --no-vllm), nhóm dependency, file env
 #   scripts/gpu/gpu.sh serve <model>         # chạy vLLM (khoá/tên trong serve.yaml) trong tmux
 #   scripts/gpu/gpu.sh stop-serve            # dừng vLLM
 #   scripts/gpu/gpu.sh run <tên> -- <lệnh>   # job dài (M10/M14/M17) trong tmux, log logs/<tên>.log
@@ -183,7 +184,17 @@ dotenv_get() {  # đọc biến từ .env local (bỏ ngoặc, CR)
 }
 
 cmd_setup() {
-    local key hf repo branch ver
+    # Cờ: --no-vllm (bỏ cài vLLM — job chỉ cần torch, vd M10 encode, M14 train);
+    #     --group <nhóm> (thêm nhóm dependency của dự án, vd embed: torch + sentence-transformers).
+    local key hf repo branch ver with_vllm=1 groups=""
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --no-vllm) with_vllm=0 ;;
+            --group) shift; groups+=" --group $(printf '%q' "${1:?cần tên nhóm}")" ;;
+            *) echo "setup: cờ lạ $1" >&2; exit 1 ;;
+        esac
+        shift
+    done
     key="$(dotenv_get LOCAL_LLM_API_KEY)"
     hf="$(dotenv_get HF_TOKEN)"
     if [[ -z "$key" ]]; then
@@ -219,12 +230,17 @@ print(l('configs/serve.yaml').vllm_version or '')")"
         else
             git clone -q -b $(printf '%q' "$branch") $(printf '%q' "$repo") $R_DIR
         fi
-        cd $R_DIR && uv sync -q
-        [ -x $R_VENV/bin/python ] || uv venv -q --python 3.12 $R_VENV
-        uv pip install -q --python $R_VENV/bin/python $(printf '%q' "vllm${ver:+==$ver}") bitsandbytes
-        V_INC=\$($R_VENV/bin/python -c 'import sysconfig; print(sysconfig.get_paths()[\"include\"])')
-        [ -f \"\$V_INC/Python.h\" ] || { echo \"thiếu \$V_INC/Python.h (Triton của vLLM cần) — cài gói dev cho Python của venv\" >&2; exit 1; }
-        echo \"vLLM: \$($R_VENV/bin/python -c 'import vllm; print(vllm.__version__)')\"
+        cd $R_DIR && uv sync -q$groups
+        if [ $with_vllm = 1 ]; then
+            [ -x $R_VENV/bin/python ] || uv venv -q --python 3.12 $R_VENV
+            uv pip install -q --python $R_VENV/bin/python $(printf '%q' "vllm${ver:+==$ver}") bitsandbytes
+            V_INC=\$($R_VENV/bin/python -c 'import sysconfig; print(sysconfig.get_paths()[\"include\"])')
+            [ -f \"\$V_INC/Python.h\" ] || { echo \"thiếu \$V_INC/Python.h (Triton của vLLM cần) — cài gói dev cho Python của venv\" >&2; exit 1; }
+            echo \"vLLM: \$($R_VENV/bin/python -c 'import vllm; print(vllm.__version__)')\"
+        fi
+        if [ -n \"$groups\" ]; then
+            uv run$groups python -c 'import torch; print(\"torch\", torch.__version__, \"cuda\", torch.cuda.is_available(), \"bf16\", torch.cuda.is_available() and torch.cuda.is_bf16_supported())' 2>/dev/null || true
+        fi
         nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader
         nvcc --version 2>/dev/null | tail -n1 || true
     "
@@ -303,7 +319,7 @@ case "${1:-}" in
 esac
 
 case "${1:-}" in
-    setup) cmd_setup ;;
+    setup) shift; cmd_setup "$@" ;;
     serve) shift; cmd_serve "$@" ;;
     stop-serve) cmd_stop_serve ;;
     run) shift; cmd_run "$@" ;;
