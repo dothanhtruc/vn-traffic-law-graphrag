@@ -15,7 +15,7 @@ remote:
   vllm_venv: ~/.venvs/vllm  # venv riêng cho vLLM (tránh xung đột torch với môi trường dự án)
   env_file: ~/.config/graphrag/env
   local_port: 8000
-  price_vnd_per_hour: 15000 # RTX 3090 · Standard (giá bán 09/11/2026)
+  price_vnd_per_hour: 17000 # RTX 3090 · Pro (38 nhân, 110 GB RAM, 800 GB NVMe) — gói dùng cho mọi bước GPU (13/11/2026)
 
 default_prefill_tps: 4000   # giả định thận trọng, đo lại ở phiên đầu
 default_decode_tps: 400
