@@ -300,11 +300,15 @@ class FaissIndex:
         (p / "index.faiss.tmp").write_bytes(faiss.serialize_index(self.index).tobytes())
         (p / "index.faiss.tmp").replace(p / "index.faiss")
         (p / "ids.json").write_text(
-            json.dumps([[c, k] for c, k in self.rows], ensure_ascii=False), encoding="utf-8"
+            json.dumps([[c, k] for c, k in self.rows], ensure_ascii=False),
+            encoding="utf-8",
+            newline="\n",
         )
         m = {"format": self.FORMAT, "source": self.source, "dim": self.dim, **(meta or {})}
         m.update({"n_rows": len(self.rows), "n_chunks": self.n_chunks})
-        (p / "meta.json").write_text(json.dumps(m, ensure_ascii=False, indent=2), encoding="utf-8")
+        (p / "meta.json").write_text(
+            json.dumps(m, ensure_ascii=False, indent=2), encoding="utf-8", newline="\n"
+        )
 
     @classmethod
     def load(cls, d: str | Path) -> FaissIndex:

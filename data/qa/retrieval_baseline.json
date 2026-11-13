@@ -115,6 +115,6 @@
   "corpus_sha256": "a8f10c4fc2dac608cb3d3e1d5187fc1880e2e4a3b0e231c74d7a5910cca38ec6",
   "n_chunks": 3853,
   "data_version": "f3297e64b9e4485537d78822a2dd8cfe50477e0a9be92b7f432ee06a2fa99583",
-  "created_at": "2026-11-13T22:49:42+07:00",
-  "git_commit": "fd9c11c207cb876b8a13dd1defd0491b6acf8c6e-dirty"
+  "created_at": "2026-11-13T22:55:07+07:00",
+  "git_commit": "3d7c614408495394afb5b2945a144827e5fba328-dirty"
 }

@@ -102,7 +102,9 @@ def read_manifest(paths: IndexPaths) -> dict[str, Any]:
 def write_manifest(paths: IndexPaths, m: dict[str, Any]) -> None:
     paths.root.mkdir(parents=True, exist_ok=True)
     tmp = paths.manifest.with_suffix(".json.tmp")
-    tmp.write_text(json.dumps(m, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8")
+    tmp.write_text(
+        json.dumps(m, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8", newline="\n"
+    )
     tmp.replace(paths.manifest)
 
 

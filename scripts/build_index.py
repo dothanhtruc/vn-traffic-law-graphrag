@@ -212,7 +212,7 @@ def _patch_last_run(path: Path, extra: dict[str, Any]) -> None:
     last = json.loads(lines[-1])
     last.update(extra)
     lines[-1] = json.dumps(last, ensure_ascii=False)
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 
 
 def encode_dry_run(env: Env, cat: ChunkCatalog, queries: Sequence[str], keys: Sequence[str]) -> int:
@@ -360,8 +360,11 @@ def cmd_evaluate(env: Env, args: argparse.Namespace) -> int:
             {"results": results, "models": info}, ensure_ascii=False, indent=2, default=list
         ),
         encoding="utf-8",
+        newline="\n",
     )
-    out.with_suffix(".md").write_text(render_selection_md(results, info, header=header), "utf-8")
+    out.with_suffix(".md").write_text(
+        render_selection_md(results, info, header=header), encoding="utf-8", newline="\n"
+    )
     print(f"→ {out}.md")
     return 0
 
@@ -402,7 +405,7 @@ def cmd_baseline(env: Env, args: argparse.Namespace) -> int:
         "git_commit": git_commit(env.root),
     }
     (env.root / rg.baseline).write_text(
-        json.dumps(base, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        json.dumps(base, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n"
     )
     kb = corpus.stat().st_size / 1024
     print(f"baseline Recall@{rg.k} = {100 * base['value']:.1f}% trên {len(qs)} câu val")
