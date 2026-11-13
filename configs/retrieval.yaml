@@ -1,0 +1,85 @@
+# M10: chỉ mục truy hồi (BM25 + FAISS). Xem CLAUDE.md "Quy ước chỉ mục (M10)".
+index_dir: data/index
+
+# Chunk Khoản: trafficlaw.retrieval.chunking (M9). Phụ lục: cắt theo dòng, mỗi phần ≤ N ký tự
+# (tính cả tiền tố "Phụ lục N. TIÊU ĐỀ"; người dùng chốt 10/11/2026).
+phu_luc_max_chars: 1500
+
+bm25: {k1: 1.5, b: 0.75, bigrams: true}
+
+top_k: 20
+rrf_k: 60
+
+# Model gốc đã chốt (M11/M13 dùng). null = chưa chốt.
+model_key: null
+
+# Ứng viên so sánh trên val (người dùng chốt 13/11/2026).
+candidates: [aiteamvn-vi-emb, bge-m3, qwen3-emb-0.6b, me5-large-instruct, qwen3-emb-4b]
+
+encode_flush_every: 512
+
+# Model tự host, ghim hf_repo + revision (kiểm trên HF 13/11/2026). max_seq_length 512 (mục 9);
+# chunk dài hơn → cửa sổ theo dòng, điểm = max (retrieval/dense.py).
+# encode_tps / load_min chỉ là ước tính cho --dry-run (đo lại → runs.jsonl).
+models:
+  aiteamvn-vi-emb:
+    hf_repo: AITeamVN/Vietnamese_Embedding
+    revision: dea33aa1ab339f38d66ae0a40e6c40e0a9249568
+    params_b: 0.57
+    license: apache-2.0
+    family: xlm-roberta
+    encode_tps: 30000
+    load_min: 1.5
+  bge-m3:
+    hf_repo: BAAI/bge-m3
+    revision: 5617a9f61b028005a4858fdac845db406aefb181
+    params_b: 0.57
+    license: mit
+    family: xlm-roberta
+    encode_tps: 30000
+    load_min: 1.5
+  qwen3-emb-0.6b:
+    hf_repo: Qwen/Qwen3-Embedding-0.6B
+    revision: 97b0c614be4d77ee51c0cef4e5f07c00f9eb65b3
+    params_b: 0.6
+    license: apache-2.0
+    family: qwen3
+    # Định dạng chính thức: "Instruct: {task}\nQuery:{query}"; tài liệu không có tiền tố.
+    query_prompt: "Instruct: Given a question about Vietnamese road traffic law, retrieve the legal provision that answers it\nQuery:"
+    encode_tps: 25000
+    load_min: 1.5
+  me5-large-instruct:
+    hf_repo: intfloat/multilingual-e5-large-instruct
+    revision: 274baa43b0e13e37fafa6428dbc7938e62e5c439
+    params_b: 0.56
+    license: mit
+    family: xlm-roberta
+    query_prompt: "Instruct: Given a question about Vietnamese road traffic law, retrieve the legal provision that answers it\nQuery: "
+    encode_tps: 30000
+    load_min: 1.5
+  qwen3-emb-4b:
+    hf_repo: Qwen/Qwen3-Embedding-4B
+    revision: 5cf2132abc99cad020ac570b19d031efec650f2b
+    params_b: 4.0
+    license: apache-2.0
+    family: qwen3
+    query_prompt: "Instruct: Given a question about Vietnamese road traffic law, retrieve the legal provision that answers it\nQuery:"
+    batch_size: 16
+    encode_tps: 5000
+    load_min: 4
+
+# Tập đo chọn model — KHÔNG dùng test (mục 10). Chọn theo val; tập con train chỉ kiểm độ ổn định.
+eval:
+  val: data/qa/val.jsonl
+  train: data/qa/train.jsonl
+  train_sample: 1000
+  seed: 42
+
+# Regression CI (mục 13): Recall@5 BM25 (lọc as_of) trên 100 câu val cố định; chặn khi giảm > 2 điểm %.
+regression:
+  n: 100
+  seed: 42
+  k: 5
+  max_drop: 0.02
+  baseline: data/qa/retrieval_baseline.json
+  corpus: tests/fixtures/retrieval/corpus.jsonl.gz
