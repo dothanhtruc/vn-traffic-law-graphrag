@@ -92,3 +92,17 @@ def test_free_citations_b0(mini_store) -> None:
     assert r(van_ban="168/2024/NĐ-CP", dieu="999").status == "khong_ton_tai"
     assert r(van_ban="100/2019/NĐ-CP", dieu="5").status == "van_ban_khong_ro"
     assert r(van_ban="168/2024/NĐ-CP", dieu="6", khoan="1a").status == "het_hieu_luc"
+
+
+def test_self_label_and_fact_unit(mini_store) -> None:
+    d = date(2026, 1, 1)
+    # S1 là khoản 3: "S1/K3" = cả nguồn
+    c = resolve_citation("S1/K3", SRC, mini_store, d)
+    assert c.status == "ok" and c.unit_id == K3
+    # khoản 16 điểm a (nêu mức trừ điểm) ngoài chunk: chỉ hợp lệ khi có trong bảng con số
+    assert resolve_citation("S1/K16/a", SRC, mini_store, d).status == "diem_khong_ton_tai"
+    src = {
+        "S1": CitableSource("S1", SRC["S1"].chunk_id, K3, ND, frozenset({"ND168-2024/D6/K16/a"}))
+    }
+    c = resolve_citation("S1/K16/a", src, mini_store, d)
+    assert c.status == "ok_bang_so" and c.valid and c.unit_id == "ND168-2024/D6/K16/a"

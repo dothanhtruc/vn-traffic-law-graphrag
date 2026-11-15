@@ -753,7 +753,11 @@ def _verify_rag(
     ctx: AnswerContext,
     report: VerifyReport,
 ) -> tuple[list[PointResult], str]:
-    cites_by_sid = {s.sid: s.citable() for s in prep.sources}
+    facts_by_sid: dict[str, set[str]] = {}
+    for f in prep.table:
+        if f.unit_id and f.kind != "van_ban":
+            facts_by_sid.setdefault(f.source, set()).add(f.unit_id)
+    cites_by_sid = {s.sid: s.citable(facts_by_sid.get(s.sid, set())) for s in prep.sources}
     points: list[PointResult] = []
     for i, p in enumerate(out.points):
         where = f"p{i}"

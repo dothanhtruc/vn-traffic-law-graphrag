@@ -6,6 +6,10 @@ Câu trả lời RAG trích nguồn bằng mã ``S#`` (nguồn đã đưa vào n
 
 - ``S#`` không có trong ngữ cảnh → ``nguon_ngoai_ngu_canh`` (bỏ trích dẫn);
 - nhãn không phải unit trong cây con của unit chunk → ``diem_khong_ton_tai`` (bỏ);
+- nhãn trùng chính unit của chunk (``S2/K3`` khi S2 là khoản 3) → cả nguồn;
+- nhãn (tương đối với Điều của chunk) là unit nêu một chế tài trong bảng con số của nguồn
+  (``S2/K16/a`` — mức trừ điểm nêu tại khoản 16, nối bằng BI_TRU_DIEM) → ``ok_bang_so`` (hợp lệ:
+  dữ liệu đồ thị đã kiểm, LLM đã thấy trong bảng);
 - unit không có phiên bản hiệu lực tại ``as_of`` → ``het_hieu_luc`` (bỏ); cấu hình không lọc
   hiệu lực (A2) → giữ, ghi ``het_hieu_luc_khong_loc``.
 
@@ -31,6 +35,7 @@ from trafficlaw.graph.store import BaseGraphStore
 
 CitationStatus = Literal[
     "ok",
+    "ok_bang_so",
     "het_hieu_luc_khong_loc",
     "sai_dinh_dang",
     "nguon_ngoai_ngu_canh",
@@ -39,7 +44,7 @@ CitationStatus = Literal[
     "van_ban_khong_ro",
     "khong_ton_tai",
 ]
-VALID_STATUSES = ("ok", "het_hieu_luc_khong_loc")
+VALID_STATUSES = ("ok", "ok_bang_so", "het_hieu_luc_khong_loc")
 
 
 class Citation(BaseModel):
@@ -62,12 +67,15 @@ class Citation(BaseModel):
 
 @dataclass(frozen=True)
 class CitableSource:
-    """Phần của nguồn mà kiểm trích dẫn cần."""
+    """Phần của nguồn mà kiểm trích dẫn cần. ``fact_units``: unit nêu chế tài trong bảng con số
+    của nguồn này (nối qua BI_XU_PHAT/BI_TRU_DIEM, có thể nằm ngoài chunk — vd khoản 16 trừ
+    điểm)."""
 
     sid: str
     chunk_id: str
     unit_id: str
     doc_label: str
+    fact_units: frozenset[str] = frozenset()
 
 
 # --------------------------------------------------------------------------- nhãn đọc được
@@ -146,15 +154,24 @@ def resolve_citation(
         return Citation(ref=ref, status="nguon_ngoai_ngu_canh", sid=sid)
     base = src.unit_id
     unit = base
+    status: CitationStatus = "ok"
     if label:
         suf = _label_to_suffix(label)
         cands = [f"{base}/{suf}"]
         parts = base.split("/")
-        # chunk Khoản …/K3 mà LLM ghi lại "K3/a"
+        # chunk Khoản …/K3 mà LLM ghi lại "K3/a" hoặc "K3"
         if len(parts) >= 3 and suf.startswith(parts[-1] + "/"):
             cands.append(f"{base}/{suf[len(parts[-1]) + 1 :]}")
+        if len(parts) >= 2 and suf == parts[-1]:
+            cands.append(base)
         sub = set(store.subtree(base, as_of=as_of if validity_filter else None))
+        sub.add(base)
         hit = next((c for c in cands if c in sub), None)
+        if hit is None and src.fact_units:
+            dieu = next((i for i, x in enumerate(parts) if x.startswith("D")), None)
+            rel = "/".join(parts[: dieu + 1]) + "/" + suf if dieu is not None else None
+            if rel in src.fact_units:
+                hit, status = rel, "ok_bang_so"
         if hit is None:
             return Citation(
                 ref=ref,
@@ -174,7 +191,7 @@ def resolve_citation(
             chunk_id=src.chunk_id,
             label=lab,
         )
-    return Citation(ref=ref, status="ok", sid=sid, unit_id=unit, chunk_id=src.chunk_id, label=lab)
+    return Citation(ref=ref, status=status, sid=sid, unit_id=unit, chunk_id=src.chunk_id, label=lab)
 
 
 # --------------------------------------------------------------------------- B0: tự khai

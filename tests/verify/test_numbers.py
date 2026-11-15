@@ -179,3 +179,28 @@ def test_dates_in_and_drop_sentences() -> None:
     text = "Câu một đúng. Câu hai phạt 500 đồng. Câu ba đúng"
     out, n = drop_sentences(text, find_unverified_numbers(text, allowed))
     assert n == 1 and out == "Câu một đúng. Câu ba đúng"
+
+
+def test_render_no_duplicate_words() -> None:
+    from trafficlaw.verify.numbers import NumberFact
+
+    def fact(i: str, r: str) -> NumberFact:
+        return NumberFact(
+            id=i,
+            kind="van_ban",
+            values=["1"],
+            rendered=r,
+            description="",
+            source="S1",
+            unit_id="",
+            span=r,
+        )
+
+    t = {"N1": fact("N1", "từ 800.000 đồng đến 1.000.000 đồng"), "N2": fact("N2", "02 điểm")}
+    assert (
+        render_numbers("phạt tiền từ {N1}.", t) == "phạt tiền từ 800.000 đồng đến 1.000.000 đồng."
+    )
+    assert render_numbers("phạt tiền {N1}.", t) == "phạt tiền từ 800.000 đồng đến 1.000.000 đồng."
+    assert render_numbers("bị trừ {N2} điểm giấy phép", t) == "bị trừ 02 điểm giấy phép"
+    assert render_numbers("bị trừ {N2} giấy phép", t) == "bị trừ 02 điểm giấy phép"
+    assert render_numbers("mức {N1} đồng", t) == "mức từ 800.000 đồng đến 1.000.000 đồng"

@@ -20,7 +20,7 @@ vượt ngân sách bị cắt theo dòng (đánh dấu ``truncated``); nguồn 
 from __future__ import annotations
 
 import math
-from collections.abc import Sequence
+from collections.abc import Iterable, Sequence
 from datetime import date
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -89,8 +89,10 @@ class Source(BaseModel):
     text: str
     truncated: bool = False
 
-    def citable(self) -> CitableSource:
-        return CitableSource(self.sid, self.chunk_id, self.unit_id, self.doc_label)
+    def citable(self, fact_units: Iterable[str] = ()) -> CitableSource:
+        return CitableSource(
+            self.sid, self.chunk_id, self.unit_id, self.doc_label, frozenset(fact_units)
+        )
 
     def number_source(self, as_of: date) -> SourceText:
         covers = self.effective_from <= as_of and (

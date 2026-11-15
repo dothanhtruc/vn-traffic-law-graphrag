@@ -395,10 +395,29 @@ def placeholders(text: str) -> list[str]:
 
 def render_numbers(text: str, table: Mapping[str, NumberFact]) -> str:
     """Thay ``{N#}`` bằng ``rendered``; mã không có trong bảng giữ nguyên (đã bị verify loại
-    trước khi render)."""
-    return PLACEHOLDER_RE.sub(
-        lambda m: table[m.group(1)].rendered if m.group(1) in table else m.group(0), text
-    )
+    trước khi render). Không lặp chữ quanh chỗ giữ chỗ: "phạt tiền từ {N1}" với N1 = "từ X đồng
+    đến Y đồng" → bỏ "từ" của giá trị; "{N2} điểm" với N2 = "02 điểm" → bỏ "điểm" của giá trị."""
+    out: list[str] = []
+    pos = 0
+    for m in PLACEHOLDER_RE.finditer(text):
+        before = text[pos : m.start()]
+        f = table.get(m.group(1))
+        if f is None:
+            out += [before, m.group(0)]
+            pos = m.end()
+            continue
+        val = f.rendered
+        first, _, rest = val.partition(" ")
+        if rest and re.search(rf"(?:^|\s){re.escape(first)}\s*$", before, re.I):
+            val = rest
+        after = text[m.end() :]
+        head, _, last = val.rpartition(" ")
+        if head and re.match(rf"\s*{re.escape(last)}(?![\wÀ-ỹ])", after, re.I):
+            val = head
+        out += [before, val]
+        pos = m.end()
+    out.append(text[pos:])
+    return "".join(out)
 
 
 # --------------------------------------------------------------------------- dò số tự do
