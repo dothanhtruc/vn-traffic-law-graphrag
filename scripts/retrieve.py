@@ -41,6 +41,7 @@ from trafficlaw.retrieval.index_pipeline import MissingVectorsError, now_iso
 from trafficlaw.retrieval.rerank import MissingRerankScoresError
 from trafficlaw.retrieval.retrieve import RetrievalContext, RetrievalResult
 from trafficlaw.retrieval.retrieve_env import build_analyzer, build_context
+from trafficlaw.utils.env import load_dotenv
 from trafficlaw.utils.git import git_commit
 from trafficlaw.utils.jsonl import append_jsonl, read_jsonl, write_jsonl
 from trafficlaw.utils.logging import setup_logging
@@ -561,6 +562,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = ap.parse_args(argv)
     setup_logging()
     set_seed(42)
+    load_dotenv(REPO_ROOT / ".env")
     args.sets = [s for s in args.sets.split(",") if s]
     args.configs = [c for c in args.configs.split(",") if c]
     cfg = load_retrieval_config(args.config_file)
