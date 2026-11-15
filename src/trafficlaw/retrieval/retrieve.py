@@ -249,6 +249,18 @@ def _ms(t0: float) -> float:
     return round((time.perf_counter() - t0) * 1000, 2)
 
 
+def reserve_graph_slots(
+    ranked: list[str], sources: dict[str, list[SourceInfo]], final_k: int, slots: int
+) -> list[str]:
+    """Top ``final_k`` = ``final_k − slots`` chunk đầu (không tính chunk chỉ từ đồ thị được đưa lên)
+    + ``slots`` chunk chỉ đến từ đồ thị có hạng cao nhất; phần còn lại giữ thứ tự."""
+    graph_only = [c for c in ranked if all(s.source == "graph" for s in sources.get(c, []))]
+    up = graph_only[:slots]
+    head = [c for c in ranked if c not in up][: max(0, final_k - len(up))]
+    top = head + up
+    return top + [c for c in ranked if c not in top]
+
+
 def retrieve(
     question: str,
     as_of: date | None,
@@ -370,6 +382,9 @@ def retrieve(
         ranked, notes = check_final(ranked, eff, ctx.catalog, ctx.store)
         timings["final_check"] = _ms(t0)
 
+    if sc.reserved_graph_slots > 0:
+        ranked = reserve_graph_slots(ranked, sources, sc.final_k, sc.reserved_graph_slots)
+
     hits = []
     for i, c in enumerate(ranked[: sc.final_k], 1):
         ch = ctx.catalog.get(c)
@@ -437,5 +452,6 @@ __all__ = [
     "RetrievalContext",
     "RetrievalResult",
     "SourceInfo",
+    "reserve_graph_slots",
     "retrieve",
 ]

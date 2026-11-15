@@ -133,3 +133,27 @@ def test_a3_equals_g_until_m14(ctx) -> None:
     g = ctx.retrieve(Q_LANE, date(2026, 1, 1), "G")
     a3 = ctx.retrieve(Q_LANE, date(2026, 1, 1), "A3")
     assert g.ranked == a3.ranked
+
+
+def test_reserve_graph_slots_unit() -> None:
+    from trafficlaw.retrieval.retrieve import SourceInfo, reserve_graph_slots
+
+    g, b = [SourceInfo(source="graph")], [SourceInfo(source="rrf")]
+    src = {"a": b, "b": b, "c": g, "d": b, "e": g}
+    ranked = ["a", "b", "c", "d", "e"]
+    assert reserve_graph_slots(ranked, src, 3, 0) == ranked
+    assert reserve_graph_slots(ranked, src, 3, 1) == ["a", "b", "c", "d", "e"]
+    assert reserve_graph_slots(["a", "b", "d", "c", "e"], src, 3, 1) == ["a", "b", "c", "d", "e"]
+    assert reserve_graph_slots(["a", "b", "d", "c", "e"], src, 3, 2) == ["a", "c", "e", "b", "d"]
+
+
+def test_reserved_slot_in_config(ctx, mini_catalog: ChunkCatalog) -> None:
+    d = date(2026, 1, 1)
+    q = "Điều khiển xe không quan sát gây tai nạn giao thông bị trừ bao nhiêu điểm?"
+    ctx.cfg = ctx.cfg.model_copy(deep=True)
+    ctx.cfg.configs["G"].reserved_graph_slots = 1
+    r = ctx.retrieve(q, d, "G")
+    graph_only = {p.chunk_id for p in r.pool if all(s.source == "graph" for s in p.sources)}
+    if graph_only:
+        assert any(h.chunk_id in graph_only for h in r.hits)
+    assert set(r.ranked) <= mini_catalog.ids_at(d)

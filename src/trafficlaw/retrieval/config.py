@@ -150,6 +150,10 @@ class SystemSpec(BaseModel):
     """Lọc as_of ở hybrid, expand, rerank (A2 = tắt)."""
     analyzer_llm: bool = True
     pool_k: int = 20
+    reserved_graph_slots: int = 0
+    """Số chỗ trong top ``final_k`` dành cho chunk chỉ đến từ đồ thị (cuối top-k, theo thứ tự
+    rerank). 0 = rerank tự do (người dùng chốt 15/11/2026 sau đo val/train); M13 có thể so như
+    biến thể khai báo trước."""
     final_k: int = 5
 
     @model_validator(mode="after")
