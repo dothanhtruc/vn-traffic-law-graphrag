@@ -41,8 +41,12 @@ class ContextConfig(BaseModel):
     graph_edge_priority: list[str] = Field(
         default_factory=lambda: ["BI_XU_PHAT", "BI_TRU_DIEM", "DAN_CHIEU"]
     )
+    dan_chieu_outgoing_only: bool = True
+    """Nguồn bổ sung qua DAN_CHIEU chỉ khi **seed dẫn chiếu tới nó** (``references_from``) — bỏ
+    chiều vào (vd các Khoản thẩm quyền xử phạt liệt kê hàng chục điểm); chiều ngược của chế tài
+    đã có qua BI_XU_PHAT/BI_TRU_DIEM."""
     token_budget: int = 6000
-    """Ngân sách cho phần nguồn + bảng con số (hồ sơ 16k)."""
+    """Ngân sách cho phần nguồn (hồ sơ 16k); bảng con số giới hạn riêng (``numbers``)."""
     token_budget_shared: int = 4000
     """Hồ sơ serve ``qwen3-14b-awq-shared`` (``max_model_len`` 8192)."""
     chars_per_token: float = 1.74
@@ -105,6 +109,23 @@ def _graph_only(sources: Sequence[object]) -> bool:
     return bool(sources) and all(getattr(s, "source", None) == "graph" for s in sources)
 
 
+def _outgoing_refs(
+    store: BaseGraphStore, catalog: ChunkCatalog, chunk_id: str, as_of: date | None
+) -> set[str]:
+    """Unit đích DAN_CHIEU từ các phiên bản của chunk (chiều ra)."""
+    ch = catalog.get(chunk_id)
+    d = as_of if as_of is not None and ch.covers(as_of) else ch.effective_from
+    out: set[str] = set()
+    for vid in ch.version_ids:
+        for e in store.out_edges(vid, types=["DAN_CHIEU"], as_of=d):
+            out.add(e.dst.split("@", 1)[0])
+    return out
+
+
+def _refers_to(targets: set[str], unit: str) -> bool:
+    return any(t == unit or unit.startswith(t + "/") or t.startswith(unit + "/") for t in targets)
+
+
 def pick_graph_extras(
     result: RetrievalResult, catalog: ChunkCatalog, store: BaseGraphStore, cfg: ContextConfig
 ) -> list[tuple[str, str]]:
@@ -114,11 +135,30 @@ def pick_graph_extras(
         return []
     top = {h.chunk_id for h in result.hits}
     prio = {t: i for i, t in enumerate(cfg.graph_edge_priority)}
+    refs: dict[str, set[str]] = {}
     cands = []
     for pos, p in enumerate(result.pool):
         if p.chunk_id in top or not _graph_only(p.sources):
             continue
         seeds = [s for s in p.sources if s.seed in top]
+        if cfg.dan_chieu_outgoing_only:
+            seeds = [
+                s
+                for s in seeds
+                if s.edge_type != "DAN_CHIEU"
+                or _refers_to(
+                    refs.setdefault(
+                        str(s.seed),
+                        _outgoing_refs(
+                            store,
+                            catalog,
+                            str(s.seed),
+                            result.as_of if result.validity_filter else None,
+                        ),
+                    ),
+                    p.unit_id,
+                )
+            ]
         if not seeds:
             continue
         if result.validity_filter:
@@ -244,9 +284,9 @@ def _d(d: date | None) -> str:
     return d.strftime("%d/%m/%Y") if d else "nay"
 
 
-def render_source(s: Source) -> str:
+def render_source(s: Source, *, with_name: bool = True) -> str:
     head = f"[{s.sid}] {s.doc_label}"
-    if s.doc_name and not s.doc_label.startswith(s.doc_name):
+    if with_name and s.doc_name and not s.doc_label.startswith(s.doc_name):
         head += f" — {s.doc_name}"
     head += f"\nVị trí: {s.label}"
     eff = f"Trạng thái này áp dụng từ {_d(s.effective_from)} đến {_d(s.effective_to)}"
@@ -271,7 +311,32 @@ def render_source(s: Source) -> str:
 
 
 def render_sources(sources: Sequence[Source]) -> str:
-    return "\n\n".join(render_source(s) for s in sources) if sources else "(không có nguồn)"
+    """Tên đầy đủ của văn bản chỉ in ở nguồn đầu tiên của văn bản đó."""
+    if not sources:
+        return "(không có nguồn)"
+    seen: set[str] = set()
+    parts = []
+    for s in sources:
+        parts.append(render_source(s, with_name=s.doc_id not in seen))
+        seen.add(s.doc_id)
+    return "\n\n".join(parts)
+
+
+def compact_units(units: Sequence[str], limit: int = 8) -> str:
+    """Gộp nhãn theo cha: ``điểm a, b, c khoản 3 Điều 6; khoản 8 Điều 6``."""
+    groups: dict[str, list[str]] = {}
+    for u in units:
+        parent, _, leaf = u.rpartition("/")
+        if leaf and not leaf[0].isupper() and parent.count("/") >= 1:
+            groups.setdefault(parent, []).append(leaf)
+        else:
+            groups.setdefault(u, [])
+    parts = []
+    for g, leaves in list(groups.items())[:limit]:
+        lab = unit_label(g)
+        parts.append(f"điểm {', '.join(leaves)} {lab}" if leaves else lab)
+    more = len(groups) - limit
+    return "; ".join(parts) + (f" và {more} mục khác" if more > 0 else "")
 
 
 def render_number_table(facts: Sequence[NumberFact]) -> str:
@@ -281,12 +346,9 @@ def render_number_table(facts: Sequence[NumberFact]) -> str:
     for f in facts:
         where = f" — nêu tại {unit_label(f.unit_id)}" if f.unit_id else ""
         applies = ""
-        if f.applies_to:
-            applies = " — áp dụng cho hành vi tại " + ", ".join(
-                unit_label(u) for u in f.applies_to[:6]
-            )
-            if len(f.applies_to) > 6:
-                applies += f" và {len(f.applies_to) - 6} điểm khác"
+        outside = [u for u in f.applies_to if u != f.unit_id and not u.startswith(f.unit_id + "/")]
+        if f.unit_id and outside:
+            applies = " — áp dụng cho hành vi tại " + compact_units(outside)
         lines.append(f"{{{f.id}}} [{f.source}] {f.description}: {f.rendered}{where}{applies}")
     return "\n".join(lines)
 
@@ -296,6 +358,7 @@ __all__ = [
     "ContextConfig",
     "Source",
     "amendment_notes",
+    "compact_units",
     "est_tokens",
     "pick_graph_extras",
     "render_number_table",

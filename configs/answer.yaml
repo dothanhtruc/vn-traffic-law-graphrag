@@ -13,6 +13,7 @@ context:
   graph_extra_types: [muc_phat, tru_diem, bien_phap, da_buoc]
   max_graph_extra: 3
   graph_edge_priority: [BI_XU_PHAT, BI_TRU_DIEM, DAN_CHIEU]
+  dan_chieu_outgoing_only: true    # DAN_CHIEU bổ sung chỉ khi seed dẫn chiếu tới nó (bỏ Khoản thẩm quyền liệt kê)
   token_budget: 6000               # nguồn (hồ sơ qwen3-14b-awq, max_model_len 16384)
   token_budget_shared: 4000        # hồ sơ qwen3-14b-awq-shared (max_model_len 8192)
   chars_per_token: 1.74            # ước lượng tất định (Qwen3, tiếng Việt ≈ 2,3 × len/4 — M9)

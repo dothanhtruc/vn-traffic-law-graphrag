@@ -312,3 +312,45 @@ def test_resume_and_demo_cache(acfg, rctx, mini_store, mini_catalog, tmp_path) -
         "xe gắn máy là gì?", D, "G", actx, AnswerCache(tmp_path / "demo.jsonl")
     )
     assert not hit1 and hit2 and fake.n_calls == calls and r2 == r1
+
+
+def test_dan_chieu_extra_outgoing_only(acfg, rctx, mini_store, mini_catalog) -> None:
+    r = rctx.retrieve(Q, D, "G")
+    k16 = next(c for c in mini_catalog.chunks if c.unit_id == "ND168-2024/D6/K16" and c.covers(D))
+    k3 = next(c for c in mini_catalog.chunks if c.unit_id == K3 and c.covers(D))
+
+    def case(seed, cand):
+        hit = r.hits[0].model_copy(update={"chunk_id": seed.chunk_id, "unit_id": seed.unit_id})
+        item = PoolItem(
+            chunk_id=cand.chunk_id,
+            unit_id=cand.unit_id,
+            effective_from=cand.effective_from,
+            effective_to=cand.effective_to,
+            sources=[SourceInfo(source="graph", edge_type="DAN_CHIEU", hop=1, seed=seed.chunk_id)],
+            rerank_score=1.0,
+        )
+        rr = r.model_copy(update={"hits": [hit], "pool": [item]})
+        return pick_graph_extras(rr, mini_catalog, mini_store, acfg.context)
+
+    # khoản 16 (trừ điểm) dẫn chiếu tới điểm h, i khoản 3 → giữ
+    assert case(k16, k3) == [(k3.chunk_id, "DAN_CHIEU")]
+    # chiều vào (khoản 3 được khoản 16 dẫn chiếu) → bỏ
+    assert case(k3, k16) == []
+    off = acfg.context.model_copy(update={"dan_chieu_outgoing_only": False})
+    hit = r.hits[0].model_copy(update={"chunk_id": k3.chunk_id, "unit_id": K3})
+    item = PoolItem(
+        chunk_id=k16.chunk_id,
+        unit_id=k16.unit_id,
+        effective_from=k16.effective_from,
+        effective_to=k16.effective_to,
+        sources=[SourceInfo(source="graph", edge_type="DAN_CHIEU", hop=1, seed=k3.chunk_id)],
+    )
+    rr = r.model_copy(update={"hits": [hit], "pool": [item]})
+    assert pick_graph_extras(rr, mini_catalog, mini_store, off) == [(k16.chunk_id, "DAN_CHIEU")]
+
+
+def test_compact_units() -> None:
+    from trafficlaw.pipeline.context import compact_units
+
+    got = compact_units(["ND168-2024/D6/K3/h", "ND168-2024/D6/K3/i", "ND168-2024/D6/K8"])
+    assert got == "điểm h, i khoản 3 Điều 6; khoản 8 Điều 6"
