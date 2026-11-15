@@ -13,7 +13,8 @@
   có cùng cửa sổ. Dòng cuối ghi dở bị bỏ (``utils.jsonl``).
 - Điểm = logit thô của model (không sigmoid — đơn điệu, không đổi thứ hạng).
 
-Module này **không import torch**; :class:`STReranker` import lười trong ``__init__``.
+Module này **không import torch**; :class:`STReranker` import lười (torch, transformers) trong
+``__init__``.
 """
 
 from __future__ import annotations
@@ -89,31 +90,34 @@ def make_counter(spec: RerankerSpec) -> TokenizerCounter:
 
 
 class STReranker:
-    """``sentence_transformers.CrossEncoder`` ghim revision, ``max_length`` theo cấu hình, bf16
-    (lùi fp16 khi GPU không hỗ trợ), điểm logit thô. CUDA OOM → giảm batch một nửa."""
+    """Cross-encoder bằng ``transformers`` (như README của AITeamVN/Vietnamese_Reranker):
+    ``AutoModelForSequenceClassification`` ghim revision, điểm = logit thô, bf16 (lùi fp16 khi GPU
+    không hỗ trợ), cắt ``max_length``. CUDA OOM → giảm batch một nửa.
+
+    Tokenizer = ``count_tokenizer`` (``tokenizer.json`` nhanh): repo reranker chỉ có
+    ``sentencepiece.bpe.model`` (cần gói ``sentencepiece`` — không cài), và file đó trùng sha256
+    với model gốc ``BAAI/bge-reranker-v2-m3`` (kiểm 15/11/2026), cùng ``special_tokens_map.json``
+    ⇒ tokenizer nhanh của model gốc tương đương. Model và bộ tách cửa sổ dùng cùng tokenizer."""
 
     def __init__(self, spec: RerankerSpec, *, device: str | None = None) -> None:
         import torch
-        from sentence_transformers import CrossEncoder
+        from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
         self.torch = torch
+        self.spec = spec
         dev = device or ("cuda" if torch.cuda.is_available() else "cpu")
         dtype: Any = torch.float32
         if dev == "cuda" and spec.dtype == "bf16":
             dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
         self.dtype_name = str(dtype).removeprefix("torch.")
-        kw: dict[str, Any] = {
-            "revision": spec.revision,
-            "max_length": spec.max_length,
-            "device": dev,
-            "model_kwargs": {"torch_dtype": dtype},
-        }
-        try:  # sentence-transformers ≥ 4: activation_fn; Identity = logit thô
-            self.model = CrossEncoder(spec.hf_repo, activation_fn=torch.nn.Identity(), **kw)
-        except TypeError:  # pragma: no cover - bản cũ
-            self.model = CrossEncoder(
-                spec.hf_repo, default_activation_function=torch.nn.Identity(), **kw
-            )
+        t = spec.count_tokenizer
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            t.hf_repo if t else spec.hf_repo, revision=(t.revision if t else spec.revision)
+        )
+        self.model = AutoModelForSequenceClassification.from_pretrained(
+            spec.hf_repo, revision=spec.revision, torch_dtype=dtype
+        ).to(dev)
+        self.model.eval()
         self.device = dev
         self.counter = make_counter(spec)
 
@@ -121,26 +125,42 @@ class STReranker:
         return self.counter.count_tokens(text)
 
     def model_count_tokens(self, text: str) -> int:
-        tok = self.model.tokenizer
-        return len(tok(text, add_special_tokens=True, truncation=False)["input_ids"])
+        return len(self.tokenizer(text, add_special_tokens=True, truncation=False)["input_ids"])
+
+    def _batch(self, pairs: Sequence[tuple[str, str]]) -> list[float]:
+        enc = self.tokenizer(
+            [p[0] for p in pairs],
+            [p[1] for p in pairs],
+            padding=True,
+            truncation=True,
+            max_length=self.spec.max_length,
+            return_tensors="pt",
+        ).to(self.device)
+        with self.torch.inference_mode():
+            logits = self.model(**enc, return_dict=True).logits.view(-1).float()
+        return [float(x) for x in logits.cpu().tolist()]
 
     def score(self, pairs: Sequence[tuple[str, str]], *, batch_size: int = 32) -> list[float]:
+        # Xếp theo độ dài để giảm padding; trả theo thứ tự đầu vào.
+        order = sorted(range(len(pairs)), key=lambda i: len(pairs[i][0]) + len(pairs[i][1]))
+        out: list[float] = [0.0] * len(pairs)
         bs = batch_size
-        while True:
+        i = 0
+        while i < len(order):
+            idx = order[i : i + bs]
             try:
-                v = self.model.predict(
-                    [list(p) for p in pairs],
-                    batch_size=bs,
-                    show_progress_bar=False,
-                    convert_to_numpy=True,
-                )
-                return [float(x) for x in v]
+                vals = self._batch([pairs[j] for j in idx])
             except self.torch.cuda.OutOfMemoryError:
                 if bs <= 1:
                     raise
                 self.torch.cuda.empty_cache()
                 bs = max(1, bs // 2)
                 logger.warning("CUDA OOM (rerank) → giảm batch còn %d", bs)
+                continue
+            for j, v in zip(idx, vals, strict=True):
+                out[j] = v
+            i += len(idx)
+        return out
 
     def peak_vram_gb(self) -> float | None:
         if self.device != "cuda":
