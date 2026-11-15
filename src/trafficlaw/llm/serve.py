@@ -64,10 +64,19 @@ class ServeConfig(BaseModel):
 
     @model_validator(mode="after")
     def _unique_names(self) -> ServeConfig:
-        names = [m.served_model_name for m in self.models.values()]
-        dup = sorted({n for n in names if names.count(n) > 1})
+        """``served_model_name`` (= ``model_id`` gửi lên, nằm trong khoá cache LLM) chỉ được trùng
+        giữa các hồ sơ phục vụ **cùng một model**: cùng ``hf_repo`` + ``revision`` +
+        ``quantization`` (vd ``qwen3-14b-awq-shared`` chỉ giảm ``gpu_memory_utilization`` để
+        embedder/reranker chạy cùng GPU — M11). Khác model mà trùng tên → lỗi."""
+        seen: dict[str, tuple[str, str | None, str | None]] = {}
+        dup: set[str] = set()
+        for m in self.models.values():
+            ident = (m.hf_repo, m.revision, m.quantization)
+            prev = seen.setdefault(m.served_model_name, ident)
+            if prev != ident:
+                dup.add(m.served_model_name)
         if dup:
-            raise ValueError(f"served_model_name trùng: {dup}")
+            raise ValueError(f"served_model_name trùng giữa các model khác nhau: {sorted(dup)}")
         return self
 
     def by_served_name(self, name: str) -> tuple[str, ServeModel] | None:

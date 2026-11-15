@@ -194,6 +194,7 @@ class ChunkCatalog:
         self.by_id = {c.chunk_id: c for c in self.chunks}
         self._at: dict[date, frozenset[str]] = {}
         self._units: list[str] | None = None
+        self._order: dict[str, int] | None = None
 
     @classmethod
     def load(cls, path: str | Path) -> ChunkCatalog:
@@ -230,6 +231,31 @@ class ChunkCatalog:
             out.extend(self._by_unit[self._units[j]])
             j += 1
         return out
+
+    def chunks_of_unit(self, unit: str, as_of: date | None) -> list[str]:
+        """Chunk chứa ``unit`` (M11: đích graph expand → chunk). Ưu tiên chunk của chính unit
+        hoặc tổ tiên gần nhất (Điểm → Khoản chứa nó); không có (unit là Điều chia Khoản, Chương…)
+        → chunk của các con cháu theo thứ tự danh mục. ``as_of`` → chỉ chunk hiệu lực tại ngày
+        đó; ``None`` → mọi trạng thái (A2)."""
+        self._chunks_related(unit)  # dựng chỉ mục unit → chunk
+        live = None if as_of is None else self.ids_at(as_of)
+        parts = unit.split("/")
+        for i in range(len(parts), 0, -1):
+            got = [
+                c for c in self._by_unit.get("/".join(parts[:i]), []) if live is None or c in live
+            ]
+            if got:
+                return got
+        pre = unit + "/"
+        assert self._units is not None
+        j = bisect.bisect_left(self._units, pre)
+        out: list[str] = []
+        while j < len(self._units) and self._units[j].startswith(pre):
+            out.extend(c for c in self._by_unit[self._units[j]] if live is None or c in live)
+            j += 1
+        if self._order is None:
+            self._order = {c: i for i, c in enumerate(self.by_id)}
+        return sorted(out, key=self._order.__getitem__)
 
     def relevant(self, gold_units: Sequence[str], as_of: date) -> dict[str, set[str]]:
         """gold unit → các chunk hiệu lực tại ``as_of`` chứa nó (hoặc là phần của nó)."""

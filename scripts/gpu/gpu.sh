@@ -8,8 +8,10 @@
 #   scripts/gpu/gpu.sh key install           # cài key lên máy thuê (gõ mật khẩu MỘT lần)
 #   scripts/gpu/gpu.sh key check             # xác nhận đăng nhập CHỈ bằng key
 #   scripts/gpu/gpu.sh key harden            # tắt đăng nhập bằng mật khẩu trên máy thuê
-#   scripts/gpu/gpu.sh setup [--no-vllm] [--group embed]   # cài trên máy thuê: tmux, uv, repo,
-#                                            # vLLM (trừ --no-vllm), nhóm dependency, file env
+#   scripts/gpu/gpu.sh setup [--no-vllm] [--group embed] [--curl-wheels]   # cài trên máy thuê:
+#                                            # tmux, uv, repo, vLLM (trừ --no-vllm), nhóm dependency,
+#                                            # file env; --curl-wheels: venv dự án từ wheel uv.lock
+#                                            # tải bằng curl (khi uv sync chậm, xem curl_wheels.sh)
 #   scripts/gpu/gpu.sh serve <model>         # chạy vLLM (khoá/tên trong serve.yaml) trong tmux
 #   scripts/gpu/gpu.sh stop-serve            # dừng vLLM
 #   scripts/gpu/gpu.sh run <tên> -- <lệnh>   # job dài (M10/M14/M17) trong tmux, log logs/<tên>.log
@@ -185,12 +187,15 @@ dotenv_get() {  # đọc biến từ .env local (bỏ ngoặc, CR)
 
 cmd_setup() {
     # Cờ: --no-vllm (bỏ cài vLLM — job chỉ cần torch, vd M10 encode, M14 train);
-    #     --group <nhóm> (thêm nhóm dependency của dự án, vd embed: torch + sentence-transformers).
-    local key hf repo branch ver with_vllm=1 groups=""
+    #     --group <nhóm> (thêm nhóm dependency của dự án, vd embed: torch + sentence-transformers);
+    #     --curl-wheels (M11: venv dự án cài từ wheel ghim trong uv.lock, tải song song bằng curl và
+    #     kiểm sha256 — thay uv sync khi tải PyPI chậm; job chạy bằng uv run --no-sync).
+    local key hf repo branch ver with_vllm=1 groups="" curl_wheels=0 gargs=()
     while [[ $# -gt 0 ]]; do
         case "$1" in
             --no-vllm) with_vllm=0 ;;
-            --group) shift; groups+=" --group $(printf '%q' "${1:?cần tên nhóm}")" ;;
+            --curl-wheels) curl_wheels=1 ;;
+            --group) shift; groups+=" --group $(printf '%q' "${1:?cần tên nhóm}")"; gargs+=(--group "$1") ;;
             *) echo "setup: cờ lạ $1" >&2; exit 1 ;;
         esac
         shift
@@ -230,7 +235,8 @@ print(l('configs/serve.yaml').vllm_version or '')")"
         else
             git clone -q -b $(printf '%q' "$branch") $(printf '%q' "$repo") $R_DIR
         fi
-        cd $R_DIR && uv sync -q$groups
+        cd $R_DIR
+        if [ $curl_wheels = 0 ]; then uv sync -q$groups; fi
         if [ $with_vllm = 1 ]; then
             [ -x $R_VENV/bin/python ] || uv venv -q --python 3.12 $R_VENV
             uv pip install -q --python $R_VENV/bin/python $(printf '%q' "vllm${ver:+==$ver}") bitsandbytes
@@ -238,12 +244,21 @@ print(l('configs/serve.yaml').vllm_version or '')")"
             [ -f \"\$V_INC/Python.h\" ] || { echo \"thiếu \$V_INC/Python.h (Triton của vLLM cần) — cài gói dev cho Python của venv\" >&2; exit 1; }
             echo \"vLLM: \$($R_VENV/bin/python -c 'import vllm; print(vllm.__version__)')\"
         fi
-        if [ -n \"$groups\" ]; then
+        if [ -n \"$groups\" ] && [ $curl_wheels = 0 ]; then
             uv run$groups python -c 'import torch; print(\"torch\", torch.__version__, \"cuda\", torch.cuda.is_available(), \"bf16\", torch.cuda.is_available() and torch.cuda.is_bf16_supported())' 2>/dev/null || true
         fi
         nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader
         nvcc --version 2>/dev/null | tail -n1 || true
     "
+    if [[ $curl_wheels = 1 ]]; then
+        local tsv
+        tsv="$(mktemp)"
+        uv run python scripts/gpu/wheel_urls.py "${gargs[@]}" > "$tsv"
+        "${SSH[@]}" "$HOST" "mkdir -p \$HOME/.cache/graphrag && cat > \$HOME/.cache/graphrag/wheels.tsv" < "$tsv"
+        rm -f "$tsv"
+        "${SSH[@]}" "$HOST" "bash -s -- $R_DIR \$HOME/.cache/graphrag/wheels.tsv" < scripts/gpu/curl_wheels.sh
+        remote "cd $R_DIR && .venv/bin/python -c 'import torch; print(\"torch\", torch.__version__, \"cuda\", torch.cuda.is_available())' 2>/dev/null || true"
+    fi
     echo "setup: xong. Nếu vllm_version trong configs/serve.yaml đang null, ghim phiên bản vừa in."
 }
 

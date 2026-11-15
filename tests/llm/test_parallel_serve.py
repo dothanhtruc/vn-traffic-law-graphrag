@@ -124,8 +124,9 @@ def test_remote_script_quotes_home_and_has_no_cr() -> None:
 
 
 def test_duplicate_served_name_rejected() -> None:
+    # Khác model (hf_repo) mà trùng served_model_name → lỗi (M11: cùng model thì được, xem dưới).
     with pytest.raises(ValueError):
-        ServeConfig(models={"a": _model(), "b": _model()})
+        ServeConfig(models={"a": _model(), "b": _model(hf_repo="Org/Other")})
 
 
 def test_gpu_hours_and_meta() -> None:
@@ -168,3 +169,36 @@ def test_probe_reads_models_and_version(monkeypatch: pytest.MonkeyPatch) -> None
     info = probe("http://127.0.0.1:8000/v1", "k")
     assert info["vllm_version"] == "0.0.test" and info["models"][0]["id"] == "m7"
     assert seen == ["http://127.0.0.1:8000/v1/models", "http://127.0.0.1:8000/version"]
+
+
+def test_served_name_shared_profile_same_model() -> None:
+    """M11: hồ sơ ``*-shared`` được trùng ``served_model_name`` khi cùng model/revision/lượng tử."""
+    base = {"hf_repo": "Q/A", "revision": "r1", "quantization": "awq", "family": "qwen"}
+    cfg = ServeConfig.model_validate(
+        {
+            "models": {
+                "a": {**base, "served_model_name": "m", "gpu_memory_utilization": 0.9},
+                "a-shared": {**base, "served_model_name": "m", "gpu_memory_utilization": 0.7},
+            }
+        }
+    )
+    assert cfg.by_served_name("m")[0] == "a"
+    with pytest.raises(ValueError, match="trùng"):
+        ServeConfig.model_validate(
+            {
+                "models": {
+                    "a": {**base, "served_model_name": "m"},
+                    "b": {**base, "revision": "r2", "served_model_name": "m"},
+                }
+            }
+        )
+
+
+def test_repo_serve_yaml_shared_profile() -> None:
+    from pathlib import Path
+
+    cfg = load_serve_config(Path(__file__).resolve().parents[2] / "configs/serve.yaml")
+    main, shared = cfg.models["qwen3-14b-awq"], cfg.models["qwen3-14b-awq-shared"]
+    assert shared.served_model_name == main.served_model_name
+    assert (shared.hf_repo, shared.revision) == (main.hf_repo, main.revision)
+    assert shared.gpu_memory_utilization < main.gpu_memory_utilization

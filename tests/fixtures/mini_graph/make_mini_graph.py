@@ -7,6 +7,11 @@ ND168 Đ12 K10 (dẫn chiếu vào Đ6), LUAT36 Đ6 / Đ7 K3 / Đ35 (``uy_quyen`
 cấp unit), các VanBan liên quan (ND151, ND165 hướng dẫn; ND238 sửa đổi; ND218 → ND158 cặp cạnh
 song song; VBHN144 → LUAT35 HOP_NHAT không có ngày). Giữ mọi cạnh có hai đầu nằm trong tập chọn,
 cộng DAN_CHIEU từ phiên bản đã chọn tới VanBan/VanBanNgoai.
+
+M11: thư mục con ``semantic/`` = nút/cạnh ngữ nghĩa M8 (``nodes_semantic.jsonl``,
+``edges_semantic.jsonl``) của các phiên bản đã chọn (CheTai/DiemGPLX/BienPhapBoSung/HanhVi/
+KhaiNiem nêu tại phiên bản đã chọn + PhuongTien/ChuThe được trỏ tới; cạnh có hai đầu trong tập).
+Tách riêng để fixture M6 (3 file) không đổi; test M11 chép cả hai vào thư mục tạm.
 """
 
 from __future__ import annotations
@@ -79,6 +84,29 @@ def main() -> None:
         print(name, len(rows))
     write(OUT / FILES[0], out_nodes)
     print(FILES[0], len(out_nodes))
+    write_semantic(keep)
+
+
+def write_semantic(keep: set[str]) -> None:
+    if not (SRC / "nodes_semantic.jsonl").is_file():
+        print("không có file ngữ nghĩa — bỏ qua semantic/")
+        return
+    sn, se = read("nodes_semantic.jsonl"), read("edges_semantic.jsonl")
+    by_id = {n["id"]: n for n in sn}
+    stated = {n["id"] for n in sn if n["props"].get("version_id") in keep}
+    edges = [e for e in se if e["src"] in keep and (e["dst"] in stated or e["dst"] in by_id)]
+    # Cạnh tới nút ngữ nghĩa nêu ngoài tập chọn chỉ giữ khi nút đó là PT/CT (danh mục).
+    edges = [
+        e
+        for e in edges
+        if e["dst"] in stated or by_id[e["dst"]]["label"] in ("PhuongTien", "ChuThe")
+    ]
+    ids = stated | {e["dst"] for e in edges}
+    out = OUT / "semantic"
+    out.mkdir(exist_ok=True)
+    write(out / "nodes_semantic.jsonl", [n for n in sn if n["id"] in ids])
+    write(out / "edges_semantic.jsonl", edges)
+    print("semantic", len(ids), "nút,", len(edges), "cạnh")
 
 
 def write(path: Path, rows: list[dict]) -> None:
