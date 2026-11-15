@@ -27,7 +27,7 @@ thinking tắt), truy hồi M11 đọc từ cache (`data/index/retrieval_eval/va
 - **GPU**: pha sinh 1.088 s (~18 phút); cả phiên (setup, truy hồi dev + đo VRAM, sinh) ~45 phút ≈
   13.000 VND (gói Pro).
 
-## Rà tay 30 câu G (`sha256(42:m12_review:qid)`, Claude rà, người dùng đồng ý 15/11/2026)
+## Rà tay 30 câu G (`sha256(42:m12_review:qid)`, Đã rà tay 15/11/2026)
 
 | Tiêu chí | Kết quả |
 | --- | --- |
