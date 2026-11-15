@@ -87,10 +87,10 @@ Các trường hợp từ chối, không chấp thuận việc doanh nghiệp ki
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng — gold Đ35 K4 có trong ngữ cảnh (S4) |  |
-| Số đúng | Đúng (04e là mã mẫu, khớp Đ35 K4) |  |
-| Trích dẫn đúng Khoản/Điểm | Lệch — trích PL4 phần 20, đoạn này không chứa 04e; đúng ra là S4 (Đ35 K4) |  |
-| Nhận xét | Nội dung đúng, trích dẫn sai nguồn |  |
+| Nguồn đúng | Đúng — gold Đ35 K4 có trong ngữ cảnh (S4) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | Đúng (04e là mã mẫu, khớp Đ35 K4) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Lệch — trích PL4 phần 20, đoạn này không chứa 04e; đúng ra là S4 (Đ35 K4) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Nội dung đúng, trích dẫn sai nguồn | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 2. gen-865ba48c073c
 
@@ -148,10 +148,10 @@ Mã số dùng: — · cờ verify: —
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng một phần — gold TT83 Đ5 K3 có (S1) |  |
-| Số đúng | — |  |
-| Trích dẫn đúng Khoản/Điểm | Trích LUAT36 Đ71 K4 (Bộ trưởng BCA quy định việc xây dựng…) — liên quan nhưng không phải gold |  |
-| Nhận xét | Chấp nhận được; bỏ qua S1 nói rõ hơn |  |
+| Nguồn đúng | Đúng một phần — gold TT83 Đ5 K3 có (S1) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | — | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Trích LUAT36 Đ71 K4 (Bộ trưởng BCA quy định việc xây dựng…) — liên quan nhưng không phải gold | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Chấp nhận được; bỏ qua S1 nói rõ hơn | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 3. gen-2b08f798b8d3
 
@@ -214,10 +214,10 @@ Mã số dùng: — · cờ verify: —
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng (Đ44 K1–K5) |  |
-| Số đúng | — |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng; ý 1 (tổng quát) trích K4 hơi gượng |  |
-| Nhận xét | Tốt |  |
+| Nguồn đúng | Đúng (Đ44 K1–K5) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | — | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng; ý 1 (tổng quát) trích K4 hơi gượng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Tốt | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 4. gen-a6414ef01526
 
@@ -281,10 +281,10 @@ c) Đối với kè, tường chắn bảo vệ không thuộc quy định tại
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng một phần — chỉ có K4 của Đ15 Luật 35 |  |
-| Số đúng | — |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng K4 |  |
-| Nhận xét | Trả lời nghèo (chỉ 'Chính phủ quy định chi tiết'): thiếu do truy hồi |  |
+| Nguồn đúng | Đúng một phần — chỉ có K4 của Đ15 Luật 35 | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | — | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng K4 | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Trả lời nghèo (chỉ 'Chính phủ quy định chi tiết'): thiếu do truy hồi | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 5. gen-626e3250f9ea
 
@@ -370,10 +370,10 @@ i) Biển số xe loại khác theo quy định của Bộ trưởng Bộ Công 
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng |  |
-| Số đúng | Đúng (20 seri, {N1} từ text) |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng K7 Đ37 |  |
-| Nhận xét | Tốt |  |
+| Nguồn đúng | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | Đúng (20 seri, {N1} từ text) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng K7 Đ37 | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Tốt | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 6. gen-9da11da746b9
 
@@ -452,10 +452,10 @@ Nếu một trong các bên liên quan đến vụ tai nạn giao thông đườ
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng (Đ16 K1) |  |
-| Số đúng | — |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng Đ16 K1; thêm Đ18 K6, K1 không chứa Mẫu 13/TNĐB (thừa) |  |
-| Nhận xét | Nội dung đúng, trích dẫn thừa |  |
+| Nguồn đúng | Đúng (Đ16 K1) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | — | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng Đ16 K1; thêm Đ18 K6, K1 không chứa Mẫu 13/TNĐB (thừa) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Nội dung đúng, trích dẫn thừa | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 7. gen-58951a64d9a0
 
@@ -524,10 +524,10 @@ d) Vận hành, sử dụng hệ thống, phương tiện, thiết bị, dữ li
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng |  |
-| Số đúng | — |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng (4/4) |  |
-| Nhận xét | Tốt |  |
+| Nguồn đúng | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | — | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng (4/4) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Tốt | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 8. gen-cd95de9d4498
 
@@ -602,10 +602,10 @@ c) Khi giữ và trả lại giấy phép, chứng chỉ hành nghề bị tư�
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng một phần |  |
-| Số đúng | — |  |
-| Trích dẫn đúng Khoản/Điểm | Đ5 K2, K3, K6 đúng; ý 4 (môi trường điện tử) trích TT73 Đ23 K1 b — đúng ra TT72 Đ18 K2 |  |
-| Nhận xét | Trả lời vòng vo, 1 trích dẫn sai |  |
+| Nguồn đúng | Đúng một phần | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | — | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đ5 K2, K3, K6 đúng; ý 4 (môi trường điện tử) trích TT73 Đ23 K1 b — đúng ra TT72 Đ18 K2 | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Trả lời vòng vo, 1 trích dẫn sai | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 9. gen-ea275e181895
 
@@ -673,10 +673,10 @@ Trường hợp quá thời hạn trên, đơn vị kinh doanh vận tải khôn
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng (gold S1) |  |
-| Số đúng | 15 ngày lấy từ câu hỏi |  |
-| Trích dẫn đúng Khoản/Điểm | LLM ghi S1/K3/b trong khi S1 là khoản 2 → verify loại đúng |  |
-| Nhận xét | Chỉ còn kết luận; nội dung đúng nhưng mất trích dẫn |  |
+| Nguồn đúng | Đúng (gold S1) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | 15 ngày lấy từ câu hỏi | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | LLM ghi S1/K3/b trong khi S1 là khoản 2 → verify loại đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Chỉ còn kết luận; nội dung đúng nhưng mất trích dẫn | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 10. gen-e4ff3be88a96
 
@@ -781,10 +781,10 @@ d) Đi ngược chiều của đường một chiều, đi ngược chiều trê
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Sai — gold K2 (S1) không được dùng; LLM lấy K3 (đường cao tốc) |  |
-| Số đúng | Số đúng nguyên văn K3 nhưng sai hành vi; LLM viết 'từ {N4} đến {N4}' → hiển thị lặp |  |
-| Trích dẫn đúng Khoản/Điểm | Trích K3 không đúng hành vi hỏi |  |
-| Nhận xét | SAI nội dung; cần cờ mã số lặp |  |
+| Nguồn đúng | Sai — gold K2 (S1) không được dùng; LLM lấy K3 (đường cao tốc) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | Số đúng nguyên văn K3 nhưng sai hành vi; LLM viết 'từ {N4} đến {N4}' → hiển thị lặp | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Trích K3 không đúng hành vi hỏi | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | SAI nội dung; cần cờ mã số lặp | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 11. gen-9d71bcb3b7c1
 
@@ -842,10 +842,10 @@ Mã số dùng: — · cờ verify: —
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng (gold S2) |  |
-| Số đúng | — |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng S2 (Đ5 K2), S1 (Đ6 K4); thêm Đ6 K3, Đ5 K3 không nói về camera |  |
-| Nhận xét | Đúng, trích dẫn thừa |  |
+| Nguồn đúng | Đúng (gold S2) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | — | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng S2 (Đ5 K2), S1 (Đ6 K4); thêm Đ6 K3, Đ5 K3 không nói về camera | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Đúng, trích dẫn thừa | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 12. gen-c4da2dc12fd3
 
@@ -923,10 +923,10 @@ Các trường hợp từ chối, không chấp thuận việc doanh nghiệp ki
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng |  |
-| Số đúng | Đúng (15 ngày làm việc) |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng điểm c K4 Đ26 |  |
-| Nhận xét | Tốt |  |
+| Nguồn đúng | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | Đúng (15 ngày làm việc) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng điểm c K4 Đ26 | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Tốt | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 13. gen-fe38d73cea41
 
@@ -1003,10 +1003,10 @@ b) Cách bố trí chữ và số trên biển số xe mô tô của tổ chức
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng |  |
-| Số đúng | Đúng (20) |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng |  |
-| Nhận xét | Tốt |  |
+| Nguồn đúng | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | Đúng (20) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Tốt | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 14. gen-39bcdb790474
 
@@ -1078,10 +1078,10 @@ Trường hợp người nước ngoài, xe cơ giới nước ngoài không th�
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng |  |
-| Số đúng | — |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng K4, điểm b K1 Đ36 |  |
-| Nhận xét | Tốt |  |
+| Nguồn đúng | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | — | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng K4, điểm b K1 Đ36 | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Tốt | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 15. gen-f8553929a124
 
@@ -1143,10 +1143,10 @@ b) Cơ sở dữ liệu về sức khỏe của người lái xe, người đi�
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng (gold S2) |  |
-| Số đúng | — |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng S2 (K2 Đ55 TT35); K3 Đ55 không nhắc Bộ Y tế; NĐ151 đúng ý |  |
-| Nhận xét | Đúng, trích dẫn thừa |  |
+| Nguồn đúng | Đúng (gold S2) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | — | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng S2 (K2 Đ55 TT35); K3 Đ55 không nhắc Bộ Y tế; NĐ151 đúng ý | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Đúng, trích dẫn thừa | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 16. gen-e54798ba71e5
 
@@ -1214,10 +1214,10 @@ c) Phương án tài chính tại hồ sơ dự thầu không bao gồm doanh th
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng |  |
-| Số đúng | Ngày 31/12/2025 nguyên văn |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng |  |
-| Nhận xét | Tốt (cờ numbers_khong_khop vô hại) |  |
+| Nguồn đúng | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | Ngày 31/12/2025 nguyên văn | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Tốt (cờ numbers_khong_khop vô hại) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 17. gen-b046eff95cde
 
@@ -1292,10 +1292,10 @@ c) Ủy ban nhân dân cấp huyện, Ủy ban nhân dân cấp xã thực hiệ
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng |  |
-| Số đúng | Đúng (01 bộ, điểm d K4) |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng |  |
-| Nhận xét | Tốt |  |
+| Nguồn đúng | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | Đúng (01 bộ, điểm d K4) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Tốt | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 18. gen-0e11fd26ee97
 
@@ -1362,10 +1362,10 @@ d) Cục Đường bộ Việt Nam tiếp nhận, ra quyết định tổ chức
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng (TT35 Đ26 K1 hiệu lực tại 31/08/2025) |  |
-| Số đúng | 'hai sát hạch viên' viết bằng chữ, đúng nguyên văn (ngoài phạm vi dò chữ) |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng |  |
-| Nhận xét | Tốt |  |
+| Nguồn đúng | Đúng (TT35 Đ26 K1 hiệu lực tại 31/08/2025) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | 'hai sát hạch viên' viết bằng chữ, đúng nguyên văn (ngoài phạm vi dò chữ) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Tốt | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 19. gen-474559c9d846
 
@@ -1427,10 +1427,10 @@ d) Thông báo đến Bộ Quốc phòng, Bộ Văn hóa, Thể thao và Du lị
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng |  |
-| Số đúng | — |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng điểm d K1 Đ36 |  |
-| Nhận xét | Tốt |  |
+| Nguồn đúng | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | — | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng điểm d K1 Đ36 | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Tốt | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 20. gen-d484175e4abf
 
@@ -1507,10 +1507,10 @@ d) Số lượng hồ sơ: 01 bộ;
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng một phần (gold S1 K3 Đ31) |  |
-| Số đúng | — |  |
-| Trích dẫn đúng Khoản/Điểm | Ý 1, 2 đúng; ý 3 (UBND tỉnh, Luật 35 Đ8 K4) lạc đề; ý 6 lặp ý 2 |  |
-| Nhận xét | Dài, lẫn ý lạc đề |  |
+| Nguồn đúng | Đúng một phần (gold S1 K3 Đ31) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | — | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Ý 1, 2 đúng; ý 3 (UBND tỉnh, Luật 35 Đ8 K4) lạc đề; ý 6 lặp ý 2 | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Dài, lẫn ý lạc đề | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 21. gen-e793861672fb
 
@@ -1572,10 +1572,10 @@ Mã số dùng: — · cờ verify: —
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng |  |
-| Số đúng | — |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng (5/5) |  |
-| Nhận xét | Tốt |  |
+| Nguồn đúng | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | — | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng (5/5) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Tốt | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 22. gen-ef4f4143402c
 
@@ -1651,10 +1651,10 @@ l) Giấy phép lái xe hạng FB2, FD được tiếp tục điều khiển cá
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng (gold S1) |  |
-| Số đúng | Ngày 01/01/2025 nguyên văn; 01 số quản lý qua {N3} |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng; ý 3 lặp ý 1 |  |
-| Nhận xét | Đúng |  |
+| Nguồn đúng | Đúng (gold S1) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | Ngày 01/01/2025 nguyên văn; 01 số quản lý qua {N3} | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng; ý 3 lặp ý 1 | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 23. gen-e877ba78619e
 
@@ -1720,10 +1720,10 @@ a) Cán bộ Cảnh sát giao thông thuộc Cục Cảnh sát giao thông phả
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng (gold S1) |  |
-| Số đúng | — |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng (4 nguồn) |  |
-| Nhận xét | Đúng; 1 câu bị bỏ do số tự do |  |
+| Nguồn đúng | Đúng (gold S1) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | — | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng (4 nguồn) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Đúng; 1 câu bị bỏ do số tự do | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 24. gen-fcd21f95496c
 
@@ -1790,10 +1790,10 @@ d) Sử dụng phương tiện, thiết bị kỹ thuật nghiệp vụ được
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng (gold S1) |  |
-| Số đúng | Câu có số bị bỏ |  |
-| Trích dẫn đúng Khoản/Điểm | Mọi ý bị loại (số tự do sau sửa) → chỉ còn kết luận |  |
-| Nhận xét | Kết luận đúng nhưng không còn trích dẫn |  |
+| Nguồn đúng | Đúng (gold S1) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | Câu có số bị bỏ | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Mọi ý bị loại (số tự do sau sửa) → chỉ còn kết luận | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Kết luận đúng nhưng không còn trích dẫn | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 25. gen-f2f580d1d391
 
@@ -1873,10 +1873,10 @@ b) Trường hợp không dừng được phương tiện giao thông vi phạm 
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng (gold S1) |  |
-| Số đúng | Đúng (6–8 triệu, Đ9 K3 b NĐ336) |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng |  |
-| Nhận xét | Tốt, ghép nhiều văn bản |  |
+| Nguồn đúng | Đúng (gold S1) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | Đúng (6–8 triệu, Đ9 K3 b NĐ336) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Tốt, ghép nhiều văn bản | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 26. gen-1ad1c3e4f20b
 
@@ -1951,10 +1951,10 @@ d) Trong thời gian 30 ngày kể từ ngày quyết định thu hồi có hi�
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng |  |
-| Số đúng | — |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng điểm d K4 Đ22 |  |
-| Nhận xét | Tốt |  |
+| Nguồn đúng | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | — | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng điểm d K4 Đ22 | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Tốt | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 27. gen-2bbaae01c4da
 
@@ -2014,10 +2014,10 @@ Riêng xe ô tô kinh doanh vận tải hành khách theo hợp đồng có sứ
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Có gold (Đ44 K4: thời gian hoạt động theo UBND tỉnh) |  |
-| Số đúng | — |  |
-| Trích dẫn đúng Khoản/Điểm | — |  |
-| Nhận xét | Từ chối (insufficient) — có thể trả lời từ S1; câu hỏi mơ hồ |  |
+| Nguồn đúng | Có gold (Đ44 K4: thời gian hoạt động theo UBND tỉnh) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | — | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | — | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Từ chối (insufficient) — có thể trả lời từ S1; câu hỏi mơ hồ | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 28. gen-ea0dee7be811
 
@@ -2086,10 +2086,10 @@ d) Yêu cầu giám định hàng hóa khi cần thiết;
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng |  |
-| Số đúng | — |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng |  |
-| Nhận xét | Trả lời đúng nhưng không nêu cụ thể cơ quan (nguồn cũng không nêu) |  |
+| Nguồn đúng | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | — | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Trả lời đúng nhưng không nêu cụ thể cơ quan (nguồn cũng không nêu) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 29. gen-220bf174be99
 
@@ -2147,10 +2147,10 @@ Mã số dùng: — · cờ verify: —
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng |  |
-| Số đúng | — |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng |  |
-| Nhận xét | Tốt |  |
+| Nguồn đúng | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | — | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Tốt | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
 ## 30. gen-88cc013817b3
 
@@ -2237,8 +2237,8 @@ b) Trường hợp tiếp nhận hồ sơ đề nghị cấp IDP của cá nhân
 
 | Tiêu chí | Claude | Người dùng |
 | --- | --- | --- |
-| Nguồn đúng | Đúng (TT12 Đ28 K1, hiệu lực tại 31/08/2025; gold TT35 Đ59 K2 cũng hiệu lực) |  |
-| Số đúng | Đúng (05/02/01 ngày làm việc) |  |
-| Trích dẫn đúng Khoản/Điểm | Đúng các điểm b, c, d |  |
-| Nhận xét | Tốt |  |
+| Nguồn đúng | Đúng (TT12 Đ28 K1, hiệu lực tại 31/08/2025; gold TT35 Đ59 K2 cũng hiệu lực) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Số đúng | Đúng (05/02/01 ngày làm việc) | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Trích dẫn đúng Khoản/Điểm | Đúng các điểm b, c, d | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
+| Nhận xét | Tốt | Đồng ý (người dùng yêu cầu Claude điền theo nhận xét Claude, 15/11/2026) |
 
