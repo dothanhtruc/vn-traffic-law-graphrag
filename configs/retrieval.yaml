@@ -83,3 +83,64 @@ regression:
   max_drop: 0.02
   baseline: data/qa/retrieval_baseline.json
   corpus: tests/fixtures/retrieval/corpus.jsonl.gz
+
+# --- M11: truy hồi Graph RAG (retrieve()). Xem CLAUDE.md "Quy ước truy hồi (M11)". ---------------
+
+# Reranker gốc (người dùng chốt 14/11/2026; M14 fine-tune từ bản này). Kiểm trên HF 15/11/2026:
+# apache-2.0, không gated, fine-tune từ BAAI/bge-reranker-v2-m3. Điểm = logit thô (không sigmoid).
+# Repo không có tokenizer.json ⇒ tách cửa sổ bằng tokenizer.json của model gốc bge-reranker-v2-m3
+# (cùng sentencepiece XLM-R); máy thuê kiểm tra số token trùng tokenizer của reranker.
+reranker_key: aiteamvn-reranker
+rerankers:
+  aiteamvn-reranker:
+    hf_repo: AITeamVN/Vietnamese_Reranker
+    revision: f536976248403314225d7fdfdbc87f0e9516a54e
+    params_b: 0.57
+    license: apache-2.0
+    family: xlm-roberta
+    max_length: 512
+    batch_size: 32
+    count_tokenizer:
+      hf_repo: BAAI/bge-reranker-v2-m3
+      revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+    pairs_per_s: 150     # ước tính thận trọng, thay bằng số đo (data/index/rerank/<key>/runs.jsonl)
+    load_min: 1.5
+
+# Phân tích câu hỏi: rule trước; LLM main (configs/llm.yaml) chỉ khi rule không chắc.
+analyze:
+  catalog: data/registry/extract_catalog.yaml
+  llm_fallback: true
+  prompt: analyze_question
+  max_output_tokens: 512
+  llm_cache: data/index/analyze/llm.jsonl
+
+# Graph expand: loại cạnh / số hop theo loại câu (người dùng duyệt 15/11/2026; chỉnh trên val/train,
+# KHÔNG trên test). Mọi lần mở rộng direction=both, lọc as_of (trừ A2).
+expand:
+  default: {edge_types: [DAN_CHIEU], hops: 1}
+  by_type:
+    muc_phat: {edge_types: [BI_XU_PHAT, BI_TRU_DIEM, DAN_CHIEU], hops: 1}
+    tru_diem: {edge_types: [BI_XU_PHAT, BI_TRU_DIEM, DAN_CHIEU], hops: 1}
+    bien_phap: {edge_types: [BI_XU_PHAT, BI_TRU_DIEM, DAN_CHIEU], hops: 1}
+    da_buoc: {edge_types: [DAN_CHIEU, BI_XU_PHAT, BI_TRU_DIEM, HUONG_DAN], hops: 2}
+  max_chunks: 30
+  per_node_max: 5
+  reverse_sanctions: true
+
+# Cấu hình truy hồi (CLAUDE.md mục 10). dense_model/reranker_model null → model_key/reranker_key
+# (M14 thay hai khoá này bằng bản fine-tune ⇒ G dùng bản fine-tune, A3 giữ bản gốc ghi tường minh).
+configs:
+  B1: {description: BM25, bm25: true, dense: false, analyzer_llm: false}
+  B2: {description: vector gốc, bm25: false, dense: true, dense_model: aiteamvn-vi-emb, analyzer_llm: false}
+  B3: {description: hybrid + rerank, bm25: true, dense: true, reranker: true, analyzer_llm: false}
+  G: {description: Graph RAG đầy đủ, bm25: true, dense: true, reranker: true, graph_expand: true}
+  A1: {description: G bỏ graph expand, bm25: true, dense: true, reranker: true, graph_expand: false}
+  A2: {description: G bỏ lọc hiệu lực, bm25: true, dense: true, reranker: true, graph_expand: true, validity_filter: false}
+  A3:
+    description: G với embedding/reranker gốc (chưa có bản fine-tune ⇒ trùng G tới M14)
+    bm25: true
+    dense: true
+    dense_model: aiteamvn-vi-emb
+    reranker: true
+    reranker_model: aiteamvn-reranker
+    graph_expand: true

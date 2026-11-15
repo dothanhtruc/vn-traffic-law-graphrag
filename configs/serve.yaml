@@ -35,6 +35,20 @@ models:
     family: qwen
     role: main
     decode_tps: 450                           # đo 09/11: 34.350 token ra / 76 s, 16 luồng (gồm prefill)
+  qwen3-14b-awq-shared:
+    # M11 (người dùng duyệt 15/11/2026): CÙNG model/revision với qwen3-14b-awq (cùng served_model_name
+    # ⇒ cùng model_id, dùng chung cache LLM), giảm VRAM để embedder + reranker chạy cùng GPU khi
+    # cần cả ba cùng lúc (M12/M15). Đánh giá M11 chạy hai pha nên không cần hồ sơ này.
+    # Đo VRAM đỉnh (vLLM + embedder + reranker) ≤ 22 GB trước khi dùng cho run chính thức.
+    hf_repo: Qwen/Qwen3-14B-AWQ
+    revision: 31c69efc29464b6bb0aee1398b5a7b50a99340c3
+    served_model_name: qwen3-14b-awq
+    quantization: awq_marlin
+    max_model_len: 8192
+    gpu_memory_utilization: 0.70
+    family: qwen
+    role: main
+    decode_tps: 450
   qwen3-8b:
     hf_repo: Qwen/Qwen3-8B
     revision: null
