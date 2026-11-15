@@ -24,13 +24,11 @@ không nối bằng DAN_CHIEU/BI_XU_PHAT/BI_TRU_DIEM/HUONG_DAN), ``so_khong_co_t
 
 from __future__ import annotations
 
-import re
-import unicodedata
 from collections import Counter, defaultdict
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
 from datetime import date, timedelta
-from decimal import Decimal, InvalidOperation
+from decimal import Decimal
 from typing import Any, Literal
 
 from pydantic import ValidationError
@@ -39,6 +37,7 @@ from trafficlaw.eval.qa_schema import QAItem, Split
 from trafficlaw.eval.textsim import near_pairs, normalize
 from trafficlaw.graph.store import BaseGraphStore, GraphNode, unit_of_version_id
 from trafficlaw.utils.dates import parse_iso
+from trafficlaw.verify.numbers import as_decimal, parse_numbers
 
 Level = Literal["error", "warning", "info"]
 
@@ -111,23 +110,7 @@ class ValidateResult:
 
 # --------------------------------------------------------------------------- con số
 
-_NUM_RE = re.compile(r"\d{1,3}(?:\.\d{3})+(?:,\d+)?|\d+(?:,\d+)?")
-
-
-def parse_numbers(text: str) -> set[Decimal]:
-    """Số trong văn bản tiếng Việt: ``400.000`` = 400000, ``0,25`` = 0.25, ``02`` = 2."""
-    out: set[Decimal] = set()
-    for m in _NUM_RE.finditer(unicodedata.normalize("NFC", text)):
-        tok = m.group(0).replace(".", "").replace(",", ".")
-        try:
-            out.add(Decimal(tok).normalize())
-        except InvalidOperation:  # pragma: no cover - regex chỉ khớp chữ số
-            continue
-    return out
-
-
-def as_decimal(v: int | float) -> Decimal:
-    return Decimal(str(v)).normalize()
+# Dùng chung với M12 (verify/numbers.py), hành vi không đổi.
 
 
 # --------------------------------------------------------------------------- đồ thị

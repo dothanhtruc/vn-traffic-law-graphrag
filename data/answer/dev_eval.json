@@ -1,0 +1,884 @@
+{
+  "run_id": "m12-dev",
+  "sets": {
+    "val": {
+      "B0": {
+        "n": 489,
+        "status": {
+          "ok": 489
+        },
+        "format_error_rate": 0.0,
+        "error_rate": 0.0,
+        "answer_status": {
+          "answered": 283,
+          "out_of_scope": 50,
+          "insufficient": 156
+        },
+        "tu_choi": 0.4213,
+        "out_of_scope": 0.1022,
+        "trich_gold": 0.0041,
+        "nguon_co_gold": null,
+        "trich_dan": {
+          "n": 1508,
+          "hop_le": 0.7586
+        },
+        "co": {
+          "khong_ton_tai": 343,
+          "so_khong_kiem_duoc": 222,
+          "van_ban_khong_ro": 21,
+          "y_khong_nguon": 16
+        },
+        "co_theo_cau": {
+          "khong_ton_tai": 95,
+          "so_khong_kiem_duoc": 75,
+          "y_khong_nguon": 16,
+          "van_ban_khong_ro": 6
+        },
+        "b0": {
+          "so_khong_kiem_duoc_tb": 0.45,
+          "cau_co_so": 0.1534,
+          "trich_dan_bia": 0.2414,
+          "trich_dan_het_hieu_luc": 0.0,
+          "trang_thai_trich_dan": {
+            "ok": 1144,
+            "khong_ton_tai": 343,
+            "van_ban_khong_ro": 21
+          }
+        },
+        "y_tb": 3.12,
+        "do_dai_tb": 574.5,
+        "token_vao_tb": 484.0,
+        "token_ra_tb": 383.2,
+        "latency_ms": {
+          "p50": 8606,
+          "p95": 12070
+        },
+        "goi_llm_tb": 1.0,
+        "model_id": "qwen3-14b-awq",
+        "prompt_hash": "993741924b09c77abe9f6fff17819b2ea852ca9b4b9526d33008bdd8266dc583",
+        "serve": {
+          "served_model": "qwen3-14b-awq",
+          "hf_repo": "Qwen/Qwen3-14B-AWQ",
+          "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+          "quantization": "awq_marlin",
+          "vllm_version": "0.33.0"
+        }
+      },
+      "B3": {
+        "n": 489,
+        "status": {
+          "ok": 489
+        },
+        "format_error_rate": 0.0,
+        "error_rate": 0.0,
+        "answer_status": {
+          "answered": 474,
+          "insufficient": 14,
+          "out_of_scope": 1
+        },
+        "tu_choi": 0.0307,
+        "out_of_scope": 0.002,
+        "trich_gold": 0.818,
+        "nguon_co_gold": 0.9305,
+        "trich_dan": {
+          "n": 1756,
+          "hop_le": 0.9487
+        },
+        "co": {
+          "diem_khong_ton_tai": 90,
+          "y_khong_nguon": 86,
+          "so_khong_kiem_duoc": 65,
+          "so_khong_thuoc_nguon_trich": 37,
+          "numbers_khong_khop": 28,
+          "y_rong_sau_loc_so": 25,
+          "khong_con_y_nao": 17,
+          "ma_so_lap": 9,
+          "ok_bang_so": 3
+        },
+        "co_theo_cau": {
+          "diem_khong_ton_tai": 39,
+          "y_khong_nguon": 35,
+          "so_khong_kiem_duoc": 23,
+          "so_khong_thuoc_nguon_trich": 19,
+          "y_rong_sau_loc_so": 17,
+          "khong_con_y_nao": 17,
+          "numbers_khong_khop": 16,
+          "ma_so_lap": 7,
+          "ok_bang_so": 3
+        },
+        "con_so": {
+          "cau_dung_ma_so": 0.2638,
+          "ma_so_dung_tb": 0.65,
+          "cau_vi_pham_truoc_sua": 0.1207,
+          "cau_vi_pham_sau_sua": 0.047,
+          "vi_pham_truoc": 169,
+          "vi_pham_sau": 65,
+          "luot_sua": 59,
+          "cau_bi_bo": 40,
+          "bang_ma_so_tb": 5.3
+        },
+        "nguon": {
+          "tb": 4.99,
+          "do_thi_tb": 0.0,
+          "trich_nguon_do_thi": 0.0,
+          "cat_ngan": 9
+        },
+        "y_tb": 3.14,
+        "do_dai_tb": 841.9,
+        "token_vao_tb": 3285.4,
+        "token_ra_tb": 347.4,
+        "latency_ms": {
+          "p50": 17185,
+          "p95": 53682
+        },
+        "goi_llm_tb": 1.121,
+        "low_score": 0.0348,
+        "model_id": "qwen3-14b-awq",
+        "prompt_hash": "aa8de6d7fe0f10472637b5af82e25effc4490a329c7c094971464b96e37b6e0d",
+        "serve": {
+          "served_model": "qwen3-14b-awq",
+          "hf_repo": "Qwen/Qwen3-14B-AWQ",
+          "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+          "quantization": "awq_marlin",
+          "vllm_version": "0.33.0"
+        }
+      },
+      "G": {
+        "n": 489,
+        "status": {
+          "ok": 489
+        },
+        "format_error_rate": 0.0,
+        "error_rate": 0.0,
+        "answer_status": {
+          "answered": 471,
+          "insufficient": 17,
+          "out_of_scope": 1
+        },
+        "tu_choi": 0.0368,
+        "out_of_scope": 0.002,
+        "trich_gold": 0.8098,
+        "nguon_co_gold": 0.9284,
+        "trich_dan": {
+          "n": 1737,
+          "hop_le": 0.9401
+        },
+        "co": {
+          "diem_khong_ton_tai": 100,
+          "y_khong_nguon": 95,
+          "so_khong_kiem_duoc": 47,
+          "so_khong_thuoc_nguon_trich": 34,
+          "numbers_khong_khop": 23,
+          "y_rong_sau_loc_so": 21,
+          "khong_con_y_nao": 18,
+          "ma_so_lap": 8,
+          "ok_bang_so": 7,
+          "nguon_ngoai_ngu_canh": 4
+        },
+        "co_theo_cau": {
+          "diem_khong_ton_tai": 40,
+          "y_khong_nguon": 36,
+          "so_khong_kiem_duoc": 21,
+          "so_khong_thuoc_nguon_trich": 18,
+          "khong_con_y_nao": 18,
+          "numbers_khong_khop": 16,
+          "y_rong_sau_loc_so": 16,
+          "ma_so_lap": 6,
+          "ok_bang_so": 4,
+          "nguon_ngoai_ngu_canh": 1
+        },
+        "con_so": {
+          "cau_dung_ma_so": 0.272,
+          "ma_so_dung_tb": 0.65,
+          "cau_vi_pham_truoc_sua": 0.1268,
+          "cau_vi_pham_sau_sua": 0.0429,
+          "vi_pham_truoc": 161,
+          "vi_pham_sau": 47,
+          "luot_sua": 62,
+          "cau_bi_bo": 31,
+          "bang_ma_so_tb": 5.4
+        },
+        "nguon": {
+          "tb": 5.04,
+          "do_thi_tb": 0.05,
+          "trich_nguon_do_thi": 0.0031,
+          "cat_ngan": 12
+        },
+        "y_tb": 3.07,
+        "do_dai_tb": 826.4,
+        "token_vao_tb": 3395.1,
+        "token_ra_tb": 346.4,
+        "latency_ms": {
+          "p50": 15768,
+          "p95": 54328
+        },
+        "goi_llm_tb": 1.127,
+        "low_score": 0.0348,
+        "model_id": "qwen3-14b-awq",
+        "prompt_hash": "aa8de6d7fe0f10472637b5af82e25effc4490a329c7c094971464b96e37b6e0d",
+        "serve": {
+          "served_model": "qwen3-14b-awq",
+          "hf_repo": "Qwen/Qwen3-14B-AWQ",
+          "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+          "quantization": "awq_marlin",
+          "vllm_version": "0.33.0"
+        }
+      }
+    },
+    "dev_oos": {
+      "B0": {
+        "n": 40,
+        "status": {
+          "ok": 40
+        },
+        "format_error_rate": 0.0,
+        "error_rate": 0.0,
+        "answer_status": {
+          "out_of_scope": 39,
+          "insufficient": 1
+        },
+        "tu_choi": 1.0,
+        "out_of_scope": 0.975,
+        "trich_dan": {
+          "n": 0,
+          "hop_le": null
+        },
+        "co": {
+          "y_khong_nguon": 1
+        },
+        "co_theo_cau": {
+          "y_khong_nguon": 1
+        },
+        "b0": {
+          "so_khong_kiem_duoc_tb": 0.0,
+          "cau_co_so": 0.0,
+          "trich_dan_bia": null,
+          "trich_dan_het_hieu_luc": null,
+          "trang_thai_trich_dan": {}
+        },
+        "y_tb": 0.03,
+        "do_dai_tb": 63.5,
+        "token_vao_tb": 408.4,
+        "token_ra_tb": 39.7,
+        "latency_ms": {
+          "p50": 860,
+          "p95": 1471
+        },
+        "goi_llm_tb": 1.0,
+        "model_id": "qwen3-14b-awq",
+        "prompt_hash": "993741924b09c77abe9f6fff17819b2ea852ca9b4b9526d33008bdd8266dc583",
+        "serve": {
+          "served_model": "qwen3-14b-awq",
+          "hf_repo": "Qwen/Qwen3-14B-AWQ",
+          "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+          "quantization": "awq_marlin",
+          "vllm_version": "0.33.0"
+        }
+      },
+      "B3": {
+        "n": 40,
+        "status": {
+          "ok": 40
+        },
+        "format_error_rate": 0.0,
+        "error_rate": 0.0,
+        "answer_status": {
+          "insufficient": 9,
+          "out_of_scope": 31
+        },
+        "tu_choi": 1.0,
+        "out_of_scope": 0.775,
+        "trich_dan": {
+          "n": 0,
+          "hop_le": null
+        },
+        "co": {},
+        "co_theo_cau": {},
+        "con_so": {
+          "cau_dung_ma_so": 0.0,
+          "ma_so_dung_tb": 0.0,
+          "cau_vi_pham_truoc_sua": 0.0,
+          "cau_vi_pham_sau_sua": 0.0,
+          "vi_pham_truoc": 0,
+          "vi_pham_sau": 0,
+          "luot_sua": 0,
+          "cau_bi_bo": 0,
+          "bang_ma_so_tb": 10.9
+        },
+        "nguon": {
+          "tb": 5.0,
+          "do_thi_tb": 0.0,
+          "trich_nguon_do_thi": null,
+          "cat_ngan": 1
+        },
+        "y_tb": 0.0,
+        "do_dai_tb": 66.2,
+        "token_vao_tb": 3713.2,
+        "token_ra_tb": 36.6,
+        "latency_ms": {
+          "p50": 17960,
+          "p95": 33694
+        },
+        "goi_llm_tb": 1.0,
+        "low_score": 1.0,
+        "model_id": "qwen3-14b-awq",
+        "prompt_hash": "aa8de6d7fe0f10472637b5af82e25effc4490a329c7c094971464b96e37b6e0d",
+        "serve": {
+          "served_model": "qwen3-14b-awq",
+          "hf_repo": "Qwen/Qwen3-14B-AWQ",
+          "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+          "quantization": "awq_marlin",
+          "vllm_version": "0.33.0"
+        }
+      },
+      "G": {
+        "n": 40,
+        "status": {
+          "ok": 40
+        },
+        "format_error_rate": 0.0,
+        "error_rate": 0.0,
+        "answer_status": {
+          "insufficient": 9,
+          "out_of_scope": 31
+        },
+        "tu_choi": 1.0,
+        "out_of_scope": 0.775,
+        "trich_dan": {
+          "n": 0,
+          "hop_le": null
+        },
+        "co": {},
+        "co_theo_cau": {},
+        "con_so": {
+          "cau_dung_ma_so": 0.0,
+          "ma_so_dung_tb": 0.0,
+          "cau_vi_pham_truoc_sua": 0.0,
+          "cau_vi_pham_sau_sua": 0.0,
+          "vi_pham_truoc": 0,
+          "vi_pham_sau": 0,
+          "luot_sua": 0,
+          "cau_bi_bo": 0,
+          "bang_ma_so_tb": 10.8
+        },
+        "nguon": {
+          "tb": 5.17,
+          "do_thi_tb": 0.17,
+          "trich_nguon_do_thi": null,
+          "cat_ngan": 0
+        },
+        "y_tb": 0.0,
+        "do_dai_tb": 66.7,
+        "token_vao_tb": 3771.1,
+        "token_ra_tb": 36.7,
+        "latency_ms": {
+          "p50": 18141,
+          "p95": 30276
+        },
+        "goi_llm_tb": 1.0,
+        "low_score": 1.0,
+        "model_id": "qwen3-14b-awq",
+        "prompt_hash": "aa8de6d7fe0f10472637b5af82e25effc4490a329c7c094971464b96e37b6e0d",
+        "serve": {
+          "served_model": "qwen3-14b-awq",
+          "hf_repo": "Qwen/Qwen3-14B-AWQ",
+          "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+          "quantization": "awq_marlin",
+          "vllm_version": "0.33.0"
+        }
+      }
+    }
+  },
+  "generated_at": "2026-11-15T11:20:57+07:00",
+  "runs": [
+    {
+      "set": "val",
+      "config": "G",
+      "run_id": "m12-dev",
+      "model_id": "qwen3-14b-awq",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "prompt_hash": "aa8de6d7fe0f10472637b5af82e25effc4490a329c7c094971464b96e37b6e0d",
+      "n_total": 489,
+      "n_skipped": 0,
+      "n_written": 489,
+      "statuses": {
+        "ok": 489
+      },
+      "seconds": 655.9,
+      "workers": 16,
+      "git_commit": "1b23eb987fe962c0d8d0f1a22a35448d35c063cc",
+      "finished_at": "2026-11-15T11:08:31+07:00",
+      "cache_only": false
+    },
+    {
+      "set": "val",
+      "config": "B3",
+      "run_id": "m12-dev",
+      "model_id": "qwen3-14b-awq",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "prompt_hash": "aa8de6d7fe0f10472637b5af82e25effc4490a329c7c094971464b96e37b6e0d",
+      "n_total": 489,
+      "n_skipped": 0,
+      "n_written": 489,
+      "statuses": {
+        "ok": 489
+      },
+      "seconds": 132.0,
+      "workers": 16,
+      "git_commit": "1b23eb987fe962c0d8d0f1a22a35448d35c063cc",
+      "finished_at": "2026-11-15T11:10:43+07:00",
+      "cache_only": false
+    },
+    {
+      "set": "val",
+      "config": "B0",
+      "run_id": "m12-dev",
+      "model_id": "qwen3-14b-awq",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "prompt_hash": "993741924b09c77abe9f6fff17819b2ea852ca9b4b9526d33008bdd8266dc583",
+      "n_total": 489,
+      "n_skipped": 0,
+      "n_written": 489,
+      "statuses": {
+        "ok": 489
+      },
+      "seconds": 215.1,
+      "workers": 16,
+      "git_commit": "1b23eb987fe962c0d8d0f1a22a35448d35c063cc",
+      "finished_at": "2026-11-15T11:14:18+07:00",
+      "cache_only": false
+    },
+    {
+      "set": "dev_oos",
+      "config": "G",
+      "run_id": "m12-dev",
+      "model_id": "qwen3-14b-awq",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "prompt_hash": "aa8de6d7fe0f10472637b5af82e25effc4490a329c7c094971464b96e37b6e0d",
+      "n_total": 40,
+      "n_skipped": 0,
+      "n_written": 40,
+      "statuses": {
+        "ok": 40
+      },
+      "seconds": 48.1,
+      "workers": 16,
+      "git_commit": "1b23eb987fe962c0d8d0f1a22a35448d35c063cc",
+      "finished_at": "2026-11-15T11:15:06+07:00",
+      "cache_only": false
+    },
+    {
+      "set": "dev_oos",
+      "config": "B3",
+      "run_id": "m12-dev",
+      "model_id": "qwen3-14b-awq",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "prompt_hash": "aa8de6d7fe0f10472637b5af82e25effc4490a329c7c094971464b96e37b6e0d",
+      "n_total": 40,
+      "n_skipped": 0,
+      "n_written": 40,
+      "statuses": {
+        "ok": 40
+      },
+      "seconds": 34.7,
+      "workers": 16,
+      "git_commit": "1b23eb987fe962c0d8d0f1a22a35448d35c063cc",
+      "finished_at": "2026-11-15T11:15:41+07:00",
+      "cache_only": false
+    },
+    {
+      "set": "dev_oos",
+      "config": "B0",
+      "run_id": "m12-dev",
+      "model_id": "qwen3-14b-awq",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "prompt_hash": "993741924b09c77abe9f6fff17819b2ea852ca9b4b9526d33008bdd8266dc583",
+      "n_total": 40,
+      "n_skipped": 0,
+      "n_written": 40,
+      "statuses": {
+        "ok": 40
+      },
+      "seconds": 2.6,
+      "workers": 16,
+      "git_commit": "1b23eb987fe962c0d8d0f1a22a35448d35c063cc",
+      "finished_at": "2026-11-15T11:15:44+07:00",
+      "cache_only": false
+    },
+    {
+      "set": "val",
+      "config": "G",
+      "run_id": "m12-dev",
+      "model_id": "qwen3-14b-awq",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "prompt_hash": "aa8de6d7fe0f10472637b5af82e25effc4490a329c7c094971464b96e37b6e0d",
+      "n_total": 489,
+      "n_skipped": 0,
+      "n_written": 489,
+      "statuses": {
+        "ok": 489
+      },
+      "seconds": 4.2,
+      "workers": 8,
+      "git_commit": "1b23eb987fe962c0d8d0f1a22a35448d35c063cc-dirty",
+      "finished_at": "2026-11-15T11:17:18+07:00",
+      "cache_only": true
+    },
+    {
+      "set": "val",
+      "config": "B3",
+      "run_id": "m12-dev",
+      "model_id": "qwen3-14b-awq",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "prompt_hash": "aa8de6d7fe0f10472637b5af82e25effc4490a329c7c094971464b96e37b6e0d",
+      "n_total": 489,
+      "n_skipped": 0,
+      "n_written": 489,
+      "statuses": {
+        "ok": 489
+      },
+      "seconds": 4.1,
+      "workers": 8,
+      "git_commit": "1b23eb987fe962c0d8d0f1a22a35448d35c063cc-dirty",
+      "finished_at": "2026-11-15T11:17:23+07:00",
+      "cache_only": true
+    },
+    {
+      "set": "val",
+      "config": "B0",
+      "run_id": "m12-dev",
+      "model_id": "qwen3-14b-awq",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "prompt_hash": "993741924b09c77abe9f6fff17819b2ea852ca9b4b9526d33008bdd8266dc583",
+      "n_total": 489,
+      "n_skipped": 0,
+      "n_written": 489,
+      "statuses": {
+        "ok": 489
+      },
+      "seconds": 1.8,
+      "workers": 8,
+      "git_commit": "1b23eb987fe962c0d8d0f1a22a35448d35c063cc-dirty",
+      "finished_at": "2026-11-15T11:17:25+07:00",
+      "cache_only": true
+    },
+    {
+      "set": "dev_oos",
+      "config": "G",
+      "run_id": "m12-dev",
+      "model_id": "qwen3-14b-awq",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "prompt_hash": "aa8de6d7fe0f10472637b5af82e25effc4490a329c7c094971464b96e37b6e0d",
+      "n_total": 40,
+      "n_skipped": 0,
+      "n_written": 40,
+      "statuses": {
+        "ok": 40
+      },
+      "seconds": 0.3,
+      "workers": 8,
+      "git_commit": "1b23eb987fe962c0d8d0f1a22a35448d35c063cc-dirty",
+      "finished_at": "2026-11-15T11:17:25+07:00",
+      "cache_only": true
+    },
+    {
+      "set": "dev_oos",
+      "config": "B3",
+      "run_id": "m12-dev",
+      "model_id": "qwen3-14b-awq",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "prompt_hash": "aa8de6d7fe0f10472637b5af82e25effc4490a329c7c094971464b96e37b6e0d",
+      "n_total": 40,
+      "n_skipped": 0,
+      "n_written": 40,
+      "statuses": {
+        "ok": 40
+      },
+      "seconds": 0.2,
+      "workers": 8,
+      "git_commit": "1b23eb987fe962c0d8d0f1a22a35448d35c063cc-dirty",
+      "finished_at": "2026-11-15T11:17:25+07:00",
+      "cache_only": true
+    },
+    {
+      "set": "dev_oos",
+      "config": "B0",
+      "run_id": "m12-dev",
+      "model_id": "qwen3-14b-awq",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "prompt_hash": "993741924b09c77abe9f6fff17819b2ea852ca9b4b9526d33008bdd8266dc583",
+      "n_total": 40,
+      "n_skipped": 0,
+      "n_written": 40,
+      "statuses": {
+        "ok": 40
+      },
+      "seconds": 0.1,
+      "workers": 8,
+      "git_commit": "1b23eb987fe962c0d8d0f1a22a35448d35c063cc-dirty",
+      "finished_at": "2026-11-15T11:17:25+07:00",
+      "cache_only": true
+    },
+    {
+      "set": "val",
+      "config": "G",
+      "run_id": "m12-dev",
+      "model_id": "qwen3-14b-awq",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "prompt_hash": "aa8de6d7fe0f10472637b5af82e25effc4490a329c7c094971464b96e37b6e0d",
+      "n_total": 489,
+      "n_skipped": 0,
+      "n_written": 489,
+      "statuses": {
+        "ok": 489
+      },
+      "seconds": 4.1,
+      "workers": 8,
+      "cache_only": true,
+      "git_commit": "1b23eb987fe962c0d8d0f1a22a35448d35c063cc-dirty",
+      "finished_at": "2026-11-15T11:20:50+07:00"
+    },
+    {
+      "set": "val",
+      "config": "B3",
+      "run_id": "m12-dev",
+      "model_id": "qwen3-14b-awq",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "prompt_hash": "aa8de6d7fe0f10472637b5af82e25effc4490a329c7c094971464b96e37b6e0d",
+      "n_total": 489,
+      "n_skipped": 0,
+      "n_written": 489,
+      "statuses": {
+        "ok": 489
+      },
+      "seconds": 4.0,
+      "workers": 8,
+      "cache_only": true,
+      "git_commit": "1b23eb987fe962c0d8d0f1a22a35448d35c063cc-dirty",
+      "finished_at": "2026-11-15T11:20:54+07:00"
+    },
+    {
+      "set": "val",
+      "config": "B0",
+      "run_id": "m12-dev",
+      "model_id": "qwen3-14b-awq",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "prompt_hash": "993741924b09c77abe9f6fff17819b2ea852ca9b4b9526d33008bdd8266dc583",
+      "n_total": 489,
+      "n_skipped": 0,
+      "n_written": 489,
+      "statuses": {
+        "ok": 489
+      },
+      "seconds": 2.1,
+      "workers": 8,
+      "cache_only": true,
+      "git_commit": "1b23eb987fe962c0d8d0f1a22a35448d35c063cc-dirty",
+      "finished_at": "2026-11-15T11:20:56+07:00"
+    },
+    {
+      "set": "dev_oos",
+      "config": "G",
+      "run_id": "m12-dev",
+      "model_id": "qwen3-14b-awq",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "prompt_hash": "aa8de6d7fe0f10472637b5af82e25effc4490a329c7c094971464b96e37b6e0d",
+      "n_total": 40,
+      "n_skipped": 0,
+      "n_written": 40,
+      "statuses": {
+        "ok": 40
+      },
+      "seconds": 0.2,
+      "workers": 8,
+      "cache_only": true,
+      "git_commit": "1b23eb987fe962c0d8d0f1a22a35448d35c063cc-dirty",
+      "finished_at": "2026-11-15T11:20:57+07:00"
+    },
+    {
+      "set": "dev_oos",
+      "config": "B3",
+      "run_id": "m12-dev",
+      "model_id": "qwen3-14b-awq",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "prompt_hash": "aa8de6d7fe0f10472637b5af82e25effc4490a329c7c094971464b96e37b6e0d",
+      "n_total": 40,
+      "n_skipped": 0,
+      "n_written": 40,
+      "statuses": {
+        "ok": 40
+      },
+      "seconds": 0.3,
+      "workers": 8,
+      "cache_only": true,
+      "git_commit": "1b23eb987fe962c0d8d0f1a22a35448d35c063cc-dirty",
+      "finished_at": "2026-11-15T11:20:57+07:00"
+    },
+    {
+      "set": "dev_oos",
+      "config": "B0",
+      "run_id": "m12-dev",
+      "model_id": "qwen3-14b-awq",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "prompt_hash": "993741924b09c77abe9f6fff17819b2ea852ca9b4b9526d33008bdd8266dc583",
+      "n_total": 40,
+      "n_skipped": 0,
+      "n_written": 40,
+      "statuses": {
+        "ok": 40
+      },
+      "seconds": 0.2,
+      "workers": 8,
+      "cache_only": true,
+      "git_commit": "1b23eb987fe962c0d8d0f1a22a35448d35c063cc-dirty",
+      "finished_at": "2026-11-15T11:20:57+07:00"
+    }
+  ],
+  "gpu_seconds": 1088.4,
+  "vram": [
+    {
+      "profile": "shared",
+      "config": "G",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "nvidia_smi_peak_mib": 19379,
+      "nvidia_smi_total_mib": 24576,
+      "wall_s": 18.02,
+      "git_commit": "bc43cbbe0b3ee5b8bf00e0f1bd11ab9563ecdfff",
+      "finished_at": "2026-11-15T10:47:01+07:00",
+      "torch_max_allocated_gib": 2.464,
+      "gpu": "NVIDIA GeForce RTX 3090"
+    },
+    {
+      "profile": "shared",
+      "config": "G",
+      "serve": {
+        "served_model": "qwen3-14b-awq",
+        "hf_repo": "Qwen/Qwen3-14B-AWQ",
+        "revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "quantization": "awq_marlin",
+        "vllm_version": "0.33.0"
+      },
+      "nvidia_smi_peak_mib": 17547,
+      "nvidia_smi_total_mib": 24576,
+      "wall_s": 8.42,
+      "git_commit": "bc43cbbe0b3ee5b8bf00e0f1bd11ab9563ecdfff",
+      "finished_at": "2026-11-15T10:47:50+07:00",
+      "torch_max_allocated_gib": 1.058,
+      "gpu": "NVIDIA GeForce RTX 3090"
+    }
+  ]
+}

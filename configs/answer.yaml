@@ -1,0 +1,40 @@
+# M12: sinh câu trả lời + verify (src/trafficlaw/pipeline/answer.py). Người dùng duyệt 15/11/2026.
+# Sửa bất kỳ mục nào ngoài `eval` ⇒ prompt_hash đổi ⇒ run mới (resume không dùng lại kết quả cũ).
+prompt: answer                     # llm/prompts/answer.md (B1..B3, G, A1..A3)
+prompt_no_rag: answer_no_rag       # B0
+number_repair_prompt: answer_number_repair
+no_rag_config: B0
+max_output_tokens: 1536
+max_points: 6
+
+context:
+  # Top final_k hit của retrieve() + tối đa max_graph_extra chunk CHỈ đến từ đồ thị (seed ∈ top),
+  # chỉ với các loại câu dưới đây; ưu tiên loại cạnh theo thứ tự, rồi điểm rerank.
+  graph_extra_types: [muc_phat, tru_diem, bien_phap, da_buoc]
+  max_graph_extra: 3
+  graph_edge_priority: [BI_XU_PHAT, BI_TRU_DIEM, DAN_CHIEU]
+  dan_chieu_outgoing_only: true    # DAN_CHIEU bổ sung chỉ khi seed dẫn chiếu tới nó (bỏ Khoản thẩm quyền liệt kê)
+  token_budget: 6000               # nguồn (hồ sơ qwen3-14b-awq, max_model_len 16384)
+  token_budget_shared: 4000        # hồ sơ qwen3-14b-awq-shared (max_model_len 8192)
+  chars_per_token: 1.74            # ước lượng tất định (Qwen3, tiếng Việt ≈ 2,3 × len/4 — M9)
+  min_lines_truncated: 3
+
+numbers:
+  max_text_numbers_per_source: 25
+  text_chars_budget: 4000          # số trong text (mọi nguồn); nút CheTai/DiemGPLX/BPBS luôn có mặt
+  repair: true                     # có vi phạm → 1 lượt sửa (answer_number_repair.md)
+
+refusal:
+  tau: -1.625                      # người dùng duyệt 15/11/2026: Youden trên điểm rerank top-1 G (val 489 vs dev_oos 40) — data/answer/tau.json
+
+eval:
+  val: data/qa/val.jsonl
+  dev_out_of_scope: data/qa/dev_out_of_scope.jsonl   # Claude viết (người dùng cho phép 15/11/2026), chỉ để hiệu chỉnh τ
+  retrieval_from: data/index/retrieval_eval          # RetrievalResult của M11 theo <tập>/<cấu hình>.jsonl
+  results_dir: results
+  out_dir: data/answer
+  run_id: m12-dev
+  sample_n: null                   # null = cả tập; chọn bằng --dry-run
+  seed: 42
+  review_n: 30
+  output_tokens_estimate: 350      # token ra/câu cho --dry-run khi chưa có bản ghi ok
