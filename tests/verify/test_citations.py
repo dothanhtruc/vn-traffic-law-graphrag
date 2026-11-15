@@ -86,12 +86,16 @@ def test_free_citations_b0(mini_store) -> None:
     def r(**kw: str | None):
         return resolve_free_citation(FreeCitationIn(**kw), t, mini_store, d)  # type: ignore[arg-type]
 
-    ok = r(van_ban="Nghị định 168/2024/NĐ-CP", dieu="6", khoan="3", diem="a")
+    ok = r(van_ban="168/2024/NĐ-CP", dieu="6", khoan="3", diem="a")
     assert ok.status == "ok" and ok.unit_id == f"{K3}/a"
-    assert r(van_ban="168/2024/NĐ-CP", dieu="Điều 6", khoan="khoản 3").unit_id == K3
+    assert r(van_ban="168/2024/NĐ-CP", dieu="6", khoan="3").unit_id == K3
     assert r(van_ban="168/2024/NĐ-CP", dieu="999").status == "khong_ton_tai"
     assert r(van_ban="100/2019/NĐ-CP", dieu="5").status == "van_ban_khong_ro"
     assert r(van_ban="168/2024/NĐ-CP", dieu="6", khoan="1a").status == "het_hieu_luc"
+    with pytest.raises(ValueError):
+        FreeCitationIn(van_ban="https://example.com/168", dieu="6")
+    with pytest.raises(ValueError):
+        FreeCitationIn(van_ban="168/2024/NĐ-CP", dieu="Điều 6")
 
 
 def test_self_label_and_fact_unit(mini_store) -> None:
@@ -106,3 +110,28 @@ def test_self_label_and_fact_unit(mini_store) -> None:
     }
     c = resolve_citation("S1/K16/a", src, mini_store, d)
     assert c.status == "ok_bang_so" and c.valid and c.unit_id == "ND168-2024/D6/K16/a"
+
+
+@pytest.mark.parametrize(
+    ("label", "want"),
+    [
+        ("a", f"{K3}/a"),
+        ("K3/a", f"{K3}/a"),
+        ("3/a", f"{K3}/a"),
+        ("3", K3),
+        ("K3", K3),
+        ("K6/3/a", f"{K3}/a"),
+        ("D6/K3/a", f"{K3}/a"),
+        ("khoản 3 điểm a", f"{K3}/a"),
+    ],
+)
+def test_label_forms(mini_store, label: str, want: str) -> None:
+    c = resolve_citation(f"S1/{label}", SRC, mini_store, date(2026, 1, 1))
+    assert c.status == "ok" and c.unit_id == want
+
+
+def test_label_other_khoan_rejected(mini_store) -> None:
+    # khoản khác của cùng Điều, không có trong nguồn, không có trong bảng con số → loại
+    assert resolve_citation("S1/4/a", SRC, mini_store, date(2026, 1, 1)).status == (
+        "diem_khong_ton_tai"
+    )

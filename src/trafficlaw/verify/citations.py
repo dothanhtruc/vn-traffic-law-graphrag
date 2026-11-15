@@ -28,7 +28,7 @@ from dataclasses import dataclass
 from datetime import date
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 from trafficlaw.graph.doc_names import norm_so_hieu
 from trafficlaw.graph.store import BaseGraphStore
@@ -137,6 +137,42 @@ def _label_to_suffix(label: str) -> str:
     return s.strip("/")
 
 
+def label_candidates(base: str, label: str) -> list[str]:
+    """Các ``unit_id`` mà nhãn có thể chỉ tới, tương đối với unit của chunk ``base``.
+
+    Dạng LLM hay viết (quan sát trên val): ``a``, ``K3/a``, ``3/a`` (số trần = khoản), ``4``
+    (chính khoản của chunk), ``K22/5`` hay ``D22/K5`` (số đầu trùng số Điều của chunk = Điều)."""
+    suf = _label_to_suffix(label)
+    parts = base.split("/")
+    di = next((i for i, x in enumerate(parts) if re.fullmatch(r"D\d+[a-z]?", x)), None)
+    cands = [f"{base}/{suf}"]
+    if len(parts) >= 3 and suf.startswith(parts[-1] + "/"):
+        cands.append(f"{base}/{suf[len(parts[-1]) + 1 :]}")
+    if suf == parts[-1]:
+        cands.append(base)
+    if di is not None:
+        dieu = parts[di]
+        toks = [t for t in re.split(r"/", suf) if t]
+        # bỏ tiền tố Điều: "D22", "Điều22", hoặc "K22" khi 22 là số Điều của chunk
+        if toks and (
+            re.fullmatch(rf"(?i)(?:D|Điều){dieu[1:]}", toks[0])
+            or (len(toks) > 1 and re.fullmatch(rf"K{dieu[1:]}", toks[0]))
+        ):
+            toks = toks[1:]
+        rel: list[str] = []
+        for t in toks:
+            if re.fullmatch(r"(?:K|khoản)?\d+[a-z]?", t, re.I) and not rel:
+                rel.append("K" + re.sub(r"(?i)^(?:K|khoản)", "", t))
+            elif re.fullmatch(r"[a-zđ]\d*", t):
+                rel.append(t)
+            else:
+                rel = []
+                break
+        if rel and rel[0].startswith("K"):
+            cands.append("/".join([*parts[: di + 1], *rel]))
+    return list(dict.fromkeys(cands))
+
+
 def resolve_citation(
     ref: str,
     sources: Mapping[str, CitableSource],
@@ -156,22 +192,14 @@ def resolve_citation(
     unit = base
     status: CitationStatus = "ok"
     if label:
-        suf = _label_to_suffix(label)
-        cands = [f"{base}/{suf}"]
-        parts = base.split("/")
-        # chunk Khoản …/K3 mà LLM ghi lại "K3/a" hoặc "K3"
-        if len(parts) >= 3 and suf.startswith(parts[-1] + "/"):
-            cands.append(f"{base}/{suf[len(parts[-1]) + 1 :]}")
-        if len(parts) >= 2 and suf == parts[-1]:
-            cands.append(base)
+        cands = label_candidates(base, label)
         sub = set(store.subtree(base, as_of=as_of if validity_filter else None))
         sub.add(base)
         hit = next((c for c in cands if c in sub), None)
         if hit is None and src.fact_units:
-            dieu = next((i for i, x in enumerate(parts) if x.startswith("D")), None)
-            rel = "/".join(parts[: dieu + 1]) + "/" + suf if dieu is not None else None
-            if rel in src.fact_units:
-                hit, status = rel, "ok_bang_so"
+            hit = next((c for c in cands if c in src.fact_units), None)
+            if hit is not None:
+                status = "ok_bang_so"
         if hit is None:
             return Citation(
                 ref=ref,
@@ -201,11 +229,11 @@ class FreeCitationIn(BaseModel):
     """Trích dẫn B0 tự khai (schema gửi LLM)."""
 
     model_config = ConfigDict(extra="forbid")
-    van_ban: str
-    """Số hiệu văn bản, vd ``168/2024/NĐ-CP``."""
-    dieu: str
-    khoan: str | None = None
-    diem: str | None = None
+    van_ban: str = Field(pattern=r"^[0-9]+[a-z]?/([0-9]{4}/)?[A-Za-zĐđ0-9-]+$")
+    """Số hiệu văn bản, vd ``168/2024/NĐ-CP`` (mẫu ép qua guided decoding của vLLM)."""
+    dieu: str = Field(pattern=r"^[0-9]+[a-z]?$")
+    khoan: str | None = Field(default=None, pattern=r"^[0-9]+[a-z]?$")
+    diem: str | None = Field(default=None, pattern=r"^[a-zđ][0-9]?$")
 
 
 _SO_HIEU_IN_RE = re.compile(r"\d+[a-z]?/\d{4}/[A-ZĐa-zđ0-9\-]+|\d+/[A-ZĐ][A-ZĐ0-9\-]+")
@@ -270,6 +298,7 @@ __all__ = [
     "SoHieuTable",
     "doc_label",
     "full_label",
+    "label_candidates",
     "resolve_citation",
     "resolve_free_citation",
     "unit_label",
