@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import hashlib
 import logging
+import re
 from collections.abc import Sequence
 from datetime import UTC, date, datetime
 from pathlib import Path
@@ -789,6 +790,10 @@ def _verify_rag(
             report.issues.append(VerifyIssue(code="y_khong_nguon", where=where, detail=raw[:80]))
             continue
         used = placeholders(raw)
+        for n in used:
+            if len(re.findall(r"\{\s*" + n + r"\s*\}", raw)) > 1:
+                # vd "từ {N4} đến {N4}": một khung phạt dùng làm cả hai đầu — chỉ gắn cờ
+                report.issues.append(VerifyIssue(code="ma_so_lap", where=where, detail=n))
         sids = {c.sid for c in valid}
         for n in used:
             f = tmap.get(n)

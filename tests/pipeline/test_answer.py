@@ -354,3 +354,12 @@ def test_compact_units() -> None:
 
     got = compact_units(["ND168-2024/D6/K3/h", "ND168-2024/D6/K3/i", "ND168-2024/D6/K8"])
     assert got == "điểm h, i khoản 3 Điều 6; khoản 8 Điều 6"
+
+
+def test_repeated_placeholder_flagged(acfg, rctx, mini_store, mini_catalog) -> None:
+    prep = prepare(Q, D, "G", _actx(acfg, rctx, mini_store, mini_catalog, None))
+    sid, fine = _ids(prep)
+    js = _good_json(sid, fine).replace("{" + fine + "}", "từ {" + fine + "} đến {" + fine + "}")
+    client, _ = _client([ok(js)])
+    res = answer(Q, D, "G", _actx(acfg, rctx, mini_store, mini_catalog, client))
+    assert "ma_so_lap" in res.verify.flags

@@ -461,8 +461,11 @@ _NUM_WORDS = (
     r"(?:một|hai|ba|bốn|tư|năm|lăm|sáu|bảy|tám|chín|mười|mươi|mốt|linh|lẻ|trăm|nghìn|ngàn|"
     r"triệu|tỷ|tỉ|rưỡi)"
 )
+_NUM_WORD_HEAD = r"(?:một|hai|ba|bốn|năm|sáu|bảy|tám|chín|mười)"
+"""Từ mở đầu một số viết bằng chữ ("tư", "lăm", "mươi"… chỉ đứng sau — "đầu tư đồng bộ" không
+phải số)."""
 _WORD_NUM_RE = re.compile(
-    rf"(?<![\wÀ-ỹ]){_NUM_WORDS}(?:\s+{_NUM_WORDS})*\s+"
+    rf"(?<![\wÀ-ỹ]){_NUM_WORD_HEAD}(?:\s+{_NUM_WORDS})*\s+"
     r"(?:đồng|điểm|tháng|ngày|giờ|phút|tuổi|năm|km|ki-lô-mét|mét|tấn)(?![\wÀ-ỹ])",
     re.I,
 )
@@ -512,6 +515,10 @@ def find_unverified_numbers(text: str, allowed: AllowedNumbers) -> list[NumberIs
         covered += [(m.start(), m.end()) for m in rx.finditer(t)]
     for m in NUM_RE.finditer(t):
         if _inside((m.start(), m.end()), covered):
+            continue
+        s0, e0 = m.start(), m.end()
+        # chữ số dính chữ cái là mã/ký hiệu (hạng GPLX "A1", "C1E", "QH15"), không phải đại lượng
+        if (s0 > 0 and t[s0 - 1].isalpha()) or (e0 < len(t) and t[e0].isalpha()):
             continue
         d = to_decimal(m.group(0))
         if d is not None and d in allowed.question_numbers:

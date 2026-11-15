@@ -87,6 +87,17 @@ def llm_setup(root: Path, args: argparse.Namespace, *, need_server: bool) -> tup
     provider, model_id = resolve_model(llm_cfg, None, args.model)
     if not model_id:
         raise SystemExit("chưa chốt model_id (configs/llm.yaml main)")
+    if getattr(args, "cache_only", False) and need_server:
+        # dựng lại từ cache LLM (không cần server): thiếu cache → status error ngay, không retry
+        from scripts._llm_local import serve_config
+        from trafficlaw.llm.retry import RetryPolicy
+        from trafficlaw.llm.serve import run_meta
+
+        os.environ.setdefault(llm_cfg.providers[provider].api_key_env, "cache-only")
+        client = build_client(llm_cfg, provider, model_id=model_id, root=root)
+        client.retry = RetryPolicy(max_retries=0, sleep=lambda s: None)
+        scfg = serve_config(root)
+        return client, model_id, run_meta(scfg, model_id, None) if scfg else None
     if not need_server:
         return None, model_id, None
     meta = check_local_server(llm_cfg, provider, model_id, root)
@@ -354,6 +365,7 @@ def cmd_eval(root: Path, acfg: AnswerConfig, args: argparse.Namespace) -> int:
                 "statuses": dict(st.statuses),
                 "seconds": sec,
                 "workers": args.workers,
+                "cache_only": bool(args.cache_only),
                 "git_commit": git_commit(root),
                 "finished_at": now_iso(),
             }
@@ -540,7 +552,7 @@ def summarize_rows(rows: Sequence[AnswerResult], gold: dict[str, list[str]]) -> 
         res["do_dai_tb"] = round(statistics.fmean(len(r.answer) for r in ok), 1)
         res["token_vao_tb"] = round(statistics.fmean(r.usage.prompt_tokens for r in ok), 1)
         res["token_ra_tb"] = round(statistics.fmean(r.usage.completion_tokens for r in ok), 1)
-        lat = [r.latency_ms for r in ok if not r.cached]
+        lat = [r.latency_ms for r in ok]  # cache M7 giữ latency của lần gọi gốc
         res["latency_ms"] = {"p50": _pct(lat, 0.5), "p95": _pct(lat, 0.95)}
         res["goi_llm_tb"] = round(statistics.fmean(r.n_llm_calls for r in ok), 3)
         if ok[0].retrieval is not None and ok[0].retrieval.has_reranker:
@@ -574,7 +586,9 @@ def cmd_summarize(root: Path, acfg: AnswerConfig, args: argparse.Namespace) -> i
         r for r in read_jsonl(root / acfg.eval.out_dir / "runs.jsonl") if r.get("run_id") == run_id
     ]
     report["runs"] = runs
-    report["gpu_seconds"] = round(sum(r.get("seconds", 0) for r in runs), 1)
+    report["gpu_seconds"] = round(
+        sum(r.get("seconds", 0) for r in runs if not r.get("cache_only")), 1
+    )
     report["vram"] = list(read_jsonl(root / acfg.eval.out_dir / "vram.jsonl"))
     out = root / acfg.eval.out_dir / "dev_eval.json"
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -583,7 +597,10 @@ def cmd_summarize(root: Path, acfg: AnswerConfig, args: argparse.Namespace) -> i
         encoding="utf-8",
         newline="\n",
     )
-    md = render_md(report, examples=pick_examples(rdir, acfg.eval.seed, 10))
+    vgold = {
+        str(r["qid"]): list(r.get("gold_units") or []) for r in read_jsonl(root / acfg.eval.val)
+    }
+    md = render_md(report, examples=pick_examples(rdir, acfg.eval.seed, 10), gold=vgold)
     out.with_suffix(".md").write_text(md, encoding="utf-8", newline="\n")
     print(f"→ {out.with_suffix('.md')}")
     return 0
@@ -628,7 +645,11 @@ def render_answer_block(r: AnswerResult, gold: Sequence[str] = ()) -> list[str]:
     return lines
 
 
-def render_md(report: dict[str, Any], examples: Sequence[AnswerResult]) -> str:
+def render_md(
+    report: dict[str, Any],
+    examples: Sequence[AnswerResult],
+    gold: dict[str, list[str]] | None = None,
+) -> str:
     out_lines = [
         "# M12 — chạy thử sinh câu trả lời (val + dev ngoài phạm vi — KHÔNG dùng test)",
         "",
@@ -681,7 +702,7 @@ def render_md(report: dict[str, Any], examples: Sequence[AnswerResult]) -> str:
     if examples:
         out_lines += ["## 10 ví dụ G (val, chọn theo `sha256(42:m12_examples:qid)`)", ""]
         for r in examples:
-            out_lines += render_answer_block(r)
+            out_lines += render_answer_block(r, (gold or {}).get(str(r.qid), []))
     return "\n".join(out_lines) + "\n"
 
 
@@ -809,6 +830,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     ap.add_argument("--no-llm-analyzer", action="store_true")
     ap.add_argument("--analyzer-llm", action="store_true", help="--retrieve-only: gọi LLM analyzer")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument(
+        "--cache-only", action="store_true", help="--eval: chỉ đọc cache LLM (không cần server)"
+    )
     ap.add_argument("--retrieve-only", action="store_true")
     ap.add_argument("--summarize", action="store_true")
     ap.add_argument("--review", action="store_true")

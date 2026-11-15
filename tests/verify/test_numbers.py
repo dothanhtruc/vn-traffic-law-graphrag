@@ -204,3 +204,14 @@ def test_render_no_duplicate_words() -> None:
     assert render_numbers("bị trừ {N2} điểm giấy phép", t) == "bị trừ 02 điểm giấy phép"
     assert render_numbers("bị trừ {N2} giấy phép", t) == "bị trừ 02 điểm giấy phép"
     assert render_numbers("mức {N1} đồng", t) == "mức từ 800.000 đồng đến 1.000.000 đồng"
+
+
+def test_no_false_positive_codes_and_words() -> None:
+    allowed = AllowedNumbers()
+    ok = "Giấy phép lái xe hạng A1, B2, C1E; đầu tư đồng bộ; một số trường hợp."
+    assert find_unverified_numbers(ok, allowed) == []
+    bad = find_unverified_numbers("phạt hai mươi tư triệu đồng, 3 hạng", allowed)
+    assert [(i.kind, i.text) for i in bad] == [
+        ("chu_viet", "hai mươi tư triệu đồng"),
+        ("chu_so", "3"),
+    ]
