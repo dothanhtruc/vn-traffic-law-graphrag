@@ -732,7 +732,9 @@ def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
     from trafficlaw.eval.qa_test_draft import (
         HEAVY_FLAGS,
         balance_quota,
+        load_edits,
         load_review,
+        merge_edits,
         select_auto,
     )
 
@@ -755,6 +757,9 @@ def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
         if r.get("verdict") != "OK":
             excluded.setdefault(q, f"rà: {r.get('verdict')} — {r.get('reason')}")
     items = [it for it in items if it["qid"] not in excluded]
+    # Câu nháp đã sửa (+claude/+human) thay nháp gốc, kể cả nháp bị cờ hoặc rà không đạt.
+    edits = load_edits(env.p("test_edits"))
+    items = merge_edits(items, edits)
     dropped: dict[str, list[str]] = {}
     for _ in range(10):
         res = validate_items(items, "test", env.store, env.validate_cfg, drafts=drafts)
@@ -781,7 +786,7 @@ def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
     # Hai lượt: câu đã rà đạt trước; phần còn trống của hạn mức mới lấy câu chưa rà (vòng mới
     # trước). Cặp pair_id tính là đạt khi cả hai câu đạt.
     def ok_of(it: dict[str, Any]) -> bool:
-        return review.get(it["qid"], {}).get("verdict") == "OK"
+        return it["qid"] in edits or review.get(it["qid"], {}).get("verdict") == "OK"
 
     pair_ok: dict[str, bool] = {}
     for it in items:
@@ -812,8 +817,15 @@ def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
         "n_imported": len(items),
         "n_skipped_flags": len(skipped),
         "excluded": excluded,
-        "n_reviewed_ok": sum(1 for it in items if review.get(it["qid"], {}).get("verdict") == "OK"),
-        "pending_review": [it["qid"] for it in items if it["qid"] not in review],
+        "n_reviewed_ok": sum(
+            1
+            for it in items
+            if it["qid"] not in edits and review.get(it["qid"], {}).get("verdict") == "OK"
+        ),
+        "n_edited": sum(1 for it in items if it["qid"] in edits),
+        "pending_review": [
+            it["qid"] for it in items if it["qid"] not in review and it["qid"] not in edits
+        ],
         "n_dropped_validate": len(dropped),
         "skipped_flags": skipped,
         "dropped_validate": dropped,

@@ -1,9 +1,9 @@
 {
-  "git_commit": "9895cd11d48eaa6e076fe507da09dc2b5a064473-dirty",
+  "git_commit": "28856bc67f44b75d6e57e6d86af31a5fac16afde-dirty",
   "model_id": "mistral-small-3.2",
   "prompt_hash": "603e12db4b7a6d717710048955d87c56a105d84cfc00eb2712835d49228f1f9d",
   "schema_hash": "415b103e5f9f38d294b2e64033210ed98df977fb2217b0c21b1e82b9894cd66d",
-  "test_sha256": "6f2470990b1fb584e274540cf4495e44bd1e15911ea27d39a7d4c096a260a369",
+  "test_sha256": "9a9b8113cffcd8ce10b7ee7d71b10c56989c2d09b349d0b5f6ff1fc3ed1c2033",
   "n_test": 500,
   "data_version": "f3297e64b9e4485537d78822a2dd8cfe50477e0a9be92b7f432ee06a2fa99583",
   "config": {
@@ -88,16 +88,16 @@
       "git_commit": "a481df5d74a343b83787f2cc5bad8b313dc3240a-dirty"
     }
   ],
-  "built_at": "2026-11-17T12:08:34+07:00",
-  "train_sha256": "cb3084f187483d6cdb05e7cf3e6803eee15e4aa091bfbb8b0fde5816d78e87e6",
-  "val_sha256": "3502ccfbd1c9e09c2f34a02ebd0b97dfc91c85a1eeb7be63a1d32e260b5b1368",
+  "built_at": "2026-11-17T16:14:20+07:00",
+  "train_sha256": "f69eb662e962257dd08d4e9b726f1b5cabb98e32e6bfbb01a4c963d026c82fa5",
+  "val_sha256": "9042a9de49f0b51d8a8c533761af3b092ad4c36f41fd7f578d7e581abc5e8bc1",
   "n_chunks": 3775,
   "n_chunks_unique": 3773,
   "n_chunks_done": 3773,
   "n_questions_raw": 11319,
   "n_train": 8566,
   "n_val": 489,
-  "n_in_test_gold": 1386,
+  "n_in_test_gold": 1295,
   "n_dieu_train": 764,
   "n_dieu_val": 44,
   "rejected_by_reason": {

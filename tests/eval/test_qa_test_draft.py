@@ -412,6 +412,28 @@ def test_validator_reviewed(store: EmbeddedStore, k5_chunk) -> None:  # type: ig
     assert s["n_reviewed_unedited"] == 1 and s["n_from_draft"] == 0
 
 
+def test_validator_claude_edit(store: EmbeddedStore, k5_chunk) -> None:  # type: ignore[no-untyped-def]
+    d = _draft_rec(store, k5_chunk)
+    drafts = {d["draft_id"]: d}
+    same = dict(d["item"], source="llm:fake-model+claude")
+    codes = _codes(validate_items([same], "test", store, drafts=drafts).issues)
+    assert "nhap_chua_sua" in codes  # +claude phải sửa câu hỏi như +human
+    edited = dict(same, question="Câu hỏi Claude đã sửa lại cho khớp nguồn, khác hẳn nháp gốc?")
+    codes = _codes(validate_items([edited], "test", store, drafts=drafts).issues)
+    assert not ({"nhap_chua_sua", "nguon_khong_phai_nguoi", "nguon_khong_khop"} & codes)
+    s = edit_stats([QAItem.model_validate(edited)], drafts)
+    assert s["n_claude_edited"] == 1 and s["n_from_draft"] == 1
+
+
+def test_merge_edits() -> None:
+    from trafficlaw.eval.qa_test_draft import merge_edits
+
+    items = [{"qid": "a", "v": 0}, {"qid": "b", "v": 0}]
+    edits = {"b": {"qid": "b", "v": 1}, "z": {"qid": "z", "v": 1}, "c": {"qid": "c", "v": 1}}
+    out = merge_edits(items, edits)
+    assert [(x["qid"], x["v"]) for x in out] == [("a", 0), ("b", 1), ("c", 1), ("z", 1)]
+
+
 def test_round_ids_and_quota_cap() -> None:
     from trafficlaw.eval.qa_test_draft import cap_quota, pair_id_for, qid_for
 

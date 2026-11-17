@@ -15,6 +15,7 @@ paths:
   drafts: data/qa/test_drafts.jsonl     # nháp câu test (LLM viết, người sửa) — đo tỷ lệ sửa
   drafts_md: data/qa/test_drafts.md     # bản đọc để chọn + sửa
   test_review: data/qa/test_review.jsonl   # kết quả rà câu test (Claude rà, người dùng xác nhận)
+  test_edits: data/qa/test_edits.jsonl     # câu nháp không đạt do Claude sửa (source +claude)
   dev_oos: data/qa/dev_out_of_scope.jsonl   # câu ngoài phạm vi dùng hiệu chỉnh τ (M12) — chống trùng
   draft_dir: data/processed/qa_test_draft   # raw.jsonl, runs.jsonl (artifact Release)
 

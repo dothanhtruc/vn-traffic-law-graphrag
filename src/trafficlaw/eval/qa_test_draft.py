@@ -961,6 +961,7 @@ def edit_stats(items: Sequence[Any], drafts: Mapping[str, Mapping[str, Any]]) ->
     đổi ``gold_units``/``required_numbers``. ``items`` là ``QAItem``."""
     rows = []
     n_reviewed = 0
+    n_claude = 0
     for it in items:
         d = drafts.get(getattr(it, "draft_id", None) or "")
         if not d:
@@ -969,6 +970,8 @@ def edit_stats(items: Sequence[Any], drafts: Mapping[str, Mapping[str, Any]]) ->
         if m and m.group(2) == "reviewed":
             n_reviewed += 1
             continue
+        if m and m.group(2) == "claude":
+            n_claude += 1
         di = d.get("item") or {}
         num = sorted(
             json.dumps(x.model_dump(exclude_none=True), sort_keys=True) for x in it.required_numbers
@@ -984,12 +987,18 @@ def edit_stats(items: Sequence[Any], drafts: Mapping[str, Mapping[str, Any]]) ->
         )
     n_human = sum(1 for it in items if not getattr(it, "draft_id", None))
     if not rows:
-        return {"n_from_draft": 0, "n_human": n_human, "n_reviewed_unedited": n_reviewed}
+        return {
+            "n_from_draft": 0,
+            "n_human": n_human,
+            "n_reviewed_unedited": n_reviewed,
+            "n_claude_edited": n_claude,
+        }
     n = len(rows)
     return {
         "n_from_draft": n,
         "n_human": n_human,
         "n_reviewed_unedited": n_reviewed,
+        "n_claude_edited": n_claude,
         "question_similarity_mean": round(sum(r["q"] for r in rows) / n, 4),
         "answer_similarity_mean": round(sum(r["a"] for r in rows) / n, 4),
         "question_similarity_ge_0_9": round(sum(r["q"] >= 0.9 for r in rows) / n, 4),
@@ -1006,6 +1015,26 @@ def load_review(path: Path) -> dict[str, dict[str, Any]]:
     out: dict[str, dict[str, Any]] = {}
     for r in read_jsonl(path) if path.is_file() else []:
         out[str(r["qid"])] = dict(r)
+    return out
+
+
+def load_edits(path: Path) -> dict[str, dict[str, Any]]:
+    """Câu nháp đã sửa (``data/qa/test_edits.jsonl``, mỗi dòng một ``QAItem`` có ``draft_id``);
+    bản ghi sau cùng của mỗi ``qid`` là hiện hành."""
+    out: dict[str, dict[str, Any]] = {}
+    for r in read_jsonl(path) if path.is_file() else []:
+        out[str(r["qid"])] = dict(r)
+    return out
+
+
+def merge_edits(
+    items: list[dict[str, Any]], edits: Mapping[str, Mapping[str, Any]]
+) -> list[dict[str, Any]]:
+    """Thay câu nháp bằng bản đã sửa cùng ``qid``; câu sửa chưa có trong ``items`` (nháp bị bộ lọc
+    cờ bỏ) được thêm vào cuối. Giữ thứ tự, tất định."""
+    out = [dict(edits[it["qid"]]) if it["qid"] in edits else it for it in items]
+    have = {it["qid"] for it in items}
+    out += [dict(edits[q]) for q in sorted(edits) if q not in have]
     return out
 
 
@@ -1076,7 +1105,9 @@ __all__ = [
     "ProfileSpec",
     "TYPE_RULES_V2",
     "profile_cfg",
+    "load_edits",
     "load_review",
+    "merge_edits",
     "OOSCategory",
     "OOSInput",
     "assemble_oos",
