@@ -35,7 +35,12 @@ from trafficlaw.eval.qa_plan import ChunkFacts, Suggestion, chunk_facts
 from trafficlaw.eval.qa_schema import DRAFT_SOURCE_RE, QUESTION_TYPE_DOC
 from trafficlaw.eval.qa_validate import GraphView
 from trafficlaw.eval.textsim import normalize
-from trafficlaw.graph.store import BaseGraphStore, GraphNode, canonical_json
+from trafficlaw.graph.store import (
+    BaseGraphStore,
+    GraphNode,
+    canonical_json,
+    unit_of_version_id,
+)
 from trafficlaw.llm import LLMResult, Prompt, QuotaExhaustedError
 from trafficlaw.llm.parallel import map_parallel
 from trafficlaw.retrieval.chunking import Chunk
@@ -43,6 +48,8 @@ from trafficlaw.utils.jsonl import JsonlWriter, read_jsonl
 from trafficlaw.verify.numbers import dec_str, format_int_vn, parse_numbers
 
 DEFAULT_OUT_TOKENS = 700.0
+MAX_REFS = 3
+"""Số điều khoản được dẫn chiếu tối đa đưa thêm vào nguồn của một chunk."""
 
 #: Đoạn chèn theo loại câu (``$type_rules``). Đổi nội dung ⇒ ``prompt_hash`` đổi ⇒ run mới.
 TYPE_RULES: dict[str, str] = {
@@ -155,6 +162,7 @@ def draft_key(model_id: str, prompt: Prompt, cfg: DraftConfig) -> DraftKey:
             "type_rules": TYPE_RULES,
             "personas": cfg.personas,
             "styles": [s.model_dump() for s in cfg.styles],
+            "reasoning_effort": cfg.reasoning_effort,
         }
     )
     return DraftKey(model_id, ph, sha256(output_schema(cfg.n_drafts).model_json_schema()))
@@ -288,6 +296,20 @@ def _add_chunk(
             acc.numbers.append(x)
         if x.unit_id and x.unit_id not in units and x.unit_id not in related:
             related.append(x.unit_id)
+    # Điều khoản được dẫn chiếu (vd "tái phạm hành vi quy định tại điểm a khoản 7 Điều này"):
+    # thiếu nguyên văn thì model tự bịa hành vi (chạy thử 17/11/2026).
+    refs: list[str] = []
+    for vid in c.version_ids:
+        for e in gv.store.references_from(unit_of_version_id(vid), d):
+            u = e.dst
+            if (
+                not e.props.get("can_cu")
+                and u not in units
+                and u not in related
+                and u not in refs
+                and gv.unit(u) is not None
+            ):
+                refs.append(u)
     acc.blocks.append(
         f"### {title}\n"
         f"Văn bản: {doc_label(gv.doc(c.doc_id))}\n"
@@ -303,6 +325,16 @@ def _add_chunk(
         acc.texts.append(text)
         acc.blocks.append(
             f"### Điều khoản nêu chế tài áp cho hành vi trên ({u})\n"
+            f"Mã điều khoản dùng được cho gold_units: {u}\n\n{_clip(text, max_chars)}"
+        )
+    for u in refs[:MAX_REFS]:
+        text = related_text(gv.store, u, d)
+        if not text:
+            continue
+        acc.allow([u])
+        acc.texts.append(text)
+        acc.blocks.append(
+            f"### Điều khoản được nguồn trên dẫn chiếu tới ({u})\n"
             f"Mã điều khoản dùng được cho gold_units: {u}\n\n{_clip(text, max_chars)}"
         )
 

@@ -90,5 +90,8 @@ models:
     served_model_name: gpt-oss-20b
     max_model_len: 16384
     gpu_memory_utilization: 0.90
+    # Mặc định vLLM bỏ "original/**/*" — không khớp original/model.safetensors (13,7 GB, bản gốc
+    # trùng nội dung) ⇒ tải thừa; bỏ hẳn original/ và metal/ (17/11/2026).
+    extra_args: ["--ignore-patterns", "original/*", "metal/*"]
     family: gpt-oss
     role: annotator

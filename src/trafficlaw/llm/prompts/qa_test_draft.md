@@ -23,6 +23,8 @@ $numbers
 ## Quy tắc viết câu hỏi
 
 1. Viết bằng tiếng Việt có dấu, **lời người dân**, theo đúng vai và kiểu câu đã cho. Dùng tình huống cụ thể (tôi / con tôi / công ty tôi…) khi kiểu câu cho phép.
+   **Loại xe, chủ thể và hành vi trong câu hỏi phải đúng như nguồn** (nguồn nói ô tô chở khách thì không được hỏi về xe máy). Vai chỉ quyết định giọng hỏi và người kể; nếu vai không hợp với nguồn, giữ đúng nguồn (ví dụ để người đó hỏi giùm người thân).
+   Nếu nguồn chỉ dẫn chiếu tới hành vi ở điều khoản khác ("hành vi quy định tại điểm a khoản 7"), hãy mô tả đúng hành vi đó theo phần "Điều khoản được nguồn trên dẫn chiếu tới"; không tự nghĩ ra hành vi.
 2. **Không chép từ ngữ của điều luật.** Không có cụm **từ 6 từ liên tiếp trở lên** giống nguồn. Diễn đạt hành vi bằng cách người thường mô tả việc mình làm (ví dụ "chạy xe ra ngoài tuyến được phép", không viết "điều khiển xe hoạt động không đúng tuyến đường").
 3. **Không nêu số Điều, Khoản, Điểm** trong câu hỏi. Chỉ nêu tên văn bản khi kiểu câu yêu cầu.
 4. Không nêu đáp án hay con số cần hỏi trong câu hỏi. Con số mô tả tình huống (tốc độ, nồng độ cồn, tuổi…) chỉ được dùng khi nó nằm đúng trong phạm vi nguồn quy định.

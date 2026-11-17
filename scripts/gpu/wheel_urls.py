@@ -93,11 +93,41 @@ def pick_wheels(
     return got, missing
 
 
+def pypi_lock(pkgs: Iterable[tuple[str, str]], workers: int = 16) -> dict:
+    """``{package: [{name, version, wheels: [{url, hash}]}]}`` dựng từ PyPI JSON API (cùng dạng
+    ``uv.lock`` để dùng lại ``pick_wheels``). Gọi từ máy local (mạng tới PyPI bình thường)."""
+    from concurrent.futures import ThreadPoolExecutor
+
+    import httpx
+
+    def one(nv: tuple[str, str]) -> dict:
+        name, ver = nv
+        r = httpx.get(f"https://pypi.org/pypi/{name}/{ver}/json", timeout=60, follow_redirects=True)
+        r.raise_for_status()
+        files = r.json().get("urls") or []
+        wheels = [
+            {"url": f["url"], "hash": "sha256:" + f["digests"]["sha256"]}
+            for f in files
+            if f.get("packagetype") == "bdist_wheel"
+        ]
+        return {"name": name, "version": ver, "wheels": wheels}
+
+    with ThreadPoolExecutor(workers) as ex:
+        return {"package": list(ex.map(one, list(pkgs)))}
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--group", action="append", default=[], help="nhóm dependency (lặp được)")
     ap.add_argument("--requirements", type=Path, help="dùng file này thay vì chạy uv export")
     ap.add_argument("--lock", type=Path, default=ROOT / "uv.lock")
+    ap.add_argument("--python", default="3.11", help="phiên bản CPython đích (venv vLLM: 3.12)")
+    ap.add_argument(
+        "--pypi",
+        action="store_true",
+        help="lấy URL + sha256 từ PyPI JSON thay vì uv.lock (dùng với --requirements do "
+        "`uv pip compile --python-platform x86_64-manylinux_2_39` sinh — venv vLLM)",
+    )
     args = ap.parse_args(argv)
     if args.requirements:
         text = args.requirements.read_text(encoding="utf-8")
@@ -106,10 +136,20 @@ def main(argv: Sequence[str] | None = None) -> int:
         for g in args.group:
             cmd += ["--group", g]
         text = subprocess.run(cmd, cwd=ROOT, check=True, capture_output=True, text=True).stdout
-    lock = tomllib.loads(args.lock.read_text(encoding="utf-8"))
-    got, missing = pick_wheels(lock, parse_requirements(text, LINUX_ENV), target_tags())
+    major, minor = (int(x) for x in args.python.split(".")[:2])
+    env = dict(
+        LINUX_ENV,
+        python_version=f"{major}.{minor}",
+        python_full_version=f"{major}.{minor}.0",
+        implementation_version=f"{major}.{minor}.0",
+    )
+    pkgs = parse_requirements(text, env)
+    lock = pypi_lock(pkgs) if args.pypi else tomllib.loads(args.lock.read_text(encoding="utf-8"))
+    got, missing = pick_wheels(lock, pkgs, target_tags((major, minor)))
     if missing:
-        print("không có wheel Linux cp311 x86_64: " + ", ".join(missing), file=sys.stderr)
+        print(
+            f"không có wheel Linux cp{major}{minor} x86_64: " + ", ".join(missing), file=sys.stderr
+        )
         return 1
     sys.stdout.buffer.write("".join(f"{u}\t{h}\t{f}\n" for u, h, f in got).encode())
     return 0
