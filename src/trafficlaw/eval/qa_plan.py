@@ -72,6 +72,10 @@ class PlanConfig:
     )
     so_sanh_min: float = 0.5
     so_sanh_max: float = 0.95
+    exclude_dieu_title: str | None = None
+    """Regex tiêu đề Điều không gợi ý (vd Điều thẩm quyền xử phạt — nháp test v2)."""
+    sid_prefix: str = "W"
+    """Tiền tố mã gợi ý: ``W`` = phiếu viết gốc; ``W2``, ``W3``… = vòng sinh thêm (nháp test)."""
 
 
 @dataclass
@@ -255,10 +259,17 @@ def theo_thoi_diem_candidates(all_chunks: Sequence[Chunk]) -> list[tuple[Chunk |
 
 
 def plan_suggestions(
-    store: BaseGraphStore, targets: Targets, cfg: PlanConfig
+    store: BaseGraphStore,
+    targets: Targets,
+    cfg: PlanConfig,
+    used_units: set[str] | None = None,
 ) -> tuple[list[Suggestion], dict[str, Any]]:
+    """``used_units``: unit đã dùng ở vòng trước (không gợi ý lại; tập được cập nhật tại chỗ)."""
     gv = GraphView(store)
     all_chunks = list(iter_chunks(store))
+    if cfg.exclude_dieu_title:
+        rx = re.compile(cfg.exclude_dieu_title)
+        all_chunks = [c for c in all_chunks if not rx.search(c.dieu_title or "")]
     rep = representative_chunks(all_chunks, cfg.as_of)
     active = [c for c, _ in rep]
     date_of = {c.chunk_id: d for c, d in rep}
@@ -267,7 +278,7 @@ def plan_suggestions(
         facts += chunk_facts(gv, [c for c, dd in rep if dd == d], d)
     by_unit = {f.chunk.unit_id: f for f in facts}
     tier_w = {k: float(v) for k, v in targets.tier.items()}
-    used: set[str] = set()
+    used: set[str] = used_units if used_units is not None else set()
     out: list[Suggestion] = []
     stats: dict[str, Any] = {"n_chunks_active": len(active), "pool": {}}
 
@@ -312,7 +323,7 @@ def plan_suggestions(
                 note = f"{kind} → {dst}"
             out.append(
                 Suggestion(
-                    f"W-{qtype}-{i:03d}",
+                    f"{cfg.sid_prefix}-{qtype}-{i:03d}",
                     qtype,
                     f.chunk.tier,
                     chunks,
@@ -353,7 +364,7 @@ def _plan_time(
             d = after.effective_from
             out.append(
                 Suggestion(
-                    f"W-theo_thoi_diem-{i:03d}",
+                    f"{cfg.sid_prefix}-theo_thoi_diem-{i:03d}",
                     "theo_thoi_diem",
                     after.tier,
                     [c for c in (before, after) if c is not None],
@@ -400,7 +411,7 @@ def _plan_compare(
         used |= {a.chunk.unit_id, b.chunk.unit_id}
         out.append(
             Suggestion(
-                f"W-so_sanh-{len(out) + 1:03d}",
+                f"{cfg.sid_prefix}-so_sanh-{len(out) + 1:03d}",
                 "so_sanh",
                 a.chunk.tier,
                 [a.chunk, b.chunk],

@@ -1,10 +1,10 @@
 # Sinh dữ liệu train/val (M9)
 
-- Dựng lúc 2026-11-10T10:52:29+07:00 · commit `f0bac4e742bdd161b40ac2b5cf5da7145f4cd7d0-dirty` · model `mistral-small-3.2` · prompt `603e12db4b7a` · schema `415b103e5f9f`
-- test.jsonl lúc dựng: `` (0 câu) · data_version `f3297e64b9e4`
+- Dựng lúc 2026-11-17T16:14:20+07:00 · commit `28856bc67f44b75d6e57e6d86af31a5fac16afde-dirty` · model `mistral-small-3.2` · prompt `603e12db4b7a` · schema `415b103e5f9f`
+- test.jsonl lúc dựng: `9a9b8113cffc` (500 câu) · data_version `f3297e64b9e4`
 - Chunk: 3,775 (3,773 text khác nhau), đã sinh 3,773
 - Câu thô: 11,319 → train 8,566 (764 Điều) · val 489 (44 Điều)
-- Positive thuộc gold_units của test (đánh dấu `in_test_gold`, không loại): 0
+- Positive thuộc gold_units của test (đánh dấu `in_test_gold`, không loại): 1,295
 
 ## Bị loại
 

@@ -12,6 +12,12 @@ paths:
   generate_summary: data/qa/generate_summary.md
   gen_dir: data/processed/qa_gen        # raw.jsonl, rejected.jsonl, runs.jsonl (artifact Release)
   validate_dir: data/processed/qa       # validate_<split>.json, <split>_resolved.jsonl
+  drafts: data/qa/test_drafts.jsonl     # nháp câu test (LLM viết, người sửa) — đo tỷ lệ sửa
+  drafts_md: data/qa/test_drafts.md     # bản đọc để chọn + sửa
+  test_review: data/qa/test_review.jsonl   # kết quả rà câu test (Claude rà, người dùng xác nhận)
+  test_edits: data/qa/test_edits.jsonl     # câu nháp không đạt do Claude sửa (source +claude)
+  dev_oos: data/qa/dev_out_of_scope.jsonl   # câu ngoài phạm vi dùng hiệu chỉnh τ (M12) — chống trùng
+  draft_dir: data/processed/qa_test_draft   # raw.jsonl, runs.jsonl (artifact Release)
 
 as_of_default: 2026-11-03               # mốc chốt dữ liệu
 seed: 42
@@ -57,6 +63,134 @@ generate:
   val_fraction: 0.05                    # chia theo Điều
   seed: 42
   as_of_cutoff: 2026-11-03
+
+# Nháp câu test (người dùng quyết định 17/11/2026): LLM viết nháp từ gợi ý của phiếu viết, người
+# dùng sửa từng câu rồi chép vào test.jsonl (source = llm:<model>+human, draft_id). Model phải
+# KHÁC HỌ với model trả lời (qwen) và model judge (mistral). gpt-oss-20b (họ gpt-oss, apache-2.0,
+# không gated, revision ghim trong serve.yaml) — người dùng chọn 17/11/2026 thay gemma3-12b (gated).
+draft:
+  provider: local
+  model_id: gpt-oss-20b
+  exclude_families_of: [qwen3-14b-awq, mistral-small-3.2]
+  prompt: qa_test_draft
+  n_drafts: 2
+  max_output_tokens: 3072                 # gồm token suy luận (gpt-oss)
+  reasoning_effort: low
+  max_source_chars: 1500
+  chars_per_token: 1.74
+  min_words: 8
+  max_words: 50
+  verbatim_ngram: 6
+  seed: 42
+  personas:
+    - tài xế xe tải
+    - sinh viên đi xe máy
+    - chủ doanh nghiệp vận tải
+    - người mới học lái ô tô
+    - phụ huynh có con dưới 18 tuổi
+    - cán bộ phường
+    - tài xế công nghệ
+    - người lớn tuổi đi xe đạp điện
+  styles:
+    - {name: ngan, desc: "một câu ngắn, hỏi thẳng", weight: 0.2}
+    - {name: tinh_huong_ban_than, desc: "kể tình huống của chính mình (tôi …) rồi hỏi", weight: 0.4}
+    - {name: tinh_huong_nguoi_khac, desc: "kể lại chuyện của người khác (anh tôi, công ty bên cạnh …) rồi hỏi", weight: 0.2}
+    - {name: nhieu_dieu_kien, desc: "tình huống có nhiều chi tiết/điều kiện, người hỏi phải lọc ra điều quan trọng", weight: 0.1}
+    - {name: neu_van_ban, desc: "hỏi có nêu tên văn bản (vd 'theo Nghị định 168')", weight: 0.1}
+  # Vòng sinh thêm (người dùng yêu cầu 17/11/2026 sau khi nhập 273 câu vòng 1): mỗi loại ≈ 2 × phần
+  # còn thiếu (vòng 1 giữ được ~63% gợi ý sau lọc). Không dùng lại unit của vòng trước; mã W2-…
+  rounds:
+    - round: 2
+      question_type:
+        muc_phat: 40
+        tru_diem: 28
+        bien_phap: 28
+        hanh_vi_cam_nghia_vu: 38
+        dinh_nghia: 38
+        thu_tuc_tham_quyen: 58
+        theo_thoi_diem: 72          # câu (= 36 cặp)
+        da_buoc: 50
+        so_sanh: 32
+    # Vòng 3 (người dùng yêu cầu nới điều kiện 17/11/2026): dùng lại unit cho loại câu khác, hạ ngưỡng
+    # cặp so_sanh 0,5 → 0,4; ≈ 2 × phần còn thiếu sau vòng 2.
+    - round: 3
+      reuse_units: true
+      so_sanh_min: 0.4
+      question_type:
+        so_sanh: 40
+        tru_diem: 24
+        theo_thoi_diem: 30          # câu (= 15 cặp)
+        dinh_nghia: 6
+        da_buoc: 4
+    # Vòng 4 (người dùng yêu cầu cân tier 17/11/2026): chỉ tier B/C/historical (tier A đã vượt hạn
+    # mức) cho các loại có ứng viên ở các tier đó; import-drafts chọn theo tier đang thiếu.
+    - round: 4
+      tier: {B: 2, C: 1, historical: 1}
+      question_type:
+        hanh_vi_cam_nghia_vu: 40
+        thu_tuc_tham_quyen: 50
+        da_buoc: 24
+        muc_phat: 10
+        bien_phap: 6
+        dinh_nghia: 8
+    # Vòng 5: tru_diem còn thiếu (chỉ có ở tier A; dùng lại unit cho loại khác).
+    - round: 5
+      reuse_units: true
+      question_type:
+        tru_diem: 6
+    # Vòng 6 (prompt v2): bù phần thiếu sau khi rà (≈ 1,8 × số câu đạt còn thiếu mỗi loại).
+    - round: 6
+      profile: v2
+      reuse_units: true
+      question_type:
+        muc_phat: 60
+        tru_diem: 24
+        bien_phap: 42
+        hanh_vi_cam_nghia_vu: 70
+        dinh_nghia: 24
+        thu_tuc_tham_quyen: 80
+        theo_thoi_diem: 56          # câu (= 28 cặp)
+        da_buoc: 64
+        so_sanh: 32
+  # Câu loại khi nhập tự động (người dùng đồng ý 17/11/2026 sau khi Claude rà danh sách
+  # ngoai_pham_vi): câu "ngoài phạm vi" mà dữ liệu thật ra trả lời được (một phần).
+  import_exclude:
+    - {qid: t-oos-phap_luat_khac-1b, reason: "đổi giấy phép lái xe nước ngoài sang Việt Nam có trong dữ liệu (trong phạm vi)"}
+    - {qid: t-oos-phap_luat_khac-1c, reason: "ranh giới: hỏi các khoản phí phải nộp khi mua xe (lệ phí đăng ký xe có trong dữ liệu)"}
+    - {qid: t-oos-cong_nghe_ky_thuat-2a, reason: "ranh giới: nhắc tuổi học lái xe máy (độ tuổi người lái có trong dữ liệu)"}
+    - {qid: t-oos-tu_van_ca_nhan-2c, reason: "dùng giấy phép lái xe nước ngoài tại Việt Nam có trong dữ liệu (trong phạm vi)"}
+  # Hồ sơ prompt v2 (người dùng đồng ý 17/11/2026 sau khi rà 534 câu v1: 47% đạt). Sửa 6 lỗi hệ
+  # thống: chủ thể/vai, thẩm quyền ≠ mức phạt, loại xe theo Điều, trừ điểm theo danh sách, không
+  # bịa ngoài nguồn, tiền đề hợp lý. Bỏ Điều thẩm quyền xử phạt khỏi gợi ý; văn bản quy trình nội
+  # bộ Công an → vai cán bộ CSGT. Vòng 1–5 giữ cấu hình gốc (khoá resume không đổi).
+  profiles:
+    v2:
+      prompt: qa_test_draft_v2
+      type_rules_version: v2
+      personas:
+        - người lái ô tô cá nhân
+        - tài xế xe tải
+        - tài xế xe khách
+        - người đi xe máy
+        - chủ doanh nghiệp vận tải
+        - người đi xe đạp điện
+        - người dân
+        - chủ xe
+      officer_docs: [TT69-2024-BCA, TT72-2024-BCA, TT73-2024-BCA, TT83-2024-BCA]
+      exclude_dieu_title: "^(Phân định thẩm quyền xử phạt|Thẩm quyền xử phạt|Nguyên tắc xác định thẩm quyền xử phạt)"
+  # Câu ngoai_pham_vi do LLM viết (người dùng yêu cầu 17/11/2026): mỗi nhóm × lượt × câu/lượt.
+  oos_prompt: qa_test_draft_oos
+  oos_calls_per_category: 2
+  oos_per_call: 5
+  oos_near_dup: 0.8
+  oos_categories:
+    - {name: giao_thong_khac, desc: "giao thông đường sắt, đường thủy nội địa, hàng hải, hàng không"}
+    - {name: phap_luat_khac, desc: "lĩnh vực pháp luật khác không liên quan giao thông đường bộ: hình sự, hôn nhân gia đình, đất đai, thuế, lao động, thừa kế"}
+    - {name: dan_su_bao_hiem, desc: "tranh chấp dân sự, hợp đồng mua bán, bảo hiểm thương mại, bồi thường theo hợp đồng giữa các bên (không phải xử phạt hành chính)"}
+    - {name: tu_van_ca_nhan, desc: "xin lời khuyên cá nhân, dự đoán kết quả, đánh giá một cán bộ hay một vụ việc cụ thể, chọn mua xe nào, nên học lái ở trường nào"}
+    - {name: so_lieu_thong_tin, desc: "số liệu thống kê, giá cả thị trường, thông tin doanh nghiệp, lịch làm việc hay địa chỉ của cơ quan, tình hình giao thông hôm nay"}
+    - {name: nuoc_ngoai, desc: "luật giao thông của nước khác áp dụng tại nước đó (Mỹ, Nhật, Hàn Quốc, châu Âu…), không liên quan Việt Nam"}
+    - {name: cong_nghe_ky_thuat, desc: "kỹ thuật sửa chữa xe, so sánh động cơ, phần mềm bản đồ, cách lái xe tiết kiệm nhiên liệu — câu hỏi kỹ thuật, không phải câu hỏi pháp luật"}
 
 subsets:
   ablation_200: {n: 200}

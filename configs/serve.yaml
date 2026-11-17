@@ -80,3 +80,18 @@ models:
     gpu_memory_utilization: 0.90
     family: gemma
     role: candidate
+  gpt-oss-20b:
+    # Viết nháp câu test (người dùng chọn 17/11/2026: khác họ qwen/mistral/gemma, không gated).
+    # apache-2.0, MoE 21B (3,6B hoạt động), trọng số MXFP4 gốc ~13 GB — vLLM tự nhận lượng tử
+    # hoá; trên Ampere dùng Marlin MXFP4 + TRITON_ATTN (recipe vLLM; 3090 = sm86 chưa đo).
+    # Model có suy luận: draft.reasoning_effort = low (configs/qa.yaml).
+    hf_repo: openai/gpt-oss-20b
+    revision: 6cee5e81ee83917806bbde320786a8fb61efebee
+    served_model_name: gpt-oss-20b
+    max_model_len: 16384
+    gpu_memory_utilization: 0.90
+    # Mặc định vLLM bỏ "original/**/*" — không khớp original/model.safetensors (13,7 GB, bản gốc
+    # trùng nội dung) ⇒ tải thừa; bỏ hẳn original/ và metal/ (17/11/2026).
+    extra_args: ["--ignore-patterns", "original/*", "metal/*"]
+    family: gpt-oss
+    role: annotator
