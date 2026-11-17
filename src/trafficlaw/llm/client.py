@@ -197,7 +197,9 @@ class LLMClient:
                 error=f"{type(e).__name__}: {e}",
             )
             logger.warning("%r: lỗi sau %d lượt: %s", self, attempts, result.error)
-        if self.cache is not None and result.status == "ok":
+        if (
+            self.cache is not None and use_cache and result.status == "ok"
+        ):  # use_cache=False: không đọc, không ghi
             self.cache.put(key, result)
         return result
 

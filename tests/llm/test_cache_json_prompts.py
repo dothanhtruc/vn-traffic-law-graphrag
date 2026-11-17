@@ -33,6 +33,18 @@ def test_cache_hit_miss(make_client, tmp_path):
     assert fake.n_calls == 2
 
 
+def test_no_cache_call_does_not_overwrite(make_client, tmp_path):
+    """M13 (dao động seed): lượt use_cache=False cùng request không được ghi đè cache gốc."""
+    cache = LLMCache(tmp_path / "c.sqlite")
+    other = GOOD.replace("Phạt tiền", "Cảnh cáo")
+    fake = FakeClient([ok(GOOD), ok(other)])
+    c = make_client(fake, cache=cache)
+    r1 = c.generate(MSG, json_schema=Answer)
+    c.generate(MSG, json_schema=Answer, use_cache=False)
+    r3 = c.generate(MSG, json_schema=Answer)
+    assert fake.n_calls == 2 and r3.cached and r3.text == r1.text
+
+
 def test_cache_key_changes():
     base = cache_key("gemini", "m1", _req(params={"temperature": 0}))
     assert base == cache_key("gemini", "m1", _req(params={"temperature": 0}))
