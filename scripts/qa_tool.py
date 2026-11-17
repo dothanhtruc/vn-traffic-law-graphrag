@@ -86,11 +86,27 @@ def _yaml(p: Path) -> dict[str, Any]:
 class QAEnv:
     def __init__(self, root: Path) -> None:
         self.root = root
+        self.is_dev = False
         self.paths_cfg = _yaml(root / "configs" / "paths.yaml")
         self.cfg = _yaml(root / "configs" / "qa.yaml")
 
     def p(self, key: str) -> Path:
         return self.root / self.cfg["paths"][key]
+
+    def use_dev(self) -> None:
+        """M13b: chuyển ``test``/nháp/rà/sửa sang đường dẫn của tập dev (``qa.yaml dev.paths``);
+        đường dẫn test gốc giữ ở ``test_main``; hạn mức loại câu = ``dev.quota``."""
+        dev = self.cfg.get("dev") or {}
+        paths = dict(self.cfg["paths"])
+        paths["test_main"] = paths["test"]
+        paths.update(dev.get("paths") or {})
+        self.cfg["paths"] = paths
+        quota = dict(dev.get("quota") or {})
+        t = dict(self.cfg.get("targets") or {})
+        self.cfg["targets_main"] = dict(t)
+        t.update(question_type=quota, total=sum(quota.values()))
+        self.cfg["targets"] = t
+        self.is_dev = True
 
     @cached_property
     def store(self) -> EmbeddedStore:
@@ -501,6 +517,64 @@ def draft_suggestions(env: QAEnv, cfg: DraftConfig) -> tuple[list[Any], dict[str
     return sugs, profile_of
 
 
+def test_gold_units(env: QAEnv) -> set[str]:
+    """Gold unit của mọi câu trong test chính thức."""
+    path = env.p("test_main") if env.is_dev else env.p("test")
+    items, _ = parse_items(list(read_jsonl(path)))
+    return {u for it in items for u in it.gold_units}
+
+
+def _dieu(unit_id: str) -> str:
+    return "/".join(unit_id.split("/")[:2])
+
+
+def _related(u: str, g: str) -> bool:
+    return u == g or u.startswith(g + "/") or g.startswith(u + "/")
+
+
+def dev_suggestions(env: QAEnv, cfg: DraftConfig) -> tuple[list[Any], dict[str, str]]:
+    """M13b: gợi ý cho tập dev — mỗi loại câu một lượt ``plan_suggestions``; unit bị chặn theo
+    ``dev.exclude_level`` của loại câu: ``dieu`` = mọi unit thuộc Điều có trong gold test,
+    ``khoan`` =
+    gold test + tổ tiên + con cháu. Sau đó bỏ gợi ý có bất kỳ unit nào (chunk, gold, đích dẫn
+    chiếu) bị chặn. Tất định."""
+    from dataclasses import replace
+
+    dev = env.cfg.get("dev") or {}
+    levels = dict(dev.get("exclude_level") or {})
+    gold = test_gold_units(env)
+    gold_dieu = {_dieu(g) for g in gold}
+    units = [
+        n.id
+        for label in ("Dieu", "Khoan", "Diem", "PhuLuc")
+        for n in env.store.nodes_by_label(label)
+    ]
+
+    def bad(u: str, level: str) -> bool:
+        if level == "dieu":
+            return _dieu(u) in gold_dieu
+        return _dieu(u) in gold_dieu and any(_related(u, g) for g in gold)
+
+    blocked = {lv: {u for u in units if bad(u, lv)} for lv in ("dieu", "khoan")}
+    pc = replace(plan_cfg(env), sid_prefix=str(dev.get("sid_prefix", "WD")))
+    if dev.get("so_sanh_min") is not None:
+        pc = replace(pc, so_sanh_min=float(dev["so_sanh_min"]))
+    tm = env.cfg.get("targets_main") or {}
+    t = env.targets
+
+    def units_of(s: Any) -> set[str]:
+        return {c.unit_id for c in s.chunks} | set(s.gold_units or [])
+
+    out: list[Any] = []
+    for qt, n in (dev.get("question_type") or {}).items():
+        lv = str(levels.get(qt, levels.get("default", "dieu")))
+        tr = Targets(int(tm.get("total", 500)), dict(tm.get("tier") or t.tier), {qt: int(n)})
+        part, _ = plan_suggestions(env.store, tr, pc, set(blocked[lv]))
+        out += [s for s in part if not any(bad(u, lv) for u in units_of(s))]
+    prof = dev.get("profile") or ""
+    return out, {s.sid: prof for s in out}
+
+
 def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
     from scripts._llm_local import check_local_server, is_local, resolve_model, serve_config
     from trafficlaw.eval.qa_test_draft import (
@@ -552,7 +626,7 @@ def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
         print("draft-test: ngoai_pham_vi chạy riêng (--type ngoai_pham_vi)", file=sys.stderr)
         return 1
     t0 = time.monotonic()
-    sugs, profile_of = draft_suggestions(env, cfg)
+    sugs, profile_of = dev_suggestions(env, cfg) if env.is_dev else draft_suggestions(env, cfg)
     pick = [s for s in sugs if s.qtype in types]
     if args.round is not None:
         prefix = "W-" if args.round == 1 else f"W{args.round}-"
@@ -795,7 +869,12 @@ def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
     is_ok = [(pair_ok[it["pair_id"]] if it.get("pair_id") else ok_of(it)) for it in items]
     ok_items = [it for it, o in zip(items, is_ok, strict=True) if o]
     rest = [it for it, o in zip(items, is_ok, strict=True) if not o]
-    rest.sort(key=lambda it: -int(str(it["qid"]).split("-")[0][1:] or 1))  # vòng mới trước
+
+    def _round(qid: str) -> int:
+        r = str(qid).split("-")[0][1:]
+        return int(r) if r.isdigit() else 1
+
+    rest.sort(key=lambda it: -_round(it["qid"]))  # vòng mới trước
     quota = dict(env.targets.question_type)
     tier_t = env.targets.tier_expected()
     kept_ok, drop_ok = balance_quota(ok_items, quota, tier_t)
@@ -809,6 +888,37 @@ def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
     kept_rest, drop_rest = balance_quota(rest, left, tier_left)
     items = kept_ok + kept_rest
     over_quota = drop_ok + drop_rest
+    leak: list[str] = []
+    if env.is_dev:
+        # tập dev không được gần trùng câu test (cùng ngưỡng với train/val)
+        from trafficlaw.eval.qa_validate import check_leakage
+
+        tq = [t.question for t in parse_items(list(read_jsonl(env.p("test_main"))))[0]]
+        parsed, _ = parse_items(items)
+        leak = sorted(
+            {i.qid for i in check_leakage(parsed, tq, env.validate_cfg.near_dup) if i.qid}
+        )
+        # luật loại trừ áp trên gold CUỐI CÙNG (nháp/bản sửa có thể thêm unit ngoài gợi ý)
+        levels = dict((env.cfg.get("dev") or {}).get("exclude_level") or {})
+        gold = test_gold_units(env)
+        gold_dieu = {_dieu(g) for g in gold}
+
+        def overlaps(it: dict[str, Any]) -> bool:
+            lv = str(levels.get(it["question_type"], levels.get("default", "dieu")))
+            for u in it.get("gold_units") or []:
+                if lv == "dieu" and _dieu(u) in gold_dieu:
+                    return True
+                if lv != "dieu" and any(_related(u, g) for g in gold):
+                    return True
+            return False
+
+        bad_pairs = {it["pair_id"] for it in items if it.get("pair_id") and overlaps(it)}
+        leak += sorted(
+            it["qid"]
+            for it in items
+            if overlaps(it) or (it.get("pair_id") and it["pair_id"] in bad_pairs)
+        )
+        items = [it for it in items if it["qid"] not in set(leak)]
     write_jsonl(test, items)
     report = {
         "imported_at": datetime.now().astimezone().isoformat(timespec="seconds"),
@@ -829,6 +939,8 @@ def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
         "n_dropped_validate": len(dropped),
         "skipped_flags": skipped,
         "dropped_validate": dropped,
+        "dev": env.is_dev,
+        "dropped_near_test": leak,
         "n_over_quota": len(over_quota),
         "over_quota": over_quota,
     }
@@ -1056,7 +1168,9 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("import-drafts", help="nhập nháp đã duyệt (không sửa) vào test")
     p.add_argument("--auto", action="store_true", help="chọn nháp không có cờ nặng + lọc lỗi")
     p.add_argument("--force", action="store_true", help="ghi đè test.jsonl đã có")
+    p.add_argument("--set", choices=["test", "dev"], default="test", help="dev = tập dev M13b")
     p = sub.add_parser("draft-test", help="nháp câu test (LLM viết, người sửa)")
+    p.add_argument("--set", choices=["test", "dev"], default="test", help="dev = tập dev M13b")
     p.add_argument("--provider")
     p.add_argument("--model")
     p.add_argument("--dry-run", action="store_true")
@@ -1073,6 +1187,8 @@ def main(argv: list[str] | None = None) -> int:
         if hasattr(stream, "reconfigure"):
             stream.reconfigure(encoding="utf-8", errors="replace")
     env = QAEnv(args.repo_root)
+    if getattr(args, "set", "test") == "dev":
+        env.use_dev()
     cmds = {
         "plan-test": cmd_plan,
         "show": cmd_show,

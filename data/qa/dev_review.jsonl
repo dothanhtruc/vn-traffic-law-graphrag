@@ -1,0 +1,93 @@
+{"qid": "tD-da_buoc-002", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-003", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-004", "verdict": "OK", "reason": "đúng nguồn"}
+{"qid": "tD-da_buoc-005", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-006", "verdict": "SAI_NOI_DUNG", "reason": "nháp bịa quy định giảm tốc ở trường học; vai xe đạp điện không thuộc 'người lái xe'"}
+{"qid": "tD-da_buoc-008", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-010", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-011", "verdict": "OK", "reason": "đúng nguồn"}
+{"qid": "tD-da_buoc-019", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-020", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-021", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-022", "verdict": "SAI_NOI_DUNG", "reason": "nháp gán thủ tục cho người chuyển nhượng; K2 Đ15: bên nhận làm thủ tục"}
+{"qid": "tD-da_buoc-023", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-024", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-026", "verdict": "MO_HO", "reason": "nháp gộp sai việc báo cáo UBND với trường hợp công trình hư hỏng"}
+{"qid": "tD-da_buoc-027", "verdict": "SAI_NOI_DUNG", "reason": "nháp nói trung tâm phải công khai hồ sơ kết quả; nguồn: công khai lịch sát hạch"}
+{"qid": "tD-da_buoc-029", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-030", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-033", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-034", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-035", "verdict": "MO_HO", "reason": "nháp gán cả thủ tục sang tên cho người bán; câu hỏi bỏ 'trúng đấu giá'"}
+{"qid": "tD-da_buoc-036", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-037", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-041", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-042", "verdict": "MO_HO", "reason": "câu hỏi nháp ('không dừng lại khi cảnh sát yêu cầu') lệch hành vi của khoản 2 Điều 69"}
+{"qid": "tD-da_buoc-043", "verdict": "SAI_NOI_DUNG", "reason": "nháp nói vượt 'xe phía sau'"}
+{"qid": "tD-da_buoc-049", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-052", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-053", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-054", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-059", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-063", "verdict": "SAI_NOI_DUNG", "reason": "câu hỏi nháp (người đi xe đạp điện dừng xe ở đâu) không phải nội dung của nguồn"}
+{"qid": "tD-da_buoc-064", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-071", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-da_buoc-075", "verdict": "SAI_NOI_DUNG", "reason": "nháp nói người dân 'thực hiện biện pháp tạm giữ'"}
+{"qid": "tD-muc_phat-001", "verdict": "OK", "reason": "đúng nguồn"}
+{"qid": "tD-muc_phat-002", "verdict": "OK", "reason": "đúng nguồn"}
+{"qid": "tD-muc_phat-005", "verdict": "SAI_NOI_DUNG", "reason": "Điều 8 là xe máy chuyên dùng, nháp hỏi xe máy"}
+{"qid": "tD-muc_phat-006", "verdict": "OK", "reason": "đúng nguồn"}
+{"qid": "tD-muc_phat-008", "verdict": "OK", "reason": "đúng nguồn"}
+{"qid": "tD-muc_phat-010", "verdict": "MO_HO", "reason": "ngưỡng tính theo chiều dài toàn bộ của xe, không phải chiều dài thùng"}
+{"qid": "tD-muc_phat-012", "verdict": "SAI_NOI_DUNG", "reason": "Điều 8 là xe máy chuyên dùng, nháp hỏi xe máy"}
+{"qid": "tD-muc_phat-013", "verdict": "SAI_NOI_DUNG", "reason": "khoản 2 Điều 20 loại trừ xe buýt; mức phạt tính trên mỗi người vượt"}
+{"qid": "tD-muc_phat-014", "verdict": "SAI_NOI_DUNG", "reason": "Điều 15 là xe thô sơ, nháp hỏi xe máy"}
+{"qid": "tD-muc_phat-015", "verdict": "SAI_NOI_DUNG", "reason": "Điều 33 xử phạt hành khách, nháp hỏi lái xe đe dọa hành khách"}
+{"qid": "tD-muc_phat-018", "verdict": "SAI_NOI_DUNG", "reason": "Điều 9 là xe đạp/xe thô sơ, nháp hỏi lái xe công ty dừng trên lề đường"}
+{"qid": "tD-muc_phat-020", "verdict": "SAI_NOI_DUNG", "reason": "nháp hỏi xe buýt chở hàng vượt giới hạn, không phải hành vi của khoản 1"}
+{"qid": "tD-muc_phat-033", "verdict": "OK", "reason": "đúng nguồn"}
+{"qid": "tD-muc_phat-034", "verdict": "OK", "reason": "đúng nguồn"}
+{"qid": "tD-muc_phat-035", "verdict": "SAI_TO_CHUC", "reason": "nháp chỉ nêu mức cá nhân"}
+{"qid": "tD-so_sanh-001", "verdict": "OK", "reason": "đúng nguồn"}
+{"qid": "tD-so_sanh-009", "verdict": "MO_HO", "reason": "câu hỏi nháp hỏi về hành khách (con, anh em) trong khi chế tài áp cho người điều khiển"}
+{"qid": "tD-so_sanh-011", "verdict": "SAI_NOI_DUNG", "reason": "khoản 5 Điều 12 là người được chở, nháp hỏi người lái"}
+{"qid": "tD-so_sanh-013", "verdict": "SAI_NOI_DUNG", "reason": "điểm a khoản 13 Điều 21 không trừ điểm hành vi điểm a khoản 2; xe đăng ký tạm thời chỉ vi phạm khi quá phạm vi"}
+{"qid": "tD-so_sanh-015", "verdict": "OK", "reason": "đúng nguồn"}
+{"qid": "tD-so_sanh-019", "verdict": "SAI_TO_CHUC", "reason": "khoản 5 chỉ quy định mức của tổ chức; nháp khẳng định cá nhân cùng mức"}
+{"qid": "tD-so_sanh-022", "verdict": "SAI_NOI_DUNG", "reason": "nháp đọc nhầm mức cá nhân/tổ chức thành ô tô khách/xe máy chuyên dùng"}
+{"qid": "tD-so_sanh-023", "verdict": "SAI_NOI_DUNG", "reason": "điểm b khoản 8 chỉ tước giấy phép với điểm b khoản 4, không áp cho taxi không đồng hồ"}
+{"qid": "tD-theo_thoi_diem-001a", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-theo_thoi_diem-001b", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-theo_thoi_diem-002a", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-theo_thoi_diem-002b", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-theo_thoi_diem-003a", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-theo_thoi_diem-003b", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-theo_thoi_diem-004a", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-theo_thoi_diem-004b", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-theo_thoi_diem-005a", "verdict": "OK", "reason": "đúng nguồn"}
+{"qid": "tD-theo_thoi_diem-005b", "verdict": "OK", "reason": "đúng nguồn"}
+{"qid": "tD-theo_thoi_diem-006a", "verdict": "OK", "reason": "đúng nguồn"}
+{"qid": "tD-theo_thoi_diem-006b", "verdict": "OK", "reason": "đúng nguồn"}
+{"qid": "tD-theo_thoi_diem-007a", "verdict": "SAI_NOI_DUNG", "reason": "câu hỏi nháp (thanh toán điện tử khi đi xe đạp điện) không có nghĩa"}
+{"qid": "tD-theo_thoi_diem-007b", "verdict": "SAI_NOI_DUNG", "reason": "câu hỏi nháp không có nghĩa"}
+{"qid": "tD-theo_thoi_diem-008a", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-theo_thoi_diem-008b", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-theo_thoi_diem-010a", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-theo_thoi_diem-010b", "verdict": "SUA", "reason": "nháp bị cờ hoặc lệch nguồn — Claude sửa"}
+{"qid": "tD-theo_thoi_diem-020a", "verdict": "MO_HO", "reason": "nháp gọi nhầm 'chứng chỉ lái xe' và nêu ngày trong câu hỏi"}
+{"qid": "tD-theo_thoi_diem-020b", "verdict": "MO_HO", "reason": "nháp gọi nhầm 'chứng chỉ lái xe' và nêu ngày trong câu hỏi"}
+{"qid": "tD-tru_diem-002", "verdict": "OK", "reason": "đúng nguồn"}
+{"qid": "tD-tru_diem-003", "verdict": "SAI_NOI_DUNG", "reason": "K21d Đ32 là chủ phương tiện giao xe chở quá người (K5/K6), không áp cho người lái xe máy điện chở 3 người"}
+{"qid": "tD-tru_diem-004", "verdict": "OK", "reason": "đúng nguồn"}
+{"qid": "tD-tru_diem-006", "verdict": "SAI_NOI_DUNG", "reason": "không lắp thiết bị ghi hình là điểm b K3 Đ21 (xe đầu kéo); K13a chỉ trừ điểm điểm a K3"}
+{"qid": "tD-tru_diem-007", "verdict": "OK", "reason": "đúng nguồn"}
+{"qid": "tD-tru_diem-008", "verdict": "OK", "reason": "đúng nguồn"}
+{"qid": "tD-tru_diem-009", "verdict": "MO_HO", "reason": "tình huống nháp (để chai nước vỡ khi dừng trên vỉa hè) không rõ thuộc hành vi điểm a khoản 11"}
+{"qid": "tD-tru_diem-010", "verdict": "SAI_NOI_DUNG", "reason": "điểm c khoản 8 là đón trả khách trên cao tốc, nháp hỏi xe máy taxi quên cấp lệnh vận chuyển"}
+{"qid": "tD-tru_diem-011", "verdict": "SAI_NOI_DUNG", "reason": "K21a Đ32 không liệt kê hành vi chở quá người của ô tô"}
+{"qid": "tD-tru_diem-012", "verdict": "SAI_NOI_DUNG", "reason": "Điều 28 là xe chở người bốn bánh có gắn động cơ, nháp hỏi ô tô"}
+{"qid": "tD-tru_diem-015", "verdict": "SAI_NOI_DUNG", "reason": "Điều 20 là xe chở khách, nháp hỏi xe tải xếp hàng lệch"}
+{"qid": "tD-tru_diem-016", "verdict": "SAI_NOI_DUNG", "reason": "câu hỏi lệch hành vi của Khoản trừ điểm — Claude sửa"}
+{"qid": "tD-tru_diem-017", "verdict": "SAI_NOI_DUNG", "reason": "câu hỏi lệch hành vi của Khoản trừ điểm — Claude sửa"}
+{"qid": "tD-tru_diem-018", "verdict": "SAI_TO_CHUC", "reason": "chỉ trừ điểm khi cá nhân kinh doanh vận tải trực tiếp lái; nháp hỏi chủ doanh nghiệp"}
+{"qid": "tD-tru_diem-020", "verdict": "MO_HO", "reason": "vượt trọng tải không nêu mức; 10–30% không bị trừ điểm — Claude sửa"}
