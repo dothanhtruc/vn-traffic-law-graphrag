@@ -30,7 +30,7 @@ from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from trafficlaw.eval.qa_generate import _CONTEXT_RE, Client, doc_label
+from trafficlaw.eval.qa_generate import Client, doc_label
 from trafficlaw.eval.qa_plan import ChunkFacts, Suggestion, chunk_facts
 from trafficlaw.eval.qa_schema import DRAFT_SOURCE_RE, QUESTION_TYPE_DOC
 from trafficlaw.eval.qa_validate import GraphView
@@ -48,6 +48,18 @@ from trafficlaw.utils.jsonl import JsonlWriter, read_jsonl
 from trafficlaw.verify.numbers import dec_str, format_int_vn, parse_numbers
 
 DEFAULT_OUT_TOKENS = 700.0
+#: Câu hỏi tham chiếu ngữ cảnh người hỏi không thấy ("điều này", "quy định trên"). Khác bộ lọc
+#: train M9 (``qa_generate._CONTEXT_RE``, giữ nguyên để không đổi tập train): "trên" là giới từ
+#: khi sau nó là danh từ nơi chốn/giấy tờ — "trừ bao nhiêu điểm trên giấy phép lái xe" (17/11/2026:
+#: bản chung gắn cờ nhầm gần hết nháp tru_diem).
+_TREN_PREP = r"(?:giấy|bằng|thẻ|đường|xe|cao|hệ|ứng|mạng|cổng|tuyến|làn|vỉa|cầu|địa|toàn|phạm)"
+CONTEXT_RE = re.compile(
+    r"\b(?:điều|khoản|điểm|đoạn|văn bản|quy định|nội dung)\s+"
+    rf"(?:này|nêu trên|đã cho|trên(?!\s+{_TREN_PREP}))"
+    r"|\b(?:thông tư|nghị định|luật|quyết định)\s+này\b"
+    r"|\btheo đoạn\b|\bđoạn văn\b",
+    re.IGNORECASE,
+)
 MAX_REFS = 3
 """Số điều khoản được dẫn chiếu tối đa đưa thêm vào nguồn của một chunk."""
 
@@ -610,7 +622,7 @@ def question_flags(q: str, inp: DraftInput, cfg: DraftConfig) -> list[str]:
         flags.append("chep_nguyen_van: “" + " ".join(sorted(common)[0]) + " …”")
     if _STRUCT_REF_RE.search(q):
         flags.append("neu_dieu_khoan")
-    if _CONTEXT_RE.search(q):
+    if CONTEXT_RE.search(q):
         flags.append("tham_chieu_ngu_canh")
     return flags
 

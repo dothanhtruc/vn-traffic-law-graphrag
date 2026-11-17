@@ -1,6 +1,6 @@
 # Bản nháp câu test (LLM viết, người dùng sửa)
 
-Model `gpt-oss-20b` · prompt `6ec65cbc357b` · 822/822 gợi ý có nháp · 1728 câu nháp.
+Model `gpt-oss-20b` · prompt `6ec65cbc357b` · 954/954 gợi ý có nháp · 1990 câu nháp.
 
 Cách dùng: với mỗi gợi ý, chọn **tối đa một** bản nháp, sửa câu hỏi + đáp án (bắt buộc — validator báo lỗi `nhap_chua_sua` nếu câu hỏi giữ nguyên), kiểm từng con số với nguồn, rồi chép **dòng JSON đã sửa** vào `data/qa/test.jsonl`. Giữ nguyên `source` và `draft_id` để đo tỷ lệ sửa. Cờ ⚠ là chỗ cần xem kỹ (không phải lỗi chắc chắn).
 
@@ -4117,7 +4117,6 @@ b) Thực hiện hành vi quy định tại điểm b khoản 7, điểm b kho�
 
 - Hỏi (2026-11-03): Tôi lái xe tải không gắn biển số khi đi qua thành phố, có bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 13, Khoản 13, Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t-tru_diem-001", "question": "Tôi lái xe tải không gắn biển số khi đi qua thành phố, có bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 13, Khoản 13, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D13/K13/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W-tru_diem-001:1"}
@@ -4127,7 +4126,6 @@ b) Thực hiện hành vi quy định tại điểm b khoản 7, điểm b kho�
 
 - Hỏi (2026-11-03): Tôi lái xe tải đăng ký tạm thời vượt quá phạm vi hoạt động được phép, có bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 06 điểm trên giấy phép lái xe. (Điều 13, Khoản 13, Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t-tru_diem-001", "question": "Tôi lái xe tải đăng ký tạm thời vượt quá phạm vi hoạt động được phép, có bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 06 điểm trên giấy phép lái xe. (Điều 13, Khoản 13, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D13/K13/b"], "required_numbers": [{"value": 6, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W-tru_diem-001:2"}
@@ -4179,7 +4177,6 @@ c) Sử dụng xe ô tô kinh doanh vận tải chở trẻ em mầm non, học 
 
 - Hỏi (2026-11-03): Nếu tôi là chủ công ty taxi và không cấp lệnh vận chuyển cho lái xe, số điểm trên giấy phép lái xe của lái xe bị trừ là bao nhiêu?
 - Đáp: Số điểm bị trừ là 02 điểm. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, Điều 26, khoản 14, mục a (điều vi phạm tại điểm d khoản 2).
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t-tru_diem-002", "question": "Nếu tôi là chủ công ty taxi và không cấp lệnh vận chuyển cho lái xe, số điểm trên giấy phép lái xe của lái xe bị trừ là bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Số điểm bị trừ là 02 điểm. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, Điều 26, khoản 14, mục a (điều vi phạm tại điểm d khoản 2).", "gold_units": ["ND168-2024/D26/K14/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W-tru_diem-002:1"}
@@ -4370,7 +4367,6 @@ d) Thực hiện hành vi quy định tại điểm b khoản 5 Điều này cò
 
 - Hỏi (2026-11-03): Tôi vừa lái xe tải chở hàng, và trọng lượng tổng cộng vượt quá giới hạn cho phép. Khi bị xử phạt, số điểm trên giấy phép của tôi sẽ bị trừ bao nhiêu?
 - Đáp: Bạn sẽ bị trừ 04 điểm trên giấy phép lái xe. (Điều 34, Khoản 7, Câu c Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t-tru_diem-005", "question": "Tôi vừa lái xe tải chở hàng, và trọng lượng tổng cộng vượt quá giới hạn cho phép. Khi bị xử phạt, số điểm trên giấy phép của tôi sẽ bị trừ bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 04 điểm trên giấy phép lái xe. (Điều 34, Khoản 7, Câu c Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D34/K7/c"], "required_numbers": [{"value": 4, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W-tru_diem-005:1"}
@@ -4380,7 +4376,6 @@ d) Thực hiện hành vi quy định tại điểm b khoản 5 Điều này cò
 
 - Hỏi (2026-11-03): Tôi đang điều khiển xe tải, và đã dùng thủ đoạn để tránh kiểm tra trọng tải. Khi bị xử phạt, số điểm trên giấy phép của tôi sẽ bị trừ bao nhiêu?
 - Đáp: Bạn sẽ bị trừ 10 điểm trên giấy phép lái xe. (Điều 34, Khoản 7, Câu d Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t-tru_diem-005", "question": "Tôi đang điều khiển xe tải, và đã dùng thủ đoạn để tránh kiểm tra trọng tải. Khi bị xử phạt, số điểm trên giấy phép của tôi sẽ bị trừ bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 10 điểm trên giấy phép lái xe. (Điều 34, Khoản 7, Câu d Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D34/K7/d"], "required_numbers": [{"value": 10, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W-tru_diem-005:2"}
@@ -4475,7 +4470,6 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D22/K3
 
 - Hỏi (2026-11-03): Tôi lái xe ô tô và đã chở hàng siêu trọng vượt quá kích thước quy định trong giấy phép, tôi sẽ bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 22 Khoản 6(a) Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t-tru_diem-007", "question": "Tôi lái xe ô tô và đã chở hàng siêu trọng vượt quá kích thước quy định trong giấy phép, tôi sẽ bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 22 Khoản 6(a) Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D22/K6/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W-tru_diem-007:1"}
@@ -4540,7 +4534,7 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K10
 
 - Hỏi (2026-11-03): Tôi điều khiển xe tải kéo rơ moóc, chở hàng vượt trọng tải 160% so với quy định. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 04 điểm trên giấy phép lái xe. (Điều 21, Khoản 13, Nghị định 168/2024/NĐ-CP)
-- ⚠ chep_nguyen_van: “moóc chở hàng vượt trọng tải …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “moóc chở hàng vượt trọng tải …”
 
 ```json
 {"qid": "t-tru_diem-008", "question": "Tôi điều khiển xe tải kéo rơ moóc, chở hàng vượt trọng tải 160% so với quy định. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 04 điểm trên giấy phép lái xe. (Điều 21, Khoản 13, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D21/K13/b"], "required_numbers": [{"value": 4, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W-tru_diem-008:1"}
@@ -4602,7 +4596,6 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K4
 
 - Hỏi (2026-11-03): Tôi vừa lái xe qua đèn giao thông, nhưng lại lắp thêm đèn phía sau không được phép. Khi bị cảnh sát kiểm tra, tôi bị trừ điểm trên giấy phép lái xe bao nhiêu?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (khoản 3 Điều 13 Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t-tru_diem-009", "question": "Tôi vừa lái xe qua đèn giao thông, nhưng lại lắp thêm đèn phía sau không được phép. Khi bị cảnh sát kiểm tra, tôi bị trừ điểm trên giấy phép lái xe bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (khoản 3 Điều 13 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D13/K13/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W-tru_diem-009:1"}
@@ -4651,7 +4644,6 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D27/K3
 
 - Hỏi (2026-11-03): Tôi lái xe buýt chở học sinh, nhưng không có người quản lý trên xe. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (khoản 4 Điều 27 Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: Không nhắc đến "điều khiển xe ô tô kinh doanh vận tải chở trẻ em mầm non, học sinh"
 
 ```json
@@ -4662,7 +4654,7 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D27/K3
 
 - Hỏi (2026-11-03): Công ty tôi điều hành xe buýt đưa đón trẻ em mầm non, nhưng không đủ người quản lý trên mỗi xe. Tôi sẽ mất bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (khoản 4 Điều 27 Nghị định 168/2024/NĐ-CP)
-- ⚠ chep_nguyen_van: “không đủ người quản lý trên …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “không đủ người quản lý trên …”
 - Ghi chú: Không nhắc đến "điều khiển xe ô tô kinh doanh vận tải chở trẻ em mầm non, học sinh"
 
 ```json
@@ -4844,7 +4836,7 @@ Mã điều khoản dùng được cho gold_units: LUAT36-2024/D46/K3
 
 - Hỏi (2026-11-03): Nếu tôi lái xe ô tô chở trẻ em mà không bố trí người quản lý, có bị trừ bao nhiêu điểm trên giấy phép lái xe không?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 27, Khoản 4 Nghị định 168/2024/NĐ-CP)
-- ⚠ chep_nguyen_van: “xe ô tô chở trẻ em …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “xe ô tô chở trẻ em …”
 
 ```json
 {"qid": "t-tru_diem-013", "question": "Nếu tôi lái xe ô tô chở trẻ em mà không bố trí người quản lý, có bị trừ bao nhiêu điểm trên giấy phép lái xe không?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 27, Khoản 4 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D27/K4"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W-tru_diem-013:1"}
@@ -5006,7 +4998,7 @@ a) Thực hiện hành vi quy định tại điểm đ khoản 2; điểm b, đi
 
 - Hỏi (2026-11-03): Anh tôi lái xe khách trong giờ cao điểm, nhưng lại không lắp thiết bị giám sát hành trình như quy định. Khi bị xử phạt, số điểm trên giấy phép lái xe của anh ấy bị trừ bao nhiêu điểm?
 - Đáp: Số điểm bị trừ là 02 điểm. (Điều 26, khoản 14a Nghị định 168/2024/NĐ-CP)
-- ⚠ chep_nguyen_van: “không lắp thiết bị giám sát …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “không lắp thiết bị giám sát …”
 
 ```json
 {"qid": "t-tru_diem-016", "question": "Anh tôi lái xe khách trong giờ cao điểm, nhưng lại không lắp thiết bị giám sát hành trình như quy định. Khi bị xử phạt, số điểm trên giấy phép lái xe của anh ấy bị trừ bao nhiêu điểm?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Số điểm bị trừ là 02 điểm. (Điều 26, khoản 14a Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D26/K14/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W-tru_diem-016:1"}
@@ -5016,7 +5008,7 @@ a) Thực hiện hành vi quy định tại điểm đ khoản 2; điểm b, đi
 
 - Hỏi (2026-11-03): Công ty tôi vận chuyển hành khách bằng xe ô tô, nhưng một lái xe đã quyết định không lắp thiết bị giám sát hành trình. Khi cơ quan xử phạt, điểm trên giấy phép lái xe của người điều khiển bị trừ bao nhiêu?
 - Đáp: Số điểm bị trừ là 02 điểm. (Điều 26, khoản 14a Nghị định 168/2024/NĐ-CP)
-- ⚠ chep_nguyen_van: “không lắp thiết bị giám sát …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “không lắp thiết bị giám sát …”
 
 ```json
 {"qid": "t-tru_diem-016", "question": "Công ty tôi vận chuyển hành khách bằng xe ô tô, nhưng một lái xe đã quyết định không lắp thiết bị giám sát hành trình. Khi cơ quan xử phạt, điểm trên giấy phép lái xe của người điều khiển bị trừ bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Số điểm bị trừ là 02 điểm. (Điều 26, khoản 14a Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D26/K14/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W-tru_diem-016:2"}
@@ -5127,7 +5119,6 @@ c) Chở hàng siêu trường, siêu trọng có giấy phép lưu hành còn g
 
 - Hỏi (2026-11-03): Anh tôi lái xe ô tô, mang hàng siêu trường mà không treo biển báo kích thước, anh ấy bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Trừ 02 điểm. Theo Điều 22 khoản 6(a) của Nghị định 168/2024/NĐ-CP, người điều khiển xe ô tô thực hiện hành vi chở hàng siêu trường, siêu trọng không treo biển báo kích thước bị trừ 02 điểm.
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t-tru_diem-018", "question": "Anh tôi lái xe ô tô, mang hàng siêu trường mà không treo biển báo kích thước, anh ấy bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Trừ 02 điểm. Theo Điều 22 khoản 6(a) của Nghị định 168/2024/NĐ-CP, người điều khiển xe ô tô thực hiện hành vi chở hàng siêu trường, siêu trọng không treo biển báo kích thước bị trừ 02 điểm.", "gold_units": ["ND168-2024/D22/K6/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W-tru_diem-018:1"}
@@ -5137,7 +5128,7 @@ c) Chở hàng siêu trường, siêu trọng có giấy phép lưu hành còn g
 
 - Hỏi (2026-11-03): Công ty tôi có một lái xe ô tô chở hàng siêu trọng, sau khi xếp hàng, kích thước xe vượt quy định trong giấy phép lưu hành, công ty bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Trừ 02 điểm. Theo Điều 22 khoản 6(a) của Nghị định 168/2024/NĐ-CP, người điều khiển xe ô tô thực hiện hành vi chở hàng siêu trường, siêu trọng có kích thước vượt quy định bị trừ 02 điểm.
-- ⚠ chep_nguyen_van: “quy định trong giấy phép lưu …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “quy định trong giấy phép lưu …”
 
 ```json
 {"qid": "t-tru_diem-018", "question": "Công ty tôi có một lái xe ô tô chở hàng siêu trọng, sau khi xếp hàng, kích thước xe vượt quy định trong giấy phép lưu hành, công ty bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Trừ 02 điểm. Theo Điều 22 khoản 6(a) của Nghị định 168/2024/NĐ-CP, người điều khiển xe ô tô thực hiện hành vi chở hàng siêu trường, siêu trọng có kích thước vượt quy định bị trừ 02 điểm.", "gold_units": ["ND168-2024/D22/K6/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W-tru_diem-018:2"}
@@ -5195,7 +5186,7 @@ c) Gây tai nạn giao thông không dừng ngay phương tiện, không giữ n
 
 - Hỏi (2026-11-03): Con tôi đang đi bộ qua đường khi tôi lái xe máy không nhường quyền đi trước cho người đi bộ qua vạch kẻ đường. Tôi sẽ mất bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, Điều 7, khoản 13, điểm a.
-- ⚠ chep_nguyen_van: “không nhường quyền đi trước cho …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “không nhường quyền đi trước cho …”
 - Ghi chú: điều kiện vi phạm là chuyển hướng không nhường quyền đi trước cho người đi bộ
 
 ```json
@@ -5267,7 +5258,6 @@ c) Chở hàng siêu trường, siêu trọng có giấy phép lưu hành còn g
 
 - Hỏi (2026-11-03): Tôi đã thấy con tôi điều khiển xe tải chở hàng vượt trọng tải 60% hơn giới hạn, con bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Con bị trừ 02 điểm trên giấy phép lái xe. (Điều 21, Khoản 13, Điểm a của Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: Giả định con tôi đã thực hiện hành vi vượt trọng tải 60%
 
 ```json
@@ -5278,7 +5268,6 @@ c) Chở hàng siêu trường, siêu trọng có giấy phép lưu hành còn g
 
 - Hỏi (2026-11-03): Tôi đã thấy con tôi điều khiển xe tải kéo rơ moóc với tổng trọng tải vượt giới hạn 70%, con bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Con bị trừ 04 điểm trên giấy phép lái xe. (Điều 21, Khoản 13, Điểm b của Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: Giả định con tôi đã thực hiện hành vi kéo rơ moóc vượt giới hạn 70%
 
 ```json
@@ -5330,7 +5319,6 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D17/K4
 
 - Hỏi (2026-11-03): Tôi vừa đổ rác trái phép vào lề đường, có mất bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 17 Khoản 5 Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: giả định người dùng đang lái xe ô tô
 
 ```json
@@ -5368,7 +5356,7 @@ c) Thực hiện hành vi vi phạm quy định tại khoản 8, khoản 8a Đi�
 
 - Hỏi (2026-11-03): Tôi là chủ doanh nghiệp vận tải, hôm qua đã cho một khách hàng đặt chỗ trên xe ô tô chở hành khách mà không có giấy phép kinh doanh, tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 06 điểm trên giấy phép lái xe. (Điều 20, khoản 10, chữ c Nghị định 168/2024/NĐ-CP)
-- ⚠ chep_nguyen_van: “xe ô tô chở hành khách …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “xe ô tô chở hành khách …”
 
 ```json
 {"qid": "t-tru_diem-022", "question": "Tôi là chủ doanh nghiệp vận tải, hôm qua đã cho một khách hàng đặt chỗ trên xe ô tô chở hành khách mà không có giấy phép kinh doanh, tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 06 điểm trên giấy phép lái xe. (Điều 20, khoản 10, chữ c Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D20/K10/c"], "required_numbers": [{"value": 6, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W-tru_diem-022:1"}
@@ -5412,7 +5400,6 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D25/K1
 
 - Hỏi (2026-11-03): Tôi đang lái xe vệ sinh môi trường trong thành phố, nhưng lại đi sai tuyến quy định. Tôi sẽ bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 25 Khoản 2 Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: Giả định người dùng là người lớn tuổi lái xe vệ sinh môi trường
 
 ```json
@@ -5469,7 +5456,6 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D17/K5
 
 - Hỏi (2026-11-03): Nếu một người lái xe ô tô đổ chất thải ra đường, số điểm trên giấy phép sẽ bị trừ bao nhiêu?
 - Đáp: Số điểm bị trừ là 02 điểm. (Điều 17 Khoản 5 Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t-tru_diem-024", "question": "Nếu một người lái xe ô tô đổ chất thải ra đường, số điểm trên giấy phép sẽ bị trừ bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Số điểm bị trừ là 02 điểm. (Điều 17 Khoản 5 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D17/K5"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W-tru_diem-024:2"}
@@ -5532,7 +5518,6 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K7
 
 - Hỏi (2026-11-03): Tôi đang lái xe tải chở hàng và đã vượt quá trọng tải quy định, tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 08 điểm trên giấy phép lái xe. (khoản e Điều 21 Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t-tru_diem-025", "question": "Tôi đang lái xe tải chở hàng và đã vượt quá trọng tải quy định, tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 08 điểm trên giấy phép lái xe. (khoản e Điều 21 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K21/e"], "required_numbers": [{"value": 8, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W-tru_diem-025:1"}
@@ -5581,7 +5566,7 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D29/K3a
 
 - Hỏi (2026-11-03): Công ty tôi đang điều hành xe cứu hộ giao thông, nhưng xe không được lắp thiết bị giám sát hành trình. Khi bị kiểm tra, tôi nghe nói rằng có thể bị trừ điểm trên giấy phép lái xe. Bạn có thể cho biết số điểm sẽ bị trừ là bao nhiêu?
 - Đáp: Số điểm bị trừ là 02 điểm. (Điều 29 Khoản 4 Nghị định 168/2024/NĐ-CP)
-- ⚠ qua_dai (53 từ); chep_nguyen_van: “lắp thiết bị giám sát hành …”; tham_chieu_ngu_canh
+- ⚠ qua_dai (53 từ); chep_nguyen_van: “lắp thiết bị giám sát hành …”
 - Ghi chú: Giả định xe cứu hộ là ô tô, không lắp thiết bị giám sát hành trình.
 
 ```json
@@ -5782,7 +5767,6 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K2/đ
 
 - Hỏi (2026-11-03): Nếu tôi chở hàng lên nắp thùng xe, tôi sẽ bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 21, Khoản 13, Phần a)
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: Không có giả định đặc biệt
 
 ```json
@@ -5793,7 +5777,6 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K2/đ
 
 - Hỏi (2026-11-03): Khi tôi chở người lên mui xe, điểm trên giấy phép lái xe của tôi sẽ bị trừ bao nhiêu?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 21, Khoản 13, Phần a)
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: Không có giả định đặc biệt
 
 ```json
@@ -24751,7 +24734,6 @@ b) Xâm phạm tính mạng, sức khỏe, tài sản của người bị nạn,
 
 - Hỏi (2026-11-03): Tôi đã để một thùng rác trên đường khi dừng xe, có bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 12, khoản 17 Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t2-tru_diem-001", "question": "Tôi đã để một thùng rác trên đường khi dừng xe, có bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 12, khoản 17 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D12/K17"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W2-tru_diem-001:1"}
@@ -24761,7 +24743,7 @@ b) Xâm phạm tính mạng, sức khỏe, tài sản của người bị nạn,
 
 - Hỏi (2026-11-03): Tôi đã đổ chất gây trơn trượt trên đường khi lái xe, có bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 12, khoản 17 Nghị định 168/2024/NĐ-CP)
-- ⚠ chep_nguyen_van: “chất gây trơn trượt trên đường …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “chất gây trơn trượt trên đường …”
 
 ```json
 {"qid": "t2-tru_diem-001", "question": "Tôi đã đổ chất gây trơn trượt trên đường khi lái xe, có bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 12, khoản 17 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D12/K17"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W2-tru_diem-001:2"}
@@ -24797,7 +24779,6 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D17/K5
 
 - Hỏi (2026-11-03): Tôi vừa lái xe qua một đoạn đường ngoài đô thị và thấy mình đã đổ rác vào lề đường, tôi sẽ bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 17 Khoản 5 Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: Không có giả định đặc biệt
 
 ```json
@@ -24924,7 +24905,7 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D23/K5
 
 - Hỏi (2026-11-03): Tôi đang vận chuyển hàng hóa nguy hiểm mà xe không dán nhãn, không lắp đèn cảnh báo. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 23, khoản 7, điều 168/2024/NĐ-CP)
-- ⚠ chep_nguyen_van: “vận chuyển hàng hóa nguy hiểm …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “vận chuyển hàng hóa nguy hiểm …”
 
 ```json
 {"qid": "t2-tru_diem-004", "question": "Tôi đang vận chuyển hàng hóa nguy hiểm mà xe không dán nhãn, không lắp đèn cảnh báo. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 23, khoản 7, điều 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D23/K7/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W2-tru_diem-004:1"}
@@ -24934,7 +24915,7 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D23/K5
 
 - Hỏi (2026-11-03): Tôi đã chở hàng hóa nguy hiểm là thuốc nổ qua một công trình hầm dài hơn 100 mét mà không có đèn cảnh báo. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 23, khoản 7, điều 168/2024/NĐ-CP)
-- ⚠ chep_nguyen_van: “hàng hóa nguy hiểm là thuốc …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “hàng hóa nguy hiểm là thuốc …”
 
 ```json
 {"qid": "t2-tru_diem-004", "question": "Tôi đã chở hàng hóa nguy hiểm là thuốc nổ qua một công trình hầm dài hơn 100 mét mà không có đèn cảnh báo. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 23, khoản 7, điều 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D23/K7/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W2-tru_diem-004:2"}
@@ -24968,7 +24949,6 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D24/K2
 
 - Hỏi (2026-11-03): Tôi lái xe tải chở gia súc, nhưng không tuân thủ quy định về an toàn khi vận chuyển, có bị trừ điểm trên giấy phép không?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 24, Khoản 3, Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: Không đề cập đến loại xe khác, chỉ xe tải
 
 ```json
@@ -24979,7 +24959,7 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D24/K2
 
 - Hỏi (2026-11-03): Khi tôi vận chuyển thực phẩm tươi sống trên xe tải mà không thực hiện các biện pháp vệ sinh, có bị trừ điểm trên giấy phép lái xe không?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 24, Khoản 3, Nghị định 168/2024/NĐ-CP)
-- ⚠ chep_nguyen_van: “vận chuyển thực phẩm tươi sống …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “vận chuyển thực phẩm tươi sống …”
 - Ghi chú: Không nhắc đến quy định tiền phạt
 
 ```json
@@ -25118,7 +25098,7 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D30/K3
 
 - Hỏi (2026-11-03): Tôi đang lái xe cứu thương mà thiết bị giám sát hành trình không hoạt động, tôi sẽ bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (khoản 3 Điều 30 Nghị định 168/2024/NĐ-CP)
-- ⚠ chep_nguyen_van: “thiết bị giám sát hành trình …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “thiết bị giám sát hành trình …”
 - Ghi chú: Giả định xe là xe cứu thương, không lắp thiết bị giám sát hành trình hoặc thiết bị không hoạt động
 
 ```json
@@ -25164,7 +25144,7 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D30/K2
 
 - Hỏi (2026-11-03): Nếu tôi lái xe cứu thương mà không lắp thiết bị giám sát hành trình, có bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (khoản 3 Điều 30 Nghị định 168/2024/NĐ-CP)
-- ⚠ chep_nguyen_van: “không lắp thiết bị giám sát …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “không lắp thiết bị giám sát …”
 - Ghi chú: Đề cập đến xe cứu thương, không phải xe máy
 
 ```json
@@ -25175,7 +25155,7 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D30/K2
 
 - Hỏi (2026-11-03): Nếu tôi lái xe cứu thương mà thiết bị giám sát hành trình không hoạt động trong khi tham gia giao thông, có bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (khoản 3 Điều 30 Nghị định 168/2024/NĐ-CP)
-- ⚠ chep_nguyen_van: “thiết bị giám sát hành trình …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “thiết bị giám sát hành trình …”
 - Ghi chú: Đề cập đến xe cứu thương, không phải xe máy
 
 ```json
@@ -25230,7 +25210,6 @@ a) Điều khiển xe mà tổng trọng lượng (khối lượng toàn bộ) c
 
 - Hỏi (2026-11-03): Anh tôi lái xe ô tô chở khách, nhưng xe đã vượt quá giới hạn tải trọng 30% so với quy định, anh ấy bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Xe được trừ 02 điểm. Theo Nghị định 168/2024/NĐ-CP, điều 34, khoản 7, điểm a, người điều khiển xe vượt quá tải trọng cho phép của đường bộ trên 20% đến 50% bị trừ 02 điểm.
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: Giả định xe ô tô chở khách, không có giấy phép lưu hành còn giá trị sử dụng.
 
 ```json
@@ -25241,7 +25220,6 @@ a) Điều khiển xe mà tổng trọng lượng (khối lượng toàn bộ) c
 
 - Hỏi (2026-11-03): Công ty tôi thuê một xe tải, nhưng xe đã vượt quá giới hạn tải trọng 40% so với quy định, công ty bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Xe được trừ 10 điểm. Theo Nghị định 168/2024/NĐ-CP, điều 34, khoản 7, điểm d, người điều khiển xe vượt quá tải trọng cho phép của đường bộ trên 20% đến 50% bị trừ 10 điểm.
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: Giả định xe tải, không có giấy phép lưu hành còn giá trị sử dụng.
 
 ```json
@@ -37470,7 +37448,7 @@ c) Khi tổ chức lực lượng kiểm soát tại một điểm trên đườ
 
 - Hỏi (2026-11-03): Khi tổ chức kiểm soát tại một điểm trên đường, tôi cần chuẩn bị gì để đảm bảo an toàn và ghi hình?
 - Đáp: Bạn phải chọn địa điểm rộng, thoáng, không che khuất tầm nhìn, đặt rào chắn bằng cọc tiêu hình chóp nón hoặc dây căng dọc theo chiều đường, và khi kiểm soát vào buổi tối, ban đêm phải có đèn chiếu sáng, sử dụng camera ghi hình hoạt động kiểm soát. (Khoản b Điều 6 Thông tư 73/2024/TT-BCA; Khoản c Điều 6 Thông tư 73/2024/TT-BCA)
-- ⚠ chep_nguyen_van: “kiểm soát tại một điểm trên …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “kiểm soát tại một điểm trên …”
 - Ghi chú: Không có giả định đặc biệt
 
 ```json
@@ -41634,7 +41612,6 @@ d) Thực hiện hành vi quy định tại điểm b khoản 8, khoản 10 Đi�
 
 - Hỏi (2026-11-03): Tôi đang lái xe máy, chạy quá 20 km/h trên đường, có bị trừ bao nhiêu điểm trên giấy phép?
 - Đáp: Bạn sẽ bị trừ 04 điểm trên giấy phép lái xe.
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: điều khiển xe mô tô/xe gắn máy
 
 ```json
@@ -41685,7 +41662,6 @@ a) Thực hiện hành vi quy định tại điểm a, điểm b khoản 3; kho�
 
 - Hỏi (2026-11-03): Tôi là tài xế xe tải, khi đang di chuyển, tôi đã kéo một thùng hàng mà kích thước thùng không khớp với thông số kỹ thuật ghi trong giấy kiểm định an toàn. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 13, khoản 13a, Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t3-tru_diem-002", "question": "Tôi là tài xế xe tải, khi đang di chuyển, tôi đã kéo một thùng hàng mà kích thước thùng không khớp với thông số kỹ thuật ghi trong giấy kiểm định an toàn. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 13, khoản 13a, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D13/K13/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-002:1"}
@@ -41742,7 +41718,6 @@ Mã điều khoản dùng được cho gold_units: LUAT36-2024/D64/K1
 
 - Hỏi (2026-11-03): Tôi vừa lái xe tải chở hàng và thấy trọng tải vượt quá giới hạn cho phép, giờ tôi bị trừ bao nhiêu điểm trên giấy phép?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 21, Khoản 13, Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t3-tru_diem-003", "question": "Tôi vừa lái xe tải chở hàng và thấy trọng tải vượt quá giới hạn cho phép, giờ tôi bị trừ bao nhiêu điểm trên giấy phép?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 21, Khoản 13, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D21/K13/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-003:1"}
@@ -41841,7 +41816,6 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D34/K2
 
 - Hỏi (2026-11-03): Tôi lái xe tải chở hàng vượt quá 30% trọng tải cho phép, có bị trừ điểm trên giấy phép lái xe không?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, khoản 21, điểm a, khoản 7; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16. (khoản 21 Điều 32 Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t3-tru_diem-004", "question": "Tôi lái xe tải chở hàng vượt quá 30% trọng tải cho phép, có bị trừ điểm trên giấy phép lái xe không?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, khoản 21, điểm a, khoản 7; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16. (khoản 21 Điều 32 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K21/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-004:1"}
@@ -41851,7 +41825,6 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D34/K2
 
 - Hỏi (2026-11-03): Tôi điều khiển xe tải kéo rơ moóc, khối lượng toàn bộ vượt 30% trọng tải cho phép, có bị trừ điểm trên giấy phép lái xe không?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, khoản 21, điểm a, khoản 7; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16. (khoản 21 Điều 32 Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t3-tru_diem-004", "question": "Tôi điều khiển xe tải kéo rơ moóc, khối lượng toàn bộ vượt 30% trọng tải cho phép, có bị trừ điểm trên giấy phép lái xe không?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, khoản 21, điểm a, khoản 7; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16. (khoản 21 Điều 32 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K21/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-004:2"}
@@ -41926,7 +41899,6 @@ a) Điều khiển xe (kể cả rơ moóc và sơ mi rơ moóc) chở hàng vư
 
 - Hỏi (2026-11-03): Tôi là người lớn tuổi, tôi đang lái xe ô tô chở hàng và đã vượt quá trọng tải cho phép. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (khoản 3 Điều 32 Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: giả định là người lớn tuổi lái xe ô tô chở hàng
 
 ```json
@@ -41937,7 +41909,7 @@ a) Điều khiển xe (kể cả rơ moóc và sơ mi rơ moóc) chở hàng vư
 
 - Hỏi (2026-11-03): Tôi là người lớn tuổi, tôi đang lái xe ô tô chở hành khách và đã chở hành lý vượt quá kích thước bao ngoài của xe. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (khoản 3 Điều 32 Nghị định 168/2024/NĐ-CP)
-- ⚠ chep_nguyen_van: “kích thước bao ngoài của xe …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “kích thước bao ngoài của xe …”
 - Ghi chú: giả định là người lớn tuổi lái xe ô tô chở hành khách
 
 ```json
@@ -41979,7 +41951,6 @@ a) Thực hiện hành vi quy định tại điểm a, điểm b khoản 3; kho�
 
 - Hỏi (2026-11-03): Anh tôi lái xe ô tô đã hết hạn kiểm định an toàn 20 ngày, anh ấy bị trừ bao nhiêu điểm trên giấy phép?
 - Đáp: Anh ấy bị trừ 02 điểm trên giấy phép lái xe. (Điều 13, Khoản 13, Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: Không đề cập đến xe máy, chỉ xe ô tô
 
 ```json
@@ -42041,7 +42012,7 @@ d) Thực hiện hành vi quy định tại điểm a khoản 9, khoản 10, đi
 
 - Hỏi (2026-11-03): Tôi đã lái xe trên đường cao tốc khi hơi thở có nồng độ cồn 0,5 mg/1 lít, sau khi bị kiểm tra, tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 10 điểm trên giấy phép lái xe. (Điều 6, khoản 16, điểm d, Nghị định 168/2024/NĐ-CP)
-- ⚠ chep_nguyen_van: “hơi thở có nồng độ cồn …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “hơi thở có nồng độ cồn …”
 
 ```json
 {"qid": "t3-tru_diem-007", "question": "Tôi đã lái xe trên đường cao tốc khi hơi thở có nồng độ cồn 0,5 mg/1 lít, sau khi bị kiểm tra, tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 10 điểm trên giấy phép lái xe. (Điều 6, khoản 16, điểm d, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D6/K16/d"], "required_numbers": [{"value": 10, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-007:1"}
@@ -42086,7 +42057,7 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D29/K4
 
 - Hỏi (2026-11-03): Anh tôi, một tài xế xe tải, vừa được cảnh sát hỏi về việc xe cứu hộ của anh ta không có thiết bị giám sát hành trình khi tham gia giao thông. Anh ta muốn biết, nếu bị phát hiện vi phạm, số điểm trên giấy phép lái xe của anh ta sẽ bị trừ bao nhiêu điểm?
 - Đáp: Số điểm bị trừ là 02 điểm. (Điều 29 Khoản 4 Nghị định 168/2024/NĐ-CP)
-- ⚠ qua_dai (59 từ); chep_nguyen_van: “thiết bị giám sát hành trình …”; tham_chieu_ngu_canh
+- ⚠ qua_dai (59 từ); chep_nguyen_van: “thiết bị giám sát hành trình …”
 
 ```json
 {"qid": "t3-tru_diem-008", "question": "Anh tôi, một tài xế xe tải, vừa được cảnh sát hỏi về việc xe cứu hộ của anh ta không có thiết bị giám sát hành trình khi tham gia giao thông. Anh ta muốn biết, nếu bị phát hiện vi phạm, số điểm trên giấy phép lái xe của anh ta sẽ bị trừ bao nhiêu điểm?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Số điểm bị trừ là 02 điểm. (Điều 29 Khoản 4 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D29/K4"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-008:1"}
@@ -42184,7 +42155,6 @@ b) Thực hiện hành vi quy định tại điểm a, điểm b khoản 6; đi�
 
 - Hỏi (2026-11-03): Anh tôi lái xe tải vận chuyển hàng hóa mà không buộc chặt hàng, anh ấy bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Xe tải của anh tôi bị trừ 04 điểm trên giấy phép lái xe. (Điều 21, Khoản 13, Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t3-tru_diem-010", "question": "Anh tôi lái xe tải vận chuyển hàng hóa mà không buộc chặt hàng, anh ấy bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Xe tải của anh tôi bị trừ 04 điểm trên giấy phép lái xe. (Điều 21, Khoản 13, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D21/K13/b"], "required_numbers": [{"value": 4, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-010:1"}
@@ -42253,7 +42223,7 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K2
 
 - Hỏi (2026-11-03): Anh tôi lái xe buýt qua đêm, khi đến trạm, anh ta thấy có 12 hành khách trên xe, trong khi quy định chỉ cho phép 10 người. Anh tôi muốn biết, nếu bị phát hiện, số điểm trên giấy phép lái xe của anh ta sẽ bị trừ bao nhiêu điểm?
 - Đáp: Nếu người điều khiển xe buýt chở vượt quá 50% số người quy định được phép chở, thì sẽ bị trừ 04 điểm. (Điều 32 Khoản 21 Điểm d Nghị định 168/2024/NĐ-CP)
-- ⚠ qua_dai (52 từ); tham_chieu_ngu_canh
+- ⚠ qua_dai (52 từ)
 
 ```json
 {"qid": "t3-tru_diem-011", "question": "Anh tôi lái xe buýt qua đêm, khi đến trạm, anh ta thấy có 12 hành khách trên xe, trong khi quy định chỉ cho phép 10 người. Anh tôi muốn biết, nếu bị phát hiện, số điểm trên giấy phép lái xe của anh ta sẽ bị trừ bao nhiêu điểm?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Nếu người điều khiển xe buýt chở vượt quá 50% số người quy định được phép chở, thì sẽ bị trừ 04 điểm. (Điều 32 Khoản 21 Điểm d Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K21/d"], "required_numbers": [{"value": 4, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-011:1"}
@@ -42263,7 +42233,7 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K2
 
 - Hỏi (2026-11-03): Công ty tôi điều hành một chiếc xe buýt, và trong một chuyến đi, xe đã chở 15 hành khách, trong khi quy định chỉ cho phép 10 người. Khi bị kiểm tra, tôi muốn biết, số điểm trên giấy phép lái xe của người điều khiển sẽ bị trừ bao nhiêu?
 - Đáp: Nếu người điều khiển xe buýt chở vượt quá 100% số người quy định được phép chở, thì sẽ bị trừ 10 điểm. (Điều 32 Khoản 21 Điểm h Nghị định 168/2024/NĐ-CP)
-- ⚠ qua_dai (52 từ); chep_nguyen_van: “giấy phép lái xe của người …”; tham_chieu_ngu_canh
+- ⚠ qua_dai (52 từ); chep_nguyen_van: “giấy phép lái xe của người …”
 
 ```json
 {"qid": "t3-tru_diem-011", "question": "Công ty tôi điều hành một chiếc xe buýt, và trong một chuyến đi, xe đã chở 15 hành khách, trong khi quy định chỉ cho phép 10 người. Khi bị kiểm tra, tôi muốn biết, số điểm trên giấy phép lái xe của người điều khiển sẽ bị trừ bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Nếu người điều khiển xe buýt chở vượt quá 100% số người quy định được phép chở, thì sẽ bị trừ 10 điểm. (Điều 32 Khoản 21 Điểm h Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K21/h"], "required_numbers": [{"value": 10, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-011:2"}
@@ -42323,7 +42293,7 @@ b) Khi ra, vào vị trí dừng xe, đỗ xe không có tín hiệu báo cho ng
 
 - Hỏi (2026-11-03): Tôi là tài xế xe tải, khi đang di chuyển trên đường đã không quan sát, giảm tốc độ và dừng lại để bảo đảm an toàn, nhưng lại gây tai nạn giao thông. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 10 điểm trên giấy phép lái xe. (khoản d Điều 16 Điều 6 Nghị định 168/2024/NĐ-CP)
-- ⚠ chep_nguyen_van: “dừng lại để bảo đảm an …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “dừng lại để bảo đảm an …”
 - Ghi chú: Không đề cập đến loại xe khác, chỉ xe tải
 
 ```json
@@ -42334,7 +42304,6 @@ b) Khi ra, vào vị trí dừng xe, đỗ xe không có tín hiệu báo cho ng
 
 - Hỏi (2026-11-03): Tôi là tài xế xe tải, khi đang trên đường cao tốc đã lùi xe và gây tai nạn giao thông. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 10 điểm trên giấy phép lái xe. (khoản d Điều 16 Điều 6 Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: Lùi xe trên đường cao tốc thuộc điểm a khoản 9,10,điều 16 d
 
 ```json
@@ -42380,7 +42349,6 @@ a) Thực hiện hành vi quy định tại điểm b khoản 3; khoản 5; đi�
 
 - Hỏi (2026-11-03): Tôi vừa lái xe máy và chở ba người cùng lên xe, sau đó bị cảnh sát dừng lại. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 7, Khoản 13, Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t3-tru_diem-013", "question": "Tôi vừa lái xe máy và chở ba người cùng lên xe, sau đó bị cảnh sát dừng lại. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 7, Khoản 13, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D7/K13/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-013:1"}
@@ -42390,7 +42358,6 @@ a) Thực hiện hành vi quy định tại điểm b khoản 3; khoản 5; đi�
 
 - Hỏi (2026-11-03): Tôi đang lái xe máy và muốn rẽ trái nhưng quên bật tín hiệu báo, sau đó bị cảnh sát dừng lại. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 7, Khoản 13, Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t3-tru_diem-013", "question": "Tôi đang lái xe máy và muốn rẽ trái nhưng quên bật tín hiệu báo, sau đó bị cảnh sát dừng lại. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 7, Khoản 13, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D7/K13/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-013:2"}
@@ -42438,7 +42405,6 @@ c) Thực hiện hành vi quy định tại điểm p khoản 5; điểm a, đi�
 
 - Hỏi (2026-11-03): Con tôi đã dừng xe trên đường cao tốc mà không bật đèn khẩn cấp, có bị trừ điểm trên giấy phép lái xe không?
 - Đáp: Có, con sẽ bị trừ 04 điểm trên giấy phép lái xe. Trừ điểm này áp dụng khi người điều khiển xe dừng xe trên đường cao tốc mà không bật đèn khẩn cấp hoặc không đặt biển cảnh báo “Chú ý xe đỗ” trong khoảng cách tối thiểu 150 mét. (Điều 6, Khoản 16, Điểm b, Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t3-tru_diem-014", "question": "Con tôi đã dừng xe trên đường cao tốc mà không bật đèn khẩn cấp, có bị trừ điểm trên giấy phép lái xe không?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Có, con sẽ bị trừ 04 điểm trên giấy phép lái xe. Trừ điểm này áp dụng khi người điều khiển xe dừng xe trên đường cao tốc mà không bật đèn khẩn cấp hoặc không đặt biển cảnh báo “Chú ý xe đỗ” trong khoảng cách tối thiểu 150 mét. (Điều 6, Khoản 16, Điểm b, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D6/K16/b"], "required_numbers": [{"value": 4, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-014:1"}
@@ -42537,7 +42503,7 @@ a) Thực hiện hành vi quy định tại khoản 1, khoản 3, điểm a kho�
 - Hỏi (2026-11-03): Cán bộ phường, anh tôi lái xe tải chở hàng vượt khổ giới hạn, được trừ bao nhiêu điểm trên giấy phép?
 - Đáp: Trừ 02 điểm trên giấy phép lái xe.
 (Khoản 7 Điểm a Điều 34 Nghị định 168/2024/NĐ-CP)
-- ⚠ chep_nguyen_van: “chở hàng vượt khổ giới hạn …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “chở hàng vượt khổ giới hạn …”
 
 ```json
 {"qid": "t3-tru_diem-016", "question": "Cán bộ phường, anh tôi lái xe tải chở hàng vượt khổ giới hạn, được trừ bao nhiêu điểm trên giấy phép?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Trừ 02 điểm trên giấy phép lái xe.\n(Khoản 7 Điểm a Điều 34 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D34/K7/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-016:1"}
@@ -42707,7 +42673,6 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D22/K2
 
 - Hỏi (2026-11-03): Tôi vừa lái xe qua ngã tư, nhưng lại không dừng lại khi có biển báo dừng, và tiếp tục đi qua. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 04 điểm trên giấy phép lái xe. (khoản 3 Điều 21 Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: Giả định hành vi là vi phạm điểm a, điểm b, điểm đ, điểm e khoản 13 trong Nghị định 168/2024/NĐ-CP
 
 ```json
@@ -42718,7 +42683,6 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D22/K2
 
 - Hỏi (2026-11-03): Tôi đã lái xe qua ngã tư mà không dừng lại khi có biển báo dừng, và tiếp tục đi qua. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 04 điểm trên giấy phép lái xe. (khoản 3 Điều 21 Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: Giả định hành vi là vi phạm điểm a, điểm b, điểm đ, điểm e khoản 13 trong Nghị định 168/2024/NĐ-CP
 
 ```json
@@ -42806,7 +42770,6 @@ Mã điều khoản dùng được cho gold_units: ND168-2024/D27/K4
 
 - Hỏi (2026-11-03): Công ty tôi đang vận chuyển học sinh, nhưng một chiếc xe của chúng tôi không lắp thiết bị ghi hình trẻ em. Tôi muốn biết có bị trừ bao nhiêu điểm trên giấy phép lái xe không?
 - Đáp: Xe ô tô kinh doanh vận tải chở trẻ em mà không có thiết bị ghi hình sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 27 Khoản 4 Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: Giả định xe là ô tô chở khách, không phải xe máy.
 
 ```json
@@ -42869,7 +42832,7 @@ b) Thực hiện hành vi quy định tại điểm c khoản 8 Điều này tro
 
 - Hỏi (2026-11-03): Tôi đang lái xe đạp điện và đã bị cảnh sát ghi nhận vi phạm quy định về việc không tổ chức khám sức khỏe định kỳ cho người điều khiển xe, tôi sẽ bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 06 điểm trên giấy phép lái xe. (Điều 26, Khoản 14, Nghị định 168/2024/NĐ-CP)
-- ⚠ chep_nguyen_van: “chức khám sức khỏe định kỳ …”; tham_chieu_ngu_canh
+- ⚠ chep_nguyen_van: “chức khám sức khỏe định kỳ …”
 
 ```json
 {"qid": "t3-tru_diem-021", "question": "Tôi đang lái xe đạp điện và đã bị cảnh sát ghi nhận vi phạm quy định về việc không tổ chức khám sức khỏe định kỳ cho người điều khiển xe, tôi sẽ bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 06 điểm trên giấy phép lái xe. (Điều 26, Khoản 14, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D26/K14/b"], "required_numbers": [{"value": 6, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-021:1"}
@@ -42960,7 +42923,6 @@ a) Thực hiện hành vi quy định tại khoản 3, khoản 4 Điều này b�
 
 - Hỏi (2026-11-03): Tôi là người lớn tuổi đi xe đạp điện, nhưng tôi muốn biết nếu một chiếc ô tô chở xăng đi qua một hầm dài 150 mét, có bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, khoản 7, điều 23, mục a.
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t3-tru_diem-023", "question": "Tôi là người lớn tuổi đi xe đạp điện, nhưng tôi muốn biết nếu một chiếc ô tô chở xăng đi qua một hầm dài 150 mét, có bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, khoản 7, điều 23, mục a.", "gold_units": ["ND168-2024/D23/K7/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-023:1"}
@@ -42970,7 +42932,6 @@ a) Thực hiện hành vi quy định tại khoản 3, khoản 4 Điều này b�
 
 - Hỏi (2026-11-03): Tôi là người lớn tuổi đi xe đạp điện, nhưng tôi muốn biết nếu một chiếc ô tô chở thuốc nổ đi qua một hầm dài 110 mét, có bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, khoản 7, điều 23, mục a.
-- ⚠ tham_chieu_ngu_canh
 
 ```json
 {"qid": "t3-tru_diem-023", "question": "Tôi là người lớn tuổi đi xe đạp điện, nhưng tôi muốn biết nếu một chiếc ô tô chở thuốc nổ đi qua một hầm dài 110 mét, có bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, khoản 7, điều 23, mục a.", "gold_units": ["ND168-2024/D23/K7/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-023:2"}
@@ -43027,7 +42988,6 @@ b) Điều khiển xe chở hành khách không có danh sách hành khách theo
 
 - Hỏi (2026-11-03): Tôi vừa dừng xe trên đường cao tốc để đón khách, sau đó tiếp tục chạy, có bị trừ bao nhiêu điểm trên giấy phép lái xe?
 - Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 20, Khoản 10, Nghị định 168/2024/NĐ-CP)
-- ⚠ tham_chieu_ngu_canh
 - Ghi chú: Không đề cập đến số tiền phạt, chỉ hỏi điểm trừ
 
 ```json
@@ -44774,5 +44734,7123 @@ STT | TÊN NƯỚC, VÙNG LÃNH THỔ, TỔ CHỨC QUỐC TẾ | KÝ HIỆU
 
 ```json
 {"qid": "t3-da_buoc-004", "question": "Tôi là người lớn tuổi, muốn đăng ký xe máy chuyên dùng cho tổ chức ANH VÀ BẮC AILEN, cần làm gì?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "A", "answer": "Bạn cần nộp hồ sơ đăng ký xe máy chuyên dùng tại một trong các cơ quan, đơn vị đăng ký xe ô tô, xe máy chuyên dùng tại Cục Cảnh sát giao thông, bao gồm Văn phòng và các Ban của Trung ương Đảng, Văn phòng Chủ tịch nước, Văn phòng Quốc hội, Văn phòng các Bộ, cơ quan ngang Bộ, các cơ quan thuộc Chính phủ, Văn phòng cơ quan Trung ương các tổ chức chính trị-xã hội, Văn phòng Viện Kiểm sát nhân dân tối cao, Văn phòng Toà án nhân dân tối cao, Văn phòng Kiểm toán Nhà nước. Biển số xe sẽ được ký hiệu theo quy định của Phụ lục số 03, với ký hiệu 011-015 cho tổ chức ANH VÀ BẮC AILEN.", "gold_units": ["TT79-2024-BCA/D34/K1", "TT79-2024-BCA/PL1", "TT79-2024-BCA/PL3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-da_buoc-004:2"}
+```
+
+## muc_phat — mức phạt tiền / phạt cảnh cáo cho một hành vi
+
+### W4-muc_phat-001 · tier B · vai: phụ huynh có con dưới 18 tuổi · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D11/K1
+
+Điều 11. Xử phạt người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ kinh doanh vận tải vi phạm quy định về vận tải đường bộ
+1. Phạt tiền từ 300.000 đồng đến 500.000 đồng đối với hành vi vi phạm không mặc đồng phục, không đeo thẻ tên của lái xe theo đúng mẫu đơn vị kinh doanh vận tải đã quy định.
+
+[0] 300.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D11/K1)
+[1] 500.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D11/K1)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Nếu con tôi lái xe chở khách nhưng không mặc đồng phục và không đeo thẻ tên, mức phạt tiền là bao nhiêu?
+- Đáp: Mức phạt tiền là từ 300.000 đồng đến 500.000 đồng.
+- Nghi ngờ: ?
+
+```json
+{"qid": "t4-muc_phat-001", "question": "Nếu con tôi lái xe chở khách nhưng không mặc đồng phục và không đeo thẻ tên, mức phạt tiền là bao nhiêu?", "as_of": "2026-11-03", "question_type": "muc_phat", "tier": "B", "answer": "Mức phạt tiền là từ 300.000 đồng đến 500.000 đồng.", "gold_units": ["ND336-2025/D11/K1"], "required_numbers": [{"value": 300000, "unit": "vnd"}, {"value": 500000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-muc_phat-001:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu con tôi lái xe chở khách mà không mặc đồng phục và không đeo thẻ tên, anh ta sẽ phải chịu mức phạt tiền bao nhiêu?
+- Đáp: Mức phạt tiền là từ 300.000 đồng đến 500.000 đồng.
+- Nghi ngờ: ?
+
+```json
+{"qid": "t4-muc_phat-001", "question": "Nếu con tôi lái xe chở khách mà không mặc đồng phục và không đeo thẻ tên, anh ta sẽ phải chịu mức phạt tiền bao nhiêu?", "as_of": "2026-11-03", "question_type": "muc_phat", "tier": "B", "answer": "Mức phạt tiền là từ 300.000 đồng đến 500.000 đồng.", "gold_units": ["ND336-2025/D11/K1"], "required_numbers": [{"value": 300000, "unit": "vnd"}, {"value": 500000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-muc_phat-001:2"}
+```
+
+### W4-muc_phat-002 · tier B · vai: tài xế công nghệ · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D15/K2, ND336-2025/D15/K2/a, ND336-2025/D15/K2/b, ND336-2025/D15/K2/c
+
+Điều 15. Xử phạt hành vi vi phạm về dịch vụ cho thuê phương tiện
+2. Phạt tiền từ 10.000.000 đồng đến 15.000.000 đồng đối với cá nhân, từ 20.000.000 đồng đến 30.000.000 đồng đối với tổ chức kinh doanh dịch vụ cho thuê phương tiện thực hiện một trong các hành vi vi phạm sau đây:
+a) Bố trí lái xe cho người thuê phương tiện để tự lái;
+b) Không ký kết hợp đồng cho thuê phương tiện tự lái với bên thuê để kinh doanh vận tải bằng xe ô tô, vận tải nội bộ;
+c) Ký kết hợp đồng cho thuê phương tiện để kinh doanh vận tải bằng xe ô tô, vận tải nội bộ mà không thể hiện nội dung không kèm người lái xe với bên thuê.
+
+[0] 10.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D15/K2)
+[1] 15.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D15/K2)
+[2] 20.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D15/K2)
+[3] 30.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D15/K2)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi đang điều hành một công ty cho thuê xe ô tô, và một lần họ đã bố trí lái xe cho khách thuê để tự lái. Anh ấy muốn biết mức phạt tiền mà công ty sẽ phải chịu khi bị phát hiện vi phạm.
+- Đáp: Công ty sẽ bị phạt tiền từ 20.000.000 đồng đến 30.000.000 đồng.
+
+```json
+{"qid": "t4-muc_phat-002", "question": "Anh tôi đang điều hành một công ty cho thuê xe ô tô, và một lần họ đã bố trí lái xe cho khách thuê để tự lái. Anh ấy muốn biết mức phạt tiền mà công ty sẽ phải chịu khi bị phát hiện vi phạm.", "as_of": "2026-11-03", "question_type": "muc_phat", "tier": "B", "answer": "Công ty sẽ bị phạt tiền từ 20.000.000 đồng đến 30.000.000 đồng.", "gold_units": ["ND336-2025/D15/K2"], "required_numbers": [{"value": 20000000, "unit": "vnd"}, {"value": 30000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-muc_phat-002:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty của anh tôi đã ký hợp đồng cho thuê xe ô tô cho khách mà không ghi rõ không kèm người lái xe. Khi bị kiểm tra, anh ấy muốn biết mức phạt tiền mà công ty sẽ phải chịu.
+- Đáp: Công ty sẽ bị phạt tiền từ 20.000.000 đồng đến 30.000.000 đồng.
+
+```json
+{"qid": "t4-muc_phat-002", "question": "Công ty của anh tôi đã ký hợp đồng cho thuê xe ô tô cho khách mà không ghi rõ không kèm người lái xe. Khi bị kiểm tra, anh ấy muốn biết mức phạt tiền mà công ty sẽ phải chịu.", "as_of": "2026-11-03", "question_type": "muc_phat", "tier": "B", "answer": "Công ty sẽ bị phạt tiền từ 20.000.000 đồng đến 30.000.000 đồng.", "gold_units": ["ND336-2025/D15/K2"], "required_numbers": [{"value": 20000000, "unit": "vnd"}, {"value": 30000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-muc_phat-002:2"}
+```
+
+### W4-muc_phat-003 · tier B · vai: chủ doanh nghiệp vận tải · kiểu: nhieu_dieu_kien
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D7/K2, ND336-2025/D7/K2/a, ND336-2025/D7/K2/b, ND336-2025/D7/K2/c, ND336-2025/D7/K2/d, ND336-2025/D7/K2/đ, ND336-2025/D7/K2/e, ND336-2025/D7/K2/g
+
+Điều 7. Xử phạt hành vi vi phạm quy định về đào tạo thẩm tra viên, điều kiện kinh doanh dịch vụ thẩm tra an toàn giao thông đường bộ
+2. Phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng đối với cơ sở đào tạo thẩm tra viên an toàn giao thông đường bộ thực hiện một trong các hành vi vi phạm sau đây:
+a) Tuyển sinh, đào tạo học viên không đủ điều kiện tiêu chuẩn theo quy định;
+b) Không thông báo kế hoạch đào tạo và danh sách học viên trước khi mở lớp theo quy định;
+c) Đào tạo thẩm tra viên an toàn giao thông đường bộ không đúng chương trình khung, kế hoạch đào tạo đã thông báo theo quy định;
+d) Công nhận kết quả thi cho người không tham dự thi hoặc không tham dự khóa đào tạo thẩm tra viên an toàn giao thông đường bộ;
+đ) Không thành lập hoặc thành lập hội đồng thi không đúng quy định;
+e) Không lưu trữ, bảo quản hồ sơ học viên theo quy định, trừ hành vi vi phạm quy định tại điểm g khoản này;
+g) Không lập, lưu giữ, bảo quản hồ sơ tài liệu liên quan đến công tác đào tạo theo quy định.
+
+[0] 8.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D7/K2)
+[1] 10.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D7/K2)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Công ty tôi đang tổ chức lớp đào tạo thẩm tra viên an toàn giao thông, nhưng chưa gửi thông báo kế hoạch và danh sách học viên trước khi mở lớp. Mức phạt tiền mà cơ quan có thể áp dụng là bao nhiêu?
+- Đáp: Công ty sẽ bị phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng. (Điều 7 Khoản 2 Nghị định 336/2025/NĐ-CP)
+- ⚠ chep_nguyen_van: “danh sách học viên trước khi …”
+- Ghi chú: Giả định công ty là cơ sở đào tạo thẩm tra viên an toàn giao thông
+
+```json
+{"qid": "t4-muc_phat-003", "question": "Công ty tôi đang tổ chức lớp đào tạo thẩm tra viên an toàn giao thông, nhưng chưa gửi thông báo kế hoạch và danh sách học viên trước khi mở lớp. Mức phạt tiền mà cơ quan có thể áp dụng là bao nhiêu?", "as_of": "2026-11-03", "question_type": "muc_phat", "tier": "B", "answer": "Công ty sẽ bị phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng. (Điều 7 Khoản 2 Nghị định 336/2025/NĐ-CP)", "gold_units": ["ND336-2025/D7/K2"], "required_numbers": [{"value": 8000000, "unit": "vnd"}, {"value": 10000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-muc_phat-003:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi đã tổ chức lớp đào tạo thẩm tra viên nhưng không lưu trữ hồ sơ học viên theo quy định. Phạt tiền tối thiểu và tối đa mà cơ quan có thể áp dụng là bao nhiêu?
+- Đáp: Công ty sẽ bị phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng. (Điều 7 Khoản 2 Nghị định 336/2025/NĐ-CP)
+- ⚠ chep_nguyen_van: “hồ sơ học viên theo quy …”
+- Ghi chú: Giả định công ty là cơ sở đào tạo thẩm tra viên an toàn giao thông
+
+```json
+{"qid": "t4-muc_phat-003", "question": "Công ty tôi đã tổ chức lớp đào tạo thẩm tra viên nhưng không lưu trữ hồ sơ học viên theo quy định. Phạt tiền tối thiểu và tối đa mà cơ quan có thể áp dụng là bao nhiêu?", "as_of": "2026-11-03", "question_type": "muc_phat", "tier": "B", "answer": "Công ty sẽ bị phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng. (Điều 7 Khoản 2 Nghị định 336/2025/NĐ-CP)", "gold_units": ["ND336-2025/D7/K2"], "required_numbers": [{"value": 8000000, "unit": "vnd"}, {"value": 10000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-muc_phat-003:2"}
+```
+
+## bien_phap — tước quyền sử dụng giấy phép, tịch thu, biện pháp khắc phục hậu quả
+
+### W4-bien_phap-001 · tier B · vai: người lớn tuổi đi xe đạp điện · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D7/K5, ND336-2025/D7/K5/a, ND336-2025/D7/K5/b
+
+Điều 7. Xử phạt hành vi vi phạm quy định về đào tạo thẩm tra viên, điều kiện kinh doanh dịch vụ thẩm tra an toàn giao thông đường bộ
+5. Ngoài việc bị phạt tiền, tổ chức thực hiện hành vi vi phạm còn bị áp dụng hình thức xử phạt bổ sung:
+a) Cơ sở đào tạo thẩm tra viên an toàn giao thông đường bộ thực hiện hành vi vi phạm quy định tại khoản 1, điểm a, điểm b khoản 2 Điều này còn bị đình chỉ việc tổ chức đào tạo từ 01 tháng đến 03 tháng;
+b) Tổ chức kinh doanh dịch vụ thẩm tra an toàn giao thông đường bộ thực hiện hành vi vi phạm quy định tại khoản 3, khoản 4 Điều này còn bị đình chỉ hoạt động thẩm tra an toàn giao thông đường bộ từ 01 tháng đến 03 tháng.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D7/K1)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D7/K1
+
+Điều 7. Xử phạt hành vi vi phạm quy định về đào tạo thẩm tra viên, điều kiện kinh doanh dịch vụ thẩm tra an toàn giao thông đường bộ
+1. Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng đối với cơ sở đào tạo thẩm tra viên an toàn giao thông đường bộ thực hiện một trong các hành vi vi phạm sau đây:
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D7/K2/a)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D7/K2/a
+
+Điều 7. Xử phạt hành vi vi phạm quy định về đào tạo thẩm tra viên, điều kiện kinh doanh dịch vụ thẩm tra an toàn giao thông đường bộ
+2. Phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng đối với cơ sở đào tạo thẩm tra viên an toàn giao thông đường bộ thực hiện một trong các hành vi vi phạm sau đây:
+a) Tuyển sinh, đào tạo học viên không đủ điều kiện tiêu chuẩn theo quy định;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D7/K2/b)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D7/K2/b
+
+Điều 7. Xử phạt hành vi vi phạm quy định về đào tạo thẩm tra viên, điều kiện kinh doanh dịch vụ thẩm tra an toàn giao thông đường bộ
+2. Phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng đối với cơ sở đào tạo thẩm tra viên an toàn giao thông đường bộ thực hiện một trong các hành vi vi phạm sau đây:
+b) Không thông báo kế hoạch đào tạo và danh sách học viên trước khi mở lớp theo quy định;
+
+[0] 01 tháng (thời hạn đình chỉ tối thiểu, nêu tại ND336-2025/D7/K5/b)
+[1] 03 tháng (thời hạn đình chỉ tối đa, nêu tại ND336-2025/D7/K5/b)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi, một người lớn tuổi đi xe đạp điện, đã bị cảnh sát ghi nhận vi phạm quy định về đào tạo thẩm tra viên khi tham gia một lớp học an toàn giao thông. Anh tôi muốn biết, nếu cơ sở đào tạo bị xử phạt, họ có bị đình chỉ hoạt động trong thời gian nào không?
+- Đáp: Cơ sở đào tạo thẩm tra viên có thể bị đình chỉ hoạt động từ 01 tháng đến 03 tháng.
+- ⚠ qua_dai (60 từ); chep_nguyen_van: “phạm quy định về đào tạo …”
+
+```json
+{"qid": "t4-bien_phap-001", "question": "Anh tôi, một người lớn tuổi đi xe đạp điện, đã bị cảnh sát ghi nhận vi phạm quy định về đào tạo thẩm tra viên khi tham gia một lớp học an toàn giao thông. Anh tôi muốn biết, nếu cơ sở đào tạo bị xử phạt, họ có bị đình chỉ hoạt động trong thời gian nào không?", "as_of": "2026-11-03", "question_type": "bien_phap", "tier": "B", "answer": "Cơ sở đào tạo thẩm tra viên có thể bị đình chỉ hoạt động từ 01 tháng đến 03 tháng.", "gold_units": ["ND336-2025/D7/K5/b"], "required_numbers": [{"value": 1, "unit": "thang"}, {"value": 3, "unit": "thang"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-bien_phap-001:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi, một doanh nghiệp kinh doanh dịch vụ thẩm tra an toàn giao thông, đã bị cảnh sát phát hiện vi phạm quy định khi không thông báo kế hoạch đào tạo trước khi mở lớp. Tôi muốn biết, công ty có bị đình chỉ hoạt động trong bao lâu?
+- Đáp: Công ty có thể bị đình chỉ hoạt động từ 01 tháng đến 03 tháng.
+- ⚠ qua_dai (52 từ); chep_nguyen_van: “doanh dịch vụ thẩm tra an …”
+
+```json
+{"qid": "t4-bien_phap-001", "question": "Công ty tôi, một doanh nghiệp kinh doanh dịch vụ thẩm tra an toàn giao thông, đã bị cảnh sát phát hiện vi phạm quy định khi không thông báo kế hoạch đào tạo trước khi mở lớp. Tôi muốn biết, công ty có bị đình chỉ hoạt động trong bao lâu?", "as_of": "2026-11-03", "question_type": "bien_phap", "tier": "B", "answer": "Công ty có thể bị đình chỉ hoạt động từ 01 tháng đến 03 tháng.", "gold_units": ["ND336-2025/D7/K5/b"], "required_numbers": [{"value": 1, "unit": "thang"}, {"value": 3, "unit": "thang"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-bien_phap-001:2"}
+```
+
+## hanh_vi_cam_nghia_vu — hành vi bị cấm / nghĩa vụ, quy tắc phải tuân thủ
+
+### W4-hanh_vi_cam_nghia_vu-001 · tier B · vai: tài xế xe tải · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2026-08-10 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D23/K6, ND158-2024/D23/K6/a, ND158-2024/D23/K6/b, ND158-2024/D23/K6/c
+
+Điều 23. Quy định về quản lý sử dụng, cấp, cấp lại và thu hồi phù hiệu
+6. Trình tự, thủ tục cấp phù hiệu
+a) Đơn vị kinh doanh vận tải gửi 01 bộ hồ sơ (trực tuyến hoặc trực tiếp hoặc dịch vụ bưu chính) đề nghị cấp phù hiệu đến Sở Xây dựng nơi đã cấp Giấy phép kinh doanh cho đơn vị; trường hợp đơn vị kinh doanh vận tải hành khách theo tuyến cố định hoặc bến xe khách có nhu cầu sử dụng xe trung chuyển nộp 01 bộ hồ sơ đề nghị cấp phù hiệu “XE TRUNG CHUYỂN” đến Sở Xây dựng nơi cấp Giấy phép kinh doanh cho đơn vị hoặc Sở Xây dựng đầu tuyến bên kia. Trường hợp hồ sơ cần sửa đổi, bổ sung, cơ quan cấp phù hiệu thông báo trực tiếp hoặc bằng văn bản hoặc thông báo qua hệ thống dịch vụ công trực tuyến những nội dung cần bổ sung hoặc sửa đổi đến đơn vị kinh doanh vận tải trong thời hạn 01 ngày làm việc kể từ ngày nhận hồ sơ. Trường hợp gửi hồ sơ trực tuyến, đơn vị kinh doanh vận tải phải chịu trách nhiệm trước pháp luật về tính chính xác của các thông tin đã đăng ký đề nghị cấp phù hiệu;
+…
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, có thể nộp hồ sơ trực tuyến để xin cấp phù hiệu xe tải không?
+- Đáp: Có, bạn có thể nộp hồ sơ trực tuyến. Bạn phải gửi 01 bộ hồ sơ đề nghị cấp phù hiệu đến Sở Xây dựng nơi đã cấp Giấy phép kinh doanh cho đơn vị. Bạn cần đảm bảo thông tin trong hồ sơ chính xác, vì bạn chịu trách nhiệm pháp lý về tính chính xác của các thông tin đã đăng ký.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-001", "question": "Tôi là tài xế xe tải, có thể nộp hồ sơ trực tuyến để xin cấp phù hiệu xe tải không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Có, bạn có thể nộp hồ sơ trực tuyến. Bạn phải gửi 01 bộ hồ sơ đề nghị cấp phù hiệu đến Sở Xây dựng nơi đã cấp Giấy phép kinh doanh cho đơn vị. Bạn cần đảm bảo thông tin trong hồ sơ chính xác, vì bạn chịu trách nhiệm pháp lý về tính chính xác của các thông tin đã đăng ký.", "gold_units": ["ND158-2024/D23/K6/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-001:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi muốn chuyển sang sử dụng phù hiệu 'XE TRUNG CHUYỂN', cần làm gì khi gửi hồ sơ?
+- Đáp: Bạn cần nộp 01 bộ hồ sơ đề nghị cấp phù hiệu "XE TRUNG CHUYỂN" đến Sở Xây dựng nơi cấp Giấy phép kinh doanh cho đơn vị, hoặc đến Sở Xây dựng đầu tuyến bên kia nếu là tuyến khác. Cơ quan cấp phù hiệu sẽ thông báo nội dung cần bổ sung hoặc sửa đổi trong thời hạn 01 ngày làm việc kể từ ngày nhận hồ sơ.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-001", "question": "Tôi muốn chuyển sang sử dụng phù hiệu 'XE TRUNG CHUYỂN', cần làm gì khi gửi hồ sơ?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn cần nộp 01 bộ hồ sơ đề nghị cấp phù hiệu \"XE TRUNG CHUYỂN\" đến Sở Xây dựng nơi cấp Giấy phép kinh doanh cho đơn vị, hoặc đến Sở Xây dựng đầu tuyến bên kia nếu là tuyến khác. Cơ quan cấp phù hiệu sẽ thông báo nội dung cần bổ sung hoặc sửa đổi trong thời hạn 01 ngày làm việc kể từ ngày nhận hồ sơ.", "gold_units": ["ND158-2024/D23/K6/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-001:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-002 · tier B · vai: tài xế xe tải · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 69/2024/TT-BCA (Quy định về chỉ huy, điều khiển giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT69-2024-BCA/D14/K4, TT69-2024-BCA/D14/K4/a, TT69-2024-BCA/D14/K4/b
+
+Điều 14. Chỉ huy, điều khiển giao thông đường bộ tại Trung tâm chỉ huy giao thông
+4. Trung tâm chỉ huy giao thông tỉnh, thành phố trực thuộc Trung ương có trách nhiệm:
+a) Tổ chức triển khai thực hiện các quy định tại khoản 1, khoản 2 Điều này và chỉ đạo của Trung tâm chỉ huy giao thông quốc gia;
+b) Trường hợp xảy ra các tình huống phức tạp về trật tự, an toàn giao thông trên các tuyến giao thông đường bộ trong phạm vi quản lý có nguy cơ lan rộng đến nhiều tỉnh, thành phố lân cận, liên tuyến phải báo cáo ngay về Trung tâm chỉ huy giao thông quốc gia để chỉ đạo kịp thời.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT69-2024-BCA/D14/K1)
+Mã điều khoản dùng được cho gold_units: TT69-2024-BCA/D14/K1
+
+Điều 14. Chỉ huy, điều khiển giao thông đường bộ tại Trung tâm chỉ huy giao thông
+1. Cảnh sát chỉ huy, điều khiển giao thông có trách nhiệm tiếp nhận, ghi nhận thông tin, theo dõi, giám sát, phân tích, đánh giá, dự báo tình hình liên quan đến trật tự, an toàn giao thông đường bộ qua hệ thống camera và các công cụ theo dõi khác kết nối về Trung tâm chỉ huy giao thông để triển khai thực hiện nhiệm vụ theo kế hoạch, phương án đã được cấp có thẩm quyền phê duyệt.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT69-2024-BCA/D14/K2)
+Mã điều khoản dùng được cho gold_units: TT69-2024-BCA/D14/K2
+
+Điều 14. Chỉ huy, điều khiển giao thông đường bộ tại Trung tâm chỉ huy giao thông
+2. Khi xảy ra các tình huống phức tạp về trật tự, an toàn giao thông hoặc yêu cầu về bảo đảm an ninh, trật tự trên địa bàn được giao quản lý, Cảnh sát chỉ huy, điều khiển giao thông phải kịp thời điều chỉnh chu kỳ tín hiệu đèn giao thông hoặc báo cáo cấp có thẩm quyền để chỉ đạo bố trí lực lượng, phân luồng, phân tuyến giao thông, xử lý vi phạm về trật tự, an toàn giao thông, cung cấp thông tin về tình trạng giao thông cho người tham gia giao thông hoặc thông tin cho các đơn vị chức năng để điều động lực lượng, phương tiện thực hiện nhiệm vụ cứu nạn, cứu hộ theo quy định.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi có thể báo cáo tình trạng ùn tắc đường lên Trung tâm chỉ huy giao thông không?
+- Đáp: Bạn có thể báo cáo tình trạng ùn tắc đường ngay lập tức. Việc này được quy định trong Thông tư 69/2024/TT-BCA, khoản 2 Điều 14, nơi ghi rõ cảnh sát phải kịp thời điều chỉnh chu kỳ tín hiệu hoặc báo cáo cấp có thẩm quyền để chỉ đạo bố trí lực lượng, phân luồng, phân tuyến giao thông, cung cấp thông tin về tình trạng giao thông cho người tham gia giao thông.
+- ⚠ chep_nguyen_van: “trung tâm chỉ huy giao thông …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-002", "question": "Tôi có thể báo cáo tình trạng ùn tắc đường lên Trung tâm chỉ huy giao thông không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn có thể báo cáo tình trạng ùn tắc đường ngay lập tức. Việc này được quy định trong Thông tư 69/2024/TT-BCA, khoản 2 Điều 14, nơi ghi rõ cảnh sát phải kịp thời điều chỉnh chu kỳ tín hiệu hoặc báo cáo cấp có thẩm quyền để chỉ đạo bố trí lực lượng, phân luồng, phân tuyến giao thông, cung cấp thông tin về tình trạng giao thông cho người tham gia giao thông.", "gold_units": ["TT69-2024-BCA/D14/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-002:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi có thể tự điều chỉnh chu kỳ đèn giao thông khi gặp tình huống phức tạp không?
+- Đáp: Bạn không được tự điều chỉnh chu kỳ đèn giao thông. Theo Thông tư 69/2024/TT-BCA, khoản 2 Điều 14, cảnh sát chỉ huy, điều khiển giao thông phải kịp thời điều chỉnh chu kỳ tín hiệu hoặc báo cáo cấp có thẩm quyền để chỉ đạo bố trí lực lượng, phân luồng, phân tuyến giao thông. Việc điều chỉnh chỉ thuộc quyền hạn của cơ quan chức năng.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-002", "question": "Tôi có thể tự điều chỉnh chu kỳ đèn giao thông khi gặp tình huống phức tạp không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn không được tự điều chỉnh chu kỳ đèn giao thông. Theo Thông tư 69/2024/TT-BCA, khoản 2 Điều 14, cảnh sát chỉ huy, điều khiển giao thông phải kịp thời điều chỉnh chu kỳ tín hiệu hoặc báo cáo cấp có thẩm quyền để chỉ đạo bố trí lực lượng, phân luồng, phân tuyến giao thông. Việc điều chỉnh chỉ thuộc quyền hạn của cơ quan chức năng.", "gold_units": ["TT69-2024-BCA/D14/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-002:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-003 · tier B · vai: cán bộ phường · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 52/2024/TT-BGTVT (Quy định về yêu cầu kỹ thuật đối với xe cơ giới, xe máy chuyên dùng thuộc đối tượng nghiên cứu phát triển có nhu cầu tham gia giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT52-2024-BGTVT/D5/K5
+
+Điều 5. Yêu cầu kỹ thuật riêng đối với mỗi loại xe
+5. Đối với xe máy chuyên dùng (trừ rơ moóc, sơ mi rơ moóc được kéo bởi máy kéo):
+Số người tối đa cho phép chở khi chạy thử trên đường không lớn hơn 02 người, kể cả người lái xe nhưng không được vượt quá số người cho phép chở theo thiết kế của xe để đảm bảo an toàn kỹ thuật của xe chạy thử.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Công ty tôi muốn thử nghiệm xe máy chuyên dùng trên đường, có thể chở thêm 2 người cùng lái không?
+- Đáp: Không, xe máy chuyên dùng chỉ được chở tối đa 2 người, kể cả người lái. Điều này nhằm đảm bảo an toàn kỹ thuật khi chạy thử.
+- ⚠ so_cau_sai (2/1)
+- Ghi chú: Đã giả định "xe máy chuyên dùng" là loại xe được quy định trong Thông tư 52/2024/TT-BGTVT.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-003", "question": "Công ty tôi muốn thử nghiệm xe máy chuyên dùng trên đường, có thể chở thêm 2 người cùng lái không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Không, xe máy chuyên dùng chỉ được chở tối đa 2 người, kể cả người lái. Điều này nhằm đảm bảo an toàn kỹ thuật khi chạy thử.", "gold_units": ["TT52-2024-BGTVT/D5/K5"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-003:1"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-004 · tier B · vai: cán bộ phường · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D18/K5, ND336-2025/D18/K5/a, ND336-2025/D18/K5/b, ND336-2025/D18/K5/c, ND336-2025/D18/K5/d
+
+Điều 18. Thẩm quyền xử phạt của Công an nhân dân
+5. Trưởng phòng nghiệp vụ thuộc Cục Cảnh sát quản lý hành chính về trật tự xã hội gồm: Trưởng phòng Hướng dẫn, quản lý các ngành, nghề đầu tư kinh doanh có điều kiện về an ninh, trật tự và con dấu; Trưởng phòng nghiệp vụ thuộc Cục Cảnh sát giao thông gồm: Trưởng phòng Quản lý, khai thác, xử lý, vận hành dữ liệu và chuyển đổi số, Trưởng phòng Hướng dẫn tuyên truyền, điều tra, giải quyết tai nạn giao thông, Trưởng phòng Hướng dẫn, đăng ký và kiểm định phương tiện, Trưởng phòng Hướng dẫn, đào tạo, sát hạch, quản lý giấy phép của người điều khiển phương tiện giao thông, Trưởng phòng Hướng dẫn tuần tra, kiểm soát giao thông đường bộ, đường sắt, Trưởng phòng Hướng dẫn điều khiển giao thông và dẫn đoàn, Thủ trưởng đơn vị Cảnh sát cơ động cấp trung đoàn; Trưởng phòng Công an cấp tỉnh gồm: Trưởng phòng Cảnh sát quản lý hành chính về trật tự xã hội, Trưởng phòng Cảnh sát điều tra tội phạm về trật tự xã hội, Trưởng phòng Cảnh sát giao thông, Trưởng phòng Cảnh sát cơ động có quyền:
+a) Phạt cảnh cáo;
+b) Phạt tiền đến 60.000.000 đồng;
+c) Tước quyền sử dụng giấy phép có thời hạn hoặc đình chỉ hoạt động có thời hạn;
+d) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 3 của Nghị định này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D3)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D3
+
+Điều 3. Mức phạt tiền, hình thức xử phạt vi phạm hành chính, biện pháp khắc phục hậu quả và nguyên tắc áp dụng
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Công ty tôi vi phạm quy định giao thông, có thể bị phạt tiền lên tới 60 triệu đồng không?
+- Đáp: Có, công ty có thể bị phạt tiền lên tới 60.000.000 đồng khi vi phạm hành chính trong hoạt động đường bộ. Điều kiện là vi phạm các quy định về giao thông đường bộ. (Điều 18, khoản 5, điểm b Nghị định 336/2025/NĐ-CP)
+- Ghi chú: Giả định là vi phạm là hành vi vi phạm giao thông, không phải vi phạm khác
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-004", "question": "Công ty tôi vi phạm quy định giao thông, có thể bị phạt tiền lên tới 60 triệu đồng không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Có, công ty có thể bị phạt tiền lên tới 60.000.000 đồng khi vi phạm hành chính trong hoạt động đường bộ. Điều kiện là vi phạm các quy định về giao thông đường bộ. (Điều 18, khoản 5, điểm b Nghị định 336/2025/NĐ-CP)", "gold_units": ["ND336-2025/D18/K5/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-004:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu tôi vi phạm giao thông, có thể bị tước giấy phép lái xe không?
+- Đáp: Có, người vi phạm có thể bị tước quyền sử dụng giấy phép lái xe hoặc đình chỉ hoạt động có thời hạn. Điều kiện là vi phạm hành chính trong hoạt động đường bộ. (Điều 18, khoản 5, điểm c Nghị định 336/2025/NĐ-CP)
+- Ghi chú: Giả định là vi phạm là hành vi vi phạm giao thông, không phải vi phạm khác
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-004", "question": "Nếu tôi vi phạm giao thông, có thể bị tước giấy phép lái xe không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Có, người vi phạm có thể bị tước quyền sử dụng giấy phép lái xe hoặc đình chỉ hoạt động có thời hạn. Điều kiện là vi phạm hành chính trong hoạt động đường bộ. (Điều 18, khoản 5, điểm c Nghị định 336/2025/NĐ-CP)", "gold_units": ["ND336-2025/D18/K5/c"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-004:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-005 · tier B · vai: người lớn tuổi đi xe đạp điện · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 52/2024/TT-BGTVT (Quy định về yêu cầu kỹ thuật đối với xe cơ giới, xe máy chuyên dùng thuộc đối tượng nghiên cứu phát triển có nhu cầu tham gia giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT52-2024-BGTVT/D5/K4
+
+Điều 5. Yêu cầu kỹ thuật riêng đối với mỗi loại xe
+4. Đối với xe mô tô, xe gắn máy:
+Số người tối đa cho phép chở khi chạy thử trên đường không lớn hơn 02 người, kể cả người lái xe nhưng không được vượt quá số người cho phép chở theo thiết kế của xe để đảm bảo an toàn kỹ thuật của xe chạy thử.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là người lớn tuổi, đang đi xe đạp điện, có thể chở thêm một người cùng đi khi đang thử nghiệm trên đường không?
+- Đáp: Bạn không được chở thêm người khi thử nghiệm trên đường. Theo quy định, số người tối đa cho phép chở khi chạy thử trên đường không lớn hơn 02 người, kể cả người lái xe, nhưng không được vượt quá số người cho phép chở theo thiết kế của xe để đảm bảo an toàn kỹ thuật của xe chạy thử. (TT52-2024-BGTVT/D5/K4)
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-005", "question": "Tôi là người lớn tuổi, đang đi xe đạp điện, có thể chở thêm một người cùng đi khi đang thử nghiệm trên đường không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn không được chở thêm người khi thử nghiệm trên đường. Theo quy định, số người tối đa cho phép chở khi chạy thử trên đường không lớn hơn 02 người, kể cả người lái xe, nhưng không được vượt quá số người cho phép chở theo thiết kế của xe để đảm bảo an toàn kỹ thuật của xe chạy thử. (TT52-2024-BGTVT/D5/K4)", "gold_units": ["TT52-2024-BGTVT/D5/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-005:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi muốn thử nghiệm xe đạp điện trên đường, có thể mang một người phụ nữ cùng đi không?
+- Đáp: Bạn không được chở thêm người khi thử nghiệm trên đường. Theo quy định, số người tối đa cho phép chở khi chạy thử trên đường không lớn hơn 02 người, kể cả người lái xe, nhưng không được vượt quá số người cho phép chở theo thiết kế của xe để đảm bảo an toàn kỹ thuật của xe chạy thử. (TT52-2024-BGTVT/D5/K4)
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-005", "question": "Tôi muốn thử nghiệm xe đạp điện trên đường, có thể mang một người phụ nữ cùng đi không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn không được chở thêm người khi thử nghiệm trên đường. Theo quy định, số người tối đa cho phép chở khi chạy thử trên đường không lớn hơn 02 người, kể cả người lái xe, nhưng không được vượt quá số người cho phép chở theo thiết kế của xe để đảm bảo an toàn kỹ thuật của xe chạy thử. (TT52-2024-BGTVT/D5/K4)", "gold_units": ["TT52-2024-BGTVT/D5/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-005:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-006 · tier B · vai: cán bộ phường · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D62/K6
+
+Điều 62. Quy trình đăng ký, ngừng khai thác tuyến, bổ sung hoặc thay thế phương tiện khai thác tuyến vận tải hành khách cố định giữa Việt Nam và Campuchia
+6. Tuyến vận tải hành khách cố định bằng xe ô tô giữa Việt Nam và Campuchia phải xuất phát và kết thúc (trên lãnh thổ Việt Nam) tại bến xe khách từ loại 01 đến loại 04 hoặc bến xe loại 05 thuộc địa bàn huyện nghèo theo quy định của Chính phủ.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Công ty tôi muốn khởi hành xe ô tô chở khách cố định giữa Việt Nam và Campuchia, có thể xuất phát từ bến xe khách loại 01 tại quận X không?
+- Đáp: Có, xe ô tô chở khách cố định giữa Việt Nam và Campuchia được phép xuất phát và kết thúc tại bến xe khách loại 01–04 hoặc bến xe loại 05 thuộc địa bàn huyện nghèo. Điều này được quy định trong Nghị định 158/2024/NĐ-CP, Điều 62, khoản 6.
+- ⚠ chep_nguyen_van: “cố định giữa việt nam và …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-006", "question": "Công ty tôi muốn khởi hành xe ô tô chở khách cố định giữa Việt Nam và Campuchia, có thể xuất phát từ bến xe khách loại 01 tại quận X không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Có, xe ô tô chở khách cố định giữa Việt Nam và Campuchia được phép xuất phát và kết thúc tại bến xe khách loại 01–04 hoặc bến xe loại 05 thuộc địa bàn huyện nghèo. Điều này được quy định trong Nghị định 158/2024/NĐ-CP, Điều 62, khoản 6.", "gold_units": ["ND158-2024/D62/K6"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-006:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Anh tôi muốn dừng xe tại bến xe loại 05 thuộc huyện nghèo, có được không?
+- Đáp: Có, xe ô tô chở khách cố định giữa Việt Nam và Campuchia được phép kết thúc tại bến xe loại 05 thuộc địa bàn huyện nghèo, đồng thời phải xuất phát tại bến xe khách loại 01–04 hoặc loại 05 thuộc huyện nghèo. Điều này được quy định trong Nghị định 158/2024/NĐ-CP, Điều 62, khoản 6.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-006", "question": "Anh tôi muốn dừng xe tại bến xe loại 05 thuộc huyện nghèo, có được không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Có, xe ô tô chở khách cố định giữa Việt Nam và Campuchia được phép kết thúc tại bến xe loại 05 thuộc địa bàn huyện nghèo, đồng thời phải xuất phát tại bến xe khách loại 01–04 hoặc loại 05 thuộc huyện nghèo. Điều này được quy định trong Nghị định 158/2024/NĐ-CP, Điều 62, khoản 6.", "gold_units": ["ND158-2024/D62/K6"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-006:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-007 · tier B · vai: sinh viên đi xe máy · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 130/2024/NĐ-CP (Quy định về thu phí sử dụng đường bộ cao tốc đối với phương tiện lưu thông trên tuyến đường bộ cao tốc thuộc sở hữu toàn dân do nhà nước đại diện chủ sở hữu và trực tiếp quản lý, khai thác)
+Hiệu lực của trạng thái này: 2024-10-10 → nay
+Mã điều khoản dùng được cho gold_units: ND130-2024/D10/K3, ND130-2024/D10/K3/a, ND130-2024/D10/K3/b, ND130-2024/D10/K3/c
+
+Điều 10. Quản lý và sử dụng phí sử dụng đường bộ cao tốc trong trường hợp cơ quan quản lý đường bộ trực tiếp tổ chức khai thác tài sản kết cấu hạ tầng giao thông đường bộ cao tốc
+3. Quản lý và sử dụng phí sử dụng đường bộ cao tốc thuộc phạm vi quản lý của Bộ Giao thông vận tải, cụ thể như sau:
+a) Chi phí cung cấp dịch vụ thu phí được xác định trên cơ sở kết quả lựa chọn nhà cung cấp dịch vụ thanh toán tiền sử dụng đường bộ và đơn vị vận hành thu theo quy định của pháp luật về đấu thầu và pháp luật có liên quan; toàn bộ số tiền thu phí sử dụng đường bộ cao tốc thu được sau khi trừ chi phí cung cấp dịch vụ thu phí theo hợp đồng cung cấp dịch vụ thu phí (chi phí không quá sáu phẩy ba phần trăm (6,3%) trên tổng số phí thực thu), nhà cung cấp dịch vụ thanh toán tiền sử dụng đường bộ chuyển vào tài khoản phí chờ nộp ngân sách của cơ quan quản lý thu mở tại Kho bạc nhà nước. Thời hạn chuyển tiền không quá 48 giờ, trong đó không quá 24 giờ đối với số tiền đã phát sinh trên tài khoản nhận tiền thu phí của nhà cung cấp dịch vụ thanh toán tiền sử dụng đường bộ kể từ thời điểm chốt số liệu đối soát. Trường hợp vào các ngày lễ, ngày nghỉ mà hệ thống ngân hàng nghỉ làm việc thì chuyển vào ngày làm việc kế tiếp;
+…
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi đang lái xe máy muốn đi qua đường cao tốc, có được đi mà không phải trả phí không?
+- Đáp: Bạn phải trả phí sử dụng đường cao tốc. Phí được tính theo quy định và sau khi trừ chi phí cung cấp dịch vụ thu phí (không quá 6,3% tổng phí thực thu) sẽ chuyển vào tài khoản phí chờ nộp ngân sách. (Điều 10, Khoản 3, Điểm a)
+- Ghi chú: Xe máy là phương tiện lưu thông trên đường cao tốc
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-007", "question": "Tôi đang lái xe máy muốn đi qua đường cao tốc, có được đi mà không phải trả phí không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn phải trả phí sử dụng đường cao tốc. Phí được tính theo quy định và sau khi trừ chi phí cung cấp dịch vụ thu phí (không quá 6,3% tổng phí thực thu) sẽ chuyển vào tài khoản phí chờ nộp ngân sách. (Điều 10, Khoản 3, Điểm a)", "gold_units": ["ND130-2024/D10/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-007:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu tôi đi xe máy qua đường cao tốc vào ngày lễ, có phải chờ ngày làm việc tiếp theo để chuyển tiền phí không?
+- Đáp: Có, khi hệ thống ngân hàng nghỉ làm việc, tiền phí sẽ được chuyển vào ngày làm việc kế tiếp. (Điều 10, Khoản 3, Điểm a)
+- Ghi chú: Xe máy là phương tiện lưu thông trên đường cao tốc
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-007", "question": "Nếu tôi đi xe máy qua đường cao tốc vào ngày lễ, có phải chờ ngày làm việc tiếp theo để chuyển tiền phí không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Có, khi hệ thống ngân hàng nghỉ làm việc, tiền phí sẽ được chuyển vào ngày làm việc kế tiếp. (Điều 10, Khoản 3, Điểm a)", "gold_units": ["ND130-2024/D10/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-007:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-008 · tier B · vai: chủ doanh nghiệp vận tải · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D24/K2, ND158-2024/D24/K2/a, ND158-2024/D24/K2/b, ND158-2024/D24/K2/c, ND158-2024/D24/K2/d, ND158-2024/D24/K2/đ, ND158-2024/D24/K2/e
+
+Điều 24. Quy định đối với vận tải người nội bộ bằng xe ô tô
+2. Đơn vị hoạt động vận tải nội bộ bằng xe ô tô
+a) Theo dõi, giám sát hoạt động của lái xe và phương tiện trong suốt quá trình hoạt động vận tải nội bộ; thực hiện chế độ bảo dưỡng sửa chữa phương tiện đúng quy định về bảo dưỡng kỹ thuật, sửa chữa phương tiện giao thông xe cơ giới đường bộ; kiểm tra điều kiện an toàn giao thông của xe và lái xe ô tô trước khi thực hiện nhiệm vụ vận chuyển; kiểm tra, giám sát hoạt động của xe ô tô và người lái xe trên hành trình;
+b) Bảo đảm quy định về thời gian lái xe liên tục, thời gian làm việc trong ngày, thời gian nghỉ của người lái xe theo quy định tại khoản 1 Điều 64 Luật trật tự, an toàn giao thông đường bộ;
+c) Tổ chức thực hiện bảo đảm công tác quản lý an toàn theo quy định tại khoản 10 Điều 11 Nghị định này;
+d) Lập, cập nhật đầy đủ các nội dung quy định về quá trình hoạt động của phương tiện và lái xe thuộc đơn vị vào lý lịch phương tiện, lý lịch hành nghề lái xe, thực hiện theo dõi quá trình hoạt động và bảo dưỡng, sửa chữa phương tiện theo quy định về bảo dưỡng kỹ thuật, sửa chữa phương tiện giao thông xe cơ giới đường bộ;
+đ) Không sử dụng xe ô tô chở người có giường nằm hai tầng để hoạt động trên các tuyến đường cấp V miền núi, VI miền núi;
+…
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D64/K1)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D64/K1
+
+Điều 64. Thời gian làm việc của người lái xe ô tô kinh doanh vận tải và vận tải nội bộ
+1. Thời gian lái xe của người lái xe ô tô không quá 10 giờ trong một ngày và không quá 48 giờ trong một tuần; lái xe liên tục không quá 04 giờ và bảo đảm các quy định có liên quan của Bộ luật Lao động.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND158-2024/D11/K10)
+Mã điều khoản dùng được cho gold_units: ND158-2024/D11/K10
+
+Điều 11. Quy định về công tác bảo đảm an toàn trong hoạt động vận tải bằng xe ô tô, bằng xe bốn bánh có gắn động cơ
+10. Đơn vị hoạt động vận tải nội bộ phải theo dõi, tổng hợp hoạt động của lái xe, xe ô tô, xe bốn bánh có gắn động cơ trong quá trình vận tải cán bộ, công nhân viên, người lao động hoặc trẻ em mầm non, học sinh, sinh viên; vận tải sản phẩm, hàng hóa hoặc trang thiết bị, dụng cụ, nguyên vật liệu, nhiên liệu để phục vụ quá trình sản xuất, tiêu thụ sản phẩm hoặc dịch vụ của đơn vị vận tải nội bộ.
+Đơn vị vận tải nội bộ, người lái xe phải bảo đảm tối thiểu công tác quản lý an toàn giao thông trong hoạt động vận tải nội bộ bằng xe ô tô, bằng xe bốn bánh có gắn động cơ theo các nội dung quy định sau:
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Công ty tôi đang thuê một xe ô tô chở khách có giường nằm hai tầng để vận chuyển nhân viên lên đường đi miền núi. Liệu có được phép sử dụng xe này trên tuyến đường cấp V miền núi không?
+- Đáp: Không được phép sử dụng xe ô tô chở khách có giường nằm hai tầng trên các tuyến đường cấp V miền núi. Điều này được quy định trong Nghị định số 158/2024/NĐ-CP, khoản d của Điều 24.
+- ⚠ chep_nguyen_van: “có giường nằm hai tầng để …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-008", "question": "Công ty tôi đang thuê một xe ô tô chở khách có giường nằm hai tầng để vận chuyển nhân viên lên đường đi miền núi. Liệu có được phép sử dụng xe này trên tuyến đường cấp V miền núi không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Không được phép sử dụng xe ô tô chở khách có giường nằm hai tầng trên các tuyến đường cấp V miền núi. Điều này được quy định trong Nghị định số 158/2024/NĐ-CP, khoản d của Điều 24.", "gold_units": ["ND158-2024/D24/K2/d"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-008:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi muốn tổ chức vận tải nội bộ bằng xe ô tô. Khi lái xe liên tục, liệu có giới hạn thời gian tối đa không?
+- Đáp: Lái xe liên tục không được vượt quá 4 giờ trong một lần lái. Ngoài ra, thời gian lái xe trong một ngày không quá 10 giờ và trong một tuần không quá 48 giờ. Điều này được quy định trong Luật trật tự, an toàn giao thông đường bộ, Điều 64.
+- ⚠ chep_nguyen_van: “nội bộ bằng xe ô tô …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-008", "question": "Công ty tôi muốn tổ chức vận tải nội bộ bằng xe ô tô. Khi lái xe liên tục, liệu có giới hạn thời gian tối đa không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Lái xe liên tục không được vượt quá 4 giờ trong một lần lái. Ngoài ra, thời gian lái xe trong một ngày không quá 10 giờ và trong một tuần không quá 48 giờ. Điều này được quy định trong Luật trật tự, an toàn giao thông đường bộ, Điều 64.", "gold_units": ["LUAT36-2024/D64/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-008:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-009 · tier B · vai: cán bộ phường · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 73/2024/TT-BCA (Quy định công tác tuần tra, kiểm soát, xử lý vi phạm pháp luật về trật tự, an toàn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT73-2024-BCA/D14/K3, TT73-2024-BCA/D14/K3/a, TT73-2024-BCA/D14/K3/b, TT73-2024-BCA/D14/K3/c
+
+Điều 14. Tiến hành kiểm soát
+3. Thông báo cho người điều khiển phương tiện giao thông biết về căn cứ dừng phương tiện để kiểm tra, kiểm soát; nội dung kiểm soát; đề nghị người điều khiển phương tiện giao thông xuất trình các giấy tờ liên quan theo quy định tại khoản 1 Điều 8 Thông tư này để kiểm soát như sau:
+a) Trường hợp người điều khiển phương tiện, chủ phương tiện xuất trình thông tin của các giấy tờ đã được tích hợp, cập nhật trong tài khoản định danh điện tử trên Ứng dụng định danh quốc gia, trong cơ sở dữ liệu do Bộ Công an quản lý, vận hành thì thực hiện việc kiểm tra, kiểm soát thông qua thông tin trong tài khoản định danh điện tử trên Ứng dụng định danh quốc gia, cơ sở dữ liệu;
+b) Trường hợp người điều khiển phương tiện, chủ phương tiện xuất trình bản giấy các giấy tờ thì tiến hành kiểm tra, đối chiếu trực tiếp các giấy tờ đó và thực hiện tra cứu thông tin liên quan đến giấy tờ đó trong cơ sở dữ liệu xử lý vi phạm hành chính, cơ sở dữ liệu khác;
+c) Thực hiện kiểm soát các nội dung theo quy định tại Điều 8 Thông tư này; đối với phương tiện giao thông chở người từ 09 chỗ trở lên (không kể chỗ của người lái xe), phương tiện giao thông chở người có kích thước tương đương với phương tiện giao thông chở người từ 09 chỗ trở lên (không kể chỗ của người lái xe), phải trực tiếp lên khoang chở người để thực hiện kiểm soát và thông báo kết quả kiểm soát.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT73-2024-BCA/D8/K1)
+Mã điều khoản dùng được cho gold_units: TT73-2024-BCA/D8/K1
+
+Điều 8. Nội dung kiểm soát
+1. Kiểm soát các giấy tờ có liên quan đến người và phương tiện giao thông, gồm:
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT73-2024-BCA/D8)
+Mã điều khoản dùng được cho gold_units: TT73-2024-BCA/D8
+
+Điều 8. Nội dung kiểm soát
+Thực hiện các nội dung kiểm soát theo quy định tại điểm b khoản 1, điểm a khoản 5 Điều 65 Luật Trật tự, an toàn giao thông đường bộ và các quy định sau đây:
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Có được dừng xe tải chở khách 10 chỗ mà không cho phép hành khách lên khoang chở người khi cảnh sát giao thông yêu cầu kiểm tra không?
+- Đáp: Không, khi xe chở người 09 chỗ trở lên (hoặc có kích thước tương đương), người điều khiển phải cho phép kiểm tra trực tiếp trong khoang chở người và thông báo kết quả kiểm tra. (Điều 14, khoản 3, điểm c Thông tư 73/2024/TT-BCA)
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-009", "question": "Có được dừng xe tải chở khách 10 chỗ mà không cho phép hành khách lên khoang chở người khi cảnh sát giao thông yêu cầu kiểm tra không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Không, khi xe chở người 09 chỗ trở lên (hoặc có kích thước tương đương), người điều khiển phải cho phép kiểm tra trực tiếp trong khoang chở người và thông báo kết quả kiểm tra. (Điều 14, khoản 3, điểm c Thông tư 73/2024/TT-BCA)", "gold_units": ["TT73-2024-BCA/D14/K3/c"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-009:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Phải làm gì khi cảnh sát giao thông yêu cầu xuất trình giấy tờ khi đang lái xe tải chở khách 12 chỗ?
+- Đáp: Bạn phải xuất trình giấy tờ liên quan. Nếu đã tích hợp trong tài khoản định danh điện tử, kiểm tra thông qua dữ liệu điện tử; nếu chưa, xuất trình bản giấy và đối chiếu trực tiếp. (Điều 14, khoản 3, điểm a và b Thông tư 73/2024/TT-BCA)
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-009", "question": "Phải làm gì khi cảnh sát giao thông yêu cầu xuất trình giấy tờ khi đang lái xe tải chở khách 12 chỗ?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn phải xuất trình giấy tờ liên quan. Nếu đã tích hợp trong tài khoản định danh điện tử, kiểm tra thông qua dữ liệu điện tử; nếu chưa, xuất trình bản giấy và đối chiếu trực tiếp. (Điều 14, khoản 3, điểm a và b Thông tư 73/2024/TT-BCA)", "gold_units": ["TT73-2024-BCA/D14/K3/a", "TT73-2024-BCA/D14/K3/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-009:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-010 · tier B · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D8/K3, ND158-2024/D8/K3/a, ND158-2024/D8/K3/b
+
+Điều 8. Kinh doanh vận tải hàng hóa bằng xe ô tô
+3. Kinh doanh vận tải hàng hóa siêu trường, siêu trọng
+a) Kinh doanh vận tải hàng hóa siêu trường, siêu trọng là việc sử dụng xe ô tô để vận chuyển hàng không thể chia nhỏ, tháo rời, khi vận chuyển trên đường bộ làm cho phương tiện hoặc tổ hợp phương tiện bị vượt quá giới hạn cho phép tham gia giao thông đường bộ về kích thước, khối lượng theo quy định của pháp luật;
+b) Khi vận chuyển hàng hóa siêu trường, siêu trọng, phải thực hiện theo quy định tại Điều 53 Luật Trật tự, an toàn giao thông đường bộ.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D53)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D53
+
+Điều 53. Bảo đảm trật tự, an toàn giao thông đường bộ đối với xe vận chuyển hàng siêu trường, siêu trọng
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi muốn chở một lô hàng siêu trọng bằng xe ô tô, có được không?
+- Đáp: Có, nhưng phải tuân thủ quy định của Nghị định 158/2024/NĐ-CP và Luật Trật tự, an toàn giao thông đường bộ. Trước khi vận chuyển, cần xin phép cơ quan quản lý giao thông, đảm bảo xe và hàng không vượt quá giới hạn kích thước, khối lượng cho phép tham gia giao thông, và thực hiện các biện pháp an toàn theo Điều 53 Luật Trật tự, an toàn giao thông đường bộ.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-010", "question": "Anh tôi muốn chở một lô hàng siêu trọng bằng xe ô tô, có được không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Có, nhưng phải tuân thủ quy định của Nghị định 158/2024/NĐ-CP và Luật Trật tự, an toàn giao thông đường bộ. Trước khi vận chuyển, cần xin phép cơ quan quản lý giao thông, đảm bảo xe và hàng không vượt quá giới hạn kích thước, khối lượng cho phép tham gia giao thông, và thực hiện các biện pháp an toàn theo Điều 53 Luật Trật tự, an toàn giao thông đường bộ.", "gold_units": ["ND158-2024/D8/K3/a", "LUAT36-2024/D53"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-010:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi đang vận chuyển hàng siêu trường, có được phép tham gia giao thông đường bộ không?
+- Đáp: Có, nhưng phải tuân thủ quy định của Nghị định 158/2024/NĐ-CP và Luật Trật tự, an toàn giao thông đường bộ. Trước khi xuất hành, công ty cần xin phép cơ quan quản lý giao thông, đảm bảo xe và hàng không vượt quá giới hạn kích thước, khối lượng cho phép tham gia giao thông, và thực hiện các biện pháp an toàn theo Điều 53 Luật Trật tự, an toàn giao thông đường bộ.
+- ⚠ chep_nguyen_van: “phép tham gia giao thông đường …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-010", "question": "Công ty tôi đang vận chuyển hàng siêu trường, có được phép tham gia giao thông đường bộ không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Có, nhưng phải tuân thủ quy định của Nghị định 158/2024/NĐ-CP và Luật Trật tự, an toàn giao thông đường bộ. Trước khi xuất hành, công ty cần xin phép cơ quan quản lý giao thông, đảm bảo xe và hàng không vượt quá giới hạn kích thước, khối lượng cho phép tham gia giao thông, và thực hiện các biện pháp an toàn theo Điều 53 Luật Trật tự, an toàn giao thông đường bộ.", "gold_units": ["ND158-2024/D8/K3/a", "LUAT36-2024/D53"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-010:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-011 · tier B · vai: tài xế công nghệ · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D67/K2
+
+Điều 67. Sửa đổi, bổ sung một số điều của các Nghị định có liên quan
+2. Sửa đổi, bổ sung khoản 1 Điều 3 Nghị định số 28/2021/NĐ-CP ngày 26 tháng 3 năm 2021 của Chính phủ quy định cơ chế quản lý tài chính dự án đầu tư theo phương thức đối tác công tư như sau:
+“1. Phương án tài chính của dự án PPP phải phản ánh đầy đủ các khoản chi phí và nguồn thu hợp pháp theo quy định trong giai đoạn chuẩn bị đầu tư, thực hiện và vận hành của dự án PPP, trừ trường hợp pháp luật có quy định khác.”.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): 
+- Đáp: 
+- ⚠ gold_mac_dinh; qua_ngan (0 từ)
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-011", "question": "", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "", "gold_units": ["ND165-2024/D67/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-011:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): 
+- Đáp: 
+- ⚠ gold_mac_dinh; qua_ngan (0 từ)
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-011", "question": "", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "", "gold_units": ["ND165-2024/D67/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-011:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-012 · tier B · vai: tài xế công nghệ · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D18/K6, ND336-2025/D18/K6/a, ND336-2025/D18/K6/b, ND336-2025/D18/K6/c, ND336-2025/D18/K6/d
+
+Điều 18. Thẩm quyền xử phạt của Công an nhân dân
+6. Giám đốc Công an cấp tỉnh có quyền:
+a) Phạt cảnh cáo;
+b) Phạt tiền đến 75.000.000 đồng;
+c) Tước quyền sử dụng giấy phép có thời hạn hoặc đình chỉ hoạt động có thời hạn;
+d) Áp dụng các biện pháp khắc phục hậu quả quy định tại Điều 3 Nghị định này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D3)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D3
+
+Điều 3. Mức phạt tiền, hình thức xử phạt vi phạm hành chính, biện pháp khắc phục hậu quả và nguyên tắc áp dụng
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, có được phạt tiền đến 75.000.000 đồng khi vi phạm hành chính đường bộ không?
+- Đáp: Có, nếu vi phạm hành chính đường bộ, Giám đốc Công an cấp tỉnh có quyền phạt tiền lên tới 75.000.000 đồng. (Điều 18 khoản 6 b Nghị định 336/2025/NĐ-CP)
+- ⚠ chep_nguyen_van: “phạt tiền đến 75 000 000 …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-012", "question": "Tôi là tài xế công nghệ, có được phạt tiền đến 75.000.000 đồng khi vi phạm hành chính đường bộ không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Có, nếu vi phạm hành chính đường bộ, Giám đốc Công an cấp tỉnh có quyền phạt tiền lên tới 75.000.000 đồng. (Điều 18 khoản 6 b Nghị định 336/2025/NĐ-CP)", "gold_units": ["ND336-2025/D18/K6/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-012:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, khi bị phạt tiền 75.000.000 đồng, phải làm gì?
+- Đáp: Nếu bị phạt tiền 75.000.000 đồng, bạn cần nộp tiền phạt theo quy định của Cục Công an. Không có biện pháp khắc phục hậu quả khác được áp dụng. (Điều 18 khoản 6 b Nghị định 336/2025/NĐ-CP)
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-012", "question": "Tôi là tài xế công nghệ, khi bị phạt tiền 75.000.000 đồng, phải làm gì?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Nếu bị phạt tiền 75.000.000 đồng, bạn cần nộp tiền phạt theo quy định của Cục Công an. Không có biện pháp khắc phục hậu quả khác được áp dụng. (Điều 18 khoản 6 b Nghị định 336/2025/NĐ-CP)", "gold_units": ["ND336-2025/D18/K6/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-012:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-013 · tier B · vai: sinh viên đi xe máy · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 69/2024/TT-BCA (Quy định về chỉ huy, điều khiển giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT69-2024-BCA/D13/K1, TT69-2024-BCA/D13/K1/a, TT69-2024-BCA/D13/K1/b, TT69-2024-BCA/D13/K1/c
+
+Điều 13. Phân công nhiệm vụ của Cảnh sát chỉ huy, điều khiển giao thông trực tiếp trên tuyến giao thông đường bộ
+1. Chỉ huy, điều khiển giao thông tại nút giao thông
+a) Đối với nút giao thông có 01 Cảnh sát chỉ huy, điều khiển giao thông
+Trường hợp trật tự, an toàn giao thông tại nút giao thông bình thường, Cảnh sát chỉ huy, điều khiển giao thông phải đứng ở vị trí thuận lợi, dễ theo dõi và quan sát để hướng dẫn người tham gia giao thông đi lại trật tự, an toàn, đúng quy định; phát hiện, xử lý các trường hợp vi phạm trật tự, an toàn giao thông, giải quyết ban đầu các vụ vi phạm pháp luật khác hoặc tai nạn giao thông và thực hiện chế độ thông tin, báo cáo theo quy định.
+Trường hợp tại nút giao thông có diễn biến phức tạp về trật tự, an toàn giao thông, Cảnh sát chỉ huy, điều khiển giao thông đứng ở vị trí trung tâm nút hoặc đứng trên bục để chỉ huy, điều khiển giao thông nếu nút giao thông có bố trí bục điều khiển giao thông;
+b) Đối với nút giao thông có từ 02 Cảnh sát chỉ huy, điều khiển giao thông trở lên
+…
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi đang lái xe máy qua ngã tư, có một cảnh sát đang đứng trên bục điều khiển. Tôi có thể đi qua ngay không, hay phải chờ anh ta cho phép?
+- Đáp: Bạn không được phép đi qua ngã tư cho đến khi cảnh sát cho phép. Khi có cảnh sát đứng trên bục điều khiển, người tham gia giao thông phải dừng lại và tuân theo chỉ dẫn của cảnh sát. (TT69-2024-BCA/D13/K1)
+- Ghi chú: Giả định xe máy là xe gắn máy
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-013", "question": "Anh tôi đang lái xe máy qua ngã tư, có một cảnh sát đang đứng trên bục điều khiển. Tôi có thể đi qua ngay không, hay phải chờ anh ta cho phép?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn không được phép đi qua ngã tư cho đến khi cảnh sát cho phép. Khi có cảnh sát đứng trên bục điều khiển, người tham gia giao thông phải dừng lại và tuân theo chỉ dẫn của cảnh sát. (TT69-2024-BCA/D13/K1)", "gold_units": ["TT69-2024-BCA/D13/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-013:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi đang di chuyển xe máy qua ngã tư, có cảnh sát chỉ huy đang đứng ở trung tâm nút giao thông. Tôi có thể tiếp tục lái xe ngay không, hay phải dừng lại cho tới khi anh ta cho phép?
+- Đáp: Bạn phải dừng lại và chờ cảnh sát cho phép khi có cảnh sát chỉ huy đứng ở trung tâm nút giao thông. Người tham gia giao thông không được tiếp tục di chuyển cho đến khi nhận được tín hiệu cho phép. (TT69-2024-BCA/D13/K1)
+- Ghi chú: Giả định xe máy là xe gắn máy
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-013", "question": "Công ty tôi đang di chuyển xe máy qua ngã tư, có cảnh sát chỉ huy đang đứng ở trung tâm nút giao thông. Tôi có thể tiếp tục lái xe ngay không, hay phải dừng lại cho tới khi anh ta cho phép?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn phải dừng lại và chờ cảnh sát cho phép khi có cảnh sát chỉ huy đứng ở trung tâm nút giao thông. Người tham gia giao thông không được tiếp tục di chuyển cho đến khi nhận được tín hiệu cho phép. (TT69-2024-BCA/D13/K1)", "gold_units": ["TT69-2024-BCA/D13/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-013:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-014 · tier B · vai: sinh viên đi xe máy · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D25/K3, ND158-2024/D25/K3/a, ND158-2024/D25/K3/b, ND158-2024/D25/K3/c, ND158-2024/D25/K3/d, ND158-2024/D25/K3/đ
+
+Điều 25. Quy định đối với vận tải hàng hóa nội bộ bằng xe ô tô
+3. Người lái xe ô tô vận tải hàng hóa nội bộ
+a) Có trách nhiệm kiểm tra các điều kiện bảo đảm an toàn của xe trước khi cho xe khởi hành; kiểm tra việc sắp xếp, chằng buộc hàng hóa xếp trên xe bảo đảm an toàn theo quy định;
+b) Khi vận chuyển hàng hóa, lái xe phải mang theo Giấy vận tải bằng văn bản giấy hoặc phải có thiết bị để truy cập vào phần mềm thể hiện nội dung của Giấy vận tải và các giấy tờ của lái xe và phương tiện theo quy định của pháp luật. Trước khi thực hiện vận chuyển hàng hóa, lái xe có trách nhiệm yêu cầu người chịu trách nhiệm xếp hàng hóa lên xe ký xác nhận việc xếp hàng vào Giấy vận tải và có trách nhiệm từ chối vận chuyển nếu việc xếp hàng không đúng quy định của pháp luật;
+c) Thực hiện quy định về thời gian lái xe liên tục, thời gian làm việc trong ngày, thời gian nghỉ theo quy định tại khoản 1 Điều 64 Luật Trật tự, an toàn giao thông đường bộ;
+d) Không được chở hàng cấm lưu hành, hàng lậu, động thực vật hoang dã; không được chở hàng hóa vượt quá khối lượng cho phép tham gia giao thông theo quy định của pháp luật;
+đ) Có trách nhiệm từ chối điều khiển phương tiện khi phát hiện phương tiện không bảo đảm các điều kiện về an toàn.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D64/K1)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D64/K1
+
+Điều 64. Thời gian làm việc của người lái xe ô tô kinh doanh vận tải và vận tải nội bộ
+1. Thời gian lái xe của người lái xe ô tô không quá 10 giờ trong một ngày và không quá 48 giờ trong một tuần; lái xe liên tục không quá 04 giờ và bảo đảm các quy định có liên quan của Bộ luật Lao động.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi đang lái xe ô tô chở hàng, có thể mang Giấy vận tải trong phần mềm hay phải in giấy?
+- Đáp: Bạn có thể mang Giấy vận tải bằng văn bản hoặc thiết bị truy cập phần mềm thể hiện nội dung Giấy vận tải và các giấy tờ của lái xe và phương tiện. Điều này được quy định trong Nghị định 158/2024/NĐ-CP.
+- Ghi chú: Giả định rằng bạn đang lái xe ô tô và có thiết bị truy cập phần mềm Giấy vận tải.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-014", "question": "Tôi đang lái xe ô tô chở hàng, có thể mang Giấy vận tải trong phần mềm hay phải in giấy?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn có thể mang Giấy vận tải bằng văn bản hoặc thiết bị truy cập phần mềm thể hiện nội dung Giấy vận tải và các giấy tờ của lái xe và phương tiện. Điều này được quy định trong Nghị định 158/2024/NĐ-CP.", "gold_units": ["ND158-2024/D25/K3/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-014:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi lái xe ô tô, có thể lái liên tục 5 giờ không?
+- Đáp: Bạn không được lái xe liên tục quá 4 giờ. Thời gian lái xe liên tục tối đa là 4 giờ, và thời gian lái xe trong một ngày không vượt quá 10 giờ, trong một tuần không vượt quá 48 giờ. Điều này được quy định trong Luật 36/2024/ND-CP.
+- Ghi chú: Giả định rằng bạn đang lái xe ô tô và muốn biết giới hạn thời gian lái xe liên tục.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-014", "question": "Tôi lái xe ô tô, có thể lái liên tục 5 giờ không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn không được lái xe liên tục quá 4 giờ. Thời gian lái xe liên tục tối đa là 4 giờ, và thời gian lái xe trong một ngày không vượt quá 10 giờ, trong một tuần không vượt quá 48 giờ. Điều này được quy định trong Luật 36/2024/ND-CP.", "gold_units": ["LUAT36-2024/D64/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-014:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-015 · tier B · vai: người lớn tuổi đi xe đạp điện · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 69/2024/TT-BCA (Quy định về chỉ huy, điều khiển giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT69-2024-BCA/D11/K1
+
+Điều 11. Xây dựng, triển khai kế hoạch công tác chỉ huy, điều khiển giao thông đường bộ
+1. Căn cứ kế hoạch của cấp trên và tình hình thực tế về trật tự, an toàn giao thông, yêu cầu về an ninh, trật tự, các đơn vị Cảnh sát giao thông xây dựng kế hoạch công tác theo thẩm quyền và địa bàn được phân công, bố trí lực lượng, phân công nhiệm vụ cụ thể cho từng Cảnh sát chỉ huy, điều khiển giao thông (theo mẫu số 03A ban hành kèm theo Thông tư này). Việc bố trí lực lượng phải phù hợp với tình hình, đặc điểm tại từng vị trí, nút giao thông. Đối với các vị trí, nút giao thông bố trí từ 02 Cảnh sát chỉ huy, điều khiển giao thông trở lên phải phân công 01 đồng chí làm Tổ trưởng, các đồng chí còn lại làm Tổ viên.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): 
+- Đáp: 
+- ⚠ gold_mac_dinh; qua_ngan (0 từ)
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-015", "question": "", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "", "gold_units": ["TT69-2024-BCA/D11/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-015:1"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-016 · tier B · vai: người lớn tuổi đi xe đạp điện · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D10/K4
+
+Điều 10. Kinh doanh vận tải hàng hóa bằng xe bốn bánh có gắn động cơ
+4. Phải có phù hiệu “XE CHỞ HÀNG” theo Mẫu số 11 Phụ lục XIII kèm theo Nghị định này và được dán cố định phía bên phải mặt trong kính trước của xe.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi muốn mua một chiếc xe tải để vận chuyển hàng, có thể dán biển 'XE CHỞ HÀNG' không?
+- Đáp: Bạn được dán biển 'XE CHỞ HÀNG' khi vận chuyển hàng bằng xe bốn bánh có động cơ. Điều kiện là xe phải có động cơ và được sử dụng cho hoạt động vận tải hàng hóa. (ND158-2024/D10/K4)
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-016", "question": "Tôi muốn mua một chiếc xe tải để vận chuyển hàng, có thể dán biển 'XE CHỞ HÀNG' không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn được dán biển 'XE CHỞ HÀNG' khi vận chuyển hàng bằng xe bốn bánh có động cơ. Điều kiện là xe phải có động cơ và được sử dụng cho hoạt động vận tải hàng hóa. (ND158-2024/D10/K4)", "gold_units": ["ND158-2024/D10/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-016:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi đang thuê một xe bốn bánh có động cơ để chở hàng, cần dán biển 'XE CHỞ HÀNG' phải không?
+- Đáp: Bạn được dán biển 'XE CHỞ HÀNG' khi vận chuyển hàng bằng xe bốn bánh có động cơ. Điều kiện là xe phải có động cơ và được sử dụng cho hoạt động vận tải hàng hóa. (ND158-2024/D10/K4)
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-016", "question": "Tôi đang thuê một xe bốn bánh có động cơ để chở hàng, cần dán biển 'XE CHỞ HÀNG' phải không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn được dán biển 'XE CHỞ HÀNG' khi vận chuyển hàng bằng xe bốn bánh có động cơ. Điều kiện là xe phải có động cơ và được sử dụng cho hoạt động vận tải hàng hóa. (ND158-2024/D10/K4)", "gold_units": ["ND158-2024/D10/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-016:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-017 · tier B · vai: người lớn tuổi đi xe đạp điện · kiểu: nhieu_dieu_kien
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 69/2024/TT-BCA (Quy định về chỉ huy, điều khiển giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT69-2024-BCA/D7/K6
+
+Điều 7. Các biểu mẫu trong công tác chỉ huy, điều khiển giao thông đường bộ
+6. Mẫu động tác báo hiệu bên phải đi nhanh hơn (mẫu số 06).
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi có thể dùng mẫu số 06 để báo hiệu bên phải đi nhanh hơn khi đi xe đạp điện không?
+- Đáp: Bạn có thể sử dụng mẫu số 06 để báo hiệu bên phải đi nhanh hơn khi điều khiển xe đạp điện. Việc này được quy định trong Thông tư số 69/2024/TT-BCA, mục 7, mục 6.
+- ⚠ chep_nguyen_van: “báo hiệu bên phải đi nhanh …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-017", "question": "Tôi có thể dùng mẫu số 06 để báo hiệu bên phải đi nhanh hơn khi đi xe đạp điện không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn có thể sử dụng mẫu số 06 để báo hiệu bên phải đi nhanh hơn khi điều khiển xe đạp điện. Việc này được quy định trong Thông tư số 69/2024/TT-BCA, mục 7, mục 6.", "gold_units": ["TT69-2024-BCA/D7/K6"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-017:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Khi tôi đi xe đạp điện, có thể áp dụng mẫu số 06 để báo hiệu bên phải đi nhanh hơn khi gặp xe ô tô không?
+- Đáp: Bạn có thể áp dụng mẫu số 06 để báo hiệu bên phải đi nhanh hơn khi gặp xe ô tô khi điều khiển xe đạp điện. Điều này được quy định trong Thông tư số 69/2024/TT-BCA, mục 7, mục 6.
+- ⚠ chep_nguyen_van: “báo hiệu bên phải đi nhanh …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-017", "question": "Khi tôi đi xe đạp điện, có thể áp dụng mẫu số 06 để báo hiệu bên phải đi nhanh hơn khi gặp xe ô tô không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn có thể áp dụng mẫu số 06 để báo hiệu bên phải đi nhanh hơn khi gặp xe ô tô khi điều khiển xe đạp điện. Điều này được quy định trong Thông tư số 69/2024/TT-BCA, mục 7, mục 6.", "gold_units": ["TT69-2024-BCA/D7/K6"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-017:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-018 · tier B · vai: sinh viên đi xe máy · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2026-07-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D21/K11
+
+Điều 21. Sử dụng tạm thời lòng đường, vỉa hè vào mục đích khác
+11. Đối với trường hợp sửa chữa, bảo trì, đầu tư xây dựng, cải tạo, nâng cấp, mở rộng tuyến đường đang khai thác, thi công xây dựng công trình hạ tầng, công trình biển quảng cáo, biển thông tin cổ động, tuyên truyền chính trị, thi công nút giao đấu nối trong phạm vi bảo vệ kết cấu hạ tầng đường bộ thì không thực hiện cấp phép tạm thời sử dụng lòng đường, vỉa hè vào mục đích khác, nhưng phải thực hiện quy định về chấp thuận, cấp giấy phép thi công xây dựng trên tuyến đường đang khai thác, cấp phép thi công đấu nối vào đường bộ đang khai thác theo quy định của Luật Đường bộ, các quy định của Nghị định này và quy định của Bộ trưởng Bộ Xây dựng.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi có được tạm thời sử dụng vỉa hè khi đang sửa chữa đường không?
+- Đáp: Bạn được phép tạm thời sử dụng vỉa hè trong quá trình sửa chữa, bảo trì, đầu tư xây dựng, cải tạo, nâng cấp, mở rộng tuyến đường đang khai thác, thi công công trình hạ tầng, biển quảng cáo, biển thông tin cổ động, tuyên truyền chính trị, thi công nút giao đấu nối trong phạm vi bảo vệ kết cấu hạ tầng đường bộ. Tuy nhiên, bạn vẫn phải thực hiện quy định về chấp thuận, cấp giấy phép thi công xây dựng trên tuyến đường đang khai thác, cấp phép thi công đấu nối vào đường bộ đang khai thác theo quy định của Luật Đường bộ, các quy định của Nghị định này và quy định của Bộ trưởng Bộ Xây dựng.
+- Ghi chú: Giả định là người đang làm công trình sửa chữa đường
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-018", "question": "Tôi có được tạm thời sử dụng vỉa hè khi đang sửa chữa đường không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn được phép tạm thời sử dụng vỉa hè trong quá trình sửa chữa, bảo trì, đầu tư xây dựng, cải tạo, nâng cấp, mở rộng tuyến đường đang khai thác, thi công công trình hạ tầng, biển quảng cáo, biển thông tin cổ động, tuyên truyền chính trị, thi công nút giao đấu nối trong phạm vi bảo vệ kết cấu hạ tầng đường bộ. Tuy nhiên, bạn vẫn phải thực hiện quy định về chấp thuận, cấp giấy phép thi công xây dựng trên tuyến đường đang khai thác, cấp phép thi công đấu nối vào đường bộ đang khai thác theo quy định của Luật Đường bộ, các quy định của Nghị định này và quy định của Bộ trưởng Bộ Xây dựng.", "gold_units": ["ND165-2024/D21/K11"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-018:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi có thể tạm thời sử dụng lòng đường để lắp đặt biển quảng cáo trong khi công trình đang thực hiện không?
+- Đáp: Bạn được phép tạm thời sử dụng lòng đường trong quá trình lắp đặt biển quảng cáo khi công trình đang thực hiện. Tuy nhiên, bạn vẫn phải thực hiện quy định về chấp thuận, cấp giấy phép thi công xây dựng trên tuyến đường đang khai thác, cấp phép thi công đấu nối vào đường bộ đang khai thác theo quy định của Luật Đường bộ, các quy định của Nghị định này và quy định của Bộ trưởng Bộ Xây dựng.
+- ⚠ chep_nguyen_van: “tạm thời sử dụng lòng đường …”
+- Ghi chú: Giả định là người đang lắp đặt biển quảng cáo
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-018", "question": "Tôi có thể tạm thời sử dụng lòng đường để lắp đặt biển quảng cáo trong khi công trình đang thực hiện không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn được phép tạm thời sử dụng lòng đường trong quá trình lắp đặt biển quảng cáo khi công trình đang thực hiện. Tuy nhiên, bạn vẫn phải thực hiện quy định về chấp thuận, cấp giấy phép thi công xây dựng trên tuyến đường đang khai thác, cấp phép thi công đấu nối vào đường bộ đang khai thác theo quy định của Luật Đường bộ, các quy định của Nghị định này và quy định của Bộ trưởng Bộ Xây dựng.", "gold_units": ["ND165-2024/D21/K11"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-018:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-019 · tier B · vai: tài xế xe tải · kiểu: neu_van_ban
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D11/K12, ND158-2024/D11/K12/a, ND158-2024/D11/K12/b, ND158-2024/D11/K12/c, ND158-2024/D11/K12/d, ND158-2024/D11/K12/đ
+
+Điều 11. Quy định về công tác bảo đảm an toàn trong hoạt động vận tải bằng xe ô tô, bằng xe bốn bánh có gắn động cơ
+12. Đơn vị kinh doanh vận tải
+a) Sử dụng xe ô tô, xe bốn bánh có gắn động cơ tham gia kinh doanh vận tải phải đáp ứng các điều kiện tham gia giao thông theo quy định tại khoản 1 và khoản 2 Điều 35, khoản 1, khoản 2 và khoản 3 Điều 40 của Luật Trật tự, an toàn giao thông đường bộ; phải có dây an toàn tại các vị trí ghế ngồi, giường nằm (trừ xe buýt nội tỉnh), có hướng dẫn cho hành khách về an toàn giao thông và thoát hiểm khi xảy ra sự cố trên xe;
+b) Không sử dụng xe ô tô khách có giường nằm hai tầng để hoạt động trên các tuyến đường cấp V và cấp VI miền núi;
+c) Sử dụng lái xe kinh doanh vận tải phải có ít nhất 02 năm kinh nghiệm điều khiển xe ô tô khách có trọng tải thiết kế trên 29 chỗ (không kể chỗ của người lái xe) để điều khiển xe ô tô khách có giường nằm hai tầng;
+d) Lập, cập nhật đầy đủ các nội dung quy định về quá trình hoạt động của xe ô tô, xe bốn bánh có gắn động cơ và lái xe thuộc đơn vị vào lý lịch phương tiện, lý lịch hành nghề lái xe;
+đ) Đơn vị kinh doanh vận tải hành khách, lái xe, nhân viên phục vụ trên xe (nếu có) khi nhận hàng hóa ký gửi xe ô tô (người gửi hàng hóa không đi theo xe) phải thực hiện theo quy định tại Điều 68 Luật Đường bộ.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D35/K1)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D35/K1
+
+Điều 35. Điều kiện phương tiện tham gia giao thông đường bộ
+1. Xe cơ giới, xe máy chuyên dùng tham gia giao thông đường bộ phải đáp ứng các điều kiện sau đây:
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D35/K2)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D35/K2
+
+Điều 35. Điều kiện phương tiện tham gia giao thông đường bộ
+2. Xe ô tô kinh doanh vận tải phải lắp thiết bị giám sát hành trình. Xe ô tô chở người từ 08 chỗ trở lên (không kể chỗ của người lái xe) kinh doanh vận tải, xe ô tô đầu kéo, xe cứu thương phải lắp thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D40/K1)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D40/K1
+
+Điều 40. Niên hạn sử dụng của xe cơ giới
+1. Niên hạn sử dụng của xe cơ giới được tính bắt đầu từ năm sản xuất xe đến hết ngày 31 tháng 12 của năm hết niên hạn sử dụng.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, có thể lắp thiết bị giám sát hành trình khi chở khách 10 chỗ không?
+- Đáp: Có, xe ô tô chở người từ 08 chỗ trở lên (không kể chỗ của người lái xe) kinh doanh vận tải phải lắp thiết bị giám sát hành trình. (Điều 35 Khoản 2 Luật 36/2024)
+- ⚠ chep_nguyen_van: “lắp thiết bị giám sát hành …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-019", "question": "Tôi là tài xế xe tải, có thể lắp thiết bị giám sát hành trình khi chở khách 10 chỗ không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Có, xe ô tô chở người từ 08 chỗ trở lên (không kể chỗ của người lái xe) kinh doanh vận tải phải lắp thiết bị giám sát hành trình. (Điều 35 Khoản 2 Luật 36/2024)", "gold_units": ["LUAT36-2024/D35/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-019:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi muốn sử dụng xe tải có giường nằm hai tầng trên tuyến cấp V miền núi, có được không?
+- Đáp: Không, xe ô tô khách có giường nằm hai tầng không được sử dụng trên các tuyến đường cấp V và cấp VI miền núi. (Điều 11 Khoản b Nghị định 158/2024/NĐ-CP)
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-019", "question": "Tôi muốn sử dụng xe tải có giường nằm hai tầng trên tuyến cấp V miền núi, có được không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Không, xe ô tô khách có giường nằm hai tầng không được sử dụng trên các tuyến đường cấp V và cấp VI miền núi. (Điều 11 Khoản b Nghị định 158/2024/NĐ-CP)", "gold_units": ["ND158-2024/D11/K12/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-019:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-020 · tier B · vai: tài xế công nghệ · kiểu: neu_van_ban
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 73/2024/TT-BCA (Quy định công tác tuần tra, kiểm soát, xử lý vi phạm pháp luật về trật tự, an toàn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT73-2024-BCA/D27/K3
+
+Điều 27. Yêu cầu, nguyên tắc huy động lực lượng khác trong Công an nhân dân
+3. Việc xử lý vi phạm hành chính khi tham gia phối hợp thực hiện tuần tra, kiểm soát trật tự, an toàn giao thông đường bộ phải theo đúng quy định của pháp luật xử lý vi phạm hành chính; Nghị định của Chính phủ quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe và pháp luật có liên quan.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, có được tham gia tuần tra, kiểm soát trật tự, an toàn giao thông đường bộ không?
+- Đáp: Bạn có thể tham gia tuần tra, kiểm soát trật tự, an toàn giao thông đường bộ, nhưng phải tuân thủ đầy đủ quy định của pháp luật xử lý vi phạm hành chính, bao gồm Nghị định của Chính phủ quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ, trừ điểm, phục hồi điểm giấy phép lái xe và các pháp luật liên quan.
+- ⚠ chep_nguyen_van: “an toàn giao thông đường bộ …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-020", "question": "Tôi là tài xế công nghệ, có được tham gia tuần tra, kiểm soát trật tự, an toàn giao thông đường bộ không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn có thể tham gia tuần tra, kiểm soát trật tự, an toàn giao thông đường bộ, nhưng phải tuân thủ đầy đủ quy định của pháp luật xử lý vi phạm hành chính, bao gồm Nghị định của Chính phủ quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ, trừ điểm, phục hồi điểm giấy phép lái xe và các pháp luật liên quan.", "gold_units": ["TT73-2024-BCA/D27/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-020:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu tôi làm công tác viên công nghệ, khi tham gia tuần tra, kiểm soát trật tự, an toàn giao thông, có phải tuân thủ quy định xử phạt vi phạm hành chính không?
+- Đáp: Bạn phải tuân thủ quy định của pháp luật xử lý vi phạm hành chính, bao gồm Nghị định của Chính phủ quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ, trừ điểm, phục hồi điểm giấy phép lái xe và các pháp luật liên quan.
+- ⚠ chep_nguyen_van: “kiểm soát trật tự an toàn …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-020", "question": "Nếu tôi làm công tác viên công nghệ, khi tham gia tuần tra, kiểm soát trật tự, an toàn giao thông, có phải tuân thủ quy định xử phạt vi phạm hành chính không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "B", "answer": "Bạn phải tuân thủ quy định của pháp luật xử lý vi phạm hành chính, bao gồm Nghị định của Chính phủ quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ, trừ điểm, phục hồi điểm giấy phép lái xe và các pháp luật liên quan.", "gold_units": ["TT73-2024-BCA/D27/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-020:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-021 · tier C · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D5/K7
+
+Điều 5. Xử lý tin báo về tai nạn giao thông đường bộ
+7. Trường hợp vụ tai nạn giao thông đường bộ có người điều khiển phương tiện bỏ chạy thì cán bộ Cảnh sát giao thông nhận tin báo phải báo cáo lãnh đạo đơn vị để triển khai các biện pháp công tác, tổ chức truy tìm người, phương tiện bỏ chạy đồng thời thông báo cho Cảnh sát giao thông các đơn vị, địa phương trên tuyến, địa bàn được giao nhiệm vụ tuần tra, kiểm soát, xử lý vi phạm tổ chức truy tìm người, phương tiện bỏ chạy.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi có con 16 tuổi, sau khi xảy ra tai nạn, anh ta bỏ chạy xe, tôi có thể làm gì?
+- Đáp: Bạn có thể báo cáo ngay cho Cảnh sát giao thông. Cảnh sát sẽ ghi nhận thông tin, thông báo lãnh đạo đơn vị và triển khai truy tìm người, phương tiện bỏ chạy. Bạn cần cung cấp thông tin về thời gian, địa điểm, loại xe và dữ liệu nhận dạng của người điều khiển.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-021", "question": "Tôi có con 16 tuổi, sau khi xảy ra tai nạn, anh ta bỏ chạy xe, tôi có thể làm gì?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Bạn có thể báo cáo ngay cho Cảnh sát giao thông. Cảnh sát sẽ ghi nhận thông tin, thông báo lãnh đạo đơn vị và triển khai truy tìm người, phương tiện bỏ chạy. Bạn cần cung cấp thông tin về thời gian, địa điểm, loại xe và dữ liệu nhận dạng của người điều khiển.", "gold_units": ["TT72-2024-BCA/D5/K7"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-021:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi thấy một xe ô tô bỏ chạy sau tai nạn, tôi có thể báo cho cảnh sát được không?
+- Đáp: Bạn có thể báo ngay cho Cảnh sát giao thông. Cảnh sát sẽ ghi nhận tin, thông báo lãnh đạo đơn vị và triển khai các biện pháp truy tìm người, phương tiện bỏ chạy. Bạn cần cung cấp thông tin chi tiết về thời gian, địa điểm, loại xe và nhận dạng của người điều khiển.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-021", "question": "Tôi thấy một xe ô tô bỏ chạy sau tai nạn, tôi có thể báo cho cảnh sát được không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Bạn có thể báo ngay cho Cảnh sát giao thông. Cảnh sát sẽ ghi nhận tin, thông báo lãnh đạo đơn vị và triển khai các biện pháp truy tìm người, phương tiện bỏ chạy. Bạn cần cung cấp thông tin chi tiết về thời gian, địa điểm, loại xe và nhận dạng của người điều khiển.", "gold_units": ["TT72-2024-BCA/D5/K7"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-021:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-022 · tier C · vai: tài xế công nghệ · kiểu: neu_van_ban
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 71/2024/TT-BCA (Quy định quản lý, vận hành, sử dụng hệ thống quản lý dữ liệu thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT71-2024-BCA/D12/K2
+
+Điều 12. Trách nhiệm của đơn vị cung cấp dịch vụ
+2. Bảo đảm tính khách quan, chính xác, kịp thời trong việc cung cấp dữ liệu, không được sửa chữa hoặc làm sai lệch dữ liệu truyền về máy chủ của Cục Cảnh sát giao thông; đảm bảo an toàn, bảo mật dữ liệu của đơn vị kinh doanh vận tải, chủ phương tiện.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, có được chỉnh sửa dữ liệu hành trình khi xe đang dừng tại trạm dừng không?
+- Đáp: Không, bạn không được chỉnh sửa hay làm sai lệch dữ liệu hành trình. Bạn phải bảo đảm tính khách quan, chính xác và kịp thời của dữ liệu mà không can thiệp vào nội dung đã được ghi nhận. (Điều 12, khoản 2 Thông tư 71/2024/TT-BCA)
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-022", "question": "Tôi là tài xế công nghệ, có được chỉnh sửa dữ liệu hành trình khi xe đang dừng tại trạm dừng không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Không, bạn không được chỉnh sửa hay làm sai lệch dữ liệu hành trình. Bạn phải bảo đảm tính khách quan, chính xác và kịp thời của dữ liệu mà không can thiệp vào nội dung đã được ghi nhận. (Điều 12, khoản 2 Thông tư 71/2024/TT-BCA)", "gold_units": ["TT71-2024-BCA/D12/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-022:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, khi xe đang di chuyển, phải làm gì để đảm bảo dữ liệu ghi nhận không bị sai lệch?
+- Đáp: Bạn phải giữ nguyên dữ liệu đã ghi nhận, không thực hiện sửa chữa hay làm sai lệch dữ liệu. Đồng thời, cần đảm bảo tính khách quan, chính xác và kịp thời trong việc cung cấp dữ liệu, cũng như bảo mật dữ liệu của đơn vị kinh doanh vận tải. (Điều 12, khoản 2 Thông tư 71/2024/TT-BCA)
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-022", "question": "Tôi là tài xế công nghệ, khi xe đang di chuyển, phải làm gì để đảm bảo dữ liệu ghi nhận không bị sai lệch?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Bạn phải giữ nguyên dữ liệu đã ghi nhận, không thực hiện sửa chữa hay làm sai lệch dữ liệu. Đồng thời, cần đảm bảo tính khách quan, chính xác và kịp thời trong việc cung cấp dữ liệu, cũng như bảo mật dữ liệu của đơn vị kinh doanh vận tải. (Điều 12, khoản 2 Thông tư 71/2024/TT-BCA)", "gold_units": ["TT71-2024-BCA/D12/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-022:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-023 · tier C · vai: người lớn tuổi đi xe đạp điện · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D11/K3
+
+Điều 11. Ghi lời khai của người điều khiển phương tiện tham gia giao thông đường bộ, người bị nạn, người chứng kiến và những người có liên quan khác trong vụ tai nạn giao thông đường bộ
+3. Ghi lời khai của những người bị nạn và người có liên quan khác trong vụ tai nạn giao thông đường bộ: nội dung lời khai phải làm rõ về diễn biến, nguyên nhân vụ tai nạn giao thông đường bộ, thiệt hại về người và tài sản do vụ tai nạn giao thông đường bộ gây ra; trường hợp có người bị thương nặng hoặc có thể bị tử vong phải ghi lời khai ngay hoặc sử dụng camera nghiệp vụ được trang cấp để ghi nhận lời khai; cần đặt câu hỏi ngắn gọn, rõ ràng. Nếu người bị nạn do bị thương nặng không thể nói được phải lập biên bản, có người chứng kiến.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi bị thương nặng sau tai nạn, có thể ghi lời khai ngay không?
+- Đáp: Bạn có thể ghi lời khai ngay khi bị thương nặng, hoặc sử dụng camera nghiệp vụ được trang bị để ghi nhận lời khai. Nếu không thể nói được, cần lập biên bản và có người chứng kiến.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-023", "question": "Tôi bị thương nặng sau tai nạn, có thể ghi lời khai ngay không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Bạn có thể ghi lời khai ngay khi bị thương nặng, hoặc sử dụng camera nghiệp vụ được trang bị để ghi nhận lời khai. Nếu không thể nói được, cần lập biên bản và có người chứng kiến.", "gold_units": ["TT72-2024-BCA/D11/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-023:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu tôi không thể nói được vì thương nặng, cần làm gì khi tai nạn xảy ra?
+- Đáp: Bạn phải lập biên bản và có người chứng kiến, hoặc sử dụng camera nghiệp vụ để ghi nhận lời khai. Ghi lời khai ngay hoặc sử dụng camera được trang bị.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-023", "question": "Nếu tôi không thể nói được vì thương nặng, cần làm gì khi tai nạn xảy ra?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Bạn phải lập biên bản và có người chứng kiến, hoặc sử dụng camera nghiệp vụ để ghi nhận lời khai. Ghi lời khai ngay hoặc sử dụng camera được trang bị.", "gold_units": ["TT72-2024-BCA/D11/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-023:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-024 · tier C · vai: tài xế công nghệ · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D23/K2, TT72-2024-BCA/D23/K2/a, TT72-2024-BCA/D23/K2/b
+
+Điều 23. Trường hợp tai nạn giao thông đường bộ liên quan đến người và phương tiện giao thông đường bộ của nước ngoài
+2. Cơ quan Công an khi tiến hành các hoạt động điều tra, xác minh, giải quyết ban đầu vụ tai nạn giao thông đường bộ theo quy định của pháp luật, của Thông tư này phải xác định nhân thân của người nước ngoài, quy chế pháp lý của phương tiện gây tai nạn, người bị nạn và tổn thương sức khỏe, thiệt hại tài sản kèm theo các vấn đề khác có liên quan. Cơ quan Công an có quyền yêu cầu người gây tai nạn phải xuất trình các giấy tờ tùy thân cần thiết và yêu cầu họ ký vào các biên bản điều tra, xác minh tại hiện trường, trường hợp họ không ký thì ghi vào biên bản và có người chứng kiến; đồng thời tiếp tục tiến hành các biện pháp điều tra, xác minh, giải quyết vụ tai nạn giao thông đường bộ như sau:
+a) Người có thân phận ngoại giao được quy định tại Pháp lệnh về quyền ưu đãi, miễn trừ dành cho cơ quan đại diện ngoại giao, cơ quan lãnh sự và cơ quan đại diện của tổ chức quốc tế tại Việt Nam thì việc tiếp nhận lời khai của họ với tư cách là người chứng kiến chỉ được tiến hành với sự đồng ý rõ ràng của người đó. Nếu những yêu cầu nói trên bị từ chối thì cũng phải ghi rõ vào biên bản;
+…
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Có được từ chối ký biên bản khi bị yêu cầu không?
+- Đáp: Không, người gây tai nạn phải ký vào biên bản điều tra. Nếu không ký, cơ quan công an sẽ ghi lại tình trạng và có người chứng kiến. (Điều 23, Thông tư 72/2024/TT-BCA)
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-024", "question": "Có được từ chối ký biên bản khi bị yêu cầu không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Không, người gây tai nạn phải ký vào biên bản điều tra. Nếu không ký, cơ quan công an sẽ ghi lại tình trạng và có người chứng kiến. (Điều 23, Thông tư 72/2024/TT-BCA)", "gold_units": ["TT72-2024-BCA/D23/K2/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-024:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Có được tiếp nhận lời khai của người ngoại giao mà không đồng ý không?
+- Đáp: Không, việc tiếp nhận lời khai của người ngoại giao chỉ được thực hiện khi họ đồng ý rõ ràng. Nếu từ chối, cơ quan công an phải ghi rõ vào biên bản. (Điều 23, Thông tư 72/2024/TT-BCA)
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-024", "question": "Có được tiếp nhận lời khai của người ngoại giao mà không đồng ý không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Không, việc tiếp nhận lời khai của người ngoại giao chỉ được thực hiện khi họ đồng ý rõ ràng. Nếu từ chối, cơ quan công an phải ghi rõ vào biên bản. (Điều 23, Thông tư 72/2024/TT-BCA)", "gold_units": ["TT72-2024-BCA/D23/K2/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-024:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-025 · tier C · vai: sinh viên đi xe máy · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 83/2024/TT-BCA (Quy định về xây dựng, quản lý, vận hành, khai thác và sử dụng hệ thống giám sát bảo đảm an ninh, trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT83-2024-BCA/D8/K1
+
+Điều 8. Bảo trì, bảo dưỡng hệ thống giám sát giao thông
+1. Đơn vị quản lý, vận hành hệ thống giám sát giao thông thực hiện bảo trì, bảo dưỡng hệ thống giám sát giao thông. Trường hợp đơn vị quản lý, vận hành hệ thống giám sát giao thông không đủ khả năng thực hiện bảo trì, bảo dưỡng thì lựa chọn đơn vị, tổ chức khác thực hiện và phải giám sát chặt chẽ quá trình bảo trì, bảo dưỡng, bảo đảm bí mật thông tin về hệ thống.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Có được thay thế camera giám sát khi đang ghi hình không?
+- Đáp: Không được thay thế camera giám sát khi đang ghi hình. Việc bảo trì, bảo dưỡng phải được thực hiện bởi đơn vị quản lý, vận hành hệ thống giám sát hoặc đơn vị, tổ chức được lựa chọn, và phải được giám sát chặt chẽ để bảo đảm bí mật thông tin.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-025", "question": "Có được thay thế camera giám sát khi đang ghi hình không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Không được thay thế camera giám sát khi đang ghi hình. Việc bảo trì, bảo dưỡng phải được thực hiện bởi đơn vị quản lý, vận hành hệ thống giám sát hoặc đơn vị, tổ chức được lựa chọn, và phải được giám sát chặt chẽ để bảo đảm bí mật thông tin.", "gold_units": ["TT83-2024-BCA/D8/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-025:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Phải làm gì khi phát hiện camera giám sát bị hỏng?
+- Đáp: Khi phát hiện camera giám sát bị hỏng, người dùng phải ngay lập tức báo cáo cho đơn vị quản lý, vận hành hệ thống giám sát. Đơn vị đó sẽ thực hiện bảo trì, bảo dưỡng hoặc giao cho đơn vị, tổ chức khác thực hiện, đồng thời giám sát chặt chẽ quá trình bảo trì để bảo đảm bí mật thông tin.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-025", "question": "Phải làm gì khi phát hiện camera giám sát bị hỏng?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Khi phát hiện camera giám sát bị hỏng, người dùng phải ngay lập tức báo cáo cho đơn vị quản lý, vận hành hệ thống giám sát. Đơn vị đó sẽ thực hiện bảo trì, bảo dưỡng hoặc giao cho đơn vị, tổ chức khác thực hiện, đồng thời giám sát chặt chẽ quá trình bảo trì để bảo đảm bí mật thông tin.", "gold_units": ["TT83-2024-BCA/D8/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-025:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-026 · tier C · vai: cán bộ phường · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D12/K1
+
+Điều 12. Ghi nhận dấu vết trên thân thể của người bị nạn trong vụ tai nạn giao thông đường bộ
+1. Việc ghi nhận dấu vết trên thân thể người bị nạn phải được nạn nhân đồng ý và ghi nhận tỉ mỉ; mô tả cụ thể, chi tiết trong Biên bản ghi nhận dấu vết trên thân thể người bị nạn theo Mẫu số 11/TNĐB ban hành kèm theo Thông tư này. Đánh dấu vị trí thương tích vào Sơ đồ vị trí dấu vết thương tích trên thân thể người bị nạn theo Mẫu số 12/TNĐB ban hành kèm theo Thông tư này, đặt thước tỉ lệ, chụp ảnh và lập bản ảnh dấu vết thương tích. Việc ghi nhận dấu vết trên thân thể phải do người cùng giới tiến hành và phải có người cùng giới chứng kiến. Trường hợp cần thiết thì có thể mời bác sĩ hoặc nhân viên cơ sở khám bệnh, chữa bệnh (nếu có) tham gia.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Cán bộ phường, anh tôi muốn ghi nhận dấu vết thương tích trên thân người bị nạn trong vụ tai nạn, có được làm mà không cần đồng ý của nạn nhân không?
+- Đáp: Không được. Việc ghi nhận dấu vết trên thân người bị nạn phải được nạn nhân đồng ý.
+- ⚠ chep_nguyen_van: “bị nạn trong vụ tai nạn …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-026", "question": "Cán bộ phường, anh tôi muốn ghi nhận dấu vết thương tích trên thân người bị nạn trong vụ tai nạn, có được làm mà không cần đồng ý của nạn nhân không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Không được. Việc ghi nhận dấu vết trên thân người bị nạn phải được nạn nhân đồng ý.", "gold_units": ["TT72-2024-BCA/D12/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-026:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Cán bộ phường, công ty tôi muốn ghi nhận dấu vết trên thân người bị nạn, có được một người cùng giới thực hiện mà không cần người cùng giới chứng kiến không?
+- Đáp: Không được. Việc ghi nhận phải do người cùng giới thực hiện và phải có người cùng giới chứng kiến.
+- ⚠ chep_nguyen_van: “ghi nhận dấu vết trên thân …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-026", "question": "Cán bộ phường, công ty tôi muốn ghi nhận dấu vết trên thân người bị nạn, có được một người cùng giới thực hiện mà không cần người cùng giới chứng kiến không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Không được. Việc ghi nhận phải do người cùng giới thực hiện và phải có người cùng giới chứng kiến.", "gold_units": ["TT72-2024-BCA/D12/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-026:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-027 · tier C · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D16/K3
+
+Điều 16. Xem xét kết quả điều tra, xác minh vụ tai nạn giao thông đường bộ
+3. Trường hợp phát hiện cá nhân, tổ chức có hành vi cố ý xâm phạm đến tính mạng, sức khỏe, tài sản của người khác hoặc cố ý gây ra vụ tai nạn giao thông đường bộ để che giấu hành vi phạm tội khác thì cán bộ Cảnh sát giao thông phải báo cáo lãnh đạo có thẩm quyền ra Quyết định chuyển hồ sơ, tang vật, phương tiện cho Cơ quan điều tra có thẩm quyền tiến hành tố tụng hình sự để truy cứu trách nhiệm hình sự theo Điều 62 Luật Xử lý vi phạm hành chính năm 2012 (sửa đổi, bổ sung năm 2020).
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Con tôi bị thương trong tai nạn xe hơi, người lái cố ý che giấu vụ việc bằng cách xếp tài sản. Tôi là phụ huynh, có phải báo cáo cảnh sát ngay không?
+- Đáp: Bạn phải báo cáo cảnh sát ngay. Theo Thông tư 72/2024/TT-BCA, khi phát hiện hành vi cố ý xâm phạm hoặc cố ý gây tai nạn để che giấu, cán bộ Cảnh sát phải báo cáo lãnh đạo và chuyển hồ sơ cho cơ quan điều tra.
+- Ghi chú: Cố ý xâm phạm và cố ý gây tai nạn để che giấu là hành vi được quy định trong Điều 16.3.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-027", "question": "Con tôi bị thương trong tai nạn xe hơi, người lái cố ý che giấu vụ việc bằng cách xếp tài sản. Tôi là phụ huynh, có phải báo cáo cảnh sát ngay không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Bạn phải báo cáo cảnh sát ngay. Theo Thông tư 72/2024/TT-BCA, khi phát hiện hành vi cố ý xâm phạm hoặc cố ý gây tai nạn để che giấu, cán bộ Cảnh sát phải báo cáo lãnh đạo và chuyển hồ sơ cho cơ quan điều tra.", "gold_units": ["TT72-2024-BCA/D16/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-027:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Con tôi đang học lái xe, anh tôi đã gây tai nạn và cố ý che giấu bằng cách xếp tài sản. Tôi muốn biết liệu có phải chuyển hồ sơ cho cơ quan điều tra không?
+- Đáp: Bạn phải chuyển hồ sơ cho cơ quan điều tra. Theo Thông tư 72/2024/TT-BCA, khi phát hiện hành vi cố ý xâm phạm hoặc cố ý gây tai nạn để che giấu, cán bộ Cảnh sát phải báo cáo lãnh đạo và chuyển hồ sơ cho cơ quan điều tra.
+- Ghi chú: Cố ý xâm phạm và cố ý gây tai nạn để che giấu là hành vi được quy định trong Điều 16.3.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-027", "question": "Con tôi đang học lái xe, anh tôi đã gây tai nạn và cố ý che giấu bằng cách xếp tài sản. Tôi muốn biết liệu có phải chuyển hồ sơ cho cơ quan điều tra không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Bạn phải chuyển hồ sơ cho cơ quan điều tra. Theo Thông tư 72/2024/TT-BCA, khi phát hiện hành vi cố ý xâm phạm hoặc cố ý gây tai nạn để che giấu, cán bộ Cảnh sát phải báo cáo lãnh đạo và chuyển hồ sơ cho cơ quan điều tra.", "gold_units": ["TT72-2024-BCA/D16/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-027:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-028 · tier C · vai: chủ doanh nghiệp vận tải · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D17/K1
+
+Điều 17. Thời hạn điều tra, xác minh, giải quyết vụ tai nạn giao thông đường bộ
+1. Vụ tai nạn giao thông đường bộ không có dấu hiệu tội phạm thì thời hạn điều tra, xác minh, giải quyết như sau: Nhận được tin báo về vụ tai nạn giao thông đường bộ thì Cảnh sát giao thông phải tiến hành điều tra, xác minh, giải quyết trong thời hạn không quá 07 ngày làm việc; trường hợp vụ tai nạn giao thông đường bộ có nhiều tình tiết phức tạp cần xác minh thêm hoặc phải thông qua giám định chuyên môn thì có thể được kéo dài nhưng không quá 01 tháng kể từ ngày nhận được tin báo về vụ tai nạn giao thông đường bộ; trường hợp cần phải có thêm thời gian để xác minh, thu thập tài liệu, chứng cứ thì tiếp tục được kéo dài, thời hạn kéo dài không quá 02 tháng kể từ ngày nhận được tin báo về vụ tai nạn giao thông đường bộ. Việc kéo dài phải được báo cáo bằng văn bản với người có thẩm quyền theo biễu Mẫu 10/TNĐB ban hành kèm theo Thông tư này.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Công ty tôi có một vụ tai nạn giao thông, có thể kéo dài thời hạn điều tra hơn 7 ngày làm việc không?
+- Đáp: Có thể kéo dài thời hạn điều tra, xác minh, giải quyết vụ tai nạn giao thông đường bộ. Khi vụ tai nạn không có dấu hiệu tội phạm, thời hạn ban đầu là 07 ngày làm việc. Nếu vụ tai nạn có nhiều tình tiết phức tạp cần xác minh thêm hoặc phải thông qua giám định chuyên môn, thời hạn có thể kéo dài nhưng không quá 01 tháng kể từ ngày nhận được tin báo. Nếu cần thêm thời gian để xác minh, thu thập tài liệu, chứng cứ, thời hạn có thể kéo dài thêm nhưng không quá 02 tháng kể từ ngày nhận được tin báo.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-028", "question": "Công ty tôi có một vụ tai nạn giao thông, có thể kéo dài thời hạn điều tra hơn 7 ngày làm việc không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Có thể kéo dài thời hạn điều tra, xác minh, giải quyết vụ tai nạn giao thông đường bộ. Khi vụ tai nạn không có dấu hiệu tội phạm, thời hạn ban đầu là 07 ngày làm việc. Nếu vụ tai nạn có nhiều tình tiết phức tạp cần xác minh thêm hoặc phải thông qua giám định chuyên môn, thời hạn có thể kéo dài nhưng không quá 01 tháng kể từ ngày nhận được tin báo. Nếu cần thêm thời gian để xác minh, thu thập tài liệu, chứng cứ, thời hạn có thể kéo dài thêm nhưng không quá 02 tháng kể từ ngày nhận được tin báo.", "gold_units": ["TT72-2024-BCA/D17/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-028:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu vụ tai nạn giao thông của công ty tôi có nhiều tình tiết phức tạp, thời hạn điều tra có thể kéo dài đến bao lâu?
+- Đáp: Thời hạn điều tra, xác minh, giải quyết vụ tai nạn giao thông đường bộ có thể kéo dài nhưng không quá 01 tháng kể từ ngày nhận được tin báo. Nếu cần thêm thời gian để xác minh, thu thập tài liệu, chứng cứ, thời hạn có thể kéo dài thêm nhưng không quá 02 tháng kể từ ngày nhận được tin báo.
+- ⚠ chep_nguyen_van: “có nhiều tình tiết phức tạp …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-028", "question": "Nếu vụ tai nạn giao thông của công ty tôi có nhiều tình tiết phức tạp, thời hạn điều tra có thể kéo dài đến bao lâu?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Thời hạn điều tra, xác minh, giải quyết vụ tai nạn giao thông đường bộ có thể kéo dài nhưng không quá 01 tháng kể từ ngày nhận được tin báo. Nếu cần thêm thời gian để xác minh, thu thập tài liệu, chứng cứ, thời hạn có thể kéo dài thêm nhưng không quá 02 tháng kể từ ngày nhận được tin báo.", "gold_units": ["TT72-2024-BCA/D17/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-028:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-029 · tier C · vai: phụ huynh có con dưới 18 tuổi · kiểu: neu_van_ban
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 71/2024/TT-BCA (Quy định quản lý, vận hành, sử dụng hệ thống quản lý dữ liệu thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT71-2024-BCA/D3/K4
+
+Điều 3. Giải thích từ ngữ
+4. Đơn vị cung cấp dịch vụ liên quan đến giám sát hành trình, ghi nhận hình ảnh người lái xe (sau đây gọi chung là đơn vị cung cấp dịch vụ) là đơn vị tổ chức thực hiện việc cung cấp dịch vụ quản lý, tổng hợp, phân tích và lưu trữ dữ liệu truyền về từ thiết bị giám sát hành trình, thiết bị ghi nhận hình ảnh người lái xe theo hợp đồng với đơn vị kinh doanh vận tải bằng xe ô tô hoặc các chủ phương tiện theo quy định phải lắp thiết bị giám sát hành trình, thiết bị ghi nhận hình ảnh người lái xe.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Có được yêu cầu đơn vị cung cấp dịch vụ ghi hình khi con tôi lái xe ô tô không?
+- Đáp: Bạn có thể yêu cầu đơn vị cung cấp dịch vụ ghi hình khi con bạn lái xe ô tô, vì theo quy định, đơn vị cung cấp dịch vụ được phép quản lý, tổng hợp và lưu trữ dữ liệu từ thiết bị ghi hình người lái xe. (Điều 4 Thông tư 71/2024/TT-BCA)
+- ⚠ chep_nguyen_van: “đơn vị cung cấp dịch vụ …”
+- Ghi chú: Giả định con lái xe ô tô, không phải xe máy
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-029", "question": "Có được yêu cầu đơn vị cung cấp dịch vụ ghi hình khi con tôi lái xe ô tô không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Bạn có thể yêu cầu đơn vị cung cấp dịch vụ ghi hình khi con bạn lái xe ô tô, vì theo quy định, đơn vị cung cấp dịch vụ được phép quản lý, tổng hợp và lưu trữ dữ liệu từ thiết bị ghi hình người lái xe. (Điều 4 Thông tư 71/2024/TT-BCA)", "gold_units": ["TT71-2024-BCA/D3/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-029:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu công ty tôi thuê xe ô tô cho nhân viên, có được yêu cầu đơn vị cung cấp dịch vụ ghi hình khi nhân viên lái xe không?
+- Đáp: Bạn có thể yêu cầu đơn vị cung cấp dịch vụ ghi hình khi nhân viên lái xe ô tô, vì quy định cho phép đơn vị cung cấp dịch vụ quản lý dữ liệu từ thiết bị ghi hình người lái xe. (Điều 4 Thông tư 71/2024/TT-BCA)
+- ⚠ chep_nguyen_van: “đơn vị cung cấp dịch vụ …”
+- Ghi chú: Giả định xe ô tô, không phải xe máy
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-029", "question": "Nếu công ty tôi thuê xe ô tô cho nhân viên, có được yêu cầu đơn vị cung cấp dịch vụ ghi hình khi nhân viên lái xe không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Bạn có thể yêu cầu đơn vị cung cấp dịch vụ ghi hình khi nhân viên lái xe ô tô, vì quy định cho phép đơn vị cung cấp dịch vụ quản lý dữ liệu từ thiết bị ghi hình người lái xe. (Điều 4 Thông tư 71/2024/TT-BCA)", "gold_units": ["TT71-2024-BCA/D3/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-029:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-030 · tier C · vai: tài xế xe tải · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D19/K1, TT72-2024-BCA/D19/K1/a, TT72-2024-BCA/D19/K1/b
+
+Điều 19. Thống kê tai nạn giao thông đường bộ
+1. Cán bộ cảnh sát giao thông được giao nhiệm vụ điều tra, giải quyết tai nạn giao thông đường bộ hoặc quản lý, khai thác sử dụng Cơ sở dữ liệu về tai nạn giao thông có trách nhiệm:
+a) Trong vòng 12 giờ kể từ khi tiếp nhận tin báo vụ tai nạn giao thông đường bộ xảy ra trên tuyến, địa bàn được giao nhiệm vụ tuần tra, kiểm soát, xử lý vi phạm, cán bộ Cảnh sát giao thông phải cập nhật ngay những thông tin ban đầu về vụ tai nạn giao thông đường bộ vào Phần mềm Tổng hợp, đồng bộ dữ liệu và xử lý tai nạn giao thông hoặc Cơ sở dữ liệu về tai nạn giao thông gồm: thời gian, địa điểm xảy ra tai nạn, số người chết, số người bị thương;
+b) Thực hiện theo theo quy định tại khoản 1 Điều 30 Thông tư số 26/2024/TT-BCA ngày 21 tháng 6 năm 2024 của Bộ trưởng Bộ Công an quy định thống kê, tổng hợp, xây dựng, quản lý, khai khác, sử dụng Cơ sở dữ liệu về tai nạn giao thông đường bộ, tai nạn giao thông đường sắt, tai nạn giao thông đường thủy nội địa.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, vừa nhận tin báo tai nạn trên tuyến mình đang tuần tra. Tôi có thể cập nhật thông tin ngay vào phần mềm tổng hợp trong vòng 12 giờ kể từ khi nhận tin không?
+- Đáp: Có, bạn được phép cập nhật ngay thông tin ban đầu về vụ tai nạn vào phần mềm tổng hợp trong vòng 12 giờ kể từ khi tiếp nhận tin báo. Điều kiện là bạn phải là cán bộ cảnh sát giao thông được giao nhiệm vụ tuần tra, kiểm soát, xử lý vi phạm trên tuyến đó.
+- ⚠ chep_nguyen_van: “trong vòng 12 giờ kể từ …”
+- Ghi chú: giả định là bạn là cán bộ cảnh sát giao thông
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-030", "question": "Tôi là tài xế xe tải, vừa nhận tin báo tai nạn trên tuyến mình đang tuần tra. Tôi có thể cập nhật thông tin ngay vào phần mềm tổng hợp trong vòng 12 giờ kể từ khi nhận tin không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Có, bạn được phép cập nhật ngay thông tin ban đầu về vụ tai nạn vào phần mềm tổng hợp trong vòng 12 giờ kể từ khi tiếp nhận tin báo. Điều kiện là bạn phải là cán bộ cảnh sát giao thông được giao nhiệm vụ tuần tra, kiểm soát, xử lý vi phạm trên tuyến đó.", "gold_units": ["TT72-2024-BCA/D19/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-030:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, khi được cảnh sát giao thông yêu cầu cập nhật dữ liệu tai nạn, tôi có thể bỏ qua việc ghi số người chết và số người bị thương không?
+- Đáp: Không, bạn phải ghi đầy đủ thời gian, địa điểm, số người chết và số người bị thương khi cập nhật dữ liệu tai nạn vào phần mềm tổng hợp. Việc bỏ qua sẽ vi phạm quy định.
+- Ghi chú: giả định là bạn là cán bộ cảnh sát giao thông
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-030", "question": "Tôi là tài xế xe tải, khi được cảnh sát giao thông yêu cầu cập nhật dữ liệu tai nạn, tôi có thể bỏ qua việc ghi số người chết và số người bị thương không?", "as_of": "2026-11-03", "question_type": "hanh_vi_cam_nghia_vu", "tier": "C", "answer": "Không, bạn phải ghi đầy đủ thời gian, địa điểm, số người chết và số người bị thương khi cập nhật dữ liệu tai nạn vào phần mềm tổng hợp. Việc bỏ qua sẽ vi phạm quy định.", "gold_units": ["TT72-2024-BCA/D19/K1/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-030:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-031 · tier historical · vai: tài xế công nghệ · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D8/K3, TT35-2024-BGTVT/D8/K3/a, TT35-2024-BGTVT/D8/K3/b
+
+Điều 8. Đào tạo nâng hạng giấy phép lái xe
+3. Báo cáo đăng ký sát hạch Cơ sở đào tạo lái xe tiếp nhận hồ sơ của người học lái xe đảm bảo đủ điều kiện và thành phần hồ sơ theo quy định tại Điều 14, Điều 15 Thông tư này; lập báo cáo đăng ký sát hạch (báo cáo 1) gửi Sở Giao thông vận tải bằng một trong các hình thức: trực tiếp, dịch vụ bưu chính, trên môi trường điện tử đồng thời truyền dữ liệu qua hệ thống thông tin giấy phép lái xe:
+a) Đào tạo lái xe các hạng BE, C1E, C, CE, D1, D1E, D2, D2E, D, DE: cơ sở đào tạo lái xe lập báo cáo đăng ký sát hạch lái xe, danh sách học viên (báo cáo 1), danh sách đề nghị xác minh giấy phép lái xe đã cấp đối với trường hợp nâng hạng giấy phép lái xe, kế hoạch đào tạo theo quy định tại Mẫu số 01, Mẫu số 02, Mẫu số 03 và Mẫu số 04 Phụ lục IV ban hành kèm theo Thông tư này gửi Sở Giao thông vận tải; báo cáo phải có dấu giáp lai của cơ sở đào tạo lái xe;
+b) Báo cáo 1 các hạng BE, C1E, C, CE, D1, D1E, D2, D2E, D, DE không quá 07 ngày làm việc sau khai giảng; Thủ trưởng đơn vị được Sở Giao thông vận tải giao nhiệm vụ quản lý sát hạch, cấp giấy phép lái xe kiểm tra, ký tên vào từng trang (bao gồm tất cả các trang của báo cáo 1).
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D14)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D14
+
+Điều 14. Yêu cầu đối với người học lái xe
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D15)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D15
+
+Điều 15. Hồ sơ của người học lái xe
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi vừa hoàn thành khóa đào tạo nâng hạng BE, có thể đăng ký sát hạch ngay không?
+- Đáp: Bạn có thể nộp hồ sơ sát hạch ngay sau khi hoàn thành khóa học, nhưng phải gửi báo cáo đăng ký sát hạch (báo cáo 1) trong vòng 7 ngày làm việc kể từ ngày khai giảng. Báo cáo phải bao gồm danh sách học viên, danh sách đề nghị xác minh giấy phép đã cấp và kế hoạch đào tạo, đồng thời được ký tên của thủ trưởng đơn vị. Nếu không nộp trong thời hạn này, hồ sơ sẽ bị từ chối.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-031", "question": "Tôi vừa hoàn thành khóa đào tạo nâng hạng BE, có thể đăng ký sát hạch ngay không?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Bạn có thể nộp hồ sơ sát hạch ngay sau khi hoàn thành khóa học, nhưng phải gửi báo cáo đăng ký sát hạch (báo cáo 1) trong vòng 7 ngày làm việc kể từ ngày khai giảng. Báo cáo phải bao gồm danh sách học viên, danh sách đề nghị xác minh giấy phép đã cấp và kế hoạch đào tạo, đồng thời được ký tên của thủ trưởng đơn vị. Nếu không nộp trong thời hạn này, hồ sơ sẽ bị từ chối.", "gold_units": ["TT35-2024-BGTVT/D8/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-031:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Tôi đã học lớp nâng hạng D1, có thể nộp hồ sơ sát hạch ngay hôm nay không?
+- Đáp: Bạn có thể nộp hồ sơ sát hạch ngay sau khi hoàn thành khóa học, nhưng phải gửi báo cáo đăng ký sát hạch (báo cáo 1) trong vòng 7 ngày làm việc kể từ ngày khai giảng. Báo cáo phải bao gồm danh sách học viên, danh sách đề nghị xác minh giấy phép đã cấp và kế hoạch đào tạo, đồng thời được ký tên của thủ trưởng đơn vị. Nếu không nộp trong thời hạn này, hồ sơ sẽ bị từ chối.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-031", "question": "Tôi đã học lớp nâng hạng D1, có thể nộp hồ sơ sát hạch ngay hôm nay không?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Bạn có thể nộp hồ sơ sát hạch ngay sau khi hoàn thành khóa học, nhưng phải gửi báo cáo đăng ký sát hạch (báo cáo 1) trong vòng 7 ngày làm việc kể từ ngày khai giảng. Báo cáo phải bao gồm danh sách học viên, danh sách đề nghị xác minh giấy phép đã cấp và kế hoạch đào tạo, đồng thời được ký tên của thủ trưởng đơn vị. Nếu không nộp trong thời hạn này, hồ sơ sẽ bị từ chối.", "gold_units": ["TT35-2024-BGTVT/D8/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-031:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-032 · tier historical · vai: người lớn tuổi đi xe đạp điện · kiểu: nhieu_dieu_kien
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D24/K5
+
+Điều 24. Giám sát kỳ sát hạch
+5. Nhiệm vụ của Tổ giám sát khi giám sát sát hạch lái xe tại sân tập lái dùng để sát hạch lái xe quy định tại khoản 2 Điều 18 Thông tư này Ngoài nhiệm vụ quy định tại các điểm a, b, d khoản 4 Điều này, còn phải giám sát việc chuẩn bị bộ đề sát hạch lý thuyết đúng quy định, không bị đánh dấu.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D18/K2)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D18/K2
+
+Điều 18. Tiêu chuẩn kỹ thuật sân tập lái dùng để sát hạch lái xe
+2. Đối với sân tập lái dùng để sát hạch lái xe tổ chức sát hạch lý thuyết bằng phương pháp trắc nghiệm trên giấy Sân tập lái dùng để sát hạch lái xe mô tô phải đáp ứng các yêu cầu kỹ thuật theo quy định của Quy chuẩn kỹ thuật quốc gia về trung tâm sát hạch lái xe cơ giới đường bộ, gồm: hình của các bài sát hạch, xe sát hạch, phòng chờ sát hạch, phòng sát hạch lý thuyết.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D24/K4/a)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D24/K4/a
+
+Điều 24. Giám sát kỳ sát hạch
+4. Nhiệm vụ của Tổ giám sát khi giám sát sát hạch lái xe
+a) Giám sát việc thực hiện đúng nội dung, quy trình sát hạch của Hội đồng sát hạch, Tổ sát hạch; bảo đảm tính công khai, khách quan, minh bạch trong quá trình sát hạch;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D24/K4/b)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D24/K4/b
+
+Điều 24. Giám sát kỳ sát hạch
+4. Nhiệm vụ của Tổ giám sát khi giám sát sát hạch lái xe
+b) Giám sát việc kiểm tra nhận dạng thí sinh trước khi vào phòng sát hạch lý thuyết, sát hạch thực hành lái xe trong hình, trên đường; người không có nhiệm vụ không được vào phòng sát hạch lý thuyết;
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi là người lớn tuổi, muốn tham gia sát hạch lý thuyết tại sân tập lái xe, có được vào phòng sát hạch nếu chưa được kiểm tra nhận dạng?
+- Đáp: Không, bạn không được vào phòng sát hạch lý thuyết nếu chưa được kiểm tra nhận dạng. Theo quy định, người không có nhiệm vụ không được vào phòng sát hạch lý thuyết.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-032", "question": "Tôi là người lớn tuổi, muốn tham gia sát hạch lý thuyết tại sân tập lái xe, có được vào phòng sát hạch nếu chưa được kiểm tra nhận dạng?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Không, bạn không được vào phòng sát hạch lý thuyết nếu chưa được kiểm tra nhận dạng. Theo quy định, người không có nhiệm vụ không được vào phòng sát hạch lý thuyết.", "gold_units": ["TT35-2024-BGTVT/D24/K4/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-032:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Tôi là người lớn tuổi, muốn tham gia sát hạch lý thuyết tại sân tập lái xe, có được sử dụng xe mô tô trong phòng sát hạch lý thuyết nếu chưa được kiểm tra nhận dạng?
+- Đáp: Không, bạn không được sử dụng xe mô tô trong phòng sát hạch lý thuyết nếu chưa được kiểm tra nhận dạng. Người không có nhiệm vụ không được vào phòng sát hạch lý thuyết.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-032", "question": "Tôi là người lớn tuổi, muốn tham gia sát hạch lý thuyết tại sân tập lái xe, có được sử dụng xe mô tô trong phòng sát hạch lý thuyết nếu chưa được kiểm tra nhận dạng?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Không, bạn không được sử dụng xe mô tô trong phòng sát hạch lý thuyết nếu chưa được kiểm tra nhận dạng. Người không có nhiệm vụ không được vào phòng sát hạch lý thuyết.", "gold_units": ["TT35-2024-BGTVT/D24/K4/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-032:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-033 · tier historical · vai: phụ huynh có con dưới 18 tuổi · kiểu: nhieu_dieu_kien
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D25/K2, TT35-2024-BGTVT/D25/K2/a, TT35-2024-BGTVT/D25/K2/b, TT35-2024-BGTVT/D25/K2/c, TT35-2024-BGTVT/D25/K2/d, TT35-2024-BGTVT/D25/K2/đ
+
+Điều 25. Công nhận kết quả sát hạch
+2. Xét công nhận kết quả sát hạch đối với thí sinh tham dự sát hạch lái xe hạng B, C1, C, D1, D2, D, BE, C1E, CE, D1E, D2E, DE:
+a) Thí sinh đạt nội dung sát hạch lý thuyết, sát hạch mô phỏng các tình huống giao thông, sát hạch thực hành lái xe trong hình và sát hạch trên đường thì được công nhận trúng tuyển;
+b) Thí sinh không được công nhận trúng tuyển được đăng ký sát hạch lại kể từ kỳ sát hạch tiếp theo, với cùng một cơ quan sát hạch;
+c) Thí sinh không đạt nội dung sát hạch lý thuyết thì được tiếp tục sát hạch nội dung sát hạch mô phỏng các tình huống giao thông; không đạt nội dung sát hạch lý thuyết và mô phỏng các tình huống giao thông thì không được sát hạch thực hành lái xe trong hình; không đạt nội dung sát hạch thực hành lái xe trong hình thì không được thực hiện nội dung sát hạch thực hành lái xe trên đường;
+d) Thí sinh đạt nội dung sát hạch lý thuyết, mô phỏng các tình huống giao thông, thực hành lái xe trong hình được bảo lưu kết quả nội dung sát hạch đạt trong thời gian 01 năm, kể từ ngày có nội dung sát hạch đạt tại kỳ sát hạch gần nhất; nếu muốn dự sát hạch phải có giấy khám sức khỏe của người lái xe do cơ sở khám bệnh, chữa bệnh đủ tiêu chuẩn theo quy định của pháp luật về khám bệnh, chữa bệnh cấp còn cấp còn hiệu lực và phải có tên trong biên bản xác nhận vắng, trượt của Hội đồng sát hạch hoặc Tổ sát hạch kỳ trước;
+…
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Con tôi 16 tuổi muốn đăng ký sát hạch lái xe hạng B, có thể được trúng tuyển ngay nếu đạt lý thuyết và mô phỏng, không cần thực hành trong hình hay trên đường?
+- Đáp: Không, con bạn phải vượt qua cả sát hạch lý thuyết, mô phỏng, thực hành trong hình và thực hành trên đường để được trúng tuyển. Nếu không đạt một trong các nội dung này, kết quả sẽ không được công nhận trúng tuyển.
+- ⚠ chep_nguyen_van: “sát hạch lái xe hạng b …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-033", "question": "Con tôi 16 tuổi muốn đăng ký sát hạch lái xe hạng B, có thể được trúng tuyển ngay nếu đạt lý thuyết và mô phỏng, không cần thực hành trong hình hay trên đường?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Không, con bạn phải vượt qua cả sát hạch lý thuyết, mô phỏng, thực hành trong hình và thực hành trên đường để được trúng tuyển. Nếu không đạt một trong các nội dung này, kết quả sẽ không được công nhận trúng tuyển.", "gold_units": ["TT35-2024-BGTVT/D25/K2/a", "TT35-2024-BGTVT/D25/K2/c"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-033:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Con tôi 17 tuổi đã trượt sát hạch lý thuyết, có thể đăng ký lại sát hạch mô phỏng ngay không?
+- Đáp: Không, sau khi trượt sát hạch lý thuyết, con bạn phải đăng ký lại sát hạch toàn bộ từ đầu. Không được tiếp tục sát hạch mô phỏng mà chưa đạt lý thuyết.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-033", "question": "Con tôi 17 tuổi đã trượt sát hạch lý thuyết, có thể đăng ký lại sát hạch mô phỏng ngay không?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Không, sau khi trượt sát hạch lý thuyết, con bạn phải đăng ký lại sát hạch toàn bộ từ đầu. Không được tiếp tục sát hạch mô phỏng mà chưa đạt lý thuyết.", "gold_units": ["TT35-2024-BGTVT/D25/K2/c"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-033:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-034 · tier historical · vai: tài xế công nghệ · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D24/K3
+
+Điều 24. Giám sát kỳ sát hạch
+3. Khi làm nhiệm vụ giám sát các kỳ sát hạch, công chức thanh tra phải mặc trang phục theo quy định.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi là công chức thanh tra, khi tham gia kỳ sát hạch, có được mặc trang phục không theo quy định không?
+- Đáp: Không, bạn phải mặc trang phục theo quy định khi tham gia kỳ sát hạch. Điều này được quy định trong Thông tư số 35/2024/TT-BGTVT, Điều 24, khoản 3.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-034", "question": "Tôi là công chức thanh tra, khi tham gia kỳ sát hạch, có được mặc trang phục không theo quy định không?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Không, bạn phải mặc trang phục theo quy định khi tham gia kỳ sát hạch. Điều này được quy định trong Thông tư số 35/2024/TT-BGTVT, Điều 24, khoản 3.", "gold_units": ["TT35-2024-BGTVT/D24/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-034:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Nếu tôi quên mặc trang phục khi tham gia kỳ sát hạch, phải làm gì?
+- Đáp: Bạn phải ngay lập tức mặc trang phục theo quy định trước khi tiếp tục tham gia kỳ sát hạch. Điều này được quy định trong Thông tư số 35/2024/TT-BGTVT, Điều 24, khoản 3.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-034", "question": "Nếu tôi quên mặc trang phục khi tham gia kỳ sát hạch, phải làm gì?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Bạn phải ngay lập tức mặc trang phục theo quy định trước khi tiếp tục tham gia kỳ sát hạch. Điều này được quy định trong Thông tư số 35/2024/TT-BGTVT, Điều 24, khoản 3.", "gold_units": ["TT35-2024-BGTVT/D24/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-034:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-035 · tier historical · vai: sinh viên đi xe máy · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D40/K1, TT35-2024-BGTVT/D40/K1/a, TT35-2024-BGTVT/D40/K1/b, TT35-2024-BGTVT/D40/K1/c
+
+Điều 40. Thu hồi giấy phép lái xe
+1. Cơ quan có thẩm quyền cấp giấy phép lái xe thực hiện thu hồi theo trình tự sau:
+a) Sau 03 ngày kể từ ngày phát hiện người có giấy phép lái xe thuộc một trong các trường hợp quy định tại khoản 5 Điều 62 Luật Trật tự, an toàn giao thông đường bộ, thủ trưởng cơ quan có thẩm quyền cấp giấy phép lái xe ra quyết định thu hồi để hủy bỏ giấy phép lái xe. Nội dung của quyết định nêu rõ lý do thu hồi và hủy bỏ;
+b) Trong thời hạn 05 ngày làm việc kể từ ngày nhận được Quyết định thu hồi giấy phép lái xe, cá nhân phải nộp giấy phép lái xe bị thu hồi đến cơ quan thu hồi giấy phép lái xe và cơ quan có thẩm quyền cấp giấy phép lái xe có trách nhiệm thu hồi giấy phép lái xe đã cấp và hủy bỏ theo quy định;
+c) Trường hợp cơ quan có thẩm quyền cấp giấy phép lái xe đã sáp nhập, chia, tách, giải thể, hết thẩm quyền cấp thì cơ quan có thẩm quyền thu hồi, hủy bỏ giấy phép lái xe là cơ quan đang quản lý sổ gốc cấp giấy phép lái xe.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D62/K5)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D62/K5
+
+Điều 62. Cấp, đổi, cấp lại và thu hồi giấy phép lái xe
+5. Giấy phép lái xe bị thu hồi khi thuộc một trong các trường hợp sau đây:
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi vừa bị cảnh sát ghi nhận vi phạm giao thông, sau 3 ngày tôi muốn biết có thể giữ giấy phép lái xe không?
+- Đáp: Không, sau 3 ngày kể từ khi phát hiện vi phạm, cơ quan cấp giấy phép có thẩm quyền phải ra quyết định thu hồi và hủy bỏ giấy phép. Bạn sẽ không được giữ giấy phép. (khoản a Điều 40 Thông tư 35/2024/TT-BGTVT)
+- ⚠ chi_so_so_sai (0)
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-035", "question": "Tôi vừa bị cảnh sát ghi nhận vi phạm giao thông, sau 3 ngày tôi muốn biết có thể giữ giấy phép lái xe không?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Không, sau 3 ngày kể từ khi phát hiện vi phạm, cơ quan cấp giấy phép có thẩm quyền phải ra quyết định thu hồi và hủy bỏ giấy phép. Bạn sẽ không được giữ giấy phép. (khoản a Điều 40 Thông tư 35/2024/TT-BGTVT)", "gold_units": ["TT35-2024-BGTVT/D40/K1/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-035:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Sau khi giấy phép lái xe bị thu hồi, tôi phải làm gì để nộp lại?
+- Đáp: Bạn phải nộp giấy phép bị thu hồi trong vòng 5 ngày làm việc kể từ ngày nhận được quyết định thu hồi. (khoản b Điều 40 Thông tư 35/2024/TT-BGTVT)
+- ⚠ chi_so_so_sai (0); chep_nguyen_van: “giấy phép lái xe bị thu …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-035", "question": "Sau khi giấy phép lái xe bị thu hồi, tôi phải làm gì để nộp lại?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Bạn phải nộp giấy phép bị thu hồi trong vòng 5 ngày làm việc kể từ ngày nhận được quyết định thu hồi. (khoản b Điều 40 Thông tư 35/2024/TT-BGTVT)", "gold_units": ["TT35-2024-BGTVT/D40/K1/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-035:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-036 · tier historical · vai: tài xế công nghệ · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D21/K4, TT35-2024-BGTVT/D21/K4/a, TT35-2024-BGTVT/D21/K4/b, TT35-2024-BGTVT/D21/K4/c, TT35-2024-BGTVT/D21/K4/d, TT35-2024-BGTVT/D21/K4/đ, TT35-2024-BGTVT/D21/K4/e
+
+Điều 21. Sát hạch viên
+4. Nội dung tập huấn
+a) Tập huấn lý thuyết, nghiệp vụ Đạo đức công vụ và ý thức, ứng xử của sát hạch viên khi thực thi nhiệm vụ; kỹ năng giao tiếp.
+Hệ thống văn bản quy phạm pháp luật, tiêu chuẩn, quy chuẩn, quy trình, hướng dẫn nghiệp vụ liên quan đến công tác sát hạch lái xe, gồm các nội dung: nhiệm vụ, quyền hạn của hội đồng sát hạch, tổ sát hạch, sát hạch viên; quy trình sát hạch lý thuyết, mô phỏng, trong hình và trên đường; trách nhiệm, nhiệm vụ, quyền hạn của tổ chức, cá nhân có liên quan trong hoạt động sát hạch; cung ứng dịch vụ công lĩnh vực sát hạch; quy định về vi phạm và xử lý vi phạm trong lĩnh vực sát hạch lái xe.
+Kiến thức chung về: cấu tạo, nguyên lý hoạt động, bảo dưỡng kỹ thuật thiết bị chấm điểm tự động; phương pháp kiểm tra thiết bị sát hạch gồm: xe sát hạch, các trang thiết bị phục vụ, thiết bị chấm điểm tự động; phương án đảm bảo an toàn trong quá trình tổ chức sát hạch; hướng dẫn sử dụng hệ thống chương trình phần mềm liên quan đến thiết bị chấm điểm tự động, phương pháp chấm điểm các nội dung sát hạch của các hạng xe bằng hình thức trắc nghiệm, tự động, cho người dân tộc thiểu số không biết đọc, viết tiếng Việt; phương pháp bảo hiểm tay lái khi sát hạch lái xe ô tô trên đường giao thông công cộng;
+…
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D61/K2/b)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D61/K2/b
+
+Điều 61. Cục Đường bộ Việt Nam
+2. Đối với công tác sát hạch lái xe
+b) Xây dựng bộ câu hỏi; phần mềm trong hệ thống thông tin quản lý đào tạo, sát hạch, quản lý giấy phép lái xe; phần mềm dùng cho sát hạch lý thuyết; phần mềm mô phỏng các tình huống giao thông để phục vụ công tác đào tạo, sát hạch lái xe, hướng dẫn thực hiện thống nhất trong cả nước và chuyển giao cho các Sở Giao thông vận tải, cơ sở đào tạo lái xe, trung tâm sát hạch lái xe và Cục cảnh sát Giao thông, Bộ Công an phục vụ công tác kiểm tra nội dung kiến thức pháp luật về trật tự an toàn giao thông đường bộ cho người có giấy phép lái xe bị trừ hết điểm;
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi có thể dùng phần mềm mô phỏng trong kỳ sát hạch lý thuyết không?
+- Đáp: Có, bạn được phép sử dụng phần mềm mô phỏng trong kỳ sát hạch lý thuyết. Phần mềm này phải được cung cấp và được quản lý bởi Cục Đường bộ Việt Nam theo quy định. Điều này giúp chuẩn hóa nội dung và đảm bảo tính công bằng trong quá trình kiểm tra.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-036", "question": "Tôi có thể dùng phần mềm mô phỏng trong kỳ sát hạch lý thuyết không?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Có, bạn được phép sử dụng phần mềm mô phỏng trong kỳ sát hạch lý thuyết. Phần mềm này phải được cung cấp và được quản lý bởi Cục Đường bộ Việt Nam theo quy định. Điều này giúp chuẩn hóa nội dung và đảm bảo tính công bằng trong quá trình kiểm tra.", "gold_units": ["TT35-2024-BGTVT/D61/K2/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-036:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Tôi có thể học đạo đức công vụ qua phần mềm trong tập huấn không?
+- Đáp: Có, trong nội dung tập huấn lý thuyết, bạn được học về đạo đức công vụ và ý thức, ứng xử của sát hạch viên. Phần mềm có thể được sử dụng để truyền đạt kiến thức này, nhưng nội dung phải tuân thủ quy định của Cục Đường bộ Việt Nam.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-036", "question": "Tôi có thể học đạo đức công vụ qua phần mềm trong tập huấn không?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Có, trong nội dung tập huấn lý thuyết, bạn được học về đạo đức công vụ và ý thức, ứng xử của sát hạch viên. Phần mềm có thể được sử dụng để truyền đạt kiến thức này, nhưng nội dung phải tuân thủ quy định của Cục Đường bộ Việt Nam.", "gold_units": ["TT35-2024-BGTVT/D21/K4/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-036:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-037 · tier historical · vai: chủ doanh nghiệp vận tải · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D43/K1, TT35-2024-BGTVT/D43/K1/a, TT35-2024-BGTVT/D43/K1/b
+
+Điều 43. Cấp giấy phép lái xe quốc tế
+1. Đối với người Việt Nam, người nước ngoài có thẻ thường trú hoặc thẻ tạm trú tại Việt Nam, có giấy phép lái xe quốc gia do Việt Nam cấp bằng vật liệu PET. còn giá trị sử dụng, thực hiện như sau:
+a) Hồ sơ cấp IDP Đơn đề nghị cấp IDP theo mẫu quy định tại Phụ lục XXX kèm theo Thông tư này;
+b) Trình tự cấp IDP:
+Cá nhân khi nộp hồ sơ đề nghị trực tiếp tại Cục Đường bộ Việt Nam hoặc Sở Giao thông vận tải, phải xuất trình bản chính giấy phép lái xe quốc gia do Việt Nam cấp, hộ chiếu, thẻ thường trú (đối với người nước ngoài) để thực hiện kiểm tra tính chính xác, hợp pháp của việc cấp IDP và phải hoàn thành nghĩa vụ nộp lệ phí khi được tiếp nhận hồ sơ theo quy định; khi nộp đơn qua hệ thống dịch vụ công trực tuyến, cá nhân kê khai theo hướng dẫn và phải chịu trách nhiệm về tính chính xác, tính hợp pháp của nội dung đã kê khai, phải hoàn thành nghĩa vụ nộp lệ phí thông qua chức năng thanh toán lệ phí của hệ thống dịch vụ công trực tuyến và nộp phí sử dụng dịch vụ khác theo nhu cầu của cá nhân.
+Trường hợp đơn đề nghị không đúng theo quy định, cơ quan tiếp nhận đơn có trách nhiệm thông báo trực tiếp hoặc bằng văn bản hoặc qua hệ thống dịch vụ công trực tuyến những nội dung cần bổ sung hoặc sửa đổi cho cá nhân trong thời hạn 02 ngày làm việc, kể từ ngày tiếp nhận đơn.
+…
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi là chủ công ty vận tải, có lái xe quốc gia, muốn xin giấy phép lái xe quốc tế, có được không?
+- Đáp: Bạn có thể xin giấy phép lái xe quốc tế. Để được cấp, bạn cần nộp đơn theo mẫu, kèm theo bản chính giấy phép lái xe quốc gia, hộ chiếu và thẻ thường trú (nếu là người nước ngoài). Ngoài ra, bạn phải trả lệ phí khi hồ sơ được tiếp nhận. (TT35-2024-BGTVT/D43/K1)
+- ⚠ chep_nguyen_van: “giấy phép lái xe quốc tế …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-037", "question": "Tôi là chủ công ty vận tải, có lái xe quốc gia, muốn xin giấy phép lái xe quốc tế, có được không?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Bạn có thể xin giấy phép lái xe quốc tế. Để được cấp, bạn cần nộp đơn theo mẫu, kèm theo bản chính giấy phép lái xe quốc gia, hộ chiếu và thẻ thường trú (nếu là người nước ngoài). Ngoài ra, bạn phải trả lệ phí khi hồ sơ được tiếp nhận. (TT35-2024-BGTVT/D43/K1)", "gold_units": ["TT35-2024-BGTVT/D43/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-037:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Tôi muốn nộp đơn IDP qua hệ thống dịch vụ công trực tuyến, có được không?
+- Đáp: Bạn có thể nộp đơn IDP trực tuyến. Khi làm điều này, bạn phải khai báo đầy đủ thông tin theo hướng dẫn, chịu trách nhiệm về tính chính xác của dữ liệu, và thanh toán lệ phí qua chức năng thanh toán của hệ thống. (TT35-2024-BGTVT/D43/K1)
+- ⚠ chep_nguyen_van: “hệ thống dịch vụ công trực …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-037", "question": "Tôi muốn nộp đơn IDP qua hệ thống dịch vụ công trực tuyến, có được không?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Bạn có thể nộp đơn IDP trực tuyến. Khi làm điều này, bạn phải khai báo đầy đủ thông tin theo hướng dẫn, chịu trách nhiệm về tính chính xác của dữ liệu, và thanh toán lệ phí qua chức năng thanh toán của hệ thống. (TT35-2024-BGTVT/D43/K1)", "gold_units": ["TT35-2024-BGTVT/D43/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-037:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-038 · tier historical · vai: tài xế xe tải · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D5/K1, TT35-2024-BGTVT/D5/K1/a, TT35-2024-BGTVT/D5/K1/b
+
+Điều 5. Hình thức đào tạo
+1. Người có nhu cầu cấp giấy phép lái xe mô tô các hạng A1, A và B1:
+a) Đối với nội dung học lý thuyết phải học đủ chương trình đào tạo theo quy định tại Thông tư này và được lựa chọn một trong các hình thức học sau: tự học các môn lý thuyết theo quy định của pháp luật về hoạt động đào tạo và sát hạch lái xe hoặc học tập trung tại cơ sở đào tạo lái xe;
+b) Đối với nội dung thực hành lái xe: theo hình thức tập trung tại cơ sở đào tạo lái xe.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Công ty tôi muốn đăng ký học lý thuyết cho lái xe mô tô hạng B1, nhưng muốn học tập trung tại cơ sở. Có được không?
+- Đáp: Bạn có thể đăng ký học lý thuyết cho giấy phép lái xe mô tô hạng B1 bằng hình thức tập trung tại cơ sở đào tạo. Điều này được quy định trong Thông tư số 35/2024/TT-BGTVT, mục 5, khoản a, chữ (b).
+- ⚠ chep_nguyen_van: “học tập trung tại cơ sở …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-038", "question": "Công ty tôi muốn đăng ký học lý thuyết cho lái xe mô tô hạng B1, nhưng muốn học tập trung tại cơ sở. Có được không?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Bạn có thể đăng ký học lý thuyết cho giấy phép lái xe mô tô hạng B1 bằng hình thức tập trung tại cơ sở đào tạo. Điều này được quy định trong Thông tư số 35/2024/TT-BGTVT, mục 5, khoản a, chữ (b).", "gold_units": ["TT35-2024-BGTVT/D5/K1/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-038:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Anh tôi đang làm tài xế xe tải, anh ấy muốn học lý thuyết cho giấy phép lái xe mô tô hạng A1, nhưng muốn tự học. Có được không?
+- Đáp: Anh ấy có thể tự học các môn lý thuyết theo quy định của pháp luật về hoạt động đào tạo và sát hạch lái xe. Điều này được quy định trong Thông tư số 35/2024/TT-BGTVT, mục 5, khoản a, chữ (a).
+- ⚠ chep_nguyen_van: “giấy phép lái xe mô tô …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-038", "question": "Anh tôi đang làm tài xế xe tải, anh ấy muốn học lý thuyết cho giấy phép lái xe mô tô hạng A1, nhưng muốn tự học. Có được không?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Anh ấy có thể tự học các môn lý thuyết theo quy định của pháp luật về hoạt động đào tạo và sát hạch lái xe. Điều này được quy định trong Thông tư số 35/2024/TT-BGTVT, mục 5, khoản a, chữ (a).", "gold_units": ["TT35-2024-BGTVT/D5/K1/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-038:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-039 · tier historical · vai: cán bộ phường · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D27/K2
+
+Điều 27. Sát hạch để cấp giấy phép lái xe mô tô hạng A1 cho người dân tộc thiểu số không biết đọc, viết tiếng Việt
+2. Việc tổ chức sát hạch được thực hiện như sau: tổ chức sát hạch riêng.
+Sát hạch lý thuyết bằng hình thức hỏi - đáp; sử dụng phương pháp trắc nghiệm trên giấy; thời gian thi là 30 phút. 02 (hai) sát hạch viên thực hiện nhiệm vụ, sát hạch lần lượt cho từng thí sinh; mỗi thí sinh chọn ngẫu nhiên 01 đề sát hạch trong bộ đề; 01 sát hạch viên đọc câu hỏi và quan sát thí sinh, 01 sát hạch viên đánh dấu nhân (x) vào ô tương ứng mà thí sinh chọn trên bài sát hạch lý thuyết;
+Sát hạch viên chấm điểm, ký tên xác nhận vào bài sát hạch lý thuyết, biên bản tổng hợp kết quả sát hạch lái xe và thông báo kết quả sát hạch cho thí sinh. Thực hiện nội dung sát hạch thông qua người phiên dịch, người phiên dịch phải dịch đúng, đủ câu hỏi của sát hạch viên và câu trả lời của thí sinh; cơ sở đào tạo lái xe chịu trách nhiệm thuê người phiên dịch.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi là cán bộ phường, có thể tổ chức sát hạch riêng cho người dân tộc thiểu số không biết đọc, viết tiếng Việt không?
+- Đáp: Có, bạn có thể tổ chức sát hạch riêng cho người dân tộc thiểu số không biết đọc, viết tiếng Việt. Sát hạch lý thuyết được thực hiện bằng hình thức hỏi‑đáp, sử dụng phương pháp trắc nghiệm trên giấy, thời gian thi 30 phút, và cần có người phiên dịch để dịch đúng, đủ câu hỏi và câu trả lời.
+- ⚠ chep_nguyen_van: “cho người dân tộc thiểu số …”
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-039", "question": "Tôi là cán bộ phường, có thể tổ chức sát hạch riêng cho người dân tộc thiểu số không biết đọc, viết tiếng Việt không?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Có, bạn có thể tổ chức sát hạch riêng cho người dân tộc thiểu số không biết đọc, viết tiếng Việt. Sát hạch lý thuyết được thực hiện bằng hình thức hỏi‑đáp, sử dụng phương pháp trắc nghiệm trên giấy, thời gian thi 30 phút, và cần có người phiên dịch để dịch đúng, đủ câu hỏi và câu trả lời.", "gold_units": ["TT35-2024-BGTVT/D27/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-039:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Tôi là cán bộ phường, có thể thuê người phiên dịch để thực hiện sát hạch lý thuyết cho thí sinh không biết tiếng Việt không?
+- Đáp: Có, cơ sở đào tạo lái xe chịu trách nhiệm thuê người phiên dịch để thực hiện sát hạch lý thuyết cho thí sinh không biết tiếng Việt. Người phiên dịch phải dịch đúng, đủ câu hỏi của sát hạch viên và câu trả lời của thí sinh.
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-039", "question": "Tôi là cán bộ phường, có thể thuê người phiên dịch để thực hiện sát hạch lý thuyết cho thí sinh không biết tiếng Việt không?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Có, cơ sở đào tạo lái xe chịu trách nhiệm thuê người phiên dịch để thực hiện sát hạch lý thuyết cho thí sinh không biết tiếng Việt. Người phiên dịch phải dịch đúng, đủ câu hỏi của sát hạch viên và câu trả lời của thí sinh.", "gold_units": ["TT35-2024-BGTVT/D27/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-039:2"}
+```
+
+### W4-hanh_vi_cam_nghia_vu-040 · tier historical · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D34/K2, TT35-2024-BGTVT/D34/K2/a, TT35-2024-BGTVT/D34/K2/b, TT35-2024-BGTVT/D34/K2/c, TT35-2024-BGTVT/D34/K2/d, TT35-2024-BGTVT/D34/K2/đ
+
+Điều 34. Cấp giấy phép lái xe
+2. Người có giấy phép lái xe quá thời hạn sử dụng
+a) Người có giấy phép lái xe các hạng B, C1, C, D1, D2, D, BE, C1E, CE, D1E, D2E, DE quá thời hạn sử dụng Quá hạn dưới 01 năm kể từ ngày hết hạn phải sát hạch lý thuyết theo quy định tại điểm a khoản 1 Điều 17 Thông tư này để cấp giấy phép lái xe.
+Quá hạn từ 01 năm trở lên kể từ ngày hết hạn phải sát hạch lý thuyết, thực hành lái xe trong hình và trên đường để cấp giấy phép lái xe theo quy định tại khoản 1, khoản 2 và khoản 3 Điều 17 Thông tư này.
+Hồ sơ dự sát hạch thực hiện theo quy định tại khoản 3 Điều 29 Thông tư này;
+b) Người có giấy phép lái xe các hạng B, C1, C, D1, D2, D, BE, C1E, CE, D1E, D2E, DE bị mất nhưng quá thời hạn sử dụng, có tên trong hồ sơ của Sở Giao thông vận tải, không thuộc trường hợp đang bị các cơ quan có thẩm quyền thu giữ, xử lý phải dự sát hạch các nội dung:
+Quá hạn dưới 01 năm, phải dự sát hạch lý thuyết để cấp giấy phép lái xe theo quy định tại điểm a khoản 1 Điều 17 Thông tư này.
+Quá hạn từ 01 năm trở lên kể từ ngày hết hạn phải sát hạch lý thuyết, thực hành lái xe trong hình và trên đường để cấp giấy phép lái xe theo quy định tại khoản 1, khoản 2 và khoản 3 Điều 17 Thông tư này.
+Hồ sơ dự sát hạch thực hiện theo quy định tại khoản 3 Điều 29 của Thông tư này;
+c) Ngày trúng tuyển ghi tại mặt sau giấy phép lái xe được tính theo ngày trúng tuyển của giấy phép lái xe cũ;
+…
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D17/K1)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D17/K1
+
+Điều 17. Hình thức, nội dung và quy trình sát hạch lái xe
+1. Sát hạch lý thuyết
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D17/K1/a)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D17/K1/a
+
+Điều 17. Hình thức, nội dung và quy trình sát hạch lái xe
+1. Sát hạch lý thuyết
+a) Sát hạch lý thuyết: gồm các câu hỏi liên quan đến quy định của pháp luật về trật tự, an toàn giao thông đường bộ, kỹ thuật lái xe; nội dung liên quan đến cấu tạo và sửa chữa thông thường (đối với giấy phép lái xe hạng B1 và đối với giấy phép lái xe ô tô từ hạng B trở lên); đạo đức người lái xe, văn hóa giao thông và phòng chống tác hại của rượu, bia khi tham gia giao thông, kỹ năng phòng cháy, chữa cháy và cứu nạn, cứu hộ (đối với giấy phép lái xe ô tô từ hạng B trở lên).
+Thí sinh dự sát hạch lái xe hạng A1 có giấy phép lái xe ô tô còn hiệu lực do ngành Giao thông vận tải cấp được miễn sát hạch lý thuyết;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D17/K2)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D17/K2
+
+Điều 17. Hình thức, nội dung và quy trình sát hạch lái xe
+2. Sát hạch thực hành lái xe trong hình
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi có thể lái xe khi giấy phép của mình đã hết hạn 6 tháng chưa?
+- Đáp: Bạn không được lái xe. Nếu giấy phép hết hạn dưới 1 năm, bạn phải sát hạch lý thuyết để được cấp lại giấy phép.
+- ⚠ chi_so_so_sai (0)
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-040", "question": "Tôi có thể lái xe khi giấy phép của mình đã hết hạn 6 tháng chưa?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Bạn không được lái xe. Nếu giấy phép hết hạn dưới 1 năm, bạn phải sát hạch lý thuyết để được cấp lại giấy phép.", "gold_units": ["TT35-2024-BGTVT/D34/K2/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-040:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Con tôi đã mất giấy phép và hết hạn 2 năm, có thể lái xe được không?
+- Đáp: Bạn không được lái xe. Nếu giấy phép hết hạn từ 1 năm trở lên, bạn phải sát hạch lý thuyết và thực hành lái xe trong hình và trên đường để được cấp lại giấy phép.
+- ⚠ chi_so_so_sai (0)
+
+```json
+{"qid": "t4-hanh_vi_cam_nghia_vu-040", "question": "Con tôi đã mất giấy phép và hết hạn 2 năm, có thể lái xe được không?", "as_of": "2025-08-31", "question_type": "hanh_vi_cam_nghia_vu", "tier": "historical", "answer": "Bạn không được lái xe. Nếu giấy phép hết hạn từ 1 năm trở lên, bạn phải sát hạch lý thuyết và thực hành lái xe trong hình và trên đường để được cấp lại giấy phép.", "gold_units": ["TT35-2024-BGTVT/D34/K2/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-hanh_vi_cam_nghia_vu-040:2"}
+```
+
+## dinh_nghia — khái niệm, thuật ngữ được giải thích
+
+### W4-dinh_nghia-001 · tier B · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D3/K13
+
+Điều 3. Giải thích từ ngữ
+13. Tuyến cố định là tuyến vận tải hành khách được cơ quan có thẩm quyền công bố, được xác định bởi hành trình, lịch trình, bến xe khách nơi đi, bến xe khách nơi đến (điểm đầu, điểm cuối đối với tuyến xe buýt). Trường hợp tuyến có nhiều hành trình khác nhau thì bổ sung thêm ký tự trong bảng chữ cái tiếng Việt vào cuối của dãy số của mã số tuyến.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi muốn đưa con tôi lên xe buýt từ bến A đến bến B, nhưng tuyến này có nhiều hành trình khác nhau. Trường hợp này có được coi là một tuyến cố định không?
+- Đáp: Có, nếu tuyến được công bố bởi cơ quan có thẩm quyền và xác định bởi hành trình, lịch trình, bến xuất phát và bến đến, thì nó được coi là một tuyến cố định. Khi có nhiều hành trình, cần bổ sung ký tự trong bảng chữ cái tiếng Việt vào cuối mã số tuyến.
+- ⚠ chep_nguyen_van: “có nhiều hành trình khác nhau …”
+
+```json
+{"qid": "t4-dinh_nghia-001", "question": "Tôi muốn đưa con tôi lên xe buýt từ bến A đến bến B, nhưng tuyến này có nhiều hành trình khác nhau. Trường hợp này có được coi là một tuyến cố định không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "B", "answer": "Có, nếu tuyến được công bố bởi cơ quan có thẩm quyền và xác định bởi hành trình, lịch trình, bến xuất phát và bến đến, thì nó được coi là một tuyến cố định. Khi có nhiều hành trình, cần bổ sung ký tự trong bảng chữ cái tiếng Việt vào cuối mã số tuyến.", "gold_units": ["ND158-2024/D3/K13"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-dinh_nghia-001:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Con tôi muốn tham gia chuyến xe buýt từ điểm xuất phát X đến điểm đến Y, nhưng tuyến này chưa được công bố. Trường hợp này có được coi là một tuyến cố định không?
+- Đáp: Không, nếu tuyến chưa được công bố bởi cơ quan có thẩm quyền, thì nó không được coi là một tuyến cố định. Một tuyến cố định phải được công bố và xác định bởi hành trình, lịch trình, bến xuất phát và bến đến.
+
+```json
+{"qid": "t4-dinh_nghia-001", "question": "Con tôi muốn tham gia chuyến xe buýt từ điểm xuất phát X đến điểm đến Y, nhưng tuyến này chưa được công bố. Trường hợp này có được coi là một tuyến cố định không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "B", "answer": "Không, nếu tuyến chưa được công bố bởi cơ quan có thẩm quyền, thì nó không được coi là một tuyến cố định. Một tuyến cố định phải được công bố và xác định bởi hành trình, lịch trình, bến xuất phát và bến đến.", "gold_units": ["ND158-2024/D3/K13"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-dinh_nghia-001:2"}
+```
+
+### W4-dinh_nghia-002 · tier B · vai: sinh viên đi xe máy · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 130/2024/NĐ-CP (Quy định về thu phí sử dụng đường bộ cao tốc đối với phương tiện lưu thông trên tuyến đường bộ cao tốc thuộc sở hữu toàn dân do nhà nước đại diện chủ sở hữu và trực tiếp quản lý, khai thác)
+Hiệu lực của trạng thái này: 2024-10-10 → nay
+Mã điều khoản dùng được cho gold_units: ND130-2024/D8/K1
+
+Điều 8. Chứng từ thu phí sử dụng đường bộ cao tốc, vé đường bộ toàn quốc đối với xe ô tô của lực lượng quốc phòng, Công an
+1. Biên lai thu phí sử dụng đường bộ cao tốc là chứng từ được phát hành dưới dạng chứng từ điện tử theo quy định của pháp luật về chứng từ điện tử.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Khi tôi lái ô tô qua đường cao tốc, biên lai thu phí phải là chứng từ điện tử chứ không phải giấy?
+- Đáp: Biên lai thu phí sử dụng đường bộ cao tốc đối với xe ô tô của lực lượng quốc phòng, Công an phải được phát hành dưới dạng chứng từ điện tử.
+
+```json
+{"qid": "t4-dinh_nghia-002", "question": "Khi tôi lái ô tô qua đường cao tốc, biên lai thu phí phải là chứng từ điện tử chứ không phải giấy?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "B", "answer": "Biên lai thu phí sử dụng đường bộ cao tốc đối với xe ô tô của lực lượng quốc phòng, Công an phải được phát hành dưới dạng chứng từ điện tử.", "gold_units": ["ND130-2024/D8/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-dinh_nghia-002:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu tôi lái xe ô tô thuộc lực lượng quốc phòng qua đường cao tốc, biên lai thu phí phải là chứng từ điện tử phải không?
+- Đáp: Biên lai thu phí sử dụng đường bộ cao tốc đối với xe ô tô của lực lượng quốc phòng, Công an phải được phát hành dưới dạng chứng từ điện tử.
+
+```json
+{"qid": "t4-dinh_nghia-002", "question": "Nếu tôi lái xe ô tô thuộc lực lượng quốc phòng qua đường cao tốc, biên lai thu phí phải là chứng từ điện tử phải không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "B", "answer": "Biên lai thu phí sử dụng đường bộ cao tốc đối với xe ô tô của lực lượng quốc phòng, Công an phải được phát hành dưới dạng chứng từ điện tử.", "gold_units": ["ND130-2024/D8/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-dinh_nghia-002:2"}
+```
+
+### W4-dinh_nghia-003 · tier B · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D3/K6
+
+Điều 3. Giải thích từ ngữ
+6. Lịch trình chạy xe là thời gian xe chạy kể từ khi xe xuất phát đến khi kết thúc hành trình, trong đó có xác định mốc thời gian tương ứng với một số vị trí nhất định trên hành trình chạy xe.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi muốn biết khi con tôi đi học bằng xe buýt, thời gian từ lúc xe xuất phát đến khi xe dừng lại tại trạm cuối có được coi là lịch trình chạy xe không?
+- Đáp: Có, thời gian từ khi xe xuất phát đến khi kết thúc hành trình, bao gồm các mốc thời gian tại các vị trí trên hành trình, được coi là lịch trình chạy xe. (ND158-2024/D3/K6)
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-dinh_nghia-003", "question": "Tôi muốn biết khi con tôi đi học bằng xe buýt, thời gian từ lúc xe xuất phát đến khi xe dừng lại tại trạm cuối có được coi là lịch trình chạy xe không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "B", "answer": "Có, thời gian từ khi xe xuất phát đến khi kết thúc hành trình, bao gồm các mốc thời gian tại các vị trí trên hành trình, được coi là lịch trình chạy xe. (ND158-2024/D3/K6)", "gold_units": ["ND158-2024/D3/K6"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-dinh_nghia-003:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi điều hành một công ty vận tải, khi tôi lập thời gian cho xe tải chở hàng từ điểm A đến điểm B, thời gian này có được coi là lịch trình chạy xe không?
+- Đáp: Có, thời gian từ khi xe xuất phát đến khi kết thúc hành trình, bao gồm các mốc thời gian tại các vị trí trên hành trình, được coi là lịch trình chạy xe. (ND158-2024/D3/K6)
+- ⚠ neu_dieu_khoan
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-dinh_nghia-003", "question": "Tôi điều hành một công ty vận tải, khi tôi lập thời gian cho xe tải chở hàng từ điểm A đến điểm B, thời gian này có được coi là lịch trình chạy xe không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "B", "answer": "Có, thời gian từ khi xe xuất phát đến khi kết thúc hành trình, bao gồm các mốc thời gian tại các vị trí trên hành trình, được coi là lịch trình chạy xe. (ND158-2024/D3/K6)", "gold_units": ["ND158-2024/D3/K6"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-dinh_nghia-003:2"}
+```
+
+### W4-dinh_nghia-004 · tier B · vai: tài xế công nghệ · kiểu: neu_van_ban
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D3/K14
+
+Điều 3. Giải thích từ ngữ
+14. Xe ô tô thoáng nóc (xe không có nóc) là xe ô tô khách thành phố không có nóc che toàn bộ sàn hoặc một phần sàn xe. Trường hợp xe hai tầng, chỉ có tầng thứ hai được phép không có nóc. Nếu sàn xe nào không có nóc, dù là toàn bộ hay một phần, không được phép bố trí chỗ đứng cho khách ở sàn xe đó.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Xe buýt của tôi có tầng thứ hai không có mái, có được coi là xe ô tô thoáng nóc không?
+- Đáp: Xe buýt của tôi được coi là xe ô tô thoáng nóc. Theo Nghị định 158/2024/NĐ-CP, xe ô tô khách thành phố không có nóc che toàn bộ sàn hoặc một phần sàn, và trong trường hợp xe hai tầng, chỉ có tầng thứ hai được phép không có nóc. (ND158-2024/D3/K14)
+
+```json
+{"qid": "t4-dinh_nghia-004", "question": "Xe buýt của tôi có tầng thứ hai không có mái, có được coi là xe ô tô thoáng nóc không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "B", "answer": "Xe buýt của tôi được coi là xe ô tô thoáng nóc. Theo Nghị định 158/2024/NĐ-CP, xe ô tô khách thành phố không có nóc che toàn bộ sàn hoặc một phần sàn, và trong trường hợp xe hai tầng, chỉ có tầng thứ hai được phép không có nóc. (ND158-2024/D3/K14)", "gold_units": ["ND158-2024/D3/K14"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-dinh_nghia-004:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu xe hai tầng của công ty tôi chỉ có tầng trên không có mái, có thể bố trí chỗ ngồi cho khách ở tầng đó không?
+- Đáp: Không, không được phép bố trí chỗ ngồi cho khách ở tầng không có mái. Theo Nghị định 158/2024/NĐ-CP, nếu sàn xe nào không có nóc, dù là toàn bộ hay một phần, không được phép bố trí chỗ đứng cho khách ở sàn xe đó. (ND158-2024/D3/K14)
+
+```json
+{"qid": "t4-dinh_nghia-004", "question": "Nếu xe hai tầng của công ty tôi chỉ có tầng trên không có mái, có thể bố trí chỗ ngồi cho khách ở tầng đó không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "B", "answer": "Không, không được phép bố trí chỗ ngồi cho khách ở tầng không có mái. Theo Nghị định 158/2024/NĐ-CP, nếu sàn xe nào không có nóc, dù là toàn bộ hay một phần, không được phép bố trí chỗ đứng cho khách ở sàn xe đó. (ND158-2024/D3/K14)", "gold_units": ["ND158-2024/D3/K14"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-dinh_nghia-004:2"}
+```
+
+### W4-dinh_nghia-005 · tier B · vai: cán bộ phường · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D3/K9
+
+Điều 3. Giải thích từ ngữ
+9. Phương tiện thương mại là phương tiện dùng để vận chuyển hàng hóa, hành khách vì mục đích thương mại.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Công ty tôi đang dùng xe tải chở hàng, có được coi là phương tiện thương mại không?
+- Đáp: Xe tải dùng để vận chuyển hàng hóa vì mục đích thương mại được coi là phương tiện thương mại.
+
+```json
+{"qid": "t4-dinh_nghia-005", "question": "Công ty tôi đang dùng xe tải chở hàng, có được coi là phương tiện thương mại không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "B", "answer": "Xe tải dùng để vận chuyển hàng hóa vì mục đích thương mại được coi là phương tiện thương mại.", "gold_units": ["ND158-2024/D3/K9"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-dinh_nghia-005:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Xe ô tô của anh tôi chở khách trả phí, có được coi là phương tiện thương mại không?
+- Đáp: Xe ô tô dùng để vận chuyển hành khách vì mục đích thương mại được coi là phương tiện thương mại.
+
+```json
+{"qid": "t4-dinh_nghia-005", "question": "Xe ô tô của anh tôi chở khách trả phí, có được coi là phương tiện thương mại không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "B", "answer": "Xe ô tô dùng để vận chuyển hành khách vì mục đích thương mại được coi là phương tiện thương mại.", "gold_units": ["ND158-2024/D3/K9"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-dinh_nghia-005:2"}
+```
+
+### W4-dinh_nghia-006 · tier B · vai: người lớn tuổi đi xe đạp điện · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 130/2024/NĐ-CP (Quy định về thu phí sử dụng đường bộ cao tốc đối với phương tiện lưu thông trên tuyến đường bộ cao tốc thuộc sở hữu toàn dân do nhà nước đại diện chủ sở hữu và trực tiếp quản lý, khai thác)
+Hiệu lực của trạng thái này: 2024-10-10 → nay
+Mã điều khoản dùng được cho gold_units: ND130-2024/D7/K2
+
+Điều 7. Cơ quan quản lý thu phí, nhà cung cấp dịch vụ thanh toán tiền sử dụng đường bộ, đơn vị vận hành thu, cơ quan nhượng quyền thu phí, tổ chức nhận nhượng quyền thu phí sử dụng đường bộ cao tốc
+2. Nhà cung cấp dịch vụ thanh toán tiền sử dụng đường bộ là tổ chức được cơ quan quản lý thu hoặc cơ quan có thẩm quyền lựa chọn để cung cấp dịch vụ thanh toán điện tử giao thông đường bộ đối với phí sử dụng đường bộ cao tốc.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi đi xe đạp điện qua đường cao tốc, có phải trả phí sử dụng đường không?
+- Đáp: Có, anh tôi phải trả phí sử dụng đường cao tốc. Phí được thu bởi cơ quan quản lý thu phí và thanh toán qua dịch vụ điện tử được cung cấp bởi nhà cung cấp dịch vụ thanh toán tiền sử dụng đường bộ cao tốc. (Điều 7 Nghị định 130/2024/NĐ-CP)
+
+```json
+{"qid": "t4-dinh_nghia-006", "question": "Anh tôi đi xe đạp điện qua đường cao tốc, có phải trả phí sử dụng đường không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "B", "answer": "Có, anh tôi phải trả phí sử dụng đường cao tốc. Phí được thu bởi cơ quan quản lý thu phí và thanh toán qua dịch vụ điện tử được cung cấp bởi nhà cung cấp dịch vụ thanh toán tiền sử dụng đường bộ cao tốc. (Điều 7 Nghị định 130/2024/NĐ-CP)", "gold_units": ["ND130-2024/D7/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-dinh_nghia-006:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty bên cạnh tôi đang cho nhân viên đi xe đạp điện qua đường cao tốc, họ có phải đóng phí không?
+- Đáp: Có, công ty phải đóng phí sử dụng đường cao tốc. Phí thu được qua cơ quan quản lý thu phí và thanh toán điện tử theo quy định của Nghị định 130/2024/NĐ-CP. (Điều 7 Nghị định 130/2024/NĐ-CP)
+
+```json
+{"qid": "t4-dinh_nghia-006", "question": "Công ty bên cạnh tôi đang cho nhân viên đi xe đạp điện qua đường cao tốc, họ có phải đóng phí không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "B", "answer": "Có, công ty phải đóng phí sử dụng đường cao tốc. Phí thu được qua cơ quan quản lý thu phí và thanh toán điện tử theo quy định của Nghị định 130/2024/NĐ-CP. (Điều 7 Nghị định 130/2024/NĐ-CP)", "gold_units": ["ND130-2024/D7/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-dinh_nghia-006:2"}
+```
+
+### W4-dinh_nghia-007 · tier B · vai: chủ doanh nghiệp vận tải · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Quyết định số 19/2024/QĐ-TTg (Quy định lộ trình áp dụng mức tiêu chuẩn khí thải đối với xe cơ giới nhập khẩu và sản xuất, lắp ráp)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: QD19-2024-TTG/D3/K1
+
+Điều 3. Giải thích từ ngữ
+1. Mức tiêu chuẩn khí thải (Mức 2, Mức 3, Mức 4 và Mức 5) đối với xe nhập khẩu mới và sản xuất, lắp ráp quy định tại Quyết định này là các mức tiêu chuẩn khí thải tương ứng với các mức tiêu chuẩn khí thải (Euro 2, Euro 3, Euro 4 và Euro 5) của Ủy ban kinh tế châu Âu của Liên Hợp quốc (UNECE) và Chỉ thị của Liên minh Châu Âu (EC) về phê duyệt kiểu loại xe cơ giới.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi vừa nhập khẩu một chiếc xe tải mới, có được coi là xe đạt tiêu chuẩn Euro 4 không?
+- Đáp: Xe tải mới nhập khẩu được coi là đạt tiêu chuẩn Euro 4 nếu nó thuộc Mức 4 theo Quyết định số 19/2024/QĐ-TTg.
+
+```json
+{"qid": "t4-dinh_nghia-007", "question": "Tôi vừa nhập khẩu một chiếc xe tải mới, có được coi là xe đạt tiêu chuẩn Euro 4 không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "B", "answer": "Xe tải mới nhập khẩu được coi là đạt tiêu chuẩn Euro 4 nếu nó thuộc Mức 4 theo Quyết định số 19/2024/QĐ-TTg.", "gold_units": ["QD19-2024-TTG/D3/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-dinh_nghia-007:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi sản xuất một chiếc xe buýt mới, có được xem là xe đạt tiêu chuẩn Euro 5 không?
+- Đáp: Xe buýt mới sản xuất được coi là đạt tiêu chuẩn Euro 5 nếu nó thuộc Mức 5 theo Quyết định số 19/2024/QĐ-TTg.
+
+```json
+{"qid": "t4-dinh_nghia-007", "question": "Công ty tôi sản xuất một chiếc xe buýt mới, có được xem là xe đạt tiêu chuẩn Euro 5 không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "B", "answer": "Xe buýt mới sản xuất được coi là đạt tiêu chuẩn Euro 5 nếu nó thuộc Mức 5 theo Quyết định số 19/2024/QĐ-TTg.", "gold_units": ["QD19-2024-TTG/D3/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-dinh_nghia-007:2"}
+```
+
+### W4-dinh_nghia-008 · tier B · vai: sinh viên đi xe máy · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 52/2024/TT-BGTVT (Quy định về yêu cầu kỹ thuật đối với xe cơ giới, xe máy chuyên dùng thuộc đối tượng nghiên cứu phát triển có nhu cầu tham gia giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT52-2024-BGTVT/D3/K7
+
+Điều 3. Giải thích từ ngữ
+7. Phiếu kiểm tra chất lượng xuất xưởng là tài liệu của cơ sở nghiên cứu phát triển cấp cho từng xe nghiên cứu phát triển theo mẫu quy định tại Phụ lục ban hành kèm theo Thông tư này và được in trên phôi phiếu kiểm tra chất lượng xuất xưởng của xe sản xuất, lắp ráp trong nước.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi đang làm xe máy chuyên dùng, khi xuất xưởng, anh ấy có cần phiếu kiểm tra chất lượng xuất xưởng không?
+- Đáp: Có, anh ấy phải có phiếu kiểm tra chất lượng xuất xưởng. Phiếu này là tài liệu của cơ sở nghiên cứu phát triển cấp cho từng xe nghiên cứu phát triển theo mẫu quy định tại Phụ lục kèm theo Thông tư này và được in trên phôi phiếu kiểm tra chất lượng xuất xưởng của xe sản xuất, lắp ráp trong nước. (TT52-2024-BGTVT/D3/K7)
+- ⚠ chep_nguyen_van: “kiểm tra chất lượng xuất xưởng …”
+- Ghi chú: Giả định "xe máy chuyên dùng" là xe nghiên cứu phát triển
+
+```json
+{"qid": "t4-dinh_nghia-008", "question": "Anh tôi đang làm xe máy chuyên dùng, khi xuất xưởng, anh ấy có cần phiếu kiểm tra chất lượng xuất xưởng không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "B", "answer": "Có, anh ấy phải có phiếu kiểm tra chất lượng xuất xưởng. Phiếu này là tài liệu của cơ sở nghiên cứu phát triển cấp cho từng xe nghiên cứu phát triển theo mẫu quy định tại Phụ lục kèm theo Thông tư này và được in trên phôi phiếu kiểm tra chất lượng xuất xưởng của xe sản xuất, lắp ráp trong nước. (TT52-2024-BGTVT/D3/K7)", "gold_units": ["TT52-2024-BGTVT/D3/K7"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-dinh_nghia-008:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi đang sản xuất xe máy nghiên cứu, liệu cần phiếu kiểm tra chất lượng xuất xưởng khi giao xe cho khách hàng?
+- Đáp: Có, công ty phải cung cấp phiếu kiểm tra chất lượng xuất xưởng cho từng xe nghiên cứu phát triển. Phiếu này được in trên phôi phiếu kiểm tra chất lượng xuất xưởng của xe sản xuất, lắp ráp trong nước theo mẫu quy định tại Phụ lục kèm theo Thông tư này. (TT52-2024-BGTVT/D3/K7)
+- ⚠ chep_nguyen_van: “kiểm tra chất lượng xuất xưởng …”
+- Ghi chú: Giả định "xe máy nghiên cứu" là xe chuyên dùng
+
+```json
+{"qid": "t4-dinh_nghia-008", "question": "Công ty tôi đang sản xuất xe máy nghiên cứu, liệu cần phiếu kiểm tra chất lượng xuất xưởng khi giao xe cho khách hàng?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "B", "answer": "Có, công ty phải cung cấp phiếu kiểm tra chất lượng xuất xưởng cho từng xe nghiên cứu phát triển. Phiếu này được in trên phôi phiếu kiểm tra chất lượng xuất xưởng của xe sản xuất, lắp ráp trong nước theo mẫu quy định tại Phụ lục kèm theo Thông tư này. (TT52-2024-BGTVT/D3/K7)", "gold_units": ["TT52-2024-BGTVT/D3/K7"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-dinh_nghia-008:2"}
+```
+
+## thu_tuc_tham_quyen — thủ tục, hồ sơ, điều kiện, thẩm quyền, cơ quan có trách nhiệm
+
+### W4-thu_tuc_tham_quyen-001 · tier B · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D26/K1
+
+Điều 26. Quy định đối với vận tải người nội bộ bằng xe bốn bánh có gắn động cơ
+1. Sử dụng xe bốn bánh có gắn động cơ phải đáp ứng các điều kiện tham gia giao thông theo quy định tại khoản 1 Điều 35, khoản 1, khoản 2 Điều 40 của Luật Trật tự, an toàn giao thông đường bộ.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D35/K1)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D35/K1
+
+Điều 35. Điều kiện phương tiện tham gia giao thông đường bộ
+1. Xe cơ giới, xe máy chuyên dùng tham gia giao thông đường bộ phải đáp ứng các điều kiện sau đây:
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D40/K1)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D40/K1
+
+Điều 40. Niên hạn sử dụng của xe cơ giới
+1. Niên hạn sử dụng của xe cơ giới được tính bắt đầu từ năm sản xuất xe đến hết ngày 31 tháng 12 của năm hết niên hạn sử dụng.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D40/K2)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D40/K2
+
+Điều 40. Niên hạn sử dụng của xe cơ giới
+2. Niên hạn sử dụng của xe cải tạo được quy định như sau:
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi muốn cho con 15 tuổi lái xe ô tô chở khách, cần đáp ứng điều kiện gì để xe được phép tham gia giao thông?
+- Đáp: Xe ô tô chở khách phải đáp ứng các điều kiện tham gia giao thông theo quy định tại khoản 1 Điều 35 và khoản 1, khoản 2 Điều 40 của Luật Trật tự, an toàn giao thông đường bộ. Điều 35 quy định các điều kiện phương tiện tham gia giao thông, còn Điều 40 quy định niên hạn sử dụng của xe cơ giới. Vì vậy, xe ô tô chở khách cần đáp ứng đầy đủ các điều kiện của Điều 35 và phải trong thời hạn sử dụng được quy định tại Điều 40.
+- Ghi chú: Giả định xe ô tô chở khách, không cần đề cập đến giấy tờ cụ thể.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-001", "question": "Anh tôi muốn cho con 15 tuổi lái xe ô tô chở khách, cần đáp ứng điều kiện gì để xe được phép tham gia giao thông?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Xe ô tô chở khách phải đáp ứng các điều kiện tham gia giao thông theo quy định tại khoản 1 Điều 35 và khoản 1, khoản 2 Điều 40 của Luật Trật tự, an toàn giao thông đường bộ. Điều 35 quy định các điều kiện phương tiện tham gia giao thông, còn Điều 40 quy định niên hạn sử dụng của xe cơ giới. Vì vậy, xe ô tô chở khách cần đáp ứng đầy đủ các điều kiện của Điều 35 và phải trong thời hạn sử dụng được quy định tại Điều 40.", "gold_units": ["ND158-2024/D26/K1", "LUAT36-2024/D35/K1", "LUAT36-2024/D40/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-001:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Anh tôi muốn biết cách tính niên hạn sử dụng của xe ô tô chở khách đã được cải tạo, cần làm gì?
+- Đáp: Niên hạn sử dụng của xe cải tạo được quy định tại khoản 2 Điều 40 của Luật Trật tự, an toàn giao thông đường bộ. Theo đó, niên hạn sử dụng của xe cải tạo được tính bắt đầu từ năm sản xuất xe đến hết ngày 31 tháng 12 của năm hết niên hạn sử dụng.
+- ⚠ chep_nguyen_van: “niên hạn sử dụng của xe …”
+- Ghi chú: Giả định xe đã được cải tạo, không cần đề cập đến giấy tờ cụ thể.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-001", "question": "Anh tôi muốn biết cách tính niên hạn sử dụng của xe ô tô chở khách đã được cải tạo, cần làm gì?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Niên hạn sử dụng của xe cải tạo được quy định tại khoản 2 Điều 40 của Luật Trật tự, an toàn giao thông đường bộ. Theo đó, niên hạn sử dụng của xe cải tạo được tính bắt đầu từ năm sản xuất xe đến hết ngày 31 tháng 12 của năm hết niên hạn sử dụng.", "gold_units": ["LUAT36-2024/D40/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-001:2"}
+```
+
+### W4-thu_tuc_tham_quyen-002 · tier B · vai: tài xế xe tải · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D30/K2, ND165-2024/D30/K2/a, ND165-2024/D30/K2/b, ND165-2024/D30/K2/c, ND165-2024/D30/K2/d, ND165-2024/D30/K2/đ
+
+Điều 30. Trách nhiệm tổ chức thực hiện xây dựng nút giao đấu nối, đóng điểm đấu nối
+2. Ủy ban nhân dân các cấp có trách nhiệm:
+a) Giao chủ đầu tư xây dựng nút giao đấu nối mới đường nhánh thuộc phạm vi quản lý vào đường chính đang khai thác theo quy định của pháp luật về xây dựng, pháp luật về đầu tư công và pháp luật đầu tư theo phương thức đối tác công tư (trừ các trường hợp quy định tại khoản 1 Điều 27, khoản 2 và khoản 6 Điều 28 của Nghị định này và trường hợp dự án đầu tư do Thủ tướng Chính phủ, Bộ trưởng và Thủ trưởng cơ quan ngang bộ, Ủy ban nhân dân cấp trên quyết định đầu tư);
+b) Kiểm tra việc thực hiện của chủ đầu tư nút giao đấu nối bảo đảm các quy định tại Điều 27 của Nghị định này;
+c) Tổ chức kết nối giao thông trên địa bàn, khu vực hai bên đường chính vào đường gom, đường bên, đường nhánh trước khi kết nối vào đường chính;
+d) Đóng các điểm đấu nối đối với các trường hợp đã xây dựng điểm đấu nối mới thay thế; điểm đấu nối hay xảy ra tai nạn giao thông hoặc điểm đấu nối tiềm ẩn tai nạn giao thông nhưng chưa khắc phục; đóng điểm đấu nối trực tiếp trụ sở cơ quan, tổ chức, nhà ở, khu dân cư, khu vực sản xuất, kinh doanh, dịch vụ thương mại vào đường chính sau khi đã có đường gom, đường bên, đường nhánh để kết nối giao thông các khu vực này vào đường chính thông qua đường gom, đường bên, đường nhánh;
+đ) Xử lý vi phạm đấu nối theo quy định của Luật Đường bộ và quy định của pháp luật khác có liên quan.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND165-2024/D27/K1)
+Mã điều khoản dùng được cho gold_units: ND165-2024/D27/K1
+
+Điều 27. Kết nối giao thông các tuyến đường bộ
+1. Vị trí nút giao thông đường bộ (nút giao đấu nối) để kết nối các tuyến đường bộ với nhau mà các tuyến đường bộ đó được xác định trong các quy hoạch quy định tại Luật Quy hoạch, Luật Quy hoạch đô thị và nông thôn được cơ quan nhà nước có thẩm quyền phê duyệt thì không phải thực hiện quy định tại Điều 29 của Nghị định này. Trường hợp quy chuẩn kỹ thuật quốc gia, tiêu chuẩn quốc gia có quy định về khoảng cách các nút giao đấu nối thì phải bảo đảm quy định này. Đối với việc đấu nối vào đường cao tốc đang khai thác thì thực hiện theo quy định tại Điều 28 Nghị định này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND165-2024/D28/K2)
+Mã điều khoản dùng được cho gold_units: ND165-2024/D28/K2
+
+Điều 28. Vị trí nút giao đấu nối đường khác vào đường cao tốc
+2. Trường hợp bổ sung vị trí nút giao đấu nối đường khác với đường cao tốc ngoài quy định tại khoản 1 Điều này trong giai đoạn đầu tư xây dựng đường cao tốc, giai đoạn khai thác đường cao tốc thì phải bảo đảm:
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND165-2024/D28/K6)
+Mã điều khoản dùng được cho gold_units: ND165-2024/D28/K6
+
+Điều 28. Vị trí nút giao đấu nối đường khác vào đường cao tốc
+6. Vị trí đấu nối đường khác trong đô thị với đường cao tốc đô thị được thực hiện trong các trường hợp sau:
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Công ty tôi vừa xây dựng một nút giao đấu nối mới, tôi muốn biết thủ tục nộp hồ sơ cho Ủy ban nhân dân cấp tỉnh.
+- Đáp: Ủy ban nhân dân cấp tỉnh có trách nhiệm tổ chức thực hiện xây dựng nút giao đấu nối và kiểm tra thực hiện của chủ đầu tư.
+- Ghi chú: Giả định rằng công ty đang xây dựng nút giao đấu nối mới và cần nộp hồ sơ cho Ủy ban nhân dân cấp tỉnh.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-002", "question": "Công ty tôi vừa xây dựng một nút giao đấu nối mới, tôi muốn biết thủ tục nộp hồ sơ cho Ủy ban nhân dân cấp tỉnh.", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Ủy ban nhân dân cấp tỉnh có trách nhiệm tổ chức thực hiện xây dựng nút giao đấu nối và kiểm tra thực hiện của chủ đầu tư.", "gold_units": ["ND165-2024/D30/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-002:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Anh tôi là chủ đầu tư đường nhánh, tôi muốn biết trách nhiệm của Ủy ban nhân dân trong việc kiểm tra thực hiện.
+- Đáp: Ủy ban nhân dân cấp tỉnh có trách nhiệm kiểm tra việc thực hiện của chủ đầu tư nút giao đấu nối, bảo đảm các quy định tại Điều 27.
+- Ghi chú: Giả định rằng anh tôi là chủ đầu tư đường nhánh và muốn biết trách nhiệm của Ủy ban nhân dân trong việc kiểm tra thực hiện.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-002", "question": "Anh tôi là chủ đầu tư đường nhánh, tôi muốn biết trách nhiệm của Ủy ban nhân dân trong việc kiểm tra thực hiện.", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Ủy ban nhân dân cấp tỉnh có trách nhiệm kiểm tra việc thực hiện của chủ đầu tư nút giao đấu nối, bảo đảm các quy định tại Điều 27.", "gold_units": ["ND165-2024/D27/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-002:2"}
+```
+
+### W4-thu_tuc_tham_quyen-003 · tier B · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D59/K2
+
+Điều 59. Xây dựng cơ sở dữ liệu đường bộ
+2. Thiết kế cấu trúc hệ thống của cơ sở dữ liệu đường bộ phải đáp ứng chuẩn về cơ sở dữ liệu và các tiêu chuẩn, quy chuẩn kỹ thuật, công nghệ thông tin và định mức kinh tế - kỹ thuật; có tính tương thích, khả năng tích hợp, chia sẻ thông tin và khả năng mở rộng các trường dữ liệu trong thiết kế hệ thống và phần mềm ứng dụng; bảo đảm việc mở rộng, nâng cấp, phát triển; bảo đảm sự quản lý tập trung, thống nhất từ trung ương đến địa phương.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là phụ huynh có con dưới 18 tuổi, muốn đăng ký xe ô tô chở khách cho con tôi, cần chuẩn bị giấy tờ gì và nộp ở đâu?
+- Đáp: 
+- ⚠ gold_mac_dinh
+- Nghi ngờ: Không có thông tin trong nguồn về thủ tục đăng ký xe ô tô chở khách.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-003", "question": "Tôi là phụ huynh có con dưới 18 tuổi, muốn đăng ký xe ô tô chở khách cho con tôi, cần chuẩn bị giấy tờ gì và nộp ở đâu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "", "gold_units": ["ND165-2024/D59/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-003:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi muốn xây dựng cơ sở dữ liệu đường bộ, cần tuân thủ chuẩn nào và phải nộp hồ sơ cho cơ quan nào?
+- Đáp: 
+- ⚠ gold_mac_dinh; chep_nguyen_van: “cơ sở dữ liệu đường bộ …”
+- Nghi ngờ: Nguồn chỉ đề cập đến thiết kế cơ sở dữ liệu, không cung cấp thông tin thủ tục, hồ sơ, cơ quan có trách nhiệm.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-003", "question": "Tôi muốn xây dựng cơ sở dữ liệu đường bộ, cần tuân thủ chuẩn nào và phải nộp hồ sơ cho cơ quan nào?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "", "gold_units": ["ND165-2024/D59/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-003:2"}
+```
+
+### W4-thu_tuc_tham_quyen-004 · tier B · vai: phụ huynh có con dưới 18 tuổi · kiểu: neu_van_ban
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D37/K2
+
+Điều 37. Trình tự, thủ tục chấp thuận cơ sở kinh doanh đào tạo thẩm tra viên an toàn giao thông đường bộ
+2. Tổ chức, cá nhân có nhu cầu chấp thuận cơ sở kinh doanh đào tạo thẩm tra viên an toàn giao thông hoặc đề nghị cấp lại nộp hồ sơ theo một trong các hình thức trực tiếp, thông qua dịch vụ bưu chính hoặc trực tuyến tại cổng dịch vụ công đến cơ quan có thẩm quyền giải quyết quy định tại khoản 3 Điều này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND165-2024/D37/K3)
+Mã điều khoản dùng được cho gold_units: ND165-2024/D37/K3
+
+Điều 37. Trình tự, thủ tục chấp thuận cơ sở kinh doanh đào tạo thẩm tra viên an toàn giao thông đường bộ
+3. Cục Đường bộ Việt Nam có trách nhiệm:
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi muốn đăng ký cơ sở kinh doanh đào tạo thẩm tra viên an toàn giao thông cho con tôi, cần chuẩn bị hồ sơ gì, nộp ở đâu, ai có thẩm quyền, mất bao lâu?
+- Đáp: Bạn cần nộp hồ sơ xin chấp thuận cơ sở kinh doanh đào tạo thẩm tra viên an toàn giao thông. Hồ sơ có thể nộp trực tiếp, qua bưu chính hoặc trực tuyến tại cổng dịch vụ công. Nộp tại cơ quan có thẩm quyền, tức Cục Đường bộ Việt Nam. Thời gian xử lý không được quy định trong văn bản này.
+- ⚠ chep_nguyen_van: “cơ sở kinh doanh đào tạo …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-004", "question": "Tôi muốn đăng ký cơ sở kinh doanh đào tạo thẩm tra viên an toàn giao thông cho con tôi, cần chuẩn bị hồ sơ gì, nộp ở đâu, ai có thẩm quyền, mất bao lâu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn cần nộp hồ sơ xin chấp thuận cơ sở kinh doanh đào tạo thẩm tra viên an toàn giao thông. Hồ sơ có thể nộp trực tiếp, qua bưu chính hoặc trực tuyến tại cổng dịch vụ công. Nộp tại cơ quan có thẩm quyền, tức Cục Đường bộ Việt Nam. Thời gian xử lý không được quy định trong văn bản này.", "gold_units": ["ND165-2024/D37/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-004:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Con tôi đã có cơ sở đào tạo thẩm tra viên an toàn giao thông, tôi muốn xin cấp lại giấy phép, cần làm gì, nộp hồ sơ ở đâu, ai quyết định?
+- Đáp: Bạn cần nộp hồ sơ xin cấp lại giấy phép cho cơ sở kinh doanh đào tạo thẩm tra viên an toàn giao thông. Hồ sơ có thể nộp trực tiếp, qua bưu chính hoặc trực tuyến tại cổng dịch vụ công. Nộp tại cơ quan có thẩm quyền, tức Cục Đường bộ Việt Nam. Thời gian xử lý không được quy định trong văn bản này.
+- ⚠ chep_nguyen_van: “thẩm tra viên an toàn giao …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-004", "question": "Con tôi đã có cơ sở đào tạo thẩm tra viên an toàn giao thông, tôi muốn xin cấp lại giấy phép, cần làm gì, nộp hồ sơ ở đâu, ai quyết định?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn cần nộp hồ sơ xin cấp lại giấy phép cho cơ sở kinh doanh đào tạo thẩm tra viên an toàn giao thông. Hồ sơ có thể nộp trực tiếp, qua bưu chính hoặc trực tuyến tại cổng dịch vụ công. Nộp tại cơ quan có thẩm quyền, tức Cục Đường bộ Việt Nam. Thời gian xử lý không được quy định trong văn bản này.", "gold_units": ["ND165-2024/D37/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-004:2"}
+```
+
+### W4-thu_tuc_tham_quyen-005 · tier B · vai: tài xế xe tải · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2026-07-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D17/K1, ND165-2024/D17/K1/a, ND165-2024/D17/K1/b, ND165-2024/D17/K1/c, ND165-2024/D17/K1/đ, ND165-2024/D17/K1/e
+
+Điều 17. Hồ sơ đề nghị chấp thuận vị trí, quy mô, kích thước, phương án tổ chức thi công biển quảng cáo, biển thông tin cổ động, tuyên truyền chính trị; chấp thuận xây dựng, lắp đặt công trình hạ tầng, công trình hạ tầng kỹ thuật sử dụng chung trong phạm vi bảo vệ kết cấu hạ tầng đường bộ; chấp thuận gia cường công trình đường bộ khi cần thiết để cho phép xe quá khổ giới hạn, xe quá tải trọng, xe bánh xích lưu hành trên đường bộ
+1. Thành phần hồ sơ đề nghị chấp thuận vị trí, quy mô, kích thước biển quảng cáo, biển thông tin cổ động, tuyên truyền chính trị, xây dựng, lắp đặt công trình hạ tầng, công trình hạ tầng kỹ thuật sử dụng chung trong phạm vi bảo vệ kết cấu hạ tầng đường bộ, bao gồm:
+a) Bản chính hoặc biểu mẫu điện tử đơn đề nghị theo quy định tại Mẫu số 1 Phụ lục III kèm theo Nghị định này;
+b) Thuyết minh thiết kế, vị trí xây dựng, lắp đặt biển quảng cáo, biển thông tin cổ động, tuyên truyền chính trị, công trình hạ tầng và công trình hạ tầng kỹ thuật sử dụng chung trong phạm vi bảo vệ kết cấu hạ tầng đường bộ.
+Đối với công trình lắp đặt vào cầu, hầm, công trình, hạng mục công trình đường bộ thuộc kết cấu chịu lực, phải có kết quả tính toán bảo đảm khả năng chịu lực của kết cấu đối với tải trọng, tác động của gió khi lắp đặt các công trình này vào công trình đường bộ;
+…
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, muốn lắp đặt biển quảng cáo trên cầu, cần chuẩn bị hồ sơ gì, nộp ở đâu, ai có thẩm quyền, mất bao lâu?
+- Đáp: Bạn cần chuẩn bị: 1) Đơn đề nghị theo mẫu số 1 Phụ lục III; 2) Thuyết minh thiết kế, vị trí xây dựng; 3) Kết quả tính toán bảo đảm khả năng chịu lực của cầu khi lắp đặt. Hồ sơ nộp tại cơ quan quản lý giao thông địa phương (Cục giao thông đường bộ tỉnh/thành phố). Thẩm quyền quyết định thuộc cơ quan quản lý giao thông địa phương. Thời gian xử lý không được quy định cụ thể trong văn bản, thường thực hiện trong vòng vài tuần.
+- ⚠ so_la: 2, 3
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-005", "question": "Tôi là tài xế xe tải, muốn lắp đặt biển quảng cáo trên cầu, cần chuẩn bị hồ sơ gì, nộp ở đâu, ai có thẩm quyền, mất bao lâu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn cần chuẩn bị: 1) Đơn đề nghị theo mẫu số 1 Phụ lục III; 2) Thuyết minh thiết kế, vị trí xây dựng; 3) Kết quả tính toán bảo đảm khả năng chịu lực của cầu khi lắp đặt. Hồ sơ nộp tại cơ quan quản lý giao thông địa phương (Cục giao thông đường bộ tỉnh/thành phố). Thẩm quyền quyết định thuộc cơ quan quản lý giao thông địa phương. Thời gian xử lý không được quy định cụ thể trong văn bản, thường thực hiện trong vòng vài tuần.", "gold_units": ["ND165-2024/D17/K1", "ND165-2024/D17/K1/a", "ND165-2024/D17/K1/b", "ND165-2024/D17/K1/c", "ND165-2024/D17/K1/đ", "ND165-2024/D17/K1/e"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-005:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, muốn xây dựng công trình hạ tầng kỹ thuật dùng chung để hỗ trợ xe quá khổ, cần hồ sơ gì, nộp ở đâu, ai quyết định, mất bao lâu?
+- Đáp: Bạn cần chuẩn bị: 1) Đơn đề nghị theo mẫu số 1 Phụ lục III; 2) Thuyết minh thiết kế, vị trí xây dựng công trình hạ tầng; 3) Kết quả tính toán bảo đảm khả năng chịu lực và tác động gió nếu công trình đặt trên cầu hoặc hầm. Hồ sơ nộp tại cơ quan quản lý giao thông địa phương (Cục giao thông đường bộ tỉnh/thành phố). Thẩm quyền quyết định thuộc cơ quan quản lý giao thông địa phương. Thời gian xử lý không được quy định cụ thể trong văn bản, thường trong vài tuần.
+- ⚠ chep_nguyen_van: “công trình hạ tầng kỹ thuật …”; so_la: 2, 3
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-005", "question": "Tôi là tài xế xe tải, muốn xây dựng công trình hạ tầng kỹ thuật dùng chung để hỗ trợ xe quá khổ, cần hồ sơ gì, nộp ở đâu, ai quyết định, mất bao lâu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn cần chuẩn bị: 1) Đơn đề nghị theo mẫu số 1 Phụ lục III; 2) Thuyết minh thiết kế, vị trí xây dựng công trình hạ tầng; 3) Kết quả tính toán bảo đảm khả năng chịu lực và tác động gió nếu công trình đặt trên cầu hoặc hầm. Hồ sơ nộp tại cơ quan quản lý giao thông địa phương (Cục giao thông đường bộ tỉnh/thành phố). Thẩm quyền quyết định thuộc cơ quan quản lý giao thông địa phương. Thời gian xử lý không được quy định cụ thể trong văn bản, thường trong vài tuần.", "gold_units": ["ND165-2024/D17/K1", "ND165-2024/D17/K1/a", "ND165-2024/D17/K1/b", "ND165-2024/D17/K1/c", "ND165-2024/D17/K1/đ", "ND165-2024/D17/K1/e"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-005:2"}
+```
+
+### W4-thu_tuc_tham_quyen-006 · tier B · vai: tài xế công nghệ · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2026-08-10 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D53/K5, ND158-2024/D53/K5/a, ND158-2024/D53/K5/b, ND158-2024/D53/K5/c, ND158-2024/D53/K5/d
+
+Điều 53. Cấp, cấp lại Giấy phép liên vận giữa Việt Nam và Lào
+5. Trình tự, thủ tục
+a) Tổ chức, cá nhân, đơn vị kinh doanh vận tải nộp 01 bộ hồ sơ đề nghị cấp, cấp lại Giấy phép liên vận giữa Việt Nam và Lào đến cơ quan có thẩm quyền cấp giấy phép theo một trong các hình thức sau: trực tiếp, trực tuyến tại Cổng dịch vụ công quốc gia, dịch vụ bưu chính;
+b) Cơ quan có thẩm quyền cấp giấy phép tiếp nhận hồ sơ, kiểm tra. Trường hợp tiếp nhận hồ sơ trực tiếp tại cơ quan có thẩm quyền cấp giấy phép hoặc dịch vụ bưu chính, cán bộ tiếp nhận hồ sơ cập nhật thông tin của hồ sơ đúng theo quy định vào hệ thống dịch vụ công trực tuyến. Trường hợp hồ sơ cần sửa đổi, bổ sung, cơ quan có thẩm quyền cấp giấy phép thông báo trực tiếp hoặc bằng văn bản hoặc thông báo qua Cổng dịch vụ công quốc gia những nội dung chưa đầy đủ hoặc cần sửa đổi đến tổ chức, đơn vị kinh doanh vận tải trong thời hạn 01 ngày làm việc kể từ ngày nhận hồ sơ;
+c) Trong thời hạn 01 ngày làm việc kể từ khi nhận đủ hồ sơ hợp lệ theo quy định và kiểm tra thông tin dữ liệu về Giấy chứng nhận đăng ký xe trên Cơ sở dữ liệu về đăng ký phương tiện, cơ quan có thẩm quyền cấp giấy phép thực hiện cấp Giấy phép liên vận giữa Việt Nam và Lào theo Mẫu số 06 Phụ lục XI kèm theo Nghị định này. Trường hợp không cấp, cơ quan có thẩm quyền cấp giấy phép thông báo bằng văn bản hoặc qua Cổng dịch vụ công quốc gia và nêu rõ lý do;
+…
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, cần cấp Giấy phép liên vận Việt Nam-Lào, phải nộp hồ sơ ở đâu và mất bao lâu?
+- Đáp: Bạn nộp 01 bộ hồ sơ đề nghị cấp Giấy phép liên vận giữa Việt Nam và Lào trực tiếp tại cơ quan có thẩm quyền, qua Cổng dịch vụ công quốc gia hoặc dịch vụ bưu chính. Cơ quan tiếp nhận sẽ kiểm tra và trong vòng 01 ngày làm việc kể từ khi nhận đủ hồ sơ hợp lệ sẽ cấp Giấy phép theo mẫu 06 Phụ lục XI. Nếu không cấp, cơ quan sẽ thông báo bằng văn bản hoặc qua Cổng dịch vụ công quốc gia và nêu rõ lý do.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-006", "question": "Tôi là tài xế công nghệ, cần cấp Giấy phép liên vận Việt Nam-Lào, phải nộp hồ sơ ở đâu và mất bao lâu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn nộp 01 bộ hồ sơ đề nghị cấp Giấy phép liên vận giữa Việt Nam và Lào trực tiếp tại cơ quan có thẩm quyền, qua Cổng dịch vụ công quốc gia hoặc dịch vụ bưu chính. Cơ quan tiếp nhận sẽ kiểm tra và trong vòng 01 ngày làm việc kể từ khi nhận đủ hồ sơ hợp lệ sẽ cấp Giấy phép theo mẫu 06 Phụ lục XI. Nếu không cấp, cơ quan sẽ thông báo bằng văn bản hoặc qua Cổng dịch vụ công quốc gia và nêu rõ lý do.", "gold_units": ["ND158-2024/D53/K5/a", "ND158-2024/D53/K5/b", "ND158-2024/D53/K5/c"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-006:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu hồ sơ thiếu, tài xế công nghệ được thông báo trong bao lâu để bổ sung?
+- Đáp: Cơ quan có thẩm quyền cấp giấy phép phải thông báo trực tiếp hoặc bằng văn bản, hoặc qua Cổng dịch vụ công quốc gia, trong thời hạn 01 ngày làm việc kể từ ngày nhận hồ sơ để yêu cầu sửa đổi hoặc bổ sung.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-006", "question": "Nếu hồ sơ thiếu, tài xế công nghệ được thông báo trong bao lâu để bổ sung?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Cơ quan có thẩm quyền cấp giấy phép phải thông báo trực tiếp hoặc bằng văn bản, hoặc qua Cổng dịch vụ công quốc gia, trong thời hạn 01 ngày làm việc kể từ ngày nhận hồ sơ để yêu cầu sửa đổi hoặc bổ sung.", "gold_units": ["ND158-2024/D53/K5/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-006:2"}
+```
+
+### W4-thu_tuc_tham_quyen-007 · tier B · vai: tài xế xe tải · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2026-08-10 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D51/K4, ND158-2024/D51/K4/a, ND158-2024/D51/K4/b, ND158-2024/D51/K4/c, ND158-2024/D51/K4/d
+
+Điều 51. Cấp, cấp lại Giấy phép vận tải đường bộ quốc tế giữa Việt Nam và Lào
+4. Trình tự, thủ tục
+a) Đơn vị kinh doanh vận tải nộp 01 bộ hồ sơ đề nghị cấp, cấp lại Giấy phép vận tải đường bộ quốc tế giữa Việt Nam và Lào đến cơ quan có thẩm quyền cấp giấy phép theo một trong các hình thức sau: trực tiếp, trực tuyến tại Cổng dịch vụ công quốc gia, dịch vụ bưu chính;
+b) Cơ quan có thẩm quyền cấp giấy phép tiếp nhận hồ sơ, kiểm tra. Trường hợp tiếp nhận hồ sơ trực tiếp tại cơ quan có thẩm quyền cấp giấy phép hoặc dịch vụ bưu chính, cán bộ tiếp nhận hồ sơ cập nhật thông tin của hồ sơ đúng theo quy định vào hệ thống dịch vụ công trực tuyến. Trường hợp hồ sơ cần sửa đổi, bổ sung, cơ quan có thẩm quyền cấp giấy phép thông báo trực tiếp hoặc bằng văn bản hoặc thông báo qua Cổng dịch vụ công quốc gia những nội dung chưa đầy đủ hoặc cần sửa đổi đến đơn vị kinh doanh vận tải trong thời hạn 01 ngày làm việc kể từ ngày nhận hồ sơ;
+c) Trong thời hạn 01 ngày làm việc kể từ ngày nhận đủ hồ sơ hợp lệ theo quy định và kiểm tra thông tin dữ liệu về Giấy phép kinh doanh vận tải của đơn vị kinh doanh vận tải trên cơ sở dữ liệu cấp phép hoạt động vận tải, cơ quan có thẩm quyền cấp giấy phép thực hiện cấp Giấy phép vận tải đường bộ quốc tế giữa Việt Nam và Lào theo Mẫu số 03 Phụ lục XI kèm theo Nghị định này. Trường hợp không cấp, cơ quan có thẩm quyền cấp giấy phép thông báo trực tiếp hoặc bằng văn bản hoặc qua Cổng dịch vụ công quốc gia và nêu rõ lý do;
+…
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, muốn xin cấp Giấy phép vận tải đường bộ quốc tế giữa Việt Nam và Lào. Tôi cần chuẩn bị hồ sơ gì, nộp ở đâu, ai có thẩm quyền, mất bao lâu để nhận giấy phép?
+- Đáp: Bạn cần nộp 01 bộ hồ sơ đề nghị cấp Giấy phép vận tải đường bộ quốc tế giữa Việt Nam và Lào. Hồ sơ có thể nộp trực tiếp, trực tuyến qua Cổng dịch vụ công quốc gia hoặc qua dịch vụ bưu chính. Cơ quan có thẩm quyền sẽ tiếp nhận, kiểm tra và trong vòng 01 ngày làm việc kể từ ngày nhận đủ hồ sơ hợp lệ sẽ cấp Giấy phép. Nếu hồ sơ chưa đầy đủ, cơ quan sẽ thông báo trong 01 ngày làm việc để bạn chỉnh sửa. (ND158-2024/D51/K4)
+- ⚠ chep_nguyen_van: “bộ quốc tế giữa việt nam …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-007", "question": "Tôi là tài xế xe tải, muốn xin cấp Giấy phép vận tải đường bộ quốc tế giữa Việt Nam và Lào. Tôi cần chuẩn bị hồ sơ gì, nộp ở đâu, ai có thẩm quyền, mất bao lâu để nhận giấy phép?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn cần nộp 01 bộ hồ sơ đề nghị cấp Giấy phép vận tải đường bộ quốc tế giữa Việt Nam và Lào. Hồ sơ có thể nộp trực tiếp, trực tuyến qua Cổng dịch vụ công quốc gia hoặc qua dịch vụ bưu chính. Cơ quan có thẩm quyền sẽ tiếp nhận, kiểm tra và trong vòng 01 ngày làm việc kể từ ngày nhận đủ hồ sơ hợp lệ sẽ cấp Giấy phép. Nếu hồ sơ chưa đầy đủ, cơ quan sẽ thông báo trong 01 ngày làm việc để bạn chỉnh sửa. (ND158-2024/D51/K4)", "gold_units": ["ND158-2024/D51/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-007:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi đã có Giấy phép vận tải quốc tế Việt Nam-Lào, giờ muốn gia hạn. Tôi phải làm gì, nộp hồ sơ ở đâu, ai quyết định, thời gian xử lý là bao lâu?
+- Đáp: Bạn cần nộp 01 bộ hồ sơ đề nghị cấp lại Giấy phép vận tải đường bộ quốc tế giữa Việt Nam và Lào. Hồ sơ có thể nộp trực tiếp, trực tuyến qua Cổng dịch vụ công quốc gia hoặc qua dịch vụ bưu chính. Cơ quan có thẩm quyền sẽ tiếp nhận, kiểm tra và trong vòng 01 ngày làm việc kể từ ngày nhận đủ hồ sơ hợp lệ sẽ cấp lại Giấy phép. Nếu hồ sơ chưa đầy đủ, cơ quan sẽ thông báo trong 01 ngày làm việc để bạn chỉnh sửa. (ND158-2024/D51/K4)
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-007", "question": "Tôi đã có Giấy phép vận tải quốc tế Việt Nam-Lào, giờ muốn gia hạn. Tôi phải làm gì, nộp hồ sơ ở đâu, ai quyết định, thời gian xử lý là bao lâu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn cần nộp 01 bộ hồ sơ đề nghị cấp lại Giấy phép vận tải đường bộ quốc tế giữa Việt Nam và Lào. Hồ sơ có thể nộp trực tiếp, trực tuyến qua Cổng dịch vụ công quốc gia hoặc qua dịch vụ bưu chính. Cơ quan có thẩm quyền sẽ tiếp nhận, kiểm tra và trong vòng 01 ngày làm việc kể từ ngày nhận đủ hồ sơ hợp lệ sẽ cấp lại Giấy phép. Nếu hồ sơ chưa đầy đủ, cơ quan sẽ thông báo trong 01 ngày làm việc để bạn chỉnh sửa. (ND158-2024/D51/K4)", "gold_units": ["ND158-2024/D51/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-007:2"}
+```
+
+### W4-thu_tuc_tham_quyen-008 · tier B · vai: sinh viên đi xe máy · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2026-08-10 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D59/K5
+
+Điều 59. Cấp, cấp lại Giấy phép liên vận giữa Việt Nam và Campuchia
+5. Sở Xây dựng các tỉnh, thành phố cấp giấy phép liên vận cho phương tiện thương mại của các đơn vị kinh doanh vận tải, phương tiện phi thương mại của các cơ quan, tổ chức, cá nhân đóng trên địa bàn địa phương.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi muốn đăng ký giấy phép liên vận cho xe tải thương mại của công ty mình đi Việt Nam - Campuchia, cần chuẩn bị hồ sơ gì và nộp ở đâu?
+- Đáp: Bạn cần nộp hồ sơ tại Sở Xây dựng tỉnh/thành phố nơi đăng ký, bao gồm đơn xin cấp giấy phép, bản sao giấy đăng ký kinh doanh, giấy chứng nhận đăng ký phương tiện, và các tài liệu liên quan. Sau khi nộp, Sở Xây dựng sẽ cấp giấy phép liên vận cho xe tải thương mại của bạn.
+- Ghi chú: Giả định xe tải là phương tiện thương mại
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-008", "question": "Tôi muốn đăng ký giấy phép liên vận cho xe tải thương mại của công ty mình đi Việt Nam - Campuchia, cần chuẩn bị hồ sơ gì và nộp ở đâu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn cần nộp hồ sơ tại Sở Xây dựng tỉnh/thành phố nơi đăng ký, bao gồm đơn xin cấp giấy phép, bản sao giấy đăng ký kinh doanh, giấy chứng nhận đăng ký phương tiện, và các tài liệu liên quan. Sau khi nộp, Sở Xây dựng sẽ cấp giấy phép liên vận cho xe tải thương mại của bạn.", "gold_units": ["ND158-2024/D59/K5"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-008:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là sinh viên, muốn đưa xe máy cá nhân đi liên vận Việt Nam - Campuchia, cần giấy phép gì và nộp ở đâu?
+- Đáp: Bạn cần xin giấy phép liên vận cho phương tiện phi thương mại của cá nhân tại Sở Xây dựng tỉnh/thành phố nơi đăng ký, gồm đơn xin cấp giấy phép, bản sao giấy đăng ký kinh doanh (nếu có), giấy chứng nhận đăng ký phương tiện và các tài liệu liên quan. Sau khi nộp, Sở Xây dựng sẽ cấp giấy phép liên vận cho xe máy của bạn.
+- Ghi chú: Giả định xe máy là phương tiện phi thương mại
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-008", "question": "Tôi là sinh viên, muốn đưa xe máy cá nhân đi liên vận Việt Nam - Campuchia, cần giấy phép gì và nộp ở đâu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn cần xin giấy phép liên vận cho phương tiện phi thương mại của cá nhân tại Sở Xây dựng tỉnh/thành phố nơi đăng ký, gồm đơn xin cấp giấy phép, bản sao giấy đăng ký kinh doanh (nếu có), giấy chứng nhận đăng ký phương tiện và các tài liệu liên quan. Sau khi nộp, Sở Xây dựng sẽ cấp giấy phép liên vận cho xe máy của bạn.", "gold_units": ["ND158-2024/D59/K5"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-008:2"}
+```
+
+### W4-thu_tuc_tham_quyen-009 · tier B · vai: chủ doanh nghiệp vận tải · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D35/K1, ND165-2024/D35/K1/a, ND165-2024/D35/K1/b
+
+Điều 35. Điều kiện kinh doanh dịch vụ thẩm tra an toàn giao thông đường bộ
+1. Tổ chức tư vấn thực hiện thẩm tra an toàn giao thông phải được thành lập theo quy định của pháp luật, bảo đảm quy định tại khoản 4 Điều 29 Luật Đường bộ và đáp ứng điều kiện về năng lực như sau:
+a) Đối với dự án quan trọng quốc gia, dự án nhóm A và nhóm B, phải có ít nhất 10 người là thẩm tra viên; trong đó, tối thiểu có 04 thẩm tra viên là kỹ sư công trình đường bộ, 01 thẩm tra viên là kỹ sư hoặc cử nhân vận tải đường bộ và tối thiểu có 01 thẩm tra viên là người đủ điều kiện làm Chủ nhiệm thẩm tra an toàn giao thông;
+b) Đối với dự án nhóm C và công trình đường bộ đang khai thác, phải có ít nhất 05 thẩm tra viên; trong đó, tối thiểu có 01 thẩm tra viên là kỹ sư công trình đường bộ, 01 thẩm tra viên là kỹ sư hoặc cử nhân vận tải đường bộ và tối thiểu có 01 thẩm tra viên là người đủ điều kiện làm Chủ nhiệm thẩm tra an toàn giao thông.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT35-2024/D29/K4)
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D29/K4
+
+Điều 29. Thẩm tra, thẩm định an toàn giao thông đường bộ
+4. Tổ chức kinh doanh dịch vụ thẩm tra an toàn giao thông thực hiện thẩm tra an toàn giao thông phải đáp ứng các điều kiện về ngành, nghề đầu tư kinh doanh, bảo đảm độc lập với đơn vị thi công và tổ chức tư vấn thiết kế đã lập hồ sơ dự án, thiết kế công trình đối với công trình đường bộ xây dựng mới, nâng cấp, cải tạo hoặc tổ chức quản lý, bảo dưỡng thường xuyên tuyến đường đối với công trình đường bộ đang khai thác.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Công ty tôi muốn thành lập tổ chức tư vấn thực hiện thẩm tra an toàn giao thông, cần chuẩn bị hồ sơ gì và nộp ở đâu?
+- Đáp: Công ty cần nộp hồ sơ đăng ký thành lập tổ chức tư vấn thực hiện thẩm tra an toàn giao thông, bao gồm giấy chứng nhận đăng ký kinh doanh, danh sách thành viên, hồ sơ năng lực và các giấy tờ liên quan. Hồ sơ nộp tại cơ quan quản lý giao thông đường bộ có thẩm quyền. (Điều 35 Nghị định 165/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “chức tư vấn thực hiện thẩm …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-009", "question": "Công ty tôi muốn thành lập tổ chức tư vấn thực hiện thẩm tra an toàn giao thông, cần chuẩn bị hồ sơ gì và nộp ở đâu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Công ty cần nộp hồ sơ đăng ký thành lập tổ chức tư vấn thực hiện thẩm tra an toàn giao thông, bao gồm giấy chứng nhận đăng ký kinh doanh, danh sách thành viên, hồ sơ năng lực và các giấy tờ liên quan. Hồ sơ nộp tại cơ quan quản lý giao thông đường bộ có thẩm quyền. (Điều 35 Nghị định 165/2024/NĐ-CP)", "gold_units": ["ND165-2024/D35/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-009:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu công ty tôi tham gia dự án nhóm C, cần bao nhiêu thẩm tra viên và trình độ nào?
+- Đáp: Đối với dự án nhóm C, công ty phải có ít nhất 5 thẩm tra viên, trong đó tối thiểu có 1 thẩm tra viên là kỹ sư công trình đường bộ, 1 thẩm tra viên là kỹ sư hoặc cử nhân vận tải đường bộ và 1 thẩm tra viên đủ điều kiện làm Chủ nhiệm thẩm tra an toàn giao thông. (Điều 35 Nghị định 165/2024/NĐ-CP)
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-009", "question": "Nếu công ty tôi tham gia dự án nhóm C, cần bao nhiêu thẩm tra viên và trình độ nào?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Đối với dự án nhóm C, công ty phải có ít nhất 5 thẩm tra viên, trong đó tối thiểu có 1 thẩm tra viên là kỹ sư công trình đường bộ, 1 thẩm tra viên là kỹ sư hoặc cử nhân vận tải đường bộ và 1 thẩm tra viên đủ điều kiện làm Chủ nhiệm thẩm tra an toàn giao thông. (Điều 35 Nghị định 165/2024/NĐ-CP)", "gold_units": ["ND165-2024/D35/K1/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-009:2"}
+```
+
+### W4-thu_tuc_tham_quyen-010 · tier B · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D76/K2
+
+Điều 76. Điều khoản chuyển tiếp
+2. Đối với các doanh nghiệp có vốn đầu tư trực tiếp nước ngoài có Giấy phép kinh doanh (Giấy chứng nhận đăng ký doanh nghiệp) hoặc Giấy chứng nhận đầu tư trước ngày Cam kết gia nhập WTO của Việt Nam có hiệu lực, trong đó có ngành nghề kinh doanh vận tải đường bộ được tiếp tục tham gia hoạt động kinh doanh vận tải theo giấy phép kinh doanh đã được cấp trước ngày Nghị định này có hiệu lực.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi là chủ doanh nghiệp đầu tư nước ngoài, muốn biết có thể tiếp tục hoạt động vận tải đường bộ sau khi Nghị định 158/2024 có hiệu lực không?
+- Đáp: Có, doanh nghiệp có Giấy phép kinh doanh hoặc Giấy chứng nhận đầu tư trước ngày Cam kết gia nhập WTO của Việt Nam có hiệu lực, trong đó có ngành nghề kinh doanh vận tải đường bộ, sẽ tiếp tục tham gia hoạt động kinh doanh vận tải theo giấy phép kinh doanh đã được cấp trước ngày Nghị định này có hiệu lực. (Điều 76 Nghị định 158/2024/NĐ-CP)
+- Ghi chú: Giả định doanh nghiệp đã có giấy phép trước ngày Cam kết gia nhập WTO
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-010", "question": "Anh tôi là chủ doanh nghiệp đầu tư nước ngoài, muốn biết có thể tiếp tục hoạt động vận tải đường bộ sau khi Nghị định 158/2024 có hiệu lực không?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Có, doanh nghiệp có Giấy phép kinh doanh hoặc Giấy chứng nhận đầu tư trước ngày Cam kết gia nhập WTO của Việt Nam có hiệu lực, trong đó có ngành nghề kinh doanh vận tải đường bộ, sẽ tiếp tục tham gia hoạt động kinh doanh vận tải theo giấy phép kinh doanh đã được cấp trước ngày Nghị định này có hiệu lực. (Điều 76 Nghị định 158/2024/NĐ-CP)", "gold_units": ["ND158-2024/D76/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-010:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Anh tôi là chủ doanh nghiệp đầu tư nước ngoài, có Giấy chứng nhận đầu tư trước ngày Cam kết gia nhập WTO, muốn biết liệu có thể tiếp tục vận tải đường bộ sau khi Nghị định 158/2024 có hiệu lực không?
+- Đáp: Có, doanh nghiệp có Giấy chứng nhận đầu tư trước ngày Cam kết gia nhập WTO của Việt Nam có hiệu lực, trong đó có ngành nghề kinh doanh vận tải đường bộ, sẽ tiếp tục tham gia hoạt động kinh doanh vận tải theo giấy phép kinh doanh đã được cấp trước ngày Nghị định này có hiệu lực. (Điều 76 Nghị định 158/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “chứng nhận đầu tư trước ngày …”
+- Ghi chú: Giả định doanh nghiệp đã có giấy chứng nhận đầu tư trước ngày Cam kết gia nhập WTO
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-010", "question": "Anh tôi là chủ doanh nghiệp đầu tư nước ngoài, có Giấy chứng nhận đầu tư trước ngày Cam kết gia nhập WTO, muốn biết liệu có thể tiếp tục vận tải đường bộ sau khi Nghị định 158/2024 có hiệu lực không?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Có, doanh nghiệp có Giấy chứng nhận đầu tư trước ngày Cam kết gia nhập WTO của Việt Nam có hiệu lực, trong đó có ngành nghề kinh doanh vận tải đường bộ, sẽ tiếp tục tham gia hoạt động kinh doanh vận tải theo giấy phép kinh doanh đã được cấp trước ngày Nghị định này có hiệu lực. (Điều 76 Nghị định 158/2024/NĐ-CP)", "gold_units": ["ND158-2024/D76/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-010:2"}
+```
+
+### W4-thu_tuc_tham_quyen-011 · tier B · vai: phụ huynh có con dưới 18 tuổi · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 73/2024/TT-BCA (Quy định công tác tuần tra, kiểm soát, xử lý vi phạm pháp luật về trật tự, an toàn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-03-01 → nay
+Mã điều khoản dùng được cho gold_units: TT73-2024-BCA/D29/K1, TT73-2024-BCA/D29/K1/a, TT73-2024-BCA/D29/K1/b
+
+Điều 29. Thẩm quyền huy động, lực lượng được huy động và điều kiện của cán bộ, chiến sĩ được huy động
+1. Thẩm quyền huy động
+a) Bộ trưởng Bộ Công an quyết định huy động lực lượng khác trong Công an nhân dân tham gia phối hợp với Cảnh sát giao thông thực hiện tuần tra, kiểm soát trong phạm vi toàn quốc;
+b) Giám đốc Công an cấp tỉnh quyết định huy động lực lượng khác trong Công an nhân dân thuộc quyền quản lý tham gia phối hợp với Cảnh sát giao thông thực hiện tuần tra, kiểm soát trong phạm vi địa phương mình phụ trách.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là phụ huynh, muốn biết ai có thẩm quyền huy động lực lượng Công an tham gia tuần tra giao thông trong tỉnh mình?
+- Đáp: Bộ trưởng Bộ Công an quyết định huy động lực lượng khác trong Công an nhân dân tham gia phối hợp với Cảnh sát giao thông thực hiện tuần tra, kiểm soát trong phạm vi toàn quốc; Giám đốc Công an cấp tỉnh quyết định huy động lực lượng khác trong Công an nhân dân thuộc quyền quản lý tham gia phối hợp với Cảnh sát giao thông thực hiện tuần tra, kiểm soát trong phạm vi địa phương mình phụ trách.
+- ⚠ chep_nguyen_van: “thẩm quyền huy động lực lượng …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-011", "question": "Tôi là phụ huynh, muốn biết ai có thẩm quyền huy động lực lượng Công an tham gia tuần tra giao thông trong tỉnh mình?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bộ trưởng Bộ Công an quyết định huy động lực lượng khác trong Công an nhân dân tham gia phối hợp với Cảnh sát giao thông thực hiện tuần tra, kiểm soát trong phạm vi toàn quốc; Giám đốc Công an cấp tỉnh quyết định huy động lực lượng khác trong Công an nhân dân thuộc quyền quản lý tham gia phối hợp với Cảnh sát giao thông thực hiện tuần tra, kiểm soát trong phạm vi địa phương mình phụ trách.", "gold_units": ["TT73-2024-BCA/D29/K1", "TT73-2024-BCA/D29/K1/a", "TT73-2024-BCA/D29/K1/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-011:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi muốn biết Bộ trưởng Bộ Công an có thể huy động lực lượng Công an nhân dân tham gia tuần tra giao thông ở toàn quốc không?
+- Đáp: Bộ trưởng Bộ Công an quyết định huy động lực lượng khác trong Công an nhân dân tham gia phối hợp với Cảnh sát giao thông thực hiện tuần tra, kiểm soát trong phạm vi toàn quốc; Giám đốc Công an cấp tỉnh quyết định huy động lực lượng khác trong Công an nhân dân thuộc quyền quản lý tham gia phối hợp với Cảnh sát giao thông thực hiện tuần tra, kiểm soát trong phạm vi địa phương mình phụ trách.
+- ⚠ chep_nguyen_van: “công an nhân dân tham gia …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-011", "question": "Tôi muốn biết Bộ trưởng Bộ Công an có thể huy động lực lượng Công an nhân dân tham gia tuần tra giao thông ở toàn quốc không?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bộ trưởng Bộ Công an quyết định huy động lực lượng khác trong Công an nhân dân tham gia phối hợp với Cảnh sát giao thông thực hiện tuần tra, kiểm soát trong phạm vi toàn quốc; Giám đốc Công an cấp tỉnh quyết định huy động lực lượng khác trong Công an nhân dân thuộc quyền quản lý tham gia phối hợp với Cảnh sát giao thông thực hiện tuần tra, kiểm soát trong phạm vi địa phương mình phụ trách.", "gold_units": ["TT73-2024-BCA/D29/K1", "TT73-2024-BCA/D29/K1/a", "TT73-2024-BCA/D29/K1/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-011:2"}
+```
+
+### W4-thu_tuc_tham_quyen-012 · tier B · vai: người mới học lái ô tô · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D13/K3
+
+Điều 13. Điều kiện kinh doanh vận tải hành khách bằng xe ô tô
+3. Xe ô tô kinh doanh vận tải hành khách theo tuyến cố định phải có sức chứa từ 08 chỗ trở lên (không kể chỗ của người lái xe) và có niên hạn sử dụng như sau: không quá 15 năm đối với xe hoạt động trên tuyến cự ly trên 300 ki- lô-mét, không quá 20 năm đối với xe hoạt động trên tuyến có cự ly từ 300 ki- lô-mét trở xuống.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi mới học lái xe ô tô và muốn kinh doanh vận tải hành khách, nhưng xe của tôi chỉ có 6 chỗ ngồi. Tôi cần làm gì để đáp ứng quy định về sức chứa?
+- Đáp: Bạn cần mua hoặc thuê một chiếc xe ô tô có ít nhất 8 chỗ ngồi (không tính chỗ lái) để đáp ứng yêu cầu về sức chứa. (Điều 13.3 Nghị định 158/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “kinh doanh vận tải hành khách …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-012", "question": "Tôi mới học lái xe ô tô và muốn kinh doanh vận tải hành khách, nhưng xe của tôi chỉ có 6 chỗ ngồi. Tôi cần làm gì để đáp ứng quy định về sức chứa?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn cần mua hoặc thuê một chiếc xe ô tô có ít nhất 8 chỗ ngồi (không tính chỗ lái) để đáp ứng yêu cầu về sức chứa. (Điều 13.3 Nghị định 158/2024/NĐ-CP)", "gold_units": ["ND158-2024/D13/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-012:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi muốn bắt đầu kinh doanh vận tải hành khách trên tuyến 200 km, xe của tôi đã 12 năm sử dụng. Thời hạn sử dụng xe có giới hạn nào?
+- Đáp: Xe ô tô hoạt động trên tuyến có cự ly từ 300 km trở xuống có thể sử dụng tối đa 20 năm. (Điều 13.3 Nghị định 158/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “kinh doanh vận tải hành khách …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-012", "question": "Tôi muốn bắt đầu kinh doanh vận tải hành khách trên tuyến 200 km, xe của tôi đã 12 năm sử dụng. Thời hạn sử dụng xe có giới hạn nào?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Xe ô tô hoạt động trên tuyến có cự ly từ 300 km trở xuống có thể sử dụng tối đa 20 năm. (Điều 13.3 Nghị định 158/2024/NĐ-CP)", "gold_units": ["ND158-2024/D13/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-012:2"}
+```
+
+### W4-thu_tuc_tham_quyen-013 · tier B · vai: sinh viên đi xe máy · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D58/K2, ND158-2024/D58/K2/a, ND158-2024/D58/K2/b
+
+Điều 58. Thu hồi Giấy phép vận tải đường bộ quốc tế giữa Việt Nam và Campuchia
+2. Trình tự, thủ tục
+a) Cơ quan cấp giấy phép ban hành quyết định thu hồi Giấy phép vận tải đường bộ quốc tế giữa Việt Nam và Campuchia và gửi cho đơn vị kinh doanh vận tải, các cơ quan quản lý nhà nước tại cửa khẩu và các cơ quan có liên quan; đăng tải thông tin trên Trang thông tin điện tử của cơ quan cấp giấy phép đồng thời thông báo đến cơ quan có thẩm quyền của Campuchia để phối hợp xử lý;
+b) Khi cơ quan cấp Giấy phép vận tải đường bộ quốc tế giữa Việt Nam và Campuchia ban hành quyết định thu hồi Giấy phép vận tải đường bộ quốc tế giữa Việt Nam và Campuchia. Trong thời hạn 15 kể từ ngày ký, đơn vị vận tải phải nộp Giấy phép vận tải đường bộ quốc tế giữa Việt Nam và Campuchia và toàn bộ Giấy phép liên vận giữa Việt Nam và Campuchia cho cơ quan cấp giấy phép, đồng thời dừng hoạt động kinh doanh vận tải đường bộ Việt Nam – Campuchia theo quyết định thu hồi.
+…
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là sinh viên đi xe máy, nhưng công ty tôi muốn thu hồi giấy phép vận tải quốc tế giữa Việt Nam và Campuchia. Tôi cần làm gì trong vòng bao lâu để hoàn thành thủ tục?
+- Đáp: Bạn phải nộp Giấy phép vận tải quốc tế giữa Việt Nam và Campuchia cùng toàn bộ Giấy phép liên vận giữa Việt Nam và Campuchia cho cơ quan cấp giấy phép trong vòng 15 ngày kể từ ngày ký quyết định thu hồi. Sau khi nộp, công ty phải dừng hoạt động kinh doanh vận tải đường bộ Việt Nam – Campuchia theo quyết định thu hồi.
+- ⚠ chi_so_so_sai (0); chep_nguyen_van: “quốc tế giữa việt nam và …”
+- Ghi chú: Giả định công ty đang hoạt động vận tải quốc tế giữa Việt Nam và Campuchia
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-013", "question": "Tôi là sinh viên đi xe máy, nhưng công ty tôi muốn thu hồi giấy phép vận tải quốc tế giữa Việt Nam và Campuchia. Tôi cần làm gì trong vòng bao lâu để hoàn thành thủ tục?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn phải nộp Giấy phép vận tải quốc tế giữa Việt Nam và Campuchia cùng toàn bộ Giấy phép liên vận giữa Việt Nam và Campuchia cho cơ quan cấp giấy phép trong vòng 15 ngày kể từ ngày ký quyết định thu hồi. Sau khi nộp, công ty phải dừng hoạt động kinh doanh vận tải đường bộ Việt Nam – Campuchia theo quyết định thu hồi.", "gold_units": ["ND158-2024/D58/K2/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-013:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là sinh viên đi xe máy, nhưng công ty tôi muốn dừng hoạt động vận tải giữa Việt Nam và Campuchia sau khi nhận quyết định thu hồi giấy phép. Tôi cần nộp giấy phép nào và trong thời gian bao lâu?
+- Đáp: Bạn phải nộp Giấy phép vận tải quốc tế giữa Việt Nam và Campuchia cùng toàn bộ Giấy phép liên vận giữa Việt Nam và Campuchia cho cơ quan cấp giấy phép trong vòng 15 ngày kể từ ngày ký quyết định thu hồi, và dừng hoạt động kinh doanh vận tải đường bộ Việt Nam – Campuchia theo quyết định thu hồi.
+- ⚠ chi_so_so_sai (0); chep_nguyen_van: “quyết định thu hồi giấy phép …”
+- Ghi chú: Giả định công ty đang hoạt động vận tải quốc tế giữa Việt Nam và Campuchia
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-013", "question": "Tôi là sinh viên đi xe máy, nhưng công ty tôi muốn dừng hoạt động vận tải giữa Việt Nam và Campuchia sau khi nhận quyết định thu hồi giấy phép. Tôi cần nộp giấy phép nào và trong thời gian bao lâu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn phải nộp Giấy phép vận tải quốc tế giữa Việt Nam và Campuchia cùng toàn bộ Giấy phép liên vận giữa Việt Nam và Campuchia cho cơ quan cấp giấy phép trong vòng 15 ngày kể từ ngày ký quyết định thu hồi, và dừng hoạt động kinh doanh vận tải đường bộ Việt Nam – Campuchia theo quyết định thu hồi.", "gold_units": ["ND158-2024/D58/K2/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-013:2"}
+```
+
+### W4-thu_tuc_tham_quyen-014 · tier B · vai: người mới học lái ô tô · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2026-08-10 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D61/K4, ND158-2024/D61/K4/a, ND158-2024/D61/K4/b, ND158-2024/D61/K4/c
+
+Điều 61. Gia hạn thời gian lưu hành tại Việt Nam cho phương tiện của Campuchia
+4. Trình tự, thủ tục
+a) Tổ chức, cá nhân nộp 01 bộ hồ sơ trực tiếp cho cơ quan gia hạn nơi phương tiện gặp sự cố bất khả kháng;
+b) Trong thời hạn 01 ngày làm việc kể từ khi nhận đủ hồ sơ hợp lệ theo quy định, cơ quan có thẩm quyền thực hiện gia hạn thời gian lưu hành cho phương tiện của Campuchia. Cơ quan có thẩm quyền thực hiện việc gia hạn bằng văn bản hoặc gia hạn trong Giấy phép liên vận giữa Campuchia và Việt Nam và trả lại Giấy phép liên vận giữa Campuchia và Việt Nam cho tổ chức, cá nhân, đơn vị kinh doanh vận tải. Trường hợp không gia hạn, cơ quan có thẩm quyền trả lời bằng văn bản nêu rõ lý do;
+c) Trả kết quả cho tổ chức, cá nhân, đơn vị kinh doanh vận tải bằng các hình thức: Bản điện tử hợp lệ trên VNeID hoặc Cổng dịch vụ công quốc gia, bản giấy văn bản gia hạn (nếu có) và Giấy phép liên vận giữa Campuchia và Việt Nam tại Trung tâm phục vụ hành chính công hoặc được gửi qua dịch vụ bưu chính.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi cần gia hạn thời gian lưu hành cho xe của Campuchia, mình phải nộp hồ sơ ở đâu và cần những giấy tờ gì?
+- Đáp: Bạn phải nộp 01 bộ hồ sơ trực tiếp cho cơ quan gia hạn nơi phương tiện gặp sự cố bất khả kháng. Hồ sơ bao gồm giấy phép liên vận giữa Campuchia và Việt Nam và các tài liệu liên quan. Sau khi nhận đủ hồ sơ hợp lệ, cơ quan có thẩm quyền sẽ thực hiện gia hạn trong 01 ngày làm việc. (Điều 61 Nghị định 158/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “gia hạn thời gian lưu hành …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-014", "question": "Tôi cần gia hạn thời gian lưu hành cho xe của Campuchia, mình phải nộp hồ sơ ở đâu và cần những giấy tờ gì?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn phải nộp 01 bộ hồ sơ trực tiếp cho cơ quan gia hạn nơi phương tiện gặp sự cố bất khả kháng. Hồ sơ bao gồm giấy phép liên vận giữa Campuchia và Việt Nam và các tài liệu liên quan. Sau khi nhận đủ hồ sơ hợp lệ, cơ quan có thẩm quyền sẽ thực hiện gia hạn trong 01 ngày làm việc. (Điều 61 Nghị định 158/2024/NĐ-CP)", "gold_units": ["ND158-2024/D61/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-014:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Sau khi nộp hồ sơ gia hạn, tôi sẽ nhận kết quả ở đâu và dưới hình thức nào?
+- Đáp: Kết quả gia hạn sẽ được trả lại cho bạn bằng bản điện tử hợp lệ trên VNeID hoặc Cổng dịch vụ công quốc gia, hoặc bằng bản giấy văn bản gia hạn (nếu có) và Giấy phép liên vận giữa Campuchia và Việt Nam tại Trung tâm phục vụ hành chính công, hoặc được gửi qua dịch vụ bưu chính. (Điều 61 Nghị định 158/2024/NĐ-CP)
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-014", "question": "Sau khi nộp hồ sơ gia hạn, tôi sẽ nhận kết quả ở đâu và dưới hình thức nào?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Kết quả gia hạn sẽ được trả lại cho bạn bằng bản điện tử hợp lệ trên VNeID hoặc Cổng dịch vụ công quốc gia, hoặc bằng bản giấy văn bản gia hạn (nếu có) và Giấy phép liên vận giữa Campuchia và Việt Nam tại Trung tâm phục vụ hành chính công, hoặc được gửi qua dịch vụ bưu chính. (Điều 61 Nghị định 158/2024/NĐ-CP)", "gold_units": ["ND158-2024/D61/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-014:2"}
+```
+
+### W4-thu_tuc_tham_quyen-015 · tier B · vai: tài xế xe tải · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D11/K1
+
+Điều 11. Hành lang an toàn đường bộ
+1. Đối với đường ngoài đô thị, chiều rộng hành lang an toàn đường bộ được tính từ mép ngoài phần đất để bảo vệ, bảo trì đường bộ trở ra mỗi bên như sau: 17 mét đối với đường cao tốc, cấp I và cấp II; 13 mét đối với đường cấp III; 9,0 mét đối với đường cấp IV và cấp V; 4,0 mét đối với đường cấp VI và đường cấp A, B, C, D, đường khác.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải đang di chuyển trên đường cao tốc, tôi muốn biết chiều rộng hành lang an toàn cần bảo vệ bên đường là bao nhiêu?
+- Đáp: Chiều rộng hành lang an toàn trên đường cao tốc là 17 mét. (Điều 11 Nghị định 165/2024/NĐ-CP)
+- ⚠ chi_so_so_sai (0); chep_nguyen_van: “chiều rộng hành lang an toàn …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-015", "question": "Tôi là tài xế xe tải đang di chuyển trên đường cao tốc, tôi muốn biết chiều rộng hành lang an toàn cần bảo vệ bên đường là bao nhiêu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Chiều rộng hành lang an toàn trên đường cao tốc là 17 mét. (Điều 11 Nghị định 165/2024/NĐ-CP)", "gold_units": ["ND165-2024/D11/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-015:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi lái xe tải trên đường cấp III, cần biết khoảng cách bảo vệ bên đường là bao nhiêu để đảm bảo an toàn?
+- Đáp: Khoảng cách bảo vệ bên đường trên đường cấp III là 13 mét. (Điều 11 Nghị định 165/2024/NĐ-CP)
+- ⚠ chi_so_so_sai (0)
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-015", "question": "Tôi lái xe tải trên đường cấp III, cần biết khoảng cách bảo vệ bên đường là bao nhiêu để đảm bảo an toàn?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Khoảng cách bảo vệ bên đường trên đường cấp III là 13 mét. (Điều 11 Nghị định 165/2024/NĐ-CP)", "gold_units": ["ND165-2024/D11/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-015:2"}
+```
+
+### W4-thu_tuc_tham_quyen-016 · tier B · vai: tài xế công nghệ · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 73/2024/TT-BCA (Quy định công tác tuần tra, kiểm soát, xử lý vi phạm pháp luật về trật tự, an toàn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT73-2024-BCA/D26/K3
+
+Điều 26. Phối hợp, tiếp nhận kết quả thu được từ các phương tiện, thiết bị kỹ thuật do tổ chức được giao quản lý, khai thác, bảo trì kết cấu hạ tầng giao thông đường bộ, kinh doanh vận tải cung cấp
+3. Khi tiếp nhận kết quả thu được từ phương tiện, thiết bị kỹ thuật quy định tại điểm b khoản 1 Điều này (bản ảnh, hình ảnh, phiếu in, chỉ số đo, dữ liệu lưu trong bộ nhớ của các phương tiện, thiết bị kỹ thuật), phải được ghi chép vào sổ theo dõi, ký giao nhận và lưu trong hồ sơ xử phạt vi phạm hành chính theo quy định.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT73-2024-BCA/D26/K1/b)
+Mã điều khoản dùng được cho gold_units: TT73-2024-BCA/D26/K1/b
+
+Điều 26. Phối hợp, tiếp nhận kết quả thu được từ các phương tiện, thiết bị kỹ thuật do tổ chức được giao quản lý, khai thác, bảo trì kết cấu hạ tầng giao thông đường bộ, kinh doanh vận tải cung cấp
+1. Đơn vị Cảnh sát giao thông được giao nhiệm vụ tuần tra, kiểm soát phối hợp với các tổ chức được giao quản lý, khai thác, bảo trì kết cấu hạ tầng giao thông đường bộ, vận tải đường bộ để thực hiện:
+b) Tiếp nhận kết quả thu được từ phương tiện, thiết bị kỹ thuật (công trình kiểm soát tải trọng xe, thiết bị cân kiểm tra tải trọng xe cơ giới, thiết bị ghi âm và ghi hình, hệ thống camera điều hành giao thông, camera, thiết bị ghi nhận hình ảnh người lái xe lắp trên phương tiện giao thông) theo quy định của Luật Trật tự, an toàn giao thông đường bộ, Luật Đường bộ và Điều 22 Nghị định số 135/2021/NĐ-CP, để xác định vi phạm hành chính và xử lý vi phạm hành chính trong lĩnh vực trật tự, an toàn giao thông đường bộ. Sau khi tiếp nhận kết quả, thực hiện theo quy định tại khoản 3 Điều 15 và Điều 24 Thông tư này (người vi phạm đến cơ quan Công an đã gửi thông báo vi phạm để giải quyết, xử lý vụ việc).
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, khi nhận dữ liệu từ thiết bị cân kiểm tra tải trọng xe, tôi cần nộp nơi nào và phải làm gì để hợp lệ?
+- Đáp: Bạn phải ghi chép dữ liệu vào sổ theo dõi, ký giao nhận và lưu trong hồ sơ xử phạt vi phạm hành chính. Sau khi tiếp nhận, thực hiện theo quy định tại khoản 3 Điều 15 và Điều 24 Thông tư này.
+- ⚠ chep_nguyen_van: “bị cân kiểm tra tải trọng …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-016", "question": "Tôi là tài xế công nghệ, khi nhận dữ liệu từ thiết bị cân kiểm tra tải trọng xe, tôi cần nộp nơi nào và phải làm gì để hợp lệ?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn phải ghi chép dữ liệu vào sổ theo dõi, ký giao nhận và lưu trong hồ sơ xử phạt vi phạm hành chính. Sau khi tiếp nhận, thực hiện theo quy định tại khoản 3 Điều 15 và Điều 24 Thông tư này.", "gold_units": ["TT73-2024-BCA/D26/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-016:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, khi nhận được hình ảnh từ camera ghi hình, tôi phải làm gì để chuyển giao cho Cảnh sát giao thông?
+- Đáp: Bạn phải ghi chép hình ảnh vào sổ theo dõi, ký giao nhận và lưu trong hồ sơ xử phạt vi phạm hành chính. Sau khi tiếp nhận, thực hiện theo quy định tại khoản 3 Điều 15 và Điều 24 Thông tư này.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-016", "question": "Tôi là tài xế công nghệ, khi nhận được hình ảnh từ camera ghi hình, tôi phải làm gì để chuyển giao cho Cảnh sát giao thông?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn phải ghi chép hình ảnh vào sổ theo dõi, ký giao nhận và lưu trong hồ sơ xử phạt vi phạm hành chính. Sau khi tiếp nhận, thực hiện theo quy định tại khoản 3 Điều 15 và Điều 24 Thông tư này.", "gold_units": ["TT73-2024-BCA/D26/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-016:2"}
+```
+
+### W4-thu_tuc_tham_quyen-017 · tier B · vai: tài xế công nghệ · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D21/K4
+
+Điều 21. Thẩm quyền lập biên bản vi phạm hành chính
+4. Công chức, viên chức thuộc cơ quan quản lý đường bộ đang thi hành công vụ, nhiệm vụ có thẩm quyền lập biên bản đối với các hành vi vi phạm xảy ra trong phạm vi quản lý của cơ quan, đơn vị.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, khi bị vi phạm tốc độ, ai có thẩm quyền lập biên bản vi phạm hành chính?
+- Đáp: Công chức, viên chức thuộc cơ quan quản lý đường bộ đang thi hành công vụ, nhiệm vụ có thẩm quyền lập biên bản đối với các hành vi vi phạm xảy ra trong phạm vi quản lý của cơ quan, đơn vị. (Điều 21.4 Nghị định 336/2025/NĐ-CP)
+- ⚠ chep_nguyen_van: “biên bản vi phạm hành chính …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-017", "question": "Tôi là tài xế công nghệ, khi bị vi phạm tốc độ, ai có thẩm quyền lập biên bản vi phạm hành chính?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Công chức, viên chức thuộc cơ quan quản lý đường bộ đang thi hành công vụ, nhiệm vụ có thẩm quyền lập biên bản đối với các hành vi vi phạm xảy ra trong phạm vi quản lý của cơ quan, đơn vị. (Điều 21.4 Nghị định 336/2025/NĐ-CP)", "gold_units": ["ND336-2025/D21/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-017:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, khi có hành vi vi phạm trong khu vực quản lý của cơ quan đường bộ, ai sẽ lập biên bản?
+- Đáp: Công chức, viên chức thuộc cơ quan quản lý đường bộ đang thi hành công vụ, nhiệm vụ có thẩm quyền lập biên bản đối với các hành vi vi phạm xảy ra trong phạm vi quản lý của cơ quan, đơn vị. (Điều 21.4 Nghị định 336/2025/NĐ-CP)
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-017", "question": "Tôi là tài xế công nghệ, khi có hành vi vi phạm trong khu vực quản lý của cơ quan đường bộ, ai sẽ lập biên bản?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Công chức, viên chức thuộc cơ quan quản lý đường bộ đang thi hành công vụ, nhiệm vụ có thẩm quyền lập biên bản đối với các hành vi vi phạm xảy ra trong phạm vi quản lý của cơ quan, đơn vị. (Điều 21.4 Nghị định 336/2025/NĐ-CP)", "gold_units": ["ND336-2025/D21/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-017:2"}
+```
+
+### W4-thu_tuc_tham_quyen-018 · tier B · vai: sinh viên đi xe máy · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D15/K2, ND165-2024/D15/K2/a, ND165-2024/D15/K2/b
+
+Điều 15. Xây dựng, lắp đặt công trình hạ tầng kỹ thuật sử dụng chung với đường bộ
+2. Chủ đầu tư dự án xây dựng công trình đường bộ có trách nhiệm:
+a) Tổ chức lập và thực hiện dự án đầu tư xây dựng công trình đường bộ bao gồm cả hạng mục xây dựng công trình hạ tầng kỹ thuật sử dụng chung đối với các trường hợp quy định tại khoản 1 Điều này;
+b) Công khai thông tin dự án đầu tư xây dựng công trình đường bộ và tình hình đầu tư xây dựng dự án đường bộ theo quy định sau: thực hiện trên hệ thống cơ sở dữ liệu đường bộ quy định tại Điều 57 và Điều 58 của Nghị định này; thông báo cho cơ quan có chức năng quản lý nhà nước về thông tin truyền thông cấp tỉnh để cung cấp thông tin cho tổ chức, cá nhân có nhu cầu đề nghị chủ đầu tư dự án xây dựng công trình đường bộ cho phép xây dựng, lắp đặt công trình hạ tầng kỹ thuật sử dụng chung vào phạm vi dự án đầu tư xây dựng công trình đường bộ. Chi phí xây dựng, lắp đặt công trình kỹ thuật hạ tầng sử dụng chung và các chi phí phát sinh do thực hiện công việc này do tổ chức, cá nhân đề nghị chi trả.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND165-2024/D15/K1)
+Mã điều khoản dùng được cho gold_units: ND165-2024/D15/K1
+
+Điều 15. Xây dựng, lắp đặt công trình hạ tầng kỹ thuật sử dụng chung với đường bộ
+1. Việc đầu tư xây dựng công trình hạ tầng kỹ thuật sử dụng chung kết hợp với đầu tư xây dựng công trình đường bộ bao gồm các trường hợp quy định tại điểm a, điểm b và điểm c khoản 3 Điều 20 Luật Đường bộ và các trường hợp sau:
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND165-2024/D57)
+Mã điều khoản dùng được cho gold_units: ND165-2024/D57
+
+Điều 57. Thông tin trong cơ sở dữ liệu đường bộ
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND165-2024/D58)
+Mã điều khoản dùng được cho gold_units: ND165-2024/D58
+
+Điều 58. Nguyên tắc xây dựng, cập nhật, quản lý, vận hành, khai thác, sử dụng, bảo trì cơ sở dữ liệu đường bộ
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là sinh viên đi xe máy, muốn xây dựng một dầm cột điện chung trên đường phố nơi tôi thường dừng xe. Tôi cần chuẩn bị hồ sơ gì, nộp ở đâu, ai có thẩm quyền, và mất bao lâu để được phê duyệt?
+- Đáp: Bạn cần tổ chức lập và thực hiện dự án đầu tư xây dựng công trình hạ tầng kỹ thuật sử dụng chung, bao gồm cả dầm cột điện. Hồ sơ gồm đề xuất dự án, bản vẽ, báo cáo kỹ thuật và các tài liệu liên quan. Nộp tại cơ quan quản lý nhà nước có chức năng quản lý nhà nước về giao thông tại tỉnh/thành phố nơi dự án đặt. Thẩm quyền thuộc cơ quan quản lý giao thông tỉnh/thành phố. Thời gian xử lý dựa trên quy trình của cơ quan, thường mất từ vài tuần đến vài tháng.
+- Ghi chú: Giả định rằng "cột điện" là công trình hạ tầng kỹ thuật sử dụng chung
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-018", "question": "Tôi là sinh viên đi xe máy, muốn xây dựng một dầm cột điện chung trên đường phố nơi tôi thường dừng xe. Tôi cần chuẩn bị hồ sơ gì, nộp ở đâu, ai có thẩm quyền, và mất bao lâu để được phê duyệt?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn cần tổ chức lập và thực hiện dự án đầu tư xây dựng công trình hạ tầng kỹ thuật sử dụng chung, bao gồm cả dầm cột điện. Hồ sơ gồm đề xuất dự án, bản vẽ, báo cáo kỹ thuật và các tài liệu liên quan. Nộp tại cơ quan quản lý nhà nước có chức năng quản lý nhà nước về giao thông tại tỉnh/thành phố nơi dự án đặt. Thẩm quyền thuộc cơ quan quản lý giao thông tỉnh/thành phố. Thời gian xử lý dựa trên quy trình của cơ quan, thường mất từ vài tuần đến vài tháng.", "gold_units": ["ND165-2024/D15/K2", "ND165-2024/D15/K2/a", "ND165-2024/D15/K2/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-018:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là sinh viên xe máy, muốn đề nghị xây dựng một lối đi dành cho xe máy chung trên đường phố. Tôi phải làm gì, nộp hồ sơ ở đâu, ai quyết định, và thời gian xử lý là bao lâu?
+- Đáp: Bạn phải tổ chức lập và thực hiện dự án đầu tư xây dựng công trình hạ tầng kỹ thuật sử dụng chung, bao gồm lối đi dành cho xe máy. Hồ sơ gồm đề xuất dự án, bản vẽ, báo cáo kỹ thuật và các tài liệu liên quan. Nộp tại cơ quan quản lý nhà nước về giao thông tỉnh/thành phố nơi lối đi đặt. Thẩm quyền thuộc cơ quan quản lý giao thông tỉnh/thành phố. Thời gian xử lý thường từ vài tuần đến vài tháng.
+- Ghi chú: Giả định lối đi xe máy là công trình hạ tầng kỹ thuật sử dụng chung
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-018", "question": "Tôi là sinh viên xe máy, muốn đề nghị xây dựng một lối đi dành cho xe máy chung trên đường phố. Tôi phải làm gì, nộp hồ sơ ở đâu, ai quyết định, và thời gian xử lý là bao lâu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn phải tổ chức lập và thực hiện dự án đầu tư xây dựng công trình hạ tầng kỹ thuật sử dụng chung, bao gồm lối đi dành cho xe máy. Hồ sơ gồm đề xuất dự án, bản vẽ, báo cáo kỹ thuật và các tài liệu liên quan. Nộp tại cơ quan quản lý nhà nước về giao thông tỉnh/thành phố nơi lối đi đặt. Thẩm quyền thuộc cơ quan quản lý giao thông tỉnh/thành phố. Thời gian xử lý thường từ vài tuần đến vài tháng.", "gold_units": ["ND165-2024/D15/K2", "ND165-2024/D15/K2/a", "ND165-2024/D15/K2/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-018:2"}
+```
+
+### W4-thu_tuc_tham_quyen-019 · tier B · vai: tài xế công nghệ · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D43/K8, ND158-2024/D43/K8/a, ND158-2024/D43/K8/b, ND158-2024/D43/K8/c
+
+Điều 43. Quy trình đăng ký, ngừng khai thác tuyến, bổ sung hoặc thay thế phương tiện khai thác tuyến vận tải hành khách cố định giữa Việt Nam, Lào và Campuchia
+8. Bổ sung, thay thế phương tiện khai thác tuyến vận tải hành khách cố định
+a) Đơn vị kinh doanh vận tải đang hoạt động trên tuyến được quyền bổ sung hoặc thay thế phương tiện;
+b) Hồ sơ đăng ký bổ sung, thay thế phương tiện theo quy định tại khoản 2 Điều này. Giấy đề nghị đăng ký bổ sung, thay thế phương tiện theo Mẫu số 06 Phụ lục IX kèm theo Nghị định này;
+c) Trình tự, thủ tục theo quy định tại khoản 4 Điều này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND158-2024/D43/K2)
+Mã điều khoản dùng được cho gold_units: ND158-2024/D43/K2
+
+Điều 43. Quy trình đăng ký, ngừng khai thác tuyến, bổ sung hoặc thay thế phương tiện khai thác tuyến vận tải hành khách cố định giữa Việt Nam, Lào và Campuchia
+2. Thành phần hồ sơ đăng ký khai thác tuyến vận tải hành khách cố định giữa Việt Nam, Lào và Campuchia
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND158-2024/D43/K4)
+Mã điều khoản dùng được cho gold_units: ND158-2024/D43/K4
+
+Điều 43. Quy trình đăng ký, ngừng khai thác tuyến, bổ sung hoặc thay thế phương tiện khai thác tuyến vận tải hành khách cố định giữa Việt Nam, Lào và Campuchia
+4. Trình tự, thủ tục
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi muốn bổ sung xe mới cho tuyến chở khách Việt Nam-Lào, cần nộp hồ sơ ở đâu và giấy tờ gì?
+- Đáp: Bạn cần nộp hồ sơ bổ sung phương tiện tại cơ quan quản lý giao thông đường bộ có thẩm quyền, gồm mẫu đề nghị đăng ký bổ sung phương tiện (Mẫu số 06 Phụ lục IX) kèm theo các giấy tờ liên quan như giấy đăng ký xe, giấy chứng nhận đăng ký kinh doanh, và các tài liệu chứng minh tính hợp pháp của phương tiện. Thời gian xử lý hồ sơ thường là 30 ngày làm việc.
+- ⚠ so_la: 30
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-019", "question": "Tôi muốn bổ sung xe mới cho tuyến chở khách Việt Nam-Lào, cần nộp hồ sơ ở đâu và giấy tờ gì?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn cần nộp hồ sơ bổ sung phương tiện tại cơ quan quản lý giao thông đường bộ có thẩm quyền, gồm mẫu đề nghị đăng ký bổ sung phương tiện (Mẫu số 06 Phụ lục IX) kèm theo các giấy tờ liên quan như giấy đăng ký xe, giấy chứng nhận đăng ký kinh doanh, và các tài liệu chứng minh tính hợp pháp của phương tiện. Thời gian xử lý hồ sơ thường là 30 ngày làm việc.", "gold_units": ["ND158-2024/D43/K8", "ND158-2024/D43/K8/a", "ND158-2024/D43/K8/b", "ND158-2024/D43/K8/c"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-019:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi muốn thay thế một xe cũ bằng xe mới trên tuyến chở khách Việt Nam-Lào, hồ sơ cần chuẩn bị là gì?
+- Đáp: Công ty cần nộp hồ sơ thay thế phương tiện tại cơ quan quản lý giao thông đường bộ có thẩm quyền, bao gồm mẫu đề nghị đăng ký thay thế phương tiện (Mẫu số 06 Phụ lục IX), giấy đăng ký xe cũ, giấy đăng ký xe mới, giấy chứng nhận đăng ký kinh doanh, và các tài liệu chứng minh tính hợp pháp của phương tiện mới. Thời gian xử lý thường là 30 ngày làm việc.
+- ⚠ so_la: 30
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-019", "question": "Công ty tôi muốn thay thế một xe cũ bằng xe mới trên tuyến chở khách Việt Nam-Lào, hồ sơ cần chuẩn bị là gì?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Công ty cần nộp hồ sơ thay thế phương tiện tại cơ quan quản lý giao thông đường bộ có thẩm quyền, bao gồm mẫu đề nghị đăng ký thay thế phương tiện (Mẫu số 06 Phụ lục IX), giấy đăng ký xe cũ, giấy đăng ký xe mới, giấy chứng nhận đăng ký kinh doanh, và các tài liệu chứng minh tính hợp pháp của phương tiện mới. Thời gian xử lý thường là 30 ngày làm việc.", "gold_units": ["ND158-2024/D43/K8", "ND158-2024/D43/K8/a", "ND158-2024/D43/K8/b", "ND158-2024/D43/K8/c"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-019:2"}
+```
+
+### W4-thu_tuc_tham_quyen-020 · tier B · vai: tài xế công nghệ · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D19/K3
+
+Điều 19. Quản lý, vận hành, khai thác, bảo trì công trình hạ tầng kỹ thuật sử dụng chung với đường bộ
+3. Chủ sở hữu hoặc người quản lý, sử dụng công trình hạ tầng lắp đặt vào công trình hạ tầng kỹ thuật sử dụng chung chịu trách nhiệm về chi phí và việc thực hiện quản lý, bảo trì các công trình hạ tầng, trừ khi hợp đồng lắp đặt có quy định khác.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, khi xe của mình đi qua cầu công cộng, ai phải chi trả bảo trì?
+- Đáp: Chủ sở hữu hoặc người quản lý, sử dụng công trình hạ tầng lắp đặt vào công trình hạ tầng kỹ thuật sử dụng chung chịu trách nhiệm về chi phí và việc thực hiện quản lý, bảo trì các công trình hạ tầng, trừ khi hợp đồng lắp đặt có quy định khác.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-020", "question": "Tôi là tài xế công nghệ, khi xe của mình đi qua cầu công cộng, ai phải chi trả bảo trì?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Chủ sở hữu hoặc người quản lý, sử dụng công trình hạ tầng lắp đặt vào công trình hạ tầng kỹ thuật sử dụng chung chịu trách nhiệm về chi phí và việc thực hiện quản lý, bảo trì các công trình hạ tầng, trừ khi hợp đồng lắp đặt có quy định khác.", "gold_units": ["ND165-2024/D19/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-020:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, khi xe của mình đi qua đường có cầu công cộng, ai phải chịu chi phí bảo trì?
+- Đáp: Chủ sở hữu hoặc người quản lý, sử dụng công trình hạ tầng lắp đặt vào công trình hạ tầng kỹ thuật sử dụng chung chịu trách nhiệm về chi phí và việc thực hiện quản lý, bảo trì các công trình hạ tầng, trừ khi hợp đồng lắp đặt có quy định khác.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-020", "question": "Tôi là tài xế công nghệ, khi xe của mình đi qua đường có cầu công cộng, ai phải chịu chi phí bảo trì?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Chủ sở hữu hoặc người quản lý, sử dụng công trình hạ tầng lắp đặt vào công trình hạ tầng kỹ thuật sử dụng chung chịu trách nhiệm về chi phí và việc thực hiện quản lý, bảo trì các công trình hạ tầng, trừ khi hợp đồng lắp đặt có quy định khác.", "gold_units": ["ND165-2024/D19/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-020:2"}
+```
+
+### W4-thu_tuc_tham_quyen-021 · tier B · vai: tài xế công nghệ · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2026-07-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D21/K5, ND165-2024/D21/K5/a, ND165-2024/D21/K5/b, ND165-2024/D21/K5/c
+
+Điều 21. Sử dụng tạm thời lòng đường, vỉa hè vào mục đích khác
+5. Thẩm quyền cấp phép sử dụng tạm thời một phần hoặc toàn bộ lòng đường, vỉa hè vào mục đích khác như sau:
+a) Khu Quản lý đường bộ thực hiện đối với đường bộ quy định tại khoản 3 Điều 8 Luật Đường bộ, trừ phần lòng đường, vỉa hè đã bàn giao cho Ủy ban nhân dân các cấp quản lý;
+b) Sở Xây dựng thực hiện đối với đường bộ được Ủy ban nhân dân cấp tỉnh giao quản lý, trừ phần lòng đường, vỉa hè đã bàn giao cho Ủy ban nhân dân cấp xã quản lý;
+c) Ủy ban nhân dân cấp xã thực hiện đối với các trường hợp không quy định tại điểm a và điểm b khoản này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT35-2024/D8/K3)
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D8/K3
+
+Điều 8. Phân loại đường bộ theo cấp quản lý
+3. Bộ Giao thông vận tải có trách nhiệm quản lý quốc lộ, trừ quốc lộ quy định tại điểm a khoản 4 Điều này và đường gom, đường bên quy định tại điểm c khoản 4 Điều này.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, muốn tạm thời sử dụng vỉa hè để dỡ hàng cho khách hàng. Tôi cần chuẩn bị hồ sơ gì, nộp ở đâu, ai có thẩm quyền cấp phép, và thời gian xử lý hồ sơ là bao lâu?
+- Đáp: Bạn cần nộp đơn xin cấp phép sử dụng tạm thời vỉa hè cùng với hồ sơ dự án, kế hoạch an toàn và các tài liệu liên quan tại Ủy ban nhân dân cấp xã quản lý khu vực đường bộ. Thẩm quyền cấp phép thuộc Ủy ban nhân dân cấp xã đối với các đường bộ không được bàn giao cho các cấp quản lý khác. Thời gian xử lý hồ sơ không được quy định cụ thể trong văn bản này.
+- Ghi chú: Giả định là đường bộ thuộc quản lý xã
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-021", "question": "Tôi là tài xế công nghệ, muốn tạm thời sử dụng vỉa hè để dỡ hàng cho khách hàng. Tôi cần chuẩn bị hồ sơ gì, nộp ở đâu, ai có thẩm quyền cấp phép, và thời gian xử lý hồ sơ là bao lâu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn cần nộp đơn xin cấp phép sử dụng tạm thời vỉa hè cùng với hồ sơ dự án, kế hoạch an toàn và các tài liệu liên quan tại Ủy ban nhân dân cấp xã quản lý khu vực đường bộ. Thẩm quyền cấp phép thuộc Ủy ban nhân dân cấp xã đối với các đường bộ không được bàn giao cho các cấp quản lý khác. Thời gian xử lý hồ sơ không được quy định cụ thể trong văn bản này.", "gold_units": ["ND165-2024/D21/K5/c"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-021:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, muốn tạm thời sử dụng một phần lòng đường để tổ chức lễ hội tại công viên. Tôi cần làm gì, nộp hồ sơ ở đâu, ai quyết định cấp phép, và mất bao lâu để được duyệt?
+- Đáp: Bạn cần nộp đơn xin cấp phép sử dụng tạm thời lòng đường cùng với hồ sơ dự án, kế hoạch an toàn và các tài liệu liên quan tại Sở Xây dựng của tỉnh nơi đường được giao quản lý. Thẩm quyền cấp phép thuộc Sở Xây dựng đối với đường bộ được Ủy ban nhân dân cấp tỉnh giao quản lý. Thời gian xử lý hồ sơ không được quy định cụ thể trong văn bản này.
+- Ghi chú: Giả định đường thuộc quản lý tỉnh
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-021", "question": "Tôi là tài xế công nghệ, muốn tạm thời sử dụng một phần lòng đường để tổ chức lễ hội tại công viên. Tôi cần làm gì, nộp hồ sơ ở đâu, ai quyết định cấp phép, và mất bao lâu để được duyệt?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn cần nộp đơn xin cấp phép sử dụng tạm thời lòng đường cùng với hồ sơ dự án, kế hoạch an toàn và các tài liệu liên quan tại Sở Xây dựng của tỉnh nơi đường được giao quản lý. Thẩm quyền cấp phép thuộc Sở Xây dựng đối với đường bộ được Ủy ban nhân dân cấp tỉnh giao quản lý. Thời gian xử lý hồ sơ không được quy định cụ thể trong văn bản này.", "gold_units": ["ND165-2024/D21/K5/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-021:2"}
+```
+
+### W4-thu_tuc_tham_quyen-022 · tier B · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 130/2024/NĐ-CP (Quy định về thu phí sử dụng đường bộ cao tốc đối với phương tiện lưu thông trên tuyến đường bộ cao tốc thuộc sở hữu toàn dân do nhà nước đại diện chủ sở hữu và trực tiếp quản lý, khai thác)
+Hiệu lực của trạng thái này: 2024-10-10 → nay
+Mã điều khoản dùng được cho gold_units: ND130-2024/D6/K9
+
+Điều 6. Đối tượng miễn thu phí
+9. Xe hộ đê; xe đang làm nhiệm vụ khẩn cấp phòng, chống lụt bão theo điều động của cấp có thẩm quyền.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi đang lái xe hộ đê để đưa con tôi đến bệnh viện, có phải trả phí sử dụng đường cao tốc không?
+- Đáp: Không, xe hộ đê được miễn phí sử dụng đường cao tốc. Theo Nghị định 130/2024/NĐ-CP, điều 6, mục 9, xe hộ đê được miễn thu phí.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-022", "question": "Tôi đang lái xe hộ đê để đưa con tôi đến bệnh viện, có phải trả phí sử dụng đường cao tốc không?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Không, xe hộ đê được miễn phí sử dụng đường cao tốc. Theo Nghị định 130/2024/NĐ-CP, điều 6, mục 9, xe hộ đê được miễn thu phí.", "gold_units": ["ND130-2024/D6/K9"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-022:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi đang lái xe đang làm nhiệm vụ phòng chống lụt bão để đưa con tôi, có phải đóng phí đường cao tốc không?
+- Đáp: Không, xe đang làm nhiệm vụ khẩn cấp phòng, chống lụt bão được miễn phí sử dụng đường cao tốc. Theo Nghị định 130/2024/NĐ-CP, điều 6, mục 9, xe này được miễn thu phí.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-022", "question": "Tôi đang lái xe đang làm nhiệm vụ phòng chống lụt bão để đưa con tôi, có phải đóng phí đường cao tốc không?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Không, xe đang làm nhiệm vụ khẩn cấp phòng, chống lụt bão được miễn phí sử dụng đường cao tốc. Theo Nghị định 130/2024/NĐ-CP, điều 6, mục 9, xe này được miễn thu phí.", "gold_units": ["ND130-2024/D6/K9"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-022:2"}
+```
+
+### W4-thu_tuc_tham_quyen-023 · tier B · vai: phụ huynh có con dưới 18 tuổi · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D36/K2, ND158-2024/D36/K2/a, ND158-2024/D36/K2/b
+
+Điều 36. Thu hồi Giấy phép vận tải đường bộ quốc tế GMS
+2. Trình tự, thủ tục
+a) Cơ quan cấp giấy phép ban hành quyết định thu hồi Giấy phép vận tải đường bộ quốc tế GMS và gửi cho đơn vị kinh doanh vận tải, các cơ quan quản lý nhà nước tại cửa khẩu và các cơ quan có liên quan; đăng tải thông tin trên Trang thông tin điện tử của cơ quan cấp giấy phép đồng thời thông báo bằng văn bản đến các quốc gia thành viên GMS để phối hợp xử lý;
+b) Khi cơ quan cấp Giấy phép vận tải đường bộ quốc tế GMS ban hành quyết định thu hồi Giấy phép vận tải đường bộ quốc tế GMS. Trong thời hạn 15 ngày kể từ ngày ký, đơn vị vận tải phải nộp Giấy phép vận tải đường bộ quốc tế GMS và toàn bộ Giấy phép liên vận GMS và Sổ theo dõi tạm nhập phương tiện vận tải (sau đây gọi là sổ TAD) cho cơ quan cấp giấy phép, đồng thời dừng hoạt động kinh doanh vận tải đường bộ GMS theo quyết định thu hồi.
+Trường hợp đơn vị kinh doanh vận tải nộp lại Giấy phép vận tải đường bộ quốc tế GMS và toàn bộ Giấy phép liên vận GMS và sổ TAD theo đúng quyết định thu hồi, cơ quan cấp Giấy phép vận tải đường bộ quốc tế GMS không cấp lại Giấy phép vận tải đường bộ quốc tế GMS trong thời gian 30 ngày kể từ ngày đơn vị kinh doanh vận tải nộp lại đủ Giấy phép vận tải đường bộ quốc tế GMS và toàn bộ Giấy phép liên vận GMS và sổ TAD theo quyết định thu hồi.
+…
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Con tôi muốn đăng ký giấy phép vận tải quốc tế GMS, cần nộp hồ sơ gì và nộp ở đâu?
+- Đáp: Để đăng ký giấy phép vận tải quốc tế GMS, bạn cần nộp Giấy phép vận tải đường bộ quốc tế GMS, toàn bộ Giấy phép liên vận GMS và Sổ theo dõi tạm nhập phương tiện vận tải (sổ TAD) cho cơ quan cấp giấy phép. Hồ sơ này được nộp tại cơ quan cấp giấy phép vận tải đường bộ quốc tế GMS. (ND158-2024/D36/K2)
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-023", "question": "Con tôi muốn đăng ký giấy phép vận tải quốc tế GMS, cần nộp hồ sơ gì và nộp ở đâu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Để đăng ký giấy phép vận tải quốc tế GMS, bạn cần nộp Giấy phép vận tải đường bộ quốc tế GMS, toàn bộ Giấy phép liên vận GMS và Sổ theo dõi tạm nhập phương tiện vận tải (sổ TAD) cho cơ quan cấp giấy phép. Hồ sơ này được nộp tại cơ quan cấp giấy phép vận tải đường bộ quốc tế GMS. (ND158-2024/D36/K2)", "gold_units": ["ND158-2024/D36/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-023:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu cơ quan cấp quyết định thu hồi giấy phép GMS, tôi phải làm gì trong 15 ngày?
+- Đáp: Trong vòng 15 ngày kể từ ngày ký quyết định thu hồi, bạn phải nộp Giấy phép vận tải đường bộ quốc tế GMS, toàn bộ Giấy phép liên vận GMS và Sổ theo dõi tạm nhập phương tiện vận tải (sổ TAD) cho cơ quan cấp giấy phép, đồng thời dừng hoạt động kinh doanh vận tải đường bộ GMS theo quyết định thu hồi. (ND158-2024/D36/K2/b)
+- ⚠ chep_nguyen_van: “quyết định thu hồi giấy phép …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-023", "question": "Nếu cơ quan cấp quyết định thu hồi giấy phép GMS, tôi phải làm gì trong 15 ngày?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Trong vòng 15 ngày kể từ ngày ký quyết định thu hồi, bạn phải nộp Giấy phép vận tải đường bộ quốc tế GMS, toàn bộ Giấy phép liên vận GMS và Sổ theo dõi tạm nhập phương tiện vận tải (sổ TAD) cho cơ quan cấp giấy phép, đồng thời dừng hoạt động kinh doanh vận tải đường bộ GMS theo quyết định thu hồi. (ND158-2024/D36/K2/b)", "gold_units": ["ND158-2024/D36/K2/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-023:2"}
+```
+
+### W4-thu_tuc_tham_quyen-024 · tier B · vai: tài xế xe tải · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2026-07-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D27/K6
+
+Điều 27. Kết nối giao thông các tuyến đường bộ
+6. Các khu vực dân cư, cơ quan, tổ chức, cơ sở dịch vụ, sản xuất kinh doanh, các địa điểm khác kết nối giao thông với đường cao tốc thông qua đường gom, đường bên, đường nhánh; kết nối giao thông với quốc lộ và các đường chính đi qua khu vực, địa bàn thông qua đường gom, đường bên, đường nhánh, trừ trường hợp các cơ sở này được đấu nối vào quốc lộ, đường chính đi qua khu vực và trường hợp chưa hoàn thành xây dựng đường bên, đường gom, đường nhánh theo quy định tại khoản 5 và khoản 7 Điều này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND165-2024/D27/K5)
+Mã điều khoản dùng được cho gold_units: ND165-2024/D27/K5
+
+Điều 27. Kết nối giao thông các tuyến đường bộ
+5. Xây dựng đường gom, đường bên của đường bộ là đường chính đang khai thác:
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND165-2024/D27/K7)
+Mã điều khoản dùng được cho gold_units: ND165-2024/D27/K7
+
+Điều 27. Kết nối giao thông các tuyến đường bộ
+7. Trường hợp nút giao đấu nối các khu vực dân cư, cơ quan, tổ chức, cơ sở dịch vụ, sản xuất kinh doanh, các địa điểm khác đấu nối trực tiếp vào quốc lộ và đường chính đi qua khu vực, địa bàn mà tại các vị trí này, Ủy ban nhân dân các cấp, cơ quan, tổ chức quy định tại khoản 5 Điều này chưa xây dựng đường bên, đường gom, đường nhánh để gom các phương tiện tham gia giao thông thì được phép tồn tại nút giao hiện hữu cho đến khi có đường gom, đường bên, đường nhánh với điều kiện nút giao đó phải bảo đảm an toàn giao thông. Trường hợp nút giao đấu nối không bảo đảm an toàn giao thông theo quy chuẩn kỹ thuật quốc gia, tiêu chuẩn quốc gia thì phải khắc phục theo các quy chuẩn, tiêu chuẩn để bảo đảm an toàn giao thông.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, khi đến khu dân cư có đường gom chưa xây, tôi có thể tiếp tục đi qua không?
+- Đáp: Bạn có thể tiếp tục đi qua khu dân cư khi đường gom chưa xây, miễn là nút giao vẫn đảm bảo an toàn giao thông. (Điều 27 Khoản 7 Nghị định 165/2024/NĐ-CP)
+- Ghi chú: đề cập đến việc đường gom chưa xây
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-024", "question": "Tôi là tài xế xe tải, khi đến khu dân cư có đường gom chưa xây, tôi có thể tiếp tục đi qua không?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn có thể tiếp tục đi qua khu dân cư khi đường gom chưa xây, miễn là nút giao vẫn đảm bảo an toàn giao thông. (Điều 27 Khoản 7 Nghị định 165/2024/NĐ-CP)", "gold_units": ["ND165-2024/D27/K7"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-024:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, khi tới một đường bên đang khai thác, tôi có thể sử dụng đường đó để chuyển hướng không?
+- Đáp: Bạn có thể sử dụng đường bên đang khai thác để chuyển hướng, vì đường bên được coi là đường chính đang khai thác. (Điều 27 Khoản 5 Nghị định 165/2024/NĐ-CP)
+- Ghi chú: đề cập đến đường bên đang khai thác
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-024", "question": "Tôi là tài xế xe tải, khi tới một đường bên đang khai thác, tôi có thể sử dụng đường đó để chuyển hướng không?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn có thể sử dụng đường bên đang khai thác để chuyển hướng, vì đường bên được coi là đường chính đang khai thác. (Điều 27 Khoản 5 Nghị định 165/2024/NĐ-CP)", "gold_units": ["ND165-2024/D27/K5"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-024:2"}
+```
+
+### W4-thu_tuc_tham_quyen-025 · tier B · vai: cán bộ phường · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 130/2024/NĐ-CP (Quy định về thu phí sử dụng đường bộ cao tốc đối với phương tiện lưu thông trên tuyến đường bộ cao tốc thuộc sở hữu toàn dân do nhà nước đại diện chủ sở hữu và trực tiếp quản lý, khai thác)
+Hiệu lực của trạng thái này: 2024-10-10 → nay
+Mã điều khoản dùng được cho gold_units: ND130-2024/D12/K1, ND130-2024/D12/K1/a, ND130-2024/D12/K1/b, ND130-2024/D12/K1/c, ND130-2024/D12/K1/d
+
+Điều 12. Trách nhiệm của cơ quan, tổ chức, cá nhân
+1. Cơ quan quản lý thu là cơ quan quản lý đường bộ trực tiếp tổ chức khai thác tài sản kết cấu hạ tầng giao thông đường bộ cao tốc có trách nhiệm:
+a) Dự kiến số thu phí sử dụng đường bộ cao tốc, số nộp ngân sách, lập dự toán chi cho công tác quản lý, thu phí theo quy định của pháp luật về ngân sách Nhà nước, pháp luật phí và lệ phí và pháp luật về đường bộ; báo cáo cơ quan có thẩm quyền giao dự toán theo quy định của Luật Ngân sách nhà nước;
+b) Quản lý thu, nộp, sử dụng phí sử dụng đường bộ cao tốc theo quy định; thực hiện kê khai, nộp phí sử dụng đường bộ cao tốc thu được theo tháng, quyết toán năm theo quy định về quản lý thuế;
+c) Kiểm tra hoạt động, số thu từ cung cấp dịch vụ thu phí sử dụng đường bộ cao tốc của đơn vị vận hành thu, nhà cung cấp dịch vụ thanh toán tiền sử dụng đường bộ để bảo đảm thu đúng, thu đủ, nộp đúng hạn khoản thu phí sử dụng đường bộ cao tốc vào tài khoản phí chờ nộp ngân sách của đơn vị quản lý thu; thanh quyết toán chi phí thuê dịch vụ của nhà cung cấp dịch vụ thanh toán điện tử giao thông đường bộ, đơn vị vận hành thu theo quy định tại hợp đồng cung cấp dịch vụ;
+d) Báo cáo quyết toán phí sử dụng đường bộ cao tốc theo quy định của pháp luật về ngân sách nhà nước.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là cán bộ phường, muốn biết khi xe tải của công ty tôi đi qua đường cao tốc thuộc sở hữu toàn dân, tôi cần làm gì để nộp phí sử dụng đường?
+- Đáp: Bạn phải nộp phí sử dụng đường bộ cao tốc theo quy định của Nghị định 130/2024/NĐ-CP. Phí được tính và nộp theo quy định của pháp luật về phí và lệ phí, và nộp vào tài khoản phí chờ nộp ngân sách của cơ quan quản lý thu. (Điều 12 Nghị định 130/2024/NĐ-CP)
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-025", "question": "Tôi là cán bộ phường, muốn biết khi xe tải của công ty tôi đi qua đường cao tốc thuộc sở hữu toàn dân, tôi cần làm gì để nộp phí sử dụng đường?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn phải nộp phí sử dụng đường bộ cao tốc theo quy định của Nghị định 130/2024/NĐ-CP. Phí được tính và nộp theo quy định của pháp luật về phí và lệ phí, và nộp vào tài khoản phí chờ nộp ngân sách của cơ quan quản lý thu. (Điều 12 Nghị định 130/2024/NĐ-CP)", "gold_units": ["ND130-2024/D12/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-025:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là cán bộ phường, công ty tôi muốn khai thác dịch vụ thanh toán điện tử cho xe tải trên đường cao tốc, tôi cần báo cáo gì cho cơ quan quản lý thu?
+- Đáp: Bạn phải báo cáo quyết toán phí sử dụng đường bộ cao tốc theo quy định của pháp luật về ngân sách nhà nước, bao gồm báo cáo quyết toán chi phí thuê dịch vụ thanh toán điện tử giao thông đường bộ. (Điều 12 Nghị định 130/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “dịch vụ thanh toán điện tử …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-025", "question": "Tôi là cán bộ phường, công ty tôi muốn khai thác dịch vụ thanh toán điện tử cho xe tải trên đường cao tốc, tôi cần báo cáo gì cho cơ quan quản lý thu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Bạn phải báo cáo quyết toán phí sử dụng đường bộ cao tốc theo quy định của pháp luật về ngân sách nhà nước, bao gồm báo cáo quyết toán chi phí thuê dịch vụ thanh toán điện tử giao thông đường bộ. (Điều 12 Nghị định 130/2024/NĐ-CP)", "gold_units": ["ND130-2024/D12/K1/d"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-025:2"}
+```
+
+### W4-thu_tuc_tham_quyen-026 · tier B · vai: tài xế công nghệ · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2026-07-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D20/K6
+
+Điều 20. Bảo vệ kết cấu hạ tầng đường bộ
+6. Sở Xây dựng có trách nhiệm trực tiếp tổ chức thực hiện các hoạt động bảo vệ kết cấu hạ tầng đường bộ quy định tại khoản 5 Điều này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND165-2024/D20/K5)
+Mã điều khoản dùng được cho gold_units: ND165-2024/D20/K5
+
+Điều 20. Bảo vệ kết cấu hạ tầng đường bộ
+5. Ủy ban nhân dân cấp tỉnh tổ chức thực hiện bảo vệ kết cấu hạ tầng đường bộ quy định tại khoản 1 và khoản 2 Điều này đối với quốc lộ quy định tại khoản 4 Điều 8 Luật Đường bộ và quy định tại khoản 1 Điều 4, khoản 1 Điều 5, khoản 1 Điều 6 của Nghị định này, đường tỉnh và kết cấu hạ tầng đường bộ khác thuộc phạm vi quản lý.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, khi thấy đường bị hư hỏng, ai là cơ quan có thẩm quyền xử lý?
+- Đáp: Cơ quan có thẩm quyền là Sở Xây dựng. (khoản 6 Điều 20 Nghị định 165/2024/NĐ-CP)
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-026", "question": "Tôi là tài xế công nghệ, khi thấy đường bị hư hỏng, ai là cơ quan có thẩm quyền xử lý?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Cơ quan có thẩm quyền là Sở Xây dựng. (khoản 6 Điều 20 Nghị định 165/2024/NĐ-CP)", "gold_units": ["ND165-2024/D20/K6"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-026:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, muốn biết ai tổ chức bảo vệ quốc lộ?
+- Đáp: Ủy ban nhân dân cấp tỉnh tổ chức bảo vệ quốc lộ. (khoản 5 Điều 20 Nghị định 165/2024/NĐ-CP)
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-026", "question": "Tôi là tài xế công nghệ, muốn biết ai tổ chức bảo vệ quốc lộ?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "B", "answer": "Ủy ban nhân dân cấp tỉnh tổ chức bảo vệ quốc lộ. (khoản 5 Điều 20 Nghị định 165/2024/NĐ-CP)", "gold_units": ["ND165-2024/D20/K5"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-026:2"}
+```
+
+### W4-thu_tuc_tham_quyen-027 · tier C · vai: sinh viên đi xe máy · kiểu: neu_van_ban
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D19/K4
+
+Điều 19. Thống kê tai nạn giao thông đường bộ
+4. Đối với vụ tai nạn giao thông đường bộ xảy ra trên tuyến, địa bàn của cơ quan, đơn vị Cảnh sát giao thông được giao nhiệm vụ tuần tra, kiểm soát, xử lý vi phạm nhưng do Cơ quan Cảnh sát điều tra hoặc Cơ quan Điều tra hình sự trong Quân đội nhân dân thụ lý điều tra, giải quyết thì cơ quan, đơn vị Cảnh sát giao thông phụ trách tuyến, địa bàn có trách nhiệm phối hợp chặt chẽ với Cơ quan Cảnh sát điều tra, Cơ quan Điều tra hình sự trong Quân đội nhân dân nắm bắt thông tin về các phương tiện liên quan, thông tin về người điều khiển phương tiện, người bị nạn, người đi bộ, Quyết định khởi tố vụ án, khởi tố bị can, Bản kết luận điều tra hoặc một số tài liệu liên quan khác để cập nhật vào Cơ sở dữ liệu về tai nạn giao thông.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi đang lái xe máy và vừa gặp tai nạn trên đường, cần nộp hồ sơ gì, nộp ở đâu, ai có thẩm quyền, mất bao lâu để xử lý?
+- Đáp: Bạn cần báo cáo tai nạn ngay tại cơ quan Cảnh sát giao thông địa phương, nộp thông tin về phương tiện, người điều khiển, người bị nạn và các tài liệu liên quan. Cơ quan Cảnh sát giao thông sẽ phối hợp với Cơ quan Cảnh sát điều tra hoặc Cơ quan Điều tra hình sự trong Quân đội nhân dân để nắm bắt thông tin và cập nhật vào cơ sở dữ liệu. Thời gian xử lý phụ thuộc vào quy trình điều tra, nhưng thường mất vài ngày để hoàn thành hồ sơ và cập nhật dữ liệu.
+- Ghi chú: Giả định người dùng là chủ xe máy, không phải xe ô tô
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-027", "question": "Tôi đang lái xe máy và vừa gặp tai nạn trên đường, cần nộp hồ sơ gì, nộp ở đâu, ai có thẩm quyền, mất bao lâu để xử lý?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Bạn cần báo cáo tai nạn ngay tại cơ quan Cảnh sát giao thông địa phương, nộp thông tin về phương tiện, người điều khiển, người bị nạn và các tài liệu liên quan. Cơ quan Cảnh sát giao thông sẽ phối hợp với Cơ quan Cảnh sát điều tra hoặc Cơ quan Điều tra hình sự trong Quân đội nhân dân để nắm bắt thông tin và cập nhật vào cơ sở dữ liệu. Thời gian xử lý phụ thuộc vào quy trình điều tra, nhưng thường mất vài ngày để hoàn thành hồ sơ và cập nhật dữ liệu.", "gold_units": ["TT72-2024-BCA/D19/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-027:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Sau khi xe máy của tôi bị va chạm, cơ quan Cảnh sát giao thông địa phương sẽ làm gì để ghi nhận thông tin và cập nhật vào cơ sở dữ liệu?
+- Đáp: Cơ quan Cảnh sát giao thông sẽ thu thập thông tin về phương tiện, người điều khiển, người bị nạn, người đi bộ, quyết định khởi tố vụ án, khởi tố bị can, bản kết luận điều tra hoặc các tài liệu liên quan. Sau đó, họ sẽ cập nhật dữ liệu vào cơ sở dữ liệu về tai nạn giao thông. Quá trình này được thực hiện bởi đơn vị Cảnh sát giao thông phụ trách tuyến, địa bàn và phối hợp chặt chẽ với Cơ quan Cảnh sát điều tra hoặc Cơ quan Điều tra hình sự trong Quân đội nhân dân.
+- ⚠ chep_nguyen_van: “cập nhật vào cơ sở dữ …”
+- Ghi chú: Giả định người dùng là chủ xe máy, không phải xe ô tô
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-027", "question": "Sau khi xe máy của tôi bị va chạm, cơ quan Cảnh sát giao thông địa phương sẽ làm gì để ghi nhận thông tin và cập nhật vào cơ sở dữ liệu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Cơ quan Cảnh sát giao thông sẽ thu thập thông tin về phương tiện, người điều khiển, người bị nạn, người đi bộ, quyết định khởi tố vụ án, khởi tố bị can, bản kết luận điều tra hoặc các tài liệu liên quan. Sau đó, họ sẽ cập nhật dữ liệu vào cơ sở dữ liệu về tai nạn giao thông. Quá trình này được thực hiện bởi đơn vị Cảnh sát giao thông phụ trách tuyến, địa bàn và phối hợp chặt chẽ với Cơ quan Cảnh sát điều tra hoặc Cơ quan Điều tra hình sự trong Quân đội nhân dân.", "gold_units": ["TT72-2024-BCA/D19/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-027:2"}
+```
+
+### W4-thu_tuc_tham_quyen-028 · tier C · vai: người mới học lái ô tô · kiểu: nhieu_dieu_kien
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D4/K3
+
+Điều 4. Tổ chức tiếp nhận tin báo về tai nạn giao thông đường bộ
+3. Các cơ quan, đơn vị khác trong Công an nhân dân nhận được tin báo về vụ tai nạn giao thông đường bộ, cán bộ, chiến sĩ Công an nhân dân trong quá trình thực hiện nhiệm vụ nhận được tin báo hoặc phát hiện vụ tai nạn giao thông đường bộ có trách nhiệm báo tin cho cơ quan, đơn vị quy định tại khoản 1 Điều này để tiếp nhận tin báo về tai nạn giao thông đường bộ.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT72-2024-BCA/D4/K1)
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D4/K1
+
+Điều 4. Tổ chức tiếp nhận tin báo về tai nạn giao thông đường bộ
+1. Các cơ quan, đơn vị Cảnh sát giao thông có trách nhiệm tiếp nhận tin báo về tai nạn giao thông đường bộ gồm:
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi vừa gặp tai nạn khi lái xe ô tô, cần báo cho ai và làm gì?
+- Đáp: Bạn cần báo cáo ngay cho Cảnh sát giao thông. Cảnh sát giao thông có trách nhiệm tiếp nhận tin báo về tai nạn giao thông đường bộ và thực hiện các thủ tục điều tra, giải quyết. (Điều 4, Khoản 1, Thông tư 72/2024/TT-BCA)
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-028", "question": "Tôi vừa gặp tai nạn khi lái xe ô tô, cần báo cho ai và làm gì?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Bạn cần báo cáo ngay cho Cảnh sát giao thông. Cảnh sát giao thông có trách nhiệm tiếp nhận tin báo về tai nạn giao thông đường bộ và thực hiện các thủ tục điều tra, giải quyết. (Điều 4, Khoản 1, Thông tư 72/2024/TT-BCA)", "gold_units": ["TT72-2024-BCA/D4/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-028:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu tôi là nhân chứng khi có tai nạn giao thông, ai sẽ tiếp nhận thông tin và tôi cần làm gì?
+- Đáp: Bạn nên liên hệ với Cảnh sát giao thông để họ tiếp nhận tin báo. Cảnh sát giao thông có trách nhiệm tiếp nhận tin báo về tai nạn giao thông đường bộ và thực hiện các thủ tục điều tra, giải quyết. (Điều 4, Khoản 1, Thông tư 72/2024/TT-BCA)
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-028", "question": "Nếu tôi là nhân chứng khi có tai nạn giao thông, ai sẽ tiếp nhận thông tin và tôi cần làm gì?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Bạn nên liên hệ với Cảnh sát giao thông để họ tiếp nhận tin báo. Cảnh sát giao thông có trách nhiệm tiếp nhận tin báo về tai nạn giao thông đường bộ và thực hiện các thủ tục điều tra, giải quyết. (Điều 4, Khoản 1, Thông tư 72/2024/TT-BCA)", "gold_units": ["TT72-2024-BCA/D4/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-028:2"}
+```
+
+### W4-thu_tuc_tham_quyen-029 · tier C · vai: tài xế xe tải · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D22/K2, TT72-2024-BCA/D22/K2/a, TT72-2024-BCA/D22/K2/b, TT72-2024-BCA/D22/K2/c, TT72-2024-BCA/D22/K2/d, TT72-2024-BCA/D22/K2/đ, TT72-2024-BCA/D22/K2/e, TT72-2024-BCA/D22/K2/g, TT72-2024-BCA/D22/K2/h
+
+Điều 22. Trường hợp giải quyết vụ tai nạn giao thông đường bộ phát hiện có dấu hiệu tội phạm theo chức năng của Cơ quan được giao nhiệm vụ tiến hành một số hoạt động điều tra
+2. Hồ sơ vụ án tai nạn giao thông đường bộ chuyển cho Cơ quan Cảnh sát điều tra
+a) Các tài liệu dùng cho cơ quan được giao nhiệm vụ tiến hành một số hoạt động điều tra được ban hành kèm theo Thông tư số 119/2021/TT-BCA ngày ngày 08 tháng 12 năm 2021 của Bộ trưởng Bộ Công an quy định biểu mẫu, giấy tờ, sổ sách về điều tra hình sự;
+b) Biên bản khám nghiệm hiện trường vụ tai nạn giao thông đường bộ; Sơ đồ hiện trường vụ tai nạn giao thông đường bộ; Bản ảnh hiện trường; thiết bị lưu trữ hình ảnh động (nếu có);
+c) Biên bản khám nghiệm phương tiện; Biên bản tạm giữ tang vật, phương tiện; quyết định tạm giữ tang vật, phương tiện; các giấy tờ của phương tiện, người điều khiển phương tiện và hàng hóa trên phương tiện (nếu có);
+d) Biên bản ghi lời khai và bản tường trình của những người có liên quan trong vụ tai nạn giao thông đường bộ;
+đ) Biên bản ghi nhận dấu vết trên thân thể người bị nạn, Sơ đồ vị trí dấu vết thương tích trên cơ thể người bị nạn, Biên bản về việc dựng lại hiện trường vụ tai nạn giao thông đường bộ (nếu có);
+e) Kết luận giám định thiệt hại về người và tài sản; các tài liệu khác liên quan (nếu có);
+g) Tang vật, phương tiện, vật chứng liên quan đến vụ tai nạn (nếu có);
+h) Biên bản giao, nhận hồ sơ vụ án.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, sau khi tham gia tai nạn, cần nộp hồ sơ gì cho Cảnh sát điều tra?
+- Đáp: Bạn cần nộp biên bản khám nghiệm hiện trường, sơ đồ hiện trường, bản ảnh, biên bản khám nghiệm phương tiện, biên bản tạm giữ tang vật, biên bản ghi lời khai, biên bản ghi nhận dấu vết, kết luận giám định thiệt hại và các tài liệu liên quan khác.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-029", "question": "Tôi là tài xế xe tải, sau khi tham gia tai nạn, cần nộp hồ sơ gì cho Cảnh sát điều tra?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Bạn cần nộp biên bản khám nghiệm hiện trường, sơ đồ hiện trường, bản ảnh, biên bản khám nghiệm phương tiện, biên bản tạm giữ tang vật, biên bản ghi lời khai, biên bản ghi nhận dấu vết, kết luận giám định thiệt hại và các tài liệu liên quan khác.", "gold_units": ["TT72-2024-BCA/D22/K2/a", "TT72-2024-BCA/D22/K2/b", "TT72-2024-BCA/D22/K2/c", "TT72-2024-BCA/D22/K2/d", "TT72-2024-BCA/D22/K2/e", "TT72-2024-BCA/D22/K2/g", "TT72-2024-BCA/D22/K2/h"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-029:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, khi bị cảnh sát điều tra về tai nạn, tôi phải cung cấp những giấy tờ nào để hoàn thành hồ sơ?
+- Đáp: Bạn phải nộp biên bản khám nghiệm hiện trường, sơ đồ hiện trường, bản ảnh, biên bản khám nghiệm phương tiện, biên bản tạm giữ tang vật, biên bản ghi lời khai, biên bản ghi nhận dấu vết, kết luận giám định thiệt hại và các tài liệu liên quan khác.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-029", "question": "Tôi là tài xế xe tải, khi bị cảnh sát điều tra về tai nạn, tôi phải cung cấp những giấy tờ nào để hoàn thành hồ sơ?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Bạn phải nộp biên bản khám nghiệm hiện trường, sơ đồ hiện trường, bản ảnh, biên bản khám nghiệm phương tiện, biên bản tạm giữ tang vật, biên bản ghi lời khai, biên bản ghi nhận dấu vết, kết luận giám định thiệt hại và các tài liệu liên quan khác.", "gold_units": ["TT72-2024-BCA/D22/K2/a", "TT72-2024-BCA/D22/K2/b", "TT72-2024-BCA/D22/K2/c", "TT72-2024-BCA/D22/K2/d", "TT72-2024-BCA/D22/K2/e", "TT72-2024-BCA/D22/K2/g", "TT72-2024-BCA/D22/K2/h"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-029:2"}
+```
+
+### W4-thu_tuc_tham_quyen-030 · tier C · vai: tài xế xe tải · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 71/2024/TT-BCA (Quy định quản lý, vận hành, sử dụng hệ thống quản lý dữ liệu thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT71-2024-BCA/D11/K1
+
+Điều 11. Trách nhiệm của đơn vị kinh doanh vận tải bằng xe ô tô, chủ phương tiện xe ô tô chở người từ 08 chỗ trở lên (không kể chỗ của người lái xe) kinh doanh vận tải, xe ô tô đầu kéo, xe cứu thương và xe cứu hộ
+1. Quản lý phương tiện, lắp thiết bị giám sát hành trình, thiết bị ghi nhận hình ảnh người lái xe trên phương tiện theo quy định tại khoản 2 Điều 35, khoản 2 Điều 54 Luật Trật tự, an toàn giao thông đường bộ, đảm bảo tuân thủ quy chuẩn kỹ thuật quốc gia về thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D35/K2)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D35/K2
+
+Điều 35. Điều kiện phương tiện tham gia giao thông đường bộ
+2. Xe ô tô kinh doanh vận tải phải lắp thiết bị giám sát hành trình. Xe ô tô chở người từ 08 chỗ trở lên (không kể chỗ của người lái xe) kinh doanh vận tải, xe ô tô đầu kéo, xe cứu thương phải lắp thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D54/K2)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D54/K2
+
+Điều 54. Bảo đảm trật tự, an toàn giao thông đường bộ đối với xe cứu hộ giao thông đường bộ
+2. Xe cứu hộ giao thông đường bộ phải có dấu hiệu nhận diện, niêm yết thông tin trên xe, gắn thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe theo quy định tại khoản 2 Điều 35 của Luật này.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, cần lắp thiết bị giám sát hành trình và ghi hình người lái, phải làm gì?
+- Đáp: Bạn phải lắp thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe trên phương tiện theo quy định. (Điều 35 Luật 36/2024)
+- ⚠ chep_nguyen_van: “bị giám sát hành trình và …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-030", "question": "Tôi là tài xế xe tải, cần lắp thiết bị giám sát hành trình và ghi hình người lái, phải làm gì?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Bạn phải lắp thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe trên phương tiện theo quy định. (Điều 35 Luật 36/2024)", "gold_units": ["LUAT36-2024/D35/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-030:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Xe tải của công ty tôi chở khách 10 chỗ, cần thiết bị ghi hình người lái, tôi phải nộp hồ sơ ở đâu?
+- Đáp: Bạn phải lắp thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe trên phương tiện theo quy định. (Điều 35 Luật 36/2024)
+- Ghi chú: công ty tôi
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-030", "question": "Xe tải của công ty tôi chở khách 10 chỗ, cần thiết bị ghi hình người lái, tôi phải nộp hồ sơ ở đâu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Bạn phải lắp thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe trên phương tiện theo quy định. (Điều 35 Luật 36/2024)", "gold_units": ["LUAT36-2024/D35/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-030:2"}
+```
+
+### W4-thu_tuc_tham_quyen-031 · tier C · vai: tài xế công nghệ · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 83/2024/TT-BCA (Quy định về xây dựng, quản lý, vận hành, khai thác và sử dụng hệ thống giám sát bảo đảm an ninh, trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT83-2024-BCA/D10/K3
+
+Điều 10. Trách nhiệm của Cục Cảnh sát giao thông
+3. Chủ trì, phối hợp với các đơn vị có liên quan hướng dẫn, theo dõi, kiểm tra, đôn đốc Công an các đơn vị, địa phương thực hiện việc quản lý, vận hành, khai thác, sử dụng hệ thống giám sát giao thông trên phạm vi toàn quốc.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi, một tài xế công nghệ, nghe nói công ty cạnh mình đã cài hệ thống giám sát. Anh ấy muốn biết Cục Cảnh sát giao thông có trách nhiệm gì trong việc hướng dẫn và kiểm tra hệ thống này?
+- Đáp: Cục Cảnh sát giao thông chủ trì, phối hợp với các đơn vị có liên quan hướng dẫn, theo dõi, kiểm tra, đôn đốc Công an các đơn vị, địa phương thực hiện việc quản lý, vận hành, khai thác, sử dụng hệ thống giám sát giao thông trên phạm vi toàn quốc.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-031", "question": "Anh tôi, một tài xế công nghệ, nghe nói công ty cạnh mình đã cài hệ thống giám sát. Anh ấy muốn biết Cục Cảnh sát giao thông có trách nhiệm gì trong việc hướng dẫn và kiểm tra hệ thống này?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Cục Cảnh sát giao thông chủ trì, phối hợp với các đơn vị có liên quan hướng dẫn, theo dõi, kiểm tra, đôn đốc Công an các đơn vị, địa phương thực hiện việc quản lý, vận hành, khai thác, sử dụng hệ thống giám sát giao thông trên phạm vi toàn quốc.", "gold_units": ["TT83-2024-BCA/D10/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-031:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi, một tài xế công nghệ, muốn biết ai có thẩm quyền để kiểm tra hệ thống giám sát giao thông mà họ đang triển khai?
+- Đáp: Cục Cảnh sát giao thông chủ trì, phối hợp với các đơn vị có liên quan hướng dẫn, theo dõi, kiểm tra, đôn đốc Công an các đơn vị, địa phương thực hiện việc quản lý, vận hành, khai thác, sử dụng hệ thống giám sát giao thông trên phạm vi toàn quốc.
+- ⚠ chep_nguyen_van: “hệ thống giám sát giao thông …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-031", "question": "Công ty tôi, một tài xế công nghệ, muốn biết ai có thẩm quyền để kiểm tra hệ thống giám sát giao thông mà họ đang triển khai?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Cục Cảnh sát giao thông chủ trì, phối hợp với các đơn vị có liên quan hướng dẫn, theo dõi, kiểm tra, đôn đốc Công an các đơn vị, địa phương thực hiện việc quản lý, vận hành, khai thác, sử dụng hệ thống giám sát giao thông trên phạm vi toàn quốc.", "gold_units": ["TT83-2024-BCA/D10/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-031:2"}
+```
+
+### W4-thu_tuc_tham_quyen-032 · tier C · vai: cán bộ phường · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D2/K2
+
+Điều 2. Đối tượng áp dụng
+2. Cơ quan, tổ chức, cá nhân có liên quan đến hoạt động điều tra, xác minh, giải quyết tai nạn giao thông đường bộ.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là cán bộ phường, khi có tai nạn giao thông đường bộ xảy ra trong khu vực quản lý, tôi cần làm gì để báo cáo và chuyển giao vụ việc cho Cảnh sát giao thông?
+- Đáp: Bạn cần lập hồ sơ điều tra, xác minh, giải quyết tai nạn giao thông đường bộ và nộp cho Cảnh sát giao thông. Hồ sơ này bao gồm thông tin về vụ việc, người liên quan và các biện pháp đã thực hiện. Cảnh sát giao thông sẽ tiếp nhận và điều tra tiếp theo.
+- ⚠ chep_nguyen_van: “tai nạn giao thông đường bộ …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-032", "question": "Tôi là cán bộ phường, khi có tai nạn giao thông đường bộ xảy ra trong khu vực quản lý, tôi cần làm gì để báo cáo và chuyển giao vụ việc cho Cảnh sát giao thông?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Bạn cần lập hồ sơ điều tra, xác minh, giải quyết tai nạn giao thông đường bộ và nộp cho Cảnh sát giao thông. Hồ sơ này bao gồm thông tin về vụ việc, người liên quan và các biện pháp đã thực hiện. Cảnh sát giao thông sẽ tiếp nhận và điều tra tiếp theo.", "gold_units": ["TT72-2024-BCA/D2/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-032:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là cán bộ phường, khi có người vi phạm quy định giao thông trong khu vực, tôi cần làm gì để chuyển giao vụ việc cho Cảnh sát giao thông?
+- Đáp: Bạn cần lập hồ sơ điều tra, xác minh, giải quyết vi phạm giao thông và nộp cho Cảnh sát giao thông. Hồ sơ này bao gồm thông tin về vi phạm, người vi phạm và các biện pháp đã thực hiện. Cảnh sát giao thông sẽ tiếp nhận và xử lý tiếp theo.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-032", "question": "Tôi là cán bộ phường, khi có người vi phạm quy định giao thông trong khu vực, tôi cần làm gì để chuyển giao vụ việc cho Cảnh sát giao thông?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Bạn cần lập hồ sơ điều tra, xác minh, giải quyết vi phạm giao thông và nộp cho Cảnh sát giao thông. Hồ sơ này bao gồm thông tin về vi phạm, người vi phạm và các biện pháp đã thực hiện. Cảnh sát giao thông sẽ tiếp nhận và xử lý tiếp theo.", "gold_units": ["TT72-2024-BCA/D2/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-032:2"}
+```
+
+### W4-thu_tuc_tham_quyen-033 · tier C · vai: chủ doanh nghiệp vận tải · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D6/K4
+
+Điều 6. Giải quyết ban đầu khi cán bộ Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát phát hiện vụ tai nạn giao thông đường bộ hoặc được phân công đến hiện trường vụ tai nạn giao thông đường bộ
+4. Trường hợp người, phương tiện liên quan đến vụ tai nạn giao thông đường bộ bỏ chạy, ngoài việc phải thực hiện theo quy định tại các khoản 1, 2 và 3 Điều này, đồng thời xác minh thông tin chi tiết về đặc điểm người gây tai nạn bỏ chạy; loại phương tiện, màu sơn, biển số của phương tiện (tra cứu trên hệ thống phần mềm đăng ký, quản lý phương tiện), đặc biệt là những thiệt hại về phương tiện và hướng phương tiện bỏ chạy.
+Đối chiếu, xác định những dấu vết hình thành trong quá trình va chạm. Căn cứ đặc điểm phương tiện bỏ chạy, các dấu vết để lại trên phương tiện để tổ chức truy tìm người, phương tiện gây tai nạn, thông báo cho các đơn vị Cảnh sát giao thông trên tuyến phối hợp truy bắt, đồng thời thông báo trên các phương tiện thông tin đại chúng để truy tìm.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT72-2024-BCA/D6/K1)
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D6/K1
+
+Điều 6. Giải quyết ban đầu khi cán bộ Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát phát hiện vụ tai nạn giao thông đường bộ hoặc được phân công đến hiện trường vụ tai nạn giao thông đường bộ
+1. Tổ chức cứu nạn, cứu hộ
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT72-2024-BCA/D6/K2)
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D6/K2
+
+Điều 6. Giải quyết ban đầu khi cán bộ Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát phát hiện vụ tai nạn giao thông đường bộ hoặc được phân công đến hiện trường vụ tai nạn giao thông đường bộ
+2. Bảo vệ hiện trường vụ tai nạn giao thông đường bộ
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT72-2024-BCA/D6/K3)
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D6/K3
+
+Điều 6. Giải quyết ban đầu khi cán bộ Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát phát hiện vụ tai nạn giao thông đường bộ hoặc được phân công đến hiện trường vụ tai nạn giao thông đường bộ
+3. Tổ chức, hướng dẫn giao thông không để xảy ra ùn tắc
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là chủ doanh nghiệp vận tải, sau khi xe của công ty tôi tham gia tai nạn và bị bỏ chạy, tôi cần thu thập những thông tin gì và nộp báo cáo cho đâu?
+- Đáp: Bạn cần xác minh thông tin chi tiết về đặc điểm người gây tai nạn bỏ chạy; loại phương tiện, màu sơn, biển số của phương tiện (tra cứu trên hệ thống phần mềm đăng ký, quản lý phương tiện), đặc biệt là những thiệt hại về phương tiện và hướng phương tiện bỏ chạy. Đối chiếu, xác định những dấu vết hình thành trong quá trình va chạm. Căn cứ đặc điểm phương tiện bỏ chạy, các dấu vết để lại trên phương tiện để tổ chức truy tìm người, phương tiện gây tai nạn, thông báo cho các đơn vị Cảnh sát giao thông trên tuyến phối hợp truy bắt, đồng thời thông báo trên các phương tiện thông tin đại chúng để truy tìm.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-033", "question": "Tôi là chủ doanh nghiệp vận tải, sau khi xe của công ty tôi tham gia tai nạn và bị bỏ chạy, tôi cần thu thập những thông tin gì và nộp báo cáo cho đâu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Bạn cần xác minh thông tin chi tiết về đặc điểm người gây tai nạn bỏ chạy; loại phương tiện, màu sơn, biển số của phương tiện (tra cứu trên hệ thống phần mềm đăng ký, quản lý phương tiện), đặc biệt là những thiệt hại về phương tiện và hướng phương tiện bỏ chạy. Đối chiếu, xác định những dấu vết hình thành trong quá trình va chạm. Căn cứ đặc điểm phương tiện bỏ chạy, các dấu vết để lại trên phương tiện để tổ chức truy tìm người, phương tiện gây tai nạn, thông báo cho các đơn vị Cảnh sát giao thông trên tuyến phối hợp truy bắt, đồng thời thông báo trên các phương tiện thông tin đại chúng để truy tìm.", "gold_units": ["TT72-2024-BCA/D6/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-033:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là chủ doanh nghiệp vận tải, khi xảy ra tai nạn tại công ty tôi, tôi cần làm gì để bảo vệ hiện trường và hướng dẫn giao thông tránh ùn tắc?
+- Đáp: Bạn phải bảo vệ hiện trường vụ tai nạn giao thông đường bộ và tổ chức, hướng dẫn giao thông không để xảy ra ùn tắc.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-033", "question": "Tôi là chủ doanh nghiệp vận tải, khi xảy ra tai nạn tại công ty tôi, tôi cần làm gì để bảo vệ hiện trường và hướng dẫn giao thông tránh ùn tắc?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Bạn phải bảo vệ hiện trường vụ tai nạn giao thông đường bộ và tổ chức, hướng dẫn giao thông không để xảy ra ùn tắc.", "gold_units": ["TT72-2024-BCA/D6/K2", "TT72-2024-BCA/D6/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-033:2"}
+```
+
+### W4-thu_tuc_tham_quyen-034 · tier C · vai: người lớn tuổi đi xe đạp điện · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 83/2024/TT-BCA (Quy định về xây dựng, quản lý, vận hành, khai thác và sử dụng hệ thống giám sát bảo đảm an ninh, trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT83-2024-BCA/D12/K3
+
+Điều 12. Nguồn kinh phí bảo đảm cho xây dựng, nâng cấp, quản lý, vận hành, khai thác, sử dụng, bảo trì, bảo dưỡng hệ thống giám sát giao thông
+3. Cục Kế hoạch và tài chính tham mưu, báo cáo lãnh đạo Bộ bảo đảm kinh phí và hướng dẫn Công an các đơn vị, địa phương lập dự toán, quản lý, sử dụng nguồn kinh phí được cấp phục vụ cho việc xây dựng, nâng cấp, quản lý, vận hành, khai thác, sử dụng, bảo trì, bảo dưỡng hệ thống giám sát giao thông.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi đi xe đạp điện, nghe nói có hệ thống giám sát giao thông, ai chịu trách nhiệm bảo đảm kinh phí cho việc xây dựng và vận hành?
+- Đáp: Cục Kế hoạch và tài chính tham mưu, báo cáo lãnh đạo Bộ bảo đảm kinh phí và hướng dẫn Công an các đơn vị, địa phương lập dự toán, quản lý, sử dụng nguồn kinh phí được cấp phục vụ cho việc xây dựng, nâng cấp, quản lý, vận hành, khai thác, sử dụng, bảo trì, bảo dưỡng hệ thống giám sát giao thông.
+- ⚠ chep_nguyen_van: “hệ thống giám sát giao thông …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-034", "question": "Anh tôi đi xe đạp điện, nghe nói có hệ thống giám sát giao thông, ai chịu trách nhiệm bảo đảm kinh phí cho việc xây dựng và vận hành?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Cục Kế hoạch và tài chính tham mưu, báo cáo lãnh đạo Bộ bảo đảm kinh phí và hướng dẫn Công an các đơn vị, địa phương lập dự toán, quản lý, sử dụng nguồn kinh phí được cấp phục vụ cho việc xây dựng, nâng cấp, quản lý, vận hành, khai thác, sử dụng, bảo trì, bảo dưỡng hệ thống giám sát giao thông.", "gold_units": ["TT83-2024-BCA/D12/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-034:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi đang triển khai hệ thống giám sát giao thông, ai là cơ quan có thẩm quyền quyết định nguồn kinh phí cho dự án này?
+- Đáp: Cục Kế hoạch và tài chính tham mưu, báo cáo lãnh đạo Bộ bảo đảm kinh phí và hướng dẫn Công an các đơn vị, địa phương lập dự toán, quản lý, sử dụng nguồn kinh phí được cấp phục vụ cho việc xây dựng, nâng cấp, quản lý, vận hành, khai thác, sử dụng, bảo trì, bảo dưỡng hệ thống giám sát giao thông.
+- ⚠ chep_nguyen_van: “hệ thống giám sát giao thông …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-034", "question": "Công ty tôi đang triển khai hệ thống giám sát giao thông, ai là cơ quan có thẩm quyền quyết định nguồn kinh phí cho dự án này?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Cục Kế hoạch và tài chính tham mưu, báo cáo lãnh đạo Bộ bảo đảm kinh phí và hướng dẫn Công an các đơn vị, địa phương lập dự toán, quản lý, sử dụng nguồn kinh phí được cấp phục vụ cho việc xây dựng, nâng cấp, quản lý, vận hành, khai thác, sử dụng, bảo trì, bảo dưỡng hệ thống giám sát giao thông.", "gold_units": ["TT83-2024-BCA/D12/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-034:2"}
+```
+
+### W4-thu_tuc_tham_quyen-035 · tier C · vai: chủ doanh nghiệp vận tải · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-03-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D4/K10
+
+Điều 4. Tổ chức tiếp nhận tin báo về tai nạn giao thông đường bộ
+10. Các vụ tai nạn giao thông đường bộ phải được thông báo cho Phòng Cảnh sát giao thông và Công an xã, phường, thị trấn, Đồn Công an ở huyện nơi không có đơn vị hành chính cấp xã (sau đây gọi chung là Công an cấp xã) nơi xảy ra vụ tai nạn giao thông đường bộ để giải quyết theo thẩm quyền hoặc phối hợp khi có yêu cầu và theo dõi, thống kê, tổng hợp tai nạn giao thông đường bộ xảy ra trên địa bàn.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là chủ doanh nghiệp vận tải, hôm nay xe tải của công ty tôi đã gặp tai nạn tại huyện X. Tôi cần báo cáo vụ việc này cho cơ quan nào và làm thế nào để thực hiện?
+- Đáp: Bạn phải thông báo vụ tai nạn cho Phòng Cảnh sát giao thông và Công an xã, phường, thị trấn, Đồn Công an ở huyện nơi không có đơn vị hành chính cấp xã. Thông báo có thể được thực hiện qua điện thoại, email hoặc trực tiếp tại cơ quan. (Điều 4, Khoản 10 Thông tư 72/2024/TT-BCA)
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-035", "question": "Tôi là chủ doanh nghiệp vận tải, hôm nay xe tải của công ty tôi đã gặp tai nạn tại huyện X. Tôi cần báo cáo vụ việc này cho cơ quan nào và làm thế nào để thực hiện?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Bạn phải thông báo vụ tai nạn cho Phòng Cảnh sát giao thông và Công an xã, phường, thị trấn, Đồn Công an ở huyện nơi không có đơn vị hành chính cấp xã. Thông báo có thể được thực hiện qua điện thoại, email hoặc trực tiếp tại cơ quan. (Điều 4, Khoản 10 Thông tư 72/2024/TT-BCA)", "gold_units": ["TT72-2024-BCA/D4/K10"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-035:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Sau khi xe tải của tôi bị tai nạn, tôi muốn biết trách nhiệm của công ty trong việc báo cáo vụ việc. Tôi cần nộp hồ sơ gì và nộp ở đâu?
+- Đáp: Công ty cần nộp thông tin vụ tai nạn cho Phòng Cảnh sát giao thông và Công an xã, phường, thị trấn, Đồn Công an tại địa điểm xảy ra. Hồ sơ bao gồm thông tin chi tiết về vụ tai nạn, danh sách xe và tài xế, và các tài liệu liên quan. (Điều 4, Khoản 10 Thông tư 72/2024/TT-BCA)
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-035", "question": "Sau khi xe tải của tôi bị tai nạn, tôi muốn biết trách nhiệm của công ty trong việc báo cáo vụ việc. Tôi cần nộp hồ sơ gì và nộp ở đâu?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Công ty cần nộp thông tin vụ tai nạn cho Phòng Cảnh sát giao thông và Công an xã, phường, thị trấn, Đồn Công an tại địa điểm xảy ra. Hồ sơ bao gồm thông tin chi tiết về vụ tai nạn, danh sách xe và tài xế, và các tài liệu liên quan. (Điều 4, Khoản 10 Thông tư 72/2024/TT-BCA)", "gold_units": ["TT72-2024-BCA/D4/K10"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-035:2"}
+```
+
+### W4-thu_tuc_tham_quyen-036 · tier C · vai: người mới học lái ô tô · kiểu: neu_van_ban
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D6/K2, TT72-2024-BCA/D6/K2/a, TT72-2024-BCA/D6/K2/b, TT72-2024-BCA/D6/K2/c
+
+Điều 6. Giải quyết ban đầu khi cán bộ Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát phát hiện vụ tai nạn giao thông đường bộ hoặc được phân công đến hiện trường vụ tai nạn giao thông đường bộ
+2. Bảo vệ hiện trường vụ tai nạn giao thông đường bộ
+a) Sử dụng dây căng phản quang, cọc tiêu hình chóp nón, biển báo cấm đường, biển chỉ dẫn hướng đi hoặc biển cảnh báo nguy hiểm và biển phụ, đèn chiếu sáng, đèn cảnh báo nguy hiểm được trang bị cho Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát, xử lý vi phạm để khoanh vùng bảo vệ hiện trường, bảo vệ an toàn cho cán bộ khám nghiệm hiện trường, có biện pháp bảo vệ tài sản của người bị nạn, hàng hoá trên phương tiện trong vụ tai nạn giao thông đường bộ;
+b) Bố trí cán bộ điều tiết giao thông tại khu vực hiện trường được khoanh vùng bảo vệ tối thiểu khoảng cách 70 mét (đối với đường bộ cao tốc tối thiểu là 100 mét) đồng thời đặt biển cảnh báo nguy hiểm, biển hạn chế tốc độ, biển chỉ dẫn cách 01 mét đến 02 mét phía trước cán bộ điều tiết giao thông để cảnh báo người điều khiển phương tiện đi qua khu vực hiện trường giảm tốc độ, chú ý quan sát không gây nguy hiểm cho lực lượng khám nghiệm hiện trường;
+…
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi vừa tham gia một vụ tai nạn giao thông đường bộ, cần bảo vệ hiện trường, tôi phải làm gì và cần chuẩn bị những gì?
+- Đáp: Bạn cần sử dụng dây căng phản quang, cọc tiêu hình chóp nón, biển báo cấm đường, biển chỉ dẫn hướng đi hoặc biển cảnh báo nguy hiểm và biển phụ, đèn chiếu sáng, đèn cảnh báo nguy hiểm được trang bị cho Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát, xử lý vi phạm để khoanh vùng bảo vệ hiện trường, bảo vệ an toàn cho cán bộ khám nghiệm hiện trường, có biện pháp bảo vệ tài sản của người bị nạn, hàng hoá trên phương tiện trong vụ tai nạn giao thông đường bộ; đồng thời bố trí cán bộ điều tiết giao thông tại khu vực hiện trường được khoanh vùng bảo vệ tối thiểu khoảng cách 70 mét (đối với đường bộ cao tốc tối thiểu là 100 mét) và đặt biển cảnh báo nguy hiểm, biển hạn chế tốc độ, biển chỉ dẫn cách 01 mét đến 02 mét phía trước cán bộ điều tiết giao thông để cảnh báo người điều khiển phương tiện đi qua khu vực hiện trường giảm tốc độ, chú ý quan sát không gây nguy hiểm cho lực lượng khám nghiệm hiện trường.
+- ⚠ chep_nguyen_van: “tai nạn giao thông đường bộ …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-036", "question": "Tôi vừa tham gia một vụ tai nạn giao thông đường bộ, cần bảo vệ hiện trường, tôi phải làm gì và cần chuẩn bị những gì?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Bạn cần sử dụng dây căng phản quang, cọc tiêu hình chóp nón, biển báo cấm đường, biển chỉ dẫn hướng đi hoặc biển cảnh báo nguy hiểm và biển phụ, đèn chiếu sáng, đèn cảnh báo nguy hiểm được trang bị cho Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát, xử lý vi phạm để khoanh vùng bảo vệ hiện trường, bảo vệ an toàn cho cán bộ khám nghiệm hiện trường, có biện pháp bảo vệ tài sản của người bị nạn, hàng hoá trên phương tiện trong vụ tai nạn giao thông đường bộ; đồng thời bố trí cán bộ điều tiết giao thông tại khu vực hiện trường được khoanh vùng bảo vệ tối thiểu khoảng cách 70 mét (đối với đường bộ cao tốc tối thiểu là 100 mét) và đặt biển cảnh báo nguy hiểm, biển hạn chế tốc độ, biển chỉ dẫn cách 01 mét đến 02 mét phía trước cán bộ điều tiết giao thông để cảnh báo người điều khiển phương tiện đi qua khu vực hiện trường giảm tốc độ, chú ý quan sát không gây nguy hiểm cho lực lượng khám nghiệm hiện trường.", "gold_units": ["TT72-2024-BCA/D6/K2", "TT72-2024-BCA/D6/K2/a", "TT72-2024-BCA/D6/K2/b", "TT72-2024-BCA/D6/K2/c"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-036:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu tôi là cảnh sát giao thông, khi phát hiện tai nạn, tôi phải thực hiện những biện pháp bảo vệ hiện trường như thế nào?
+- Đáp: Bạn phải sử dụng dây căng phản quang, cọc tiêu hình chóp nón, biển báo cấm đường, biển chỉ dẫn hướng đi hoặc biển cảnh báo nguy hiểm và biển phụ, đèn chiếu sáng, đèn cảnh báo nguy hiểm được trang bị cho Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát, xử lý vi phạm để khoanh vùng bảo vệ hiện trường, bảo vệ an toàn cho cán bộ khám nghiệm hiện trường, có biện pháp bảo vệ tài sản của người bị nạn, hàng hoá trên phương tiện trong vụ tai nạn giao thông đường bộ; đồng thời bố trí cán bộ điều tiết giao thông tại khu vực hiện trường được khoanh vùng bảo vệ tối thiểu khoảng cách 70 mét (đối với đường bộ cao tốc tối thiểu là 100 mét) và đặt biển cảnh báo nguy hiểm, biển hạn chế tốc độ, biển chỉ dẫn cách 01 mét đến 02 mét phía trước cán bộ điều tiết giao thông để cảnh báo người điều khiển phương tiện đi qua khu vực hiện trường giảm tốc độ, chú ý quan sát không gây nguy hiểm cho lực lượng khám nghiệm hiện trường.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-036", "question": "Nếu tôi là cảnh sát giao thông, khi phát hiện tai nạn, tôi phải thực hiện những biện pháp bảo vệ hiện trường như thế nào?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Bạn phải sử dụng dây căng phản quang, cọc tiêu hình chóp nón, biển báo cấm đường, biển chỉ dẫn hướng đi hoặc biển cảnh báo nguy hiểm và biển phụ, đèn chiếu sáng, đèn cảnh báo nguy hiểm được trang bị cho Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát, xử lý vi phạm để khoanh vùng bảo vệ hiện trường, bảo vệ an toàn cho cán bộ khám nghiệm hiện trường, có biện pháp bảo vệ tài sản của người bị nạn, hàng hoá trên phương tiện trong vụ tai nạn giao thông đường bộ; đồng thời bố trí cán bộ điều tiết giao thông tại khu vực hiện trường được khoanh vùng bảo vệ tối thiểu khoảng cách 70 mét (đối với đường bộ cao tốc tối thiểu là 100 mét) và đặt biển cảnh báo nguy hiểm, biển hạn chế tốc độ, biển chỉ dẫn cách 01 mét đến 02 mét phía trước cán bộ điều tiết giao thông để cảnh báo người điều khiển phương tiện đi qua khu vực hiện trường giảm tốc độ, chú ý quan sát không gây nguy hiểm cho lực lượng khám nghiệm hiện trường.", "gold_units": ["TT72-2024-BCA/D6/K2", "TT72-2024-BCA/D6/K2/a", "TT72-2024-BCA/D6/K2/b", "TT72-2024-BCA/D6/K2/c"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-036:2"}
+```
+
+### W4-thu_tuc_tham_quyen-037 · tier C · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D6/K5
+
+Điều 6. Giải quyết ban đầu khi cán bộ Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát phát hiện vụ tai nạn giao thông đường bộ hoặc được phân công đến hiện trường vụ tai nạn giao thông đường bộ
+5. Huy động người, phương tiện, thiết bị dân sự trong trường hợp cấp bách
+Trong trường hợp cấp bách để đưa người bị nạn đi cấp cứu, truy bắt người phạm tội, người gây tai nạn giao thông đường bộ bỏ chạy, cứu nạn, cứu hộ, chữa cháy hoặc nhiệm vụ khẩn cấp khác thì thực hiện quyền huy động người, phương tiện, thiết bị dân sự theo quy định tại Điều 68 Luật Trật tự, an toàn giao thông đường bộ năm 2024.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D68)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D68
+
+Điều 68. Huy động người, phương tiện, thiết bị dân sự trong trường hợp cấp bách
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi đã tham gia tai nạn xe ô tô chở khách, con tôi 15 tuổi bị thương. Tôi muốn biết khi có tình huống cấp bách, cần huy động người, phương tiện dân sự như thế nào và ai có thẩm quyền thực hiện?
+- Đáp: Cảnh sát giao thông có quyền huy động người, phương tiện, thiết bị dân sự theo quy định tại Điều 68 Luật 36/2024.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-037", "question": "Anh tôi đã tham gia tai nạn xe ô tô chở khách, con tôi 15 tuổi bị thương. Tôi muốn biết khi có tình huống cấp bách, cần huy động người, phương tiện dân sự như thế nào và ai có thẩm quyền thực hiện?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Cảnh sát giao thông có quyền huy động người, phương tiện, thiết bị dân sự theo quy định tại Điều 68 Luật 36/2024.", "gold_units": ["LUAT36-2024/D68"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-037:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Bố tôi đang tham gia tai nạn xe ô tô chở khách, con tôi 12 tuổi bị thương. Tôi muốn biết quy trình huy động người, phương tiện dân sự trong trường hợp cấp bách và cơ quan có thẩm quyền thực hiện?
+- Đáp: Cảnh sát giao thông có quyền huy động người, phương tiện, thiết bị dân sự theo quy định tại Điều 68 Luật 36/2024.
+- ⚠ chep_nguyen_van: “dân sự trong trường hợp cấp …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-037", "question": "Bố tôi đang tham gia tai nạn xe ô tô chở khách, con tôi 12 tuổi bị thương. Tôi muốn biết quy trình huy động người, phương tiện dân sự trong trường hợp cấp bách và cơ quan có thẩm quyền thực hiện?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Cảnh sát giao thông có quyền huy động người, phương tiện, thiết bị dân sự theo quy định tại Điều 68 Luật 36/2024.", "gold_units": ["LUAT36-2024/D68"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-037:2"}
+```
+
+### W4-thu_tuc_tham_quyen-038 · tier C · vai: phụ huynh có con dưới 18 tuổi · kiểu: neu_van_ban
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 71/2024/TT-BCA (Quy định quản lý, vận hành, sử dụng hệ thống quản lý dữ liệu thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT71-2024-BCA/D12/K1
+
+Điều 12. Trách nhiệm của đơn vị cung cấp dịch vụ
+1. Đảm bảo cung cấp thiết bị tuân thủ quy chuẩn kỹ thuật quốc gia về thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Theo Thông tư 71/2024/TT-BCA, đơn vị cung cấp dịch vụ cần làm gì để đảm bảo thiết bị giám sát hành trình và ghi hình người lái xe?
+- Đáp: Đơn vị cung cấp dịch vụ phải đảm bảo cung cấp thiết bị tuân thủ quy chuẩn kỹ thuật quốc gia về thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe.
+- ⚠ chep_nguyen_van: “bị giám sát hành trình và …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-038", "question": "Theo Thông tư 71/2024/TT-BCA, đơn vị cung cấp dịch vụ cần làm gì để đảm bảo thiết bị giám sát hành trình và ghi hình người lái xe?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Đơn vị cung cấp dịch vụ phải đảm bảo cung cấp thiết bị tuân thủ quy chuẩn kỹ thuật quốc gia về thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe.", "gold_units": ["TT71-2024-BCA/D12/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-038:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu tôi muốn biết quy định của Thông tư 71/2024/TT-BCA về trách nhiệm của nhà cung cấp thiết bị giám sát hành trình, họ phải làm gì?
+- Đáp: Nhà cung cấp thiết bị giám sát hành trình và ghi hình người lái xe phải đảm bảo thiết bị tuân thủ quy chuẩn kỹ thuật quốc gia.
+- ⚠ chep_nguyen_van: “thiết bị giám sát hành trình …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-038", "question": "Nếu tôi muốn biết quy định của Thông tư 71/2024/TT-BCA về trách nhiệm của nhà cung cấp thiết bị giám sát hành trình, họ phải làm gì?", "as_of": "2026-11-03", "question_type": "thu_tuc_tham_quyen", "tier": "C", "answer": "Nhà cung cấp thiết bị giám sát hành trình và ghi hình người lái xe phải đảm bảo thiết bị tuân thủ quy chuẩn kỹ thuật quốc gia.", "gold_units": ["TT71-2024-BCA/D12/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-038:2"}
+```
+
+### W4-thu_tuc_tham_quyen-039 · tier historical · vai: phụ huynh có con dưới 18 tuổi · kiểu: neu_van_ban
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D2/K1
+
+Điều 2. Đối tượng áp dụng
+1. Thông tư này áp dụng đối với tổ chức, cá nhân có liên quan tới đào tạo, sát hạch, cấp, đổi, cấp lại, thu hồi giấy phép lái xe, sử dụng giấy phép lái xe và tiêu chuẩn của sân tập lái để sát hạch lái xe mô tô; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp, cấp lại chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ và tiêu chuẩn của cơ sở đào tạo người điều khiển xe máy chuyên dùng thực hiện bồi dưỡng, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi muốn đăng ký học lái xe mô tô cho con tôi, theo Thông tư 35/2024/TT-BGTVT, ai có thẩm quyền cấp giấy phép lái xe?
+- Đáp: Tổ chức, cá nhân có liên quan tới đào tạo, sát hạch, cấp, đổi, cấp lại, thu hồi giấy phép lái xe
+- Ghi chú: Giả định con tôi đủ tuổi để học lái xe mô tô
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-039", "question": "Tôi muốn đăng ký học lái xe mô tô cho con tôi, theo Thông tư 35/2024/TT-BGTVT, ai có thẩm quyền cấp giấy phép lái xe?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Tổ chức, cá nhân có liên quan tới đào tạo, sát hạch, cấp, đổi, cấp lại, thu hồi giấy phép lái xe", "gold_units": ["TT35-2024-BGTVT/D2/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-039:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Tôi muốn đăng ký học bồi dưỡng kiến thức pháp luật giao thông đường bộ, theo Thông tư 35/2024/TT-BGTVT, cần làm gì?
+- Đáp: Được áp dụng cho tổ chức, cá nhân có liên quan tới đào tạo, kiểm tra, cấp, cấp lại chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ
+- ⚠ chep_nguyen_van: “bồi dưỡng kiến thức pháp luật …”
+- Ghi chú: Giả định tôi là người lớn đủ điều kiện tham gia học bồi dưỡng
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-039", "question": "Tôi muốn đăng ký học bồi dưỡng kiến thức pháp luật giao thông đường bộ, theo Thông tư 35/2024/TT-BGTVT, cần làm gì?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Được áp dụng cho tổ chức, cá nhân có liên quan tới đào tạo, kiểm tra, cấp, cấp lại chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ", "gold_units": ["TT35-2024-BGTVT/D2/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-039:2"}
+```
+
+### W4-thu_tuc_tham_quyen-040 · tier historical · vai: cán bộ phường · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D32/K6, TT35-2024-BGTVT/D32/K6/a, TT35-2024-BGTVT/D32/K6/b
+
+Điều 32. Sử dụng, quản lý giấy phép lái xe
+6. Người nước ngoài hoặc người Việt Nam cư trú ở nước ngoài có nhu cầu lái xe ở Việt Nam thực hiện như sau:
+a) Nếu có giấy phép lái xe quốc gia thì phải làm thủ tục đổi sang giấy phép lái xe tương ứng của Việt Nam;
+b) Trường hợp điều ước quốc tế về giấy phép lái xe mà Việt Nam là thành viên có quy định khác thì áp dụng quy định của điều ước quốc tế đó.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Nếu tôi có giấy phép lái xe quốc gia, tôi có thể đổi sang giấy phép Việt Nam không?
+- Đáp: Có, người nước ngoài hoặc người Việt Nam cư trú ở nước ngoài có nhu cầu lái xe ở Việt Nam phải thực hiện thủ tục đổi sang giấy phép lái xe tương ứng của Việt Nam.
+- ⚠ chep_nguyen_van: “có giấy phép lái xe quốc …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-040", "question": "Nếu tôi có giấy phép lái xe quốc gia, tôi có thể đổi sang giấy phép Việt Nam không?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Có, người nước ngoài hoặc người Việt Nam cư trú ở nước ngoài có nhu cầu lái xe ở Việt Nam phải thực hiện thủ tục đổi sang giấy phép lái xe tương ứng của Việt Nam.", "gold_units": ["TT35-2024-BGTVT/D32/K6"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-040:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Nếu Việt Nam tham gia điều ước quốc tế về giấy phép lái xe, quy định nào áp dụng cho người nước ngoài có giấy phép quốc gia?
+- Đáp: Trong trường hợp điều ước quốc tế về giấy phép lái xe mà Việt Nam là thành viên có quy định khác, thì áp dụng quy định của điều ước quốc tế đó.
+- ⚠ chep_nguyen_van: “quốc tế về giấy phép lái …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-040", "question": "Nếu Việt Nam tham gia điều ước quốc tế về giấy phép lái xe, quy định nào áp dụng cho người nước ngoài có giấy phép quốc gia?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Trong trường hợp điều ước quốc tế về giấy phép lái xe mà Việt Nam là thành viên có quy định khác, thì áp dụng quy định của điều ước quốc tế đó.", "gold_units": ["TT35-2024-BGTVT/D32/K6/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-040:2"}
+```
+
+### W4-thu_tuc_tham_quyen-041 · tier historical · vai: tài xế xe tải · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D39/K1, TT35-2024-BGTVT/D39/K1/a, TT35-2024-BGTVT/D39/K1/b, TT35-2024-BGTVT/D39/K1/c
+
+Điều 39. Đổi giấy phép lái xe hoặc bằng lái xe của nước ngoài sang giấy phép lái xe do ngành Giao thông vận tải cấp
+1. Yêu cầu đối với việc đổi giấy phép lái xe hoặc bằng lái xe của nước ngoài sang giấy phép lái xe do ngành Giao thông vận tải cấp
+a) Người nước ngoài cư trú, làm việc, học tập tại Việt Nam có giấy phép lái xe quốc gia còn thời hạn sử dụng và có một trong các giấy tờ sau: giấy chứng minh thư ngoại giao, giấy chứng minh thư công vụ, thẻ tạm trú, thẻ cư trú, thẻ lưu trú hoặc thẻ thường trú với thời gian từ 03 tháng trở lên nếu có nhu cầu lái xe ở Việt Nam được xét đổi sang hạng giấy phép lái xe tương ứng của Việt Nam;
+b) Người Việt Nam (mang quốc tịch Việt Nam) trong thời gian cư trú, học tập, làm việc ở nước ngoài được cơ quan có thẩm quyền nước ngoài cấp giấy phép lái xe quốc gia, còn thời hạn sử dụng, nếu có nhu cầu lái xe tại Việt Nam được xét đổi sang hạng giấy phép lái xe tương ứng của Việt Nam;
+c) Không đổi giấy phép lái xe tạm thời của nước ngoài; giấy phép lái xe quốc tế; giấy phép lái xe của nước ngoài quá thời hạn sử dụng, bị tẩy xóa, rách nát không còn đủ thông tin để đổi giấy phép lái xe hoặc có sự khác biệt về nhận dạng; giấy phép lái xe nước ngoài không do cơ quan có thẩm quyền cấp; người Việt Nam có giấy phép lái xe nước ngoài có thời gian lưu trú tại nước ngoài dưới 03 tháng và thời hạn lưu trú không phù hợp với thời gian đào tạo lái xe của nước cấp giấy phép lái xe.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi là tài xế xe tải, đang làm việc tại Mỹ, có bằng lái xe Mỹ còn hạn. Tôi muốn đổi sang bằng lái xe Việt Nam. Cần chuẩn bị giấy tờ gì, nộp ở đâu, ai có thẩm quyền, thời gian xử lý là bao lâu?
+- Đáp: Bạn cần nộp bằng lái xe nước ngoài còn hạn, hộ chiếu, visa, thẻ cư trú hoặc thẻ lưu trú với thời gian từ 3 tháng trở lên, cùng mẫu đơn xin đổi bằng. Đơn nộp tại Cục Giao thông vận tải địa phương hoặc cơ quan có thẩm quyền tại nơi cư trú. Thời gian xử lý chưa được quy định cụ thể trong văn bản. (TT35-2024-BGTVT/D39/K1/a)
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-041", "question": "Tôi là tài xế xe tải, đang làm việc tại Mỹ, có bằng lái xe Mỹ còn hạn. Tôi muốn đổi sang bằng lái xe Việt Nam. Cần chuẩn bị giấy tờ gì, nộp ở đâu, ai có thẩm quyền, thời gian xử lý là bao lâu?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Bạn cần nộp bằng lái xe nước ngoài còn hạn, hộ chiếu, visa, thẻ cư trú hoặc thẻ lưu trú với thời gian từ 3 tháng trở lên, cùng mẫu đơn xin đổi bằng. Đơn nộp tại Cục Giao thông vận tải địa phương hoặc cơ quan có thẩm quyền tại nơi cư trú. Thời gian xử lý chưa được quy định cụ thể trong văn bản. (TT35-2024-BGTVT/D39/K1/a)", "gold_units": ["TT35-2024-BGTVT/D39/K1/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-041:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Tôi là tài xế xe tải, đang cư trú tại Hà Nội, có bằng lái xe Anh còn hạn. Tôi muốn đổi sang bằng lái xe Việt Nam. Cần giấy tờ gì, nộp ở đâu, ai có thẩm quyền, mất bao lâu?
+- Đáp: Bạn cần nộp bằng lái xe nước ngoài còn hạn, hộ chiếu, visa, thẻ cư trú hoặc thẻ lưu trú với thời gian từ 3 tháng trở lên, cùng mẫu đơn xin đổi bằng. Đơn nộp tại Cục Giao thông vận tải địa phương hoặc cơ quan có thẩm quyền tại nơi cư trú. Thời gian xử lý chưa được quy định cụ thể trong văn bản. (TT35-2024-BGTVT/D39/K1/b)
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-041", "question": "Tôi là tài xế xe tải, đang cư trú tại Hà Nội, có bằng lái xe Anh còn hạn. Tôi muốn đổi sang bằng lái xe Việt Nam. Cần giấy tờ gì, nộp ở đâu, ai có thẩm quyền, mất bao lâu?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Bạn cần nộp bằng lái xe nước ngoài còn hạn, hộ chiếu, visa, thẻ cư trú hoặc thẻ lưu trú với thời gian từ 3 tháng trở lên, cùng mẫu đơn xin đổi bằng. Đơn nộp tại Cục Giao thông vận tải địa phương hoặc cơ quan có thẩm quyền tại nơi cư trú. Thời gian xử lý chưa được quy định cụ thể trong văn bản. (TT35-2024-BGTVT/D39/K1/b)", "gold_units": ["TT35-2024-BGTVT/D39/K1/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-041:2"}
+```
+
+### W4-thu_tuc_tham_quyen-042 · tier historical · vai: tài xế xe tải · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D29/K1, TT35-2024-BGTVT/D29/K1/a, TT35-2024-BGTVT/D29/K1/b, TT35-2024-BGTVT/D29/K1/c, TT35-2024-BGTVT/D29/K1/d
+
+Điều 29. Hồ sơ dự sát hạch lái xe
+1. Cơ sở đào tạo lái xe lập 01 bộ hồ sơ, gửi trực tiếp tại Sở Giao thông vận tải. Hồ sơ bao gồm:
+a) Hồ sơ quy định tại khoản 1 Điều 15 của Thông tư này;
+b) Chứng chỉ sơ cấp hoặc chứng chỉ đào tạo hoặc xác nhận hoàn thành khóa đào tạo đối với người dự sát hạch lái xe hạng B1, B, C1;
+c) Danh sách đề nghị sát hạch của cơ sở đào tạo lái xe có tên của người dự sát hạch;
+d) Giấy khám sức khoẻ của người lái xe do cơ sở khám bệnh, chữa bệnh đủ tiêu chuẩn theo quy định của pháp luật về khám bệnh, chữa bệnh cấp còn hiệu lực.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D15/K1)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D15/K1
+
+Điều 15. Hồ sơ của người học lái xe
+1. Người học lái xe lần đầu lập 01 bộ hồ sơ, nộp trực tiếp tại cơ sở đào tạo và chụp ảnh trực tiếp lưu trữ trong cơ sở dữ liệu giấy phép lái xe. Hồ sơ bao gồm:
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi là tài xế xe tải, muốn tham gia sát hạch lái xe hạng C1. Tôi cần chuẩn bị những giấy tờ gì và nộp ở đâu?
+- Đáp: Bạn cần chuẩn bị hồ sơ gồm: hồ sơ quy định tại khoản 1 Điều 15 của Thông tư, chứng chỉ sơ cấp hoặc chứng chỉ đào tạo hoặc xác nhận hoàn thành khóa đào tạo đối với người dự sát hạch lái xe hạng C1, danh sách đề nghị sát hạch của cơ sở đào tạo lái xe có tên của bạn, và giấy khám sức khỏe do cơ sở khám bệnh, chữa bệnh đủ tiêu chuẩn. Hồ sơ này được nộp trực tiếp tại Sở Giao thông vận tải.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-042", "question": "Tôi là tài xế xe tải, muốn tham gia sát hạch lái xe hạng C1. Tôi cần chuẩn bị những giấy tờ gì và nộp ở đâu?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Bạn cần chuẩn bị hồ sơ gồm: hồ sơ quy định tại khoản 1 Điều 15 của Thông tư, chứng chỉ sơ cấp hoặc chứng chỉ đào tạo hoặc xác nhận hoàn thành khóa đào tạo đối với người dự sát hạch lái xe hạng C1, danh sách đề nghị sát hạch của cơ sở đào tạo lái xe có tên của bạn, và giấy khám sức khỏe do cơ sở khám bệnh, chữa bệnh đủ tiêu chuẩn. Hồ sơ này được nộp trực tiếp tại Sở Giao thông vận tải.", "gold_units": ["TT35-2024-BGTVT/D29/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-042:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Tôi đã chuẩn bị đầy đủ hồ sơ cho sát hạch lái xe hạng C1, nhưng không biết mất bao lâu để Sở Giao thông vận tải xử lý?
+- Đáp: Sau khi nộp hồ sơ, Sở Giao thông vận tải sẽ tiến hành xử lý và thông báo kết quả trong thời hạn quy định. Thông thường, thời gian xử lý hồ sơ là từ 15 đến 30 ngày làm việc, tùy thuộc vào khối lượng công việc của cơ quan.
+- ⚠ so_la: 30
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-042", "question": "Tôi đã chuẩn bị đầy đủ hồ sơ cho sát hạch lái xe hạng C1, nhưng không biết mất bao lâu để Sở Giao thông vận tải xử lý?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Sau khi nộp hồ sơ, Sở Giao thông vận tải sẽ tiến hành xử lý và thông báo kết quả trong thời hạn quy định. Thông thường, thời gian xử lý hồ sơ là từ 15 đến 30 ngày làm việc, tùy thuộc vào khối lượng công việc của cơ quan.", "gold_units": ["TT35-2024-BGTVT/D29/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-042:2"}
+```
+
+### W4-thu_tuc_tham_quyen-043 · tier historical · vai: người mới học lái ô tô · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D23/K3, TT35-2024-BGTVT/D23/K3/a, TT35-2024-BGTVT/D23/K3/b
+
+Điều 23. Trình tự tổ chức sát hạch
+3. Kết thúc kỳ sát hạch
+a) Đối với kỳ sát hạch lái xe các hạng B1, B, C1, C, D1, D2, D, BE, C1E, CE, D1E, D2E, DE: Chủ tịch Hội đồng sát hạch tổ chức họp Hội đồng, Tổ sát hạch, Tổ giám sát (nếu có), Tổ trưởng Tổ sát hạch báo cáo kết quả sát hạch và thống nhất ký biên bản tổng hợp kết quả sát hạch. Chủ tịch Hội đồng sát hạch ký tên và đóng dấu vào biên bản tổng hợp kết quả sát hạch lái xe của thí sinh trúng tuyển theo quy định tại Mẫu số 01 Phụ lục XXI ban hành kèm theo Thông tư này;
+b) Đối với kỳ sát hạch lái xe mô tô các hạng A1, A: Tổ trưởng Tổ sát hạch tổ chức họp các thành viên của Tổ sát hạch, người đứng đầu cơ sở đào tạo lái xe, Tổ giám sát (nếu có) thông qua kết quả sát hạch và thống nhất ký biên bản tổng hợp kết quả kỳ sát hạch. Người đứng đầu đơn vị được Sở Giao thông vận tải giao nhiệm vụ quản lý sát hạch, cấp giấy phép lái xe ký tên và đóng dấu xác nhận vào Biên bản tổng hợp kết quả sát hạch lái xe của thí sinh trúng tuyển theo quy định tại Mẫu số 02 Phụ lục XXI ban hành kèm theo Thông tư này.
+Biên bản tổng hợp kết quả sát hạch lái xe là hồ sơ gốc, giao cho người trúng tuyển kỳ sát hạch tự bảo quản.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi vừa trúng kỳ sát hạch lái xe hạng B, sau khi kết thúc kỳ sát hạch, ai sẽ ký biên bản tổng hợp kết quả và làm gì với biên bản đó?
+- Đáp: Chủ tịch Hội đồng sát hạch ký tên và đóng dấu vào biên bản tổng hợp kết quả sát hạch lái xe của thí sinh trúng tuyển. Biên bản này là hồ sơ gốc và được giao cho thí sinh trúng tuyển để bảo quản.
+- ⚠ chep_nguyen_van: “biên bản tổng hợp kết quả …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-043", "question": "Tôi vừa trúng kỳ sát hạch lái xe hạng B, sau khi kết thúc kỳ sát hạch, ai sẽ ký biên bản tổng hợp kết quả và làm gì với biên bản đó?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Chủ tịch Hội đồng sát hạch ký tên và đóng dấu vào biên bản tổng hợp kết quả sát hạch lái xe của thí sinh trúng tuyển. Biên bản này là hồ sơ gốc và được giao cho thí sinh trúng tuyển để bảo quản.", "gold_units": ["TT35-2024-BGTVT/D23/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-043:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Tôi vừa trúng kỳ sát hạch lái xe hạng B, biên bản tổng hợp kết quả sẽ được chuyển giao cho tôi, tôi cần lưu trữ ở đâu và có thể nộp lại khi cần không?
+- Đáp: Biên bản tổng hợp kết quả sát hạch là hồ sơ gốc, được giao cho thí sinh trúng tuyển để bảo quản. Không cần nộp lại cho cơ quan nào khác.
+- ⚠ chep_nguyen_van: “biên bản tổng hợp kết quả …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-043", "question": "Tôi vừa trúng kỳ sát hạch lái xe hạng B, biên bản tổng hợp kết quả sẽ được chuyển giao cho tôi, tôi cần lưu trữ ở đâu và có thể nộp lại khi cần không?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Biên bản tổng hợp kết quả sát hạch là hồ sơ gốc, được giao cho thí sinh trúng tuyển để bảo quản. Không cần nộp lại cho cơ quan nào khác.", "gold_units": ["TT35-2024-BGTVT/D23/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-043:2"}
+```
+
+### W4-thu_tuc_tham_quyen-044 · tier historical · vai: sinh viên đi xe máy · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D34/K1, TT35-2024-BGTVT/D34/K1/a, TT35-2024-BGTVT/D34/K1/b
+
+Điều 34. Cấp giấy phép lái xe
+1. Người đạt kết quả kỳ sát hạch được cấp giấy phép lái xe đúng hạng đã trúng tuyển; đối với trường hợp nâng hạng hoặc cấp theo quy định tại khoản 2 Điều này phải xuất trình bản chính giấy phép lái xe khi đến nhận giấy phép lái xe
+a) Căn cứ quyết định công nhận trúng tuyển kỳ sát hạch, Sở Giao thông vận tải cấp giấy phép lái xe cho người trúng tuyển. Ngày trúng tuyển ghi tại mặt sau giấy phép lái xe là ngày ký quyết định công nhận trúng tuyển kỳ sát hạch;
+b) Thời gian cấp giấy phép lái xe chậm nhất không quá 10 ngày, kể từ ngày kết thúc kỳ sát hạch và người đạt kết quả kỳ sát hạch đã hoàn thành nghĩa vụ nộp lệ phí cấp giấy phép lái xe.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D34/K2)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D34/K2
+
+Điều 34. Cấp giấy phép lái xe
+2. Người có giấy phép lái xe quá thời hạn sử dụng
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Anh tôi vừa vượt qua kỳ sát hạch lái xe máy, anh ấy muốn biết cần nộp hồ sơ gì, nộp ở đâu, ai có thẩm quyền cấp giấy phép và mất bao lâu để nhận được giấy phép mới?
+- Đáp: Anh ấy cần nộp hồ sơ nhận giấy phép lái xe máy tại Sở Giao thông vận tải nơi đăng ký học. Sau khi nộp lệ phí, Sở Giao thông vận tải sẽ cấp giấy phép trong vòng tối đa 10 ngày kể từ ngày kết thúc kỳ sát hạch. (khoản 1 Điều 34 Thông tư 35/2024/TT-BGTVT)
+- Ghi chú: Giả định người hỏi là sinh viên đi xe máy, không cần phân biệt xe mô tô hay xe gắn máy.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-044", "question": "Anh tôi vừa vượt qua kỳ sát hạch lái xe máy, anh ấy muốn biết cần nộp hồ sơ gì, nộp ở đâu, ai có thẩm quyền cấp giấy phép và mất bao lâu để nhận được giấy phép mới?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Anh ấy cần nộp hồ sơ nhận giấy phép lái xe máy tại Sở Giao thông vận tải nơi đăng ký học. Sau khi nộp lệ phí, Sở Giao thông vận tải sẽ cấp giấy phép trong vòng tối đa 10 ngày kể từ ngày kết thúc kỳ sát hạch. (khoản 1 Điều 34 Thông tư 35/2024/TT-BGTVT)", "gold_units": ["TT35-2024-BGTVT/D34/K1", "TT35-2024-BGTVT/D34/K1/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-044:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Công ty tôi đang chuẩn bị làm mới giấy phép lái xe máy cho nhân viên, họ đã hết hạn. Công ty cần làm gì, nộp hồ sơ ở đâu và ai có thẩm quyền xử lý?
+- Đáp: Công ty cần nộp hồ sơ làm mới giấy phép lái xe máy tại Sở Giao thông vận tải nơi đăng ký. Sở Giao thông vận tải có thẩm quyền cấp lại giấy phép cho người có giấy phép đã hết hạn. (khoản 2 Điều 34 Thông tư 35/2024/TT-BGTVT)
+- Ghi chú: Giả định người hỏi là sinh viên đi xe máy, không cần phân biệt xe mô tô hay xe gắn máy.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-044", "question": "Công ty tôi đang chuẩn bị làm mới giấy phép lái xe máy cho nhân viên, họ đã hết hạn. Công ty cần làm gì, nộp hồ sơ ở đâu và ai có thẩm quyền xử lý?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Công ty cần nộp hồ sơ làm mới giấy phép lái xe máy tại Sở Giao thông vận tải nơi đăng ký. Sở Giao thông vận tải có thẩm quyền cấp lại giấy phép cho người có giấy phép đã hết hạn. (khoản 2 Điều 34 Thông tư 35/2024/TT-BGTVT)", "gold_units": ["TT35-2024-BGTVT/D34/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-044:2"}
+```
+
+### W4-thu_tuc_tham_quyen-045 · tier historical · vai: tài xế xe tải · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D22/K1, TT35-2024-BGTVT/D22/K1/a, TT35-2024-BGTVT/D22/K1/b, TT35-2024-BGTVT/D22/K1/c, TT35-2024-BGTVT/D22/K1/d, TT35-2024-BGTVT/D22/K1/đ
+
+Điều 22. Chuẩn bị kỳ sát hạch
+1. Đối với kỳ sát hạch lái xe mô tô các hạng A1, A
+a) Kiểm tra điều kiện và hồ sơ của người dự sát hạch theo quy định tại Điều 28 và Điều 29 của Thông tư này;
+b) Người được giao nhiệm vụ kiểm tra, duyệt hồ sơ thí sinh dự sát hạch lập biên bản kiểm tra hồ sơ theo quy định tại Mẫu số 01 Phụ lục XX ban hành kèm theo Thông tư này;
+c) Đối với khóa đào tạo và sát hạch cho người dân tộc thiểu số không biết đọc, viết tiếng Việt thực hiện như sau:
+Sở Giao thông vận tải có văn bản theo quy định tại Mẫu số 02 Phụ lục XX ban hành kèm theo Thông tư này gửi đến Ủy ban nhân dân cấp xã nơi người dân tộc thiểu số không biết đọc, viết tiếng Việt cư trú lấy ý kiến, đồng thời gửi thông báo tới các thí sinh; thời hạn lấy ý kiến tối đa không quá 15 ngày kể từ ngày Sở Giao thông vận tải có văn bản.
+Trong thời hạn lấy ý kiến, Sở Giao thông vận tải nhận được văn bản của Ủy ban nhân dân cấp xã thì đưa vào danh sách thí sinh được phép dự sát hạch đối với các thí sinh đúng đối tượng; quá thời hạn lấy ý kiến mà Sở Giao thông vận tải chưa nhận được văn bản của Ủy ban nhân dân cấp xã thì không đưa vào danh sách thí sinh được phép dự sát hạch.
+Trường hợp quá thời hạn 15 ngày, Sở Giao thông vận tải mới nhận được văn bản của Ủy ban nhân dân cấp xã thì Sở Giao thông vận tải đưa vào danh sách thí sinh được phép dự sát hạch đối với các thí sinh đúng đối tượng của kỳ sát hạch kế tiếp gần nhất;
+…
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D28)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D28
+
+Điều 28. Người dự sát hạch lái xe
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D29)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D29
+
+Điều 29. Hồ sơ dự sát hạch lái xe
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi là tài xế xe tải, cần làm gì để đăng ký tham gia kỳ sát hạch lái xe mô tô hạng A1?
+- Đáp: Bạn phải kiểm tra điều kiện và chuẩn bị hồ sơ theo quy định tại Điều 28 và Điều 29 của Thông tư 35/2024/TT-BGTVT. Hồ sơ bao gồm: giấy khai sinh, CMND/CCCD, bằng lái xe hiện hành, giấy khám sức khỏe, chứng nhận tham gia khóa đào tạo, biên bản kiểm tra hồ sơ, và các giấy tờ khác được quy định trong Mẫu số 01 Phụ lục XX. Sau khi hoàn thành, nộp hồ sơ tại cơ quan Sở Giao thông vận tải nơi bạn cư trú. (Điều 28, Điều 29 Thông tư 35/2024/TT-BGTVT)
+- ⚠ chep_nguyen_van: “kỳ sát hạch lái xe mô …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-045", "question": "Tôi là tài xế xe tải, cần làm gì để đăng ký tham gia kỳ sát hạch lái xe mô tô hạng A1?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Bạn phải kiểm tra điều kiện và chuẩn bị hồ sơ theo quy định tại Điều 28 và Điều 29 của Thông tư 35/2024/TT-BGTVT. Hồ sơ bao gồm: giấy khai sinh, CMND/CCCD, bằng lái xe hiện hành, giấy khám sức khỏe, chứng nhận tham gia khóa đào tạo, biên bản kiểm tra hồ sơ, và các giấy tờ khác được quy định trong Mẫu số 01 Phụ lục XX. Sau khi hoàn thành, nộp hồ sơ tại cơ quan Sở Giao thông vận tải nơi bạn cư trú. (Điều 28, Điều 29 Thông tư 35/2024/TT-BGTVT)", "gold_units": ["TT35-2024-BGTVT/D28", "TT35-2024-BGTVT/D29"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-045:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Tôi là tài xế xe tải, muốn nộp hồ sơ cho kỳ sát hạch lái xe mô tô hạng A, cần gửi hồ sơ tới đâu và cần những giấy tờ gì?
+- Đáp: Hồ sơ gồm: CMND/CCCD, bằng lái xe hiện hành, giấy khám sức khỏe, chứng nhận tham gia khóa đào tạo, biên bản kiểm tra hồ sơ, và các giấy tờ khác theo Mẫu số 01 Phụ lục XX. Bạn nộp hồ sơ tại Sở Giao thông vận tải nơi cư trú. (Điều 28, Điều 29 Thông tư 35/2024/TT-BGTVT)
+- ⚠ chep_nguyen_van: “kỳ sát hạch lái xe mô …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-045", "question": "Tôi là tài xế xe tải, muốn nộp hồ sơ cho kỳ sát hạch lái xe mô tô hạng A, cần gửi hồ sơ tới đâu và cần những giấy tờ gì?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Hồ sơ gồm: CMND/CCCD, bằng lái xe hiện hành, giấy khám sức khỏe, chứng nhận tham gia khóa đào tạo, biên bản kiểm tra hồ sơ, và các giấy tờ khác theo Mẫu số 01 Phụ lục XX. Bạn nộp hồ sơ tại Sở Giao thông vận tải nơi cư trú. (Điều 28, Điều 29 Thông tư 35/2024/TT-BGTVT)", "gold_units": ["TT35-2024-BGTVT/D28", "TT35-2024-BGTVT/D29"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-045:2"}
+```
+
+### W4-thu_tuc_tham_quyen-046 · tier historical · vai: sinh viên đi xe máy · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D60/K1
+
+Điều 60. Quy trình khai thác hệ thống thông tin đối với cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ
+1. Cơ sở đào tạo lái xe ô tô hoặc cơ sở đào tạo người điều khiển xe máy chuyên dùng: Tiếp nhận hồ sơ học để được cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ và sử dụng hệ thống thông tin cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ để tạo lập khoá đào tạo; cập nhật kết quả kiểm tra và danh sách học viên đạt kết quả kiểm tra hệ thống thông tin cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ; xác thực chữ ký số của người có thẩm quyền ký và in chứng chỉ; kiểm tra chất lượng chứng chỉ sau khi in và đồng bộ dữ liệu vào hệ thống thông tin theo quy định.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi muốn học bồi dưỡng kiến thức pháp luật về giao thông, cần nộp hồ sơ gì và nộp ở đâu?
+- Đáp: Bạn cần nộp hồ sơ học tại cơ sở đào tạo lái xe ô tô hoặc cơ sở đào tạo người điều khiển xe máy chuyên dùng. Hồ sơ bao gồm đơn đăng ký, giấy tờ tùy thân và các tài liệu liên quan. Sau khi nhận hồ sơ, cơ sở sẽ tiếp nhận và sử dụng hệ thống thông tin để tạo lập khóa đào tạo, cập nhật kết quả kiểm tra và danh sách học viên đạt kết quả.
+- ⚠ chep_nguyen_van: “bồi dưỡng kiến thức pháp luật …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-046", "question": "Tôi muốn học bồi dưỡng kiến thức pháp luật về giao thông, cần nộp hồ sơ gì và nộp ở đâu?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Bạn cần nộp hồ sơ học tại cơ sở đào tạo lái xe ô tô hoặc cơ sở đào tạo người điều khiển xe máy chuyên dùng. Hồ sơ bao gồm đơn đăng ký, giấy tờ tùy thân và các tài liệu liên quan. Sau khi nhận hồ sơ, cơ sở sẽ tiếp nhận và sử dụng hệ thống thông tin để tạo lập khóa đào tạo, cập nhật kết quả kiểm tra và danh sách học viên đạt kết quả.", "gold_units": ["TT35-2024-BGTVT/D60/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-046:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Tôi muốn biết quy trình cấp chứng chỉ bồi dưỡng, có cần ký số không?
+- Đáp: Quy trình cấp chứng chỉ bồi dưỡng bắt đầu khi cơ sở đào tạo tiếp nhận hồ sơ học. Sau khi hoàn thành kiểm tra, cơ sở sẽ xác thực chữ ký số của người có thẩm quyền ký và in chứng chỉ. Sau khi in, chứng chỉ được kiểm tra chất lượng và đồng bộ dữ liệu vào hệ thống thông tin.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-046", "question": "Tôi muốn biết quy trình cấp chứng chỉ bồi dưỡng, có cần ký số không?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Quy trình cấp chứng chỉ bồi dưỡng bắt đầu khi cơ sở đào tạo tiếp nhận hồ sơ học. Sau khi hoàn thành kiểm tra, cơ sở sẽ xác thực chữ ký số của người có thẩm quyền ký và in chứng chỉ. Sau khi in, chứng chỉ được kiểm tra chất lượng và đồng bộ dữ liệu vào hệ thống thông tin.", "gold_units": ["TT35-2024-BGTVT/D60/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-046:2"}
+```
+
+### W4-thu_tuc_tham_quyen-047 · tier historical · vai: tài xế xe tải · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D31/K1
+
+Điều 31. Mẫu giấy phép lái xe
+1. Sở Giao thông vận tải thực hiện việc cấp giấy phép lái xe theo quy định tại Mẫu số 01 Phụ lục XXIV ban hành kèm theo Thông tư này kể từ ngày Thông tư này có hiệu lực đến hết ngày 31 tháng 12 năm 2025; việc cấp giấy phép lái xe theo quy định tại Mẫu số 02 Phụ lục XXIV ban hành kèm theo Thông tư được thực hiện kể từ ngày 01 tháng 01 năm 2026.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Anh tôi, một tài xế xe tải, vừa nhận được hợp đồng giao hàng mới. Anh ấy muốn biết quy trình, hồ sơ cần nộp, cơ quan có thẩm quyền và thời gian xử lý để được cấp giấy phép lái xe theo Thông tư 35/2024/TT-BGTVT.
+- Đáp: Để được cấp giấy phép lái xe theo Thông tư 35/2024/TT-BGTVT, anh tôi cần nộp mẫu giấy phép lái xe Mẫu số 01 Phụ lục XXIV, kèm theo hồ sơ cá nhân, chứng minh đủ điều kiện và các giấy tờ liên quan. Hồ sơ nộp tại Sở Giao thông vận tải địa phương. Thời gian xử lý thường từ 15 đến 30 ngày làm việc, tùy theo quy trình của từng sở.
+- ⚠ chep_nguyen_van: “cấp giấy phép lái xe theo …”; so_la: 15, 30
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-047", "question": "Anh tôi, một tài xế xe tải, vừa nhận được hợp đồng giao hàng mới. Anh ấy muốn biết quy trình, hồ sơ cần nộp, cơ quan có thẩm quyền và thời gian xử lý để được cấp giấy phép lái xe theo Thông tư 35/2024/TT-BGTVT.", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Để được cấp giấy phép lái xe theo Thông tư 35/2024/TT-BGTVT, anh tôi cần nộp mẫu giấy phép lái xe Mẫu số 01 Phụ lục XXIV, kèm theo hồ sơ cá nhân, chứng minh đủ điều kiện và các giấy tờ liên quan. Hồ sơ nộp tại Sở Giao thông vận tải địa phương. Thời gian xử lý thường từ 15 đến 30 ngày làm việc, tùy theo quy trình của từng sở.", "gold_units": ["TT35-2024-BGTVT/D31/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-047:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Công ty tôi đang thuê một tài xế xe tải mới. Tôi muốn biết tài xế cần làm gì, nộp hồ sơ ở đâu, ai có thẩm quyền cấp giấy phép lái xe và thời gian nhận giấy phép theo Thông tư 35/2024/TT-BGTVT.
+- Đáp: Tài xế cần chuẩn bị mẫu giấy phép lái xe Mẫu số 01 Phụ lục XXIV, giấy tờ tùy thân, chứng chỉ sức khỏe và các giấy tờ liên quan. Hồ sơ nộp tại Sở Giao thông vận tải nơi cư trú. Thẩm quyền cấp giấy phép thuộc Sở Giao thông vận tải. Thời gian cấp thường từ 15 đến 30 ngày làm việc, tùy theo quy trình của từng sở.
+- ⚠ so_la: 15, 30
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-047", "question": "Công ty tôi đang thuê một tài xế xe tải mới. Tôi muốn biết tài xế cần làm gì, nộp hồ sơ ở đâu, ai có thẩm quyền cấp giấy phép lái xe và thời gian nhận giấy phép theo Thông tư 35/2024/TT-BGTVT.", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Tài xế cần chuẩn bị mẫu giấy phép lái xe Mẫu số 01 Phụ lục XXIV, giấy tờ tùy thân, chứng chỉ sức khỏe và các giấy tờ liên quan. Hồ sơ nộp tại Sở Giao thông vận tải nơi cư trú. Thẩm quyền cấp giấy phép thuộc Sở Giao thông vận tải. Thời gian cấp thường từ 15 đến 30 ngày làm việc, tùy theo quy trình của từng sở.", "gold_units": ["TT35-2024-BGTVT/D31/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-047:2"}
+```
+
+### W4-thu_tuc_tham_quyen-048 · tier historical · vai: tài xế công nghệ · kiểu: nhieu_dieu_kien
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D57/K2
+
+Điều 57. Thời gian lưu trữ dữ liệu trên hệ thống thông tin
+2. Thời gian lưu trữ dữ liệu về đào tạo, sát hạch, cấp, đổi giấy phép lái xe tại Sở Giao thông vận tải các tỉnh, thành phố trực thuộc Trung ương tối thiểu là 50 năm.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi là tài xế công nghệ, muốn biết dữ liệu về việc tôi đã tham gia khóa đào tạo lái xe được lưu trữ trong bao lâu tại Sở Giao thông vận tải?
+- Đáp: Dữ liệu về đào tạo, sát hạch, cấp, đổi giấy phép lái xe tại Sở Giao thông vận tải các tỉnh, thành phố trực thuộc Trung ương được lưu trữ tối thiểu 50 năm.
+- ⚠ chi_so_so_sai (0); chep_nguyen_van: “tại sở giao thông vận tải …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-048", "question": "Tôi là tài xế công nghệ, muốn biết dữ liệu về việc tôi đã tham gia khóa đào tạo lái xe được lưu trữ trong bao lâu tại Sở Giao thông vận tải?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Dữ liệu về đào tạo, sát hạch, cấp, đổi giấy phép lái xe tại Sở Giao thông vận tải các tỉnh, thành phố trực thuộc Trung ương được lưu trữ tối thiểu 50 năm.", "gold_units": ["TT35-2024-BGTVT/D57/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-048:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Nếu tôi muốn kiểm tra thời gian lưu trữ hồ sơ cấp giấy phép lái xe của mình, Sở Giao thông vận tải sẽ giữ hồ sơ đó trong bao lâu?
+- Đáp: Hồ sơ liên quan đến đào tạo, sát hạch, cấp, đổi giấy phép lái xe tại Sở Giao thông vận tải các tỉnh, thành phố trực thuộc Trung ương được lưu trữ tối thiểu 50 năm.
+- ⚠ chi_so_so_sai (0)
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-048", "question": "Nếu tôi muốn kiểm tra thời gian lưu trữ hồ sơ cấp giấy phép lái xe của mình, Sở Giao thông vận tải sẽ giữ hồ sơ đó trong bao lâu?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Hồ sơ liên quan đến đào tạo, sát hạch, cấp, đổi giấy phép lái xe tại Sở Giao thông vận tải các tỉnh, thành phố trực thuộc Trung ương được lưu trữ tối thiểu 50 năm.", "gold_units": ["TT35-2024-BGTVT/D57/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-048:2"}
+```
+
+### W4-thu_tuc_tham_quyen-049 · tier historical · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D26/K1, TT35-2024-BGTVT/D26/K1/a, TT35-2024-BGTVT/D26/K1/b
+
+Điều 26. Sát hạch lái xe cho người khuyết tật
+1. Sát hạch để cấp giấy phép lái xe hạng A1 điều khiển xe mô tô ba bánh
+a) Thí sinh thực hiện sát hạch lý thuyết và sát hạch lái xe trong hình theo nội dung và quy trình quy định tại khoản 1, khoản 2 Điều 17 và Phụ lục XIII ban hành kèm theo Thông tư này; sát hạch tại trung tâm sát hạch lái xe hoặc sân tập lái dùng để sát hạch lái xe mô tô có đủ điều kiện, có hai sát hạch viên chấm điểm trực tiếp;
+b) Hình sát hạch theo quy định tại Quy chuẩn kỹ thuật quốc gia về trung tâm sát hạch lái xe cơ giới đường bộ.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D17/K1)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D17/K1
+
+Điều 17. Hình thức, nội dung và quy trình sát hạch lái xe
+1. Sát hạch lý thuyết
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D17/K2)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D17/K2
+
+Điều 17. Hình thức, nội dung và quy trình sát hạch lái xe
+2. Sát hạch thực hành lái xe trong hình
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Anh tôi đang chuẩn bị cho con 15 tuổi tham gia sát hạch lái xe mô tô ba bánh, anh ấy có thể nộp hồ sơ tại trung tâm nào và cần chuẩn bị những giấy tờ gì?
+- Đáp: Con cần nộp hồ sơ tại trung tâm sát hạch lái xe hoặc sân tập lái xe có đủ điều kiện, chuẩn bị giấy tờ cá nhân, giấy khám sức khỏe, và các tài liệu liên quan theo quy trình. (TT35-2024-BGTVT/D26/K1)
+- ⚠ chep_nguyen_van: “sát hạch lái xe mô tô …”
+- Ghi chú: Giả định con 15 tuổi, chưa có giấy phép lái xe
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-049", "question": "Anh tôi đang chuẩn bị cho con 15 tuổi tham gia sát hạch lái xe mô tô ba bánh, anh ấy có thể nộp hồ sơ tại trung tâm nào và cần chuẩn bị những giấy tờ gì?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Con cần nộp hồ sơ tại trung tâm sát hạch lái xe hoặc sân tập lái xe có đủ điều kiện, chuẩn bị giấy tờ cá nhân, giấy khám sức khỏe, và các tài liệu liên quan theo quy trình. (TT35-2024-BGTVT/D26/K1)", "gold_units": ["TT35-2024-BGTVT/D26/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-049:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Công ty tôi muốn tổ chức sát hạch lái xe mô tô ba bánh cho nhân viên khuyết tật, họ cần làm gì để được cấp giấy phép?
+- Đáp: Nhân viên cần thực hiện sát hạch lý thuyết và sát hạch lái xe trong hình tại trung tâm sát hạch lái xe hoặc sân tập lái xe có đủ điều kiện, có hai sát hạch viên chấm điểm trực tiếp. (TT35-2024-BGTVT/D26/K1)
+- ⚠ chep_nguyen_van: “sát hạch lái xe mô tô …”
+- Ghi chú: Giả định nhân viên khuyết tật, chưa có giấy phép
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-049", "question": "Công ty tôi muốn tổ chức sát hạch lái xe mô tô ba bánh cho nhân viên khuyết tật, họ cần làm gì để được cấp giấy phép?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Nhân viên cần thực hiện sát hạch lý thuyết và sát hạch lái xe trong hình tại trung tâm sát hạch lái xe hoặc sân tập lái xe có đủ điều kiện, có hai sát hạch viên chấm điểm trực tiếp. (TT35-2024-BGTVT/D26/K1)", "gold_units": ["TT35-2024-BGTVT/D26/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-049:2"}
+```
+
+### W4-thu_tuc_tham_quyen-050 · tier historical · vai: người lớn tuổi đi xe đạp điện · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D17/K1, TT35-2024-BGTVT/D17/K1/a, TT35-2024-BGTVT/D17/K1/b
+
+Điều 17. Hình thức, nội dung và quy trình sát hạch lái xe
+1. Sát hạch lý thuyết
+a) Sát hạch lý thuyết: gồm các câu hỏi liên quan đến quy định của pháp luật về trật tự, an toàn giao thông đường bộ, kỹ thuật lái xe; nội dung liên quan đến cấu tạo và sửa chữa thông thường (đối với giấy phép lái xe hạng B1 và đối với giấy phép lái xe ô tô từ hạng B trở lên); đạo đức người lái xe, văn hóa giao thông và phòng chống tác hại của rượu, bia khi tham gia giao thông, kỹ năng phòng cháy, chữa cháy và cứu nạn, cứu hộ (đối với giấy phép lái xe ô tô từ hạng B trở lên).
+Thí sinh dự sát hạch lái xe hạng A1 có giấy phép lái xe ô tô còn hiệu lực do ngành Giao thông vận tải cấp được miễn sát hạch lý thuyết;
+b) Sát hạch lý thuyết thực hiện trên máy vi tính.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi là người lớn tuổi, muốn lái xe ô tô, cần làm gì để tham gia sát hạch lý thuyết?
+- Đáp: Bạn cần đăng ký tham gia sát hạch lý thuyết, làm bài trên máy tính với nội dung liên quan đến quy định pháp luật, trật tự, an toàn giao thông, kỹ thuật lái xe, cấu tạo và sửa chữa xe, đạo đức người lái xe, văn hóa giao thông, phòng chống rượu bia, kỹ năng phòng cháy chữa cháy và cứu nạn. Nếu bạn đã có giấy phép lái xe ô tô hạng A1 còn hiệu lực, bạn được miễn sát hạch lý thuyết.
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-050", "question": "Tôi là người lớn tuổi, muốn lái xe ô tô, cần làm gì để tham gia sát hạch lý thuyết?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Bạn cần đăng ký tham gia sát hạch lý thuyết, làm bài trên máy tính với nội dung liên quan đến quy định pháp luật, trật tự, an toàn giao thông, kỹ thuật lái xe, cấu tạo và sửa chữa xe, đạo đức người lái xe, văn hóa giao thông, phòng chống rượu bia, kỹ năng phòng cháy chữa cháy và cứu nạn. Nếu bạn đã có giấy phép lái xe ô tô hạng A1 còn hiệu lực, bạn được miễn sát hạch lý thuyết.", "gold_units": ["TT35-2024-BGTVT/D17/K1", "TT35-2024-BGTVT/D17/K1/a", "TT35-2024-BGTVT/D17/K1/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-050:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Tôi muốn lấy giấy phép lái xe ô tô hạng B, tôi phải nộp hồ sơ gì và làm thủ tục như thế nào?
+- Đáp: Bạn cần nộp hồ sơ đăng ký tham gia sát hạch lý thuyết, bao gồm giấy tờ tùy thân, giấy khám sức khỏe, và các tài liệu liên quan. Thủ tục thực hiện trên máy tính, nội dung sát hạch bao gồm các câu hỏi về pháp luật, trật tự, an toàn giao thông, kỹ thuật lái xe, cấu tạo và sửa chữa xe, đạo đức, văn hóa giao thông, phòng chống rượu bia, kỹ năng phòng cháy chữa cháy và cứu nạn. Sau khi hoàn thành, bạn sẽ được cấp giấy phép lái xe hạng B.
+- ⚠ chep_nguyen_van: “giấy phép lái xe ô tô …”
+
+```json
+{"qid": "t4-thu_tuc_tham_quyen-050", "question": "Tôi muốn lấy giấy phép lái xe ô tô hạng B, tôi phải nộp hồ sơ gì và làm thủ tục như thế nào?", "as_of": "2025-08-31", "question_type": "thu_tuc_tham_quyen", "tier": "historical", "answer": "Bạn cần nộp hồ sơ đăng ký tham gia sát hạch lý thuyết, bao gồm giấy tờ tùy thân, giấy khám sức khỏe, và các tài liệu liên quan. Thủ tục thực hiện trên máy tính, nội dung sát hạch bao gồm các câu hỏi về pháp luật, trật tự, an toàn giao thông, kỹ thuật lái xe, cấu tạo và sửa chữa xe, đạo đức, văn hóa giao thông, phòng chống rượu bia, kỹ năng phòng cháy chữa cháy và cứu nạn. Sau khi hoàn thành, bạn sẽ được cấp giấy phép lái xe hạng B.", "gold_units": ["TT35-2024-BGTVT/D17/K1", "TT35-2024-BGTVT/D17/K1/a", "TT35-2024-BGTVT/D17/K1/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-thu_tuc_tham_quyen-050:2"}
+```
+
+## da_buoc — cần ≥ 2 điều khoản nối bằng dẫn chiếu / chế tài
+
+### W4-da_buoc-001 · tier B · vai: tài xế xe tải · kiểu: neu_van_ban · DAN_CHIEU → LUAT35-2024/D14/K2
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2026-07-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D10/K2
+
+Điều 10. Phần đất để bảo vệ, bảo trì đường bộ
+2. Phần đất để bảo vệ, bảo trì đường đô thị được xác định theo quy định tại khoản 2 Điều 14 Luật Đường bộ. Căn cứ quy định của pháp luật về đất đai, pháp luật về xây dựng, pháp luật về quy hoạch, pháp luật về phân loại đô thị và quy định khác có liên quan, Ủy ban nhân dân cấp tỉnh xác định phạm vi nội thành, nội thị làm căn cứ xác định phạm vi đường đô thị.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT35-2024/D14/K2)
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D14/K2
+
+Điều 14. Phần đất để bảo vệ, bảo trì đường bộ
+2. Phần đất để bảo vệ, bảo trì đường đô thị được xác định theo nguyên tắc sau đây:
+
+### Nguồn 2
+Văn bản: Luật Đường bộ số 35/2024/QH15
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D14/K2, LUAT35-2024/D14/K2/a, LUAT35-2024/D14/K2/b, LUAT35-2024/D14/K2/c, LUAT35-2024/D14/K2/d
+
+Điều 14. Phần đất để bảo vệ, bảo trì đường bộ
+2. Phần đất để bảo vệ, bảo trì đường đô thị được xác định theo nguyên tắc sau đây:
+a) Đường đô thị đã có hè phố thì sử dụng một phần hè phố để thực hiện bảo vệ, bảo trì đường đô thị;
+b) Trường hợp đường đô thị đi sát với tường bao nhà ở, tường bao công trình xây dựng khác, đường không có hè phố, đường nằm trong ngõ, ngách, kiệt, hẻm, đường nội bộ khu dân cư đô thị thì được sử dụng một phần mặt đường khi thực hiện bảo vệ, bảo trì đường đô thị;
+c) Trường hợp không thuộc quy định tại điểm a và điểm b khoản này thì được xác định tương tự đường ngoài đô thị;
+d) Phần đất để bảo vệ, bảo trì cầu, cống, rãnh, hố thu và các hạng mục công trình của đường đô thị được xác định theo quy định tại điểm c khoản 1 Điều này. Trường hợp cầu, cống, rãnh, hố thu và các hạng mục công trình của đường đô thị nằm liền kề với công trình xây dựng khác thì phần đất để bảo vệ, bảo trì là ranh giới của các công trình.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT35-2024/D14/K1/c)
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D14/K1/c
+
+Điều 14. Phần đất để bảo vệ, bảo trì đường bộ
+1. Chiều rộng phần đất để bảo vệ, bảo trì đường bộ ngoài đô thị phụ thuộc vào cấp kỹ thuật của đường bộ và được xác định theo nguyên tắc sau đây:
+c) Đối với cầu, cống, rãnh, hố thu và các hạng mục công trình của đường bộ thì phần đất để bảo vệ, bảo trì đường bộ được xác định từ mép ngoài bộ phận kết cấu ngoài cùng của công trình trở ra; đối với cầu cạn, cầu vượt trên cao, phạm vi đất để bảo vệ, bảo trì cầu được xác định từ mép ngoài trở ra của móng các hạng mục công trình mố, trụ, mép ngoài của kết cấu cầu;
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Theo Nghị định 165/2024/NĐ-CP, tôi có thể sử dụng phần đất nào để bảo trì đường đô thị khi lái xe tải?
+- Đáp: Bạn có thể sử dụng phần đất để bảo vệ, bảo trì đường đô thị được xác định theo quy định tại khoản 2 Điều 14 Luật Đường bộ. Căn cứ quy định của pháp luật về đất đai, pháp luật về xây dựng, pháp luật về quy hoạch, pháp luật về phân loại đô thị và quy định khác có liên quan, Ủy ban nhân dân cấp tỉnh xác định phạm vi nội thành, nội thị làm căn cứ xác định phạm vi đường đô thị.
+- ⚠ da_buoc_it_hon_2_gold
+
+```json
+{"qid": "t4-da_buoc-001", "question": "Theo Nghị định 165/2024/NĐ-CP, tôi có thể sử dụng phần đất nào để bảo trì đường đô thị khi lái xe tải?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Bạn có thể sử dụng phần đất để bảo vệ, bảo trì đường đô thị được xác định theo quy định tại khoản 2 Điều 14 Luật Đường bộ. Căn cứ quy định của pháp luật về đất đai, pháp luật về xây dựng, pháp luật về quy hoạch, pháp luật về phân loại đô thị và quy định khác có liên quan, Ủy ban nhân dân cấp tỉnh xác định phạm vi nội thành, nội thị làm căn cứ xác định phạm vi đường đô thị.", "gold_units": ["ND165-2024/D10/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-001:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Theo Luật Đường bộ 35/2024/QH15, khi lái xe tải tôi có thể dùng phần nào của đường đô thị để bảo trì?
+- Đáp: Bạn có thể sử dụng một phần hè phố nếu đường đô thị đã có hè phố; nếu đường đô thị đi sát tường bao nhà, tường bao công trình khác, không có hè phố, nằm trong ngõ, ngách, kiệt, hẻm, đường nội bộ khu dân cư đô thị thì có thể dùng một phần mặt đường; nếu không thuộc quy định a và b thì xác định tương tự đường ngoài đô thị; phần đất để bảo vệ, bảo trì cầu, cống, rãnh, hố thu và các hạng mục công trình của đường đô thị được xác định theo quy định tại điểm c khoản 1 Điều này.
+- ⚠ da_buoc_it_hon_2_gold
+
+```json
+{"qid": "t4-da_buoc-001", "question": "Theo Luật Đường bộ 35/2024/QH15, khi lái xe tải tôi có thể dùng phần nào của đường đô thị để bảo trì?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Bạn có thể sử dụng một phần hè phố nếu đường đô thị đã có hè phố; nếu đường đô thị đi sát tường bao nhà, tường bao công trình khác, không có hè phố, nằm trong ngõ, ngách, kiệt, hẻm, đường nội bộ khu dân cư đô thị thì có thể dùng một phần mặt đường; nếu không thuộc quy định a và b thì xác định tương tự đường ngoài đô thị; phần đất để bảo vệ, bảo trì cầu, cống, rãnh, hố thu và các hạng mục công trình của đường đô thị được xác định theo quy định tại điểm c khoản 1 Điều này.", "gold_units": ["LUAT35-2024/D14/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-001:2"}
+```
+
+### W4-da_buoc-002 · tier B · vai: cán bộ phường · kiểu: tinh_huong_ban_than · DAN_CHIEU → TT73-2024-BCA/D24
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 73/2024/TT-BCA (Quy định công tác tuần tra, kiểm soát, xử lý vi phạm pháp luật về trật tự, an toàn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT73-2024-BCA/D26/K1, TT73-2024-BCA/D26/K1/a, TT73-2024-BCA/D26/K1/b
+
+Điều 26. Phối hợp, tiếp nhận kết quả thu được từ các phương tiện, thiết bị kỹ thuật do tổ chức được giao quản lý, khai thác, bảo trì kết cấu hạ tầng giao thông đường bộ, kinh doanh vận tải cung cấp
+1. Đơn vị Cảnh sát giao thông được giao nhiệm vụ tuần tra, kiểm soát phối hợp với các tổ chức được giao quản lý, khai thác, bảo trì kết cấu hạ tầng giao thông đường bộ, vận tải đường bộ để thực hiện:
+a) Khai thác, sử dụng dữ liệu hệ thống camera quản lý, điều hành giao thông, camera, thiết bị ghi nhận hình ảnh người lái xe lắp trên phương tiện giao thông của tổ chức được giao quản lý, khai thác, bảo trì kết cấu hạ tầng giao thông đường bộ, quản lý, kinh doanh vận tải để phục vụ công tác bảo đảm trật tự, an toàn giao thông và đấu tranh phòng, chống tội phạm hoạt động trên tuyến giao thông theo quy định của pháp luật;
+…
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT73-2024-BCA/D15/K3)
+Mã điều khoản dùng được cho gold_units: TT73-2024-BCA/D15/K3
+
+Điều 15. Phát hiện vi phạm hành chính thông qua phương tiện, thiết bị kỹ thuật nghiệp vụ
+3. Khi phương tiện, thiết bị kỹ thuật nghiệp vụ phát hiện, thu thập được thông tin, hình ảnh về hành vi vi phạm pháp luật của người, phương tiện tham gia giao thông đường bộ, người có thẩm quyền xử phạt thực hiện như sau:
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT73-2024-BCA/D24)
+Mã điều khoản dùng được cho gold_units: TT73-2024-BCA/D24
+
+Điều 24. Trình tự xử lý kết quả thu thập được bằng phương tiện, thiết bị kỹ thuật nghiệp vụ đối với trường hợp vi phạm nhưng không dừng được phương tiện giao thông để kiểm soát, xử lý vi phạm
+
+### Nguồn 2
+Văn bản: Thông tư số 73/2024/TT-BCA (Quy định công tác tuần tra, kiểm soát, xử lý vi phạm pháp luật về trật tự, an toàn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-03-01 → nay
+Mã điều khoản dùng được cho gold_units: TT73-2024-BCA/D24/K1, TT73-2024-BCA/D24/K1/a, TT73-2024-BCA/D24/K1/b, TT73-2024-BCA/D24/K1/c
+
+Điều 24. Trình tự xử lý kết quả thu thập được bằng phương tiện, thiết bị kỹ thuật nghiệp vụ đối với trường hợp vi phạm nhưng không dừng được phương tiện giao thông để kiểm soát, xử lý vi phạm
+1. Trong thời hạn 10 ngày kể từ ngày phát hiện hành vi vi phạm, người có thẩm quyền xử phạt của cơ quan Công an nơi phát hiện vi phạm hành chính thực hiện như sau:
+a) Xác định thông tin về phương tiện giao thông, chủ phương tiện, tổ chức, cá nhân có liên quan đến vi phạm hành chính thông qua cơ quan đăng ký xe, Cơ sở dữ liệu quốc gia về dân cư, cơ quan, tổ chức khác có liên quan;
+b) Trường hợp chủ phương tiện, tổ chức, cá nhân có liên quan đến vi phạm hành chính không cư trú, đóng trụ sở tại địa bàn cấp huyện nơi cơ quan Công an đã phát hiện vi phạm hành chính, nếu xác định vi phạm hành chính đó thuộc thẩm quyền xử phạt của Trưởng Công an xã, phường, thị trấn, Đồn Công an ở huyện nơi không có đơn vị hành chính cấp xã (sau đây gọi chung là Trưởng Công an cấp xã) thì chuyển kết quả thu thập được bằng phương tiện, thiết bị kỹ thuật nghiệp vụ đến Công an xã, phường, thị trấn, Đồn Công an ở huyện nơi không có đơn vị hành chính cấp xã (sau đây gọi chung là Công an cấp xã) nơi chủ phương tiện, tổ chức, cá nhân có liên quan đến vi phạm hành chính cư trú, đóng trụ sở theo Mẫu số 03/73 ban hành kèm theo Thông tư này để giải quyết, xử lý vụ việc vi phạm (khi được trang bị hệ thống mạng kết nối gửi bằng phương thức điện tử).
+…
+
+### Nguồn 3
+Văn bản: Thông tư số 73/2024/TT-BCA (Quy định công tác tuần tra, kiểm soát, xử lý vi phạm pháp luật về trật tự, an toàn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-03-01 → nay
+Mã điều khoản dùng được cho gold_units: TT73-2024-BCA/D24/K2
+
+Điều 24. Trình tự xử lý kết quả thu thập được bằng phương tiện, thiết bị kỹ thuật nghiệp vụ đối với trường hợp vi phạm nhưng không dừng được phương tiện giao thông để kiểm soát, xử lý vi phạm
+2. Khi chủ phương tiện, tổ chức, cá nhân có liên quan đến vi phạm hành chính đến cơ quan Công an để giải quyết vụ việc vi phạm thì người có thẩm quyền xử phạt vi phạm hành chính của cơ quan Công an nơi phát hiện vi phạm hoặc Trưởng Công an cấp xã, Trưởng phòng Cảnh sát giao thông tiến hành giải quyết, xử lý vụ việc vi phạm theo quy định tại khoản 1 Điều 15 Nghị định số 135/2021/NĐ-CP.
+
+### Nguồn 4
+Văn bản: Thông tư số 73/2024/TT-BCA (Quy định công tác tuần tra, kiểm soát, xử lý vi phạm pháp luật về trật tự, an toàn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-03-01 → nay
+Mã điều khoản dùng được cho gold_units: TT73-2024-BCA/D24/K3
+
+Điều 24. Trình tự xử lý kết quả thu thập được bằng phương tiện, thiết bị kỹ thuật nghiệp vụ đối với trường hợp vi phạm nhưng không dừng được phương tiện giao thông để kiểm soát, xử lý vi phạm
+3. Trường hợp vụ việc vi phạm do Công an cấp xã, Phòng Cảnh sát giao thông giải quyết, xử lý thì phải thông báo ngay (trên cơ sở dữ liệu xử lý vi phạm hành chính) kết quả giải quyết, xử lý vụ việc cho cơ quan Công an nơi phát hiện vi phạm. Đồng thời, cập nhật trạng thái đã giải quyết, xử lý vụ việc trên Trang thông tin điện tử của Cục Cảnh sát giao thông; gỡ bỏ trạng thái đã gửi thông báo cảnh báo trên cơ sở dữ liệu xử lý vi phạm hành chính và gửi ngay thông báo kết thúc cảnh báo phương tiện giao thông vi phạm cho cơ quan Đăng kiểm, cơ quan đăng ký xe (nếu đã có thông tin cảnh báo từ cơ quan Công an nơi phát hiện vi phạm đối với vụ việc quy định tại khoản 5 Điều này).
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT73-2024-BCA/D24/K5)
+Mã điều khoản dùng được cho gold_units: TT73-2024-BCA/D24/K5
+
+Điều 24. Trình tự xử lý kết quả thu thập được bằng phương tiện, thiết bị kỹ thuật nghiệp vụ đối với trường hợp vi phạm nhưng không dừng được phương tiện giao thông để kiểm soát, xử lý vi phạm
+5. Quá thời hạn 20 ngày, kể từ ngày gửi thông báo vi phạm, chủ phương tiện, tổ chức, cá nhân có liên quan đến vi phạm hành chính không đến trụ sở cơ quan Công an nơi phát hiện vi phạm để giải quyết vụ việc hoặc cơ quan Công an nơi phát hiện vi phạm chưa nhận được thông báo kết quả giải quyết, xử lý vụ việc của Công an cấp xã, Phòng Cảnh sát giao thông đã nhận kết quả thu thập được bằng phương tiện, thiết bị kỹ thuật nghiệp vụ thì người có thẩm quyền xử phạt vi phạm hành chính của cơ quan Công an nơi phát hiện vi phạm thực hiện như sau:
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là cán bộ phường, vừa nhận được dữ liệu camera ghi lại một xe ô tô chở khách vượt tốc độ trên đường, muốn biết quy trình xử lý vi phạm này là gì?
+- Đáp: Bạn cần thực hiện theo quy trình: 1) Xác định thông tin phương tiện, chủ phương tiện, tổ chức, cá nhân liên quan qua cơ quan đăng ký xe và cơ sở dữ liệu quốc gia; 2) Nếu chủ phương tiện không cư trú tại địa bàn, chuyển kết quả thu thập đến công an cấp xã, phường, thị trấn, đồn công an nơi không có đơn vị hành chính cấp xã để giải quyết; 3) Khi chủ phương tiện đến cơ quan công an, người có thẩm quyền xử phạt tại cơ quan công an nơi phát hiện vi phạm hoặc trưởng công an cấp xã, trưởng phòng Cảnh sát giao thông tiến hành xử lý theo quy định tại khoản 1 Điều 15 Nghị định số 135/2021/NĐ-CP.
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-da_buoc-002", "question": "Tôi là cán bộ phường, vừa nhận được dữ liệu camera ghi lại một xe ô tô chở khách vượt tốc độ trên đường, muốn biết quy trình xử lý vi phạm này là gì?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Bạn cần thực hiện theo quy trình: 1) Xác định thông tin phương tiện, chủ phương tiện, tổ chức, cá nhân liên quan qua cơ quan đăng ký xe và cơ sở dữ liệu quốc gia; 2) Nếu chủ phương tiện không cư trú tại địa bàn, chuyển kết quả thu thập đến công an cấp xã, phường, thị trấn, đồn công an nơi không có đơn vị hành chính cấp xã để giải quyết; 3) Khi chủ phương tiện đến cơ quan công an, người có thẩm quyền xử phạt tại cơ quan công an nơi phát hiện vi phạm hoặc trưởng công an cấp xã, trưởng phòng Cảnh sát giao thông tiến hành xử lý theo quy định tại khoản 1 Điều 15 Nghị định số 135/2021/NĐ-CP.", "gold_units": ["TT73-2024-BCA/D26/K1", "TT73-2024-BCA/D24/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-002:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là cán bộ phường, camera ghi lại một xe tải vi phạm nhưng không thể dừng xe, cần biết các bước tiếp theo để xử lý vi phạm là gì?
+- Đáp: Bạn thực hiện: 1) Trong vòng 10 ngày kể từ ngày phát hiện, xác định thông tin phương tiện, chủ phương tiện, tổ chức, cá nhân liên quan qua cơ quan đăng ký xe và cơ sở dữ liệu quốc gia; 2) Nếu chủ phương tiện không cư trú tại địa bàn, chuyển kết quả thu thập đến công an cấp xã, phường, thị trấn, đồn công an nơi không có đơn vị hành chính cấp xã để giải quyết; 3) Khi chủ phương tiện đến cơ quan công an, người có thẩm quyền xử phạt tại cơ quan công an nơi phát hiện vi phạm hoặc trưởng công an cấp xã, trưởng phòng Cảnh sát giao thông tiến hành xử lý theo quy định tại khoản 1 Điều 15 Nghị định số 135/2021/NĐ-CP.
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-da_buoc-002", "question": "Tôi là cán bộ phường, camera ghi lại một xe tải vi phạm nhưng không thể dừng xe, cần biết các bước tiếp theo để xử lý vi phạm là gì?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Bạn thực hiện: 1) Trong vòng 10 ngày kể từ ngày phát hiện, xác định thông tin phương tiện, chủ phương tiện, tổ chức, cá nhân liên quan qua cơ quan đăng ký xe và cơ sở dữ liệu quốc gia; 2) Nếu chủ phương tiện không cư trú tại địa bàn, chuyển kết quả thu thập đến công an cấp xã, phường, thị trấn, đồn công an nơi không có đơn vị hành chính cấp xã để giải quyết; 3) Khi chủ phương tiện đến cơ quan công an, người có thẩm quyền xử phạt tại cơ quan công an nơi phát hiện vi phạm hoặc trưởng công an cấp xã, trưởng phòng Cảnh sát giao thông tiến hành xử lý theo quy định tại khoản 1 Điều 15 Nghị định số 135/2021/NĐ-CP.", "gold_units": ["TT73-2024-BCA/D26/K1", "TT73-2024-BCA/D24/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-002:2"}
+```
+
+### W4-da_buoc-003 · tier B · vai: cán bộ phường · kiểu: tinh_huong_nguoi_khac · DAN_CHIEU → LUAT35-2024/D19/K1
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D14/K1, ND165-2024/D14/K1/a, ND165-2024/D14/K1/b
+
+Điều 14. Xây dựng, lắp đặt và khai thác công trình hạ tầng trong phạm vi bảo vệ kết cấu hạ tầng đường bộ
+1. Công trình quy định tại khoản 1 Điều 19 Luật Đường bộ (sau đây gọi chung là công trình hạ tầng) khi xây dựng, lắp đặt trong phạm vi bảo vệ kết cấu hạ tầng đường bộ phải thực hiện theo quy định sau:
+a) Lập, thẩm tra, thẩm định, phê duyệt dự án đầu tư hoặc báo cáo kinh tế - kỹ thuật, thiết kế, thi công xây dựng, lắp đặt công trình hạ tầng theo quy định của pháp luật về xây dựng;
+b) Thực hiện thẩm tra, thẩm định an toàn giao thông đường bộ đối với trường hợp công trình đường sắt, đường tàu điện giao cắt, đi song song liền kề với đường bộ.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT35-2024/D19/K1)
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D19/K1
+
+Điều 19. Xây dựng, lắp đặt công trình hạ tầng trong phạm vi bảo vệ kết cấu hạ tầng đường bộ
+1. Trong phạm vi bảo vệ kết cấu hạ tầng đường bộ, không được xây dựng công trình khác, trừ trường hợp sau đây:
+
+### Nguồn 2
+Văn bản: Luật Đường bộ số 35/2024/QH15
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D19/K1, LUAT35-2024/D19/K1/a, LUAT35-2024/D19/K1/b, LUAT35-2024/D19/K1/c, LUAT35-2024/D19/K1/d, LUAT35-2024/D19/K1/đ, LUAT35-2024/D19/K1/e
+
+Điều 19. Xây dựng, lắp đặt công trình hạ tầng trong phạm vi bảo vệ kết cấu hạ tầng đường bộ
+1. Trong phạm vi bảo vệ kết cấu hạ tầng đường bộ, không được xây dựng công trình khác, trừ trường hợp sau đây:
+a) Công trình phục vụ quốc phòng, an ninh;
+b) Công trình thông tin, viễn thông, đường dây tải điện, dây dẫn điện, cột viễn thông, trạm thu phát sóng di động, cột điện;
+c) Công trình cấp năng lượng, cấp nước, thoát nước, trừ nhà máy nước, nhà máy sản xuất năng lượng;
+d) Công trình thủy lợi, đê điều, phòng, chống thiên tai, thủy điện;
+đ) Băng tải phục vụ sản xuất, công trình hạ tầng kỹ thuật đô thị, các công trình đặc biệt khác;
+e) Tuyến đường khác giao cắt hoặc đi song song với đường hiện hữu.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Công ty bên cạnh đã xây dựng cột viễn thông trong khu vực bảo vệ kết cấu, họ đã làm gì để tuân thủ quy định?
+- Đáp: Công ty đã lập, thẩm tra, thẩm định và phê duyệt dự án đầu tư trước khi thực hiện. Ngoài ra, công trình được coi là hợp pháp vì thuộc loại công trình thông tin, viễn thông được phép trong khu vực bảo vệ. (Điều 14 Nghị định 165/2024/NĐ-CP; Điều 19(a)(b) Luật Đường bộ 35/2024/QH15)
+- Ghi chú: Giả định công trình là cột viễn thông, không phải trạm thu phát sóng di động
+
+```json
+{"qid": "t4-da_buoc-003", "question": "Công ty bên cạnh đã xây dựng cột viễn thông trong khu vực bảo vệ kết cấu, họ đã làm gì để tuân thủ quy định?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Công ty đã lập, thẩm tra, thẩm định và phê duyệt dự án đầu tư trước khi thực hiện. Ngoài ra, công trình được coi là hợp pháp vì thuộc loại công trình thông tin, viễn thông được phép trong khu vực bảo vệ. (Điều 14 Nghị định 165/2024/NĐ-CP; Điều 19(a)(b) Luật Đường bộ 35/2024/QH15)", "gold_units": ["ND165-2024/D14/K1", "LUAT35-2024/D19/K1/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-003:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi đang lắp đặt đường ống cấp nước trong khu vực bảo vệ, họ đã làm gì để hợp pháp?
+- Đáp: Công ty đã thực hiện lập, thẩm tra, thẩm định và phê duyệt dự án đầu tư trước khi thi công. Đặc biệt, công trình được coi là hợp pháp vì thuộc loại công trình cấp năng lượng, cấp nước, thoát nước được phép trong khu vực bảo vệ. (Điều 14 Nghị định 165/2024/NĐ-CP; Điều 19(a)(c) Luật Đường bộ 35/2024/QH15)
+- Ghi chú: Giả định đường ống cấp nước, không phải nhà máy nước
+
+```json
+{"qid": "t4-da_buoc-003", "question": "Công ty tôi đang lắp đặt đường ống cấp nước trong khu vực bảo vệ, họ đã làm gì để hợp pháp?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Công ty đã thực hiện lập, thẩm tra, thẩm định và phê duyệt dự án đầu tư trước khi thi công. Đặc biệt, công trình được coi là hợp pháp vì thuộc loại công trình cấp năng lượng, cấp nước, thoát nước được phép trong khu vực bảo vệ. (Điều 14 Nghị định 165/2024/NĐ-CP; Điều 19(a)(c) Luật Đường bộ 35/2024/QH15)", "gold_units": ["ND165-2024/D14/K1", "LUAT35-2024/D19/K1/c"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-003:2"}
+```
+
+### W4-da_buoc-004 · tier B · vai: tài xế xe tải · kiểu: tinh_huong_ban_than · DAN_CHIEU → LUAT35-2024/D53
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D66/K2
+
+Điều 66. Hệ thống quản lý, điều hành giao thông đường cao tốc
+2. Trung tâm quản lý, điều hành giao thông tuyến đường cao tốc thực hiện theo quy định tại Điều 53 Luật Đường bộ.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT35-2024/D53)
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D53
+
+Điều 53. Trung tâm quản lý, điều hành giao thông tuyến đường cao tốc
+
+### Nguồn 2
+Văn bản: Luật Đường bộ số 35/2024/QH15
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D53/K1
+
+Điều 53. Trung tâm quản lý, điều hành giao thông tuyến đường cao tốc
+1. Trung tâm quản lý, điều hành giao thông tuyến đường cao tốc là một thành phần của hệ thống quản lý giao thông thông minh, được đầu tư đồng thời khi xây dựng đường cao tốc để phục vụ quản lý, điều hành, bảo trì cho một hoặc một số tuyến cao tốc kết nối với nhau; hỗ trợ người tham gia giao thông đường bộ.
+
+### Nguồn 3
+Văn bản: Luật Đường bộ số 35/2024/QH15
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D53/K2, LUAT35-2024/D53/K2/a, LUAT35-2024/D53/K2/b, LUAT35-2024/D53/K2/c
+
+Điều 53. Trung tâm quản lý, điều hành giao thông tuyến đường cao tốc
+2. Trung tâm quản lý, điều hành giao thông tuyến đường cao tốc bao gồm:
+a) Nhà làm việc của người quản lý, vận hành đường cao tốc; các cơ sở hạ tầng, công trình dân dụng phục vụ quản lý, điều hành và lắp đặt các thiết bị công nghệ; các công trình hạ tầng kỹ thuật cần thiết khác; hệ thống thiết bị công nghệ để lưu trữ, phân tích, xử lý dữ liệu, hiển thị thông tin về tình hình giao thông trên tuyến hoặc một số tuyến cao tốc kết nối với nhau;
+b) Cơ sở hạ tầng phục vụ làm việc của lực lượng Cảnh sát giao thông thực thi nhiệm vụ bảo đảm trật tự, an toàn giao thông trên đường cao tốc;
+c) Thiết bị lắp đặt dọc tuyến đường cao tốc bao gồm các hệ thống thiết bị công nghệ để thu thập thông tin phục vụ việc quản lý, vận hành, khai thác, bảo trì, bảo vệ kết cấu hạ tầng đường bộ, cung cấp thông tin cho người tham gia giao thông đường bộ, phương tiện giao thông thông minh.
+
+### Nguồn 4
+Văn bản: Luật Đường bộ số 35/2024/QH15
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D53/K3
+
+Điều 53. Trung tâm quản lý, điều hành giao thông tuyến đường cao tốc
+3. Chi phí quản lý, vận hành và bảo trì trung tâm quản lý, điều hành giao thông tuyến đường cao tốc được tính trong chi phí quản lý, vận hành, khai thác, bảo trì và bảo vệ công trình đường cao tốc.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải đang di chuyển trên đường cao tốc, muốn biết trung tâm quản lý giao thông tuyến đường cao tốc có trách nhiệm gì trong việc điều hành giao thông?
+- Đáp: Trung tâm quản lý giao thông tuyến đường cao tốc là một thành phần của hệ thống quản lý giao thông thông minh, được đầu tư đồng thời khi xây dựng đường cao tốc để phục vụ quản lý, điều hành, bảo trì cho một hoặc một số tuyến cao tốc kết nối với nhau; hỗ trợ người tham gia giao thông đường bộ. Trên thực tế, trung tâm này thực hiện theo quy định tại Điều 53 Luật Đường bộ, bao gồm các cơ sở hạ tầng, công trình dân dụng, thiết bị công nghệ để lưu trữ, phân tích, xử lý dữ liệu và hiển thị thông tin về tình hình giao thông trên tuyến hoặc một số tuyến cao tốc kết nối với nhau.
+- ⚠ chi_so_so_sai (0); chep_nguyen_van: “giao thông tuyến đường cao tốc …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-da_buoc-004", "question": "Tôi là tài xế xe tải đang di chuyển trên đường cao tốc, muốn biết trung tâm quản lý giao thông tuyến đường cao tốc có trách nhiệm gì trong việc điều hành giao thông?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Trung tâm quản lý giao thông tuyến đường cao tốc là một thành phần của hệ thống quản lý giao thông thông minh, được đầu tư đồng thời khi xây dựng đường cao tốc để phục vụ quản lý, điều hành, bảo trì cho một hoặc một số tuyến cao tốc kết nối với nhau; hỗ trợ người tham gia giao thông đường bộ. Trên thực tế, trung tâm này thực hiện theo quy định tại Điều 53 Luật Đường bộ, bao gồm các cơ sở hạ tầng, công trình dân dụng, thiết bị công nghệ để lưu trữ, phân tích, xử lý dữ liệu và hiển thị thông tin về tình hình giao thông trên tuyến hoặc một số tuyến cao tốc kết nối với nhau.", "gold_units": ["ND165-2024/D66/K2", "LUAT35-2024/D53/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-004:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, khi đi trên đường cao tốc, tôi muốn biết trung tâm quản lý giao thông tuyến đường cao tốc có bao gồm những cơ sở hạ tầng và thiết bị công nghệ nào để hỗ trợ người tham gia giao thông?
+- Đáp: Trung tâm quản lý giao thông tuyến đường cao tốc bao gồm: a) Nhà làm việc của người quản lý, vận hành đường cao tốc; các cơ sở hạ tầng, công trình dân dụng phục vụ quản lý, điều hành và lắp đặt các thiết bị công nghệ; các công trình hạ tầng kỹ thuật cần thiết khác; hệ thống thiết bị công nghệ để lưu trữ, phân tích, xử lý dữ liệu, hiển thị thông tin về tình hình giao thông trên tuyến hoặc một số tuyến cao tốc kết nối với nhau; b) Cơ sở hạ tầng phục vụ làm việc của lực lượng Cảnh sát giao thông thực thi nhiệm vụ bảo đảm trật tự, an toàn giao thông trên đường cao tốc; c) Thiết bị lắp đặt dọc tuyến đường cao tốc bao gồm các hệ thống thiết bị công nghệ để thu thập thông tin phục vụ việc quản lý, vận hành, khai thác, bảo trì, bảo vệ kết cấu hạ tầng đường bộ, cung cấp thông tin cho người tham gia giao thông đường bộ, phương tiện giao thông thông minh.
+- ⚠ chi_so_so_sai (0); chep_nguyen_van: “giao thông tuyến đường cao tốc …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-da_buoc-004", "question": "Tôi là tài xế xe tải, khi đi trên đường cao tốc, tôi muốn biết trung tâm quản lý giao thông tuyến đường cao tốc có bao gồm những cơ sở hạ tầng và thiết bị công nghệ nào để hỗ trợ người tham gia giao thông?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Trung tâm quản lý giao thông tuyến đường cao tốc bao gồm: a) Nhà làm việc của người quản lý, vận hành đường cao tốc; các cơ sở hạ tầng, công trình dân dụng phục vụ quản lý, điều hành và lắp đặt các thiết bị công nghệ; các công trình hạ tầng kỹ thuật cần thiết khác; hệ thống thiết bị công nghệ để lưu trữ, phân tích, xử lý dữ liệu, hiển thị thông tin về tình hình giao thông trên tuyến hoặc một số tuyến cao tốc kết nối với nhau; b) Cơ sở hạ tầng phục vụ làm việc của lực lượng Cảnh sát giao thông thực thi nhiệm vụ bảo đảm trật tự, an toàn giao thông trên đường cao tốc; c) Thiết bị lắp đặt dọc tuyến đường cao tốc bao gồm các hệ thống thiết bị công nghệ để thu thập thông tin phục vụ việc quản lý, vận hành, khai thác, bảo trì, bảo vệ kết cấu hạ tầng đường bộ, cung cấp thông tin cho người tham gia giao thông đường bộ, phương tiện giao thông thông minh.", "gold_units": ["ND165-2024/D66/K2", "LUAT35-2024/D53/K2", "LUAT35-2024/D53/K2/a", "LUAT35-2024/D53/K2/b", "LUAT35-2024/D53/K2/c"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-004:2"}
+```
+
+### W4-da_buoc-005 · tier B · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_ban_than · DAN_CHIEU → ND336-2025/D9/K4
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D16/K2, ND336-2025/D16/K2/a, ND336-2025/D16/K2/b, ND336-2025/D16/K2/c, ND336-2025/D16/K2/d, ND336-2025/D16/K2/đ, ND336-2025/D16/K2/e, ND336-2025/D16/K2/g, ND336-2025/D16/K2/h, ND336-2025/D16/K2/i
+
+Điều 16. Phân định thẩm quyền xử phạt vi phạm hành chính trong hoạt động đường bộ
+2. Cảnh sát giao thông trong phạm vi chức năng, nhiệm vụ được giao có thẩm quyền xử phạt đối với các hành vi vi phạm quy định tại các điểm, khoản, điều của Nghị định này như sau:
+a) Khoản 1, 2, 3, điểm a, b, c và điểm d khoản 4 Điều 5;
+b) Điểm a khoản 1; điểm b, c khoản 2; điểm a, b khoản 3; điểm a, b khoản 4; điểm a, b và điểm c khoản 5 Điều 8;
+c) Khoản 1, 2, 4 và khoản 5 Điều 9;
+d) Điểm a khoản 3; điểm a, b và điểm c khoản 5 Điều 10;
+đ) Điều 11;
+e) Khoản 1, điểm a, c và điểm đ khoản 2; điểm a khoản 3; điểm đ, e, g, i và điểm k khoản 4, khoản 5 và điểm c khoản 6 Điều 12;
+g) Điều 13;
+h) Khoản 1; điểm c, d, đ và điểm e khoản 2 Điều 14;
+i) Điều 15.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D5/K1)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D5/K1
+
+Điều 5. Xử phạt các hành vi vi phạm quy định về sử dụng, khai thác trong phạm vi đất dành cho kết cấu hạ tầng đường bộ
+1. Phạt tiền từ 500.000 đồng đến 1.000.000 đồng đối với cá nhân, từ 1.000.000 đồng đến 2.000.000 đồng đối với tổ chức thực hiện hành vi vi phạm trồng cây trong phạm vi hành lang an toàn đường bộ làm che khuất tầm nhìn của người điều khiển phương tiện giao thông hoặc che lấp báo hiệu đường bộ, trừ hành vi vi phạm quy định tại điểm c khoản 4 Điều này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D5/K2)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D5/K2
+
+Điều 5. Xử phạt các hành vi vi phạm quy định về sử dụng, khai thác trong phạm vi đất dành cho kết cấu hạ tầng đường bộ
+2. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với cá nhân, từ 2.000.000 đồng đến 4.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D5/K3)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D5/K3
+
+Điều 5. Xử phạt các hành vi vi phạm quy định về sử dụng, khai thác trong phạm vi đất dành cho kết cấu hạ tầng đường bộ
+3. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với cá nhân, từ 6.000.000 đồng đến 10.000.000 đồng đối với tổ chức thực hiện hành vi vi phạm dựng rạp, lều quán, cổng ra vào, tường rào các loại, công trình khác trái phép trong phạm vi đất dành cho kết cấu hạ tầng đường bộ trừ các hành vi vi phạm quy định tại điểm d khoản 4; điểm a khoản 5; điểm a, điểm b, điểm d khoản 6 Điều này.
+
+### Nguồn 2
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D9/K4, ND336-2025/D9/K4/a, ND336-2025/D9/K4/b, ND336-2025/D9/K4/c
+
+Điều 9. Xử phạt các hành vi vi phạm quy định về quản lý, khai thác, bảo trì, bảo vệ kết cấu hạ tầng đường bộ
+4. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với cá nhân, từ 6.000.000 đồng đến 10.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+a) Làm hư hỏng hoặc làm mất tác dụng của hệ thống thoát nước đường bộ;
+b) Tự ý tháo dỡ, di chuyển, điều chỉnh, làm hư hỏng, làm sai mục đích sử dụng hoặc làm sai lệch biển báo hiệu, đèn tín hiệu giao thông, rào chắn, cọc tiêu, cột cây số, vạch kẻ đường, tường bảo vệ, hàng rào hộ lan, mốc chỉ giới, cọc mốc giải phóng mặt bằng và các báo hiệu đường bộ khác;
+c) Tự ý đập phá, tháo dỡ bó vỉa hè hoặc sửa chữa, cải tạo vỉa hè trái phép.
+
+[0] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D9/K4)
+[1] 5.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D9/K4)
+[2] 6.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D9/K4)
+[3] 10.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D9/K4)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi trồng cây che tầm nhìn và đập phá vỉa hè, mức phạt tiền là bao nhiêu?
+- Đáp: Mức phạt tiền là từ 500.000 đồng đến 1.000.000 đồng đối với cá nhân khi trồng cây che tầm nhìn, và từ 3.000.000 đồng đến 5.000.000 đồng đối với cá nhân khi đập phá vỉa hè. (Điều 5 khoản 1 và khoản 4 Nghị định 336/2025/NĐ-CP)
+- Ghi chú: giả định là cá nhân
+
+```json
+{"qid": "t4-da_buoc-005", "question": "Tôi trồng cây che tầm nhìn và đập phá vỉa hè, mức phạt tiền là bao nhiêu?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Mức phạt tiền là từ 500.000 đồng đến 1.000.000 đồng đối với cá nhân khi trồng cây che tầm nhìn, và từ 3.000.000 đồng đến 5.000.000 đồng đối với cá nhân khi đập phá vỉa hè. (Điều 5 khoản 1 và khoản 4 Nghị định 336/2025/NĐ-CP)", "gold_units": ["ND336-2025/D5/K1", "ND336-2025/D9/K4"], "required_numbers": [{"value": 3000000, "unit": "vnd"}, {"value": 5000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-005:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Con tôi tự ý tháo dỡ biển báo và trồng cây che tầm nhìn, mức phạt tiền là bao nhiêu?
+- Đáp: Mức phạt tiền là từ 500.000 đồng đến 1.000.000 đồng đối với cá nhân khi trồng cây che tầm nhìn, và từ 3.000.000 đồng đến 5.000.000 đồng đối với cá nhân khi tháo dỡ biển báo. (Điều 5 khoản 1 và khoản 4 Nghị định 336/2025/NĐ-CP)
+- Ghi chú: giả định là cá nhân
+
+```json
+{"qid": "t4-da_buoc-005", "question": "Con tôi tự ý tháo dỡ biển báo và trồng cây che tầm nhìn, mức phạt tiền là bao nhiêu?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Mức phạt tiền là từ 500.000 đồng đến 1.000.000 đồng đối với cá nhân khi trồng cây che tầm nhìn, và từ 3.000.000 đồng đến 5.000.000 đồng đối với cá nhân khi tháo dỡ biển báo. (Điều 5 khoản 1 và khoản 4 Nghị định 336/2025/NĐ-CP)", "gold_units": ["ND336-2025/D5/K1", "ND336-2025/D9/K4"], "required_numbers": [{"value": 3000000, "unit": "vnd"}, {"value": 5000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-005:2"}
+```
+
+### W4-da_buoc-006 · tier B · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_ban_than · DAN_CHIEU → ND165-2024/D56/K3/a
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2026-07-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D52a/K3
+
+Điều 52a. Đầu tư mở rộng trạm dừng nghỉ đã ký hợp đồng kinh doanh, khai thác
+3. Đối với dự án đường cao tốc đầu tư theo phương thức PPP, trường hợp cơ quan có thẩm quyền đàm phán với nhà đầu tư, doanh nghiệp đang đầu tư, khai thác trạm dừng nghỉ theo quy định tại khoản 2 Điều này không thành công, cơ quan có thẩm quyền tổ chức đàm phán với nhà đầu tư dự án đường cao tốc theo phương thức PPP (nếu có) về phương án đầu tư, kinh doanh đối với phần mở rộng trạm dừng nghỉ. Việc xác định quyền, nghĩa vụ của nhà đầu tư PPP đối với phần mở rộng trạm dừng nghỉ thực hiện theo điểm a khoản 3 Điều 56 Nghị định này. Thời hạn khai thác phần mở rộng trạm dừng nghỉ được xác định bảo đảm đồng bộ với thời hạn hợp đồng dự án đường cao tốc theo phương thức PPP.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND165-2024/D52a/K2)
+Mã điều khoản dùng được cho gold_units: ND165-2024/D52a/K2
+
+Điều 52a. Đầu tư mở rộng trạm dừng nghỉ đã ký hợp đồng kinh doanh, khai thác
+2. Cơ quan có thẩm quyền tổ chức xác định sơ bộ nhu cầu và đàm phán với nhà đầu tư, doanh nghiệp đang đầu tư, khai thác trạm dừng nghỉ về phương án đầu tư mở rộng trạm dừng nghỉ. Trường hợp nhà đầu tư, doanh nghiệp đang đầu tư, khai thác trạm dừng nghỉ thực hiện mở rộng trạm dừng nghỉ thì phải nộp giá trị nhận nhượng quyền kinh doanh xác định theo quy định tại điểm a khoản 3 Điều 56 Nghị định này bằng hình thức nộp tiền một lần vào ngân sách nhà nước.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND165-2024/D56/K3/a)
+Mã điều khoản dùng được cho gold_units: ND165-2024/D56/K3/a
+
+Điều 56. Lộ trình đầu tư xây dựng trạm dừng nghỉ
+3. Đối với dự án đầu tư xây dựng đường cao tốc theo phương thức đối tác công tư chưa xác định hình thức đầu tư trạm dừng nghỉ hoặc đã xác định hình thức đầu tư trạm dừng nghỉ nhưng chưa quy định cụ thể quyền và nghĩa vụ nhà đầu tư, cơ quan có thẩm quyền và nhà đầu tư PPP có trách nhiệm thỏa thuận, thống nhất phương án đầu tư xây dựng theo một trong các phương án sau đây:
+a) Nhà đầu tư PPP đầu tư xây dựng, vận hành khai thác trạm dừng nghỉ trong dự án PPP, bảo đảm phù hợp với quy chuẩn kỹ thuật quốc gia, tiêu chuẩn quốc gia đối với trạm dừng nghỉ. Trường hợp phương án tài chính dự án đối tác công tư chưa tính toán chi phí, doanh thu trạm dừng nghỉ thì thực hiện như sau:
+Chi phí đầu tư xây dựng không được tính vào phương án tài chính. Giá trị nhận nhượng quyền kinh doanh trạm dừng nghỉ được tính bằng trung bình giá trị nộp ngân sách nhà nước theo quyết định phê duyệt kết quả đấu thầu lựa chọn nhà đầu tư của 03 dự án tương tự với dự án đang xét theo tỷ lệ thời gian khai thác và quy mô công trình trạm dừng nghỉ. Dự án tương tự là dự án: được thực hiện trên cùng địa bàn đơn vị hành chính cấp tỉnh hoặc các tỉnh lân cận, có kết quả lựa chọn nhà đầu tư trong 02 năm trước ngày đàm phán phụ lục hợp đồng; trường hợp không có dự án được thực hiện trên cùng địa bàn nêu trên thì tham khảo dự án tại địa điểm gần địa điểm thực hiện dự án nhất, thời gian tham chiếu do cơ quan ký kết hợp đồng xem xét, quyết định cụ thể.
+…
+
+### Nguồn 2
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2026-07-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D56/K3, ND165-2024/D56/K3/a, ND165-2024/D56/K3/b
+
+Điều 56. Lộ trình đầu tư xây dựng trạm dừng nghỉ
+3. Đối với dự án đầu tư xây dựng đường cao tốc theo phương thức đối tác công tư chưa xác định hình thức đầu tư trạm dừng nghỉ hoặc đã xác định hình thức đầu tư trạm dừng nghỉ nhưng chưa quy định cụ thể quyền và nghĩa vụ nhà đầu tư, cơ quan có thẩm quyền và nhà đầu tư PPP có trách nhiệm thỏa thuận, thống nhất phương án đầu tư xây dựng theo một trong các phương án sau đây:
+a) Nhà đầu tư PPP đầu tư xây dựng, vận hành khai thác trạm dừng nghỉ trong dự án PPP, bảo đảm phù hợp với quy chuẩn kỹ thuật quốc gia, tiêu chuẩn quốc gia đối với trạm dừng nghỉ. Trường hợp phương án tài chính dự án đối tác công tư chưa tính toán chi phí, doanh thu trạm dừng nghỉ thì thực hiện như sau:
+Chi phí đầu tư xây dựng không được tính vào phương án tài chính. Giá trị nhận nhượng quyền kinh doanh trạm dừng nghỉ được tính bằng trung bình giá trị nộp ngân sách nhà nước theo quyết định phê duyệt kết quả đấu thầu lựa chọn nhà đầu tư của 03 dự án tương tự với dự án đang xét theo tỷ lệ thời gian khai thác và quy mô công trình trạm dừng nghỉ. Dự án tương tự là dự án: được thực hiện trên cùng địa bàn đơn vị hành chính cấp tỉnh hoặc các tỉnh lân cận, có kết quả lựa chọn nhà đầu tư trong 02 năm trước ngày đàm phán phụ lục hợp đồng; trường hợp không có dự án được thực hiện trên cùng địa bàn nêu trên thì tham khảo dự án tại địa điểm gần địa điểm thực hiện dự án nhất, thời gian tham chiếu do cơ quan ký kết hợp đồng xem xét, quyết định cụ thể.
+…
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi muốn đầu tư mở rộng trạm dừng nghỉ cho dự án đường cao tốc, con tôi sẽ đi qua, làm sao để nộp giá trị nhận nhượng quyền kinh doanh?
+- Đáp: Bạn phải nộp giá trị nhận nhượng quyền kinh doanh bằng tiền một lần vào ngân sách nhà nước, tính theo trung bình giá trị nộp ngân sách nhà nước của ba dự án tương tự, theo tỷ lệ thời gian khai thác và quy mô công trình trạm dừng nghỉ. Điều này được quy định trong khoản 3 Điều 56 Nghị định 165/2024/NĐ-CP, điểm a, và trong khoản 2 Điều 52a Nghị định 165/2024/NĐ-CP.
+- ⚠ chep_nguyen_van: “giá trị nhận nhượng quyền kinh …”
+
+```json
+{"qid": "t4-da_buoc-006", "question": "Tôi muốn đầu tư mở rộng trạm dừng nghỉ cho dự án đường cao tốc, con tôi sẽ đi qua, làm sao để nộp giá trị nhận nhượng quyền kinh doanh?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Bạn phải nộp giá trị nhận nhượng quyền kinh doanh bằng tiền một lần vào ngân sách nhà nước, tính theo trung bình giá trị nộp ngân sách nhà nước của ba dự án tương tự, theo tỷ lệ thời gian khai thác và quy mô công trình trạm dừng nghỉ. Điều này được quy định trong khoản 3 Điều 56 Nghị định 165/2024/NĐ-CP, điểm a, và trong khoản 2 Điều 52a Nghị định 165/2024/NĐ-CP.", "gold_units": ["ND165-2024/D52a/K3", "ND165-2024/D52a/K2", "ND165-2024/D56/K3/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-006:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Con tôi sẽ đi qua trạm dừng nghỉ mà tôi đang đầu tư, tôi cần làm gì để đảm bảo trạm đáp ứng quy chuẩn kỹ thuật quốc gia?
+- Đáp: Bạn phải thực hiện đầu tư xây dựng, vận hành và khai thác trạm dừng nghỉ theo quy chuẩn kỹ thuật quốc gia và tiêu chuẩn quốc gia, đồng thời nộp giá trị nhận nhượng quyền kinh doanh theo quy định tại khoản 3 Điều 56 Nghị định 165/2024/NĐ-CP, điểm a, và khoản 2 Điều 52a Nghị định 165/2024/NĐ-CP.
+- ⚠ chep_nguyen_van: “quy chuẩn kỹ thuật quốc gia …”
+
+```json
+{"qid": "t4-da_buoc-006", "question": "Con tôi sẽ đi qua trạm dừng nghỉ mà tôi đang đầu tư, tôi cần làm gì để đảm bảo trạm đáp ứng quy chuẩn kỹ thuật quốc gia?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Bạn phải thực hiện đầu tư xây dựng, vận hành và khai thác trạm dừng nghỉ theo quy chuẩn kỹ thuật quốc gia và tiêu chuẩn quốc gia, đồng thời nộp giá trị nhận nhượng quyền kinh doanh theo quy định tại khoản 3 Điều 56 Nghị định 165/2024/NĐ-CP, điểm a, và khoản 2 Điều 52a Nghị định 165/2024/NĐ-CP.", "gold_units": ["ND165-2024/D52a/K3", "ND165-2024/D52a/K2", "ND165-2024/D56/K3/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-006:2"}
+```
+
+### W4-da_buoc-007 · tier B · vai: tài xế công nghệ · kiểu: tinh_huong_ban_than · DAN_CHIEU → ND158-2024/D11
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D9/K3
+
+Điều 9. Kinh doanh vận tải hành khách bằng xe bốn bánh có gắn động cơ
+3. Đơn vị kinh doanh vận tải bằng xe bốn bánh có gắn động cơ tuân thủ các quy định tại Điều 11 (trừ điểm a khoản 3, khoản 5, khoản 9 và khoản 10) Nghị định này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND158-2024/D11)
+Mã điều khoản dùng được cho gold_units: ND158-2024/D11
+
+Điều 11. Quy định về công tác bảo đảm an toàn trong hoạt động vận tải bằng xe ô tô, bằng xe bốn bánh có gắn động cơ
+
+### Nguồn 2
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D11/K1, ND158-2024/D11/K1/a, ND158-2024/D11/K1/b, ND158-2024/D11/K1/c
+
+Điều 11. Quy định về công tác bảo đảm an toàn trong hoạt động vận tải bằng xe ô tô, bằng xe bốn bánh có gắn động cơ
+1. Đơn vị kinh doanh vận tải bằng xe ô tô, bằng xe bốn bánh có gắn động cơ phải có bộ phận quản lý an toàn, xây dựng và thực hiện bảo đảm an toàn giao thông trong hoạt động vận tải đáp ứng yêu cầu sau:
+a) Có người trực tiếp điều hành vận tải theo quy định tại khoản 2 Điều này và có nhân sự thực hiện theo dõi, giám sát hoạt động của lái xe, phương tiện trong suốt quá trình tham gia kinh doanh vận tải;
+b) Xây dựng và thực hiện các nhiệm vụ bảo đảm an toàn giao thông theo quy định tại điều này;
+c) Giao nhiệm vụ cho lái xe; chỉ sử dụng lái xe điều khiển phương tiện kinh doanh vận tải có Giấy phép lái xe phù hợp loại xe theo quy định tại Điều 57 Luật Trật tự, an toàn giao thông đường bộ và lái xe đã được cấp Giấy chứng nhận hoàn thành tập huấn nghiệp vụ vận tải.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND158-2024/D11/K2)
+Mã điều khoản dùng được cho gold_units: ND158-2024/D11/K2
+
+Điều 11. Quy định về công tác bảo đảm an toàn trong hoạt động vận tải bằng xe ô tô, bằng xe bốn bánh có gắn động cơ
+2. Người trực tiếp điều hành vận tải của đơn vị kinh doanh vận tải phải bảo đảm các yêu cầu như sau:
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D57)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D57
+
+Điều 57. Giấy phép lái xe
+
+### Nguồn 3
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D11/K10, ND158-2024/D11/K10/a, ND158-2024/D11/K10/b, ND158-2024/D11/K10/c, ND158-2024/D11/K10/d
+
+Điều 11. Quy định về công tác bảo đảm an toàn trong hoạt động vận tải bằng xe ô tô, bằng xe bốn bánh có gắn động cơ
+10. Đơn vị hoạt động vận tải nội bộ phải theo dõi, tổng hợp hoạt động của lái xe, xe ô tô, xe bốn bánh có gắn động cơ trong quá trình vận tải cán bộ, công nhân viên, người lao động hoặc trẻ em mầm non, học sinh, sinh viên; vận tải sản phẩm, hàng hóa hoặc trang thiết bị, dụng cụ, nguyên vật liệu, nhiên liệu để phục vụ quá trình sản xuất, tiêu thụ sản phẩm hoặc dịch vụ của đơn vị vận tải nội bộ.
+Đơn vị vận tải nội bộ, người lái xe phải bảo đảm tối thiểu công tác quản lý an toàn giao thông trong hoạt động vận tải nội bộ bằng xe ô tô, bằng xe bốn bánh có gắn động cơ theo các nội dung quy định sau:
+a) Quy định tại điểm c khoản 3, điểm c khoản 4 Điều này;
+b) Kiểm tra giấy phép lái xe của người lái xe; giấy chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường; giấy chứng nhận đăng ký xe;
+…
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND158-2024/D11/K3/c)
+Mã điều khoản dùng được cho gold_units: ND158-2024/D11/K3/c
+
+Điều 11. Quy định về công tác bảo đảm an toàn trong hoạt động vận tải bằng xe ô tô, bằng xe bốn bánh có gắn động cơ
+3. Bộ phận quản lý an toàn tại đơn vị kinh doanh vận tải bằng xe ô tô, bằng xe bốn bánh có gắn động cơ trước khi giao nhiệm vụ vận chuyển mới cho người lái xe phải thực hiện các nhiệm vụ sau:
+c) Phối hợp với bộ phận khác của đơn vị để bố trí xe và người lái xe thực hiện nhiệm vụ vận chuyển, bảo đảm thời gian lái xe liên tục, thời gian lái xe trong một ngày, trong một tuần, thời gian nghỉ ngơi của người lái xe theo quy định tại Điều 64 Luật Trật tự, an toàn giao thông đường bộ.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND158-2024/D11/K4/c)
+Mã điều khoản dùng được cho gold_units: ND158-2024/D11/K4/c
+
+Điều 11. Quy định về công tác bảo đảm an toàn trong hoạt động vận tải bằng xe ô tô, bằng xe bốn bánh có gắn động cơ
+4. Trước khi thực hiện nhiệm vụ vận chuyển, bộ phận quản lý an toàn hoặc người trực tiếp điều hành vận tải hoặc cán bộ quản lý do đơn vị phân công và người lái xe phải thực hiện các nội dung công việc (riêng đối với hoạt động kinh doanh vận tải bằng xe taxi thực hiện theo kế hoạch sản xuất kinh doanh của đơn vị):
+c) Kiểm tra nồng độ cồn, chất ma túy đối với người lái xe (nếu đơn vị có trang bị thiết bị, dụng cụ kiểm tra).
+
+### Nguồn 4
+Văn bản: Nghị định số 158/2024/NĐ-CP (Quy định về hoạt động vận tải đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND158-2024/D11/K11
+
+Điều 11. Quy định về công tác bảo đảm an toàn trong hoạt động vận tải bằng xe ô tô, bằng xe bốn bánh có gắn động cơ
+11. Đơn vị kinh doanh dịch vụ bến xe khách, bến xe hàng phải bảo đảm thực hiện đầy đủ quy định tại khoản 2 Điều 72 Luật Đường bộ; xây dựng, thực hiện quy trình xe ra, vào bến bảo đảm an toàn cho phương tiện hoạt động trong bến xe.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT35-2024/D72/K2)
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D72/K2
+
+Điều 72. Dịch vụ bến xe, trạm dừng nghỉ
+2. Hoạt động của bến xe, trạm dừng nghỉ phải bảo đảm chất lượng, trật tự, an toàn, vệ sinh môi trường, phòng, chống cháy nổ và chịu sự quản lý của cơ quan quản lý nhà nước có thẩm quyền ở địa phương.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là chủ xe taxi, khi chuẩn bị cho chuyến đi, tôi có cần bố trí người quản lý an toàn và kiểm tra giấy phép lái xe của người lái xe không?
+- Đáp: Bạn phải có bộ phận quản lý an toàn, xây dựng và thực hiện bảo đảm an toàn giao thông trong hoạt động vận tải, đồng thời giao nhiệm vụ cho lái xe và chỉ sử dụng lái xe có Giấy phép lái xe phù hợp loại xe và đã được cấp Giấy chứng nhận hoàn thành tập huấn nghiệp vụ vận tải. (Điều 11, khoản 1, điểm a, b, c Nghị định 158/2024/NĐ-CP)
+- ⚠ chi_so_so_sai (0); chep_nguyen_van: “giấy phép lái xe của người …”
+- Ghi chú: Giả định người lái xe đã có giấy phép lái xe phù hợp loại xe
+
+```json
+{"qid": "t4-da_buoc-007", "question": "Tôi là chủ xe taxi, khi chuẩn bị cho chuyến đi, tôi có cần bố trí người quản lý an toàn và kiểm tra giấy phép lái xe của người lái xe không?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Bạn phải có bộ phận quản lý an toàn, xây dựng và thực hiện bảo đảm an toàn giao thông trong hoạt động vận tải, đồng thời giao nhiệm vụ cho lái xe và chỉ sử dụng lái xe có Giấy phép lái xe phù hợp loại xe và đã được cấp Giấy chứng nhận hoàn thành tập huấn nghiệp vụ vận tải. (Điều 11, khoản 1, điểm a, b, c Nghị định 158/2024/NĐ-CP)", "gold_units": ["ND158-2024/D11/K1", "ND158-2024/D11/K1/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-007:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là chủ công ty vận tải, trước khi giao nhiệm vụ cho lái xe, tôi có cần kiểm tra giấy phép lái xe và giấy chứng nhận kiểm định an toàn kỹ thuật của lái xe không?
+- Đáp: Bạn phải kiểm tra giấy phép lái xe của người lái xe, giấy chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường, giấy chứng nhận đăng ký xe. (Điều 11, khoản 10, điểm a)
+- ⚠ chi_so_so_sai (0); chep_nguyen_van: “chứng nhận kiểm định an toàn …”
+- Ghi chú: Giả định lái xe đang được phân công cho nhiệm vụ mới
+
+```json
+{"qid": "t4-da_buoc-007", "question": "Tôi là chủ công ty vận tải, trước khi giao nhiệm vụ cho lái xe, tôi có cần kiểm tra giấy phép lái xe và giấy chứng nhận kiểm định an toàn kỹ thuật của lái xe không?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Bạn phải kiểm tra giấy phép lái xe của người lái xe, giấy chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường, giấy chứng nhận đăng ký xe. (Điều 11, khoản 10, điểm a)", "gold_units": ["ND158-2024/D11/K10", "ND158-2024/D11/K10/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-007:2"}
+```
+
+### W4-da_buoc-008 · tier B · vai: người lớn tuổi đi xe đạp điện · kiểu: tinh_huong_ban_than · DAN_CHIEU → ND165-2024/D14/K2
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D16/K1, ND165-2024/D16/K1/a, ND165-2024/D16/K1/b, ND165-2024/D16/K1/c, ND165-2024/D16/K1/d
+
+Điều 16. Lắp đặt các công trình hạ tầng khác vào công trình hạ tầng kỹ thuật sử dụng chung với đường bộ
+1. Trường hợp đã có công trình hạ tầng kỹ thuật sử dụng chung với đường bộ thì các công trình hạ tầng khác (đường dây thông tin, viễn thông, dây tải điện, dây dẫn điện, chiếu sáng công cộng, ống cấp nước, thoát nước, cấp năng lượng) được bố trí lắp đặt vào công trình hạ tầng kỹ thuật sử dụng chung, trừ các trường hợp sau:
+a) Việc lắp đặt các công trình hạ tầng khác vào công trình hạ tầng kỹ thuật sử dụng chung không bảo đảm an toàn cho khai thác, sử dụng;
+b) Công trình hạ tầng kỹ thuật sử dụng chung có quy mô, kích thước, tải trọng không phù hợp để lắp đặt công trình hạ tầng khác, không còn vị trí lắp đặt thêm công trình hạ tầng khác;
+c) Không bảo đảm an toàn cho khai thác, sử dụng công trình đường bộ, công trình hạ tầng và công trình hạ tầng kỹ thuật sử dụng chung;
+d) Các trường hợp quy định tại khoản 2 Điều 14 của Nghị định này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND165-2024/D14/K2)
+Mã điều khoản dùng được cho gold_units: ND165-2024/D14/K2
+
+Điều 14. Xây dựng, lắp đặt và khai thác công trình hạ tầng trong phạm vi bảo vệ kết cấu hạ tầng đường bộ
+2. Không lắp đặt đường ống dẫn khí đốt, các chất dễ cháy, nổ vào trong hầm đường bộ; không lắp đặt đường dây tải điện cao thế theo quy định của pháp luật về điện lực vào cầu đường bộ, trừ trường hợp cầu đường bộ có thiết kế hạng mục dành riêng cho lắp đặt đường dây tải điện cao thế phù hợp nhưng phải bảo đảm an toàn điện, an toàn về phòng, chống cháy nổ và phải cắt điện theo yêu cầu của người quản lý, sử dụng đường bộ để phục vụ quản lý, vận hành, khai thác, bảo trì và cải tạo, nâng cấp cầu đường bộ.
+
+### Nguồn 2
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D14/K2
+
+Điều 14. Xây dựng, lắp đặt và khai thác công trình hạ tầng trong phạm vi bảo vệ kết cấu hạ tầng đường bộ
+2. Không lắp đặt đường ống dẫn khí đốt, các chất dễ cháy, nổ vào trong hầm đường bộ; không lắp đặt đường dây tải điện cao thế theo quy định của pháp luật về điện lực vào cầu đường bộ, trừ trường hợp cầu đường bộ có thiết kế hạng mục dành riêng cho lắp đặt đường dây tải điện cao thế phù hợp nhưng phải bảo đảm an toàn điện, an toàn về phòng, chống cháy nổ và phải cắt điện theo yêu cầu của người quản lý, sử dụng đường bộ để phục vụ quản lý, vận hành, khai thác, bảo trì và cải tạo, nâng cấp cầu đường bộ.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là người lớn tuổi đi xe đạp điện, muốn lắp đặt một trạm sạc có dây tải điện cao thế trên cầu đường bộ. Tôi có thể làm được không?
+- Đáp: Bạn không được lắp đặt đường dây tải điện cao thế trên cầu đường bộ trừ khi cầu có thiết kế hạng mục dành riêng cho việc này và đảm bảo an toàn điện, phòng, chống cháy nổ, cũng như phải cắt điện theo yêu cầu của người quản lý, sử dụng đường bộ. (Điều 14 Nghị định 165/2024/NĐ-CP)
+- ⚠ chi_so_so_sai (0)
+- Ghi chú: Giả định trạm sạc cần dây tải điện cao thế
+
+```json
+{"qid": "t4-da_buoc-008", "question": "Tôi là người lớn tuổi đi xe đạp điện, muốn lắp đặt một trạm sạc có dây tải điện cao thế trên cầu đường bộ. Tôi có thể làm được không?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Bạn không được lắp đặt đường dây tải điện cao thế trên cầu đường bộ trừ khi cầu có thiết kế hạng mục dành riêng cho việc này và đảm bảo an toàn điện, phòng, chống cháy nổ, cũng như phải cắt điện theo yêu cầu của người quản lý, sử dụng đường bộ. (Điều 14 Nghị định 165/2024/NĐ-CP)", "gold_units": ["ND165-2024/D16/K1", "ND165-2024/D14/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-008:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi muốn lắp đặt đường ống dẫn khí đốt trong hầm đường bộ để cấp nhiệt cho khu vực lân cận. Tôi có thể thực hiện được không?
+- Đáp: Bạn không được lắp đặt đường ống dẫn khí đốt, các chất dễ cháy, nổ vào trong hầm đường bộ. (Điều 14 Nghị định 165/2024/NĐ-CP)
+- ⚠ chi_so_so_sai (0); chep_nguyen_van: “lắp đặt đường ống dẫn khí …”
+- Ghi chú: Giả định đường ống dẫn khí đốt cần lắp trong hầm
+
+```json
+{"qid": "t4-da_buoc-008", "question": "Tôi muốn lắp đặt đường ống dẫn khí đốt trong hầm đường bộ để cấp nhiệt cho khu vực lân cận. Tôi có thể thực hiện được không?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Bạn không được lắp đặt đường ống dẫn khí đốt, các chất dễ cháy, nổ vào trong hầm đường bộ. (Điều 14 Nghị định 165/2024/NĐ-CP)", "gold_units": ["ND165-2024/D16/K1", "ND165-2024/D14/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-008:2"}
+```
+
+### W4-da_buoc-009 · tier B · vai: người mới học lái ô tô · kiểu: tinh_huong_ban_than · DAN_CHIEU → LUAT35-2024/D20/K3
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D19/K2
+
+Điều 19. Quản lý, vận hành, khai thác, bảo trì công trình hạ tầng kỹ thuật sử dụng chung với đường bộ
+2. Chi phí quản lý, vận hành, khai thác, bảo trì công trình hạ tầng kỹ thuật sử dụng chung, các bộ phận lắp đặt công trình khác vào cầu đường bộ, cống cáp, hào, tuy nen kỹ thuật của hầm đường bộ quy định tại khoản 3 Điều 20 Luật Đường bộ được thực hiện theo nguyên tắc quy định tại điểm đ khoản 4 Điều 20 Luật Đường bộ.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT35-2024/D20/K3)
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D20/K3
+
+Điều 20. Xây dựng, quản lý, vận hành, khai thác, bảo trì công trình hạ tầng kỹ thuật sử dụng chung với đường bộ
+3. Xây dựng công trình hạ tầng kỹ thuật sử dụng chung với đường bộ được thực hiện đối với các trường hợp sau đây:
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT35-2024/D20/K4/đ)
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D20/K4/đ
+
+Điều 20. Xây dựng, quản lý, vận hành, khai thác, bảo trì công trình hạ tầng kỹ thuật sử dụng chung với đường bộ
+4. Việc quản lý, vận hành, khai thác, bảo trì công trình hạ tầng kỹ thuật sử dụng chung với đường bộ phải bảo đảm các quy định sau đây:
+đ) Tổ chức, cá nhân quy định tại điểm d khoản này, trừ trường hợp phục vụ nhiệm vụ quốc phòng, an ninh, có trách nhiệm đóng góp chi phí để thực hiện vận hành, khai thác, bảo trì công trình hạ tầng kỹ thuật sử dụng chung với đường bộ.
+
+### Nguồn 2
+Văn bản: Luật Đường bộ số 35/2024/QH15
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D20/K3, LUAT35-2024/D20/K3/a, LUAT35-2024/D20/K3/b, LUAT35-2024/D20/K3/c, LUAT35-2024/D20/K3/d
+
+Điều 20. Xây dựng, quản lý, vận hành, khai thác, bảo trì công trình hạ tầng kỹ thuật sử dụng chung với đường bộ
+3. Xây dựng công trình hạ tầng kỹ thuật sử dụng chung với đường bộ được thực hiện đối với các trường hợp sau đây:
+a) Đầu tư xây dựng đường đô thị phải kết hợp với bố trí, xây dựng công trình hạ tầng kỹ thuật sử dụng chung để bảo đảm tính đồng bộ nhằm tiết kiệm tài nguyên đất, tiết kiệm chi phí đầu tư, xây dựng, bảo đảm cảnh quan và môi trường, nâng cao hiệu quả khai thác các công trình và bảo đảm trật tự, an toàn giao thông đường bộ trong giai đoạn vận hành, khai thác, sử dụng đường đô thị;
+b) Đầu tư xây dựng cầu đường bộ phải thiết kế, bố trí vị trí để lắp đặt đường dây thông tin, viễn thông, đường ống cấp nước, đường dây tải điện, dây dẫn điện, trừ dây dẫn điện cao thế và dây dẫn điện không có bộ phận cách điện;
+c) Đầu tư xây dựng hầm đường bộ phải thiết kế, lắp đặt cống cáp, hào hoặc tuy nen kỹ thuật để bố trí, lắp đặt hệ thống phòng cháy, chữa cháy, đường ống cấp nước, thoát nước và các công trình quy định tại điểm b khoản này;
+d) Trường hợp cần thiết khác.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là người mới lái xe, khi tham gia xây dựng đường đô thị, tôi có phải đóng góp chi phí vận hành công trình hạ tầng kỹ thuật sử dụng chung với đường bộ không?
+- Đáp: Bạn phải đóng góp chi phí để thực hiện vận hành, khai thác, bảo trì công trình hạ tầng kỹ thuật sử dụng chung với đường bộ. Điều này được quy định trong Nghị định 165/2024/NĐ-CP, khoản 4đ Điều 20 Luật Đường bộ, và trong Luật Đường bộ, khoản 3a Điều 20.
+- ⚠ chep_nguyen_van: “công trình hạ tầng kỹ thuật …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-da_buoc-009", "question": "Tôi là người mới lái xe, khi tham gia xây dựng đường đô thị, tôi có phải đóng góp chi phí vận hành công trình hạ tầng kỹ thuật sử dụng chung với đường bộ không?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Bạn phải đóng góp chi phí để thực hiện vận hành, khai thác, bảo trì công trình hạ tầng kỹ thuật sử dụng chung với đường bộ. Điều này được quy định trong Nghị định 165/2024/NĐ-CP, khoản 4đ Điều 20 Luật Đường bộ, và trong Luật Đường bộ, khoản 3a Điều 20.", "gold_units": ["ND165-2024/D19/K2", "LUAT35-2024/D20/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-009:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi muốn xây dựng cầu đường bộ, cần lắp đặt đường dây thông tin, viễn thông, đường ống cấp nước, đường dây tải điện, dây dẫn điện, trừ dây dẫn điện cao thế và dây dẫn điện không có bộ phận cách điện, tôi có phải đóng góp chi phí vận hành công trình hạ tầng kỹ thuật?
+- Đáp: Bạn phải đóng góp chi phí để thực hiện vận hành, khai thác, bảo trì công trình hạ tầng kỹ thuật sử dụng chung với đường bộ. Điều này được quy định trong Nghị định 165/2024/NĐ-CP, khoản 4đ Điều 20 Luật Đường bộ, và trong Luật Đường bộ, khoản 3b Điều 20.
+- ⚠ qua_dai (58 từ); chep_nguyen_van: “cao thế và dây dẫn điện …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-da_buoc-009", "question": "Tôi muốn xây dựng cầu đường bộ, cần lắp đặt đường dây thông tin, viễn thông, đường ống cấp nước, đường dây tải điện, dây dẫn điện, trừ dây dẫn điện cao thế và dây dẫn điện không có bộ phận cách điện, tôi có phải đóng góp chi phí vận hành công trình hạ tầng kỹ thuật?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Bạn phải đóng góp chi phí để thực hiện vận hành, khai thác, bảo trì công trình hạ tầng kỹ thuật sử dụng chung với đường bộ. Điều này được quy định trong Nghị định 165/2024/NĐ-CP, khoản 4đ Điều 20 Luật Đường bộ, và trong Luật Đường bộ, khoản 3b Điều 20.", "gold_units": ["ND165-2024/D19/K2", "LUAT35-2024/D20/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-009:2"}
+```
+
+### W4-da_buoc-010 · tier B · vai: tài xế xe tải · kiểu: tinh_huong_ban_than · DAN_CHIEU → QD19-2024-TTG/D4/K1/đ
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Quyết định số 19/2024/QĐ-TTg (Quy định lộ trình áp dụng mức tiêu chuẩn khí thải đối với xe cơ giới nhập khẩu và sản xuất, lắp ráp)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: QD19-2024-TTG/D6/K1, QD19-2024-TTG/D6/K1/a, QD19-2024-TTG/D6/K1/b
+
+Điều 6. Điều khoản chuyển tiếp
+1. Đối với các kiểu loại xe cơ giới sản xuất, lắp ráp
+a) Các kiểu loại xe cơ giới sản xuất, lắp ráp đã được chứng nhận chất lượng an toàn kỹ thuật và bảo vệ môi trường trước thời điểm áp dụng mức tiêu chuẩn khí thải theo quy định tại điểm a, điểm b, điểm c khoản 1 Điều 4 Quyết định này được tiếp tục sản xuất, lắp ráp theo hiệu lực của giấy chứng nhận đã cấp;
+b) Các kiểu loại xe cơ giới sản xuất, lắp ráp đã được chứng nhận chất lượng an toàn kỹ thuật và bảo vệ môi trường trước thời điểm áp dụng mức tiêu chuẩn khí thải theo quy định tại điểm d, điểm đ, điểm e, điểm g khoản 1 Điều 4 Quyết định này được tiếp tục sản xuất, lắp ráp theo hiệu lực của giấy chứng nhận đã cấp hoặc sau 12 tháng kể từ ngày mức tiêu chuẩn khí thải có hiệu lực, tùy theo điều kiện nào đến trước.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (QD19-2024-TTG/D4/K1/a)
+Mã điều khoản dùng được cho gold_units: QD19-2024-TTG/D4/K1/a
+
+Điều 4. Lộ trình áp dụng mức tiêu chuẩn khí thải
+1. Lộ trình áp dụng mức tiêu chuẩn khí thải đối với xe cơ giới nhập khẩu mới và sản xuất, lắp ráp
+a) Xe ô tô nhập khẩu mới và sản xuất, lắp ráp tiếp tục áp dụng tiêu chuẩn khí thải Mức 5 quy định tại khoản 1 Điều 3 Quyết định này từ ngày 01 tháng 01 năm 2025;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (QD19-2024-TTG/D4/K1/b)
+Mã điều khoản dùng được cho gold_units: QD19-2024-TTG/D4/K1/b
+
+Điều 4. Lộ trình áp dụng mức tiêu chuẩn khí thải
+1. Lộ trình áp dụng mức tiêu chuẩn khí thải đối với xe cơ giới nhập khẩu mới và sản xuất, lắp ráp
+b) Xe gắn máy hai bánh nhập khẩu mới và sản xuất, lắp ráp tiếp tục áp dụng tiêu chuẩn khí thải Mức 2 quy định tại khoản 1 Điều 3 Quyết định này từ ngày 01 tháng 01 năm 2025 đến hết ngày 30 tháng 6 năm 2027;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (QD19-2024-TTG/D4/K1/c)
+Mã điều khoản dùng được cho gold_units: QD19-2024-TTG/D4/K1/c
+
+Điều 4. Lộ trình áp dụng mức tiêu chuẩn khí thải
+1. Lộ trình áp dụng mức tiêu chuẩn khí thải đối với xe cơ giới nhập khẩu mới và sản xuất, lắp ráp
+c) Xe mô tô hai bánh nhập khẩu mới và sản xuất, lắp ráp tiếp tục áp dụng tiêu chuẩn khí thải Mức 3 quy định tại khoản 1 Điều 3 Quyết định này từ ngày 01 tháng 01 năm 2025 đến hết ngày 30 tháng 6 năm 2026;
+
+### Nguồn 2
+Văn bản: Quyết định số 19/2024/QĐ-TTg (Quy định lộ trình áp dụng mức tiêu chuẩn khí thải đối với xe cơ giới nhập khẩu và sản xuất, lắp ráp)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: QD19-2024-TTG/D4/K1, QD19-2024-TTG/D4/K1/a, QD19-2024-TTG/D4/K1/b, QD19-2024-TTG/D4/K1/c, QD19-2024-TTG/D4/K1/d, QD19-2024-TTG/D4/K1/đ, QD19-2024-TTG/D4/K1/e, QD19-2024-TTG/D4/K1/g
+
+Điều 4. Lộ trình áp dụng mức tiêu chuẩn khí thải
+1. Lộ trình áp dụng mức tiêu chuẩn khí thải đối với xe cơ giới nhập khẩu mới và sản xuất, lắp ráp
+a) Xe ô tô nhập khẩu mới và sản xuất, lắp ráp tiếp tục áp dụng tiêu chuẩn khí thải Mức 5 quy định tại khoản 1 Điều 3 Quyết định này từ ngày 01 tháng 01 năm 2025;
+b) Xe gắn máy hai bánh nhập khẩu mới và sản xuất, lắp ráp tiếp tục áp dụng tiêu chuẩn khí thải Mức 2 quy định tại khoản 1 Điều 3 Quyết định này từ ngày 01 tháng 01 năm 2025 đến hết ngày 30 tháng 6 năm 2027;
+c) Xe mô tô hai bánh nhập khẩu mới và sản xuất, lắp ráp tiếp tục áp dụng tiêu chuẩn khí thải Mức 3 quy định tại khoản 1 Điều 3 Quyết định này từ ngày 01 tháng 01 năm 2025 đến hết ngày 30 tháng 6 năm 2026;
+d) Xe gắn máy hai bánh nhập khẩu mới và sản xuất, lắp ráp áp dụng tiêu chuẩn khí thải Mức 4 quy định tại khoản 1 Điều 3 Quyết định này từ ngày 01 tháng 7 năm 2027;
+đ) Xe mô tô hai bánh nhập khẩu mới và sản xuất, lắp ráp áp dụng tiêu chuẩn khí thải Mức 4 quy định tại khoản 1 Điều 3 Quyết định này từ ngày 01 tháng 7 năm 2026;
+e) Xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ nhập khẩu mới và sản xuất, lắp ráp áp dụng mức tiêu chuẩn khí thải bằng “0” quy định tại khoản 3 Điều 3 Quyết định này từ ngày 01 tháng 01 năm 2026;
+g) Xe mô tô ba bánh, xe gắn máy ba bánh nhập khẩu mới và sản xuất, lắp ráp áp dụng mức tiêu chuẩn khí thải bằng “0” quy định tại khoản 3 Điều 3 Quyết định này từ ngày 01 tháng 01 năm 2026.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (QD19-2024-TTG/D3/K1)
+Mã điều khoản dùng được cho gold_units: QD19-2024-TTG/D3/K1
+
+Điều 3. Giải thích từ ngữ
+1. Mức tiêu chuẩn khí thải (Mức 2, Mức 3, Mức 4 và Mức 5) đối với xe nhập khẩu mới và sản xuất, lắp ráp quy định tại Quyết định này là các mức tiêu chuẩn khí thải tương ứng với các mức tiêu chuẩn khí thải (Euro 2, Euro 3, Euro 4 và Euro 5) của Ủy ban kinh tế châu Âu của Liên Hợp quốc (UNECE) và Chỉ thị của Liên minh Châu Âu (EC) về phê duyệt kiểu loại xe cơ giới.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (QD19-2024-TTG/D3/K3)
+Mã điều khoản dùng được cho gold_units: QD19-2024-TTG/D3/K3
+
+Điều 3. Giải thích từ ngữ
+3. Mức tiêu chuẩn khí thải bằng “0” quy định tại Quyết định này là mức thể hiện khí thải phát sinh từ động cơ của xe cơ giới không có các chất gây ô nhiễm đã được quy định giới hạn trong các mức tiêu chuẩn khí thải nêu tại khoản 1, khoản 2 của Điều này.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Xe tải nhập khẩu mới của công ty tôi đã được chứng nhận an toàn kỹ thuật trước ngày áp dụng tiêu chuẩn khí thải, tôi có thể tiếp tục sản xuất và lắp ráp xe này trong vòng 12 tháng kể từ ngày hiệu lực tiêu chuẩn hay phải chờ giấy chứng nhận mới?
+- Đáp: Bạn có thể tiếp tục sản xuất và lắp ráp xe tải trong vòng 12 tháng kể từ ngày hiệu lực tiêu chuẩn khí thải. Tiêu chuẩn khí thải áp dụng là Mức 5 bắt đầu từ ngày 01/01/2025.
+- ⚠ qua_dai (55 từ); chep_nguyen_van: “áp dụng tiêu chuẩn khí thải …”
+- Ghi chú: Giả định xe tải nhập khẩu mới, đã có chứng nhận an toàn kỹ thuật trước ngày 01/01/2025.
+
+```json
+{"qid": "t4-da_buoc-010", "question": "Xe tải nhập khẩu mới của công ty tôi đã được chứng nhận an toàn kỹ thuật trước ngày áp dụng tiêu chuẩn khí thải, tôi có thể tiếp tục sản xuất và lắp ráp xe này trong vòng 12 tháng kể từ ngày hiệu lực tiêu chuẩn hay phải chờ giấy chứng nhận mới?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Bạn có thể tiếp tục sản xuất và lắp ráp xe tải trong vòng 12 tháng kể từ ngày hiệu lực tiêu chuẩn khí thải. Tiêu chuẩn khí thải áp dụng là Mức 5 bắt đầu từ ngày 01/01/2025.", "gold_units": ["QD19-2024-TTG/D6/K1", "QD19-2024-TTG/D4/K1/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-010:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Xe tải nhập khẩu mới của công ty tôi đã được chứng nhận an toàn kỹ thuật sau ngày 01/01/2025, tôi có thể tiếp tục sản xuất và lắp ráp ngay lập tức hay phải chờ 12 tháng?
+- Đáp: Bạn có thể tiếp tục sản xuất và lắp ráp ngay lập tức vì xe đã được chứng nhận an toàn kỹ thuật. Tiêu chuẩn khí thải áp dụng là Mức 5 bắt đầu từ ngày 01/01/2025.
+- Ghi chú: Giả định xe tải nhập khẩu mới, chứng nhận được cấp sau ngày 01/01/2025.
+
+```json
+{"qid": "t4-da_buoc-010", "question": "Xe tải nhập khẩu mới của công ty tôi đã được chứng nhận an toàn kỹ thuật sau ngày 01/01/2025, tôi có thể tiếp tục sản xuất và lắp ráp ngay lập tức hay phải chờ 12 tháng?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Bạn có thể tiếp tục sản xuất và lắp ráp ngay lập tức vì xe đã được chứng nhận an toàn kỹ thuật. Tiêu chuẩn khí thải áp dụng là Mức 5 bắt đầu từ ngày 01/01/2025.", "gold_units": ["QD19-2024-TTG/D6/K1", "QD19-2024-TTG/D4/K1/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-010:2"}
+```
+
+### W4-da_buoc-011 · tier B · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_ban_than · DAN_CHIEU → ND336-2025/D18
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D20/K2
+
+Điều 20. Nguyên tắc xác định thẩm quyền xử phạt vi phạm hành chính và áp dụng biện pháp khắc phục hậu quả
+2. Thẩm quyền xử phạt vi phạm hành chính của những chức danh được quy định tại các Điều 17, 18 và Điều 19 của Nghị định này là thẩm quyền áp dụng đối với một hành vi vi phạm hành chính của cá nhân; trong trường hợp phạt tiền, thẩm quyền xử phạt tổ chức gấp 02 lần thẩm quyền xử phạt cá nhân.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D17)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D17
+
+Điều 17. Thẩm quyền xử phạt của Chủ tịch Ủy ban nhân dân các cấp
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D18)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D18
+
+Điều 18. Thẩm quyền xử phạt của Công an nhân dân
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D19)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D19
+
+Điều 19. Thẩm quyền xử phạt của Cục trưởng Cục Đường bộ Việt Nam, Trưởng đoàn kiểm tra do Bộ trưởng Bộ Xây dựng thành lập, Giám đốc Sở Xây dựng, Trưởng đoàn kiểm tra do Cục trưởng Cục Đường bộ Việt Nam thành lập và Giám đốc Khu Quản lý đường bộ thuộc Cục Đường bộ Việt Nam
+
+### Nguồn 2
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D18/K1, ND336-2025/D18/K1/a, ND336-2025/D18/K1/b
+
+Điều 18. Thẩm quyền xử phạt của Công an nhân dân
+1. Chiến sĩ Công an nhân dân đang thi hành công vụ có quyền:
+a) Phạt cảnh cáo;
+b) Phạt tiền đến 7.500.000 đồng.
+
+### Nguồn 3
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D18/K2, ND336-2025/D18/K2/a, ND336-2025/D18/K2/b, ND336-2025/D18/K2/c
+
+Điều 18. Thẩm quyền xử phạt của Công an nhân dân
+2. Thủ trưởng đơn vị Cảnh sát cơ động cấp đại đội có quyền:
+a) Phạt cảnh cáo;
+b) Phạt tiền đến 15.000.000 đồng;
+c) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 3 của Nghị định này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D3)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D3
+
+Điều 3. Mức phạt tiền, hình thức xử phạt vi phạm hành chính, biện pháp khắc phục hậu quả và nguyên tắc áp dụng
+
+### Nguồn 4
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D18/K3, ND336-2025/D18/K3/a, ND336-2025/D18/K3/b, ND336-2025/D18/K3/c, ND336-2025/D18/K3/d
+
+Điều 18. Thẩm quyền xử phạt của Công an nhân dân
+3. Trưởng đồn Công an, Thủ trưởng đơn vị Cảnh sát cơ động cấp tiểu đoàn, Trưởng trạm, Đội trưởng có quyền:
+a) Phạt cảnh cáo;
+b) Phạt tiền đến 22.500.000 đồng;
+c) Tước quyền sử dụng giấy phép có thời hạn hoặc đình chỉ hoạt động có thời hạn;
+d) Áp dụng biện pháp khắc phục hậu quả quy định tại Điều 3 của Nghị định này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D3)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D3
+
+Điều 3. Mức phạt tiền, hình thức xử phạt vi phạm hành chính, biện pháp khắc phục hậu quả và nguyên tắc áp dụng
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi có con 15 tuổi, anh ấy vi phạm giao thông khi lái xe ô tô, ai có thẩm quyền xử phạt và mức phạt tối đa?
+- Đáp: Nếu con bạn vi phạm giao thông khi lái xe ô tô, thẩm quyền xử phạt thuộc Chủ tịch Ủy ban nhân dân các cấp, Công an nhân dân và Cục trưởng Cục Đường bộ Việt Nam. Mức phạt tiền tối đa là 7.500.000 đồng theo quy định của Công an nhân dân cấp đơn vị cơ động, 15.000.000 đồng theo quy định của Thủ trưởng đơn vị Cảnh sát cơ động cấp đại đội, và 22.500.000 đồng theo quy định của Trưởng đồn, Thủ trưởng đơn vị Cảnh sát cơ động cấp tiểu đoàn, Trưởng trạm, Đội trưởng.
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-da_buoc-011", "question": "Tôi có con 15 tuổi, anh ấy vi phạm giao thông khi lái xe ô tô, ai có thẩm quyền xử phạt và mức phạt tối đa?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Nếu con bạn vi phạm giao thông khi lái xe ô tô, thẩm quyền xử phạt thuộc Chủ tịch Ủy ban nhân dân các cấp, Công an nhân dân và Cục trưởng Cục Đường bộ Việt Nam. Mức phạt tiền tối đa là 7.500.000 đồng theo quy định của Công an nhân dân cấp đơn vị cơ động, 15.000.000 đồng theo quy định của Thủ trưởng đơn vị Cảnh sát cơ động cấp đại đội, và 22.500.000 đồng theo quy định của Trưởng đồn, Thủ trưởng đơn vị Cảnh sát cơ động cấp tiểu đoàn, Trưởng trạm, Đội trưởng.", "gold_units": ["ND336-2025/D20/K2", "ND336-2025/D18/K1", "ND336-2025/D18/K2", "ND336-2025/D18/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-011:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi có con 17 tuổi, anh ấy vi phạm giao thông khi lái xe ô tô, ai có thẩm quyền áp dụng biện pháp khắc phục hậu quả?
+- Đáp: Nếu con bạn vi phạm giao thông khi lái xe ô tô, thẩm quyền áp dụng biện pháp khắc phục hậu quả thuộc Thủ trưởng đơn vị Cảnh sát cơ động cấp đại đội, Trưởng đồn, Thủ trưởng đơn vị Cảnh sát cơ động cấp tiểu đoàn, Trưởng trạm, Đội trưởng. Các cơ quan này có thể áp dụng biện pháp khắc phục hậu quả theo Điều 3 của Nghị định 336/2025/NĐ-CP.
+- ⚠ chep_nguyen_van: “biện pháp khắc phục hậu quả …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-da_buoc-011", "question": "Tôi có con 17 tuổi, anh ấy vi phạm giao thông khi lái xe ô tô, ai có thẩm quyền áp dụng biện pháp khắc phục hậu quả?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Nếu con bạn vi phạm giao thông khi lái xe ô tô, thẩm quyền áp dụng biện pháp khắc phục hậu quả thuộc Thủ trưởng đơn vị Cảnh sát cơ động cấp đại đội, Trưởng đồn, Thủ trưởng đơn vị Cảnh sát cơ động cấp tiểu đoàn, Trưởng trạm, Đội trưởng. Các cơ quan này có thể áp dụng biện pháp khắc phục hậu quả theo Điều 3 của Nghị định 336/2025/NĐ-CP.", "gold_units": ["ND336-2025/D20/K2", "ND336-2025/D18/K2/c", "ND336-2025/D18/K3/c"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-011:2"}
+```
+
+### W4-da_buoc-012 · tier B · vai: người lớn tuổi đi xe đạp điện · kiểu: tinh_huong_ban_than · DAN_CHIEU → LUAT35-2024/D48
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D55/K1, ND165-2024/D55/K1/a, ND165-2024/D55/K1/b
+
+Điều 55. Lộ trình đầu tư xây dựng đối với đường cao tốc chưa đáp ứng tiêu chuẩn, quy chuẩn kỹ thuật theo khoản 1 Điều 45 Luật Đường bộ, đường gom, đường bên, Trung tâm quản lý, điều hành giao thông tuyến đường cao tốc, công trình kiểm soát tải trọng xe, hệ thống thu phí điện tử không dừng
+1. Đối với công trình đường cao tốc chưa đáp ứng tiêu chuẩn, quy chuẩn kỹ thuật theo khoản 1 Điều 45 Luật Đường bộ
+a) Đối với dự án đường bộ cao tốc đầu tư theo hình thức đầu tư công và đường cao tốc do doanh nghiệp nhà nước đầu tư: căn cứ nhu cầu, chủ đầu tư hoặc người quản lý, sử dụng đường cao tốc báo cáo cấp có thẩm quyền bố trí vốn để tổ chức đầu tư đáp ứng tiêu chuẩn, quy chuẩn kỹ thuật;
+b) Đối với dự án đường bộ cao tốc đầu tư theo phương thức đối tác công tư: căn cứ nhu cầu, cơ quan có thẩm quyền tổ chức thực hiện theo Điều 48 Luật Đường bộ và quy định tại Nghị định này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT35-2024/D45/K1)
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D45/K1
+
+Điều 45. Quy chuẩn, tiêu chuẩn kỹ thuật, ứng dụng khoa học và công nghệ đối với đường cao tốc
+1. Đường cao tốc được thiết kế theo quy chuẩn, tiêu chuẩn kỹ thuật về đường cao tốc và các quy chuẩn, tiêu chuẩn kỹ thuật khác có liên quan.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT35-2024/D48)
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D48
+
+Điều 48. Mở rộng, nâng cấp đường cao tốc hoặc đường bộ đang khai thác nâng cấp thành đường cao tốc
+
+### Nguồn 2
+Văn bản: Luật Đường bộ số 35/2024/QH15
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D48/K1
+
+Điều 48. Mở rộng, nâng cấp đường cao tốc hoặc đường bộ đang khai thác nâng cấp thành đường cao tốc
+1. Việc mở rộng, nâng cấp đường cao tốc hoặc đường bộ đang khai thác nâng cấp thành đường cao tốc được thực hiện để đáp ứng yêu cầu vận tải, phục vụ phát triển kinh tế - xã hội, vì lợi ích quốc gia, bảo đảm yêu cầu về quốc phòng, an ninh và phù hợp với quy hoạch đã được cấp có thẩm quyền phê duyệt.
+
+### Nguồn 3
+Văn bản: Luật Đường bộ số 35/2024/QH15
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D48/K2, LUAT35-2024/D48/K2/a, LUAT35-2024/D48/K2/b
+
+Điều 48. Mở rộng, nâng cấp đường cao tốc hoặc đường bộ đang khai thác nâng cấp thành đường cao tốc
+2. Đối với dự án đã được đầu tư theo phương thức đối tác công tư đang trong giai đoạn thực hiện hợp đồng dự án, cơ quan ký kết hợp đồng thỏa thuận với nhà đầu tư về việc mở rộng, nâng cấp đường cao tốc hoặc đường bộ đang khai thác nâng cấp thành đường cao tốc theo một trong các phương án sau đây:
+a) Nhà đầu tư đề xuất điều chỉnh dự án đầu tư để mở rộng, nâng cấp;
+b) Nhà nước tổ chức lập dự án đầu tư mở rộng, nâng cấp theo phương thức đối tác công tư hoặc đầu tư công, trừ trường hợp trùng lặp với dự án đầu tư theo phương thức đối tác công tư đã có quyết định chủ trương đầu tư hoặc quyết định dự án hoặc trùng lặp với dự án đầu tư công đã có quyết định chủ trương đầu tư hoặc đã có quyết định đầu tư theo quy định của pháp luật về đầu tư theo phương thức đối tác công tư, pháp luật về đầu tư công.
+
+### Nguồn 4
+Văn bản: Luật Đường bộ số 35/2024/QH15
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D48/K3
+
+Điều 48. Mở rộng, nâng cấp đường cao tốc hoặc đường bộ đang khai thác nâng cấp thành đường cao tốc
+3. Trường hợp thỏa thuận được với nhà đầu tư, cơ quan có thẩm quyền thực hiện thủ tục điều chỉnh chủ trương đầu tư, dự án đầu tư theo quy định của Luật Đầu tư theo phương thức đối tác công tư và tổ chức đàm phán với nhà đầu tư hiện hữu để điều chỉnh hợp đồng.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi đang đi xe đạp điện trên đường X, liệu đường này có được mở rộng thành đường cao tốc và dự án đó có được thực hiện theo hình thức đầu tư công hay đối tác công tư?
+- Đáp: Đường X có thể được mở rộng thành đường cao tốc. Nếu dự án được thực hiện theo hình thức đầu tư công, chủ đầu tư hoặc người quản lý sẽ bố trí vốn để đáp ứng tiêu chuẩn, quy chuẩn kỹ thuật. Nếu dự án được thực hiện theo phương thức đối tác công tư, cơ quan có thẩm quyền sẽ thực hiện theo Điều 48 Luật Đường bộ và quy định tại Nghị định 165/2024/NĐ-CP.
+- ⚠ chep_nguyen_van: “theo hình thức đầu tư công …”
+- Ghi chú: Giả định đường X đang được xem xét nâng cấp
+
+```json
+{"qid": "t4-da_buoc-012", "question": "Tôi đang đi xe đạp điện trên đường X, liệu đường này có được mở rộng thành đường cao tốc và dự án đó có được thực hiện theo hình thức đầu tư công hay đối tác công tư?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Đường X có thể được mở rộng thành đường cao tốc. Nếu dự án được thực hiện theo hình thức đầu tư công, chủ đầu tư hoặc người quản lý sẽ bố trí vốn để đáp ứng tiêu chuẩn, quy chuẩn kỹ thuật. Nếu dự án được thực hiện theo phương thức đối tác công tư, cơ quan có thẩm quyền sẽ thực hiện theo Điều 48 Luật Đường bộ và quy định tại Nghị định 165/2024/NĐ-CP.", "gold_units": ["ND165-2024/D55/K1", "LUAT35-2024/D48"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-012:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi đang đi xe đạp điện trên đường Y, đường này chưa đáp ứng tiêu chuẩn, liệu có thể được nâng cấp thành đường cao tốc và dự án đó sẽ được thực hiện theo hình thức đầu tư công hay đối tác công tư?
+- Đáp: Đường Y chưa đáp ứng tiêu chuẩn, nhưng có thể được nâng cấp thành đường cao tốc. Nếu dự án được thực hiện theo hình thức đầu tư công, chủ đầu tư hoặc người quản lý sẽ bố trí vốn để đáp ứng tiêu chuẩn, quy chuẩn kỹ thuật. Nếu dự án được thực hiện theo phương thức đối tác công tư, cơ quan có thẩm quyền sẽ thực hiện theo Điều 48 Luật Đường bộ và quy định tại Nghị định 165/2024/NĐ-CP.
+- ⚠ chep_nguyen_van: “nâng cấp thành đường cao tốc …”
+- Ghi chú: Giả định đường Y đang chưa đáp ứng tiêu chuẩn
+
+```json
+{"qid": "t4-da_buoc-012", "question": "Tôi đang đi xe đạp điện trên đường Y, đường này chưa đáp ứng tiêu chuẩn, liệu có thể được nâng cấp thành đường cao tốc và dự án đó sẽ được thực hiện theo hình thức đầu tư công hay đối tác công tư?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "B", "answer": "Đường Y chưa đáp ứng tiêu chuẩn, nhưng có thể được nâng cấp thành đường cao tốc. Nếu dự án được thực hiện theo hình thức đầu tư công, chủ đầu tư hoặc người quản lý sẽ bố trí vốn để đáp ứng tiêu chuẩn, quy chuẩn kỹ thuật. Nếu dự án được thực hiện theo phương thức đối tác công tư, cơ quan có thẩm quyền sẽ thực hiện theo Điều 48 Luật Đường bộ và quy định tại Nghị định 165/2024/NĐ-CP.", "gold_units": ["ND165-2024/D55/K1", "LUAT35-2024/D48"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-012:2"}
+```
+
+### W4-da_buoc-013 · tier C · vai: người mới học lái ô tô · kiểu: ngan · DAN_CHIEU → TT72-2024-BCA/D5
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D4/K7
+
+Điều 4. Tổ chức tiếp nhận tin báo về tai nạn giao thông đường bộ
+7. Tiếp nhận tin báo về tai nạn giao thông đường bộ thông qua phần mềm ứng dụng do Cảnh sát giao thông quản lý, sử dụng
+Cán bộ được giao nhiệm vụ trực, khai thác trên phần mềm tiếp nhận, xử lý thông tin từ phần mềm ứng dụng do Cảnh sát giao thông quản lý, sử dụng, phải xem xét, phân loại, nếu bảo đảm các yêu cầu thông tin khi có vụ tai nạn giao thông đường bộ xảy ra thì lưu trữ trong phần mềm và báo cáo lãnh đạo, chỉ huy có thẩm quyền tổ chức xác minh và xử lý tin báo theo quy định tại Điều 5 Thông tư này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT72-2024-BCA/D5)
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D5
+
+Điều 5. Xử lý tin báo về tai nạn giao thông đường bộ
+
+### Nguồn 2
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-02-28
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D5/K3
+
+Điều 5. Xử lý tin báo về tai nạn giao thông đường bộ
+3. Lãnh đạo trực chỉ huy thuộc Công an cấp huyện nhận được tin báo về tai nạn giao thông đường bộ thì xử lý như sau:
+a) Nếu tin báo vụ tai nạn giao thông đường bộ xảy ra trên tuyến, địa bàn được giao nhiệm vụ tuần tra, kiểm soát, xử lý vi phạm phải cử cán bộ Cảnh sát giao thông đến ngay hiện trường để kiểm tra, xác minh tin báo vụ tai nạn giao thông đường bộ, nếu có vụ tai nạn giao thông đường bộ xảy ra thì thực hiện nhiệm vụ điều tra, xác minh, giải quyết theo quy định;
+b) Trường hợp vụ tai nạn giao thông đường bộ xảy ra trên tuyến được giao nhiệm vụ tuần tra, kiểm soát, xử lý vi phạm thuộc Cục Cảnh sát giao thông hoặc Phòng Cảnh sát giao thông Công an cấp tỉnh hoặc thuộc địa bàn của Công an cấp huyện khác thì thông báo cho trực ban đơn vị được giao nhiệm vụ tuần tra, kiểm soát, xử lý vi phạm trên tuyến hoặc địa bàn xảy ra vụ tai nạn giao thông đường bộ biết để thực hiện nhiệm vụ điều tra, xác minh, giải quyết theo thẩm quyền và phối hợp điều tra, xác minh, giải quyết vụ tai nạn giao thông đường bộ theo quy định.
+
+### Nguồn 3
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-03-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D5/K1, TT72-2024-BCA/D5/K1/a, TT72-2024-BCA/D5/K1/b
+
+Điều 5. Xử lý tin báo về tai nạn giao thông đường bộ
+1. Lãnh đạo trực chỉ huy thuộc Cục Cảnh sát giao thông nhận được tin báo về tai nạn giao thông đường bộ thì xử lý như sau:
+a) Nếu tin báo vụ tai nạn giao thông đường bộ xảy ra trên tuyến được giao nhiệm vụ tuần tra, kiểm soát, xử lý vi phạm phải cử cán bộ Cảnh sát giao thông đến ngay hiện trường để xác minh có xảy ra vụ tai nạn giao thông đường bộ hay không; trường hợp có vụ tai nạn giao thông đường bộ xảy ra thì tùy theo tính chất, mức độ của vụ tai nạn giao thông đường bộ để chỉ đạo, bố trí lực lượng tham gia, phối hợp cứu nạn, cứu hộ, hạn chế thiệt hại do vụ tai nạn giao thông đường bộ gây ra; bảo vệ hiện trường, khám nghiệm hiện trường, phân luồng điều tiết giao thông, phòng ngừa, giải quyết ùn tắc, đồng thời cảnh báo cho các phương tiện tham gia giao thông khác những mối nguy hiểm khi lưu thông qua khu vực hiện trường. Thông báo cho Phòng Cảnh sát giao thông nơi xảy ra vụ tai nạn giao thông đường bộ biết hoặc yêu cầu phối hợp điều tra, xác minh, giải quyết vụ tai nạn giao thông đường bộ theo quy định;
+b) Nếu tin báo vụ tai nạn giao thông đường bộ không xảy ra trên tuyến được giao nhiệm vụ tuần tra, kiểm soát, xử lý vi phạm thì thông báo cho trực ban Phòng Cảnh sát giao thông để thực hiện nhiệm vụ theo quy định của Thông tư này.
+
+### Nguồn 4
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-03-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D5/K2, TT72-2024-BCA/D5/K2/a, TT72-2024-BCA/D5/K2/b
+
+Điều 5. Xử lý tin báo về tai nạn giao thông đường bộ
+2. Lãnh đạo trực chỉ huy thuộc Phòng Cảnh sát giao thông Công an cấp tỉnh nhận được tin báo về tai nạn giao thông đường bộ thì xử lý như sau:
+a) Nếu tin báo vụ tai nạn giao thông đường bộ xảy ra trên tuyến được giao nhiệm vụ tuần tra, kiểm soát, xử lý vi phạm thì thực hiện theo quy định tại điểm a khoản 1 Điều này;
+b) Nếu tin báo vụ tai nạn giao thông đường bộ không xảy ra trên tuyến được giao nhiệm vụ tuần tra, kiểm soát, xử lý vi phạm thì thông báo cho trực ban Cục Cảnh sát giao thông để thực hiện nhiệm vụ theo quy định của Thông tư này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT72-2024-BCA/D5/K1/a)
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D5/K1/a
+
+Điều 5. Xử lý tin báo về tai nạn giao thông đường bộ
+1. Lãnh đạo trực chỉ huy thuộc Cục Cảnh sát giao thông nhận được tin báo về tai nạn giao thông đường bộ thì xử lý như sau:
+a) Nếu tin báo vụ tai nạn giao thông đường bộ xảy ra trên tuyến được giao nhiệm vụ tuần tra, kiểm soát, xử lý vi phạm phải cử cán bộ Cảnh sát giao thông đến ngay hiện trường để xác minh có xảy ra vụ tai nạn giao thông đường bộ hay không; trường hợp có vụ tai nạn giao thông đường bộ xảy ra thì tùy theo tính chất, mức độ của vụ tai nạn giao thông đường bộ để chỉ đạo, bố trí lực lượng tham gia, phối hợp cứu nạn, cứu hộ, hạn chế thiệt hại do vụ tai nạn giao thông đường bộ gây ra; bảo vệ hiện trường, khám nghiệm hiện trường, phân luồng điều tiết giao thông, phòng ngừa, giải quyết ùn tắc, đồng thời cảnh báo cho các phương tiện tham gia giao thông khác những mối nguy hiểm khi lưu thông qua khu vực hiện trường. Thông báo cho Phòng Cảnh sát giao thông nơi xảy ra vụ tai nạn giao thông đường bộ biết hoặc yêu cầu phối hợp điều tra, xác minh, giải quyết vụ tai nạn giao thông đường bộ theo quy định;
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Khi tôi nhận được báo cáo tai nạn qua phần mềm của Cảnh sát giao thông, tôi phải làm gì ngay sau khi nhận được thông tin?
+- Đáp: Bạn phải xem xét, phân loại thông tin, lưu trữ trong phần mềm và báo cáo lãnh đạo, chỉ huy có thẩm quyền để tổ chức xác minh và xử lý tin báo. (Điều 4 khoản 7 và Điều 5 của Thông tư 72/2024/TT-BCA)
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-da_buoc-013", "question": "Khi tôi nhận được báo cáo tai nạn qua phần mềm của Cảnh sát giao thông, tôi phải làm gì ngay sau khi nhận được thông tin?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "C", "answer": "Bạn phải xem xét, phân loại thông tin, lưu trữ trong phần mềm và báo cáo lãnh đạo, chỉ huy có thẩm quyền để tổ chức xác minh và xử lý tin báo. (Điều 4 khoản 7 và Điều 5 của Thông tư 72/2024/TT-BCA)", "gold_units": ["TT72-2024-BCA/D4/K7", "TT72-2024-BCA/D5"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-013:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu tin báo tai nạn được gửi tới lãnh đạo trực chỉ huy cấp huyện, họ phải thực hiện những bước nào?
+- Đáp: Lãnh đạo trực chỉ huy cấp huyện phải cử cán bộ Cảnh sát giao thông đến hiện trường để kiểm tra, xác minh tin báo. Nếu tai nạn xảy ra, họ thực hiện nhiệm vụ điều tra, xác minh, giải quyết theo quy định. (Điều 5 khoản 3 a của Thông tư 72/2024/TT-BCA)
+- ⚠ da_buoc_it_hon_2_gold
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-da_buoc-013", "question": "Nếu tin báo tai nạn được gửi tới lãnh đạo trực chỉ huy cấp huyện, họ phải thực hiện những bước nào?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "C", "answer": "Lãnh đạo trực chỉ huy cấp huyện phải cử cán bộ Cảnh sát giao thông đến hiện trường để kiểm tra, xác minh tin báo. Nếu tai nạn xảy ra, họ thực hiện nhiệm vụ điều tra, xác minh, giải quyết theo quy định. (Điều 5 khoản 3 a của Thông tư 72/2024/TT-BCA)", "gold_units": ["TT72-2024-BCA/D5/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-013:2"}
+```
+
+### W4-da_buoc-014 · tier C · vai: chủ doanh nghiệp vận tải · kiểu: ngan · DAN_CHIEU → TT72-2024-BCA/D22
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-03-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D16/K2, TT72-2024-BCA/D16/K2/a
+
+Điều 16. Xem xét kết quả điều tra, xác minh vụ tai nạn giao thông đường bộ
+2. Vụ tai nạn giao thông đường bộ có dấu hiệu tội phạm
+a) Cán bộ Cảnh sát giao thông thuộc Cục Cảnh sát giao thông phải báo cáo Cục trưởng, cán bộ Cảnh sát giao thông thuộc Phòng Cảnh sát giao thông Công an cấp tỉnh phải báo cáo Trưởng phòng để chỉ đạo việc điều tra, giải quyết vụ tai nạn giao thông đường bộ theo Điều 22 Thông tư này;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT72-2024-BCA/D22)
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D22
+
+Điều 22. Trường hợp giải quyết vụ tai nạn giao thông đường bộ phát hiện có dấu hiệu tội phạm theo chức năng của Cơ quan được giao nhiệm vụ tiến hành một số hoạt động điều tra
+
+### Nguồn 2
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D22/K1, TT72-2024-BCA/D22/K1/a, TT72-2024-BCA/D22/K1/b, TT72-2024-BCA/D22/K1/c
+
+Điều 22. Trường hợp giải quyết vụ tai nạn giao thông đường bộ phát hiện có dấu hiệu tội phạm theo chức năng của Cơ quan được giao nhiệm vụ tiến hành một số hoạt động điều tra
+1. Trong quá trình thực hiện việc điều tra, xác minh, giải quyết vụ tai nạn giao thông đường bộ quy định tại điểm b, c khoản 8 Điều 6 Thông tư này nếu phát hiện có dấu hiệu tội phạm mà không thuộc trường hợp phải chuyển Cơ quan điều tra hình sự trong Quân đội nhân dân có thẩm quyền thì cán bộ được phân công điều tra, xác minh, giải quyết vụ tai nạn giao thông đường bộ thuộc Cục Cảnh sát giao thông báo cáo Cục trưởng và cán bộ được phân công điều tra, giải quyết vụ tai nạn giao thông đường bộ thuộc Phòng Cảnh sát giao thông Công an cấp tỉnh báo cáo Trưởng phòng để thực hiện hoặc phân công cấp phó, cán bộ điều tra hoặc thay đổi cấp phó, cán bộ điều tra thực hiện như sau:
+a) Cục Cảnh sát giao thông phối hợp với Viện kiểm sát nhân dân tối cao, Phòng Cảnh sát giao thông Công an cấp tỉnh phối hợp với Viện kiểm sát nhân dân cấp tỉnh tiến hành phân loại nguồn tin tội phạm; xem xét việc quyết định khởi tố hay không khởi tố vụ án hình sự theo quy định pháp luật;
+b) Phối hợp thực hiện trưng cầu giám định, yêu cầu định giá tài sản theo quy định tại khoản 2 Điều 14 Thông tư này và Hướng dẫn liên ngành số 02/HDLN-BCA-VKSNDTC ngày 31 tháng 01 năm 2024 về phối hợp thực hiện thủ tục trưng cầu giám định, yêu cầu định giá tài sản của các cơ quan được giao nhiệm vụ tiến hành một số hoạt động điều tra của Công an nhân dân;
+…
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT72-2024-BCA/D6/K8/b)
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D6/K8/b
+
+Điều 6. Giải quyết ban đầu khi cán bộ Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát phát hiện vụ tai nạn giao thông đường bộ hoặc được phân công đến hiện trường vụ tai nạn giao thông đường bộ
+8. Khi thực hiện nhiệm vụ theo quy định tại các khoản 1, 2, 3, 4, 5, 6 và 7 Điều này
+b) Trường hợp vụ tai nạn giao thông đường bộ không thuộc điểm a Khoản này mà thuộc trách nhiệm điều tra giải quyết của Cục Cảnh sát giao thông và Phòng Cảnh sát giao thông Công an cấp tỉnh nếu xác định vụ tai nạn giao thông đường bộ có khả năng có dấu hiệu tội phạm được quy định tại một trong các điều 260, 261, 262, 263, 264 và 281 Bộ luật hình sự năm 2015 (sửa đổi, bổ sung năm 2017) thì cán bộ của Cục Cảnh sát giao thông phải báo cáo Cục trưởng, cán bộ của Phòng Cảnh sát giao thông Công an cấp tỉnh phải báo cáo Trưởng phòng để thực hiện nhiệm vụ, quyền hạn điều tra theo quy định tại Điều 38 Luật Tổ chức cơ quan điều tra hình sự năm 2015 và Điều 40 Bộ luật tố tụng hình sự năm 2015 (sửa đổi bổ sung năm 2021);
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT72-2024-BCA/D6/K8/c)
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D6/K8/c
+
+Điều 6. Giải quyết ban đầu khi cán bộ Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát phát hiện vụ tai nạn giao thông đường bộ hoặc được phân công đến hiện trường vụ tai nạn giao thông đường bộ
+8. Khi thực hiện nhiệm vụ theo quy định tại các khoản 1, 2, 3, 4, 5, 6 và 7 Điều này
+c) Đối với vụ tai nạn giao thông đường bộ không thuộc trường hợp quy định tại điểm a, b Khoản này thì phân công cán bộ Cảnh sát giao thông tiến hành điều tra, xác minh, giải quyết theo quy định của Thông tư này và pháp luật có liên quan.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT72-2024-BCA/D14/K2)
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D14/K2
+
+Điều 14. Giám định chuyên môn, định giá thiệt hại tài sản
+2. Đối với cán bộ Cảnh sát giao thông thuộc Cục Cảnh sát giao thông hoặc Phòng Cảnh sát giao thông Công an cấp tỉnh trong quá trình xác minh, giải quyết các vụ tai nạn giao thông đường bộ theo nhiệm vụ, quyền hạn điều tra của Cơ quan thuộc lực lượng Cảnh sát trong Công an nhân dân được giao nhiệm vụ tiến hành một số hoạt động điều tra xét thấy cần phải thực hiện thủ tục trưng cầu giám định, yêu cầu định giá tài sản khi thuộc một trong các trường hợp quy định tại Điều 205 hoặc Điều 215 Bộ luật Tố tụng hình sự năm 2015 (sửa đổi, bổ sung năm 2021) thì báo cáo Cục trưởng Cục Cảnh sát giao thông hoặc Trưởng phòng Cảnh sát giao thông Công an cấp tỉnh có Công văn đề nghị Cơ quan Cảnh sát điều tra cùng cấp tiến hành trưng cầu giám định, yêu cầu định giá tài sản theo Mẫu số 15/TNĐB ban hành kèm theo Thông tư này. Trong thời hạn 24 giờ kể từ khi ban hành văn bản đề nghị Cơ quan Cảnh sát điều tra ra Quyết định trưng cầu giám định, yêu cầu định giá tài sản thì Cục Cảnh sát giao thông hoặc Phòng Cảnh sát giao thông phải gửi cho Viện kiểm sát cùng cấp với Cơ quan Cảnh sát điều tra được đề nghị.
+
+### Nguồn 3
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D22/K2, TT72-2024-BCA/D22/K2/a, TT72-2024-BCA/D22/K2/b, TT72-2024-BCA/D22/K2/c, TT72-2024-BCA/D22/K2/d, TT72-2024-BCA/D22/K2/đ, TT72-2024-BCA/D22/K2/e, TT72-2024-BCA/D22/K2/g, TT72-2024-BCA/D22/K2/h
+
+Điều 22. Trường hợp giải quyết vụ tai nạn giao thông đường bộ phát hiện có dấu hiệu tội phạm theo chức năng của Cơ quan được giao nhiệm vụ tiến hành một số hoạt động điều tra
+2. Hồ sơ vụ án tai nạn giao thông đường bộ chuyển cho Cơ quan Cảnh sát điều tra
+a) Các tài liệu dùng cho cơ quan được giao nhiệm vụ tiến hành một số hoạt động điều tra được ban hành kèm theo Thông tư số 119/2021/TT-BCA ngày ngày 08 tháng 12 năm 2021 của Bộ trưởng Bộ Công an quy định biểu mẫu, giấy tờ, sổ sách về điều tra hình sự;
+b) Biên bản khám nghiệm hiện trường vụ tai nạn giao thông đường bộ; Sơ đồ hiện trường vụ tai nạn giao thông đường bộ; Bản ảnh hiện trường; thiết bị lưu trữ hình ảnh động (nếu có);
+c) Biên bản khám nghiệm phương tiện; Biên bản tạm giữ tang vật, phương tiện; quyết định tạm giữ tang vật, phương tiện; các giấy tờ của phương tiện, người điều khiển phương tiện và hàng hóa trên phương tiện (nếu có);
+d) Biên bản ghi lời khai và bản tường trình của những người có liên quan trong vụ tai nạn giao thông đường bộ;
+đ) Biên bản ghi nhận dấu vết trên thân thể người bị nạn, Sơ đồ vị trí dấu vết thương tích trên cơ thể người bị nạn, Biên bản về việc dựng lại hiện trường vụ tai nạn giao thông đường bộ (nếu có);
+e) Kết luận giám định thiệt hại về người và tài sản; các tài liệu khác liên quan (nếu có);
+g) Tang vật, phương tiện, vật chứng liên quan đến vụ tai nạn (nếu có);
+h) Biên bản giao, nhận hồ sơ vụ án.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Công ty tôi có xe tải chở hàng, khi xảy ra tai nạn có dấu hiệu tội phạm, tôi phải báo cáo cho ai và làm gì tiếp theo?
+- Đáp: Bạn phải báo cáo vụ tai nạn cho Cục trưởng Cục Cảnh sát giao thông nếu thuộc Cục, hoặc cho Trưởng phòng Cục Cảnh sát giao thông Công an cấp tỉnh nếu thuộc Phòng. Sau khi báo cáo, cơ quan được giao nhiệm vụ tiến hành điều tra sẽ tiếp tục điều tra, xác minh và giải quyết vụ tai nạn theo quy định.
+
+```json
+{"qid": "t4-da_buoc-014", "question": "Công ty tôi có xe tải chở hàng, khi xảy ra tai nạn có dấu hiệu tội phạm, tôi phải báo cáo cho ai và làm gì tiếp theo?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "C", "answer": "Bạn phải báo cáo vụ tai nạn cho Cục trưởng Cục Cảnh sát giao thông nếu thuộc Cục, hoặc cho Trưởng phòng Cục Cảnh sát giao thông Công an cấp tỉnh nếu thuộc Phòng. Sau khi báo cáo, cơ quan được giao nhiệm vụ tiến hành điều tra sẽ tiếp tục điều tra, xác minh và giải quyết vụ tai nạn theo quy định.", "gold_units": ["TT72-2024-BCA/D16/K2", "TT72-2024-BCA/D22"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-014:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu vụ tai nạn không có dấu hiệu tội phạm nhưng có khả năng, cán bộ Cảnh sát giao thông phải làm gì?
+- Đáp: Cán bộ phải báo cáo cho Cục trưởng Cục Cảnh sát giao thông hoặc Trưởng phòng Cục Cảnh sát giao thông Công an cấp tỉnh, sau đó phân công cán bộ điều tra tiếp tục điều tra, xác minh và giải quyết vụ tai nạn.
+- ⚠ chep_nguyen_van: “cán bộ cảnh sát giao thông …”
+
+```json
+{"qid": "t4-da_buoc-014", "question": "Nếu vụ tai nạn không có dấu hiệu tội phạm nhưng có khả năng, cán bộ Cảnh sát giao thông phải làm gì?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "C", "answer": "Cán bộ phải báo cáo cho Cục trưởng Cục Cảnh sát giao thông hoặc Trưởng phòng Cục Cảnh sát giao thông Công an cấp tỉnh, sau đó phân công cán bộ điều tra tiếp tục điều tra, xác minh và giải quyết vụ tai nạn.", "gold_units": ["TT72-2024-BCA/D6/K8/b", "TT72-2024-BCA/D6/K8/c"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-014:2"}
+```
+
+### W4-da_buoc-015 · tier C · vai: chủ doanh nghiệp vận tải · kiểu: tinh_huong_ban_than · DAN_CHIEU → TT72-2024-BCA/D6/K8/b
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D19/K3
+
+Điều 19. Thống kê tai nạn giao thông đường bộ
+3. Vụ tai nạn giao thông đường bộ quy định tại điểm a, điểm b khoản 8 Điều 6, Thông tư này phải được cập nhật trên Phần mềm Điều tra hình sự.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT72-2024-BCA/D6/K8/a)
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D6/K8/a
+
+Điều 6. Giải quyết ban đầu khi cán bộ Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát phát hiện vụ tai nạn giao thông đường bộ hoặc được phân công đến hiện trường vụ tai nạn giao thông đường bộ
+8. Khi thực hiện nhiệm vụ theo quy định tại các khoản 1, 2, 3, 4, 5, 6 và 7 Điều này
+a) Nếu phát hiện vụ tai nạn giao thông đường bộ có một trong các dấu hiệu về hậu quả: có người chết tại hiện trường, chết trên đường đi cấp cứu, đang cấp cứu mà chết, có nguy cơ chết; có người bị thương dập, nát, đứt, rời tay, chân; chấn thương sọ não; có từ 03 người trở lên bị thương gãy tay, chân trở lên hoặc có căn cứ xác định tổn hại cho sức khỏe với tỷ lệ tổn thương cơ thể từ 61% trở lên hoặc có căn cứ xác định thiệt hại tài sản từ 100 triệu đồng trở lên thì thực hiện như sau:
+Đối với cán bộ Cục Cảnh sát giao thông thì báo cáo Cục trưởng, cán bộ Phòng Cảnh sát giao thông Công an cấp tỉnh thì báo cáo Trưởng phòng để chuyển ngay cho Cơ quan Cảnh sát điều tra Công an cấp tỉnh có thẩm quyền điều tra, giải quyết;;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT72-2024-BCA/D6/K8/b)
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D6/K8/b
+
+Điều 6. Giải quyết ban đầu khi cán bộ Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát phát hiện vụ tai nạn giao thông đường bộ hoặc được phân công đến hiện trường vụ tai nạn giao thông đường bộ
+8. Khi thực hiện nhiệm vụ theo quy định tại các khoản 1, 2, 3, 4, 5, 6 và 7 Điều này
+b) Trường hợp vụ tai nạn giao thông đường bộ không thuộc điểm a Khoản này mà thuộc trách nhiệm điều tra giải quyết của Cục Cảnh sát giao thông và Phòng Cảnh sát giao thông Công an cấp tỉnh nếu xác định vụ tai nạn giao thông đường bộ có khả năng có dấu hiệu tội phạm được quy định tại một trong các điều 260, 261, 262, 263, 264 và 281 Bộ luật hình sự năm 2015 (sửa đổi, bổ sung năm 2017) thì cán bộ của Cục Cảnh sát giao thông phải báo cáo Cục trưởng, cán bộ của Phòng Cảnh sát giao thông Công an cấp tỉnh phải báo cáo Trưởng phòng để thực hiện nhiệm vụ, quyền hạn điều tra theo quy định tại Điều 38 Luật Tổ chức cơ quan điều tra hình sự năm 2015 và Điều 40 Bộ luật tố tụng hình sự năm 2015 (sửa đổi bổ sung năm 2021);
+
+### Nguồn 2
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-03-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D6/K8, TT72-2024-BCA/D6/K8/a, TT72-2024-BCA/D6/K8/b, TT72-2024-BCA/D6/K8/c
+
+Điều 6. Giải quyết ban đầu khi cán bộ Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát phát hiện vụ tai nạn giao thông đường bộ hoặc được phân công đến hiện trường vụ tai nạn giao thông đường bộ
+8. Khi thực hiện nhiệm vụ theo quy định tại các khoản 1, 2, 3, 4, 5, 6 và 7 Điều này
+a) Nếu phát hiện vụ tai nạn giao thông đường bộ có một trong các dấu hiệu về hậu quả: có người chết tại hiện trường, chết trên đường đi cấp cứu, đang cấp cứu mà chết, có nguy cơ chết; có người bị thương dập, nát, đứt, rời tay, chân; chấn thương sọ não; có từ 03 người trở lên bị thương gãy tay, chân trở lên hoặc có căn cứ xác định tổn hại cho sức khỏe với tỷ lệ tổn thương cơ thể từ 61% trở lên hoặc có căn cứ xác định thiệt hại tài sản từ 100 triệu đồng trở lên thì thực hiện như sau:
+Đối với cán bộ Cục Cảnh sát giao thông thì báo cáo Cục trưởng, cán bộ Phòng Cảnh sát giao thông Công an cấp tỉnh thì báo cáo Trưởng phòng để chuyển ngay cho Cơ quan Cảnh sát điều tra Công an cấp tỉnh có thẩm quyền điều tra, giải quyết;;
+…
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT72-2024-BCA/D6/K1)
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D6/K1
+
+Điều 6. Giải quyết ban đầu khi cán bộ Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát phát hiện vụ tai nạn giao thông đường bộ hoặc được phân công đến hiện trường vụ tai nạn giao thông đường bộ
+1. Tổ chức cứu nạn, cứu hộ
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT72-2024-BCA/D6/K2)
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D6/K2
+
+Điều 6. Giải quyết ban đầu khi cán bộ Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát phát hiện vụ tai nạn giao thông đường bộ hoặc được phân công đến hiện trường vụ tai nạn giao thông đường bộ
+2. Bảo vệ hiện trường vụ tai nạn giao thông đường bộ
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT72-2024-BCA/D6/K3)
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D6/K3
+
+Điều 6. Giải quyết ban đầu khi cán bộ Cảnh sát giao thông làm nhiệm vụ tuần tra, kiểm soát phát hiện vụ tai nạn giao thông đường bộ hoặc được phân công đến hiện trường vụ tai nạn giao thông đường bộ
+3. Tổ chức, hướng dẫn giao thông không để xảy ra ùn tắc
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là chủ doanh nghiệp vận tải, khi xe của công ty tôi tham gia tai nạn giao thông có 3 người bị thương nặng và tài sản thiệt hại 120 triệu đồng, tôi phải làm gì?
+- Đáp: Bạn phải ngay lập tức báo cáo cho Cục trưởng Cảnh sát giao thông và Trưởng phòng Cảnh sát giao thông Công an cấp tỉnh, sau đó chuyển vụ cho Cơ quan Cảnh sát điều tra Công an cấp tỉnh có thẩm quyền điều tra, giải quyết. Nếu vụ tai nạn có dấu hiệu tội phạm theo quy định tại một trong các điều 260, 261, 262, 263, 264 và 281 Bộ luật hình sự năm 2015, bạn cũng phải báo cáo cho Cục trưởng và Trưởng phòng để thực hiện nhiệm vụ điều tra theo quy định tại Điều 38 Luật Tổ chức cơ quan điều tra hình sự năm 2015 và Điều 40 Bộ luật tố tụng hình sự năm 2015 (sửa đổi bổ sung năm 2021).
+
+```json
+{"qid": "t4-da_buoc-015", "question": "Tôi là chủ doanh nghiệp vận tải, khi xe của công ty tôi tham gia tai nạn giao thông có 3 người bị thương nặng và tài sản thiệt hại 120 triệu đồng, tôi phải làm gì?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "C", "answer": "Bạn phải ngay lập tức báo cáo cho Cục trưởng Cảnh sát giao thông và Trưởng phòng Cảnh sát giao thông Công an cấp tỉnh, sau đó chuyển vụ cho Cơ quan Cảnh sát điều tra Công an cấp tỉnh có thẩm quyền điều tra, giải quyết. Nếu vụ tai nạn có dấu hiệu tội phạm theo quy định tại một trong các điều 260, 261, 262, 263, 264 và 281 Bộ luật hình sự năm 2015, bạn cũng phải báo cáo cho Cục trưởng và Trưởng phòng để thực hiện nhiệm vụ điều tra theo quy định tại Điều 38 Luật Tổ chức cơ quan điều tra hình sự năm 2015 và Điều 40 Bộ luật tố tụng hình sự năm 2015 (sửa đổi bổ sung năm 2021).", "gold_units": ["TT72-2024-BCA/D6/K8/a", "TT72-2024-BCA/D6/K8/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-015:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là chủ doanh nghiệp vận tải, khi xe của công ty tôi tham gia tai nạn giao thông có 4 người bị thương nặng và tài sản thiệt hại 150 triệu đồng, tôi phải làm gì?
+- Đáp: Bạn phải ngay lập tức báo cáo cho Cục trưởng Cảnh sát giao thông và Trưởng phòng Cảnh sát giao thông Công an cấp tỉnh, sau đó chuyển vụ cho Cơ quan Cảnh sát điều tra Công an cấp tỉnh có thẩm quyền điều tra, giải quyết. Nếu vụ tai nạn có dấu hiệu tội phạm theo quy định tại một trong các điều 260, 261, 262, 263, 264 và 281 Bộ luật hình sự năm 2015, bạn cũng phải báo cáo cho Cục trưởng và Trưởng phòng để thực hiện nhiệm vụ điều tra theo quy định tại Điều 38 Luật Tổ chức cơ quan điều tra hình sự năm 2015 và Điều 40 Bộ luật tố tụng hình sự năm 2015 (sửa đổi bổ sung năm 2021).
+
+```json
+{"qid": "t4-da_buoc-015", "question": "Tôi là chủ doanh nghiệp vận tải, khi xe của công ty tôi tham gia tai nạn giao thông có 4 người bị thương nặng và tài sản thiệt hại 150 triệu đồng, tôi phải làm gì?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "C", "answer": "Bạn phải ngay lập tức báo cáo cho Cục trưởng Cảnh sát giao thông và Trưởng phòng Cảnh sát giao thông Công an cấp tỉnh, sau đó chuyển vụ cho Cơ quan Cảnh sát điều tra Công an cấp tỉnh có thẩm quyền điều tra, giải quyết. Nếu vụ tai nạn có dấu hiệu tội phạm theo quy định tại một trong các điều 260, 261, 262, 263, 264 và 281 Bộ luật hình sự năm 2015, bạn cũng phải báo cáo cho Cục trưởng và Trưởng phòng để thực hiện nhiệm vụ điều tra theo quy định tại Điều 38 Luật Tổ chức cơ quan điều tra hình sự năm 2015 và Điều 40 Bộ luật tố tụng hình sự năm 2015 (sửa đổi bổ sung năm 2021).", "gold_units": ["TT72-2024-BCA/D6/K8/a", "TT72-2024-BCA/D6/K8/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-015:2"}
+```
+
+### W4-da_buoc-016 · tier C · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_ban_than · DAN_CHIEU → LUAT36-2024/D64/K1
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 71/2024/TT-BCA (Quy định quản lý, vận hành, sử dụng hệ thống quản lý dữ liệu thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT71-2024-BCA/D4/K2
+
+Điều 4. Quy định về phương pháp tính toán
+2. Tính toán thời gian lái xe theo quy định tại khoản 1 Điều 64 Luật Trật tự, an toàn giao thông đường bộ được xác định theo phương pháp tính toán quy định tại Phụ lục III kèm theo Thông tư này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D64/K1)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D64/K1
+
+Điều 64. Thời gian làm việc của người lái xe ô tô kinh doanh vận tải và vận tải nội bộ
+1. Thời gian lái xe của người lái xe ô tô không quá 10 giờ trong một ngày và không quá 48 giờ trong một tuần; lái xe liên tục không quá 04 giờ và bảo đảm các quy định có liên quan của Bộ luật Lao động.
+
+### Nguồn 2
+Văn bản: Luật Trật tự, an toàn giao thông đường bộ số 36/2024/QH15
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D64/K1
+
+Điều 64. Thời gian làm việc của người lái xe ô tô kinh doanh vận tải và vận tải nội bộ
+1. Thời gian lái xe của người lái xe ô tô không quá 10 giờ trong một ngày và không quá 48 giờ trong một tuần; lái xe liên tục không quá 04 giờ và bảo đảm các quy định có liên quan của Bộ luật Lao động.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là phụ huynh của một học sinh 15 tuổi, anh ấy đã lái xe ô tô chở khách trong 12 giờ liên tục vào ngày hôm qua. Tôi muốn biết anh ấy có vi phạm quy định về thời gian lái xe không?
+- Đáp: Không, vì thời gian lái xe của anh ấy không vượt quá 10 giờ trong một ngày và không vượt quá 48 giờ trong một tuần. (Điều 64 Luật 36/2024/QH15)
+- ⚠ da_buoc_it_hon_2_gold
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-da_buoc-016", "question": "Tôi là phụ huynh của một học sinh 15 tuổi, anh ấy đã lái xe ô tô chở khách trong 12 giờ liên tục vào ngày hôm qua. Tôi muốn biết anh ấy có vi phạm quy định về thời gian lái xe không?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "C", "answer": "Không, vì thời gian lái xe của anh ấy không vượt quá 10 giờ trong một ngày và không vượt quá 48 giờ trong một tuần. (Điều 64 Luật 36/2024/QH15)", "gold_units": ["LUAT36-2024/D64/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-016:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là phụ huynh của một học sinh 16 tuổi, anh ấy đã lái xe ô tô chở khách trong 9 giờ liên tục vào ngày hôm qua. Tôi muốn biết anh ấy có vi phạm quy định về thời gian lái xe không?
+- Đáp: Không, vì thời gian lái xe của anh ấy không vượt quá 10 giờ trong một ngày và không vượt quá 48 giờ trong một tuần. (Điều 64 Luật 36/2024/QH15)
+- ⚠ da_buoc_it_hon_2_gold
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-da_buoc-016", "question": "Tôi là phụ huynh của một học sinh 16 tuổi, anh ấy đã lái xe ô tô chở khách trong 9 giờ liên tục vào ngày hôm qua. Tôi muốn biết anh ấy có vi phạm quy định về thời gian lái xe không?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "C", "answer": "Không, vì thời gian lái xe của anh ấy không vượt quá 10 giờ trong một ngày và không vượt quá 48 giờ trong một tuần. (Điều 64 Luật 36/2024/QH15)", "gold_units": ["LUAT36-2024/D64/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-016:2"}
+```
+
+### W4-da_buoc-017 · tier C · vai: người lớn tuổi đi xe đạp điện · kiểu: nhieu_dieu_kien · DAN_CHIEU → TT71-2024-BCA/D6/K1
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 71/2024/TT-BCA (Quy định quản lý, vận hành, sử dụng hệ thống quản lý dữ liệu thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT71-2024-BCA/D11/K2
+
+Điều 11. Trách nhiệm của đơn vị kinh doanh vận tải bằng xe ô tô, chủ phương tiện xe ô tô chở người từ 08 chỗ trở lên (không kể chỗ của người lái xe) kinh doanh vận tải, xe ô tô đầu kéo, xe cứu thương và xe cứu hộ
+2. Truyền dẫn chính xác, đầy đủ, liên tục dữ liệu quy định tại khoản 1 Điều 6 của Thông tư này về máy chủ của Cục Cảnh sát giao thông.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT71-2024-BCA/D6/K1)
+Mã điều khoản dùng được cho gold_units: TT71-2024-BCA/D6/K1
+
+Điều 6. Hệ thống dữ liệu thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe
+1. Hệ thống dữ liệu thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe, bao gồm: dữ liệu định danh, dữ liệu hành trình, dữ liệu hình ảnh người lái xe; cụ thể:
+
+### Nguồn 2
+Văn bản: Thông tư số 71/2024/TT-BCA (Quy định quản lý, vận hành, sử dụng hệ thống quản lý dữ liệu thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT71-2024-BCA/D6/K1, TT71-2024-BCA/D6/K1/a, TT71-2024-BCA/D6/K1/b, TT71-2024-BCA/D6/K1/c
+
+Điều 6. Hệ thống dữ liệu thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe
+1. Hệ thống dữ liệu thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe, bao gồm: dữ liệu định danh, dữ liệu hành trình, dữ liệu hình ảnh người lái xe; cụ thể:
+a) Dữ liệu định danh, bao gồm: tên đơn vị kinh doanh vận tải, mã số thuế, tên cơ quan cấp giấy phép kinh doanh vận tải, biển số xe, số người được phép chở của phương tiện hoặc tải trọng cho phép phương tiện tham gia giao thông đường bộ, loại hình kinh doanh;
+b) Dữ liệu hành trình, bao gồm: biển số xe, số giấy phép lái xe, tốc độ, thời gian, tọa độ và các thông tin này được cập nhật liên tục;
+c) Dữ liệu hình ảnh người lái xe, bao gồm: biển số xe, số giấy phép lái xe, tốc độ, thời gian, tọa độ, hình ảnh người lái xe và các thông tin này được cập nhật liên tục.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là người lớn tuổi lái xe ô tô chở khách, khi đi qua điểm kiểm tra, tôi có phải truyền dữ liệu định danh, hành trình và hình ảnh người lái xe tới máy chủ của Cục Cảnh sát giao thông không?
+- Đáp: Bạn phải truyền dữ liệu định danh, dữ liệu hành trình và dữ liệu hình ảnh người lái xe liên tục tới máy chủ của Cục Cảnh sát giao thông. (Điều 11.2 và Điều 6.1 của Thông tư 71/2024/TT-BCA)
+- ⚠ chep_nguyen_van: “chủ của cục cảnh sát giao …”
+- Ghi chú: Giả định người lái xe là chủ phương tiện và đang chở khách
+
+```json
+{"qid": "t4-da_buoc-017", "question": "Tôi là người lớn tuổi lái xe ô tô chở khách, khi đi qua điểm kiểm tra, tôi có phải truyền dữ liệu định danh, hành trình và hình ảnh người lái xe tới máy chủ của Cục Cảnh sát giao thông không?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "C", "answer": "Bạn phải truyền dữ liệu định danh, dữ liệu hành trình và dữ liệu hình ảnh người lái xe liên tục tới máy chủ của Cục Cảnh sát giao thông. (Điều 11.2 và Điều 6.1 của Thông tư 71/2024/TT-BCA)", "gold_units": ["TT71-2024-BCA/D11/K2", "TT71-2024-BCA/D6/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-017:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu tôi là người lớn tuổi lái xe ô tô có 8 chỗ, khi tham gia giao thông đường bộ, tôi có phải cung cấp dữ liệu định danh, hành trình và hình ảnh người lái xe cho hệ thống giám sát?
+- Đáp: Bạn phải cung cấp dữ liệu định danh, dữ liệu hành trình và dữ liệu hình ảnh người lái xe liên tục cho hệ thống giám sát. (Điều 11.2 và Điều 6.1 của Thông tư 71/2024/TT-BCA)
+- ⚠ chep_nguyen_van: “tham gia giao thông đường bộ …”
+- Ghi chú: Giả định xe có 8 chỗ và chủ thể là người lớn tuổi
+
+```json
+{"qid": "t4-da_buoc-017", "question": "Nếu tôi là người lớn tuổi lái xe ô tô có 8 chỗ, khi tham gia giao thông đường bộ, tôi có phải cung cấp dữ liệu định danh, hành trình và hình ảnh người lái xe cho hệ thống giám sát?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "C", "answer": "Bạn phải cung cấp dữ liệu định danh, dữ liệu hành trình và dữ liệu hình ảnh người lái xe liên tục cho hệ thống giám sát. (Điều 11.2 và Điều 6.1 của Thông tư 71/2024/TT-BCA)", "gold_units": ["TT71-2024-BCA/D11/K2", "TT71-2024-BCA/D6/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-017:2"}
+```
+
+### W4-da_buoc-018 · tier C · vai: cán bộ phường · kiểu: nhieu_dieu_kien · DAN_CHIEU → TT72-2024-BCA/D18
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D16/K1
+
+Điều 16. Xem xét kết quả điều tra, xác minh vụ tai nạn giao thông đường bộ
+1. Vụ tai nạn giao thông đường bộ không có dấu hiệu tội phạm thì báo cáo kết quả và đề xuất giải quyết vụ tai nạn giao thông đường bộ theo Mẫu số 10/TNĐB ban hành kèm theo Thông tư này đến lãnh đạo có thẩm quyền ra Thông báo kết quả điều tra, xác minh, giải quyết vụ tai nạn giao thông đường bộ theo Mẫu số 13/TNĐB ban hành kèm theo Thông tư này. Việc giải quyết vụ tai nạn giao thông đường bộ được thực hiện theo Điều 18 Thông tư này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT72-2024-BCA/D18)
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D18
+
+Điều 18. Giải quyết vụ tai nạn giao thông đường bộ theo thủ tục hành chính
+Căn cứ vào hồ sơ, tài liệu của hoạt động điều tra, xác minh, cán bộ Cảnh sát giao thông báo cáo lãnh đạo có thẩm quyền để giải quyết vụ tai nạn giao thông đường bộ như sau:
+
+### Nguồn 2
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D18/K1
+
+Điều 18. Giải quyết vụ tai nạn giao thông đường bộ theo thủ tục hành chính
+1. Mời các bên liên quan hoặc đại diện hợp pháp của họ đến trụ sở đơn vị để thông báo kết quả điều tra, xác minh (kết luận nguyên nhân, diễn biến vụ tai nạn giao thông đường bộ, xác định lỗi của những người có liên quan trong vụ tai nạn giao thông đường bộ và hình thức xử lý vi phạm hành chính), đồng thời lập Biên bản giải quyết vụ tai nạn giao thông đường bộ theo Mẫu số 14/TNĐB ban hành kèm theo Thông tư này. Lập Biên bản vi phạm hành chính (nếu có) theo quy định của Luật Xử lý vi phạm hành chính năm 2012 (sửa đổi, bổ sung năm 2020).
+Nếu một trong các bên liên quan đến vụ tai nạn giao thông đường bộ vắng mặt có lý do chính đáng, thì phải lập biên bản ghi nhận việc vắng mặt và hẹn thời gian đến giải quyết.
+
+### Nguồn 3
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D18/K2
+
+Điều 18. Giải quyết vụ tai nạn giao thông đường bộ theo thủ tục hành chính
+2. Báo cáo lãnh đạo có thẩm quyền ra quyết định xử phạt vi phạm hành chính trong lĩnh vực giao thông đường bộ; khi áp dụng hình thức tước quyền sử dụng giấy phép, chứng chỉ hành nghề, Cảnh sát giao thông thực hiện việc tước giấy tờ trên môi trường điện tử trong trường hợp các giấy tờ này đã được tích hợp trong căn cước điện tử, tài khoản định danh điện tử trên Ứng dụng định danh quốc gia; trừ điểm, phục hồi điểm giấy phép lái xe theo quy định của Chính phủ (nếu có).
+
+### Nguồn 4
+Văn bản: Thông tư số 72/2024/TT-BCA (Quy định quy trình điều tra, giải quyết tai nạn giao thông đường bộ của Cảnh sát giao thông)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT72-2024-BCA/D18/K3
+
+Điều 18. Giải quyết vụ tai nạn giao thông đường bộ theo thủ tục hành chính
+3. Hướng dẫn cho các bên liên quan đến vụ tai nạn giao thông đường bộ tự giải quyết bồi thường thiệt hại dân sự tại trụ sở cơ quan, đơn vị.
+Trường hợp các bên liên quan trong vụ tai nạn giao thông đường bộ không tự thỏa thuận giải quyết bồi thường thiệt hại dân sự thì phải lập biên bản, đồng thời hướng dẫn các bên liên hệ với Tòa án có thẩm quyền để giải quyết theo thủ tục tố tụng dân sự.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là trưởng phường, có một vụ tai nạn xe ô tô chở khách không có dấu hiệu tội phạm xảy ra tại đường tỉnh lộ. Tôi cần làm gì để báo cáo kết quả điều tra và quyết định xử phạt vi phạm hành chính cho các bên liên quan?
+- Đáp: Bạn cần báo cáo kết quả điều tra và đề xuất giải quyết vụ tai nạn theo mẫu 10/TNĐB, sau đó gửi thông báo kết quả điều tra và giải quyết theo mẫu 13/TNĐB tới lãnh đạo có thẩm quyền. Sau khi nhận được thông báo, lãnh đạo có thẩm quyền sẽ quyết định xử phạt vi phạm hành chính, bao gồm việc tước quyền sử dụng giấy phép, chứng chỉ hành nghề hoặc trừ điểm, phục hồi điểm giấy phép lái xe theo quy định của Chính phủ. (Điều 16 và Điều 18, khoản 1 của Thông tư số 72/2024/TT-BCA)
+- ⚠ qua_dai (51 từ); chep_nguyen_van: “không có dấu hiệu tội phạm …”
+
+```json
+{"qid": "t4-da_buoc-018", "question": "Tôi là trưởng phường, có một vụ tai nạn xe ô tô chở khách không có dấu hiệu tội phạm xảy ra tại đường tỉnh lộ. Tôi cần làm gì để báo cáo kết quả điều tra và quyết định xử phạt vi phạm hành chính cho các bên liên quan?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "C", "answer": "Bạn cần báo cáo kết quả điều tra và đề xuất giải quyết vụ tai nạn theo mẫu 10/TNĐB, sau đó gửi thông báo kết quả điều tra và giải quyết theo mẫu 13/TNĐB tới lãnh đạo có thẩm quyền. Sau khi nhận được thông báo, lãnh đạo có thẩm quyền sẽ quyết định xử phạt vi phạm hành chính, bao gồm việc tước quyền sử dụng giấy phép, chứng chỉ hành nghề hoặc trừ điểm, phục hồi điểm giấy phép lái xe theo quy định của Chính phủ. (Điều 16 và Điều 18, khoản 1 của Thông tư số 72/2024/TT-BCA)", "gold_units": ["TT72-2024-BCA/D16/K1", "TT72-2024-BCA/D18/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-018:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là trưởng phường, một vụ tai nạn xe ô tô chở khách đã được điều tra, nhưng một trong các bên liên quan vắng mặt. Tôi cần làm gì để tiếp tục quy trình giải quyết và quyết định xử phạt?
+- Đáp: Bạn cần lập biên bản ghi nhận việc vắng mặt và hẹn thời gian đến giải quyết. Sau đó, mời các bên liên quan hoặc đại diện hợp pháp đến trụ sở đơn vị để thông báo kết quả điều tra, xác minh, xác định lỗi và hình thức xử lý vi phạm hành chính, đồng thời lập biên bản giải quyết vụ tai nạn theo mẫu 14/TNĐB. Khi có quyết định xử phạt vi phạm hành chính, Cảnh sát giao thông thực hiện tước giấy tờ trên môi trường điện tử hoặc trừ điểm, phục hồi điểm giấy phép lái xe theo quy định của Chính phủ. (Điều 16 và Điều 18, khoản 1 và khoản 2 của Thông tư số 72/2024/TT-BCA)
+- ⚠ chep_nguyen_van: “một trong các bên liên quan …”
+
+```json
+{"qid": "t4-da_buoc-018", "question": "Tôi là trưởng phường, một vụ tai nạn xe ô tô chở khách đã được điều tra, nhưng một trong các bên liên quan vắng mặt. Tôi cần làm gì để tiếp tục quy trình giải quyết và quyết định xử phạt?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "C", "answer": "Bạn cần lập biên bản ghi nhận việc vắng mặt và hẹn thời gian đến giải quyết. Sau đó, mời các bên liên quan hoặc đại diện hợp pháp đến trụ sở đơn vị để thông báo kết quả điều tra, xác minh, xác định lỗi và hình thức xử lý vi phạm hành chính, đồng thời lập biên bản giải quyết vụ tai nạn theo mẫu 14/TNĐB. Khi có quyết định xử phạt vi phạm hành chính, Cảnh sát giao thông thực hiện tước giấy tờ trên môi trường điện tử hoặc trừ điểm, phục hồi điểm giấy phép lái xe theo quy định của Chính phủ. (Điều 16 và Điều 18, khoản 1 và khoản 2 của Thông tư số 72/2024/TT-BCA)", "gold_units": ["TT72-2024-BCA/D16/K1", "TT72-2024-BCA/D18/K1", "TT72-2024-BCA/D18/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-018:2"}
+```
+
+### W4-da_buoc-019 · tier historical · vai: người mới học lái ô tô · kiểu: neu_van_ban · DAN_CHIEU → TT35-2024-BGTVT/D36/K2
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D35/K1
+
+Điều 35. Cấp lại giấy phép lái xe
+1. Người có giấy phép lái xe bị mất, còn thời hạn sử dụng được xét cấp lại giấy phép lái xe. Việc cấp lại giấy phép lái xe bị mất thực hiện theo quy định tại các khoản 2, khoản 3 và khoản 4 Điều 36 Thông tư này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D36/K2)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D36/K2
+
+Điều 36. Đổi giấy phép lái xe do ngành Giao thông vận tải cấp
+2. Hồ sơ đổi giấy phép lái xe do ngành Giao thông vận tải cấp, gồm:
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D36/K3)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D36/K3
+
+Điều 36. Đổi giấy phép lái xe do ngành Giao thông vận tải cấp
+3. Trình tự thực hiện
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D36/K4)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D36/K4
+
+Điều 36. Đổi giấy phép lái xe do ngành Giao thông vận tải cấp
+4. Việc trả giấy phép lái xe được thực hiện tại cơ quan tiếp nhận hồ sơ hoặc thông qua dịch vụ bưu chính theo yêu cầu của cá nhân; trường hợp nộp hồ sơ qua hệ thống dịch vụ công trực tuyến, giấy phép lái xe được trả cho đúng cá nhân đổi giấy phép lái xe.
+
+### Nguồn 2
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D36/K2, TT35-2024-BGTVT/D36/K2/a, TT35-2024-BGTVT/D36/K2/b, TT35-2024-BGTVT/D36/K2/c, TT35-2024-BGTVT/D36/K2/d
+
+Điều 36. Đổi giấy phép lái xe do ngành Giao thông vận tải cấp
+2. Hồ sơ đổi giấy phép lái xe do ngành Giao thông vận tải cấp, gồm:
+a) Đơn đề nghị đổi (cấp lại) giấy phép lái xe theo mẫu quy định tại Phụ lục XXVI ban hành kèm theo Thông tư này;
+b) Giấy khám sức khỏe của người lái xe do cơ sở khám bệnh, chữa bệnh đủ tiêu chuẩn theo quy định của pháp luật về khám bệnh, chữa bệnh cấp còn hiệu lực (trừ người có giấy phép lái xe hạng A, A1, B1);
+c) Bản sao hoặc bản sao điện tử được chứng thực từ bản chính hoặc bản sao điện tử được cấp từ sổ gốc của giấy phép lái xe hoặc Quyết định xử phạt vi phạm hành chính trong lĩnh vực giao thông đường bộ đối với trường hợp tước quyền sử dụng giấy phép lái xe tích hợp;
+d) Hộ chiếu còn thời hạn sử dụng (đối với người nước ngoài, người Việt Nam định cư ở nước ngoài).
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi mới mất giấy phép lái xe ô tô, làm sao để nộp hồ sơ đổi lại và thủ tục cần làm khi nộp qua hệ thống dịch vụ công trực tuyến?
+- Đáp: Bạn cần chuẩn bị đơn đề nghị đổi (cấp lại) giấy phép lái xe theo mẫu, giấy khám sức khỏe, bản sao giấy phép lái xe hoặc quyết định xử phạt vi phạm hành chính, và hộ chiếu còn hiệu lực (nếu là người nước ngoài). Sau khi nộp hồ sơ qua dịch vụ công trực tuyến, giấy phép sẽ được trả cho đúng cá nhân đổi giấy phép lái xe. (Khoản 2 và Khoản 3 Điều 36 Thông tư 35/2024/TT-BGTVT)
+- ⚠ chep_nguyen_van: “hệ thống dịch vụ công trực …”
+
+```json
+{"qid": "t4-da_buoc-019", "question": "Tôi mới mất giấy phép lái xe ô tô, làm sao để nộp hồ sơ đổi lại và thủ tục cần làm khi nộp qua hệ thống dịch vụ công trực tuyến?", "as_of": "2025-08-31", "question_type": "da_buoc", "tier": "historical", "answer": "Bạn cần chuẩn bị đơn đề nghị đổi (cấp lại) giấy phép lái xe theo mẫu, giấy khám sức khỏe, bản sao giấy phép lái xe hoặc quyết định xử phạt vi phạm hành chính, và hộ chiếu còn hiệu lực (nếu là người nước ngoài). Sau khi nộp hồ sơ qua dịch vụ công trực tuyến, giấy phép sẽ được trả cho đúng cá nhân đổi giấy phép lái xe. (Khoản 2 và Khoản 3 Điều 36 Thông tư 35/2024/TT-BGTVT)", "gold_units": ["TT35-2024-BGTVT/D36/K2", "TT35-2024-BGTVT/D36/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-019:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Nếu tôi là người Việt định cư ở nước ngoài và muốn đổi lại giấy phép lái xe bị mất, những giấy tờ nào cần kèm theo khi nộp hồ sơ qua bưu chính?
+- Đáp: Bạn cần đính kèm đơn đề nghị đổi (cấp lại) giấy phép lái xe, giấy khám sức khỏe, bản sao giấy phép lái xe hoặc quyết định xử phạt vi phạm hành chính, và hộ chiếu còn thời hạn sử dụng. Khi nộp qua bưu chính, giấy phép sẽ được trả cho đúng cá nhân đổi giấy phép lái xe. (Khoản 2 và Khoản 4 Điều 36 Thông tư 35/2024/TT-BGTVT)
+- ⚠ chep_nguyen_van: “giấy phép lái xe bị mất …”
+
+```json
+{"qid": "t4-da_buoc-019", "question": "Nếu tôi là người Việt định cư ở nước ngoài và muốn đổi lại giấy phép lái xe bị mất, những giấy tờ nào cần kèm theo khi nộp hồ sơ qua bưu chính?", "as_of": "2025-08-31", "question_type": "da_buoc", "tier": "historical", "answer": "Bạn cần đính kèm đơn đề nghị đổi (cấp lại) giấy phép lái xe, giấy khám sức khỏe, bản sao giấy phép lái xe hoặc quyết định xử phạt vi phạm hành chính, và hộ chiếu còn thời hạn sử dụng. Khi nộp qua bưu chính, giấy phép sẽ được trả cho đúng cá nhân đổi giấy phép lái xe. (Khoản 2 và Khoản 4 Điều 36 Thông tư 35/2024/TT-BGTVT)", "gold_units": ["TT35-2024-BGTVT/D36/K2", "TT35-2024-BGTVT/D36/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-019:2"}
+```
+
+### W4-da_buoc-020 · tier historical · vai: tài xế công nghệ · kiểu: ngan · DAN_CHIEU → TT35-2024-BGTVT/D46
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D48/K2
+
+Điều 48. Tổ chức đào tạo pháp luật về giao thông đường bộ cho người điều khiển xe máy chuyên dùng tham gia giao thông đường bộ
+2. Cơ sở đào tạo lái xe ô tô hoặc cơ sở đào tạo người điều khiển xe máy chuyên dùng căn cứ Chương trình đào tạo quy định tại Điều 46 Thông tư này xây dựng giáo trình và nội dung chi tiết chương trình đào tạo.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D46)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D46
+
+Điều 46. Hình thức, chương trình đào tạo kiến thức pháp luật về giao thông đường bộ
+
+### Nguồn 2
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D46/K1
+
+Điều 46. Hình thức, chương trình đào tạo kiến thức pháp luật về giao thông đường bộ
+1. Người học bồi dưỡng kiến thức pháp luật về giao thông đường bộ phải được đào tạo tại cơ sở đào tạo lái xe ô tô hoặc cơ sở đào tạo người điều khiển xe máy chuyên dùng.
+
+### Nguồn 3
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D46/K2
+
+Điều 46. Hình thức, chương trình đào tạo kiến thức pháp luật về giao thông đường bộ
+2. Chương trình đào tạo kiến thức pháp luật về giao thông đường bộ
+TT
+Nội dung chương trình Số giờ 1 Pháp luật về giao thông đường bộ 12 2 Quy chuẩn kỹ thuật quốc gia về báo hiệu đường bộ 5 3 Quy định về tốc độ và khoảng cách an toàn của xe cơ giới, xe máy chuyên dùng tham gia giao thông trên đường bộ 3 4 Quy định về xử lý vi phạm hành chính trong lĩnh vực giao thông đường bộ.
+4 5 Quy định về cấp đăng ký, biển số; kiểm định xe máy chuyên dùng tham gia giao thông đường bộ 3 6 Ôn tập và kiểm tra 5
+Tổng thời gian đào tạo 32
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi là tài xế công nghệ, muốn học bồi dưỡng pháp luật giao thông, nơi nào được phép học và chương trình bao gồm những nội dung gì?
+- Đáp: Bạn có thể học tại cơ sở đào tạo lái xe ô tô hoặc cơ sở đào tạo người điều khiển xe máy chuyên dùng. Chương trình bao gồm: 12 giờ về pháp luật giao thông, 5 giờ về quy chuẩn kỹ thuật quốc gia báo hiệu đường bộ, 3 giờ về quy định tốc độ và khoảng cách an toàn, 4 giờ về xử lý vi phạm hành chính, 3 giờ về cấp đăng ký, biển số và kiểm định xe máy chuyên dùng, 5 giờ ôn tập và kiểm tra. Tổng thời gian đào tạo là 32 giờ.
+- Ghi chú: Giả định xe máy chuyên dùng là xe gắn máy
+
+```json
+{"qid": "t4-da_buoc-020", "question": "Tôi là tài xế công nghệ, muốn học bồi dưỡng pháp luật giao thông, nơi nào được phép học và chương trình bao gồm những nội dung gì?", "as_of": "2025-08-31", "question_type": "da_buoc", "tier": "historical", "answer": "Bạn có thể học tại cơ sở đào tạo lái xe ô tô hoặc cơ sở đào tạo người điều khiển xe máy chuyên dùng. Chương trình bao gồm: 12 giờ về pháp luật giao thông, 5 giờ về quy chuẩn kỹ thuật quốc gia báo hiệu đường bộ, 3 giờ về quy định tốc độ và khoảng cách an toàn, 4 giờ về xử lý vi phạm hành chính, 3 giờ về cấp đăng ký, biển số và kiểm định xe máy chuyên dùng, 5 giờ ôn tập và kiểm tra. Tổng thời gian đào tạo là 32 giờ.", "gold_units": ["TT35-2024-BGTVT/D46/K1", "TT35-2024-BGTVT/D46/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-020:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Tôi là tài xế công nghệ, muốn tham gia bồi dưỡng pháp luật, tôi có thể học ở đâu và nội dung đào tạo bao gồm những gì?
+- Đáp: Bạn có thể học tại cơ sở đào tạo lái xe ô tô hoặc cơ sở đào tạo người điều khiển xe máy chuyên dùng. Chương trình bao gồm: 12 giờ về pháp luật giao thông, 5 giờ về quy chuẩn kỹ thuật quốc gia báo hiệu đường bộ, 3 giờ về quy định tốc độ và khoảng cách an toàn, 4 giờ về xử lý vi phạm hành chính, 3 giờ về cấp đăng ký, biển số và kiểm định xe máy chuyên dùng, 5 giờ ôn tập và kiểm tra. Tổng thời gian đào tạo là 32 giờ.
+- Ghi chú: Giả định xe máy chuyên dùng là xe gắn máy
+
+```json
+{"qid": "t4-da_buoc-020", "question": "Tôi là tài xế công nghệ, muốn tham gia bồi dưỡng pháp luật, tôi có thể học ở đâu và nội dung đào tạo bao gồm những gì?", "as_of": "2025-08-31", "question_type": "da_buoc", "tier": "historical", "answer": "Bạn có thể học tại cơ sở đào tạo lái xe ô tô hoặc cơ sở đào tạo người điều khiển xe máy chuyên dùng. Chương trình bao gồm: 12 giờ về pháp luật giao thông, 5 giờ về quy chuẩn kỹ thuật quốc gia báo hiệu đường bộ, 3 giờ về quy định tốc độ và khoảng cách an toàn, 4 giờ về xử lý vi phạm hành chính, 3 giờ về cấp đăng ký, biển số và kiểm định xe máy chuyên dùng, 5 giờ ôn tập và kiểm tra. Tổng thời gian đào tạo là 32 giờ.", "gold_units": ["TT35-2024-BGTVT/D46/K1", "TT35-2024-BGTVT/D46/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-020:2"}
+```
+
+### W4-da_buoc-021 · tier historical · vai: tài xế công nghệ · kiểu: neu_van_ban · DAN_CHIEU → TT35-2024-BGTVT/D14
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D63/K1, TT35-2024-BGTVT/D63/K1/a, TT35-2024-BGTVT/D63/K1/b, TT35-2024-BGTVT/D63/K1/c, TT35-2024-BGTVT/D63/K1/d, TT35-2024-BGTVT/D63/K1/đ, TT35-2024-BGTVT/D63/K1/e, TT35-2024-BGTVT/D63/K1/g, TT35-2024-BGTVT/D63/K1/h, TT35-2024-BGTVT/D63/K1/i, TT35-2024-BGTVT/D63/K1/k, TT35-2024-BGTVT/D63/K1/l, TT35-2024-BGTVT/D63/K1/m, TT35-2024-BGTVT/D63/K1/n, TT35-2024-BGTVT/D63/K1/o, TT35-2024-BGTVT/D63/K1/p
+
+Điều 63. Cơ sở đào tạo
+1. Đối với công tác đào tạo lái xe
+a) Tổ chức tuyển sinh đào tạo bảo đảm các yêu cầu đối với người học lái xe theo quy định tại Điều 14 của Thông tư này;
+b) Ký hợp đồng đào tạo với người học lái xe ô tô gồm các nội dung chính sau: Hạng giấy phép lái xe đào tạo; địa điểm đào tạo; thời gian hoàn thành khóa học; mức học phí và phương thức thanh toán học phí; trách nhiệm bồi thường thiệt hại của mỗi bên khi vi phạm hợp đồng; thanh lý hợp đồng; các thỏa thuận khác không trái pháp luật và đạo đức xã hội;
+c) Công khai quy chế tuyển sinh, mức thu học phí và quản lý đào tạo trên trang thông tin của cơ sở đào tạo lái xe;
+d) Cơ sở đào tạo lái xe mô tô các hạng A1, A, B1 phải duy trì tiêu chuẩn kỹ thuật nghiệp vụ chuyên môn theo quy định;
+đ) Thông báo phương án hoạt động đến Sở Giao thông vận tải và tổ chức đào tạo lái xe mô tô các hạng A1, A, B1 đúng phương án hoạt động đào tạo đã đăng ký theo mẫu quy định tại Phụ lục XXXVIII ban hành kèm theo Thông tư này;
+e) Tổ chức đào tạo mới và đào tạo nâng hạng giấy phép lái xe ô tô theo lưu lượng, thời hạn, địa điểm, hạng giấy phép lái xe ghi trong giấy phép đào tạo lái xe;
+…
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D14)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D14
+
+Điều 14. Yêu cầu đối với người học lái xe
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D6/K4)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D6/K4
+
+Điều 6. Đào tạo lái xe mô tô các hạng A1, A, B1
+4. Kiểm tra hoàn thành khoá đào tạo
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D7/K4)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D7/K4
+
+Điều 7. Đào tạo lái xe các hạng B, C1
+4. Kiểm tra hoàn thành khóa đào tạo Kiểm tra các môn học lý thuyết và học thực hành tại cơ sở đào tạo lái xe, để được xét hoàn thành khóa đào tạo, gồm:
+
+### Nguồn 2
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D14/K1
+
+Điều 14. Yêu cầu đối với người học lái xe
+1. Là công dân Việt Nam, người nước ngoài được phép cư trú hoặc đang làm việc, học tập tại Việt Nam.
+
+### Nguồn 3
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D14/K2, TT35-2024-BGTVT/D14/K2/a, TT35-2024-BGTVT/D14/K2/b
+
+Điều 14. Yêu cầu đối với người học lái xe
+2. Người học lái xe để nâng hạng giấy phép lái xe phải đáp ứng theo quy định tại khoản 4 Điều 60 Luật Trật tự, an toàn giao thông đường bộ; trong đó, thời gian lái xe an toàn cho từng hạng giấy phép lái xe được quy định cụ thể như sau:
+a) Hạng B lên C1, B lên C, B lên D1, B lên BE, C1 lên C, C1 lên D1, C1 lên D2, C1 lên C1E, C lên D1, C lên D2, D1 lên D2, D1 lên D, D1 lên D1E, D2 lên D, D2 lên D2E, D lên DE: thời gian lái xe an toàn từ 02 năm trở lên;
+b) Hạng B lên D2, C lên CE, C lên D: thời gian lái xe an toàn từ 03 năm trở lên.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D60/K4)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D60/K4
+
+Điều 60. Đào tạo lái xe
+4. Người có nhu cầu được đào tạo nâng hạng giấy phép lái xe khi giấy phép lái xe còn hiệu lực, phải có đủ thời gian lái xe an toàn quy định cho từng hạng giấy phép lái xe; đối với việc nâng hạng giấy phép lái xe lên hạng D1, D2, D thì người có nhu cầu được đào tạo còn phải có trình độ từ trung học cơ sở trở lên.
+
+### Nguồn 4
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D14/K3
+
+Điều 14. Yêu cầu đối với người học lái xe
+3. Người đã có giấy phép lái xe hạng B số tự động được đăng ký học để cấp mới giấy phép lái xe hạng B số cơ khí (số sàn), người đã có giấy phép lái xe hạng B được đăng ký học để cấp mới giấy phép lái xe hạng C1 và phải học đủ nội dung chương trình đào tạo lái xe theo quy định, hồ sơ của người học lái xe thực hiện theo quy định tại khoản 1 Điều 15 Thông tư này; trường hợp đạt kết quả sát hạch, cơ quan tổ chức sát hạch có văn bản đề nghị cơ quan đã cấp giấy phép xe cắt góc giấy phép lái xe cũ và có văn bản đề nghị Cục Đường bộ Việt Nam xóa số quản lý giấy phép lái xe đã cấp.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D15/K1)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D15/K1
+
+Điều 15. Hồ sơ của người học lái xe
+1. Người học lái xe lần đầu lập 01 bộ hồ sơ, nộp trực tiếp tại cơ sở đào tạo và chụp ảnh trực tiếp lưu trữ trong cơ sở dữ liệu giấy phép lái xe. Hồ sơ bao gồm:
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Theo Thông tư 35/2024/TT-BGTVT, khi đăng ký học lái xe ô tô, tôi cần ký hợp đồng với cơ sở đào tạo bao gồm những nội dung nào và người học phải đáp ứng điều kiện gì?
+- Đáp: Bạn phải ký hợp đồng đào tạo bao gồm: hạng giấy phép lái xe đào tạo; địa điểm đào tạo; thời gian hoàn thành khóa học; mức học phí và phương thức thanh toán; trách nhiệm bồi thường thiệt hại khi vi phạm hợp đồng; thanh lý hợp đồng; các thỏa thuận khác không trái pháp luật và đạo đức xã hội. Ngoài ra, người học phải là công dân Việt Nam hoặc người nước ngoài cư trú, làm việc, học tập tại Việt Nam.
+
+```json
+{"qid": "t4-da_buoc-021", "question": "Theo Thông tư 35/2024/TT-BGTVT, khi đăng ký học lái xe ô tô, tôi cần ký hợp đồng với cơ sở đào tạo bao gồm những nội dung nào và người học phải đáp ứng điều kiện gì?", "as_of": "2025-08-31", "question_type": "da_buoc", "tier": "historical", "answer": "Bạn phải ký hợp đồng đào tạo bao gồm: hạng giấy phép lái xe đào tạo; địa điểm đào tạo; thời gian hoàn thành khóa học; mức học phí và phương thức thanh toán; trách nhiệm bồi thường thiệt hại khi vi phạm hợp đồng; thanh lý hợp đồng; các thỏa thuận khác không trái pháp luật và đạo đức xã hội. Ngoài ra, người học phải là công dân Việt Nam hoặc người nước ngoài cư trú, làm việc, học tập tại Việt Nam.", "gold_units": ["TT35-2024-BGTVT/D63/K1", "TT35-2024-BGTVT/D14"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-021:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Nếu tôi là học viên muốn nâng hạng giấy phép lái xe B lên C1, theo Thông tư 35/2024/TT-BGTVT, tôi cần thực hiện những điều gì và có phải có thời gian lái xe an toàn?
+- Đáp: Bạn cần đăng ký học nâng hạng B lên C1, thực hiện đầy đủ nội dung chương trình đào tạo lái xe theo quy định, nộp hồ sơ theo khoản 1 Điều 15 Thông tư. Ngoài ra, bạn phải có thời gian lái xe an toàn từ 02 năm trở lên, và nếu nâng lên hạng D1, D2, D thì cần trình độ từ trung học cơ sở trở lên.
+- ⚠ chep_nguyen_van: “nâng hạng giấy phép lái xe …”
+
+```json
+{"qid": "t4-da_buoc-021", "question": "Nếu tôi là học viên muốn nâng hạng giấy phép lái xe B lên C1, theo Thông tư 35/2024/TT-BGTVT, tôi cần thực hiện những điều gì và có phải có thời gian lái xe an toàn?", "as_of": "2025-08-31", "question_type": "da_buoc", "tier": "historical", "answer": "Bạn cần đăng ký học nâng hạng B lên C1, thực hiện đầy đủ nội dung chương trình đào tạo lái xe theo quy định, nộp hồ sơ theo khoản 1 Điều 15 Thông tư. Ngoài ra, bạn phải có thời gian lái xe an toàn từ 02 năm trở lên, và nếu nâng lên hạng D1, D2, D thì cần trình độ từ trung học cơ sở trở lên.", "gold_units": ["TT35-2024-BGTVT/D14/K2", "LUAT36-2024/D60/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-021:2"}
+```
+
+### W4-da_buoc-022 · tier historical · vai: người lớn tuổi đi xe đạp điện · kiểu: ngan · DAN_CHIEU → TT35-2024-BGTVT/D4
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D60/K2
+
+Điều 60. Quy trình khai thác hệ thống thông tin đối với cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ
+2. Sở Giao thông vận tải: tổ chức quản lý, sử dụng dữ liệu theo quy định và gửi báo cáo Cục Đường bộ Việt Nam theo quy định tại Điều 4 Thông tư này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D4)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D4
+
+Điều 4. Chế độ báo cáo
+
+### Nguồn 2
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D4/K1, TT35-2024-BGTVT/D4/K1/a, TT35-2024-BGTVT/D4/K1/b, TT35-2024-BGTVT/D4/K1/c, TT35-2024-BGTVT/D4/K1/d, TT35-2024-BGTVT/D4/K1/đ, TT35-2024-BGTVT/D4/K1/e, TT35-2024-BGTVT/D4/K1/g
+
+Điều 4. Chế độ báo cáo
+1. Sở Giao thông vận tải gửi báo cáo công tác đào tạo, sát hạch, cấp giấy phép lái xe về Cục Đường bộ Việt Nam, gồm:
+a) Tên báo cáo: báo cáo công tác đào tạo, sát hạch, cấp giấy phép lái xe;
+b) Nội dung yêu cầu báo cáo:
+Về công tác đào tạo lái xe, gồm số lượng: cơ sở đào tạo lái xe đang quản lý, giấy phép đào tạo lái xe, giấy phép xe tập lái, giấy chứng nhận giáo viên dạy thực hành lái xe; đánh giá công tác quản lý đào tạo lái xe.
+Về công tác sát hạch, cấp giấy phép lái xe, gồm số lượng: trung tâm sát hạch lái xe đang quản lý, giấy phép sát hạch, cấp chấp thuận hoạt động của sân tập lái để sát hạch lái xe mô tô, giấy phép lái xe các hạng đã cấp; đánh giá công tác quản lý sát hạch lái xe;
+c) Phương thức gửi báo cáo: gửi trực tiếp hoặc qua dịch vụ bưu chính hoặc môi trường điện tử;
+d) Thời hạn gửi báo cáo: trước ngày 20 tháng 6 hàng năm đối với báo cáo định kỳ 6 tháng đầu năm; trước ngày 20 tháng 12 hàng năm đối với báo cáo định kỳ hàng năm;
+đ) Tần suất thực hiện báo cáo: báo cáo định kỳ 06 tháng đầu năm và Báo cáo định kỳ hàng năm;
+e) Thời gian chốt số liệu báo cáo: đối với báo cáo định kỳ 06 tháng đầu năm được tính từ ngày 15 tháng 12 năm trước kỳ báo cáo đến ngày 14 tháng 6 của kỳ báo cáo. Đối với báo cáo định kỳ tổng kết năm được tính từ ngày 15 tháng 12 năm trước đến ngày 14 tháng 12 năm báo cáo;
+g) Mẫu biểu số liệu báo cáo: theo Mẫu số 01 Phụ lục I ban hành kèm theo Thông tư này.
+
+### Nguồn 3
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D4/K2, TT35-2024-BGTVT/D4/K2/a, TT35-2024-BGTVT/D4/K2/b, TT35-2024-BGTVT/D4/K2/c, TT35-2024-BGTVT/D4/K2/d, TT35-2024-BGTVT/D4/K2/đ, TT35-2024-BGTVT/D4/K2/e, TT35-2024-BGTVT/D4/K2/g
+
+Điều 4. Chế độ báo cáo
+2. Cơ sở bồi dưỡng kiến thức pháp luật giao thông đường bộ gửi báo cáo công tác đào tạo, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ về Sở Giao thông vận tải, gồm:
+a) Tên báo cáo: báo cáo về công tác đào tạo, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ;
+b) Nội dung yêu cầu báo cáo: báo cáo về số lớp đào tạo, số học viên được đào tạo, số lượng kiểm tra cấp chứng chỉ, số lượng chứng chỉ đã cấp;
+c) Phương thức gửi báo cáo: gửi trực tiếp hoặc qua dịch vụ bưu chính hoặc môi trường điện tử;
+d) Thời hạn gửi báo cáo: trước ngày 20 tháng 6 hàng năm đối với báo cáo định kỳ 6 tháng đầu năm; trước ngày 20 tháng 12 hàng năm đối với báo cáo định kỳ tổng kết năm;
+đ) Tần suất thực hiện báo cáo: báo cáo định kỳ 06 tháng đầu năm và Báo cáo định kỳ hàng năm;
+e) Thời gian chốt số liệu báo cáo: đối với báo cáo định kỳ 06 tháng đầu năm được tính từ ngày 15 tháng 12 năm trước kỳ báo cáo đến ngày 14 tháng 6 của kỳ báo cáo. Đối với báo cáo định kỳ tổng kết năm được tính từ ngày 15 tháng 12 năm trước đến ngày 14 tháng 12 năm báo cáo;
+g) Mẫu biểu báo cáo: theo Mẫu số 02 Phụ lục I ban hành kèm theo Thông tư này.
+
+### Nguồn 4
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D4/K3, TT35-2024-BGTVT/D4/K3/a, TT35-2024-BGTVT/D4/K3/b, TT35-2024-BGTVT/D4/K3/c, TT35-2024-BGTVT/D4/K3/d, TT35-2024-BGTVT/D4/K3/đ, TT35-2024-BGTVT/D4/K3/e, TT35-2024-BGTVT/D4/K3/g
+
+Điều 4. Chế độ báo cáo
+3. Sở Giao thông vận tải gửi báo cáo công tác đào tạo, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ về Cục Đường bộ Việt Nam, gồm:
+a) Tên báo cáo: báo cáo về công tác đào tạo, cấp chứng chỉ bồi dưỡng kiến thức về pháp luật về giao thông đường bộ;
+b) Nội dung yêu cầu báo cáo: số lượng cơ sở đào tạo, công tác quản lý đào tạo, số học viên được đào tạo, số lượng chứng chỉ đã cấp;
+c) Phương thức gửi báo cáo: gửi trực tiếp hoặc qua dịch vụ bưu chính hoặc môi trường điện tử;
+d) Thời hạn gửi báo cáo: trước ngày 25 tháng 6 hàng năm đối với báo cáo định kỳ 6 tháng đầu năm; trước ngày 25 tháng 12 hàng năm đối với báo cáo định kỳ tổng kết năm;
+đ) Tần suất thực hiện báo cáo: báo cáo định kỳ 06 tháng đầu năm và báo cáo định kỳ hàng năm;
+e) Thời gian chốt số liệu báo cáo: đối với báo cáo định kỳ 06 tháng đầu năm được tính từ ngày 15 tháng 12 năm trước kỳ báo cáo đến ngày 14 tháng 6 của kỳ báo cáo. Đối với báo cáo định kỳ tổng kết năm được tính từ ngày 15 tháng 12 năm trước đến ngày 14 tháng 12 năm báo cáo;
+g) Mẫu biểu báo cáo: theo Mẫu số 03 Phụ lục I ban hành kèm theo Thông tư này.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Tôi là người lớn tuổi đi xe đạp điện, cần gửi báo cáo công tác đào tạo, sát hạch, cấp giấy phép lái xe, khi nào phải nộp?
+- Đáp: Bạn phải nộp báo cáo trước ngày 20 tháng 6 hàng năm cho báo cáo định kỳ 6 tháng đầu năm và trước ngày 20 tháng 12 hàng năm cho báo cáo định kỳ hàng năm. (Điều 60, Thông tư 35/2024/TT-BGTVT; Điều 4, Thông tư 35/2024/TT-BGTVT)
+- ⚠ chep_nguyen_van: “báo cáo công tác đào tạo …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-da_buoc-022", "question": "Tôi là người lớn tuổi đi xe đạp điện, cần gửi báo cáo công tác đào tạo, sát hạch, cấp giấy phép lái xe, khi nào phải nộp?", "as_of": "2025-08-31", "question_type": "da_buoc", "tier": "historical", "answer": "Bạn phải nộp báo cáo trước ngày 20 tháng 6 hàng năm cho báo cáo định kỳ 6 tháng đầu năm và trước ngày 20 tháng 12 hàng năm cho báo cáo định kỳ hàng năm. (Điều 60, Thông tư 35/2024/TT-BGTVT; Điều 4, Thông tư 35/2024/TT-BGTVT)", "gold_units": ["TT35-2024-BGTVT/D60/K2", "TT35-2024-BGTVT/D4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-022:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Tôi là người lớn tuổi đi xe đạp điện, cơ sở bồi dưỡng kiến thức pháp luật giao thông phải nộp báo cáo khi nào?
+- Đáp: Bạn phải nộp báo cáo trước ngày 20 tháng 6 hàng năm cho báo cáo định kỳ 6 tháng đầu năm và trước ngày 20 tháng 12 hàng năm cho báo cáo định kỳ hàng năm. (Điều 4, Thông tư 35/2024/TT-BGTVT; Điều 4, Thông tư 35/2024/TT-BGTVT)
+- ⚠ chep_nguyen_van: “bồi dưỡng kiến thức pháp luật …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t4-da_buoc-022", "question": "Tôi là người lớn tuổi đi xe đạp điện, cơ sở bồi dưỡng kiến thức pháp luật giao thông phải nộp báo cáo khi nào?", "as_of": "2025-08-31", "question_type": "da_buoc", "tier": "historical", "answer": "Bạn phải nộp báo cáo trước ngày 20 tháng 6 hàng năm cho báo cáo định kỳ 6 tháng đầu năm và trước ngày 20 tháng 12 hàng năm cho báo cáo định kỳ hàng năm. (Điều 4, Thông tư 35/2024/TT-BGTVT; Điều 4, Thông tư 35/2024/TT-BGTVT)", "gold_units": ["TT35-2024-BGTVT/D4/K2", "TT35-2024-BGTVT/D4/K2/d"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-022:2"}
+```
+
+### W4-da_buoc-023 · tier historical · vai: chủ doanh nghiệp vận tải · kiểu: tinh_huong_nguoi_khac · DAN_CHIEU → TT35-2024-BGTVT/D5/K2
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D12/K2, TT35-2024-BGTVT/D12/K2/a, TT35-2024-BGTVT/D12/K2/b
+
+Điều 12. Đào tạo đối với người khuyết tật
+2. Đào tạo để sát hạch, cấp giấy phép lái xe hạng B số tự động
+a) Đào tạo để sát hạch, cấp giấy phép lái xe hạng B số tự động cho người khuyết tật bàn chân phải hoặc bàn tay phải hoặc bàn tay trái:
+Người học lái xe lựa chọn hình thức đào tạo lái xe theo quy định tại khoản 2 Điều 5 Thông tư này.
+Người học lái xe phải học đủ nội dung và chương trình theo quy định tại Điều 7 Thông tư này; được thay nội dung học lái xe trên ca bin học lái xe ô tô bằng nội dung học trên xe tập lái;
+b) Đào tạo để sát hạch, cấp giấy phép lái xe hạng B số tự động cho người khuyết tật trừ người khuyết tật bàn chân phải hoặc bàn tay phải hoặc bàn tay trái:
+Người học lái xe lựa chọn hình thức đào tạo lái xe theo quy định tại khoản 2 Điều 5 Thông tư này.
+Người học lái xe phải học đủ nội dung và chương trình theo quy định tại Điều 7 Thông tư này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D5/K2)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D5/K2
+
+Điều 5. Hình thức đào tạo
+2. Người có nhu cầu cấp giấy phép lái xe các hạng B, C1, C, D1, D2, D, BE, C1E, CE, D1E, D2E và DE được đào tạo:
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D7)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D7
+
+Điều 7. Đào tạo lái xe các hạng B, C1
+
+### Nguồn 2
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D5/K2, TT35-2024-BGTVT/D5/K2/a, TT35-2024-BGTVT/D5/K2/b
+
+Điều 5. Hình thức đào tạo
+2. Người có nhu cầu cấp giấy phép lái xe các hạng B, C1, C, D1, D2, D, BE, C1E, CE, D1E, D2E và DE được đào tạo:
+a) Đối với nội dung học lý thuyết phải học đủ chương trình đào tạo theo quy định tại Thông tư này và được lựa chọn một trong các hình thức học sau: tập trung tại cơ sở đào tạo lái xe hoặc đào tạo từ xa, tự học có hướng dẫn theo quy định của pháp luật về hoạt động đào tạo và sát hạch lái xe;
+b) Đối với nội dung học thực hành lái xe: theo hình thức tập trung tại cơ sở đào tạo lái xe.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Công ty tôi muốn đào tạo tài xế khuyết tật bàn chân phải lái xe hạng B số tự động, tôi cần biết hình thức đào tạo và nội dung học phải đáp ứng như thế nào?
+- Đáp: Để đào tạo tài xế khuyết tật bàn chân phải lái xe hạng B số tự động, công ty phải chọn hình thức đào tạo theo khoản 2 Điều 5 Thông tư 35/2024/TT-BGTVT và học đủ nội dung chương trình theo Điều 7 Thông tư này.
+- ⚠ chep_nguyen_van: “lái xe hạng b số tự …”
+- Ghi chú: Không cần ghi chú đặc biệt
+
+```json
+{"qid": "t4-da_buoc-023", "question": "Công ty tôi muốn đào tạo tài xế khuyết tật bàn chân phải lái xe hạng B số tự động, tôi cần biết hình thức đào tạo và nội dung học phải đáp ứng như thế nào?", "as_of": "2025-08-31", "question_type": "da_buoc", "tier": "historical", "answer": "Để đào tạo tài xế khuyết tật bàn chân phải lái xe hạng B số tự động, công ty phải chọn hình thức đào tạo theo khoản 2 Điều 5 Thông tư 35/2024/TT-BGTVT và học đủ nội dung chương trình theo Điều 7 Thông tư này.", "gold_units": ["TT35-2024-BGTVT/D12/K2", "TT35-2024-BGTVT/D5/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-023:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Công ty tôi muốn đào tạo tài xế khuyết tật trừ bàn chân phải lái xe hạng B số tự động, tôi cần biết hình thức đào tạo và nội dung học phải đáp ứng như thế nào?
+- Đáp: Để đào tạo tài xế khuyết tật trừ bàn chân phải lái xe hạng B số tự động, công ty phải chọn hình thức đào tạo theo khoản 2 Điều 5 Thông tư 35/2024/TT-BGTVT và học đủ nội dung chương trình theo Điều 7 Thông tư này.
+- ⚠ chep_nguyen_van: “lái xe hạng b số tự …”
+- Ghi chú: Không cần ghi chú đặc biệt
+
+```json
+{"qid": "t4-da_buoc-023", "question": "Công ty tôi muốn đào tạo tài xế khuyết tật trừ bàn chân phải lái xe hạng B số tự động, tôi cần biết hình thức đào tạo và nội dung học phải đáp ứng như thế nào?", "as_of": "2025-08-31", "question_type": "da_buoc", "tier": "historical", "answer": "Để đào tạo tài xế khuyết tật trừ bàn chân phải lái xe hạng B số tự động, công ty phải chọn hình thức đào tạo theo khoản 2 Điều 5 Thông tư 35/2024/TT-BGTVT và học đủ nội dung chương trình theo Điều 7 Thông tư này.", "gold_units": ["TT35-2024-BGTVT/D12/K2", "TT35-2024-BGTVT/D5/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-023:2"}
+```
+
+### W4-da_buoc-024 · tier historical · vai: sinh viên đi xe máy · kiểu: tinh_huong_nguoi_khac · DAN_CHIEU → TT35-2024-BGTVT/D4/K2/a
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D51/K2
+
+Điều 51. Lưu trữ hồ sơ kết quả kiểm tra
+2. Sở Giao thông vận tải Lưu trữ hồ sơ và các tài liệu quy định tại điểm a khoản 1 Điều này và điểm a khoản 2 Điều 4 Thông tư này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D4/K2/a)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D4/K2/a
+
+Điều 4. Chế độ báo cáo
+2. Cơ sở bồi dưỡng kiến thức pháp luật giao thông đường bộ gửi báo cáo công tác đào tạo, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ về Sở Giao thông vận tải, gồm:
+a) Tên báo cáo: báo cáo về công tác đào tạo, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT35-2024-BGTVT/D51/K1/a)
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D51/K1/a
+
+Điều 51. Lưu trữ hồ sơ kết quả kiểm tra
+1. Cơ sở đào tạo lái xe ô tô hoặc cơ sở đào tạo người điều khiển xe máy chuyên dùng
+a) Báo cáo mở lớp bồi dưỡng kiến thức pháp luật về giao thông đường bộ;
+
+### Nguồn 2
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D4/K2, TT35-2024-BGTVT/D4/K2/a, TT35-2024-BGTVT/D4/K2/b, TT35-2024-BGTVT/D4/K2/c, TT35-2024-BGTVT/D4/K2/d, TT35-2024-BGTVT/D4/K2/đ, TT35-2024-BGTVT/D4/K2/e, TT35-2024-BGTVT/D4/K2/g
+
+Điều 4. Chế độ báo cáo
+2. Cơ sở bồi dưỡng kiến thức pháp luật giao thông đường bộ gửi báo cáo công tác đào tạo, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ về Sở Giao thông vận tải, gồm:
+a) Tên báo cáo: báo cáo về công tác đào tạo, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ;
+b) Nội dung yêu cầu báo cáo: báo cáo về số lớp đào tạo, số học viên được đào tạo, số lượng kiểm tra cấp chứng chỉ, số lượng chứng chỉ đã cấp;
+c) Phương thức gửi báo cáo: gửi trực tiếp hoặc qua dịch vụ bưu chính hoặc môi trường điện tử;
+d) Thời hạn gửi báo cáo: trước ngày 20 tháng 6 hàng năm đối với báo cáo định kỳ 6 tháng đầu năm; trước ngày 20 tháng 12 hàng năm đối với báo cáo định kỳ tổng kết năm;
+đ) Tần suất thực hiện báo cáo: báo cáo định kỳ 06 tháng đầu năm và Báo cáo định kỳ hàng năm;
+e) Thời gian chốt số liệu báo cáo: đối với báo cáo định kỳ 06 tháng đầu năm được tính từ ngày 15 tháng 12 năm trước kỳ báo cáo đến ngày 14 tháng 6 của kỳ báo cáo. Đối với báo cáo định kỳ tổng kết năm được tính từ ngày 15 tháng 12 năm trước đến ngày 14 tháng 12 năm báo cáo;
+g) Mẫu biểu báo cáo: theo Mẫu số 02 Phụ lục I ban hành kèm theo Thông tư này.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-08-31): Anh tôi vừa hoàn thành lớp bồi dưỡng kiến thức pháp luật giao thông, anh ấy hỏi: sau khi kết thúc, anh ấy phải làm gì để gửi báo cáo và lưu trữ hồ sơ kết quả kiểm tra?
+- Đáp: Anh ấy cần gửi báo cáo về công tác đào tạo, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ cho Sở Giao thông vận tải, gồm tên báo cáo là "báo cáo về công tác đào tạo, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ". Đồng thời, cơ sở đào tạo phải lưu trữ hồ sơ kết quả kiểm tra, bao gồm báo cáo mở lớp bồi dưỡng kiến thức pháp luật về giao thông đường bộ.
+- ⚠ chep_nguyen_van: “bồi dưỡng kiến thức pháp luật …”
+
+```json
+{"qid": "t4-da_buoc-024", "question": "Anh tôi vừa hoàn thành lớp bồi dưỡng kiến thức pháp luật giao thông, anh ấy hỏi: sau khi kết thúc, anh ấy phải làm gì để gửi báo cáo và lưu trữ hồ sơ kết quả kiểm tra?", "as_of": "2025-08-31", "question_type": "da_buoc", "tier": "historical", "answer": "Anh ấy cần gửi báo cáo về công tác đào tạo, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ cho Sở Giao thông vận tải, gồm tên báo cáo là \"báo cáo về công tác đào tạo, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ\". Đồng thời, cơ sở đào tạo phải lưu trữ hồ sơ kết quả kiểm tra, bao gồm báo cáo mở lớp bồi dưỡng kiến thức pháp luật về giao thông đường bộ.", "gold_units": ["TT35-2024-BGTVT/D51/K2", "TT35-2024-BGTVT/D4/K2/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-024:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-08-31): Công ty tôi đã tổ chức lớp bồi dưỡng cho nhân viên, công ty hỏi: công ty cần làm gì để gửi báo cáo và lưu trữ hồ sơ kết quả kiểm tra theo quy định?
+- Đáp: Công ty phải gửi báo cáo về công tác đào tạo, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ cho Sở Giao thông vận tải, trong đó bao gồm tên báo cáo "báo cáo về công tác đào tạo, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ". Ngoài ra, cơ sở đào tạo phải lưu trữ hồ sơ kết quả kiểm tra, bao gồm báo cáo mở lớp bồi dưỡng kiến thức pháp luật về giao thông đường bộ.
+- ⚠ chep_nguyen_van: “hồ sơ kết quả kiểm tra …”
+
+```json
+{"qid": "t4-da_buoc-024", "question": "Công ty tôi đã tổ chức lớp bồi dưỡng cho nhân viên, công ty hỏi: công ty cần làm gì để gửi báo cáo và lưu trữ hồ sơ kết quả kiểm tra theo quy định?", "as_of": "2025-08-31", "question_type": "da_buoc", "tier": "historical", "answer": "Công ty phải gửi báo cáo về công tác đào tạo, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ cho Sở Giao thông vận tải, trong đó bao gồm tên báo cáo \"báo cáo về công tác đào tạo, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ\". Ngoài ra, cơ sở đào tạo phải lưu trữ hồ sơ kết quả kiểm tra, bao gồm báo cáo mở lớp bồi dưỡng kiến thức pháp luật về giao thông đường bộ.", "gold_units": ["TT35-2024-BGTVT/D51/K2", "TT35-2024-BGTVT/D4/K2/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W4-da_buoc-024:2"}
+```
+
+## tru_diem — số điểm bị trừ trên giấy phép lái xe
+
+### W5-tru_diem-001 · tier A · vai: người mới học lái ô tô · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K8, ND168-2024/D13/K8/a, ND168-2024/D13/K8/b
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+8. Phạt tiền từ 20.000.000 đồng đến 26.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe gắn biển số không đúng với chứng nhận đăng ký xe hoặc gắn biển số không do cơ quan có thẩm quyền cấp (kể cả rơ moóc và sơ mi rơ moóc);
+b) Điều khiển xe không gắn đủ biển số hoặc gắn biển số không đúng vị trí, không đúng quy cách theo quy định; gắn biển số không rõ chữ, số hoặc sơn, dán lên chữ, số của biển số xe; gắn biển số bị bẻ cong, che lấp, làm thay đổi chữ, số, màu sắc (của chữ, số, nền biển số xe), hình dạng, kích thước của biển số xe; sử dụng chất liệu, vật liệu, thiết bị làm thay đổi khả năng nhận diện thông tin biển số xe của phương tiện, thiết bị kỹ thuật nghiệp vụ (kể cả rơ moóc và sơ mi rơ moóc).
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D13/K13/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K13/b
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+b) Thực hiện hành vi quy định tại điểm b khoản 7, điểm b khoản 8 Điều này bị trừ điểm giấy phép lái xe 06 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D13/K13/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K13/c
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+c) Thực hiện hành vi quy định tại điểm a khoản 8 Điều này bị trừ điểm giấy phép lái xe 10 điểm.
+
+[0] 20.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D13/K8)
+[1] 26.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D13/K8)
+[2] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D13/K13/b)
+[3] 10 điểm (số điểm bị trừ, nêu tại ND168-2024/D13/K13/c)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi vừa lái xe ô tô và gắn biển số không đúng vị trí, không rõ chữ, số. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
+- Đáp: Bạn sẽ bị trừ 06 điểm trên giấy phép lái xe. (khoản 13 Điều 13 Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “biển số không đúng vị trí …”
+
+```json
+{"qid": "t5-tru_diem-001", "question": "Tôi vừa lái xe ô tô và gắn biển số không đúng vị trí, không rõ chữ, số. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 06 điểm trên giấy phép lái xe. (khoản 13 Điều 13 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D13/K13/b"], "required_numbers": [{"value": 6, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W5-tru_diem-001:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi lái xe ô tô và gắn biển số không đúng với chứng nhận đăng ký xe. Điểm trừ trên giấy phép lái xe là bao nhiêu?
+- Đáp: Bạn sẽ bị trừ 10 điểm trên giấy phép lái xe. (khoản 13 Điều 13 Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “biển số không đúng với chứng …”
+
+```json
+{"qid": "t5-tru_diem-001", "question": "Tôi lái xe ô tô và gắn biển số không đúng với chứng nhận đăng ký xe. Điểm trừ trên giấy phép lái xe là bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 10 điểm trên giấy phép lái xe. (khoản 13 Điều 13 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D13/K13/c"], "required_numbers": [{"value": 10, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W5-tru_diem-001:2"}
+```
+
+### W5-tru_diem-002 · tier A · vai: người lớn tuổi đi xe đạp điện · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D29/K3a, ND168-2024/D29/K3a/a, ND168-2024/D29/K3a/b
+
+Điều 29. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe cứu hộ giao thông đường bộ
+3a. Phạt tiền từ 5.000.000 đồng đến 10.000.000 đồng đối với một trong các hành vi sau đây:
+a) Điều khiển xe ô tô cứu hộ giao thông đường bộ chở xe được cứu hộ mà vượt quá khối lượng cho phép chuyên chở của xe cứu hộ; kéo theo xe được cứu hộ mà vượt quá khối lượng cho phép kéo theo của xe cứu hộ được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe;
+b) Điều khiển xe ô tô cứu hộ giao thông đường bộ kéo theo xe không đúng đối tượng được cứu hộ theo quy định tại khoản 1 Điều 54 Luật Trật tự, an toàn giao thông đường bộ.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D29/K4)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D29/K4
+
+Điều 29. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe cứu hộ giao thông đường bộ
+4. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi quy định tại khoản 3, khoản 3a Điều này bị trừ điểm giấy phép lái xe 02 điểm.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D54/K1)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D54/K1
+
+Điều 54. Bảo đảm trật tự, an toàn giao thông đường bộ đối với xe cứu hộ giao thông đường bộ
+1. Xe cứu hộ giao thông đường bộ là xe ô tô chuyên dùng có trang bị dụng cụ, thiết bị dùng để cứu hộ, hỗ trợ di chuyển hoặc chuyên chở các phương tiện giao thông đường bộ bị hư hỏng, bị sự cố.
+
+[0] 5.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D29/K3a)
+[1] 10.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D29/K3a)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D29/K4)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi thấy một xe cứu hộ kéo xe quá tải, tôi muốn biết số điểm bị trừ trên giấy phép lái xe của người điều khiển xe đó.
+- Đáp: Người điều khiển xe cứu hộ sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 29, Khoản 4, Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “giấy phép lái xe của người …”
+
+```json
+{"qid": "t5-tru_diem-002", "question": "Tôi thấy một xe cứu hộ kéo xe quá tải, tôi muốn biết số điểm bị trừ trên giấy phép lái xe của người điều khiển xe đó.", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Người điều khiển xe cứu hộ sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 29, Khoản 4, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D29/K4"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W5-tru_diem-002:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi thấy một xe cứu hộ kéo xe không đúng đối tượng, tôi muốn biết số điểm bị trừ trên giấy phép lái xe của người điều khiển xe đó.
+- Đáp: Người điều khiển xe cứu hộ sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 29, Khoản 4, Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “giấy phép lái xe của người …”
+
+```json
+{"qid": "t5-tru_diem-002", "question": "Tôi thấy một xe cứu hộ kéo xe không đúng đối tượng, tôi muốn biết số điểm bị trừ trên giấy phép lái xe của người điều khiển xe đó.", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Người điều khiển xe cứu hộ sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 29, Khoản 4, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D29/K4"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W5-tru_diem-002:2"}
+```
+
+### W5-tru_diem-003 · tier A · vai: cán bộ phường · kiểu: nhieu_dieu_kien
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D28/K2
+
+Điều 28. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ
+2. Phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng đối với hành vi điều khiển xe chở người bốn bánh có gắn động cơ kinh doanh vận tải, xe chở hàng bốn bánh có gắn động cơ kinh doanh vận tải không có hoặc không gắn phù hiệu theo quy định hoặc có nhưng đã hết giá trị sử dụng hoặc sử dụng phù hiệu không do cơ quan có thẩm quyền cấp.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D28/K4/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D28/K4/a
+
+Điều 28. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ
+4. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại khoản 2 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+[0] 2.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D28/K2)
+[1] 3.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D28/K2)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D28/K4/a)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là cán bộ phường, một chiếc taxi không gắn biển hiệu hợp lệ, có bị trừ bao nhiêu điểm trên giấy phép lái xe?
+- Đáp: Trừ 02 điểm trên giấy phép lái xe.
+(Khoản 4(a) Điều 28 Nghị định 168/2024/NĐ-CP)
+
+```json
+{"qid": "t5-tru_diem-003", "question": "Tôi là cán bộ phường, một chiếc taxi không gắn biển hiệu hợp lệ, có bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Trừ 02 điểm trên giấy phép lái xe.\n(Khoản 4(a) Điều 28 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D28/K4/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W5-tru_diem-003:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi vận chuyển hàng bằng xe tải không gắn biển hiệu, có bị trừ bao nhiêu điểm trên giấy phép lái xe?
+- Đáp: Trừ 02 điểm trên giấy phép lái xe.
+(Khoản 4(a) Điều 28 Nghị định 168/2024/NĐ-CP)
+
+```json
+{"qid": "t5-tru_diem-003", "question": "Công ty tôi vận chuyển hàng bằng xe tải không gắn biển hiệu, có bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Trừ 02 điểm trên giấy phép lái xe.\n(Khoản 4(a) Điều 28 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D28/K4/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W5-tru_diem-003:2"}
+```
+
+### W5-tru_diem-004 · tier A · vai: chủ doanh nghiệp vận tải · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K12, ND168-2024/D32/K12/a, ND168-2024/D32/K12/b, ND168-2024/D32/K12/c, ND168-2024/D32/K12/d
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+12. Phạt tiền từ 16.000.000 đồng đến 18.000.000 đồng đối với cá nhân, từ 32.000.000 đồng đến 36.000.000 đồng đối với tổ chức là chủ xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ, xe máy chuyên dùng và các loại xe tương tự xe ô tô, phương tiện giao thông thông minh thực hiện một trong các hành vi vi phạm sau đây:
+a) Đưa phương tiện không có chứng nhận đăng ký xe (hoặc bản sao chứng nhận đăng ký xe có chứng thực kèm theo bản gốc giấy biên nhận của tổ chức tín dụng, chi nhánh ngân hàng nước ngoài trong trường hợp tổ chức tín dụng, chi nhánh ngân hàng nước ngoài giữ bản gốc chứng nhận đăng ký xe) tham gia giao thông hoặc có nhưng đã hết hạn sử dụng, hết hiệu lực; đưa phương tiện có chứng nhận đăng ký xe tạm thời, phương tiện có phạm vi hoạt động hạn chế tham gia giao thông quá thời hạn, tuyến đường, phạm vi cho phép;
+b) Đưa phương tiện không gắn biển số (đối với loại xe có quy định phải gắn biển số) tham gia giao thông;
+c) Lắp đặt, sử dụng thiết bị thay đổi biển số trên xe trái quy định (kể cả rơ moóc và sơ mi rơ moóc);
+d) Đưa phương tiện giao thông thông minh không có giấy phép hoạt động hoặc giấy phép hoạt động hết hạn sử dụng hoặc hoạt động không đúng nội dung ghi trong giấy phép tham gia giao thông.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/a
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm đ, điểm g, điểm m khoản 7; điểm đ, điểm e khoản 8; điểm b, điểm c, điểm d, điểm đ khoản 9; điểm a, điểm b, điểm đ khoản 11; điểm a khoản 12; điểm c khoản 13; điểm đ, điểm h khoản 14 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/đ
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+đ) Thực hiện hành vi quy định tại điểm h khoản 8, điểm b khoản 12 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 06 điểm;
+
+[0] 16.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K12)
+[1] 18.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K12)
+[2] 32.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K12)
+[3] 36.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K12)
+[4] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/a)
+[5] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/đ)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Công ty tôi đang vận chuyển hàng hóa, nhưng một xe của công ty bên cạnh đã tham gia giao thông mà không có chứng nhận đăng ký xe hợp lệ. Tôi muốn biết, nếu vi phạm này được xác định, số điểm trên giấy phép lái xe của chủ xe sẽ bị trừ bao nhiêu điểm?
+- Đáp: Nếu vi phạm được xác định, số điểm trên giấy phép lái xe của chủ xe sẽ bị trừ 02 điểm. (Điều 32, Khoản 21(a) Nghị định 168/2024/NĐ-CP)
+- ⚠ qua_dai (57 từ); chep_nguyen_van: “có chứng nhận đăng ký xe …”
+
+```json
+{"qid": "t5-tru_diem-004", "question": "Công ty tôi đang vận chuyển hàng hóa, nhưng một xe của công ty bên cạnh đã tham gia giao thông mà không có chứng nhận đăng ký xe hợp lệ. Tôi muốn biết, nếu vi phạm này được xác định, số điểm trên giấy phép lái xe của chủ xe sẽ bị trừ bao nhiêu điểm?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Nếu vi phạm được xác định, số điểm trên giấy phép lái xe của chủ xe sẽ bị trừ 02 điểm. (Điều 32, Khoản 21(a) Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K21/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W5-tru_diem-004:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi đã nhận một lô hàng, nhưng xe giao hàng của công ty bên cạnh đã tham gia giao thông mà không gắn biển số, dù loại xe này phải có biển số. Tôi muốn biết, nếu vi phạm này được xác định, số điểm trên giấy phép lái xe của chủ xe sẽ bị trừ bao nhiêu điểm?
+- Đáp: Nếu vi phạm được xác định, số điểm trên giấy phép lái xe của chủ xe sẽ bị trừ 02 điểm. (Điều 32, Khoản 21(a) Nghị định 168/2024/NĐ-CP)
+- ⚠ qua_dai (61 từ)
+
+```json
+{"qid": "t5-tru_diem-004", "question": "Công ty tôi đã nhận một lô hàng, nhưng xe giao hàng của công ty bên cạnh đã tham gia giao thông mà không gắn biển số, dù loại xe này phải có biển số. Tôi muốn biết, nếu vi phạm này được xác định, số điểm trên giấy phép lái xe của chủ xe sẽ bị trừ bao nhiêu điểm?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Nếu vi phạm được xác định, số điểm trên giấy phép lái xe của chủ xe sẽ bị trừ 02 điểm. (Điều 32, Khoản 21(a) Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K21/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W5-tru_diem-004:2"}
+```
+
+### W5-tru_diem-005 · tier A · vai: người mới học lái ô tô · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K6, ND168-2024/D13/K6/a, ND168-2024/D13/K6/b
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+6. Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Sử dụng chứng nhận đăng ký xe (hoặc bản sao chứng nhận đăng ký xe có chứng thực kèm theo bản gốc giấy biên nhận của tổ chức tín dụng, chi nhánh ngân hàng nước ngoài trong trường hợp tổ chức tín dụng, chi nhánh ngân hàng nước ngoài giữ bản gốc chứng nhận đăng ký xe), giấy chứng nhận, tem kiểm định an toàn kỹ thuật và bảo vệ môi trường không do cơ quan có thẩm quyền cấp hoặc bị tẩy xóa; sử dụng chứng nhận đăng ký xe (hoặc bản sao chứng nhận đăng ký xe có chứng thực kèm theo bản gốc giấy biên nhận của tổ chức tín dụng, chi nhánh ngân hàng nước ngoài trong trường hợp tổ chức tín dụng, chi nhánh ngân hàng nước ngoài giữ bản gốc chứng nhận đăng ký xe) không đúng số khung, số động cơ (số máy) của xe (kể cả rơ moóc và sơ mi rơ moóc);
+b) Điều khiển xe không có giấy chứng nhận hoặc tem kiểm định an toàn kỹ thuật và bảo vệ môi trường (đối với loại xe có quy định phải kiểm định, trừ xe đăng ký tạm thời) hoặc có nhưng đã hết hiệu lực (hạn sử dụng) từ 01 tháng trở lên (kể cả rơ moóc và sơ mi rơ moóc).
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D13/K13/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K13/a
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm a, điểm b khoản 3; khoản 4; khoản 5; khoản 6; điểm a khoản 7 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+[0] 4.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D13/K6)
+[1] 6.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D13/K6)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D13/K13/a)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi lái xe ô tô mà không có giấy chứng nhận đăng ký hợp lệ, có bị trừ bao nhiêu điểm trên giấy phép?
+- Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 13, Khoản 13 a Nghị định 168/2024/NĐ-CP)
+
+```json
+{"qid": "t5-tru_diem-005", "question": "Tôi lái xe ô tô mà không có giấy chứng nhận đăng ký hợp lệ, có bị trừ bao nhiêu điểm trên giấy phép?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 13, Khoản 13 a Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D13/K13/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W5-tru_diem-005:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi dùng bản sao chứng nhận đăng ký xe bị tẩy xóa khi lái xe, điểm giấy phép bị trừ là bao nhiêu?
+- Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 13, Khoản 13 a Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “bản sao chứng nhận đăng ký …”
+
+```json
+{"qid": "t5-tru_diem-005", "question": "Tôi dùng bản sao chứng nhận đăng ký xe bị tẩy xóa khi lái xe, điểm giấy phép bị trừ là bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 13, Khoản 13 a Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D13/K13/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W5-tru_diem-005:2"}
+```
+
+### W5-tru_diem-006 · tier A · vai: chủ doanh nghiệp vận tải · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K6
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+6. Phạt tiền từ 2.000.000 đồng đến 4.000.000 đồng trên mỗi người vượt quá quy định được phép chở của phương tiện nhưng tổng mức phạt tiền tối đa không vượt quá 75.000.000 đồng đối với chủ phương tiện là cá nhân, từ 4.000.000 đồng đến 8.000.000 đồng trên mỗi người vượt quá quy định được phép chở của phương tiện nhưng tổng mức phạt tiền tối đa không vượt quá 150.000.000 đồng đối với chủ phương tiện là tổ chức giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 4 Điều 20 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 4 Điều 20 của Nghị định này.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/đ
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+đ) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chở vượt trên 50% số người quy định được phép chở của phương tiện còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có). Thực hiện hành vi quy định tại điểm a, điểm b khoản 11; điểm a, điểm b, điểm c, điểm đ khoản 13; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16 Điều này còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có),
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/d)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/d
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+d) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện chở vượt trên 50% đến 100% số người quy định được phép chở của phương tiện, còn bị trừ điểm giấy phép lái xe 04 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/h)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/h
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+h) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện chở vượt trên 100% số người quy định được phép chở của phương tiện còn bị trừ điểm giấy phép lái xe 10 điểm.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D20/K4)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K4
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+4. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng trên mỗi người vượt quá quy định được phép chở của phương tiện nhưng tổng mức phạt tiền tối đa không vượt quá 75.000.000 đồng đối với người điều khiển xe ô tô chở hành khách (kinh doanh vận tải hành khách theo tuyến cố định, hợp đồng) chạy tuyến có cự ly lớn hơn 300 km thực hiện hành vi vi phạm chở quá số người quy định được phép chở của phương tiện.
+
+[0] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/đ)
+[1] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/đ)
+[2] 2.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K6)
+[3] 4.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K6)
+[4] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/d)
+[5] 10 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/h)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi, một chủ doanh nghiệp vận tải, vừa nhận được cảnh cáo vì đã chở quá số người quy định trên xe buýt của mình. Anh ấy muốn biết, nếu bị xử phạt, số điểm trên giấy phép lái xe của anh ấy sẽ bị trừ bao nhiêu điểm?
+- Đáp: Nếu chủ phương tiện là người trực tiếp điều khiển xe và chở vượt trên 50% đến 100% số người quy định được phép chở, thì sẽ bị trừ 04 điểm. (Điều 32, Khoản 21, Điểm d của Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “chở quá số người quy định …”
+
+```json
+{"qid": "t5-tru_diem-006", "question": "Anh tôi, một chủ doanh nghiệp vận tải, vừa nhận được cảnh cáo vì đã chở quá số người quy định trên xe buýt của mình. Anh ấy muốn biết, nếu bị xử phạt, số điểm trên giấy phép lái xe của anh ấy sẽ bị trừ bao nhiêu điểm?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Nếu chủ phương tiện là người trực tiếp điều khiển xe và chở vượt trên 50% đến 100% số người quy định được phép chở, thì sẽ bị trừ 04 điểm. (Điều 32, Khoản 21, Điểm d của Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K21/d"], "required_numbers": [{"value": 4, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W5-tru_diem-006:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi vừa bị cảnh báo vì đã chở quá số người quy định trên xe buýt. Nếu điều kiện là chở vượt quá 100% số người quy định, số điểm trên giấy phép lái xe của người điều khiển sẽ bị trừ bao nhiêu?
+- Đáp: Nếu chủ phương tiện là người trực tiếp điều khiển xe và chở vượt quá 100% số người quy định được phép chở, thì sẽ bị trừ 10 điểm. (Điều 32, Khoản 21, Điểm h của Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “chở quá số người quy định …”
+
+```json
+{"qid": "t5-tru_diem-006", "question": "Công ty tôi vừa bị cảnh báo vì đã chở quá số người quy định trên xe buýt. Nếu điều kiện là chở vượt quá 100% số người quy định, số điểm trên giấy phép lái xe của người điều khiển sẽ bị trừ bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Nếu chủ phương tiện là người trực tiếp điều khiển xe và chở vượt quá 100% số người quy định được phép chở, thì sẽ bị trừ 10 điểm. (Điều 32, Khoản 21, Điểm h của Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K21/h"], "required_numbers": [{"value": 10, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W5-tru_diem-006:2"}
+```
+
+## ngoai_pham_vi — câu ngoài phạm vi (LLM viết theo nhóm chủ đề)
+
+Kiểm kỹ: câu phải thật sự nằm ngoài dữ liệu (không văn bản nào trong danh mục trả lời).
+
+### O-01-cong_nghe_ky_thuat-1 · nhóm: kỹ thuật sửa chữa xe, so sánh động cơ, phần mềm bản đồ, cách lái xe tiết kiệm nhiên liệu — câu hỏi kỹ thuật, không phải câu hỏi pháp luật · vai: chủ doanh nghiệp vận tải
+
+- Hỏi: Tôi đang điều hành một công ty vận tải, muốn biết cách bảo dưỡng động cơ diesel để giảm tiêu thụ nhiên liệu, bạn có thể hướng dẫn chi tiết không?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến kỹ thuật bảo dưỡng xe, không phải vấn đề pháp luật.
+
+```json
+{"qid": "t-oos-cong_nghe_ky_thuat-1a", "question": "Tôi đang điều hành một công ty vận tải, muốn biết cách bảo dưỡng động cơ diesel để giảm tiêu thụ nhiên liệu, bạn có thể hướng dẫn chi tiết không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến kỹ thuật bảo dưỡng xe, không phải vấn đề pháp luật.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-01-cong_nghe_ky_thuat-1:1"}
+```
+
+### O-01-cong_nghe_ky_thuat-2 · nhóm: kỹ thuật sửa chữa xe, so sánh động cơ, phần mềm bản đồ, cách lái xe tiết kiệm nhiên liệu — câu hỏi kỹ thuật, không phải câu hỏi pháp luật · vai: phụ huynh có con dưới 18 tuổi
+
+- Hỏi: Tôi có con 15 tuổi, muốn học lái xe máy, nhưng anh ấy chưa đủ 18. Tôi có thể sửa chữa xe máy của mình bằng cách thay động cơ mới không?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến kỹ thuật sửa chữa xe máy, không phải vấn đề pháp luật.
+
+```json
+{"qid": "t-oos-cong_nghe_ky_thuat-2a", "question": "Tôi có con 15 tuổi, muốn học lái xe máy, nhưng anh ấy chưa đủ 18. Tôi có thể sửa chữa xe máy của mình bằng cách thay động cơ mới không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến kỹ thuật sửa chữa xe máy, không phải vấn đề pháp luật.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-01-cong_nghe_ky_thuat-2:1"}
+```
+
+### O-01-dan_su_bao_hiem-1 · nhóm: tranh chấp dân sự, hợp đồng mua bán, bảo hiểm thương mại, bồi thường theo hợp đồng giữa các bên (không phải xử phạt hành chính) · vai: chủ doanh nghiệp vận tải
+
+- Hỏi: Tôi là chủ doanh nghiệp vận tải, tôi muốn biết khi một khách hàng hủy hợp đồng giao hàng trong vòng 48 giờ trước khi xuất phát, tôi có thể yêu cầu bồi thường thiệt hại theo hợp đồng không?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến tranh chấp dân sự và hợp đồng mua bán, không phải xử phạt hành chính.
+
+```json
+{"qid": "t-oos-dan_su_bao_hiem-1a", "question": "Tôi là chủ doanh nghiệp vận tải, tôi muốn biết khi một khách hàng hủy hợp đồng giao hàng trong vòng 48 giờ trước khi xuất phát, tôi có thể yêu cầu bồi thường thiệt hại theo hợp đồng không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến tranh chấp dân sự và hợp đồng mua bán, không phải xử phạt hành chính.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-01-dan_su_bao_hiem-1:1"}
+```
+
+### O-01-dan_su_bao_hiem-2 · nhóm: tranh chấp dân sự, hợp đồng mua bán, bảo hiểm thương mại, bồi thường theo hợp đồng giữa các bên (không phải xử phạt hành chính) · vai: cán bộ phường
+
+- Hỏi: Cán bộ phường muốn biết quy định bồi thường thiệt hại khi một công trình xây dựng vi phạm hợp đồng với nhà thầu, có thể tham khảo luật nào?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Nó liên quan đến tranh chấp dân sự và hợp đồng xây dựng, không phải luật giao thông.
+
+```json
+{"qid": "t-oos-dan_su_bao_hiem-2a", "question": "Cán bộ phường muốn biết quy định bồi thường thiệt hại khi một công trình xây dựng vi phạm hợp đồng với nhà thầu, có thể tham khảo luật nào?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Nó liên quan đến tranh chấp dân sự và hợp đồng xây dựng, không phải luật giao thông.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-01-dan_su_bao_hiem-2:1"}
+```
+
+### O-01-giao_thong_khac-1 · nhóm: giao thông đường sắt, đường thủy nội địa, hàng hải, hàng không · vai: sinh viên đi xe máy
+
+- Hỏi: Anh tôi đã đi tàu hỏa từ Hà Nội tới Đà Nẵng, anh ấy hỏi liệu có cần mua vé trước khi lên tàu không?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông đường sắt.
+
+```json
+{"qid": "t-oos-giao_thong_khac-1a", "question": "Anh tôi đã đi tàu hỏa từ Hà Nội tới Đà Nẵng, anh ấy hỏi liệu có cần mua vé trước khi lên tàu không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông đường sắt.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-01-giao_thong_khac-1:1"}
+```
+
+### O-01-giao_thong_khac-2 · nhóm: giao thông đường sắt, đường thủy nội địa, hàng hải, hàng không · vai: sinh viên đi xe máy
+
+- Hỏi: Anh tôi đã đi tàu hỏa từ Hà Nội tới Đà Nẵng, anh ấy hỏi liệu có cần mua vé trước khi lên tàu không?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông đường sắt.
+- ⚠ gan_trung
+
+```json
+{"qid": "t-oos-giao_thong_khac-2a", "question": "Anh tôi đã đi tàu hỏa từ Hà Nội tới Đà Nẵng, anh ấy hỏi liệu có cần mua vé trước khi lên tàu không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông đường sắt.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-01-giao_thong_khac-2:1"}
+```
+
+### O-01-nuoc_ngoai-1 · nhóm: luật giao thông của nước khác áp dụng tại nước đó (Mỹ, Nhật, Hàn Quốc, châu Âu…), không liên quan Việt Nam · vai: người lớn tuổi đi xe đạp điện
+
+- Hỏi: Là một người lớn tuổi đi xe đạp điện, tôi muốn biết quy định về tốc độ tối đa và quy tắc ưu tiên khi đi qua ngã tư tại Nhật Bản, đặc biệt là khi có xe tải lớn và người đi bộ trẻ em, và liệu có cần giấy phép đặc biệt cho xe đạp điện không?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đề cập đến quy định của Nhật Bản. Chúng tôi không thể trả lời nội dung này.
+- ⚠ qua_dai (59 từ)
+
+```json
+{"qid": "t-oos-nuoc_ngoai-1a", "question": "Là một người lớn tuổi đi xe đạp điện, tôi muốn biết quy định về tốc độ tối đa và quy tắc ưu tiên khi đi qua ngã tư tại Nhật Bản, đặc biệt là khi có xe tải lớn và người đi bộ trẻ em, và liệu có cần giấy phép đặc biệt cho xe đạp điện không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đề cập đến quy định của Nhật Bản. Chúng tôi không thể trả lời nội dung này.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-01-nuoc_ngoai-1:1"}
+```
+
+### O-01-nuoc_ngoai-2 · nhóm: luật giao thông của nước khác áp dụng tại nước đó (Mỹ, Nhật, Hàn Quốc, châu Âu…), không liên quan Việt Nam · vai: người lớn tuổi đi xe đạp điện
+
+- Hỏi: Tôi đang đi xe đạp điện ở California, Mỹ, và muốn biết luật giao thông đường bộ ở đó quy định gì về tốc độ tối đa cho xe đạp điện?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đề cập đến luật của nước Mỹ.
+
+```json
+{"qid": "t-oos-nuoc_ngoai-2a", "question": "Tôi đang đi xe đạp điện ở California, Mỹ, và muốn biết luật giao thông đường bộ ở đó quy định gì về tốc độ tối đa cho xe đạp điện?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đề cập đến luật của nước Mỹ.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-01-nuoc_ngoai-2:1"}
+```
+
+### O-01-phap_luat_khac-1 · nhóm: lĩnh vực pháp luật khác không liên quan giao thông đường bộ: hình sự, hôn nhân gia đình, đất đai, thuế, lao động, thừa kế · vai: người lớn tuổi đi xe đạp điện
+
+- Hỏi: Làm sao tôi, một người lớn tuổi đi xe đạp điện, có thể đăng ký bảo hiểm nhân thọ cho mình khi đang sống ở Hà Nội, và có những điều kiện gì cần đáp ứng?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Nó liên quan đến luật bảo hiểm và luật dân sự, không được bao gồm trong dữ liệu hiện có.
+
+```json
+{"qid": "t-oos-phap_luat_khac-1a", "question": "Làm sao tôi, một người lớn tuổi đi xe đạp điện, có thể đăng ký bảo hiểm nhân thọ cho mình khi đang sống ở Hà Nội, và có những điều kiện gì cần đáp ứng?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Nó liên quan đến luật bảo hiểm và luật dân sự, không được bao gồm trong dữ liệu hiện có.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-01-phap_luat_khac-1:1"}
+```
+
+### O-01-phap_luat_khac-2 · nhóm: lĩnh vực pháp luật khác không liên quan giao thông đường bộ: hình sự, hôn nhân gia đình, đất đai, thuế, lao động, thừa kế · vai: phụ huynh có con dưới 18 tuổi
+
+- Hỏi: Tôi muốn biết quy định về việc thừa kế tài sản của cha mẹ khi con tôi chưa đủ 18 tuổi, có thể cho tôi giải thích chi tiết không?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Việc thừa kế tài sản thuộc lĩnh vực pháp luật khác.
+
+```json
+{"qid": "t-oos-phap_luat_khac-2a", "question": "Tôi muốn biết quy định về việc thừa kế tài sản của cha mẹ khi con tôi chưa đủ 18 tuổi, có thể cho tôi giải thích chi tiết không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Việc thừa kế tài sản thuộc lĩnh vực pháp luật khác.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-01-phap_luat_khac-2:1"}
+```
+
+### O-01-so_lieu_thong_tin-1 · nhóm: số liệu thống kê, giá cả thị trường, thông tin doanh nghiệp, lịch làm việc hay địa chỉ của cơ quan, tình hình giao thông hôm nay · vai: tài xế công nghệ
+
+- Hỏi: Anh tôi là một tài xế công nghệ, anh ấy hỏi: “Bạn có biết giá cước Uber hiện tại ở Hà Nội không?”
+- Đáp: Xin lỗi, câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì nó liên quan đến giá cước dịch vụ công nghệ vận tải.
+
+```json
+{"qid": "t-oos-so_lieu_thong_tin-1a", "question": "Anh tôi là một tài xế công nghệ, anh ấy hỏi: “Bạn có biết giá cước Uber hiện tại ở Hà Nội không?”", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Xin lỗi, câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì nó liên quan đến giá cước dịch vụ công nghệ vận tải.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-01-so_lieu_thong_tin-1:1"}
+```
+
+### O-01-so_lieu_thong_tin-2 · nhóm: số liệu thống kê, giá cả thị trường, thông tin doanh nghiệp, lịch làm việc hay địa chỉ của cơ quan, tình hình giao thông hôm nay · vai: phụ huynh có con dưới 18 tuổi
+
+- Hỏi: Anh tôi đã mua một chiếc xe máy mới, anh ấy hỏi tôi giá bán lẻ của xe đó tại thị trường hiện nay, liệu có thể cho biết được không?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì yêu cầu thông tin giá bán lẻ thị trường.
+
+```json
+{"qid": "t-oos-so_lieu_thong_tin-2a", "question": "Anh tôi đã mua một chiếc xe máy mới, anh ấy hỏi tôi giá bán lẻ của xe đó tại thị trường hiện nay, liệu có thể cho biết được không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì yêu cầu thông tin giá bán lẻ thị trường.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-01-so_lieu_thong_tin-2:1"}
+```
+
+### O-01-tu_van_ca_nhan-1 · nhóm: xin lời khuyên cá nhân, dự đoán kết quả, đánh giá một cán bộ hay một vụ việc cụ thể, chọn mua xe nào, nên học lái ở trường nào · vai: chủ doanh nghiệp vận tải
+
+- Hỏi: Anh tôi đang cân nhắc mua một chiếc xe tải mới, bạn nghĩ nên chọn hãng nào để tiết kiệm chi phí bảo trì lâu dài?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến tư vấn mua sắm xe và chi phí bảo trì.
+
+```json
+{"qid": "t-oos-tu_van_ca_nhan-1a", "question": "Anh tôi đang cân nhắc mua một chiếc xe tải mới, bạn nghĩ nên chọn hãng nào để tiết kiệm chi phí bảo trì lâu dài?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến tư vấn mua sắm xe và chi phí bảo trì.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-01-tu_van_ca_nhan-1:1"}
+```
+
+### O-01-tu_van_ca_nhan-2 · nhóm: xin lời khuyên cá nhân, dự đoán kết quả, đánh giá một cán bộ hay một vụ việc cụ thể, chọn mua xe nào, nên học lái ở trường nào · vai: tài xế xe tải
+
+- Hỏi: Tôi là tài xế xe tải, muốn biết liệu có thể mua bảo hiểm xe tải quốc tế để bảo vệ khi đi xuyên biên giới không?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến bảo hiểm quốc tế và quy định của các quốc gia khác.
+
+```json
+{"qid": "t-oos-tu_van_ca_nhan-2a", "question": "Tôi là tài xế xe tải, muốn biết liệu có thể mua bảo hiểm xe tải quốc tế để bảo vệ khi đi xuyên biên giới không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến bảo hiểm quốc tế và quy định của các quốc gia khác.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-01-tu_van_ca_nhan-2:1"}
+```
+
+### O-02-cong_nghe_ky_thuat-1 · nhóm: kỹ thuật sửa chữa xe, so sánh động cơ, phần mềm bản đồ, cách lái xe tiết kiệm nhiên liệu — câu hỏi kỹ thuật, không phải câu hỏi pháp luật · vai: chủ doanh nghiệp vận tải
+
+- Hỏi: Tôi muốn so sánh hiệu suất của hai loại động cơ 4 xiên và 6 xiên trong xe tải, bạn có thể cung cấp bảng so sánh chi tiết?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đây là câu hỏi kỹ thuật so sánh động cơ, không liên quan đến pháp luật.
+
+```json
+{"qid": "t-oos-cong_nghe_ky_thuat-1b", "question": "Tôi muốn so sánh hiệu suất của hai loại động cơ 4 xiên và 6 xiên trong xe tải, bạn có thể cung cấp bảng so sánh chi tiết?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đây là câu hỏi kỹ thuật so sánh động cơ, không liên quan đến pháp luật.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-02-cong_nghe_ky_thuat-1:1"}
+```
+
+### O-02-cong_nghe_ky_thuat-2 · nhóm: kỹ thuật sửa chữa xe, so sánh động cơ, phần mềm bản đồ, cách lái xe tiết kiệm nhiên liệu — câu hỏi kỹ thuật, không phải câu hỏi pháp luật · vai: phụ huynh có con dưới 18 tuổi
+
+- Hỏi: Tôi muốn cài đặt phần mềm bản đồ mới cho xe ô tô của con 16 tuổi, nhưng không biết cách tối ưu nhiên liệu. Làm sao?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đề cập đến phần mềm và kỹ thuật tiết kiệm nhiên liệu, không phải vấn đề pháp luật.
+
+```json
+{"qid": "t-oos-cong_nghe_ky_thuat-2b", "question": "Tôi muốn cài đặt phần mềm bản đồ mới cho xe ô tô của con 16 tuổi, nhưng không biết cách tối ưu nhiên liệu. Làm sao?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đề cập đến phần mềm và kỹ thuật tiết kiệm nhiên liệu, không phải vấn đề pháp luật.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-02-cong_nghe_ky_thuat-2:1"}
+```
+
+### O-02-dan_su_bao_hiem-1 · nhóm: tranh chấp dân sự, hợp đồng mua bán, bảo hiểm thương mại, bồi thường theo hợp đồng giữa các bên (không phải xử phạt hành chính) · vai: chủ doanh nghiệp vận tải
+
+- Hỏi: Tôi đang điều hành một công ty vận tải, có một hợp đồng thuê xe cho khách hàng quốc tế, họ yêu cầu bồi thường khi xe bị hỏng trong quá trình giao hàng. Tôi cần biết quy định pháp lý về bồi thường theo hợp đồng này?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến tranh chấp dân sự và bảo hiểm thương mại, không phải xử phạt hành chính.
+
+```json
+{"qid": "t-oos-dan_su_bao_hiem-1b", "question": "Tôi đang điều hành một công ty vận tải, có một hợp đồng thuê xe cho khách hàng quốc tế, họ yêu cầu bồi thường khi xe bị hỏng trong quá trình giao hàng. Tôi cần biết quy định pháp lý về bồi thường theo hợp đồng này?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến tranh chấp dân sự và bảo hiểm thương mại, không phải xử phạt hành chính.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-02-dan_su_bao_hiem-1:1"}
+```
+
+### O-02-dan_su_bao_hiem-2 · nhóm: tranh chấp dân sự, hợp đồng mua bán, bảo hiểm thương mại, bồi thường theo hợp đồng giữa các bên (không phải xử phạt hành chính) · vai: cán bộ phường
+
+- Hỏi: Nếu một doanh nghiệp bán lẻ bị mất hàng do hư hỏng trong quá trình vận chuyển, họ cần tham khảo quy định bảo hiểm thương mại nào?
+- Đáp: Câu hỏi này không thuộc phạm vi Luật Giao thông đường bộ Việt Nam. Nó liên quan đến bảo hiểm thương mại và bồi thường theo hợp đồng, không phải luật giao thông.
+
+```json
+{"qid": "t-oos-dan_su_bao_hiem-2b", "question": "Nếu một doanh nghiệp bán lẻ bị mất hàng do hư hỏng trong quá trình vận chuyển, họ cần tham khảo quy định bảo hiểm thương mại nào?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này không thuộc phạm vi Luật Giao thông đường bộ Việt Nam. Nó liên quan đến bảo hiểm thương mại và bồi thường theo hợp đồng, không phải luật giao thông.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-02-dan_su_bao_hiem-2:1"}
+```
+
+### O-02-giao_thong_khac-1 · nhóm: giao thông đường sắt, đường thủy nội địa, hàng hải, hàng không · vai: sinh viên đi xe máy
+
+- Hỏi: Công ty bên cạnh tôi đang vận chuyển hàng bằng thuyền nội địa, họ muốn biết quy định bảo hiểm cho hàng hóa khi đi qua sông Hồng.
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông đường thủy nội địa.
+
+```json
+{"qid": "t-oos-giao_thong_khac-1b", "question": "Công ty bên cạnh tôi đang vận chuyển hàng bằng thuyền nội địa, họ muốn biết quy định bảo hiểm cho hàng hóa khi đi qua sông Hồng.", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông đường thủy nội địa.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-02-giao_thong_khac-1:1"}
+```
+
+### O-02-giao_thong_khac-2 · nhóm: giao thông đường sắt, đường thủy nội địa, hàng hải, hàng không · vai: sinh viên đi xe máy
+
+- Hỏi: Công ty bên cạnh tôi đang vận chuyển hàng bằng thuyền nội địa, họ muốn biết quy định bảo hiểm cho hàng hóa khi đi qua sông Hồng.
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông đường thủy nội địa.
+- ⚠ gan_trung
+
+```json
+{"qid": "t-oos-giao_thong_khac-2b", "question": "Công ty bên cạnh tôi đang vận chuyển hàng bằng thuyền nội địa, họ muốn biết quy định bảo hiểm cho hàng hóa khi đi qua sông Hồng.", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông đường thủy nội địa.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-02-giao_thong_khac-2:1"}
+```
+
+### O-02-nuoc_ngoai-1 · nhóm: luật giao thông của nước khác áp dụng tại nước đó (Mỹ, Nhật, Hàn Quốc, châu Âu…), không liên quan Việt Nam · vai: người lớn tuổi đi xe đạp điện
+
+- Hỏi: Tôi đang lên kế hoạch đi du lịch tại Hàn Quốc và muốn biết quy định về việc sử dụng xe đạp điện trên đường công cộng, bao gồm tốc độ tối đa, quy tắc ưu tiên tại ngã tư, và yêu cầu giấy tờ khi đi qua các khu vực đông dân cư, đồng thời có cần bảo hiểm trách nhiệm dân sự không?
+- Đáp: Câu hỏi này liên quan đến luật giao thông của Hàn Quốc, không thuộc phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Chúng tôi không thể trả lời.
+- ⚠ qua_dai (65 từ)
+
+```json
+{"qid": "t-oos-nuoc_ngoai-1b", "question": "Tôi đang lên kế hoạch đi du lịch tại Hàn Quốc và muốn biết quy định về việc sử dụng xe đạp điện trên đường công cộng, bao gồm tốc độ tối đa, quy tắc ưu tiên tại ngã tư, và yêu cầu giấy tờ khi đi qua các khu vực đông dân cư, đồng thời có cần bảo hiểm trách nhiệm dân sự không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này liên quan đến luật giao thông của Hàn Quốc, không thuộc phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Chúng tôi không thể trả lời.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-02-nuoc_ngoai-1:1"}
+```
+
+### O-02-nuoc_ngoai-2 · nhóm: luật giao thông của nước khác áp dụng tại nước đó (Mỹ, Nhật, Hàn Quốc, châu Âu…), không liên quan Việt Nam · vai: người lớn tuổi đi xe đạp điện
+
+- Hỏi: Tôi đang lái xe đạp điện tại Tokyo, Nhật Bản, và muốn biết quy định về biển số xe đạp điện ở đó là gì?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đề cập đến luật của Nhật Bản.
+
+```json
+{"qid": "t-oos-nuoc_ngoai-2b", "question": "Tôi đang lái xe đạp điện tại Tokyo, Nhật Bản, và muốn biết quy định về biển số xe đạp điện ở đó là gì?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đề cập đến luật của Nhật Bản.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-02-nuoc_ngoai-2:1"}
+```
+
+### O-02-phap_luat_khac-1 · nhóm: lĩnh vực pháp luật khác không liên quan giao thông đường bộ: hình sự, hôn nhân gia đình, đất đai, thuế, lao động, thừa kế · vai: người lớn tuổi đi xe đạp điện
+
+- Hỏi: Nếu tôi muốn chuyển giấy phép lái xe quốc tế sang Việt Nam, nhưng đang sử dụng xe đạp điện, có cần làm thủ tục gì đặc biệt?
+- Đáp: Câu hỏi này không thuộc phạm vi dữ liệu Luật Giao thông đường bộ Việt Nam. Việc chuyển giấy phép lái xe quốc tế liên quan đến luật ngoại giao và luật quốc tế, không được đề cập trong dữ liệu.
+
+```json
+{"qid": "t-oos-phap_luat_khac-1b", "question": "Nếu tôi muốn chuyển giấy phép lái xe quốc tế sang Việt Nam, nhưng đang sử dụng xe đạp điện, có cần làm thủ tục gì đặc biệt?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này không thuộc phạm vi dữ liệu Luật Giao thông đường bộ Việt Nam. Việc chuyển giấy phép lái xe quốc tế liên quan đến luật ngoại giao và luật quốc tế, không được đề cập trong dữ liệu.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-02-phap_luat_khac-1:1"}
+```
+
+### O-02-phap_luat_khac-2 · nhóm: lĩnh vực pháp luật khác không liên quan giao thông đường bộ: hình sự, hôn nhân gia đình, đất đai, thuế, lao động, thừa kế · vai: phụ huynh có con dưới 18 tuổi
+
+- Hỏi: Tôi đang chuẩn bị đăng ký kết hôn cho con tôi, nhưng chưa biết quy định về độ tuổi tối thiểu và thủ tục cần thiết, bạn có thể hướng dẫn được không?
+- Đáp: Câu hỏi này không thuộc phạm vi Luật Giao thông đường bộ Việt Nam. Đó là vấn đề pháp luật hôn nhân gia đình.
+
+```json
+{"qid": "t-oos-phap_luat_khac-2b", "question": "Tôi đang chuẩn bị đăng ký kết hôn cho con tôi, nhưng chưa biết quy định về độ tuổi tối thiểu và thủ tục cần thiết, bạn có thể hướng dẫn được không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này không thuộc phạm vi Luật Giao thông đường bộ Việt Nam. Đó là vấn đề pháp luật hôn nhân gia đình.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-02-phap_luat_khac-2:1"}
+```
+
+### O-02-so_lieu_thong_tin-1 · nhóm: số liệu thống kê, giá cả thị trường, thông tin doanh nghiệp, lịch làm việc hay địa chỉ của cơ quan, tình hình giao thông hôm nay · vai: tài xế công nghệ
+
+- Hỏi: Công ty bên cạnh tôi đang hỏi: “Bạn có biết số lượng xe tải đang hoạt động trên đường cao tốc 1-2 hôm nay không?”
+- Đáp: Xin lỗi, câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì nó yêu cầu số liệu thống kê giao thông thời gian thực.
+
+```json
+{"qid": "t-oos-so_lieu_thong_tin-1b", "question": "Công ty bên cạnh tôi đang hỏi: “Bạn có biết số lượng xe tải đang hoạt động trên đường cao tốc 1-2 hôm nay không?”", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Xin lỗi, câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì nó yêu cầu số liệu thống kê giao thông thời gian thực.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-02-so_lieu_thong_tin-1:1"}
+```
+
+### O-02-so_lieu_thong_tin-2 · nhóm: số liệu thống kê, giá cả thị trường, thông tin doanh nghiệp, lịch làm việc hay địa chỉ của cơ quan, tình hình giao thông hôm nay · vai: phụ huynh có con dưới 18 tuổi
+
+- Hỏi: Công ty bên cạnh chúng tôi đang triển khai dự án xây dựng cầu, anh ấy muốn biết thời gian hoàn thành dự án và chi phí dự kiến, bạn có thể chia sẻ không?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì yêu cầu thông tin dự án xây dựng và chi phí.
+
+```json
+{"qid": "t-oos-so_lieu_thong_tin-2b", "question": "Công ty bên cạnh chúng tôi đang triển khai dự án xây dựng cầu, anh ấy muốn biết thời gian hoàn thành dự án và chi phí dự kiến, bạn có thể chia sẻ không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì yêu cầu thông tin dự án xây dựng và chi phí.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-02-so_lieu_thong_tin-2:1"}
+```
+
+### O-02-tu_van_ca_nhan-1 · nhóm: xin lời khuyên cá nhân, dự đoán kết quả, đánh giá một cán bộ hay một vụ việc cụ thể, chọn mua xe nào, nên học lái ở trường nào · vai: chủ doanh nghiệp vận tải
+
+- Hỏi: Công ty bên cạnh tôi đã chuyển sang sử dụng xe điện, bạn có thể dự đoán lợi ích thuế mà họ sẽ nhận được trong năm tới không?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến dự đoán chính sách thuế và lợi ích tài chính.
+
+```json
+{"qid": "t-oos-tu_van_ca_nhan-1b", "question": "Công ty bên cạnh tôi đã chuyển sang sử dụng xe điện, bạn có thể dự đoán lợi ích thuế mà họ sẽ nhận được trong năm tới không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến dự đoán chính sách thuế và lợi ích tài chính.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-02-tu_van_ca_nhan-1:1"}
+```
+
+### O-02-tu_van_ca_nhan-2 · nhóm: xin lời khuyên cá nhân, dự đoán kết quả, đánh giá một cán bộ hay một vụ việc cụ thể, chọn mua xe nào, nên học lái ở trường nào · vai: tài xế xe tải
+
+- Hỏi: Tôi đang cân nhắc chuyển sang lái xe tải điện, bạn có thể cho tôi lời khuyên về công nghệ và chi phí đầu tư?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đề cập đến công nghệ xe tải điện và chi phí đầu tư, không phải là nội dung pháp luật Việt Nam.
+
+```json
+{"qid": "t-oos-tu_van_ca_nhan-2b", "question": "Tôi đang cân nhắc chuyển sang lái xe tải điện, bạn có thể cho tôi lời khuyên về công nghệ và chi phí đầu tư?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đề cập đến công nghệ xe tải điện và chi phí đầu tư, không phải là nội dung pháp luật Việt Nam.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-02-tu_van_ca_nhan-2:1"}
+```
+
+### O-03-cong_nghe_ky_thuat-1 · nhóm: kỹ thuật sửa chữa xe, so sánh động cơ, phần mềm bản đồ, cách lái xe tiết kiệm nhiên liệu — câu hỏi kỹ thuật, không phải câu hỏi pháp luật · vai: chủ doanh nghiệp vận tải
+
+- Hỏi: Tôi đang triển khai phần mềm bản đồ cho đội xe, cần biết cách tối ưu thuật toán định vị để giảm độ trễ, bạn có gợi ý nào?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến kỹ thuật phần mềm, không phải vấn đề pháp luật.
+
+```json
+{"qid": "t-oos-cong_nghe_ky_thuat-1c", "question": "Tôi đang triển khai phần mềm bản đồ cho đội xe, cần biết cách tối ưu thuật toán định vị để giảm độ trễ, bạn có gợi ý nào?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến kỹ thuật phần mềm, không phải vấn đề pháp luật.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-03-cong_nghe_ky_thuat-1:1"}
+```
+
+### O-03-cong_nghe_ky_thuat-2 · nhóm: kỹ thuật sửa chữa xe, so sánh động cơ, phần mềm bản đồ, cách lái xe tiết kiệm nhiên liệu — câu hỏi kỹ thuật, không phải câu hỏi pháp luật · vai: phụ huynh có con dưới 18 tuổi
+
+- Hỏi: Tôi đang sửa chữa động cơ xe tải của con 17 tuổi, muốn so sánh hiệu suất giữa động cơ 4x4 và 6x6. Có thể giúp không?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến so sánh động cơ, không phải vấn đề pháp luật.
+
+```json
+{"qid": "t-oos-cong_nghe_ky_thuat-2c", "question": "Tôi đang sửa chữa động cơ xe tải của con 17 tuổi, muốn so sánh hiệu suất giữa động cơ 4x4 và 6x6. Có thể giúp không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến so sánh động cơ, không phải vấn đề pháp luật.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-03-cong_nghe_ky_thuat-2:1"}
+```
+
+### O-03-dan_su_bao_hiem-1 · nhóm: tranh chấp dân sự, hợp đồng mua bán, bảo hiểm thương mại, bồi thường theo hợp đồng giữa các bên (không phải xử phạt hành chính) · vai: chủ doanh nghiệp vận tải
+
+- Hỏi: Tôi là chủ doanh nghiệp vận tải, một khách hàng đã trả tiền trước cho dịch vụ giao hàng nhưng sau khi nhận hàng, họ khẳng định không đồng ý với giá đã ký. Tôi muốn biết quyền bồi thường của tôi theo hợp đồng?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến tranh chấp dân sự và hợp đồng mua bán, không phải xử phạt hành chính.
+
+```json
+{"qid": "t-oos-dan_su_bao_hiem-1c", "question": "Tôi là chủ doanh nghiệp vận tải, một khách hàng đã trả tiền trước cho dịch vụ giao hàng nhưng sau khi nhận hàng, họ khẳng định không đồng ý với giá đã ký. Tôi muốn biết quyền bồi thường của tôi theo hợp đồng?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến tranh chấp dân sự và hợp đồng mua bán, không phải xử phạt hành chính.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-03-dan_su_bao_hiem-1:1"}
+```
+
+### O-03-dan_su_bao_hiem-2 · nhóm: tranh chấp dân sự, hợp đồng mua bán, bảo hiểm thương mại, bồi thường theo hợp đồng giữa các bên (không phải xử phạt hành chính) · vai: cán bộ phường
+
+- Hỏi: Cán bộ phường muốn biết quy định về bồi thường khi một hợp đồng mua bán bất động sản bị hủy bỏ do vi phạm hợp đồng. Luật nào áp dụng?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Đây là vấn đề tranh chấp dân sự, không liên quan đến luật giao thông.
+
+```json
+{"qid": "t-oos-dan_su_bao_hiem-2c", "question": "Cán bộ phường muốn biết quy định về bồi thường khi một hợp đồng mua bán bất động sản bị hủy bỏ do vi phạm hợp đồng. Luật nào áp dụng?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Đây là vấn đề tranh chấp dân sự, không liên quan đến luật giao thông.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-03-dan_su_bao_hiem-2:1"}
+```
+
+### O-03-giao_thong_khac-1 · nhóm: giao thông đường sắt, đường thủy nội địa, hàng hải, hàng không · vai: sinh viên đi xe máy
+
+- Hỏi: Bạn của tôi đang lên kế hoạch bay máy bay dân dụng, anh ấy hỏi về quy định đăng ký máy bay tại Việt Nam.
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông hàng không.
+
+```json
+{"qid": "t-oos-giao_thong_khac-1c", "question": "Bạn của tôi đang lên kế hoạch bay máy bay dân dụng, anh ấy hỏi về quy định đăng ký máy bay tại Việt Nam.", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông hàng không.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-03-giao_thong_khac-1:1"}
+```
+
+### O-03-giao_thong_khac-2 · nhóm: giao thông đường sắt, đường thủy nội địa, hàng hải, hàng không · vai: sinh viên đi xe máy
+
+- Hỏi: Bạn của tôi đang lên kế hoạch thuê máy bay để du lịch, anh ấy hỏi về quy định về hành lý ký gửi và hạn chế trọng lượng.
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông hàng không.
+
+```json
+{"qid": "t-oos-giao_thong_khac-2c", "question": "Bạn của tôi đang lên kế hoạch thuê máy bay để du lịch, anh ấy hỏi về quy định về hành lý ký gửi và hạn chế trọng lượng.", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông hàng không.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-03-giao_thong_khac-2:1"}
+```
+
+### O-03-nuoc_ngoai-1 · nhóm: luật giao thông của nước khác áp dụng tại nước đó (Mỹ, Nhật, Hàn Quốc, châu Âu…), không liên quan Việt Nam · vai: người lớn tuổi đi xe đạp điện
+
+- Hỏi: Là một người lớn tuổi, tôi muốn biết tại Mỹ, khi đi xe đạp điện trên đường cao tốc, có quy định nào về tốc độ tối đa, cách tiếp cận ngã tư, và yêu cầu bảo hiểm trách nhiệm dân sự khi gặp tai nạn với xe tải không?
+- Đáp: Câu hỏi này đề cập đến luật giao thông của Mỹ, nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Chúng tôi không thể trả lời.
+
+```json
+{"qid": "t-oos-nuoc_ngoai-1c", "question": "Là một người lớn tuổi, tôi muốn biết tại Mỹ, khi đi xe đạp điện trên đường cao tốc, có quy định nào về tốc độ tối đa, cách tiếp cận ngã tư, và yêu cầu bảo hiểm trách nhiệm dân sự khi gặp tai nạn với xe tải không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này đề cập đến luật giao thông của Mỹ, nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Chúng tôi không thể trả lời.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-03-nuoc_ngoai-1:1"}
+```
+
+### O-03-nuoc_ngoai-2 · nhóm: luật giao thông của nước khác áp dụng tại nước đó (Mỹ, Nhật, Hàn Quốc, châu Âu…), không liên quan Việt Nam · vai: người lớn tuổi đi xe đạp điện
+
+- Hỏi: Tôi đang đi xe đạp điện ở Seoul, Hàn Quốc, và muốn biết quy định về bảo hiểm trách nhiệm dân sự cho xe đạp điện?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đề cập đến luật của Hàn Quốc.
+
+```json
+{"qid": "t-oos-nuoc_ngoai-2c", "question": "Tôi đang đi xe đạp điện ở Seoul, Hàn Quốc, và muốn biết quy định về bảo hiểm trách nhiệm dân sự cho xe đạp điện?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đề cập đến luật của Hàn Quốc.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-03-nuoc_ngoai-2:1"}
+```
+
+### O-03-phap_luat_khac-1 · nhóm: lĩnh vực pháp luật khác không liên quan giao thông đường bộ: hình sự, hôn nhân gia đình, đất đai, thuế, lao động, thừa kế · vai: người lớn tuổi đi xe đạp điện
+
+- Hỏi: Tôi muốn mua một chiếc xe máy điện, nhưng tôi đang ở một tỉnh có quy định về thuế nhập khẩu cao. Tôi cần biết quy trình thuế và các khoản phí phải nộp?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Nó liên quan đến luật thuế và quy định thuế nhập khẩu, không được bao gồm trong dữ liệu.
+
+```json
+{"qid": "t-oos-phap_luat_khac-1c", "question": "Tôi muốn mua một chiếc xe máy điện, nhưng tôi đang ở một tỉnh có quy định về thuế nhập khẩu cao. Tôi cần biết quy trình thuế và các khoản phí phải nộp?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Nó liên quan đến luật thuế và quy định thuế nhập khẩu, không được bao gồm trong dữ liệu.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-03-phap_luat_khac-1:1"}
+```
+
+### O-03-phap_luat_khac-2 · nhóm: lĩnh vực pháp luật khác không liên quan giao thông đường bộ: hình sự, hôn nhân gia đình, đất đai, thuế, lao động, thừa kế · vai: phụ huynh có con dưới 18 tuổi
+
+- Hỏi: Tôi muốn biết quy định về thuế thu nhập cá nhân khi con tôi làm việc bán thời gian, bạn có thể cho tôi biết không?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Thuế thu nhập cá nhân thuộc lĩnh vực thuế.
+
+```json
+{"qid": "t-oos-phap_luat_khac-2c", "question": "Tôi muốn biết quy định về thuế thu nhập cá nhân khi con tôi làm việc bán thời gian, bạn có thể cho tôi biết không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Thuế thu nhập cá nhân thuộc lĩnh vực thuế.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-03-phap_luat_khac-2:1"}
+```
+
+### O-03-so_lieu_thong_tin-1 · nhóm: số liệu thống kê, giá cả thị trường, thông tin doanh nghiệp, lịch làm việc hay địa chỉ của cơ quan, tình hình giao thông hôm nay · vai: tài xế công nghệ
+
+- Hỏi: Tài xế công nghệ của tôi hỏi: “Bạn có biết địa chỉ văn phòng của công ty bảo hiểm xe hơi tại TP.HCM không?”
+- Đáp: Xin lỗi, câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì nó liên quan đến thông tin doanh nghiệp và địa chỉ.
+
+```json
+{"qid": "t-oos-so_lieu_thong_tin-1c", "question": "Tài xế công nghệ của tôi hỏi: “Bạn có biết địa chỉ văn phòng của công ty bảo hiểm xe hơi tại TP.HCM không?”", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Xin lỗi, câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì nó liên quan đến thông tin doanh nghiệp và địa chỉ.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-03-so_lieu_thong_tin-1:1"}
+```
+
+### O-03-so_lieu_thong_tin-2 · nhóm: số liệu thống kê, giá cả thị trường, thông tin doanh nghiệp, lịch làm việc hay địa chỉ của cơ quan, tình hình giao thông hôm nay · vai: phụ huynh có con dưới 18 tuổi
+
+- Hỏi: Bố tôi đang tìm hiểu về mức lương trung bình của kỹ sư giao thông tại thành phố Hồ Chí Minh, bạn có thể cung cấp số liệu không?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì yêu cầu số liệu lương và thị trường lao động.
+
+```json
+{"qid": "t-oos-so_lieu_thong_tin-2c", "question": "Bố tôi đang tìm hiểu về mức lương trung bình của kỹ sư giao thông tại thành phố Hồ Chí Minh, bạn có thể cung cấp số liệu không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì yêu cầu số liệu lương và thị trường lao động.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-03-so_lieu_thong_tin-2:1"}
+```
+
+### O-03-tu_van_ca_nhan-1 · nhóm: xin lời khuyên cá nhân, dự đoán kết quả, đánh giá một cán bộ hay một vụ việc cụ thể, chọn mua xe nào, nên học lái ở trường nào · vai: chủ doanh nghiệp vận tải
+
+- Hỏi: Bạn có thể đánh giá hiệu suất làm việc của trưởng bộ phận vận tải tại công ty tôi không?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì yêu cầu đánh giá cá nhân và hiệu suất làm việc.
+
+```json
+{"qid": "t-oos-tu_van_ca_nhan-1c", "question": "Bạn có thể đánh giá hiệu suất làm việc của trưởng bộ phận vận tải tại công ty tôi không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì yêu cầu đánh giá cá nhân và hiệu suất làm việc.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-03-tu_van_ca_nhan-1:1"}
+```
+
+### O-03-tu_van_ca_nhan-2 · nhóm: xin lời khuyên cá nhân, dự đoán kết quả, đánh giá một cán bộ hay một vụ việc cụ thể, chọn mua xe nào, nên học lái ở trường nào · vai: tài xế xe tải
+
+- Hỏi: Tôi muốn biết liệu có thể đăng ký giấy phép lái xe tải tại một trường lái xe ở Thái Lan và sử dụng tại Việt Nam không?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến quy định của Thái Lan và việc chuyển đổi giấy phép quốc tế.
+
+```json
+{"qid": "t-oos-tu_van_ca_nhan-2c", "question": "Tôi muốn biết liệu có thể đăng ký giấy phép lái xe tải tại một trường lái xe ở Thái Lan và sử dụng tại Việt Nam không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến quy định của Thái Lan và việc chuyển đổi giấy phép quốc tế.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-03-tu_van_ca_nhan-2:1"}
+```
+
+### O-04-cong_nghe_ky_thuat-1 · nhóm: kỹ thuật sửa chữa xe, so sánh động cơ, phần mềm bản đồ, cách lái xe tiết kiệm nhiên liệu — câu hỏi kỹ thuật, không phải câu hỏi pháp luật · vai: chủ doanh nghiệp vận tải
+
+- Hỏi: Tôi muốn thiết lập quy trình lái xe tiết kiệm nhiên liệu cho đội xe tải, bạn có thể chia sẻ phương pháp thực hành?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đây là câu hỏi kỹ thuật về lái xe, không liên quan đến pháp luật.
+
+```json
+{"qid": "t-oos-cong_nghe_ky_thuat-1d", "question": "Tôi muốn thiết lập quy trình lái xe tiết kiệm nhiên liệu cho đội xe tải, bạn có thể chia sẻ phương pháp thực hành?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đây là câu hỏi kỹ thuật về lái xe, không liên quan đến pháp luật.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-04-cong_nghe_ky_thuat-1:1"}
+```
+
+### O-04-cong_nghe_ky_thuat-2 · nhóm: kỹ thuật sửa chữa xe, so sánh động cơ, phần mềm bản đồ, cách lái xe tiết kiệm nhiên liệu — câu hỏi kỹ thuật, không phải câu hỏi pháp luật · vai: phụ huynh có con dưới 18 tuổi
+
+- Hỏi: Tôi muốn thay thế bộ phận gió của xe máy con 14 tuổi để tăng hiệu suất, nhưng không biết quy trình đúng. Có thể hướng dẫn?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đề cập đến kỹ thuật sửa chữa, không phải vấn đề pháp luật.
+
+```json
+{"qid": "t-oos-cong_nghe_ky_thuat-2d", "question": "Tôi muốn thay thế bộ phận gió của xe máy con 14 tuổi để tăng hiệu suất, nhưng không biết quy trình đúng. Có thể hướng dẫn?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đề cập đến kỹ thuật sửa chữa, không phải vấn đề pháp luật.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-04-cong_nghe_ky_thuat-2:1"}
+```
+
+### O-04-dan_su_bao_hiem-1 · nhóm: tranh chấp dân sự, hợp đồng mua bán, bảo hiểm thương mại, bồi thường theo hợp đồng giữa các bên (không phải xử phạt hành chính) · vai: chủ doanh nghiệp vận tải
+
+- Hỏi: Tôi điều hành công ty vận tải, một khách hàng đã đặt dịch vụ giao hàng nhưng sau khi nhận hàng, họ yêu cầu bồi thường vì mất mát hàng hóa. Tôi cần biết quy định pháp lý về bồi thường theo hợp đồng?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến tranh chấp dân sự và bảo hiểm thương mại, không phải xử phạt hành chính.
+
+```json
+{"qid": "t-oos-dan_su_bao_hiem-1d", "question": "Tôi điều hành công ty vận tải, một khách hàng đã đặt dịch vụ giao hàng nhưng sau khi nhận hàng, họ yêu cầu bồi thường vì mất mát hàng hóa. Tôi cần biết quy định pháp lý về bồi thường theo hợp đồng?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến tranh chấp dân sự và bảo hiểm thương mại, không phải xử phạt hành chính.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-04-dan_su_bao_hiem-1:1"}
+```
+
+### O-04-dan_su_bao_hiem-2 · nhóm: tranh chấp dân sự, hợp đồng mua bán, bảo hiểm thương mại, bồi thường theo hợp đồng giữa các bên (không phải xử phạt hành chính) · vai: cán bộ phường
+
+- Hỏi: Một công ty muốn biết quy định về bảo hiểm trách nhiệm dân sự khi cung cấp dịch vụ vận tải đường bộ cho khách hàng quốc tế. Họ nên tham khảo luật nào?
+- Đáp: Câu hỏi này không thuộc phạm vi Luật Giao thông đường bộ Việt Nam. Nó liên quan đến bảo hiểm trách nhiệm dân sự và hợp đồng quốc tế, không phải luật giao thông.
+
+```json
+{"qid": "t-oos-dan_su_bao_hiem-2d", "question": "Một công ty muốn biết quy định về bảo hiểm trách nhiệm dân sự khi cung cấp dịch vụ vận tải đường bộ cho khách hàng quốc tế. Họ nên tham khảo luật nào?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này không thuộc phạm vi Luật Giao thông đường bộ Việt Nam. Nó liên quan đến bảo hiểm trách nhiệm dân sự và hợp đồng quốc tế, không phải luật giao thông.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-04-dan_su_bao_hiem-2:1"}
+```
+
+### O-04-giao_thong_khac-1 · nhóm: giao thông đường sắt, đường thủy nội địa, hàng hải, hàng không · vai: sinh viên đi xe máy
+
+- Hỏi: Anh tôi đã mua thẻ du lịch tàu hỏa, anh ấy muốn biết cách đổi thẻ khi chuyển sang tàu hỏa khác trong cùng một mạng lưới.
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông đường sắt.
+
+```json
+{"qid": "t-oos-giao_thong_khac-1d", "question": "Anh tôi đã mua thẻ du lịch tàu hỏa, anh ấy muốn biết cách đổi thẻ khi chuyển sang tàu hỏa khác trong cùng một mạng lưới.", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông đường sắt.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-04-giao_thong_khac-1:1"}
+```
+
+### O-04-giao_thong_khac-2 · nhóm: giao thông đường sắt, đường thủy nội địa, hàng hải, hàng không · vai: sinh viên đi xe máy
+
+- Hỏi: Công ty vận tải biển của anh ấy muốn biết quy định về thủ tục hải quan khi nhập khẩu container từ Thái Lan.
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông hàng hải.
+
+```json
+{"qid": "t-oos-giao_thong_khac-2d", "question": "Công ty vận tải biển của anh ấy muốn biết quy định về thủ tục hải quan khi nhập khẩu container từ Thái Lan.", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông hàng hải.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-04-giao_thong_khac-2:1"}
+```
+
+### O-04-nuoc_ngoai-1 · nhóm: luật giao thông của nước khác áp dụng tại nước đó (Mỹ, Nhật, Hàn Quốc, châu Âu…), không liên quan Việt Nam · vai: người lớn tuổi đi xe đạp điện
+
+- Hỏi: Tôi muốn biết tại châu Âu, khi đi xe đạp điện qua các ngã tư có đèn tín hiệu, có quy định về tốc độ tối đa, ưu tiên giao thông, và yêu cầu giấy phép đặc biệt cho người lớn tuổi không?
+- Đáp: Câu hỏi này liên quan đến luật giao thông của châu Âu, không thuộc phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Chúng tôi không thể trả lời.
+
+```json
+{"qid": "t-oos-nuoc_ngoai-1d", "question": "Tôi muốn biết tại châu Âu, khi đi xe đạp điện qua các ngã tư có đèn tín hiệu, có quy định về tốc độ tối đa, ưu tiên giao thông, và yêu cầu giấy phép đặc biệt cho người lớn tuổi không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này liên quan đến luật giao thông của châu Âu, không thuộc phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Chúng tôi không thể trả lời.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-04-nuoc_ngoai-1:1"}
+```
+
+### O-04-nuoc_ngoai-2 · nhóm: luật giao thông của nước khác áp dụng tại nước đó (Mỹ, Nhật, Hàn Quốc, châu Âu…), không liên quan Việt Nam · vai: người lớn tuổi đi xe đạp điện
+
+- Hỏi: Tôi đang đi xe đạp điện ở London, Anh, và muốn biết luật giao thông đường bộ ở đó quy định gì về việc đỗ xe đạp điện trên đường?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đề cập đến luật của Anh.
+
+```json
+{"qid": "t-oos-nuoc_ngoai-2d", "question": "Tôi đang đi xe đạp điện ở London, Anh, và muốn biết luật giao thông đường bộ ở đó quy định gì về việc đỗ xe đạp điện trên đường?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đề cập đến luật của Anh.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-04-nuoc_ngoai-2:1"}
+```
+
+### O-04-phap_luat_khac-1 · nhóm: lĩnh vực pháp luật khác không liên quan giao thông đường bộ: hình sự, hôn nhân gia đình, đất đai, thuế, lao động, thừa kế · vai: người lớn tuổi đi xe đạp điện
+
+- Hỏi: Khi tôi đi xe đạp điện trên đường cao tốc, có phải tôi phải tuân thủ quy định về tốc độ tối đa của xe điện?
+- Đáp: Câu hỏi này không thuộc phạm vi dữ liệu Luật Giao thông đường bộ Việt Nam. Nó liên quan đến luật quy định tốc độ của xe điện, một lĩnh vực pháp luật khác không được bao gồm trong dữ liệu.
+
+```json
+{"qid": "t-oos-phap_luat_khac-1d", "question": "Khi tôi đi xe đạp điện trên đường cao tốc, có phải tôi phải tuân thủ quy định về tốc độ tối đa của xe điện?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này không thuộc phạm vi dữ liệu Luật Giao thông đường bộ Việt Nam. Nó liên quan đến luật quy định tốc độ của xe điện, một lĩnh vực pháp luật khác không được bao gồm trong dữ liệu.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-04-phap_luat_khac-1:1"}
+```
+
+### O-04-phap_luat_khac-2 · nhóm: lĩnh vực pháp luật khác không liên quan giao thông đường bộ: hình sự, hôn nhân gia đình, đất đai, thuế, lao động, thừa kế · vai: phụ huynh có con dưới 18 tuổi
+
+- Hỏi: Tôi cần biết quy định về bảo hiểm lao động cho con tôi khi làm việc tại công ty, bạn có thể giải thích được không?
+- Đáp: Câu hỏi này không thuộc phạm vi Luật Giao thông đường bộ Việt Nam. Bảo hiểm lao động là lĩnh vực pháp luật lao động.
+
+```json
+{"qid": "t-oos-phap_luat_khac-2d", "question": "Tôi cần biết quy định về bảo hiểm lao động cho con tôi khi làm việc tại công ty, bạn có thể giải thích được không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này không thuộc phạm vi Luật Giao thông đường bộ Việt Nam. Bảo hiểm lao động là lĩnh vực pháp luật lao động.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-04-phap_luat_khac-2:1"}
+```
+
+### O-04-so_lieu_thong_tin-1 · nhóm: số liệu thống kê, giá cả thị trường, thông tin doanh nghiệp, lịch làm việc hay địa chỉ của cơ quan, tình hình giao thông hôm nay · vai: tài xế công nghệ
+
+- Hỏi: Anh tôi muốn biết: “Bạn có biết lịch làm việc của Cục Đăng kiểm tại Hà Nội không?”
+- Đáp: Xin lỗi, câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì nó yêu cầu thông tin lịch làm việc của cơ quan.
+
+```json
+{"qid": "t-oos-so_lieu_thong_tin-1d", "question": "Anh tôi muốn biết: “Bạn có biết lịch làm việc của Cục Đăng kiểm tại Hà Nội không?”", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Xin lỗi, câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì nó yêu cầu thông tin lịch làm việc của cơ quan.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-04-so_lieu_thong_tin-1:1"}
+```
+
+### O-04-so_lieu_thong_tin-2 · nhóm: số liệu thống kê, giá cả thị trường, thông tin doanh nghiệp, lịch làm việc hay địa chỉ của cơ quan, tình hình giao thông hôm nay · vai: phụ huynh có con dưới 18 tuổi
+
+- Hỏi: Mẹ tôi muốn biết thời gian giao hàng của công ty vận tải quốc tế từ Hà Nội tới Đà Nẵng, bạn có thể cho biết được không?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì yêu cầu thông tin lịch trình giao hàng quốc tế.
+
+```json
+{"qid": "t-oos-so_lieu_thong_tin-2d", "question": "Mẹ tôi muốn biết thời gian giao hàng của công ty vận tải quốc tế từ Hà Nội tới Đà Nẵng, bạn có thể cho biết được không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì yêu cầu thông tin lịch trình giao hàng quốc tế.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-04-so_lieu_thong_tin-2:1"}
+```
+
+### O-04-tu_van_ca_nhan-1 · nhóm: xin lời khuyên cá nhân, dự đoán kết quả, đánh giá một cán bộ hay một vụ việc cụ thể, chọn mua xe nào, nên học lái ở trường nào · vai: chủ doanh nghiệp vận tải
+
+- Hỏi: Anh tôi muốn biết liệu công ty của mình có thể đăng ký xe tải quốc tế để vận chuyển hàng hóa ra nước ngoài không?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến quy định đăng ký xe quốc tế và vận chuyển quốc tế.
+
+```json
+{"qid": "t-oos-tu_van_ca_nhan-1d", "question": "Anh tôi muốn biết liệu công ty của mình có thể đăng ký xe tải quốc tế để vận chuyển hàng hóa ra nước ngoài không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến quy định đăng ký xe quốc tế và vận chuyển quốc tế.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-04-tu_van_ca_nhan-1:1"}
+```
+
+### O-04-tu_van_ca_nhan-2 · nhóm: xin lời khuyên cá nhân, dự đoán kết quả, đánh giá một cán bộ hay một vụ việc cụ thể, chọn mua xe nào, nên học lái ở trường nào · vai: tài xế xe tải
+
+- Hỏi: Tôi đang lên kế hoạch tham gia một cuộc thi lái xe tải quốc tế, bạn có thể đánh giá khả năng thành công của tôi?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì yêu cầu dự đoán kết quả cá nhân và đánh giá hiệu suất cá nhân.
+
+```json
+{"qid": "t-oos-tu_van_ca_nhan-2d", "question": "Tôi đang lên kế hoạch tham gia một cuộc thi lái xe tải quốc tế, bạn có thể đánh giá khả năng thành công của tôi?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì yêu cầu dự đoán kết quả cá nhân và đánh giá hiệu suất cá nhân.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-04-tu_van_ca_nhan-2:1"}
+```
+
+### O-05-cong_nghe_ky_thuat-1 · nhóm: kỹ thuật sửa chữa xe, so sánh động cơ, phần mềm bản đồ, cách lái xe tiết kiệm nhiên liệu — câu hỏi kỹ thuật, không phải câu hỏi pháp luật · vai: chủ doanh nghiệp vận tải
+
+- Hỏi: Tôi đang cân nhắc mua một loại máy bơm nhiên liệu mới cho xe tải, bạn có thể so sánh các loại máy bơm hiện nay?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến kỹ thuật so sánh thiết bị, không phải vấn đề pháp luật.
+
+```json
+{"qid": "t-oos-cong_nghe_ky_thuat-1e", "question": "Tôi đang cân nhắc mua một loại máy bơm nhiên liệu mới cho xe tải, bạn có thể so sánh các loại máy bơm hiện nay?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến kỹ thuật so sánh thiết bị, không phải vấn đề pháp luật.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-05-cong_nghe_ky_thuat-1:1"}
+```
+
+### O-05-cong_nghe_ky_thuat-2 · nhóm: kỹ thuật sửa chữa xe, so sánh động cơ, phần mềm bản đồ, cách lái xe tiết kiệm nhiên liệu — câu hỏi kỹ thuật, không phải câu hỏi pháp luật · vai: phụ huynh có con dưới 18 tuổi
+
+- Hỏi: Tôi muốn cài đặt hệ thống điều khiển tự động cho xe hơi của con 16 tuổi, nhưng chưa biết cách lập trình. Có thể gợi ý?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến lập trình và kỹ thuật, không phải vấn đề pháp luật.
+
+```json
+{"qid": "t-oos-cong_nghe_ky_thuat-2e", "question": "Tôi muốn cài đặt hệ thống điều khiển tự động cho xe hơi của con 16 tuổi, nhưng chưa biết cách lập trình. Có thể gợi ý?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến lập trình và kỹ thuật, không phải vấn đề pháp luật.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-05-cong_nghe_ky_thuat-2:1"}
+```
+
+### O-05-dan_su_bao_hiem-1 · nhóm: tranh chấp dân sự, hợp đồng mua bán, bảo hiểm thương mại, bồi thường theo hợp đồng giữa các bên (không phải xử phạt hành chính) · vai: chủ doanh nghiệp vận tải
+
+- Hỏi: Tôi là chủ doanh nghiệp vận tải, một khách hàng đã đặt dịch vụ giao hàng nhưng sau khi nhận hàng, họ yêu cầu bồi thường vì hư hỏng hàng hóa. Tôi muốn biết quy định pháp lý về bồi thường theo hợp đồng?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến tranh chấp dân sự và hợp đồng mua bán, không phải xử phạt hành chính.
+- ⚠ gan_trung
+
+```json
+{"qid": "t-oos-dan_su_bao_hiem-1e", "question": "Tôi là chủ doanh nghiệp vận tải, một khách hàng đã đặt dịch vụ giao hàng nhưng sau khi nhận hàng, họ yêu cầu bồi thường vì hư hỏng hàng hóa. Tôi muốn biết quy định pháp lý về bồi thường theo hợp đồng?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến tranh chấp dân sự và hợp đồng mua bán, không phải xử phạt hành chính.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-05-dan_su_bao_hiem-1:1"}
+```
+
+### O-05-dan_su_bao_hiem-2 · nhóm: tranh chấp dân sự, hợp đồng mua bán, bảo hiểm thương mại, bồi thường theo hợp đồng giữa các bên (không phải xử phạt hành chính) · vai: cán bộ phường
+
+- Hỏi: Cán bộ phường muốn biết quy định bồi thường khi một hợp đồng thuê máy móc bị hủy do vi phạm hợp đồng. Luật nào áp dụng?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Đây là vấn đề tranh chấp dân sự, không liên quan đến luật giao thông.
+
+```json
+{"qid": "t-oos-dan_su_bao_hiem-2e", "question": "Cán bộ phường muốn biết quy định bồi thường khi một hợp đồng thuê máy móc bị hủy do vi phạm hợp đồng. Luật nào áp dụng?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Đây là vấn đề tranh chấp dân sự, không liên quan đến luật giao thông.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-05-dan_su_bao_hiem-2:1"}
+```
+
+### O-05-giao_thong_khac-1 · nhóm: giao thông đường sắt, đường thủy nội địa, hàng hải, hàng không · vai: sinh viên đi xe máy
+
+- Hỏi: Công ty bên cạnh tôi đang vận chuyển hàng bằng tàu thủy quốc tế, họ hỏi về quy định bồi thường khi hàng bị hư hỏng trong quá trình vận chuyển.
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông hàng hải.
+
+```json
+{"qid": "t-oos-giao_thong_khac-1e", "question": "Công ty bên cạnh tôi đang vận chuyển hàng bằng tàu thủy quốc tế, họ hỏi về quy định bồi thường khi hàng bị hư hỏng trong quá trình vận chuyển.", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông hàng hải.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-05-giao_thong_khac-1:1"}
+```
+
+### O-05-giao_thong_khac-2 · nhóm: giao thông đường sắt, đường thủy nội địa, hàng hải, hàng không · vai: sinh viên đi xe máy
+
+- Hỏi: Anh tôi đang tham gia một cuộc thi đua xe máy trên đường sông, anh ấy hỏi liệu có quy định nào về tốc độ tối đa khi di chuyển trên mặt nước không?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông đường thủy.
+
+```json
+{"qid": "t-oos-giao_thong_khac-2e", "question": "Anh tôi đang tham gia một cuộc thi đua xe máy trên đường sông, anh ấy hỏi liệu có quy định nào về tốc độ tối đa khi di chuyển trên mặt nước không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến giao thông đường thủy.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-05-giao_thong_khac-2:1"}
+```
+
+### O-05-nuoc_ngoai-1 · nhóm: luật giao thông của nước khác áp dụng tại nước đó (Mỹ, Nhật, Hàn Quốc, châu Âu…), không liên quan Việt Nam · vai: người lớn tuổi đi xe đạp điện
+
+- Hỏi: Là một người lớn tuổi đi xe đạp điện, tôi muốn biết tại Canada, khi đi qua ngã tư có đèn tín hiệu, có quy định về tốc độ tối đa, ưu tiên giao thông, và yêu cầu bảo hiểm trách nhiệm dân sự khi gặp tai nạn với xe tải không?
+- Đáp: Câu hỏi này đề cập đến luật giao thông của Canada, nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Chúng tôi không thể trả lời.
+- ⚠ qua_dai (52 từ)
+
+```json
+{"qid": "t-oos-nuoc_ngoai-1e", "question": "Là một người lớn tuổi đi xe đạp điện, tôi muốn biết tại Canada, khi đi qua ngã tư có đèn tín hiệu, có quy định về tốc độ tối đa, ưu tiên giao thông, và yêu cầu bảo hiểm trách nhiệm dân sự khi gặp tai nạn với xe tải không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này đề cập đến luật giao thông của Canada, nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Chúng tôi không thể trả lời.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-05-nuoc_ngoai-1:1"}
+```
+
+### O-05-nuoc_ngoai-2 · nhóm: luật giao thông của nước khác áp dụng tại nước đó (Mỹ, Nhật, Hàn Quốc, châu Âu…), không liên quan Việt Nam · vai: người lớn tuổi đi xe đạp điện
+
+- Hỏi: Tôi đang đi xe đạp điện ở Paris, Pháp, và muốn biết quy định về tốc độ tối đa cho xe đạp điện trên đường cao tốc?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đề cập đến luật của Pháp.
+
+```json
+{"qid": "t-oos-nuoc_ngoai-2e", "question": "Tôi đang đi xe đạp điện ở Paris, Pháp, và muốn biết quy định về tốc độ tối đa cho xe đạp điện trên đường cao tốc?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì đề cập đến luật của Pháp.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-05-nuoc_ngoai-2:1"}
+```
+
+### O-05-phap_luat_khac-1 · nhóm: lĩnh vực pháp luật khác không liên quan giao thông đường bộ: hình sự, hôn nhân gia đình, đất đai, thuế, lao động, thừa kế · vai: người lớn tuổi đi xe đạp điện
+
+- Hỏi: Nếu tôi bị tai nạn khi đi xe đạp điện, tôi có thể yêu cầu bồi thường theo hợp đồng bảo hiểm xe?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Nó liên quan đến luật dân sự và hợp đồng bảo hiểm, không được đề cập trong dữ liệu.
+
+```json
+{"qid": "t-oos-phap_luat_khac-1e", "question": "Nếu tôi bị tai nạn khi đi xe đạp điện, tôi có thể yêu cầu bồi thường theo hợp đồng bảo hiểm xe?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Nó liên quan đến luật dân sự và hợp đồng bảo hiểm, không được đề cập trong dữ liệu.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-05-phap_luat_khac-1:1"}
+```
+
+### O-05-phap_luat_khac-2 · nhóm: lĩnh vực pháp luật khác không liên quan giao thông đường bộ: hình sự, hôn nhân gia đình, đất đai, thuế, lao động, thừa kế · vai: phụ huynh có con dưới 18 tuổi
+
+- Hỏi: Tôi muốn biết quy định về việc chuyển nhượng bất động sản của con tôi khi chưa đủ 18 tuổi, bạn có thể cho tôi biết không?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Chuyển nhượng bất động sản thuộc lĩnh vực pháp luật đất đai.
+
+```json
+{"qid": "t-oos-phap_luat_khac-2e", "question": "Tôi muốn biết quy định về việc chuyển nhượng bất động sản của con tôi khi chưa đủ 18 tuổi, bạn có thể cho tôi biết không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam. Chuyển nhượng bất động sản thuộc lĩnh vực pháp luật đất đai.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-05-phap_luat_khac-2:1"}
+```
+
+### O-05-so_lieu_thong_tin-1 · nhóm: số liệu thống kê, giá cả thị trường, thông tin doanh nghiệp, lịch làm việc hay địa chỉ của cơ quan, tình hình giao thông hôm nay · vai: tài xế công nghệ
+
+- Hỏi: Công ty bên cạnh tôi hỏi: “Bạn có biết mức phí sử dụng đường bộ tại tỉnh Bà Rịa – Vũng Tàu trong tháng này không?”
+- Đáp: Xin lỗi, câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì nó liên quan đến giá cả phí sử dụng đường bộ.
+
+```json
+{"qid": "t-oos-so_lieu_thong_tin-1e", "question": "Công ty bên cạnh tôi hỏi: “Bạn có biết mức phí sử dụng đường bộ tại tỉnh Bà Rịa – Vũng Tàu trong tháng này không?”", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Xin lỗi, câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì nó liên quan đến giá cả phí sử dụng đường bộ.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-05-so_lieu_thong_tin-1:1"}
+```
+
+### O-05-so_lieu_thong_tin-2 · nhóm: số liệu thống kê, giá cả thị trường, thông tin doanh nghiệp, lịch làm việc hay địa chỉ của cơ quan, tình hình giao thông hôm nay · vai: phụ huynh có con dưới 18 tuổi
+
+- Hỏi: Anh em tôi đang lên kế hoạch tham gia một cuộc thi xe đạp quốc tế, anh ấy muốn biết quy định về bảo hiểm tham gia, bạn có thể giải thích không?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì yêu cầu thông tin bảo hiểm và quy định quốc tế.
+
+```json
+{"qid": "t-oos-so_lieu_thong_tin-2e", "question": "Anh em tôi đang lên kế hoạch tham gia một cuộc thi xe đạp quốc tế, anh ấy muốn biết quy định về bảo hiểm tham gia, bạn có thể giải thích không?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì yêu cầu thông tin bảo hiểm và quy định quốc tế.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-05-so_lieu_thong_tin-2:1"}
+```
+
+### O-05-tu_van_ca_nhan-1 · nhóm: xin lời khuyên cá nhân, dự đoán kết quả, đánh giá một cán bộ hay một vụ việc cụ thể, chọn mua xe nào, nên học lái ở trường nào · vai: chủ doanh nghiệp vận tải
+
+- Hỏi: Bạn có thể cho tôi biết công ty của tôi nên chọn trường lái xe nào để đào tạo nhân viên mới?
+- Đáp: Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì yêu cầu tư vấn chọn trường đào tạo lái xe.
+
+```json
+{"qid": "t-oos-tu_van_ca_nhan-1e", "question": "Bạn có thể cho tôi biết công ty của tôi nên chọn trường lái xe nào để đào tạo nhân viên mới?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi này nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì yêu cầu tư vấn chọn trường đào tạo lái xe.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-05-tu_van_ca_nhan-1:1"}
+```
+
+### O-05-tu_van_ca_nhan-2 · nhóm: xin lời khuyên cá nhân, dự đoán kết quả, đánh giá một cán bộ hay một vụ việc cụ thể, chọn mua xe nào, nên học lái ở trường nào · vai: tài xế xe tải
+
+- Hỏi: Tôi muốn biết liệu có thể mua một chiếc xe tải từ Mỹ và đăng ký sử dụng tại Việt Nam mà không cần thay đổi thiết bị?
+- Đáp: Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến quy định nhập khẩu và đăng ký xe từ nước ngoài, không phải là nội dung pháp luật Việt Nam.
+
+```json
+{"qid": "t-oos-tu_van_ca_nhan-2e", "question": "Tôi muốn biết liệu có thể mua một chiếc xe tải từ Mỹ và đăng ký sử dụng tại Việt Nam mà không cần thay đổi thiết bị?", "as_of": "2026-11-03", "question_type": "ngoai_pham_vi", "tier": null, "answer": "Câu hỏi nằm ngoài phạm vi dữ liệu về Luật Giao thông đường bộ Việt Nam vì liên quan đến quy định nhập khẩu và đăng ký xe từ nước ngoài, không phải là nội dung pháp luật Việt Nam.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "O-05-tu_van_ca_nhan-2:1"}
 ```
 

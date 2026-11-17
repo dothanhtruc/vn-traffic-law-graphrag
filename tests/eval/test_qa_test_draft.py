@@ -511,3 +511,13 @@ def test_assemble_oos_flags_and_items() -> None:
     assert "gan_trung" in recs[2].flags
     it = QAItem.model_validate(recs[0].item)
     assert it.question_type == "ngoai_pham_vi" and it.tier is None and not it.gold_units
+
+
+def test_context_re_preposition_tren() -> None:
+    from trafficlaw.eval.qa_test_draft import CONTEXT_RE
+
+    assert not CONTEXT_RE.search("Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?")
+    assert CONTEXT_RE.search("Theo quy định trên thì tôi bị phạt bao nhiêu?")
+    assert CONTEXT_RE.search("Mức phạt theo điều khoản trên?")
+    assert CONTEXT_RE.search("Theo điểm nêu trên thì sao?")
+    assert CONTEXT_RE.search("Nghị định này quy định gì?")
