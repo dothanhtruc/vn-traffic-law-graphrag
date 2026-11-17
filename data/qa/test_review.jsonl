@@ -1,0 +1,99 @@
+{"qid": "t-oos-cong_nghe_ky_thuat-1a", "draft_id": "O-01-cong_nghe_ky_thuat-1:1", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-dan_su_bao_hiem-1a", "draft_id": "O-01-dan_su_bao_hiem-1:1", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-dan_su_bao_hiem-1b", "draft_id": "O-02-dan_su_bao_hiem-1:1", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-dan_su_bao_hiem-2b", "draft_id": "O-02-dan_su_bao_hiem-2:1", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-giao_thong_khac-1b", "draft_id": "O-02-giao_thong_khac-1:1", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-so_lieu_thong_tin-1b", "draft_id": "O-02-so_lieu_thong_tin-1:1", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-so_lieu_thong_tin-2b", "draft_id": "O-02-so_lieu_thong_tin-2:1", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-tu_van_ca_nhan-1b", "draft_id": "O-02-tu_van_ca_nhan-1:1", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-dan_su_bao_hiem-1c", "draft_id": "O-03-dan_su_bao_hiem-1:1", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-so_lieu_thong_tin-1c", "draft_id": "O-03-so_lieu_thong_tin-1:1", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-tu_van_ca_nhan-1c", "draft_id": "O-03-tu_van_ca_nhan-1:1", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-013", "draft_id": "W-bien_phap-013:2", "verdict": "SAI_NOI_DUNG", "reason": "Hành vi lệch: Đ16 K3 là xe máy chuyên dùng sản xuất/cải tạo trái quy định", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-034", "draft_id": "W-bien_phap-034:2", "verdict": "SAI_NOI_DUNG", "reason": "Hành vi lệch: Điểm c là tháo dỡ/di chuyển trái phép công trình đường bộ", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-004", "draft_id": "W-da_buoc-004:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-020", "draft_id": "W-da_buoc-020:2", "verdict": "MO_HO", "reason": "Không xác định được xe có là 'thông minh'; 'cần cấp phép' không có trong nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-025", "draft_id": "W-da_buoc-025:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-028", "draft_id": "W-da_buoc-028:2", "verdict": "SAI_NOI_DUNG", "reason": "Lấy thẩm quyền Trưởng Công an xã làm mức phạt; hành vi không liên quan", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-031", "draft_id": "W-da_buoc-031:2", "verdict": "MO_HO", "reason": "Tiền đề vô lý: 17 tuổi đã có GPLX hạng B", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-034", "draft_id": "W-da_buoc-034:2", "verdict": "SAI_NOI_DUNG", "reason": "Đáp án bịa yêu cầu về lái xe, không có trong nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-042", "draft_id": "W-da_buoc-042:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-044", "draft_id": "W-da_buoc-044:2", "verdict": "SAI_NOI_DUNG", "reason": "Đ64 K3 ND158 là nhiệm vụ cơ quan quản lý, gán cho công ty", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-001", "draft_id": "W-dinh_nghia-001:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-002", "draft_id": "W-dinh_nghia-002:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-006", "draft_id": "W-dinh_nghia-006:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-007", "draft_id": "W-dinh_nghia-007:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-015", "draft_id": "W-dinh_nghia-015:2", "verdict": "MO_HO", "reason": "Câu hỏi vô nghĩa; đáp án không trả lời", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-021", "draft_id": "W-dinh_nghia-021:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-024", "draft_id": "W-dinh_nghia-024:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-028", "draft_id": "W-dinh_nghia-028:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-031", "draft_id": "W-dinh_nghia-031:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-003", "draft_id": "W-hanh_vi_cam_nghia_vu-003:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-006", "draft_id": "W-hanh_vi_cam_nghia_vu-006:2", "verdict": "MO_HO", "reason": "Nguồn là điều kiện đầu tư, không trả lời được/không", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-027", "draft_id": "W-hanh_vi_cam_nghia_vu-027:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-044", "draft_id": "W-hanh_vi_cam_nghia_vu-044:2", "verdict": "SAI_NOI_DUNG", "reason": "Tài xế tự tổ chức buổi học ≠ cơ sở đào tạo xe máy chuyên dùng", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-045", "draft_id": "W-hanh_vi_cam_nghia_vu-045:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-048", "draft_id": "W-hanh_vi_cam_nghia_vu-048:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-051", "draft_id": "W-hanh_vi_cam_nghia_vu-051:2", "verdict": "SAI_NOI_DUNG", "reason": "Đáp án trái K2 Đ22 (có thủ tục cho tuyến mới chưa công bố)", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-066", "draft_id": "W-hanh_vi_cam_nghia_vu-066:2", "verdict": "SAI_NOI_DUNG", "reason": "Nghĩa vụ 'phải đồng bộ NTP' bị trả lời là 'được phép'; chủ thể là máy chủ dịch vụ", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-068", "draft_id": "W-hanh_vi_cam_nghia_vu-068:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-070", "draft_id": "W-hanh_vi_cam_nghia_vu-070:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-003", "draft_id": "W-muc_phat-003:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-005", "draft_id": "W-muc_phat-005:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-015", "draft_id": "W-muc_phat-015:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-022", "draft_id": "W-muc_phat-022:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-024", "draft_id": "W-muc_phat-024:2", "verdict": "MO_HO", "reason": "Không nêu mức vượt tốc độ; xe máy trên cao tốc là hành vi khác", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-026", "draft_id": "W-muc_phat-026:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-028", "draft_id": "W-muc_phat-028:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-048", "draft_id": "W-muc_phat-048:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-057", "draft_id": "W-muc_phat-057:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-062", "draft_id": "W-muc_phat-062:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-066", "draft_id": "W-muc_phat-066:2", "verdict": "SAI_TO_CHUC", "reason": "Công ty cho thuê xe vi phạm: mức tổ chức 16–20 triệu, đáp án nêu 8–10 triệu", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-073", "draft_id": "W-muc_phat-073:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-074", "draft_id": "W-muc_phat-074:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-so_sanh-007", "draft_id": "W-so_sanh-007:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-so_sanh-008", "draft_id": "W-so_sanh-008:2", "verdict": "SAI_NOI_DUNG", "reason": "K5 Đ12 là người được chở, không phải người lái bám xe; kết luận mâu thuẫn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-so_sanh-016", "draft_id": "W-so_sanh-016:2", "verdict": "SAI_NOI_DUNG", "reason": "Hành vi lệch: Điểm a là không hoàn tiền vé", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-thu_tuc_tham_quyen-004", "draft_id": "W-thu_tuc_tham_quyen-004:2", "verdict": "MO_HO", "reason": "Đáp án không trả lời hồ sơ/nơi nộp/thời gian", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-thu_tuc_tham_quyen-005", "draft_id": "W-thu_tuc_tham_quyen-005:2", "verdict": "MO_HO", "reason": "'GPLX quốc tế' không đổi được; nguồn là GPLX nước ngoài", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-thu_tuc_tham_quyen-006", "draft_id": "W-thu_tuc_tham_quyen-006:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-thu_tuc_tham_quyen-035", "draft_id": "W-thu_tuc_tham_quyen-035:2", "verdict": "SAI_NOI_DUNG", "reason": "Hỏi cấp GPLX mới; Khoản là sát hạch lại do quá hạn/mất", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-thu_tuc_tham_quyen-041", "draft_id": "W-thu_tuc_tham_quyen-041:2", "verdict": "MO_HO", "reason": "Đáp án không trả lời 'cần làm gì'", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-thu_tuc_tham_quyen-051", "draft_id": "W-thu_tuc_tham_quyen-051:2", "verdict": "SAI_NOI_DUNG", "reason": "Gold là thu hồi phù hiệu/giấy phép; đáp án bịa hồ sơ xin cấp", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-thu_tuc_tham_quyen-052", "draft_id": "W-thu_tuc_tham_quyen-052:2", "verdict": "SAI_NOI_DUNG", "reason": "Gold là đối tượng áp dụng; đáp án bịa thủ tục", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-thu_tuc_tham_quyen-066", "draft_id": "W-thu_tuc_tham_quyen-066:2", "verdict": "SAI_NOI_DUNG", "reason": "Biểu mẫu TT72 là của CSGT, không phải doanh nghiệp nộp", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-tru_diem-002", "draft_id": "W-tru_diem-002:2", "verdict": "SAI_NOI_DUNG", "reason": "K14/a áp cho cá nhân kinh doanh vận tải tự lái, không phải lái xe của công ty", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-tru_diem-006", "draft_id": "W-tru_diem-006:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-bien_phap-004", "draft_id": "W2-bien_phap-004:2", "verdict": "SAI_NOI_DUNG", "reason": "Chủ xe là tổ chức không bị trừ điểm GPLX", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-bien_phap-016", "draft_id": "W2-bien_phap-016:2", "verdict": "MO_HO", "reason": "Gold Đ38 là hành vi khác; đáp án điều kiện 'nếu tái phạm'", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-bien_phap-018", "draft_id": "W2-bien_phap-018:2", "verdict": "MO_HO", "reason": "Tiền đề vô lý; biện pháp khắc phục không có trong gold", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-da_buoc-001", "draft_id": "W2-da_buoc-001:2", "verdict": "SAI_NOI_DUNG", "reason": "'Xử phạt theo Luật 36' — Luật không quy định mức phạt", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-da_buoc-006", "draft_id": "W2-da_buoc-006:2", "verdict": "SAI_NOI_DUNG", "reason": "Đáp án bịa hậu quả không có trong nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-da_buoc-026", "draft_id": "W2-da_buoc-026:2", "verdict": "MO_HO", "reason": "Tiền đề vô lý: xe công ty dẫn đường cho cảnh sát", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-da_buoc-047", "draft_id": "W2-da_buoc-047:2", "verdict": "SAI_NOI_DUNG", "reason": "Cập nhật Phần mềm Tổng hợp là việc của công an", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-dinh_nghia-004", "draft_id": "W2-dinh_nghia-004:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-dinh_nghia-020", "draft_id": "W2-dinh_nghia-020:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-dinh_nghia-031", "draft_id": "W2-dinh_nghia-031:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-hanh_vi_cam_nghia_vu-030", "draft_id": "W2-hanh_vi_cam_nghia_vu-030:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-muc_phat-008", "draft_id": "W2-muc_phat-008:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-muc_phat-014", "draft_id": "W2-muc_phat-014:2", "verdict": "SAI_TO_CHUC", "reason": "Công ty không có giấy phép đào tạo: mức tổ chức 30–40 triệu, đáp án nêu 15–20 triệu", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-theo_thoi_diem-001a", "draft_id": "W2-theo_thoi_diem-001:2a", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-theo_thoi_diem-001b", "draft_id": "W2-theo_thoi_diem-001:2b", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-theo_thoi_diem-008a", "draft_id": "W2-theo_thoi_diem-008:2a", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-theo_thoi_diem-008b", "draft_id": "W2-theo_thoi_diem-008:2b", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-theo_thoi_diem-013a", "draft_id": "W2-theo_thoi_diem-013:2a", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-theo_thoi_diem-013b", "draft_id": "W2-theo_thoi_diem-013:2b", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-theo_thoi_diem-032a", "draft_id": "W2-theo_thoi_diem-032:2a", "verdict": "SAI_NOI_DUNG", "reason": "Thẩm quyền xử phạt bị coi là mức phạt tối đa", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-theo_thoi_diem-032b", "draft_id": "W2-theo_thoi_diem-032:2b", "verdict": "SAI_NOI_DUNG", "reason": "Thẩm quyền xử phạt bị coi là mức phạt tối đa", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-theo_thoi_diem-036a", "draft_id": "W2-theo_thoi_diem-036:2a", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-theo_thoi_diem-036b", "draft_id": "W2-theo_thoi_diem-036:2b", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-thu_tuc_tham_quyen-007", "draft_id": "W2-thu_tuc_tham_quyen-007:2", "verdict": "MO_HO", "reason": "'Mất bao lâu' — đáp án nói 'phụ thuộc cơ quan'", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-thu_tuc_tham_quyen-008", "draft_id": "W2-thu_tuc_tham_quyen-008:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t2-thu_tuc_tham_quyen-019", "draft_id": "W2-thu_tuc_tham_quyen-019:2", "verdict": "SAI_NOI_DUNG", "reason": "Đáp án bịa các bước và thời gian", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t3-so_sanh-007", "draft_id": "W3-so_sanh-007:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t3-so_sanh-019", "draft_id": "W3-so_sanh-019:2", "verdict": "SAI_TO_CHUC", "reason": "Chủ xe là công ty: mức tổ chức 56–60 triệu, đáp án nêu 28–30 triệu", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t3-so_sanh-021", "draft_id": "W3-so_sanh-021:2", "verdict": "OK", "reason": "rà nhóm công ty/tổ chức: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t3-theo_thoi_diem-010a", "draft_id": "W3-theo_thoi_diem-010:2a", "verdict": "SAI_NOI_DUNG", "reason": "Cặp: nội dung sau mốc không còn nói về camera giám sát hành trình", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t3-theo_thoi_diem-010b", "draft_id": "W3-theo_thoi_diem-010:2b", "verdict": "SAI_NOI_DUNG", "reason": "Nội dung sau mốc là Trung tâm quản lý, không phải camera giám sát hành trình", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t4-da_buoc-014", "draft_id": "W4-da_buoc-014:2", "verdict": "SAI_NOI_DUNG", "reason": "Báo cáo Cục trưởng/Trưởng phòng là quy trình nội bộ CSGT", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t4-da_buoc-015", "draft_id": "W4-da_buoc-015:2", "verdict": "SAI_NOI_DUNG", "reason": "Quy trình nội bộ CSGT gán cho chủ doanh nghiệp", "reviewer": "claude", "reviewed_at": "2026-11-17"}

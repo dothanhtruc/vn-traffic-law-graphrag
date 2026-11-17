@@ -924,6 +924,16 @@ def edit_stats(items: Sequence[Any], drafts: Mapping[str, Mapping[str, Any]]) ->
     }
 
 
+def load_review(path: Path) -> dict[str, dict[str, Any]]:
+    """Kết quả rà câu test (``data/qa/test_review.jsonl``: ``qid, draft_id, verdict`` ∈ OK |
+    SAI_TO_CHUC | SAI_NOI_DUNG | MO_HO, ``reason``, ``reviewer``, ``reviewed_at``); bản ghi sau
+    cùng của mỗi ``qid`` là hiện hành. ``import-drafts`` loại mọi câu không ``OK``."""
+    out: dict[str, dict[str, Any]] = {}
+    for r in read_jsonl(path) if path.is_file() else []:
+        out[str(r["qid"])] = dict(r)
+    return out
+
+
 def load_drafts(path: Path) -> dict[str, dict[str, Any]]:
     return {str(r["draft_id"]): r for r in read_jsonl(path)} if path.is_file() else {}
 
@@ -988,6 +998,7 @@ __all__ = [
     "DRAFT_SOURCE_RE",
     "DRAFT_TYPES",
     "HEAVY_FLAGS",
+    "load_review",
     "OOSCategory",
     "OOSInput",
     "assemble_oos",

@@ -705,7 +705,12 @@ def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
 def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
     """Nhập tự động nháp đã đọc duyệt (không sửa) vào ``test.jsonl``: chọn nháp không có cờ nặng,
     bỏ câu validator báo lỗi (bỏ cả cặp ``theo_thoi_diem``), lặp tới khi sạch lỗi."""
-    from trafficlaw.eval.qa_test_draft import HEAVY_FLAGS, balance_quota, select_auto
+    from trafficlaw.eval.qa_test_draft import (
+        HEAVY_FLAGS,
+        balance_quota,
+        load_review,
+        select_auto,
+    )
 
     if not args.auto:
         print("import-drafts: hiện chỉ hỗ trợ --auto (chọn + lọc tự động)", file=sys.stderr)
@@ -721,6 +726,10 @@ def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
     items, skipped = select_auto(list(drafts.values()))
     dcfg = DraftConfig.model_validate(env.cfg.get("draft") or {})
     excluded = {e.qid: e.reason for e in dcfg.import_exclude}
+    review = load_review(env.p("test_review"))
+    for q, r in review.items():
+        if r.get("verdict") != "OK":
+            excluded.setdefault(q, f"rà: {r.get('verdict')} — {r.get('reason')}")
     items = [it for it in items if it["qid"] not in excluded]
     dropped: dict[str, list[str]] = {}
     for _ in range(10):
@@ -753,6 +762,8 @@ def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
         "n_imported": len(items),
         "n_skipped_flags": len(skipped),
         "excluded": excluded,
+        "n_reviewed_ok": sum(1 for it in items if review.get(it["qid"], {}).get("verdict") == "OK"),
+        "pending_review": [it["qid"] for it in items if it["qid"] not in review],
         "n_dropped_validate": len(dropped),
         "skipped_flags": skipped,
         "dropped_validate": dropped,
