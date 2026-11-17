@@ -898,7 +898,27 @@ def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
         leak = sorted(
             {i.qid for i in check_leakage(parsed, tq, env.validate_cfg.near_dup) if i.qid}
         )
-        items = [it for it in items if it["qid"] not in leak]
+        # luật loại trừ áp trên gold CUỐI CÙNG (nháp/bản sửa có thể thêm unit ngoài gợi ý)
+        levels = dict((env.cfg.get("dev") or {}).get("exclude_level") or {})
+        gold = test_gold_units(env)
+        gold_dieu = {_dieu(g) for g in gold}
+
+        def overlaps(it: dict[str, Any]) -> bool:
+            lv = str(levels.get(it["question_type"], levels.get("default", "dieu")))
+            for u in it.get("gold_units") or []:
+                if lv == "dieu" and _dieu(u) in gold_dieu:
+                    return True
+                if lv != "dieu" and any(_related(u, g) for g in gold):
+                    return True
+            return False
+
+        bad_pairs = {it["pair_id"] for it in items if it.get("pair_id") and overlaps(it)}
+        leak += sorted(
+            it["qid"]
+            for it in items
+            if overlaps(it) or (it.get("pair_id") and it["pair_id"] in bad_pairs)
+        )
+        items = [it for it in items if it["qid"] not in set(leak)]
     write_jsonl(test, items)
     report = {
         "imported_at": datetime.now().astimezone().isoformat(timespec="seconds"),
