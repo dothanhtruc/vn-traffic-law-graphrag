@@ -62,6 +62,7 @@ from trafficlaw.verify.numbers import (
     drop_sentences,
     find_unverified_numbers,
     placeholders,
+    range_join_issues,
     render_numbers,
     unknown_placeholders,
 )
@@ -310,6 +311,8 @@ class AnswerResult(BaseModel):
     git_commit: str | None = None
     data_version: str | None = None
     timestamp: str
+    llm_params: dict[str, Any] | None = None
+    """Tham số LLM ghi đè của lần chạy (M13 dao động: ``{"seed": 43}``); ``None`` = mặc định."""
 
 
 # --------------------------------------------------------------------------- ngữ cảnh chạy
@@ -335,8 +338,13 @@ class AnswerContext:
         serve: dict[str, Any] | None = None,
         budget_profile: Literal["default", "shared"] = "default",
         prompts: dict[str, Prompt] | None = None,
+        llm_params: dict[str, Any] | None = None,
+        use_cache: bool = True,
     ) -> None:
         self.cfg = cfg
+        self.llm_params = dict(llm_params or {})
+        """Tham số LLM ghi đè (M13 đo dao động: ``seed``); ghi vào ``AnswerResult.llm_params``."""
+        self.use_cache = use_cache
         self.store = store
         self.catalog = catalog
         self.retrieval = retrieval
@@ -366,6 +374,10 @@ class AnswerContext:
 
     def format_repair_hash(self) -> str | None:
         rp = getattr(self.client, "repair_prompt", None)
+        if self.client is None:
+            # dry-run (không client): LLMClient mặc định dùng ``format_repair`` ⇒ cùng prompt_hash
+            # với lần chạy thật, khoá resume khớp
+            rp = load_prompt("format_repair")
         return getattr(rp, "hash", None)
 
     def prompt_hash(self, config_name: str) -> str:
@@ -523,7 +535,11 @@ def scan_numbers(
     res: dict[str, list[NumberIssue]] = {}
     parts = [(f"p{i}", p.text) for i, p in enumerate(out.points)] + [("conclusion", out.conclusion)]
     for where, text in parts:
-        iss = find_unverified_numbers(text, allowed) + unknown_placeholders(text, table)
+        iss = (
+            find_unverified_numbers(text, allowed)
+            + unknown_placeholders(text, table)
+            + range_join_issues(text, table)
+        )
         if iss:
             res[where] = sorted(iss, key=lambda x: x.start)
     return res
@@ -622,8 +638,10 @@ def answer(
     )
     no_rag = ctx.is_no_rag(config_name)
     schema: type[BaseModel] = AnswerOutNoRag if no_rag else AnswerOut
-    params = {"max_output_tokens": ctx.cfg.max_output_tokens}
-    res: LLMResult = ctx.client.generate(prep.messages, json_schema=schema, params=params)
+    params = {"max_output_tokens": ctx.cfg.max_output_tokens, **ctx.llm_params}
+    res: LLMResult = ctx.client.generate(
+        prep.messages, json_schema=schema, params=params, use_cache=ctx.use_cache
+    )
     base = {
         "run_id": ctx.run_id,
         "config_name": config_name,
@@ -643,6 +661,7 @@ def answer(
         "git_commit": ctx.git_commit,
         "data_version": ctx.data_version,
         "timestamp": _now(),
+        "llm_params": ctx.llm_params or None,
     }
     usage, latency, attempts, cached, n_calls = (
         res.usage,
@@ -688,7 +707,9 @@ def answer(
             {"role": "assistant", "content": res.text},
             {"role": "user", "content": msg},
         ]
-        res2: LLMResult = ctx.client.generate(msgs2, json_schema=AnswerOut, params=params)
+        res2: LLMResult = ctx.client.generate(
+            msgs2, json_schema=AnswerOut, params=params, use_cache=ctx.use_cache
+        )
         n_calls += 1
         usage = _add_usage(usage, res2.usage)
         latency += res2.latency_ms
