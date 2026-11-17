@@ -1,6 +1,6 @@
 # Bản nháp câu test (LLM viết, người dùng sửa)
 
-Model `gpt-oss-20b` · prompt `6ec65cbc357b` · 733/733 gợi ý có nháp · 1538 câu nháp.
+Model `gpt-oss-20b` · prompt `6ec65cbc357b` · 822/822 gợi ý có nháp · 1728 câu nháp.
 
 Cách dùng: với mỗi gợi ý, chọn **tối đa một** bản nháp, sửa câu hỏi + đáp án (bắt buộc — validator báo lỗi `nhap_chua_sua` nếu câu hỏi giữ nguyên), kiểm từng con số với nguồn, rồi chép **dòng JSON đã sửa** vào `data/qa/test.jsonl`. Giữ nguyên `source` và `draft_id` để đo tỷ lệ sửa. Cờ ⚠ là chỗ cần xem kỹ (không phải lỗi chắc chắn).
 
@@ -38127,5 +38127,6652 @@ b) Vận chuyển hàng hóa trên xe gây cản trở tầm nhìn của ngườ
 
 ```json
 {"qid": "t2-so_sanh-001", "question": "Tôi là người điều khiển xe máy, khi tôi không cứu giúp người bị tai nạn, mức phạt tiền là bao nhiêu? So sánh với khi tôi để rơi hàng hóa xuống đường khi vận chuyển, mức phạt tiền là bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Nếu bạn không cứu giúp người bị tai nạn, mức phạt tiền sẽ từ 500.000 đồng đến 1.000.000 đồng. Nếu bạn để rơi hàng hóa xuống đường khi vận chuyển, mức phạt tiền sẽ từ 300.000 đồng đến 400.000 đồng. (khoản 3 Điều 12 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D12/K6/a", "ND168-2024/D36/K1/b"], "required_numbers": [{"value": 500000, "unit": "vnd"}, {"value": 1000000, "unit": "vnd"}, {"value": 300000, "unit": "vnd"}, {"value": 400000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W2-so_sanh-001:2"}
+```
+
+### W3-so_sanh-001 · tier A · vai: tài xế xe tải · kiểu: tinh_huong_nguoi_khac · cosine TF-IDF 0.43
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K2, ND168-2024/D26/K2/a, ND168-2024/D26/K2/b, ND168-2024/D26/K2/c, ND168-2024/D26/K2/d, ND168-2024/D26/K2/đ, ND168-2024/D26/K2/e
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+2. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với cá nhân, từ 2.000.000 đồng đến 4.000.000 đồng đối với tổ chức kinh doanh vận tải, dịch vụ hỗ trợ vận tải thực hiện một trong các hành vi vi phạm sau đây:
+a) Không đánh số thứ tự ghế ngồi, giường nằm trên xe ô tô chở hành khách theo quy định;
+b) Sử dụng xe ô tô kinh doanh vận tải hành khách theo tuyến cố định, xe ô tô kinh doanh vận tải hành khách bằng xe buýt không có chỗ ưu tiên cho người khuyết tật, người cao tuổi và phụ nữ mang thai theo quy định;
+c) Sử dụng xe ô tô kinh doanh vận tải hành khách không có hướng dẫn cho hành khách về an toàn giao thông, thoát hiểm khi xảy ra sự cố trên xe theo quy định;
+d) Không bố trí người áp tải trên xe vận chuyển hàng hóa nguy hiểm đối với những trường hợp quy định phải có người áp tải;
+đ) Không cấp lệnh vận chuyển, giấy vận tải cho lái xe hoặc cấp lệnh vận chuyển, giấy vận tải nhưng không đúng theo quy định (đối với loại xe quy định phải cấp lệnh vận chuyển, giấy vận tải);
+e) Sử dụng xe vận chuyển hàng hóa nguy hiểm mà không làm sạch hoặc không bóc (xóa) biểu trưng nguy hiểm trên phương tiện khi không tiếp tục vận chuyển loại hàng hóa đó.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D26/K12)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K12
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+12. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm quy định tại điểm c khoản 2; điểm a, điểm b, điểm đ, điểm g khoản 4; điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 7; điểm c khoản 8 Điều này còn bị áp dụng các hình thức xử phạt bổ sung tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có hoặc đã được cấp) đối với xe vi phạm.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D26/K14/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K14/a
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+14. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm đ khoản 2; điểm b, điểm c, điểm d khoản 6; điểm b, điểm c, điểm e, điểm i khoản 7 Điều này trong trường hợp cá nhân kinh doanh vận tải là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D34/K5, ND168-2024/D34/K5/a, ND168-2024/D34/K5/b
+
+Điều 34. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển quá khổ giới hạn, xe quá tải trọng, xe bánh xích lưu hành đường bộ (kể cả xe ô tô chở hành khách)
+5. Phạt tiền từ 40.000.000 đồng đến 50.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe mà tổng trọng lượng (khối lượng toàn bộ) của xe hoặc tải trọng trục xe (bao gồm cả hàng hóa xếp trên xe, người được chở trên xe) vượt quá tải trọng cho phép của đường bộ trên 50%, trừ trường hợp có giấy phép lưu hành còn giá trị sử dụng;
+b) Không chấp hành yêu cầu kiểm tra về trọng tải, tải trọng, khổ giới hạn xe, vận chuyển hàng siêu trường, siêu trọng của người thi hành công vụ; chuyển tải hoặc dùng các thủ đoạn khác để trốn tránh việc phát hiện xe chở quá tải, quá khổ.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D34/K7/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D34/K7/c
+
+Điều 34. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển quá khổ giới hạn, xe quá tải trọng, xe bánh xích lưu hành đường bộ (kể cả xe ô tô chở hành khách)
+7. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+c) Thực hiện hành vi quy định tại điểm a khoản 5 Điều này còn bị trừ điểm giấy phép lái xe 04 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D34/K7/d)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D34/K7/d
+
+Điều 34. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển quá khổ giới hạn, xe quá tải trọng, xe bánh xích lưu hành đường bộ (kể cả xe ô tô chở hành khách)
+7. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+d) Thực hiện hành vi quy định tại điểm b khoản 5 Điều này còn bị trừ điểm giấy phép lái xe 10 điểm.
+
+[0] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D26/K12)
+[1] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D26/K12)
+[2] 1.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D26/K2)
+[3] 2.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D26/K2)
+[4] 4.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D26/K2)
+[5] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D26/K14/a)
+[6] 40.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D34/K5)
+[7] 50.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D34/K5)
+[8] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D34/K7/c)
+[9] 10 điểm (số điểm bị trừ, nêu tại ND168-2024/D34/K7/d)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi lái xe tải đã bị cảnh sát ghi nhận không có ghế ưu tiên cho người khuyết tật, người cao tuổi và phụ nữ mang thai. Nếu anh ấy là cá nhân, anh ấy sẽ bị phạt tiền bao nhiêu và mất bao nhiêu điểm?
+- Đáp: Nếu là cá nhân, anh ấy sẽ bị phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng và bị trừ 02 điểm giấy phép lái xe. (khoản 2 Điều 26 Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “cao tuổi và phụ nữ mang …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-so_sanh-001", "question": "Anh tôi lái xe tải đã bị cảnh sát ghi nhận không có ghế ưu tiên cho người khuyết tật, người cao tuổi và phụ nữ mang thai. Nếu anh ấy là cá nhân, anh ấy sẽ bị phạt tiền bao nhiêu và mất bao nhiêu điểm?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Nếu là cá nhân, anh ấy sẽ bị phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng và bị trừ 02 điểm giấy phép lái xe. (khoản 2 Điều 26 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D26/K2", "ND168-2024/D26/K14/a"], "required_numbers": [{"value": 1000000, "unit": "vnd"}, {"value": 2000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-001:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi đang vận chuyển hàng siêu trọng đã bị cảnh sát ghi nhận xe vượt quá tải trọng cho phép 50%. Nếu là cá nhân lái xe, anh ấy sẽ bị phạt tiền bao nhiêu và mất bao nhiêu điểm?
+- Đáp: Nếu là cá nhân, anh ấy sẽ bị phạt tiền từ 40.000.000 đồng đến 50.000.000 đồng và bị trừ 04 điểm giấy phép lái xe. (khoản 5 Điều 34 Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “vượt quá tải trọng cho phép …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-so_sanh-001", "question": "Công ty tôi đang vận chuyển hàng siêu trọng đã bị cảnh sát ghi nhận xe vượt quá tải trọng cho phép 50%. Nếu là cá nhân lái xe, anh ấy sẽ bị phạt tiền bao nhiêu và mất bao nhiêu điểm?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Nếu là cá nhân, anh ấy sẽ bị phạt tiền từ 40.000.000 đồng đến 50.000.000 đồng và bị trừ 04 điểm giấy phép lái xe. (khoản 5 Điều 34 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D34/K5", "ND168-2024/D34/K7/c"], "required_numbers": [{"value": 40000000, "unit": "vnd"}, {"value": 50000000, "unit": "vnd"}, {"value": 4, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-001:2"}
+```
+
+### W3-so_sanh-002 · tier A · vai: phụ huynh có con dưới 18 tuổi · kiểu: neu_van_ban · cosine TF-IDF 0.42
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K6, ND168-2024/D20/K6/a, ND168-2024/D20/K6/b, ND168-2024/D20/K6/c, ND168-2024/D20/K6/d, ND168-2024/D20/K6/đ, ND168-2024/D20/K6/e
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+6. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Vận chuyển hàng hóa nguy hiểm, hàng độc hại, dễ cháy, dễ nổ, động vật, hàng có mùi hôi thối hoặc hàng hóa khác ảnh hưởng đến sức khỏe của hành khách trên xe;
+b) Chở người trên mui xe, trong khoang chở hành lý của xe;
+c) Đe dọa, xúc phạm, tranh giành, lôi kéo hành khách; đe dọa, cưỡng ép hành khách sử dụng dịch vụ ngoài ý muốn; chuyển tải, xuống khách hoặc các hành vi khác nhằm trốn tránh phát hiện xe chở quá tải, quá số người theo quy định của pháp luật;
+d) Điều khiển xe ô tô kinh doanh vận tải, xe vận tải nội bộ quá thời gian quy định tại khoản 1 Điều 64 của Luật Trật tự, an toàn giao thông đường bộ; không thực hiện đúng quy định về thời gian nghỉ giữa hai lần lái xe liên tục của người lái xe;
+đ) Điều khiển xe kinh doanh vận tải hành khách, xe vận tải nội bộ không lắp thiết bị giám sát hành trình của xe theo quy định hoặc có lắp thiết bị giám sát hành trình của xe nhưng thiết bị không hoạt động theo quy định hoặc làm sai lệch dữ liệu của thiết bị giám sát hành trình của xe ô tô;
+e) Điều khiển xe chở hành khách liên vận quốc tế không có hoặc không gắn ký hiệu phân biệt quốc gia.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D20/K10/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K10/a
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+10. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm c, điểm d, điểm e khoản 3; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g, điểm h, điểm i, điểm k, điểm m khoản 5; khoản 6; khoản 7 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D64/K1)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D64/K1
+
+Điều 64. Thời gian làm việc của người lái xe ô tô kinh doanh vận tải và vận tải nội bộ
+1. Thời gian lái xe của người lái xe ô tô không quá 10 giờ trong một ngày và không quá 48 giờ trong một tuần; lái xe liên tục không quá 04 giờ và bảo đảm các quy định có liên quan của Bộ luật Lao động.
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D38/K2, ND168-2024/D38/K2/a, ND168-2024/D38/K2/b
+
+Điều 38. Xử phạt người điều khiển phương tiện đăng ký hoạt động trong Khu kinh tế thương mại đặc biệt, Khu kinh tế cửa khẩu quốc tế
+2. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với người điều khiển xe ô tô và các loại xe tương tự xe ô tô thực hiện một trong các hành vi vi phạm sau đây:
+a) Không có tờ khai phương tiện vận tải đường bộ tạm nhập, tái xuất theo quy định;
+b) Điều khiển xe không có phù hiệu kiểm soát theo quy định hoặc có nhưng đã hết giá trị sử dụng hoặc sử dụng phù hiệu không do cơ quan có thẩm quyền cấp.
+
+[0] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D20/K6)
+[1] 5.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D20/K6)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D20/K10/a)
+[3] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D38/K2)
+[4] 5.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D38/K2)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Nếu con tôi lái xe ô tô chở hành khách vi phạm hành vi a, còn nếu lái xe ô tô chở người vi phạm cùng hành vi thì mức phạt tiền và điểm trừ khác nhau không?
+- Đáp: Mức phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng, và trừ 02 điểm giấy phép lái xe. (khoản 6 và 10 Điều 20 Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “tô chở hành khách vi phạm …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-so_sanh-002", "question": "Nếu con tôi lái xe ô tô chở hành khách vi phạm hành vi a, còn nếu lái xe ô tô chở người vi phạm cùng hành vi thì mức phạt tiền và điểm trừ khác nhau không?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng, và trừ 02 điểm giấy phép lái xe. (khoản 6 và 10 Điều 20 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D20/K6", "ND168-2024/D20/K10/a"], "required_numbers": [{"value": 3000000, "unit": "vnd"}, {"value": 5000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-002:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu con tôi lái xe ô tô trong khu kinh tế thương mại đặc biệt vi phạm hành vi a, còn nếu lái xe loại xe tương tự xe ô tô vi phạm cùng hành vi thì mức phạt tiền khác nhau không?
+- Đáp: Mức phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng. (khoản 2 Điều 38 Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “khu kinh tế thương mại đặc …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-so_sanh-002", "question": "Nếu con tôi lái xe ô tô trong khu kinh tế thương mại đặc biệt vi phạm hành vi a, còn nếu lái xe loại xe tương tự xe ô tô vi phạm cùng hành vi thì mức phạt tiền khác nhau không?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng. (khoản 2 Điều 38 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D38/K2"], "required_numbers": [{"value": 3000000, "unit": "vnd"}, {"value": 5000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-002:2"}
+```
+
+### W3-so_sanh-003 · tier A · vai: tài xế xe tải · kiểu: ngan · cosine TF-IDF 0.45
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K3, ND168-2024/D13/K3/a, ND168-2024/D13/K3/b, ND168-2024/D13/K3/c, ND168-2024/D13/K3/d
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+3. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe lắp thêm đèn phía trước, phía sau, trên nóc, dưới gầm, một hoặc cả hai bên thành xe, trừ đèn sương mù dạng rời được lấp theo quy định;
+b) Điều khiển xe có hệ thống chuyển hướng của xe không đúng tiêu chuẩn an toàn kỹ thuật;
+c) Điều khiển xe không lắp đủ bánh lốp hoặc lắp bánh lốp không đúng kích cỡ hoặc không bảo đảm tiêu chuẩn kỹ thuật (kể cả rơ moóc và sơ mi rơ moóc);
+d) Điều khiển xe ô tô kinh doanh vận tải hành khách lắp thêm hoặc tháo bớt ghế, giường nằm hoặc có kích thước khoang chở hành lý (hầm xe) không đúng với thông số kỹ thuật được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D13/K13/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K13/a
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm a, điểm b khoản 3; khoản 4; khoản 5; khoản 6; điểm a khoản 7 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D8/K6, ND168-2024/D8/K6/a, ND168-2024/D8/K6/b, ND168-2024/D8/K6/c, ND168-2024/D8/K6/d, ND168-2024/D8/K6/đ, ND168-2024/D8/K6/e, ND168-2024/D8/K6/g, ND168-2024/D8/K6/h, ND168-2024/D8/K6/i
+
+Điều 8. Xử phạt người điều khiển xe máy chuyên dùng vi phạm quy tắc giao thông đường bộ
+6. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Chạy quá tốc độ quy định trên 20 km/h;
+b) Dừng xe, đỗ xe trên đường cao tốc không đúng nơi quy định; không có báo hiệu bằng đèn khẩn cấp khi gặp sự cố kỹ thuật hoặc bất khả kháng khác buộc phải dừng xe, đỗ xe ở làn dừng xe khẩn cấp hoặc dải dừng xe khẩn cấp trên đường cao tốc; không có báo hiệu bằng đèn khẩn cấp, không đặt biển cảnh báo “Chú ý xe đỗ” (hoặc đèn cảnh báo) về phía sau xe khoảng cách tối thiểu 150 mét khi gặp sự cố kỹ thuật hoặc bất khả kháng khác buộc phải dừng xe, đỗ xe trên một phần làn đường xe chạy trên đường cao tốc;
+c) Điều khiển xe trên đường mà trong máu hoặc hơi thở có nồng độ cồn nhưng chưa vượt quá 50 miligam/100 mililít máu hoặc chưa vượt quá 0,25 miligam/1 lít khí thở;
+d) Đi vào khu vực cấm, đường có biển báo hiệu có nội dung cấm đi vào đối với loại phương tiện đang điều khiển, trừ các hành vi vi phạm quy định tại điểm d khoản 7, điểm đ khoản 9 Điều này và các trường hợp xe ưu tiên đang đi làm nhiệm vụ khẩn cấp theo quy định;
+đ) Không đi bên phải theo chiều đi của mình; đi không đúng phần đường hoặc làn đường quy định (làn cùng chiều hoặc làn ngược chiều); điều khiển xe đi qua dải phân cách cố định ở giữa hai phần đường xe chạy, trừ các hành vi vi phạm quy định tại điểm e khoản 6, điểm d khoản 7, điểm đ khoản 9 Điều này;
+…
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D8/K7/d)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D8/K7/d
+
+Điều 8. Xử phạt người điều khiển xe máy chuyên dùng vi phạm quy tắc giao thông đường bộ
+7. Phạt liền từ 6.000.000 đồng đến 8.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+d) Đi ngược chiều của đường một chiều, đi ngược chiều trên đường có biển “Cấm đi ngược chiều”, trừ các hành vi vi phạm quy định tại điểm đ khoản 9 Điều này và các trường hợp xe ưu tiên đang đi làm nhiệm vụ khẩn cấp theo quy định.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D8/K9/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D8/K9/đ
+
+Điều 8. Xử phạt người điều khiển xe máy chuyên dùng vi phạm quy tắc giao thông đường bộ
+9. Phạt tiền từ 18.000.000 đồng đến 20.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+đ) Lùi xe trên đường cao tốc; đi ngược chiều trên đường cao tốc; quay đầu xe trên đường cao tốc;
+
+[0] 1.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D13/K3)
+[1] 2.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D13/K3)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D13/K13/a)
+[3] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D8/K6)
+[4] 5.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D8/K6)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Nếu tôi vi phạm vi lắp thêm đèn trên xe tải, mức phạt tiền và điểm trừ là bao nhiêu, so với khi lái xe máy vi phạm chạy quá tốc độ trên đường cao tốc?
+- Đáp: Mức phạt tiền khi vi phạm lắp thêm đèn trên xe tải là từ 1.000.000 đồng đến 2.000.000 đồng, trừ 02 điểm giấy phép lái xe. Khi vi phạm chạy quá tốc độ trên đường cao tốc bằng xe máy, mức phạt tiền là từ 3.000.000 đồng đến 5.000.000 đồng. Do đó, vi phạm trên xe máy bị phạt tiền nặng hơn. (Điều 13, Khoản 3 và Khoản 13, Điều 13 Nghị định 168/2024/NĐ-CP)
+- Ghi chú: Giả định rằng xe tải là xe ô tô chở hàng, và xe máy là xe máy chuyên dùng
+
+```json
+{"qid": "t3-so_sanh-003", "question": "Nếu tôi vi phạm vi lắp thêm đèn trên xe tải, mức phạt tiền và điểm trừ là bao nhiêu, so với khi lái xe máy vi phạm chạy quá tốc độ trên đường cao tốc?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền khi vi phạm lắp thêm đèn trên xe tải là từ 1.000.000 đồng đến 2.000.000 đồng, trừ 02 điểm giấy phép lái xe. Khi vi phạm chạy quá tốc độ trên đường cao tốc bằng xe máy, mức phạt tiền là từ 3.000.000 đồng đến 5.000.000 đồng. Do đó, vi phạm trên xe máy bị phạt tiền nặng hơn. (Điều 13, Khoản 3 và Khoản 13, Điều 13 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D13/K3", "ND168-2024/D13/K13/a", "ND168-2024/D8/K6"], "required_numbers": [{"value": 1000000, "unit": "vnd"}, {"value": 2000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}, {"value": 3000000, "unit": "vnd"}, {"value": 5000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-003:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu tôi vi phạm vi lắp thêm đèn trên xe tải, mức phạt tiền và điểm trừ là bao nhiêu, so với khi lái xe máy đi ngược chiều trên đường một chiều?
+- Đáp: Mức phạt tiền khi vi phạm lắp thêm đèn trên xe tải là từ 1.000.000 đồng đến 2.000.000 đồng, trừ 02 điểm giấy phép lái xe. Khi vi phạm đi ngược chiều trên đường một chiều bằng xe máy, mức phạt tiền là từ 3.000.000 đồng đến 5.000.000 đồng. Vì vậy, vi phạm trên xe máy bị phạt tiền nặng hơn. (Điều 13, Khoản 3 và Khoản 13, Điều 13 Nghị định 168/2024/NĐ-CP)
+- Ghi chú: Giả định rằng xe tải là xe ô tô chở hàng, và xe máy là xe máy chuyên dùng
+
+```json
+{"qid": "t3-so_sanh-003", "question": "Nếu tôi vi phạm vi lắp thêm đèn trên xe tải, mức phạt tiền và điểm trừ là bao nhiêu, so với khi lái xe máy đi ngược chiều trên đường một chiều?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền khi vi phạm lắp thêm đèn trên xe tải là từ 1.000.000 đồng đến 2.000.000 đồng, trừ 02 điểm giấy phép lái xe. Khi vi phạm đi ngược chiều trên đường một chiều bằng xe máy, mức phạt tiền là từ 3.000.000 đồng đến 5.000.000 đồng. Vì vậy, vi phạm trên xe máy bị phạt tiền nặng hơn. (Điều 13, Khoản 3 và Khoản 13, Điều 13 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D13/K3", "ND168-2024/D13/K13/a", "ND168-2024/D8/K6"], "required_numbers": [{"value": 1000000, "unit": "vnd"}, {"value": 2000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}, {"value": 3000000, "unit": "vnd"}, {"value": 5000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-003:2"}
+```
+
+### W3-so_sanh-004 · tier A · vai: chủ doanh nghiệp vận tải · kiểu: tinh_huong_nguoi_khac · cosine TF-IDF 0.40
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K1
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+1. Phạt tiền từ 200.000 đồng đến 400.000 đồng đối với hành vi điều khiển xe không có kính chắn gió hoặc có nhưng vỡ không có tác dụng (đối với xe có thiết kế lắp kính chắn gió).
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D14/K1, ND168-2024/D14/K1/a, ND168-2024/D14/K1/b, ND168-2024/D14/K1/c, ND168-2024/D14/K1/d, ND168-2024/D14/K1/đ
+
+Điều 14. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+1. Phạt tiền từ 400.000 đồng đến 600.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe không có còi; đèn soi biển số; đèn báo hãm; gương chiếu hậu bên trái người điều khiển hoặc có nhưng không có tác dụng;
+b) Điều khiển xe không có đèn tín hiệu hoặc có nhưng không có tác dụng;
+c) Điều khiển xe không có đèn chiếu sáng gần, xa hoặc có nhưng không có tác dụng, không đúng tiêu chuẩn thiết kế;
+d) Điều khiển xe không có hệ thống hãm hoặc có nhưng không có tác dụng, không bảo đảm tiêu chuẩn kỹ thuật;
+đ) Điều khiển xe lắp đèn chiếu sáng về phía sau xe.
+
+[0] 200.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D13/K1)
+[1] 400.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D13/K1)
+[2] 400.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D14/K1)
+[3] 600.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D14/K1)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Công ty anh tôi đang vận chuyển hàng hóa bằng xe ô tô, trong khi công ty cạnh nhau dùng xe mô tô. Họ hỏi: mức phạt tiền khi vi phạm điều kiện xe có kính chắn gió hoặc không có còi, đèn tín hiệu, gương chiếu hậu… là bao nhiêu và có sự khác nhau nào giữa hai loại xe không?
+- Đáp: Mức phạt tiền cho xe ô tô là từ 200.000 đồng đến 400.000 đồng. Mức phạt tiền cho xe mô tô là từ 400.000 đồng đến 600.000 đồng. Do đó, vi phạm trên xe mô tô sẽ bị phạt nặng hơn so với xe ô tô.
+- ⚠ qua_dai (62 từ)
+- Ghi chú: giả định rằng "xe mô tô" là xe gắn máy
+
+```json
+{"qid": "t3-so_sanh-004", "question": "Công ty anh tôi đang vận chuyển hàng hóa bằng xe ô tô, trong khi công ty cạnh nhau dùng xe mô tô. Họ hỏi: mức phạt tiền khi vi phạm điều kiện xe có kính chắn gió hoặc không có còi, đèn tín hiệu, gương chiếu hậu… là bao nhiêu và có sự khác nhau nào giữa hai loại xe không?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền cho xe ô tô là từ 200.000 đồng đến 400.000 đồng. Mức phạt tiền cho xe mô tô là từ 400.000 đồng đến 600.000 đồng. Do đó, vi phạm trên xe mô tô sẽ bị phạt nặng hơn so với xe ô tô.", "gold_units": ["ND168-2024/D13/K1", "ND168-2024/D14/K1"], "required_numbers": [{"value": 200000, "unit": "vnd"}, {"value": 400000, "unit": "vnd"}, {"value": 600000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-004:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi đang so sánh chi phí phạt khi vi phạm điều kiện xe có kính chắn gió hoặc không có còi, đèn tín hiệu, gương chiếu hậu giữa xe ô tô và xe mô tô. Họ muốn biết mức phạt tiền cụ thể cho mỗi loại xe và xem loại nào nặng hơn.
+- Đáp: Mức phạt tiền cho xe ô tô là từ 200.000 đồng đến 400.000 đồng. Mức phạt tiền cho xe mô tô là từ 400.000 đồng đến 600.000 đồng. Vì vậy, xe mô tô bị phạt nặng hơn xe ô tô.
+- ⚠ qua_dai (55 từ)
+- Ghi chú: giả định rằng "xe mô tô" là xe gắn máy
+
+```json
+{"qid": "t3-so_sanh-004", "question": "Công ty tôi đang so sánh chi phí phạt khi vi phạm điều kiện xe có kính chắn gió hoặc không có còi, đèn tín hiệu, gương chiếu hậu giữa xe ô tô và xe mô tô. Họ muốn biết mức phạt tiền cụ thể cho mỗi loại xe và xem loại nào nặng hơn.", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền cho xe ô tô là từ 200.000 đồng đến 400.000 đồng. Mức phạt tiền cho xe mô tô là từ 400.000 đồng đến 600.000 đồng. Vì vậy, xe mô tô bị phạt nặng hơn xe ô tô.", "gold_units": ["ND168-2024/D13/K1", "ND168-2024/D14/K1"], "required_numbers": [{"value": 200000, "unit": "vnd"}, {"value": 400000, "unit": "vnd"}, {"value": 600000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-004:2"}
+```
+
+### W3-so_sanh-005 · tier A · vai: người lớn tuổi đi xe đạp điện · kiểu: tinh_huong_ban_than · cosine TF-IDF 0.57
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D18/K4, ND168-2024/D18/K4/a, ND168-2024/D18/K4/b, ND168-2024/D18/K4/c
+
+Điều 18. Xử phạt, trừ điểm giấy phép lái xe các hành vi vi phạm quy định về điều kiện của người điều khiển xe cơ giới
+4. Phạt tiền từ 400.000 đồng đến 600.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Người từ đủ 16 tuổi đến dưới 18 tuổi điều khiển xe mô tô và các loại xe tương tự xe mô tô;
+b) Người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô kinh doanh vận tải không mang theo chứng nhận bảo hiểm bắt buộc trách nhiệm dân sự của chủ xe cơ giới còn hiệu lực;
+c) Người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô không có chứng nhận bảo hiểm bắt buộc trách nhiệm dân sự của chủ xe cơ giới còn hiệu lực.
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K2, ND168-2024/D32/K2/a, ND168-2024/D32/K2/b
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+2. Phạt tiền từ 300.000 đồng đến 400.000 đồng đối với cá nhân, từ 600.000 đồng đến 800.000 đồng đối với tổ chức là chủ xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ, xe máy chuyên dùng và các loại xe tương tự xe ô tô thực hiện một trong các hành vi vi phạm sau đây:
+a) Lắp kính chắn gió, kính cửa của xe không phải là loại kính an toàn;
+b) Không làm thủ tục khai báo với cơ quan đăng ký xe theo quy định trước khi cải tạo xe (đối với loại xe có quy định phải làm thủ tục khai báo).
+
+[0] 400.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D18/K4)
+[1] 600.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D18/K4)
+[2] 300.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K2)
+[3] 400.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K2)
+[4] 600.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K2)
+[5] 800.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K2)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là người lớn tuổi đi xe đạp điện, muốn biết mức phạt tiền khác nhau khi so sánh giữa người điều khiển xe ô tô không có bảo hiểm và chủ xe ô tô khi lắp kính không an toàn.
+- Đáp: Mức phạt tiền cho người điều khiển xe ô tô không có bảo hiểm là từ 400.000 đồng đến 600.000 đồng. Mức phạt tiền cho chủ xe ô tô khi lắp kính không an toàn là từ 600.000 đồng đến 800.000 đồng. Bên nặng hơn là chủ xe ô tô.
+- ⚠ chep_nguyen_van: “người điều khiển xe ô tô …”
+- Ghi chú: Chú ý rằng "chủ xe ô tô" là tổ chức, vì vậy mức phạt cao hơn.
+
+```json
+{"qid": "t3-so_sanh-005", "question": "Tôi là người lớn tuổi đi xe đạp điện, muốn biết mức phạt tiền khác nhau khi so sánh giữa người điều khiển xe ô tô không có bảo hiểm và chủ xe ô tô khi lắp kính không an toàn.", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền cho người điều khiển xe ô tô không có bảo hiểm là từ 400.000 đồng đến 600.000 đồng. Mức phạt tiền cho chủ xe ô tô khi lắp kính không an toàn là từ 600.000 đồng đến 800.000 đồng. Bên nặng hơn là chủ xe ô tô.", "gold_units": ["ND168-2024/D18/K4", "ND168-2024/D32/K2"], "required_numbers": [{"value": 400000, "unit": "vnd"}, {"value": 600000, "unit": "vnd"}, {"value": 800000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-005:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là người lớn tuổi đi xe đạp điện, muốn biết mức phạt tiền khác nhau khi so sánh giữa người điều khiển xe ô tô không có bảo hiểm và chủ xe ô tô khi không khai báo sửa đổi.
+- Đáp: Mức phạt tiền cho người điều khiển xe ô tô không có bảo hiểm là từ 400.000 đồng đến 600.000 đồng. Mức phạt tiền cho chủ xe ô tô khi không khai báo sửa đổi là từ 300.000 đồng đến 400.000 đồng. Bên nặng hơn là người điều khiển xe ô tô.
+- ⚠ chep_nguyen_van: “người điều khiển xe ô tô …”
+- Ghi chú: Chú ý rằng "chủ xe ô tô" là tổ chức, vì vậy mức phạt cao hơn.
+
+```json
+{"qid": "t3-so_sanh-005", "question": "Tôi là người lớn tuổi đi xe đạp điện, muốn biết mức phạt tiền khác nhau khi so sánh giữa người điều khiển xe ô tô không có bảo hiểm và chủ xe ô tô khi không khai báo sửa đổi.", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền cho người điều khiển xe ô tô không có bảo hiểm là từ 400.000 đồng đến 600.000 đồng. Mức phạt tiền cho chủ xe ô tô khi không khai báo sửa đổi là từ 300.000 đồng đến 400.000 đồng. Bên nặng hơn là người điều khiển xe ô tô.", "gold_units": ["ND168-2024/D18/K4", "ND168-2024/D32/K2"], "required_numbers": [{"value": 400000, "unit": "vnd"}, {"value": 600000, "unit": "vnd"}, {"value": 300000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-005:2"}
+```
+
+### W3-so_sanh-006 · tier A · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_ban_than · cosine TF-IDF 0.45
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K12
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+12. Phạt tiền từ 40.000.000 đồng đến 50.000.000 đồng đối với người điều khiển xe thực hiện hành vi điều khiển xe lạng lách, đánh võng trên đường bộ; chạy quá tốc độ đuổi nhau trên đường bộ; dùng chân điều khiển vô lăng xe khi xe đang chạy trên đường bộ.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D6/K15/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K15/b
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+15. Ngoài việc bị phạt tiền, người điều khiển xe thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung sau đây:
+b) Thực hiện hành vi quy định tại khoản 12 Điều này bị tước quyền sử dụng giấy phép lái xe từ 10 tháng đến 12 tháng;
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K3, ND168-2024/D7/K3/a, ND168-2024/D7/K3/b, ND168-2024/D7/K3/c, ND168-2024/D7/K3/d, ND168-2024/D7/K3/đ, ND168-2024/D7/K3/e, ND168-2024/D7/K3/g, ND168-2024/D7/K3/h, ND168-2024/D7/K3/i, ND168-2024/D7/K3/k, ND168-2024/D7/K3/l
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+3. Phạt tiền từ 600.000 đồng đến 800.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Chuyển hướng không quan sát hoặc không bảo đảm khoảng cách an toàn với xe phía sau hoặc không giảm tốc độ hoặc không có tín hiệu báo hướng rẽ hoặc có tín hiệu báo hướng rẽ nhưng không sử dụng liên tục trong quá trình chuyển hướng (trừ trường hợp điều khiển xe đi theo hướng cong của đoạn đường bộ ở nơi đường không giao nhau cùng mức); điều khiển xe rẽ trái tại nơi có biển báo hiệu có nội dung cấm rẽ trái đối với loại phương tiện đang điều khiển; điều khiển xe rẽ phải tại nơi có biển báo hiệu có nội dung cấm rẽ phải đối với loại phương tiện đang điều khiển;
+b) Chở theo từ 03 người trở lên trên xe;
+c) Dừng xe, đỗ xe trên cầu;
+d) Điều khiển xe không đi bên phải theo chiều đi của mình; đi không đúng phần đường, làn đường quy định (làn cùng chiều hoặc làn ngược chiều); điều khiển xe đi qua dải phân cách cố định ở giữa hai phần đường xe chạy;
+đ) Vượt bên phải trong trường hợp không được phép;
+e) Người đang điều khiển xe hoặc chở người ngồi trên xe bám, kéo, đẩy xe khác, vật khác, dẫn dắt vật nuôi, mang vác vật cồng kềnh; chở người đứng trên yên, giá đèo hàng hoặc ngồi trên tay lái của xe;
+g) Điều khiển xe kéo theo xe khác, vật khác;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D7/K13/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K13/a
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm b khoản 3; khoản 5; điểm b, điểm c, điểm d khoản 6; điểm a khoản 7 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+[0] 40.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D6/K12)
+[1] 50.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D6/K12)
+[2] 10 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D6/K15/b)
+[3] 12 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D6/K15/b)
+[4] 600.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D7/K3)
+[5] 800.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D7/K3)
+[6] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D7/K13/a)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi đang lo lắng khi con tôi sẽ lái xe ô tô lạng lách, còn tôi lái xe máy chở 3 người, mức phạt tiền và điểm trừ khác nhau như thế nào?
+- Đáp: Nếu con tôi lái xe ô tô lạng lách thì phạt tiền từ 40.000.000 đồng đến 50.000.000 đồng và tước quyền sử dụng giấy phép lái xe từ 10 tháng đến 12 tháng. Nếu tôi lái xe máy chở 3 người thì phạt tiền từ 600.000 đồng đến 800.000 đồng và trừ 02 điểm giấy phép lái xe. Do đó, mức phạt tiền và điểm trừ của xe ô tô lớn hơn xe máy.
+- Ghi chú: Xe máy được coi là xe gắn máy trong quy định
+
+```json
+{"qid": "t3-so_sanh-006", "question": "Tôi đang lo lắng khi con tôi sẽ lái xe ô tô lạng lách, còn tôi lái xe máy chở 3 người, mức phạt tiền và điểm trừ khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Nếu con tôi lái xe ô tô lạng lách thì phạt tiền từ 40.000.000 đồng đến 50.000.000 đồng và tước quyền sử dụng giấy phép lái xe từ 10 tháng đến 12 tháng. Nếu tôi lái xe máy chở 3 người thì phạt tiền từ 600.000 đồng đến 800.000 đồng và trừ 02 điểm giấy phép lái xe. Do đó, mức phạt tiền và điểm trừ của xe ô tô lớn hơn xe máy.", "gold_units": ["ND168-2024/D6/K12", "ND168-2024/D6/K15/b", "ND168-2024/D7/K3", "ND168-2024/D7/K13/a"], "required_numbers": [{"value": 40000000, "unit": "vnd"}, {"value": 50000000, "unit": "vnd"}, {"value": 10, "unit": "thang"}, {"value": 12, "unit": "thang"}, {"value": 600000, "unit": "vnd"}, {"value": 800000, "unit": "vnd"}, {"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-006:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi muốn biết khi lái xe ô tô lạng lách và khi lái xe máy lạng lách, mức phạt tiền và điểm trừ sẽ khác nhau như thế nào?
+- Đáp: Nếu lái xe ô tô lạng lách thì phạt tiền từ 40.000.000 đồng đến 50.000.000 đồng và tước quyền sử dụng giấy phép lái xe từ 10 tháng đến 12 tháng. Nếu lái xe máy lạng lách thì không có quy định phạt tiền hoặc điểm trừ trong văn bản này. Do đó, xe ô tô có mức phạt nghiêm khắc hơn xe máy.
+- Ghi chú: Xe máy không có quy định phạt lạng lách trong văn bản này
+
+```json
+{"qid": "t3-so_sanh-006", "question": "Tôi muốn biết khi lái xe ô tô lạng lách và khi lái xe máy lạng lách, mức phạt tiền và điểm trừ sẽ khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Nếu lái xe ô tô lạng lách thì phạt tiền từ 40.000.000 đồng đến 50.000.000 đồng và tước quyền sử dụng giấy phép lái xe từ 10 tháng đến 12 tháng. Nếu lái xe máy lạng lách thì không có quy định phạt tiền hoặc điểm trừ trong văn bản này. Do đó, xe ô tô có mức phạt nghiêm khắc hơn xe máy.", "gold_units": ["ND168-2024/D6/K12", "ND168-2024/D6/K15/b"], "required_numbers": [{"value": 40000000, "unit": "vnd"}, {"value": 50000000, "unit": "vnd"}, {"value": 10, "unit": "thang"}, {"value": 12, "unit": "thang"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-006:2"}
+```
+
+### W3-so_sanh-007 · tier A · vai: người mới học lái ô tô · kiểu: tinh_huong_nguoi_khac · cosine TF-IDF 0.44
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K3
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+3. Phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng đối với cá nhân, từ 4.000.000 đồng đến 6.000.000 đồng đối với tổ chức thực hiện hành vi vi phạm xếp hàng hóa lên mỗi xe ô tô (kể cả rơ moóc và sơ mi rơ moóc) vượt quá trọng tải (khối lượng hàng chuyên chở) cho phép tham gia giao thông được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 50% đến 100%.
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K11, ND168-2024/D32/K11/a, ND168-2024/D32/K11/b, ND168-2024/D32/K11/c, ND168-2024/D32/K11/d, ND168-2024/D32/K11/đ, ND168-2024/D32/K11/e
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+11. Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng đối với cá nhân, từ 20.000.000 đồng đến 24.000.000 đồng đối với tổ chức là chủ xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ, xe máy chuyên dùng và các loại xe tương tự xe ô tô thực hiện một trong các hành vi vi phạm sau đây:
+a) Đưa xe cơ giới, xe máy chuyên dùng không có giấy chứng nhận hoặc tem kiểm định an toàn kỹ thuật và bảo vệ môi trường (đối với loại xe có quy định phải kiểm định) hoặc có nhưng đã hết hiệu lực (hạn sử dụng) từ 01 tháng trở lên (kể cả rơ moóc và sơ mi rơ moóc) tham gia giao thông;
+b) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm a, điểm d khoản 5 Điều 21 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm a, điểm d khoản 5 Điều 21 của Nghị định này;
+c) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 2 Điều 34 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 2 Điều 34 của Nghị định này;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/c
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+c) Thực hiện hành vi quy định tại điểm e khoản 7, điểm b khoản 11, điểm a khoản 13, khoản 15, điểm b khoản 16 Điều này mà phương tiện đó có thùng xe, khối lượng hàng hóa cho phép chuyên chở không đúng theo quy định hiện hành thì còn bị tước quyền sử dụng chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường và tem kiểm định của phương tiện từ 01 tháng đến 03 tháng;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/d)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/d
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+d) Thực hiện hành vi quy định tại điểm d khoản 11, điểm h khoản 14, điểm c khoản 16 Điều này bị tước quyền sử dụng chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường và tem kiểm định của phương tiện từ 01 tháng đến 03 tháng;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/đ
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+đ) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chở vượt trên 50% số người quy định được phép chở của phương tiện còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có). Thực hiện hành vi quy định tại điểm a, điểm b khoản 11; điểm a, điểm b, điểm c, điểm đ khoản 13; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16 Điều này còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có),
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/a
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm đ, điểm g, điểm m khoản 7; điểm đ, điểm e khoản 8; điểm b, điểm c, điểm d, điểm đ khoản 9; điểm a, điểm b, điểm đ khoản 11; điểm a khoản 12; điểm c khoản 13; điểm đ, điểm h khoản 14 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D21/K5/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K5/a
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+5. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe (kể cả rơ moóc và sơ mi rơ moóc) chở hàng vượt trọng tải (khối lượng hàng chuyên chở) cho phép tham gia giao thông được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 30% đến 50%;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D21/K5/d)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K5/d
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+5. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+d) Điều khiển xe kéo theo rơ moóc, sơ mi rơ moóc mà khối lượng toàn bộ (bao gồm khối lượng bản thân rơ moóc, sơ mi rơ moóc và khối lượng hàng chuyên chở) của rơ moóc, sơ mi rơ moóc vượt khối lượng cho phép kéo theo được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 30% đến 50%.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D34/K2)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D34/K2
+
+Điều 34. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển quá khổ giới hạn, xe quá tải trọng, xe bánh xích lưu hành đường bộ (kể cả xe ô tô chở hành khách)
+2. Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng đối với hành vi điều khiển xe mà tổng trọng lượng (khối lượng toàn bộ) của xe vượt quá tải trọng cho phép của đường bộ trên 10% đến 20%, trừ trường hợp có giấy phép lưu hành còn giá trị sử dụng.
+
+[0] 2.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D26/K3)
+[1] 3.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D26/K3)
+[2] 4.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D26/K3)
+[3] 6.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D26/K3)
+[4] 10.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K11)
+[5] 12.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K11)
+[6] 20.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K11)
+[7] 24.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K11)
+[8] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/c)
+[9] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/c)
+[10] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/d)
+[11] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/d)
+[12] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/đ)
+[13] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/đ)
+[14] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/a)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi đang chuẩn bị bán một chiếc xe ô tô tải, nhưng anh ấy không biết liệu vi phạm quá tải trọng sẽ bị phạt tiền nhiều hơn khi là cá nhân hay khi là công ty?
+- Đáp: Nếu vi phạm quá tải trọng, cá nhân sẽ bị phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng, trong khi công ty sẽ bị phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng. Do đó, công ty nặng hơn. (Điều 26, khoản 3 Nghị định 168/2024/NĐ-CP)
+
+```json
+{"qid": "t3-so_sanh-007", "question": "Anh tôi đang chuẩn bị bán một chiếc xe ô tô tải, nhưng anh ấy không biết liệu vi phạm quá tải trọng sẽ bị phạt tiền nhiều hơn khi là cá nhân hay khi là công ty?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Nếu vi phạm quá tải trọng, cá nhân sẽ bị phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng, trong khi công ty sẽ bị phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng. Do đó, công ty nặng hơn. (Điều 26, khoản 3 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D26/K3"], "required_numbers": [{"value": 2000000, "unit": "vnd"}, {"value": 3000000, "unit": "vnd"}, {"value": 4000000, "unit": "vnd"}, {"value": 6000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-007:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi đang thuê một xe ô tô chở khách nhưng không có tem kiểm định an toàn kỹ thuật hợp lệ, anh ấy muốn biết mức phạt tiền sẽ cao hơn khi là cá nhân hay khi là tổ chức?
+- Đáp: Nếu vi phạm không có tem kiểm định hợp lệ, cá nhân sẽ bị phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng, trong khi tổ chức sẽ bị phạt tiền từ 20.000.000 đồng đến 24.000.000 đồng. Vì vậy, tổ chức nặng hơn. (Điều 32, khoản 11 Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “kiểm định an toàn kỹ thuật …”
+
+```json
+{"qid": "t3-so_sanh-007", "question": "Công ty tôi đang thuê một xe ô tô chở khách nhưng không có tem kiểm định an toàn kỹ thuật hợp lệ, anh ấy muốn biết mức phạt tiền sẽ cao hơn khi là cá nhân hay khi là tổ chức?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Nếu vi phạm không có tem kiểm định hợp lệ, cá nhân sẽ bị phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng, trong khi tổ chức sẽ bị phạt tiền từ 20.000.000 đồng đến 24.000.000 đồng. Vì vậy, tổ chức nặng hơn. (Điều 32, khoản 11 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K11"], "required_numbers": [{"value": 10000000, "unit": "vnd"}, {"value": 12000000, "unit": "vnd"}, {"value": 20000000, "unit": "vnd"}, {"value": 24000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-007:2"}
+```
+
+### W3-so_sanh-008 · tier A · vai: người mới học lái ô tô · kiểu: tinh_huong_ban_than · cosine TF-IDF 0.44
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D18/K7, ND168-2024/D18/K7/a, ND168-2024/D18/K7/b, ND168-2024/D18/K7/c, ND168-2024/D18/K7/d
+
+Điều 18. Xử phạt, trừ điểm giấy phép lái xe các hành vi vi phạm quy định về điều kiện của người điều khiển xe cơ giới
+7. Phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng đối với người điều khiển xe mô tô hai bánh có dung tích xi-lanh trên 125 cm3 trở lên hoặc có công suất động cơ điện trên 11 kW, xe mô tô ba bánh thực hiện một trong các hành vi vi phạm sau đây:
+a) Có giấy phép lái xe nhưng không phù hợp với loại xe đang điều khiển;
+b) Không có giấy phép lái xe hoặc sử dụng giấy phép lái xe đã bị trừ hết điểm, giấy phép lái xe không do cơ quan có thẩm quyền cấp, giấy phép lái xe bị tẩy xóa, giấy phép lái xe không còn hiệu lực;
+c) Có giấy phép lái xe quốc tế do các nước tham gia Công ước của Liên hợp quốc về Giao thông đường bộ năm 1968 cấp (trừ giấy phép lái xe quốc tế do Việt Nam cấp) nhưng không mang theo giấy phép lái xe quốc gia phù hợp với loại xe được phép điều khiển;
+d) Sử dụng giấy phép lái xe không hợp lệ (giấy phép lái xe có số phôi ghi ở mặt sau không trùng với số phôi được cấp mới nhất trong hệ thống thông tin quản lý giấy phép lái xe).
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D39/K3, ND168-2024/D39/K3/a, ND168-2024/D39/K3/b, ND168-2024/D39/K3/c, ND168-2024/D39/K3/d, ND168-2024/D39/K3/đ, ND168-2024/D39/K3/e, ND168-2024/D39/K3/g, ND168-2024/D39/K3/h, ND168-2024/D39/K3/i, ND168-2024/D39/K3/k
+
+Điều 39. Xử phạt các hành vi vi phạm quy định về đào tạo, sát hạch lái xe
+3. Phạt tiền từ 5.000.000 đồng đến 10.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Cơ sở đào tạo lái xe không bố trí giáo viên dạy thực hành ngồi bên cạnh để bảo trợ tay lái cho học viên thực hành lái xe; bố trí giáo viên không đủ tiêu chuẩn để giảng dạy;
+b) Cơ sở đào tạo lái xe sử dụng xe tập lái không có giấy phép xe tập lái hoặc có nhưng hết hạn, không gắn biển xe “Tập lái” trên xe theo quy định, không ghi tên cơ sở đào tạo, số điện thoại ở mặt ngoài hai bên cánh cửa hoặc hai bên thành xe theo quy định;
+c) Cơ sở đào tạo lái xe sử dụng xe tập lái không trang bị thêm bộ phận hãm phụ hoặc có nhưng không có tác dụng;
+d) Cơ sở đào tạo lái xe tuyển sinh học viên không đủ điều kiện trình độ văn hóa, thời gian lái xe an toàn tương ứng với từng hạng đào tạo; tuyển sinh học viên không đủ hồ sơ theo quy định;
+đ) Cơ sở đào tạo lái xe không có đủ số lượng giáo viên dạy thực hành lái xe các hạng để đáp ứng với kế hoạch sử dụng các xe tập lái dùng để đào tạo;
+e) Cơ sở đào tạo lái xe không lưu trữ hoặc lưu trữ không đầy đủ hồ sơ theo quy định của 01 khóa đào tạo;
+g) Trung tâm sát hạch lái xe không duy trì đủ các điều kiện quy định trong Quy chuẩn kỹ thuật quốc gia về Trung tâm sát hạch lái xe cơ giới đường bộ, trừ các hành vi vi phạm quy định tại khoản 4, khoản 5, khoản 7 Điều này;
+h) Trung tâm sát hạch lái xe không lưu trữ hoặc lưu trữ không đầy đủ hồ sơ theo quy định của 01 kỳ sát hạch lái xe;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D39/K9/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D39/K9/c
+
+Điều 39. Xử phạt các hành vi vi phạm quy định về đào tạo, sát hạch lái xe
+9. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung sau đây:
+c) Trung tâm sát hạch lái xe thực hiện hành vi quy định tại điểm h khoản 3; điểm i, điểm k khoản 4; điểm đ, điểm e, điểm g, điểm h, điểm i khoản 5 Điều này bị tước quyền sử dụng giấy phép sát hạch từ 01 tháng đến 03 tháng;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D39/K4)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D39/K4
+
+Điều 39. Xử phạt các hành vi vi phạm quy định về đào tạo, sát hạch lái xe
+4. Phạt tiền từ 10.000.000 đồng đến 20.000.000 đồng đối với cơ sở đào tạo lái xe, trung tâm sát hạch lái xe thực hiện một trong các hành vi vi phạm sau đây:
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D39/K5)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D39/K5
+
+Điều 39. Xử phạt các hành vi vi phạm quy định về đào tạo, sát hạch lái xe
+5. Phạt tiền từ 20.000.000 đồng đến 30.000.000 đồng đối với cơ sở đào tạo lái xe, trung tâm sát hạch lái xe thực hiện một trong các hành vi vi phạm sau đây:
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D39/K7)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D39/K7
+
+Điều 39. Xử phạt các hành vi vi phạm quy định về đào tạo, sát hạch lái xe
+7. Phạt tiền từ 40.000.000 đồng đến 50.000.000 đồng đối với trung tâm sát hạch lái xe thực hiện một trong các hành vi vi phạm sau đây:
+
+[0] 6.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D18/K7)
+[1] 8.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D18/K7)
+[2] 5.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D39/K3)
+[3] 10.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D39/K3)
+[4] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D39/K9/c)
+[5] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D39/K9/c)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi đang lái xe máy 150cc, có giấy phép nhưng không phù hợp với loại xe, tôi có thể bị phạt tiền bao nhiêu?
+- Đáp: Bạn sẽ bị phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng. Trong khi đó, nếu một cơ sở đào tạo lái xe vi phạm quy định về sử dụng xe tập lái không có giấy phép, họ sẽ bị phạt tiền từ 5.000.000 đồng đến 10.000.000 đồng. Do đó, mức phạt tối đa của cơ sở đào tạo lái xe (10.000.000 đồng) lớn hơn mức phạt tối đa của bạn (8.000.000 đồng). (khoản 7 Điều 18 Nghị định 168/2024/NĐ-CP; khoản 3 Điều 39 Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “không phù hợp với loại xe …”
+- Ghi chú: giả định xe máy là xe mô tô
+
+```json
+{"qid": "t3-so_sanh-008", "question": "Tôi đang lái xe máy 150cc, có giấy phép nhưng không phù hợp với loại xe, tôi có thể bị phạt tiền bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Bạn sẽ bị phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng. Trong khi đó, nếu một cơ sở đào tạo lái xe vi phạm quy định về sử dụng xe tập lái không có giấy phép, họ sẽ bị phạt tiền từ 5.000.000 đồng đến 10.000.000 đồng. Do đó, mức phạt tối đa của cơ sở đào tạo lái xe (10.000.000 đồng) lớn hơn mức phạt tối đa của bạn (8.000.000 đồng). (khoản 7 Điều 18 Nghị định 168/2024/NĐ-CP; khoản 3 Điều 39 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D18/K7", "ND168-2024/D39/K3"], "required_numbers": [{"value": 6000000, "unit": "vnd"}, {"value": 8000000, "unit": "vnd"}, {"value": 5000000, "unit": "vnd"}, {"value": 10000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-008:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi điều hành một trung tâm sát hạch lái xe, nhưng không lưu trữ hồ sơ đầy đủ, mức phạt tiền sẽ là bao nhiêu?
+- Đáp: Bạn sẽ bị phạt tiền từ 5.000.000 đồng đến 10.000.000 đồng. Trong khi đó, nếu một người điều khiển xe máy 150cc có giấy phép không phù hợp, họ sẽ bị phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng. Vì mức phạt tối đa của trung tâm sát hạch lái xe (10.000.000 đồng) lớn hơn mức phạt tối đa của người lái xe máy (8.000.000 đồng), nên trung tâm sát hạch lái xe chịu mức phạt nặng hơn. (khoản 3 Điều 39 Nghị định 168/2024/NĐ-CP; khoản 7 Điều 18 Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “trung tâm sát hạch lái xe …”; so_la: 150
+- Ghi chú: giả định trung tâm sát hạch là trung tâm sát hạch lái xe
+
+```json
+{"qid": "t3-so_sanh-008", "question": "Tôi điều hành một trung tâm sát hạch lái xe, nhưng không lưu trữ hồ sơ đầy đủ, mức phạt tiền sẽ là bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Bạn sẽ bị phạt tiền từ 5.000.000 đồng đến 10.000.000 đồng. Trong khi đó, nếu một người điều khiển xe máy 150cc có giấy phép không phù hợp, họ sẽ bị phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng. Vì mức phạt tối đa của trung tâm sát hạch lái xe (10.000.000 đồng) lớn hơn mức phạt tối đa của người lái xe máy (8.000.000 đồng), nên trung tâm sát hạch lái xe chịu mức phạt nặng hơn. (khoản 3 Điều 39 Nghị định 168/2024/NĐ-CP; khoản 7 Điều 18 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D18/K7", "ND168-2024/D39/K3"], "required_numbers": [{"value": 6000000, "unit": "vnd"}, {"value": 8000000, "unit": "vnd"}, {"value": 5000000, "unit": "vnd"}, {"value": 10000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-008:2"}
+```
+
+### W3-so_sanh-009 · tier A · vai: tài xế xe tải · kiểu: ngan · cosine TF-IDF 0.43
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K5, ND168-2024/D13/K5/a, ND168-2024/D13/K5/b, ND168-2024/D13/K5/c, ND168-2024/D13/K5/d
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+5. Phạt tiền từ 3.000.000 đồng đến 4.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe có giấy chứng nhận hoặc tem kiểm định an toàn kỹ thuật và bảo vệ môi trường nhưng đã hết hiệu lực (hạn sử dụng) dưới 01 tháng (kể cả rơ moóc và sơ mi rơ moóc);
+b) Điều khiển xe không đủ hệ thống hàm hoặc có đủ hệ thống hãm nhưng không có tác dụng, không đúng tiêu chuẩn an toàn kỹ thuật (kể cả rơ moóc và sơ mi rơ moóc);
+c) Điều khiển xe kinh doanh vận tải có niên hạn sử dụng không bảo đảm điều kiện của hình thức kinh doanh đã đăng ký;
+d) Điều khiển xe lắp đặt, sử dụng còi vượt quá âm lượng theo quy định.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D13/K13/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K13/a
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm a, điểm b khoản 3; khoản 4; khoản 5; khoản 6; điểm a khoản 7 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K16, ND168-2024/D32/K16/a, ND168-2024/D32/K16/b, ND168-2024/D32/K16/c
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+16. Phạt tiền từ 65.000.000 đồng đến 75.000.000 đồng đối với cá nhân, từ 130.000.000 đồng đến 150.000.000 đồng đối với tổ chức là chủ xe ô tô, xe máy chuyên dùng và các loại xe tương tự xe ô tô khi thực hiện một trong các hành vi vi phạm sau đây:
+a) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm a khoản 5 Điều 34 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm a khoản 5 Điều 34 của Nghị định này;
+b) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm a, điểm b khoản 8 Điều 21 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm a, điểm b khoản 8 Điều 21 của Nghị định này;
+c) Tự ý thay đổi tổng thành khung, tổng thành máy (động cơ), hệ thống phanh, hệ thống truyền động (truyền lực), hệ thống chuyển động hoặc tự ý cải tạo kết cấu, hình dáng, kích thước của xe không đúng thiết kế của nhà sản xuất hoặc thiết kế trong hồ sơ đã nộp cho cơ quan đăng ký xe hoặc thiết kế cải tạo đã được cơ quan có thẩm quyền phê duyệt; tự ý thay đổi tính năng sử dụng của xe hoặc tự ý lắp đặt thêm cơ cấu nâng hạ thùng xe, nâng hạ công-ten-nơ trên xe (kể cả rơ moóc và sơ mi rơ moóc).
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/c
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+c) Thực hiện hành vi quy định tại điểm e khoản 7, điểm b khoản 11, điểm a khoản 13, khoản 15, điểm b khoản 16 Điều này mà phương tiện đó có thùng xe, khối lượng hàng hóa cho phép chuyên chở không đúng theo quy định hiện hành thì còn bị tước quyền sử dụng chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường và tem kiểm định của phương tiện từ 01 tháng đến 03 tháng;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/d)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/d
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+d) Thực hiện hành vi quy định tại điểm d khoản 11, điểm h khoản 14, điểm c khoản 16 Điều này bị tước quyền sử dụng chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường và tem kiểm định của phương tiện từ 01 tháng đến 03 tháng;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/đ
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+đ) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chở vượt trên 50% số người quy định được phép chở của phương tiện còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có). Thực hiện hành vi quy định tại điểm a, điểm b khoản 11; điểm a, điểm b, điểm c, điểm đ khoản 13; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16 Điều này còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có),
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/c
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+c) Thực hiện hành vi quy định tại điểm a, điểm b, điểm đ, điểm e khoản 13; điểm a, điểm b, điểm c, điểm d khoản 14; điểm a khoản 16 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 04 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/g)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/g
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+g) Thực hiện hành vi quy định tại điểm d khoản 13, điểm b khoản 16 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 10 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D34/K5/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D34/K5/a
+
+Điều 34. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển quá khổ giới hạn, xe quá tải trọng, xe bánh xích lưu hành đường bộ (kể cả xe ô tô chở hành khách)
+5. Phạt tiền từ 40.000.000 đồng đến 50.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe mà tổng trọng lượng (khối lượng toàn bộ) của xe hoặc tải trọng trục xe (bao gồm cả hàng hóa xếp trên xe, người được chở trên xe) vượt quá tải trọng cho phép của đường bộ trên 50%, trừ trường hợp có giấy phép lưu hành còn giá trị sử dụng;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D21/K8/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K8/a
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+8. Phạt tiền từ 8.000.000 đồng đến 12.000.000 đồng đối với một trong các hành vi sau đây:
+a) Điều khiển xe (kể cả rơ moóc và sơ mi rơ moóc) chở hàng vượt trọng tải (khối lượng hàng chuyên chở) cho phép tham gia giao thông được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 150%;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D21/K8/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K8/b
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+8. Phạt tiền từ 8.000.000 đồng đến 12.000.000 đồng đối với một trong các hành vi sau đây:
+b) Điều khiển xe kéo theo rơ moóc, sơ mi rơ moóc mà khối lượng toàn bộ (bao gồm khối lượng bản thân rơ moóc, sơ mi rơ moóc và khối lượng hàng chuyên chở) của rơ moóc, sơ mi rơ moóc vượt khối lượng cho phép kéo theo được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 150%;
+
+[0] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D13/K5)
+[1] 4.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D13/K5)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D13/K13/a)
+[3] 65.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K16)
+[4] 75.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K16)
+[5] 130.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K16)
+[6] 150.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K16)
+[7] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/c)
+[8] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/c)
+[9] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/d)
+[10] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/d)
+[11] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/đ)
+[12] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/đ)
+[13] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/c)
+[14] 10 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/g)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): So sánh mức phạt tiền và điểm trừ khi vi phạm hành vi điều khiển xe hết hạn kiểm định dưới 1 tháng giữa người điều khiển xe tải và chủ xe tải?
+- Đáp: Người điều khiển xe tải bị phạt tiền từ 3.000.000 đồng đến 4.000.000 đồng và trừ 02 điểm. Chủ xe tải bị phạt tiền từ 65.000.000 đồng đến 75.000.000 đồng. Chủ xe tải nặng hơn.
+- Ghi chú: Giả định người điều khiển xe tải là cá nhân, chủ xe tải là cá nhân.
+
+```json
+{"qid": "t3-so_sanh-009", "question": "So sánh mức phạt tiền và điểm trừ khi vi phạm hành vi điều khiển xe hết hạn kiểm định dưới 1 tháng giữa người điều khiển xe tải và chủ xe tải?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Người điều khiển xe tải bị phạt tiền từ 3.000.000 đồng đến 4.000.000 đồng và trừ 02 điểm. Chủ xe tải bị phạt tiền từ 65.000.000 đồng đến 75.000.000 đồng. Chủ xe tải nặng hơn.", "gold_units": ["ND168-2024/D13/K5", "ND168-2024/D13/K13/a", "ND168-2024/D32/K16"], "required_numbers": [{"value": 3000000, "unit": "vnd"}, {"value": 4000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}, {"value": 65000000, "unit": "vnd"}, {"value": 75000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-009:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): So sánh mức phạt tiền và điểm trừ khi vi phạm hành vi kiểm định hết hạn dưới 1 tháng giữa người điều khiển xe tải và chủ xe tải?
+- Đáp: Người điều khiển xe tải bị phạt tiền từ 3.000.000 đồng đến 4.000.000 đồng và trừ 02 điểm. Chủ xe tải bị phạt tiền từ 65.000.000 đồng đến 75.000.000 đồng. Chủ xe tải nặng hơn.
+- Ghi chú: Giả định người điều khiển xe tải là cá nhân, chủ xe tải là cá nhân.
+
+```json
+{"qid": "t3-so_sanh-009", "question": "So sánh mức phạt tiền và điểm trừ khi vi phạm hành vi kiểm định hết hạn dưới 1 tháng giữa người điều khiển xe tải và chủ xe tải?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Người điều khiển xe tải bị phạt tiền từ 3.000.000 đồng đến 4.000.000 đồng và trừ 02 điểm. Chủ xe tải bị phạt tiền từ 65.000.000 đồng đến 75.000.000 đồng. Chủ xe tải nặng hơn.", "gold_units": ["ND168-2024/D13/K5", "ND168-2024/D13/K13/a", "ND168-2024/D32/K16"], "required_numbers": [{"value": 3000000, "unit": "vnd"}, {"value": 4000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}, {"value": 65000000, "unit": "vnd"}, {"value": 75000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-009:2"}
+```
+
+### W3-so_sanh-010 · tier A · vai: cán bộ phường · kiểu: ngan · cosine TF-IDF 0.42
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K2, ND168-2024/D13/K2/a, ND168-2024/D13/K2/b, ND168-2024/D13/K2/c
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+2. Phạt tiền từ 400.000 đồng đến 600.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe không có đủ đèn chiếu sáng, đèn soi biển số, đèn báo hãm, đèn tín hiệu, cần gạt nước, gương chiếu hậu, dây đai an toàn, dụng cụ thoát hiểm, thiết bị chữa cháy, đồng hồ báo áp lực hơi, đồng hồ báo tốc độ của xe hoặc có những thiết bị đó nhưng không có tác dụng, không đúng tiêu chuẩn thiết kế (đối với loại xe được quy định phải có những thiết bị đó), trừ các hành vi vi phạm quy định tại điểm h khoản 3 Điều 20, điểm d khoản 4 Điều 26 của Nghị định này;
+b) Điều khiển xe không có còi hoặc có nhưng còi không có tác dụng;
+c) Điều khiển xe không có bộ phận giảm thanh, giảm khói hoặc có nhưng không có tác dụng, không bảo đảm quy chuẩn môi trường về khí thải, tiếng ồn.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D20/K3/h)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K3/h
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+3. Phạt tiền từ 600.000 đồng đến 800.000 đồng đối với một trong các hành vi vi phạm sau đây:
+h) Điều khiển xe ô tô kinh doanh vận tải không có dây đai an toàn tại các vị trí ghế ngồi, giường nằm theo quy định (trừ xe buýt nội tỉnh);
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D26/K4/d)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K4/d
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+4. Phạt tiền từ 3.000.000 đồng đến 4.000.000 đồng đối với cá nhân, từ 6.000.000 đồng đến 8.000.000 đồng đối với tổ chức kinh doanh vận tải, dịch vụ hỗ trợ vận tải thực hiện một trong các hành vi vi phạm sau đây:
+d) Sử dụng lái xe, người áp tải vận chuyển hàng hóa nguy hiểm mà không được tập huấn về vận chuyển hàng hóa nguy hiểm;
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D22/K1, ND168-2024/D22/K1/a, ND168-2024/D22/K1/b
+
+Điều 22. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển hàng siêu trường, siêu trọng
+1. Phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Chở hàng siêu trường, siêu trọng không có báo hiệu kích thước của hàng theo quy định;
+b) Không thực hiện đúng quy định trong giấy phép lưu hành, trừ các hành vi vi phạm quy định tại khoản 2; điểm b, điểm c, điểm d khoản 3 Điều này.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D22/K6/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D22/K6/a
+
+Điều 22. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển hàng siêu trường, siêu trọng
+6. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại khoản 1 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D22/K2)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D22/K2
+
+Điều 22. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển hàng siêu trường, siêu trọng
+2. Phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng đối với hành vi chở hàng siêu trường, siêu trọng có giấy phép lưu hành còn giá trị sử dụng nhưng kích thước bao ngoài của xe (sau khi đã xếp hàng lên xe) vượt quá quy định trong giấy phép lưu hành.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D22/K3/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D22/K3/b
+
+Điều 22. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển hàng siêu trường, siêu trọng
+3. Phạt tiền từ 13.000.000 đồng đến 15.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+b) Chở hàng siêu trường, siêu trọng có giấy phép lưu hành còn giá trị sử dụng nhưng tổng trọng lượng (sau khi đã xếp hàng lên xe) vượt quá quy định trong giấy phép lưu hành;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D22/K3/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D22/K3/c
+
+Điều 22. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển hàng siêu trường, siêu trọng
+3. Phạt tiền từ 13.000.000 đồng đến 15.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+c) Chở hàng siêu trường, siêu trọng có giấy phép lưu hành còn giá trị sử dụng nhưng đi không đúng tuyến đường quy định trong giấy phép lưu hành;
+
+[0] 400.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D13/K2)
+[1] 600.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D13/K2)
+[2] 2.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D22/K1)
+[3] 3.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D22/K1)
+[4] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D22/K6/a)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Cán bộ phường: Vi phạm không có đèn chiếu sáng, xe ô tô chở hành khách bị phạt tiền bao nhiêu, và so với xe ô tô chở hàng thì mức phạt cao hơn bao nhiêu?
+- Đáp: Mức phạt tiền cho xe ô tô chở hành khách là từ 400.000 đồng đến 600.000 đồng, còn xe ô tô chở hàng là từ 600.000 đồng đến 800.000 đồng. Xe ô tô chở hàng có mức phạt cao hơn 200.000 đồng.
+- ⚠ chep_nguyen_van: “xe ô tô chở hành khách …”; so_la: 200000
+
+```json
+{"qid": "t3-so_sanh-010", "question": "Cán bộ phường: Vi phạm không có đèn chiếu sáng, xe ô tô chở hành khách bị phạt tiền bao nhiêu, và so với xe ô tô chở hàng thì mức phạt cao hơn bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền cho xe ô tô chở hành khách là từ 400.000 đồng đến 600.000 đồng, còn xe ô tô chở hàng là từ 600.000 đồng đến 800.000 đồng. Xe ô tô chở hàng có mức phạt cao hơn 200.000 đồng.", "gold_units": ["ND168-2024/D13/K2", "ND168-2024/D20/K3/h"], "required_numbers": [{"value": 400000, "unit": "vnd"}, {"value": 600000, "unit": "vnd"}, {"value": 3000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-010:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Cán bộ phường: Khi chở hàng siêu trường, vi phạm không có báo hiệu kích thước, mức phạt tiền là bao nhiêu, và so với vi phạm vượt quá trọng lượng hay đường đi thì mức phạt cao hơn bao nhiêu?
+- Đáp: Mức phạt tiền khi chở hàng siêu trường không có báo hiệu kích thước là từ 2.000.000 đồng đến 3.000.000 đồng. Khi vượt quá trọng lượng hay đường đi thì mức phạt là từ 13.000.000 đồng đến 15.000.000 đồng, tức là cao hơn 10.000.000 đồng.
+- ⚠ chi_so_so_sai (5); chep_nguyen_van: “không có báo hiệu kích thước …”
+
+```json
+{"qid": "t3-so_sanh-010", "question": "Cán bộ phường: Khi chở hàng siêu trường, vi phạm không có báo hiệu kích thước, mức phạt tiền là bao nhiêu, và so với vi phạm vượt quá trọng lượng hay đường đi thì mức phạt cao hơn bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền khi chở hàng siêu trường không có báo hiệu kích thước là từ 2.000.000 đồng đến 3.000.000 đồng. Khi vượt quá trọng lượng hay đường đi thì mức phạt là từ 13.000.000 đồng đến 15.000.000 đồng, tức là cao hơn 10.000.000 đồng.", "gold_units": ["ND168-2024/D22/K1", "ND168-2024/D22/K2", "ND168-2024/D22/K3/b"], "required_numbers": [{"value": 2000000, "unit": "vnd"}, {"value": 3000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-010:2"}
+```
+
+### W3-so_sanh-011 · tier A · vai: tài xế công nghệ · kiểu: tinh_huong_ban_than · cosine TF-IDF 0.42
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K10, ND168-2024/D6/K10/a, ND168-2024/D6/K10/b
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+10. Phạt tiền từ 20.000.000 đồng đến 22.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe không quan sát, giảm tốc độ hoặc dừng lại để bảo đảm an toàn theo quy định mà gây tai nạn giao thông; điều khiển xe chạy quá tốc độ quy định gây tai nạn giao thông; dừng xe, đỗ xe, quay đầu xe, lùi xe, tránh xe, vượt xe, chuyển hướng, chuyển làn đường không đúng quy định gây tai nạn giao thông; không đi đúng phần đường, làn đường, không giữ khoảng cách an toàn giữa hai xe theo quy định gây tai nạn giao thông hoặc đi vào đường có biển báo hiệu có nội dung cấm đi vào đối với loại phương tiện đang điều khiển gây tai nạn giao thông, trừ các hành vi vi phạm quy định tại điểm đ khoản 11 Điều này;
+b) Vi phạm quy định tại một trong các điểm, khoản sau của Điều này mà gây tai nạn giao thông: điểm a, điểm b, điểm c, điểm d, điểm đ khoản 1; điểm c khoản 2; điểm b, điểm g, điểm h, điểm n, điểm o, điểm p, khoản 3; điểm a, điểm c, điểm d khoản 4; điểm c, điểm d, điểm e, điểm h, điểm n, điểm o, điểm q khoản 5; điểm b khoản 7; điểm b, điểm c, điểm d khoản 9 Điều này.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D6/K16/d)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K16/d
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+16. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+d) Thực hiện hành vi quy định tại điểm a khoản 9, khoản 10, điểm đ khoản 11 Điều này bị trừ điểm giấy phép lái xe 10 điểm.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K11/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K11/đ
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+11. Phạt tiền từ 30.000.000 đồng đến 40.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+đ) Điều khiển xe đi ngược chiều trên đường cao tốc, lùi xe trên đường cao tốc, quay đầu xe trên đường cao tốc, trừ các xe ưu tiên đang đi làm nhiệm vụ khẩn cấp theo quy định.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K1/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K1/a
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+1. Phạt tiền từ 400.000 đồng đến 600.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Không chấp hành hiệu lệnh, chỉ dẫn của biển báo hiệu, vạch kẻ đường, trừ các hành vi vi phạm quy định tại điểm a, điểm c, điểm d, điểm đ khoản 2; điểm a, điểm d, điểm đ, điểm e, điểm n, điểm o khoản 3; điểm a, điểm b, điểm đ, điểm e, điểm i, điểm k, điểm l khoản 4; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm i, điểm k khoản 5; điểm a khoản 6; khoản 7; điểm b, điểm d khoản 9; điểm a khoản 10; điểm đ khoản 11 Điều này;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K1/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K1/b
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+1. Phạt tiền từ 400.000 đồng đến 600.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+b) Khi ra, vào vị trí dừng xe, đỗ xe không có tín hiệu báo cho người điều khiển phương tiện khác biết;
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K4, ND168-2024/D7/K4/a, ND168-2024/D7/K4/b, ND168-2024/D7/K4/c, ND168-2024/D7/K4/d, ND168-2024/D7/K4/đ
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+4. Phạt tiền từ 800.000 đồng đến 1.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe chạy quá tốc độ quy định từ 10 km/h đến 20 km/h;
+b) Dừng xe, đỗ xe trong hầm đường bộ không đúng nơi quy định;
+c) Vượt xe trong những trường hợp không được vượt, vượt xe tại đoạn đường có biển báo hiệu có nội dung cấm vượt đối với loại phương tiện đang điều khiển, trừ các hành vi vi phạm quy định tại điểm đ khoản 3 Điều này;
+d) Quay đầu xe trong hầm đường bộ;
+đ) Người đang điều khiển xe sử dụng ô (dù), thiết bị âm thanh (trừ thiết bị trợ thính), dùng tay cầm và sử dụng điện thoại hoặc các thiết bị điện tử khác.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D7/K13/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K13/b
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+b) Thực hiện hành vi quy định tại điểm đ khoản 4; điểm a khoản 6; điểm c, điểm d, điểm đ khoản 7; điểm a khoản 8 Điều này bị trừ điểm giấy phép lái xe 04 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D7/K3/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K3/đ
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+3. Phạt tiền từ 600.000 đồng đến 800.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+đ) Vượt bên phải trong trường hợp không được phép;
+
+[0] 20.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D6/K10)
+[1] 22.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D6/K10)
+[2] 10 điểm (số điểm bị trừ, nêu tại ND168-2024/D6/K16/d)
+[3] 800.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D7/K4)
+[4] 1.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D7/K4)
+[5] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D7/K13/b)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi lái xe ô tô vượt quá tốc độ 10 km/h gây tai nạn, còn xe mô tô thì mức phạt và trừ điểm khác nhau như thế nào?
+- Đáp: Nếu lái xe ô tô vượt quá tốc độ 10 km/h gây tai nạn, mức phạt tiền là từ 20.000.000 đồng đến 22.000.000 đồng và trừ 10 điểm giấy phép lái xe. Nếu lái xe mô tô vượt quá tốc độ 10 km/h gây tai nạn, mức phạt tiền là từ 800.000 đồng đến 1.000.000 đồng và trừ 04 điểm giấy phép lái xe. (khoản 6 Điều 168/2024/NĐ-CP)
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-so_sanh-011", "question": "Tôi lái xe ô tô vượt quá tốc độ 10 km/h gây tai nạn, còn xe mô tô thì mức phạt và trừ điểm khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Nếu lái xe ô tô vượt quá tốc độ 10 km/h gây tai nạn, mức phạt tiền là từ 20.000.000 đồng đến 22.000.000 đồng và trừ 10 điểm giấy phép lái xe. Nếu lái xe mô tô vượt quá tốc độ 10 km/h gây tai nạn, mức phạt tiền là từ 800.000 đồng đến 1.000.000 đồng và trừ 04 điểm giấy phép lái xe. (khoản 6 Điều 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D6/K10", "ND168-2024/D6/K16/d", "ND168-2024/D7/K4", "ND168-2024/D7/K13/b"], "required_numbers": [{"value": 20000000, "unit": "vnd"}, {"value": 22000000, "unit": "vnd"}, {"value": 10, "unit": "diem"}, {"value": 800000, "unit": "vnd"}, {"value": 1000000, "unit": "vnd"}, {"value": 4, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-011:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi lái xe ô tô không chấp hành biển báo khi dừng xe, còn xe mô tô thì mức phạt khác nhau như thế nào?
+- Đáp: Nếu lái xe ô tô không chấp hành biển báo khi dừng xe, mức phạt tiền là từ 400.000 đồng đến 600.000 đồng. Nếu lái xe mô tô không chấp hành biển báo khi dừng xe, mức phạt tiền là từ 800.000 đồng đến 1.000.000 đồng. (khoản 6 Điều 168/2024/NĐ-CP)
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-so_sanh-011", "question": "Tôi lái xe ô tô không chấp hành biển báo khi dừng xe, còn xe mô tô thì mức phạt khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Nếu lái xe ô tô không chấp hành biển báo khi dừng xe, mức phạt tiền là từ 400.000 đồng đến 600.000 đồng. Nếu lái xe mô tô không chấp hành biển báo khi dừng xe, mức phạt tiền là từ 800.000 đồng đến 1.000.000 đồng. (khoản 6 Điều 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D6/K1/a", "ND168-2024/D7/K4"], "required_numbers": [{"value": 20000000, "unit": "vnd"}, {"value": 22000000, "unit": "vnd"}, {"value": 800000, "unit": "vnd"}, {"value": 1000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-011:2"}
+```
+
+### W3-so_sanh-012 · tier B · vai: tài xế công nghệ · kiểu: tinh_huong_ban_than · cosine TF-IDF 0.45
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D10/K1, ND336-2025/D10/K1/a, ND336-2025/D10/K1/b, ND336-2025/D10/K1/c
+
+Điều 10. Xử phạt các hành vi vi phạm về thanh toán điện tử giao thông đường bộ, hoạt động trạm thu phí đường bộ
+1. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với cá nhân, từ 6.000.000 đồng đến 10.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+a) Tự ý chuyển thẻ đầu cuối từ phương tiện này sang phương tiện khác;
+b) Phá hủy, làm giả, xoá dữ liệu hoặc can thiệp nội dung thẻ đầu cuối;
+c) Mở hoặc duy trì tài khoản giao thông nặc danh, mạo danh.
+
+### Nguồn 2
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D15/K1
+
+Điều 15. Xử phạt hành vi vi phạm về dịch vụ cho thuê phương tiện
+1. Phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng đối với cá nhân, từ 16.000.000 đồng đến 20.000.000 đồng đối với tổ chức kinh doanh dịch vụ cho thuê phương tiện thực hiện hành vi vi phạm không ký kết hợp đồng cho thuê phương tiện để tự lái với người thuê.
+
+[0] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D10/K1)
+[1] 5.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D10/K1)
+[2] 6.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D10/K1)
+[3] 10.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D10/K1)
+[4] 8.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D15/K1)
+[5] 10.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D15/K1)
+[6] 16.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D15/K1)
+[7] 20.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D15/K1)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, vừa bị cảnh sát hỏi về việc chuyển thẻ điện tử giữa hai xe. Nếu tôi là cá nhân, mức phạt sẽ là bao nhiêu? Nếu là công ty, thì sao?
+- Đáp: Nếu là cá nhân, mức phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng. Nếu là tổ chức, mức phạt tiền từ 6.000.000 đồng đến 10.000.000 đồng. (Điều 10 Nghị định 336/2025/NĐ-CP)
+- Ghi chú: giả định cá nhân và tổ chức đều thực hiện hành vi chuyển thẻ
+
+```json
+{"qid": "t3-so_sanh-012", "question": "Tôi là tài xế công nghệ, vừa bị cảnh sát hỏi về việc chuyển thẻ điện tử giữa hai xe. Nếu tôi là cá nhân, mức phạt sẽ là bao nhiêu? Nếu là công ty, thì sao?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "B", "answer": "Nếu là cá nhân, mức phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng. Nếu là tổ chức, mức phạt tiền từ 6.000.000 đồng đến 10.000.000 đồng. (Điều 10 Nghị định 336/2025/NĐ-CP)", "gold_units": ["ND336-2025/D10/K1"], "required_numbers": [{"value": 3000000, "unit": "vnd"}, {"value": 5000000, "unit": "vnd"}, {"value": 6000000, "unit": "vnd"}, {"value": 10000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-012:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, công ty tôi cho thuê xe nhưng không ký hợp đồng với khách. Nếu là cá nhân, phạt tiền sẽ là bao nhiêu? Nếu là công ty, mức phạt là bao nhiêu?
+- Đáp: Nếu là cá nhân, mức phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng. Nếu là tổ chức, mức phạt tiền từ 16.000.000 đồng đến 20.000.000 đồng. (Điều 15 Nghị định 336/2025/NĐ-CP)
+- Ghi chú: giả định cá nhân và tổ chức đều vi phạm không ký hợp đồng
+
+```json
+{"qid": "t3-so_sanh-012", "question": "Tôi là tài xế công nghệ, công ty tôi cho thuê xe nhưng không ký hợp đồng với khách. Nếu là cá nhân, phạt tiền sẽ là bao nhiêu? Nếu là công ty, mức phạt là bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "B", "answer": "Nếu là cá nhân, mức phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng. Nếu là tổ chức, mức phạt tiền từ 16.000.000 đồng đến 20.000.000 đồng. (Điều 15 Nghị định 336/2025/NĐ-CP)", "gold_units": ["ND336-2025/D15/K1"], "required_numbers": [{"value": 8000000, "unit": "vnd"}, {"value": 10000000, "unit": "vnd"}, {"value": 16000000, "unit": "vnd"}, {"value": 20000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-012:2"}
+```
+
+### W3-so_sanh-013 · tier A · vai: người mới học lái ô tô · kiểu: tinh_huong_nguoi_khac · cosine TF-IDF 0.42
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → 2027-12-31
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K5, ND168-2024/D20/K5/a, ND168-2024/D20/K5/b, ND168-2024/D20/K5/c, ND168-2024/D20/K5/d, ND168-2024/D20/K5/đ, ND168-2024/D20/K5/e, ND168-2024/D20/K5/g, ND168-2024/D20/K5/h, ND168-2024/D20/K5/i, ND168-2024/D20/K5/k, ND168-2024/D20/K5/l, ND168-2024/D20/K5/m
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+5. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Để người lên, xuống xe khi xe đang chạy;
+b) Xếp hành lý, hàng hóa trên xe làm lệch xe;
+c) Đón, trả hành khách không đúng nơi quy định trên những tuyến đường đã xác định nơi đón, trả khách hoặc dừng đón, trả hành khách quá thời gian quy định, trừ hành vi vi phạm quy định tại khoản 8 Điều này;
+d) Đón, trả hành khách tại nơi cấm dừng, cấm đỗ, nơi đường cong tầm nhìn bị che khuất, trừ hành vi vi phạm quy định tại khoản 8 Điều này;
+đ) Điều khiển xe vận tải hành khách theo hợp đồng sử dụng hợp đồng bằng văn bản giấy mà không có hợp đồng vận tải, danh sách hành khách theo quy định; có hợp đồng vận tải nhưng không đúng theo quy định; đón khách, chở người không có tên trong danh sách hành khách theo hợp đồng đã ký;
+e) Vận chuyển hành khách theo tuyến cố định không có hoặc không mang theo lệnh vận chuyển hoặc có mang theo lệnh vận chuyển nhưng không ghi đầy đủ thông tin, không có xác nhận của bến xe khách nơi đi, bến xe khách nơi đến theo quy định;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D20/K10/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K10/a
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+10. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm c, điểm d, điểm e khoản 3; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g, điểm h, điểm i, điểm k, điểm m khoản 5; khoản 6; khoản 7 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D20/K8)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K8
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+8. Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng đối với người điều khiển xe thực hiện hành vi đón, trả hành khách trên đường cao tốc.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D37/K1/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D37/K1/b
+
+Điều 37. Xử phạt người điều khiển phương tiện giao thông cơ giới đường bộ gắn biển số nước ngoài
+1. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với người điều khiển phương tiện giao thông cơ giới đường bộ gắn biển số nước ngoài thực hiện một trong các hành vi vi phạm sau đây:
+b) Điều khiển xe chở hành khách không có danh sách hành khách theo quy định.
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K6, ND168-2024/D21/K6/a, ND168-2024/D21/K6/b, ND168-2024/D21/K6/c, ND168-2024/D21/K6/d, ND168-2024/D21/K6/đ
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+6. Phạt tiền từ 5.000.000 đồng đến 7.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe (kể cả rơ moóc và sơ mi rơ moóc) chở hàng vượt trọng tải (khối lượng hàng chuyên chở) cho phép tham gia giao thông được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 50% đến 100%;
+b) Điều khiển xe kéo theo rơ moóc, sơ mi rơ moóc mà khối lượng toàn bộ (bao gồm khối lượng bản thân rơ moóc, sơ mi rơ moóc và khối lượng hàng chuyên chở) của rơ moóc, sơ mi rơ moóc vượt khối lượng cho phép kéo theo được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 50% đến 100%;
+c) Điều khiển xe không có hoặc không gắn phù hiệu theo quy định (đối với loại xe có quy định phải gắn phù hiệu) hoặc có phù hiệu nhưng đã hết giá trị sử dụng hoặc sử dụng phù hiệu không do cơ quan có thẩm quyền cấp;
+d) Điều khiển xe chở hàng trong đô thị không chạy đúng tuyến, phạm vi, thời gian quy định;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D21/K13/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K13/a
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm b, điểm c, điểm đ khoản 2; điểm a khoản 3; khoản 4; khoản 5; điểm c, điểm d, điểm đ khoản 6 Điều này bị trừ điểm giấy phép lái xe (khi điều khiển xe ô tô) 02 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D21/K13/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K13/b
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+b) Thực hiện hành vi quy định tại điểm a, điểm b khoản 6; điểm c, điểm d, điểm đ khoản 8; khoản 10 Điều này bị trừ điểm giấy phép lái xe 04 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D22/K1/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D22/K1/b
+
+Điều 22. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển hàng siêu trường, siêu trọng
+1. Phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+b) Không thực hiện đúng quy định trong giấy phép lưu hành, trừ các hành vi vi phạm quy định tại khoản 2; điểm b, điểm c, điểm d khoản 3 Điều này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D22/K3/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D22/K3/a
+
+Điều 22. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển hàng siêu trường, siêu trọng
+3. Phạt tiền từ 13.000.000 đồng đến 15.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Chở hàng siêu trường, siêu trọng không có giấy phép lưu hành hoặc có giấy phép lưu hành nhưng đã hết giá trị sử dụng hoặc sử dụng giấy phép lưu hành không do cơ quan có thẩm quyền cấp;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D22/K3/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D22/K3/c
+
+Điều 22. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển hàng siêu trường, siêu trọng
+3. Phạt tiền từ 13.000.000 đồng đến 15.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+c) Chở hàng siêu trường, siêu trọng có giấy phép lưu hành còn giá trị sử dụng nhưng đi không đúng tuyến đường quy định trong giấy phép lưu hành;
+
+[0] 1.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D20/K5)
+[1] 2.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D20/K5)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D20/K10/a)
+[3] 5.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D21/K6)
+[4] 7.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D21/K6)
+[5] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D21/K13/a)
+[6] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D21/K13/b)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi lái xe khách đã vượt trọng tải 60% so với quy định, còn anh ấy lái xe tải chở hàng vượt trọng tải 70%. Cả hai bị phạt tiền và trừ điểm như thế nào, và ai bị trừ nhiều điểm hơn?
+- Đáp: Cả hai bị phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng và từ 5.000.000 đồng đến 7.000.000 đồng. Cả hai bị trừ 02 điểm. Người lái xe tải chở hàng bị trừ nhiều điểm hơn vì mức phạt tiền cao hơn.
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-so_sanh-013", "question": "Anh tôi lái xe khách đã vượt trọng tải 60% so với quy định, còn anh ấy lái xe tải chở hàng vượt trọng tải 70%. Cả hai bị phạt tiền và trừ điểm như thế nào, và ai bị trừ nhiều điểm hơn?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Cả hai bị phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng và từ 5.000.000 đồng đến 7.000.000 đồng. Cả hai bị trừ 02 điểm. Người lái xe tải chở hàng bị trừ nhiều điểm hơn vì mức phạt tiền cao hơn.", "gold_units": ["ND168-2024/D20/K5", "ND168-2024/D20/K10/a", "ND168-2024/D21/K6", "ND168-2024/D21/K13/a"], "required_numbers": [{"value": 1000000, "unit": "vnd"}, {"value": 2000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}, {"value": 5000000, "unit": "vnd"}, {"value": 7000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-013:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi có một xe khách nội địa và một xe khách có biển số nước ngoài, cả hai đều không có danh sách hành khách khi đón khách. Họ bị phạt tiền và trừ điểm như thế nào, và ai bị trừ nhiều điểm hơn?
+- Đáp: Cả hai bị phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng. Chỉ xe khách nội địa bị trừ 02 điểm; xe khách có biển số nước ngoài không bị trừ điểm. Xe khách nội địa bị trừ nhiều điểm hơn.
+- ⚠ chep_nguyen_van: “không có danh sách hành khách …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-so_sanh-013", "question": "Công ty tôi có một xe khách nội địa và một xe khách có biển số nước ngoài, cả hai đều không có danh sách hành khách khi đón khách. Họ bị phạt tiền và trừ điểm như thế nào, và ai bị trừ nhiều điểm hơn?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Cả hai bị phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng. Chỉ xe khách nội địa bị trừ 02 điểm; xe khách có biển số nước ngoài không bị trừ điểm. Xe khách nội địa bị trừ nhiều điểm hơn.", "gold_units": ["ND168-2024/D20/K5", "ND168-2024/D37/K1/b"], "required_numbers": [{"value": 1000000, "unit": "vnd"}, {"value": 2000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}, {"value": 5000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-013:2"}
+```
+
+### W3-so_sanh-014 · tier A · vai: cán bộ phường · kiểu: tinh_huong_nguoi_khac · cosine TF-IDF 0.42
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → 2028-12-31
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K7, ND168-2024/D26/K7/a, ND168-2024/D26/K7/b, ND168-2024/D26/K7/c, ND168-2024/D26/K7/d, ND168-2024/D26/K7/đ, ND168-2024/D26/K7/e, ND168-2024/D26/K7/g, ND168-2024/D26/K7/h, ND168-2024/D26/K7/i
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+7. Phạt tiền từ 5.000.000 đồng đến 6.000.000 đồng đối với cá nhân, từ 10.000.000 đồng đến 12.000.000 đồng đối với tổ chức kinh doanh vận tải, dịch vụ hỗ trợ vận tải thực hiện một trong các hành vi vi phạm sau đây:
+a) Không thực hiện việc cung cấp, cập nhật, truyền, lưu trữ, quản lý thông tin, dữ liệu từ thiết bị giám sát hành trình theo quy định;
+b) Không thực hiện đúng nội dung thông tin đã niêm yết trên xe theo quy định;
+c) Sử dụng phương tiện kinh doanh vận tải không lắp thiết bị giám sát hành trình của xe (đối với hình thức kinh doanh vận tải có quy định phương tiện phải lắp thiết bị) hoặc lắp thiết bị nhưng thiết bị không hoạt động, không đúng quy chuẩn theo quy định hoặc làm sai lệch dữ liệu của thiết bị giám sát hành trình của xe ô tô;
+d) Sử dụng xe trung chuyển chở hành khách không đúng quy định;
+đ) Sử dụng lái xe điều khiển xe khách giường nằm hai tầng, xe ô tô đưa đón trẻ em mầm non, học sinh chưa đủ số năm kinh nghiệm theo quy định;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D26/K12)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K12
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+12. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm quy định tại điểm c khoản 2; điểm a, điểm b, điểm đ, điểm g khoản 4; điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 7; điểm c khoản 8 Điều này còn bị áp dụng các hình thức xử phạt bổ sung tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có hoặc đã được cấp) đối với xe vi phạm.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D26/K14/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K14/a
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+14. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm đ khoản 2; điểm b, điểm c, điểm d khoản 6; điểm b, điểm c, điểm e, điểm i khoản 7 Điều này trong trường hợp cá nhân kinh doanh vận tải là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D37/K3, ND168-2024/D37/K3/a, ND168-2024/D37/K3/b, ND168-2024/D37/K3/c
+
+Điều 37. Xử phạt người điều khiển phương tiện giao thông cơ giới đường bộ gắn biển số nước ngoài
+3. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển phương tiện không gắn ký hiệu phân biệt quốc gia theo quy định;
+b) Điều khiển phương tiện không có giấy phép liên vận, giấy phép vận tải đường bộ quốc tế theo quy định hoặc có nhưng đã hết giá trị sử dụng;
+c) Vận chuyển hành khách hoặc hàng hóa không đúng với quy định tại các điều ước quốc tế mà Việt Nam đã ký kết, trừ các hành vi vi phạm quy định tại khoản 1, khoản 4, khoản 5, khoản 6 Điều này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D37/K1)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D37/K1
+
+Điều 37. Xử phạt người điều khiển phương tiện giao thông cơ giới đường bộ gắn biển số nước ngoài
+1. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với người điều khiển phương tiện giao thông cơ giới đường bộ gắn biển số nước ngoài thực hiện một trong các hành vi vi phạm sau đây:
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D37/K4)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D37/K4
+
+Điều 37. Xử phạt người điều khiển phương tiện giao thông cơ giới đường bộ gắn biển số nước ngoài
+4. Phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D37/K5)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D37/K5
+
+Điều 37. Xử phạt người điều khiển phương tiện giao thông cơ giới đường bộ gắn biển số nước ngoài
+5. Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng đối với hành vi hoạt động quá phạm vi, tuyến đường, đoạn đường được phép hoạt động.
+
+[0] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D26/K12)
+[1] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D26/K12)
+[2] 5.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D26/K7)
+[3] 6.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D26/K7)
+[4] 10.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D26/K7)
+[5] 12.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D26/K7)
+[6] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D26/K14/a)
+[7] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D37/K3)
+[8] 5.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D37/K3)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Công ty tôi điều hành xe khách không lắp thiết bị giám sát hành trình, trong khi tôi lái xe cá nhân cũng không lắp. Lệ phí phạt tiền khác nhau như thế nào cho hai trường hợp này?
+- Đáp: Phạt tiền của cá nhân là từ 5.000.000 đồng đến 6.000.000 đồng, trong khi phạt tiền của tổ chức kinh doanh vận tải là từ 10.000.000 đồng đến 12.000.000 đồng. Do đó, phạt tiền của tổ chức nặng hơn.
+- ⚠ chep_nguyen_van: “không lắp thiết bị giám sát …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-so_sanh-014", "question": "Công ty tôi điều hành xe khách không lắp thiết bị giám sát hành trình, trong khi tôi lái xe cá nhân cũng không lắp. Lệ phí phạt tiền khác nhau như thế nào cho hai trường hợp này?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Phạt tiền của cá nhân là từ 5.000.000 đồng đến 6.000.000 đồng, trong khi phạt tiền của tổ chức kinh doanh vận tải là từ 10.000.000 đồng đến 12.000.000 đồng. Do đó, phạt tiền của tổ chức nặng hơn.", "gold_units": ["ND168-2024/D26/K7"], "required_numbers": [{"value": 5000000, "unit": "vnd"}, {"value": 6000000, "unit": "vnd"}, {"value": 10000000, "unit": "vnd"}, {"value": 12000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-014:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi điều hành xe có biển số nước ngoài, một lần không có giấy phép liên vận, lần khác vận chuyển hàng vượt quá tuyến được phép. Phạt tiền của hai trường hợp này khác nhau như thế nào?
+- Đáp: Phạt tiền khi không có giấy phép liên vận là từ 3.000.000 đồng đến 5.000.000 đồng, còn phạt tiền khi vận chuyển hàng vượt quá tuyến được phép là từ 10.000.000 đồng đến 12.000.000 đồng. Phạt tiền của trường hợp vượt tuyến nặng hơn.
+- ⚠ chep_nguyen_van: “không có giấy phép liên vận …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-so_sanh-014", "question": "Công ty tôi điều hành xe có biển số nước ngoài, một lần không có giấy phép liên vận, lần khác vận chuyển hàng vượt quá tuyến được phép. Phạt tiền của hai trường hợp này khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Phạt tiền khi không có giấy phép liên vận là từ 3.000.000 đồng đến 5.000.000 đồng, còn phạt tiền khi vận chuyển hàng vượt quá tuyến được phép là từ 10.000.000 đồng đến 12.000.000 đồng. Phạt tiền của trường hợp vượt tuyến nặng hơn.", "gold_units": ["ND168-2024/D37/K3", "ND168-2024/D37/K5"], "required_numbers": [{"value": 3000000, "unit": "vnd"}, {"value": 5000000, "unit": "vnd"}, {"value": 12000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-014:2"}
+```
+
+### W3-so_sanh-015 · tier A · vai: người mới học lái ô tô · kiểu: ngan · cosine TF-IDF 0.42
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K6
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+6. Phạt tiền từ 2.000.000 đồng đến 4.000.000 đồng trên mỗi người vượt quá quy định được phép chở của phương tiện nhưng tổng mức phạt tiền tối đa không vượt quá 75.000.000 đồng đối với chủ phương tiện là cá nhân, từ 4.000.000 đồng đến 8.000.000 đồng trên mỗi người vượt quá quy định được phép chở của phương tiện nhưng tổng mức phạt tiền tối đa không vượt quá 150.000.000 đồng đối với chủ phương tiện là tổ chức giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 4 Điều 20 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 4 Điều 20 của Nghị định này.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/đ
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+đ) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chở vượt trên 50% số người quy định được phép chở của phương tiện còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có). Thực hiện hành vi quy định tại điểm a, điểm b khoản 11; điểm a, điểm b, điểm c, điểm đ khoản 13; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16 Điều này còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có),
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/d)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/d
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+d) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện chở vượt trên 50% đến 100% số người quy định được phép chở của phương tiện, còn bị trừ điểm giấy phép lái xe 04 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/h)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/h
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+h) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện chở vượt trên 100% số người quy định được phép chở của phương tiện còn bị trừ điểm giấy phép lái xe 10 điểm.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D20/K4)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K4
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+4. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng trên mỗi người vượt quá quy định được phép chở của phương tiện nhưng tổng mức phạt tiền tối đa không vượt quá 75.000.000 đồng đối với người điều khiển xe ô tô chở hành khách (kinh doanh vận tải hành khách theo tuyến cố định, hợp đồng) chạy tuyến có cự ly lớn hơn 300 km thực hiện hành vi vi phạm chở quá số người quy định được phép chở của phương tiện.
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K5, ND168-2024/D6/K5/a, ND168-2024/D6/K5/b, ND168-2024/D6/K5/c, ND168-2024/D6/K5/d, ND168-2024/D6/K5/đ, ND168-2024/D6/K5/e, ND168-2024/D6/K5/g, ND168-2024/D6/K5/h, ND168-2024/D6/K5/i, ND168-2024/D6/K5/k, ND168-2024/D6/K5/l, ND168-2024/D6/K5/m, ND168-2024/D6/K5/n, ND168-2024/D6/K5/o, ND168-2024/D6/K5/p, ND168-2024/D6/K5/q
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+5. Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Vượt xe trong những trường hợp không được vượt, vượt xe tại đoạn đường có biển báo hiệu có nội dung cấm vượt (đối với loại phương tiện đang điều khiển); không có tín hiệu trước khi vượt hoặc có tín hiệu vượt xe nhưng không sử dụng trong suốt quá trình vượt xe; vượt bên phải xe khác trong trường hợp không được phép;
+b) Điều khiển xe không đi bên phải theo chiều đi của mình; đi không đúng phần đường hoặc làn đường quy định (làn cùng chiều hoặc làn ngược chiều) trừ hành vi quy định tại điểm a khoản 4 Điều này; điều khiển xe đi qua dải phân cách cố định ở giữa hai phần đường xe chạy;
+c) Tránh xe đi ngược chiều không đúng quy định (trừ hành vi vi phạm sử dụng đèn chiếu xa khi tránh xe đi ngược chiều quy định tại điểm b khoản 3 Điều này); không nhường đường cho xe đi ngược chiều theo quy định tại nơi đường hẹp, đường dốc, nơi có chướng ngại vật;
+d) Không tuân thủ quy định khi vào hoặc ra đường cao tốc; điều khiển xe chạy ở làn dừng xe khẩn cấp hoặc phần lề đường của đường cao tốc; không tuân thủ quy định về khoảng cách an toàn đối với xe chạy liền trước khi chạy trên đường cao tốc;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D6/K16/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K16/a
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+16. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm h, điểm i khoản 3; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm g khoản 4; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g, điểm i, điểm k, điểm n, điểm o khoản 5 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D6/K16/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K16/b
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+16. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+b) Thực hiện hành vi quy định tại điểm h khoản 5; khoản 6; điểm b khoản 7; điểm b, điểm c, điểm d khoản 9 Điều này bị trừ điểm giấy phép lái xe 04 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D6/K16/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K16/c
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+16. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+c) Thực hiện hành vi quy định tại điểm p khoản 5; điểm a, điểm c khoản 7; khoản 8 Điều này bị trừ điểm giấy phép lái xe 06 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K4/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K4/a
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+4. Phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe không đủ điều kiện đã thu phí theo hình thức điện tử tự động không dừng (xe không gắn thẻ đầu cuối) đi vào làn đường dành riêng thu phí theo hình thức điện tử tự động không dừng tại các trạm thu phí;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K3/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K3/b
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+3. Phạt tiền từ 800.000 đồng đến 1.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+b) Sử dụng còi, rú ga liên tục; sử dụng còi hơi, sử dụng đèn chiếu xa khi gặp người đi bộ qua đường hoặc khi đi trên đoạn đường qua khu dân cư có hệ thống chiếu sáng đang hoạt động hoặc khi gặp xe đi ngược chiều (trừ trường hợp dải phân cách có khả năng chống chói) hoặc khi chuyển hướng xe tại nơi đường giao nhau, trừ các xe ưu tiên đang đi làm nhiệm vụ theo quy định;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K11/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K11/đ
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+11. Phạt tiền từ 30.000.000 đồng đến 40.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+đ) Điều khiển xe đi ngược chiều trên đường cao tốc, lùi xe trên đường cao tốc, quay đầu xe trên đường cao tốc, trừ các xe ưu tiên đang đi làm nhiệm vụ khẩn cấp theo quy định.
+
+[0] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/đ)
+[1] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/đ)
+[2] 2.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K6)
+[3] 4.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K6)
+[4] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/d)
+[5] 10 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/h)
+[6] 4.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D6/K5)
+[7] 6.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D6/K5)
+[8] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D6/K16/a)
+[9] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D6/K16/b)
+[10] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D6/K16/c)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Nếu tôi chở quá số người quy định, mức phạt tiền và trừ điểm của chủ xe cá nhân so với người điều khiển xe là bao nhiêu?
+- Đáp: Mức phạt tiền của chủ xe cá nhân là từ 2.000.000 đồng đến 4.000.000 đồng trên mỗi người vượt quá quy định, trong khi người điều khiển xe phải chịu từ 1.000.000 đồng đến 2.000.000 đồng trên mỗi người. Trừ điểm, chủ xe cá nhân không bị trừ điểm, còn người điều khiển xe có thể bị trừ điểm tùy theo mức vi phạm.
+- ⚠ chep_nguyen_van: “chở quá số người quy định …”
+- Ghi chú: Chủ xe cá nhân và người điều khiển xe được đề cập trong nguồn.
+
+```json
+{"qid": "t3-so_sanh-015", "question": "Nếu tôi chở quá số người quy định, mức phạt tiền và trừ điểm của chủ xe cá nhân so với người điều khiển xe là bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền của chủ xe cá nhân là từ 2.000.000 đồng đến 4.000.000 đồng trên mỗi người vượt quá quy định, trong khi người điều khiển xe phải chịu từ 1.000.000 đồng đến 2.000.000 đồng trên mỗi người. Trừ điểm, chủ xe cá nhân không bị trừ điểm, còn người điều khiển xe có thể bị trừ điểm tùy theo mức vi phạm.", "gold_units": ["ND168-2024/D32/K6", "ND168-2024/D20/K4"], "required_numbers": [{"value": 2000000, "unit": "vnd"}, {"value": 4000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-015:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu công ty tôi chở quá số người quy định, mức phạt tiền và trừ điểm của chủ xe tổ chức so với chủ xe cá nhân là bao nhiêu?
+- Đáp: Mức phạt tiền của chủ xe tổ chức là từ 4.000.000 đồng đến 8.000.000 đồng trên mỗi người vượt quá quy định, trong khi chủ xe cá nhân phải chịu từ 2.000.000 đồng đến 4.000.000 đồng. Trừ điểm, chủ xe tổ chức không bị trừ điểm, còn chủ xe cá nhân cũng không bị trừ điểm.
+- ⚠ chep_nguyen_van: “chở quá số người quy định …”
+- Ghi chú: So sánh giữa chủ xe cá nhân và chủ xe tổ chức.
+
+```json
+{"qid": "t3-so_sanh-015", "question": "Nếu công ty tôi chở quá số người quy định, mức phạt tiền và trừ điểm của chủ xe tổ chức so với chủ xe cá nhân là bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền của chủ xe tổ chức là từ 4.000.000 đồng đến 8.000.000 đồng trên mỗi người vượt quá quy định, trong khi chủ xe cá nhân phải chịu từ 2.000.000 đồng đến 4.000.000 đồng. Trừ điểm, chủ xe tổ chức không bị trừ điểm, còn chủ xe cá nhân cũng không bị trừ điểm.", "gold_units": ["ND168-2024/D32/K6"], "required_numbers": [{"value": 2000000, "unit": "vnd"}, {"value": 4000000, "unit": "vnd"}, {"value": 6000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-015:2"}
+```
+
+### W3-so_sanh-016 · tier A · vai: tài xế công nghệ · kiểu: nhieu_dieu_kien · cosine TF-IDF 0.46
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D12/K11, ND168-2024/D12/K11/a, ND168-2024/D12/K11/b, ND168-2024/D12/K11/c
+
+Điều 12. Xử phạt, trừ điểm giấy phép lái xe các hành vi vi phạm khác về quy tắc giao thông đường bộ; sử dụng lòng đường, vỉa hè vào mục đích khác
+11. Phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng đối với cá nhân thực hiện một trong các hành vi vi phạm sau đây:
+a) Đặt, để chướng ngại vật, vật cản khác trái phép trên đường bộ; đổ chất gây trơn trượt trên đường bộ; đổ, xả thải, làm rơi vãi hóa chất, chất thải gây mất an toàn giao thông đường bộ;
+b) Xâm phạm tính mạng, sức khỏe, tài sản của người bị nạn, người gây tai nạn giao thông đường bộ hoặc người giúp đỡ, cứu chữa, đưa người bị nạn đi cấp cứu;
+c) Hủy hoại, làm hư hỏng, làm mất tác dụng thiết bị điều khiển, giám sát giao thông đường bộ, thiết bị thông minh hỗ trợ chỉ huy, điều khiển giao thông đường bộ.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D12/K17)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D12/K17
+
+Điều 12. Xử phạt, trừ điểm giấy phép lái xe các hành vi vi phạm khác về quy tắc giao thông đường bộ; sử dụng lòng đường, vỉa hè vào mục đích khác
+17. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân thực hiện hành vi quy định tại điểm a, điểm b khoản 11 Điều này nếu là người điều khiển phương tiện bị trừ điểm giấy phép lái xe 02 điểm.
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K7, ND168-2024/D32/K7/a, ND168-2024/D32/K7/b, ND168-2024/D32/K7/c, ND168-2024/D32/K7/d, ND168-2024/D32/K7/đ, ND168-2024/D32/K7/e, ND168-2024/D32/K7/g, ND168-2024/D32/K7/h, ND168-2024/D32/K7/i, ND168-2024/D32/K7/k, ND168-2024/D32/K7/l, ND168-2024/D32/K7/m, ND168-2024/D32/K7/n, ND168-2024/D32/K7/o
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+7. Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng đối với cá nhân, từ 8.000.000 đồng đến 12.000.000 đồng đối với tổ chức là chủ xe ô tô (kể cả rơ moóc và sơ mi rơ moóc), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ, xe máy chuyên dùng và các loại xe tương tự xe ô tô thực hiện một trong các hành vi vi phạm sau đây:
+a) Tẩy xóa, sửa chữa hoặc giả mạo hồ sơ đăng ký xe nhưng chưa đến mức truy cứu trách nhiệm hình sự;
+b) Không làm thủ tục thu hồi chứng nhận đăng ký xe; biển số xe; theo quy định;
+c) Không làm thủ tục đổi chứng nhận đăng ký xe, biển số xe theo quy định;
+d) Khai báo không đúng sự thật hoặc sử dụng các giấy tờ, tài liệu giả để được cấp lại biển số xe, chứng nhận đăng ký xe, nhưng chưa đến mức bị truy cứu trách nhiệm hình sự;
+đ) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm e khoản 3; điểm i khoản 5 Điều 20 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm e khoản 3; điểm i khoản 5 Điều 20 của Nghị định này;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/c
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+c) Thực hiện hành vi quy định tại điểm e khoản 7, điểm b khoản 11, điểm a khoản 13, khoản 15, điểm b khoản 16 Điều này mà phương tiện đó có thùng xe, khối lượng hàng hóa cho phép chuyên chở không đúng theo quy định hiện hành thì còn bị tước quyền sử dụng chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường và tem kiểm định của phương tiện từ 01 tháng đến 03 tháng;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/a
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm đ, điểm g, điểm m khoản 7; điểm đ, điểm e khoản 8; điểm b, điểm c, điểm d, điểm đ khoản 9; điểm a, điểm b, điểm đ khoản 11; điểm a khoản 12; điểm c khoản 13; điểm đ, điểm h khoản 14 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D20/K3/e)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K3/e
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+3. Phạt tiền từ 600.000 đồng đến 800.000 đồng đối với một trong các hành vi vi phạm sau đây:
+e) Chở hành lý, hàng hóa vượt quá kích thước bao ngoài của xe;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D20/K5/i)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K5/i
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+5. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+i) Chở hành lý, hàng hóa vượt quá trọng tải theo thiết kế của xe;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D21/K2/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K2/a
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+2. Phạt tiền từ 800.000 đồng đến 1.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe (kể cả rơ moóc và sơ mi rơ moóc) chở hàng vượt trọng tải (khối lượng hàng chuyên chở) cho phép tham gia giao thông được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 10% đến 30% (trừ xe xi téc chở chất lỏng), trên 20% đến 30% đối với xe xi téc chở chất lỏng;
+
+[0] 6.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D12/K11)
+[1] 8.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D12/K11)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D12/K17)
+[3] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/c)
+[4] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/c)
+[5] 4.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K7)
+[6] 6.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K7)
+[7] 8.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K7)
+[8] 12.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K7)
+[9] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/a)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là chủ xe ô tô chở hành khách, anh ấy là chủ xe máy chuyên dùng. Nếu cả hai vi phạm hành vi tẩy xóa hồ sơ đăng ký xe, mức phạt tiền và điểm trừ sẽ khác nhau như thế nào?
+- Đáp: Cả hai sẽ bị phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng. Chủ xe ô tô chở hành khách sẽ bị trừ 02 điểm giấy phép lái xe, trong khi chủ xe máy chuyên dùng không bị trừ điểm.
+- ⚠ chep_nguyen_van: “xe ô tô chở hành khách …”
+- Ghi chú: Chủ xe máy chuyên dùng không bị trừ điểm theo quy định.
+
+```json
+{"qid": "t3-so_sanh-016", "question": "Tôi là chủ xe ô tô chở hành khách, anh ấy là chủ xe máy chuyên dùng. Nếu cả hai vi phạm hành vi tẩy xóa hồ sơ đăng ký xe, mức phạt tiền và điểm trừ sẽ khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Cả hai sẽ bị phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng. Chủ xe ô tô chở hành khách sẽ bị trừ 02 điểm giấy phép lái xe, trong khi chủ xe máy chuyên dùng không bị trừ điểm.", "gold_units": ["ND168-2024/D32/K7", "ND168-2024/D32/K21/a"], "required_numbers": [{"value": 4000000, "unit": "vnd"}, {"value": 6000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-016:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là chủ xe ô tô chở hành khách, công ty tôi sở hữu một xe chở hàng bốn bánh. Nếu cả hai vi phạm hành vi tẩy xóa hồ sơ đăng ký xe, mức phạt tiền và điểm trừ sẽ khác nhau như thế nào?
+- Đáp: Cả hai sẽ bị phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng. Chủ xe ô tô chở hành khách sẽ bị trừ 02 điểm giấy phép lái xe, trong khi chủ xe chở hàng bốn bánh không bị trừ điểm.
+- ⚠ chep_nguyen_van: “xe ô tô chở hành khách …”
+- Ghi chú: Chủ xe chở hàng bốn bánh không bị trừ điểm theo quy định.
+
+```json
+{"qid": "t3-so_sanh-016", "question": "Tôi là chủ xe ô tô chở hành khách, công ty tôi sở hữu một xe chở hàng bốn bánh. Nếu cả hai vi phạm hành vi tẩy xóa hồ sơ đăng ký xe, mức phạt tiền và điểm trừ sẽ khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Cả hai sẽ bị phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng. Chủ xe ô tô chở hành khách sẽ bị trừ 02 điểm giấy phép lái xe, trong khi chủ xe chở hàng bốn bánh không bị trừ điểm.", "gold_units": ["ND168-2024/D32/K7", "ND168-2024/D32/K21/a"], "required_numbers": [{"value": 4000000, "unit": "vnd"}, {"value": 6000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-016:2"}
+```
+
+### W3-so_sanh-017 · tier A · vai: người mới học lái ô tô · kiểu: ngan · cosine TF-IDF 0.44
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D25/K1
+
+Điều 25. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe vệ sinh môi trường, xe ô tô chở phế thải thực hiện hành vi vi phạm quy định về hoạt động vận tải trong đô thị
+1. Phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng đối với hành vi điều khiển xe không chạy đúng tuyến, phạm vi, thời gian quy định.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D25/K2)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D25/K2
+
+Điều 25. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe vệ sinh môi trường, xe ô tô chở phế thải thực hiện hành vi vi phạm quy định về hoạt động vận tải trong đô thị
+2. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 1 Điều này còn bị trừ điểm giấy phép lái xe 02 điểm.
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D34/K1
+
+Điều 34. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển quá khổ giới hạn, xe quá tải trọng, xe bánh xích lưu hành đường bộ (kể cả xe ô tô chở hành khách)
+1. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với hành vi không thực hiện đúng quy định trong giấy phép lưu hành, trừ các hành vi vi phạm quy định tại điểm a, điểm b khoản 3; điểm b, điểm c khoản 4 Điều này.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D34/K7/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D34/K7/a
+
+Điều 34. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển quá khổ giới hạn, xe quá tải trọng, xe bánh xích lưu hành đường bộ (kể cả xe ô tô chở hành khách)
+7. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại khoản 1, khoản 3, điểm a khoản 4 Điều này còn bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D34/K3/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D34/K3/a
+
+Điều 34. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển quá khổ giới hạn, xe quá tải trọng, xe bánh xích lưu hành đường bộ (kể cả xe ô tô chở hành khách)
+3. Phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Chở hàng vượt khổ giới hạn của xe hoặc của đường bộ ghi trong giấy phép lưu hành;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D34/K3/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D34/K3/b
+
+Điều 34. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển quá khổ giới hạn, xe quá tải trọng, xe bánh xích lưu hành đường bộ (kể cả xe ô tô chở hành khách)
+3. Phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+b) Điều khiển xe bánh xích tham gia giao thông không có giấy phép lưu hành hoặc có giấy phép lưu hành nhưng không còn giá trị sử dụng theo quy định hoặc lưu thông trực tiếp trên đường mà không thực hiện biện pháp bảo vệ đường theo quy định;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D34/K4/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D34/K4/b
+
+Điều 34. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển quá khổ giới hạn, xe quá tải trọng, xe bánh xích lưu hành đường bộ (kể cả xe ô tô chở hành khách)
+4. Phạt tiền từ 13.000.000 đồng đến 15.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+b) Điều khiển xe có giấy phép lưu hành còn giá trị sử dụng nhưng tổng trọng lượng (khối lượng toàn bộ) của xe hoặc tải trọng trục xe (bao gồm cả hàng hóa xếp trên xe nếu có) vượt quá quy định trong giấy phép lưu hành;
+
+[0] 2.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D25/K1)
+[1] 3.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D25/K1)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D25/K2)
+[3] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D34/K1)
+[4] 5.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D34/K1)
+[5] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D34/K7/a)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Nếu tôi lái xe vệ sinh môi trường chạy sai tuyến, còn nếu tôi lái xe quá tải trọng thì mức phạt tiền và điểm trừ sẽ khác nhau như thế nào?
+- Đáp: Lái xe vệ sinh môi trường chạy sai tuyến bị phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng và trừ 02 điểm. Lái xe quá tải trọng bị phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng và trừ 02 điểm. Vì vậy, mức phạt tiền cao hơn đối với xe quá tải trọng, còn điểm trừ giống nhau.
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-so_sanh-017", "question": "Nếu tôi lái xe vệ sinh môi trường chạy sai tuyến, còn nếu tôi lái xe quá tải trọng thì mức phạt tiền và điểm trừ sẽ khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Lái xe vệ sinh môi trường chạy sai tuyến bị phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng và trừ 02 điểm. Lái xe quá tải trọng bị phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng và trừ 02 điểm. Vì vậy, mức phạt tiền cao hơn đối với xe quá tải trọng, còn điểm trừ giống nhau.", "gold_units": ["ND168-2024/D25/K1", "ND168-2024/D25/K2"], "required_numbers": [{"value": 2000000, "unit": "vnd"}, {"value": 3000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-017:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi lái xe ô tô chở hành khách quá khổ giới hạn, còn tôi lái xe vệ sinh môi trường chạy sai tuyến, thì mức phạt tiền và điểm trừ sẽ khác nhau như thế nào?
+- Đáp: Lái xe ô tô chở hành khách quá khổ giới hạn bị phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng và trừ 02 điểm. Lái xe vệ sinh môi trường chạy sai tuyến bị phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng và trừ 02 điểm. Vì vậy, mức phạt tiền cao hơn đối với xe ô tô chở hành khách quá khổ giới hạn, còn điểm trừ giống nhau.
+- ⚠ chep_nguyen_van: “xe ô tô chở hành khách …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-so_sanh-017", "question": "Tôi lái xe ô tô chở hành khách quá khổ giới hạn, còn tôi lái xe vệ sinh môi trường chạy sai tuyến, thì mức phạt tiền và điểm trừ sẽ khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Lái xe ô tô chở hành khách quá khổ giới hạn bị phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng và trừ 02 điểm. Lái xe vệ sinh môi trường chạy sai tuyến bị phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng và trừ 02 điểm. Vì vậy, mức phạt tiền cao hơn đối với xe ô tô chở hành khách quá khổ giới hạn, còn điểm trừ giống nhau.", "gold_units": ["ND168-2024/D34/K1", "ND168-2024/D34/K7/a"], "required_numbers": [{"value": 3000000, "unit": "vnd"}, {"value": 5000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-017:2"}
+```
+
+### W3-so_sanh-018 · tier A · vai: chủ doanh nghiệp vận tải · kiểu: tinh_huong_ban_than · cosine TF-IDF 0.49
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D12/K12
+
+Điều 12. Xử phạt, trừ điểm giấy phép lái xe các hành vi vi phạm khác về quy tắc giao thông đường bộ; sử dụng lòng đường, vỉa hè vào mục đích khác
+12. Phạt tiền từ 10.000.000 đồng đến 15.000.000 đồng đối với cá nhân, từ 20.000.000 đồng đến 30.000.000 đồng đối với tổ chức thực hiện hành vi sử dụng tạm thời lòng đường, vỉa hè vào mục đích khác (theo quy định phải có giấy phép) mà không có giấy phép hoặc có giấy phép nhưng đã hết giá trị sử dụng hoặc thực hiện không đúng nội dung ghi trong giấy phép.
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D22/K3, ND168-2024/D22/K3/a, ND168-2024/D22/K3/b, ND168-2024/D22/K3/c, ND168-2024/D22/K3/d
+
+Điều 22. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển hàng siêu trường, siêu trọng
+3. Phạt tiền từ 13.000.000 đồng đến 15.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Chở hàng siêu trường, siêu trọng không có giấy phép lưu hành hoặc có giấy phép lưu hành nhưng đã hết giá trị sử dụng hoặc sử dụng giấy phép lưu hành không do cơ quan có thẩm quyền cấp;
+b) Chở hàng siêu trường, siêu trọng có giấy phép lưu hành còn giá trị sử dụng nhưng tổng trọng lượng (sau khi đã xếp hàng lên xe) vượt quá quy định trong giấy phép lưu hành;
+c) Chở hàng siêu trường, siêu trọng có giấy phép lưu hành còn giá trị sử dụng nhưng đi không đúng tuyến đường quy định trong giấy phép lưu hành;
+d) Chở hàng siêu trường, siêu trọng có giấy phép lưu hành còn giá trị sử dụng nhưng chở không đúng loại hàng quy định trong giấy phép lưu hành.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D22/K6/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D22/K6/b
+
+Điều 22. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển hàng siêu trường, siêu trọng
+6. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+b) Thực hiện hành vi quy định tại khoản 2, khoản 3 Điều này bị trừ điểm giấy phép lái xe 04 điểm.
+
+[0] 10.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D12/K12)
+[1] 15.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D12/K12)
+[2] 20.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D12/K12)
+[3] 30.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D12/K12)
+[4] 13.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D22/K3)
+[5] 15.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D22/K3)
+[6] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D22/K6/b)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là chủ doanh nghiệp vận tải, công ty tôi đang chuẩn bị sử dụng tạm thời lề đường để dỡ hàng. Nếu một nhân viên của tôi vi phạm quy định này, mức phạt tiền sẽ là bao nhiêu?
+- Đáp: Nếu một cá nhân vi phạm, mức phạt tiền sẽ từ 10.000.000 đồng đến 15.000.000 đồng. Nếu một tổ chức vi phạm, mức phạt tiền sẽ từ 20.000.000 đồng đến 30.000.000 đồng. Doanh nghiệp của tôi sẽ chịu mức phạt cao hơn so với cá nhân.
+- ⚠ tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-so_sanh-018", "question": "Tôi là chủ doanh nghiệp vận tải, công ty tôi đang chuẩn bị sử dụng tạm thời lề đường để dỡ hàng. Nếu một nhân viên của tôi vi phạm quy định này, mức phạt tiền sẽ là bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Nếu một cá nhân vi phạm, mức phạt tiền sẽ từ 10.000.000 đồng đến 15.000.000 đồng. Nếu một tổ chức vi phạm, mức phạt tiền sẽ từ 20.000.000 đồng đến 30.000.000 đồng. Doanh nghiệp của tôi sẽ chịu mức phạt cao hơn so với cá nhân.", "gold_units": ["ND168-2024/D12/K12"], "required_numbers": [{"value": 10000000, "unit": "vnd"}, {"value": 15000000, "unit": "vnd"}, {"value": 20000000, "unit": "vnd"}, {"value": 30000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-018:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là chủ doanh nghiệp vận tải, công ty tôi đang chuẩn bị sử dụng tạm thời lề đường để dỡ hàng cho công trình xây dựng. Nếu một nhân viên của tôi vi phạm quy định này, mức phạt tiền sẽ là bao nhiêu?
+- Đáp: Nếu một cá nhân vi phạm, mức phạt tiền sẽ từ 10.000.000 đồng đến 15.000.000 đồng. Nếu một tổ chức vi phạm, mức phạt tiền sẽ từ 20.000.000 đồng đến 30.000.000 đồng. Doanh nghiệp của tôi sẽ chịu mức phạt cao hơn so với cá nhân.
+- ⚠ tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-so_sanh-018", "question": "Tôi là chủ doanh nghiệp vận tải, công ty tôi đang chuẩn bị sử dụng tạm thời lề đường để dỡ hàng cho công trình xây dựng. Nếu một nhân viên của tôi vi phạm quy định này, mức phạt tiền sẽ là bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Nếu một cá nhân vi phạm, mức phạt tiền sẽ từ 10.000.000 đồng đến 15.000.000 đồng. Nếu một tổ chức vi phạm, mức phạt tiền sẽ từ 20.000.000 đồng đến 30.000.000 đồng. Doanh nghiệp của tôi sẽ chịu mức phạt cao hơn so với cá nhân.", "gold_units": ["ND168-2024/D12/K12"], "required_numbers": [{"value": 10000000, "unit": "vnd"}, {"value": 15000000, "unit": "vnd"}, {"value": 20000000, "unit": "vnd"}, {"value": 30000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-018:2"}
+```
+
+### W3-so_sanh-019 · tier A · vai: cán bộ phường · kiểu: tinh_huong_nguoi_khac · cosine TF-IDF 0.47
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D28/K3
+
+Điều 28. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ
+3. Phạt tiền từ 8.000.000 đồng đến 12.000.000 đồng đối với hành vi điều khiển xe hoạt động không đúng tuyến đường, lịch trình, thời gian được phép hoạt động hoặc phạm vi hoạt động theo quy định, trừ hành vi vi phạm quy định tại điểm b khoản 7 Điều 6 của Nghị định này.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D28/K4/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D28/K4/b
+
+Điều 28. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ
+4. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+b) Thực hiện hành vi quy định tại khoản 3 Điều này bị trừ điểm giấy phép lái xe 06 điểm.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K7/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K7/b
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+7. Phạt tiền từ 12.000.000 đồng đến 14.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+b) Điều khiển xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ đi vào đường cao tốc;
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K14, ND168-2024/D32/K14/a, ND168-2024/D32/K14/b, ND168-2024/D32/K14/c, ND168-2024/D32/K14/d, ND168-2024/D32/K14/đ, ND168-2024/D32/K14/e, ND168-2024/D32/K14/g, ND168-2024/D32/K14/h, ND168-2024/D32/K14/i
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+14. Phạt tiền từ 28.000.000 đồng đến 30.000.000 đồng đối với cá nhân, từ 56.000.000 đồng đến 60.000.000 đồng đối với tổ chức là chủ xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ, xe máy chuyên dùng và các loại xe tương tự xe ô tô thực hiện một trong các hành vi vi phạm sau đây:
+a) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm a khoản 3 Điều 22 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm a khoản 3 Điều 22 của Nghị định này;
+b) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm b khoản 3 Điều 22 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm b khoản 3 Điều 22 của Nghị định này;
+c) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm c khoản 3 Điều 22 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm c khoản 3 Điều 22 của Nghị định này;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/d)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/d
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+d) Thực hiện hành vi quy định tại điểm d khoản 11, điểm h khoản 14, điểm c khoản 16 Điều này bị tước quyền sử dụng chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường và tem kiểm định của phương tiện từ 01 tháng đến 03 tháng;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/đ
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+đ) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chở vượt trên 50% số người quy định được phép chở của phương tiện còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có). Thực hiện hành vi quy định tại điểm a, điểm b khoản 11; điểm a, điểm b, điểm c, điểm đ khoản 13; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16 Điều này còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có),
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/a
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm đ, điểm g, điểm m khoản 7; điểm đ, điểm e khoản 8; điểm b, điểm c, điểm d, điểm đ khoản 9; điểm a, điểm b, điểm đ khoản 11; điểm a khoản 12; điểm c khoản 13; điểm đ, điểm h khoản 14 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/b
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+b) Thực hiện hành vi quy định tại điểm e, điểm g khoản 14 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 03 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/c
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+c) Thực hiện hành vi quy định tại điểm a, điểm b, điểm đ, điểm e khoản 13; điểm a, điểm b, điểm c, điểm d khoản 14; điểm a khoản 16 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 04 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D22/K3/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D22/K3/a
+
+Điều 22. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển hàng siêu trường, siêu trọng
+3. Phạt tiền từ 13.000.000 đồng đến 15.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Chở hàng siêu trường, siêu trọng không có giấy phép lưu hành hoặc có giấy phép lưu hành nhưng đã hết giá trị sử dụng hoặc sử dụng giấy phép lưu hành không do cơ quan có thẩm quyền cấp;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D22/K3/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D22/K3/b
+
+Điều 22. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển hàng siêu trường, siêu trọng
+3. Phạt tiền từ 13.000.000 đồng đến 15.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+b) Chở hàng siêu trường, siêu trọng có giấy phép lưu hành còn giá trị sử dụng nhưng tổng trọng lượng (sau khi đã xếp hàng lên xe) vượt quá quy định trong giấy phép lưu hành;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D22/K3/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D22/K3/c
+
+Điều 22. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển hàng siêu trường, siêu trọng
+3. Phạt tiền từ 13.000.000 đồng đến 15.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+c) Chở hàng siêu trường, siêu trọng có giấy phép lưu hành còn giá trị sử dụng nhưng đi không đúng tuyến đường quy định trong giấy phép lưu hành;
+
+[0] 8.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D28/K3)
+[1] 12.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D28/K3)
+[2] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D28/K4/b)
+[3] 28.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K14)
+[4] 30.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K14)
+[5] 56.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K14)
+[6] 60.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K14)
+[7] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/d)
+[8] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/d)
+[9] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/đ)
+[10] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/đ)
+[11] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/a)
+[12] 03 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/b)
+[13] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/c)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Công ty tôi giao xe chở khách vào đường cao tốc, còn tôi lái xe vào đường cao tốc. Phạt tiền và trừ điểm của người lái và chủ xe khác nhau như thế nào?
+- Đáp: Người lái xe bị phạt tiền từ 8.000.000 đồng đến 12.000.000 đồng và trừ 06 điểm. Chủ xe bị phạt tiền từ 28.000.000 đồng đến 30.000.000 đồng. (khoản 3 Điều 28 Nghị định 168/2024/NĐ-CP)
+- Ghi chú: Giả định người lái là cá nhân, chủ xe là tổ chức. Không đề cập đến điểm trừ thêm.
+
+```json
+{"qid": "t3-so_sanh-019", "question": "Công ty tôi giao xe chở khách vào đường cao tốc, còn tôi lái xe vào đường cao tốc. Phạt tiền và trừ điểm của người lái và chủ xe khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Người lái xe bị phạt tiền từ 8.000.000 đồng đến 12.000.000 đồng và trừ 06 điểm. Chủ xe bị phạt tiền từ 28.000.000 đồng đến 30.000.000 đồng. (khoản 3 Điều 28 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D28/K3", "ND168-2024/D28/K4/b", "ND168-2024/D32/K14"], "required_numbers": [{"value": 8000000, "unit": "vnd"}, {"value": 12000000, "unit": "vnd"}, {"value": 6, "unit": "diem"}, {"value": 28000000, "unit": "vnd"}, {"value": 30000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-019:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi lái xe chở khách vào đường cao tốc, trong khi công ty tôi giao xe vào đường cao tốc. Phạt tiền và trừ điểm của người lái và chủ xe khác nhau như thế nào?
+- Đáp: Người lái xe bị phạt tiền từ 8.000.000 đồng đến 12.000.000 đồng và trừ 06 điểm. Chủ xe bị phạt tiền từ 28.000.000 đồng đến 30.000.000 đồng. (khoản 3 Điều 28 Nghị định 168/2024/NĐ-CP)
+- Ghi chú: Giả định người lái là cá nhân, chủ xe là tổ chức. Không đề cập đến điểm trừ thêm.
+
+```json
+{"qid": "t3-so_sanh-019", "question": "Tôi lái xe chở khách vào đường cao tốc, trong khi công ty tôi giao xe vào đường cao tốc. Phạt tiền và trừ điểm của người lái và chủ xe khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Người lái xe bị phạt tiền từ 8.000.000 đồng đến 12.000.000 đồng và trừ 06 điểm. Chủ xe bị phạt tiền từ 28.000.000 đồng đến 30.000.000 đồng. (khoản 3 Điều 28 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D28/K3", "ND168-2024/D28/K4/b", "ND168-2024/D32/K14"], "required_numbers": [{"value": 8000000, "unit": "vnd"}, {"value": 12000000, "unit": "vnd"}, {"value": 6, "unit": "diem"}, {"value": 28000000, "unit": "vnd"}, {"value": 30000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-019:2"}
+```
+
+### W3-so_sanh-020 · tier A · vai: cán bộ phường · kiểu: tinh_huong_ban_than · cosine TF-IDF 0.45
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K7, ND168-2024/D13/K7/a, ND168-2024/D13/K7/b
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+7. Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe đăng ký tạm thời, xe có phạm vi hoạt động hạn chế hoạt động quá phạm vi, tuyến đường, thời hạn cho phép;
+b) Điều khiển xe (kể cả rơ moóc và sơ mi rơ moóc) không gắn biển số (đối với loại xe có quy định phải gắn biển số).
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D13/K13/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K13/a
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm a, điểm b khoản 3; khoản 4; khoản 5; khoản 6; điểm a khoản 7 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D13/K13/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K13/b
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+b) Thực hiện hành vi quy định tại điểm b khoản 7, điểm b khoản 8 Điều này bị trừ điểm giấy phép lái xe 06 điểm;
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D14/K3, ND168-2024/D14/K3/a, ND168-2024/D14/K3/b
+
+Điều 14. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+3. Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe không gắn biển số (đối với loại xe có quy định phải gắn biển số); gắn biển số không đúng với chứng nhận đăng ký xe hoặc gắn biển số không do cơ quan có thẩm quyền cấp;
+b) Điều khiển xe gắn biển số không đúng vị trí, không đúng quy cách theo quy định; gắn biển số không rõ chữ, số hoặc sơn, dán lên chữ, số của biển số xe; gắn biển số bị bẻ cong, che lấp, làm thay đổi chữ, số, màu sắc (của chữ, số, nền biển số xe), hình dạng, kích thước của biển số xe; sử dụng chất liệu, vật liệu, thiết bị làm thay đổi khả năng nhận diện thông tin biển số xe của phương tiện, thiết bị kỹ thuật nghiệp vụ.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D14/K8/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D14/K8/b
+
+Điều 14. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+8. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+b) Thực hiện hành vi quy định tại khoản 3 Điều này bị trừ điểm giấy phép lái xe 06 điểm.
+
+[0] 10.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D13/K7)
+[1] 12.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D13/K7)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D13/K13/a)
+[3] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D13/K13/b)
+[4] 4.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D14/K3)
+[5] 6.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D14/K3)
+[6] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D14/K8/b)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là cán bộ phường, vừa gặp một lái xe ô tô đang điều khiển xe không gắn biển số, còn một lái xe mô tô cũng không gắn biển số. Tôi muốn biết mức phạt tiền và điểm trừ của hai loại xe này có khác nhau không?
+- Đáp: Mức phạt tiền cho lái xe ô tô không gắn biển số là từ 10.000.000 đồng đến 12.000.000 đồng, trừ 02 điểm. Mức phạt tiền cho lái xe mô tô không gắn biển số là từ 4.000.000 đồng đến 6.000.000 đồng, trừ 06 điểm. Do đó, lái xe ô tô bị phạt tiền cao hơn và trừ điểm ít hơn so với lái xe mô tô.
+- ⚠ chep_nguyen_van: “khiển xe không gắn biển số …”
+- Ghi chú: Giả định lái xe ô tô và mô tô đều vi phạm cùng hành vi không gắn biển số.
+
+```json
+{"qid": "t3-so_sanh-020", "question": "Tôi là cán bộ phường, vừa gặp một lái xe ô tô đang điều khiển xe không gắn biển số, còn một lái xe mô tô cũng không gắn biển số. Tôi muốn biết mức phạt tiền và điểm trừ của hai loại xe này có khác nhau không?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền cho lái xe ô tô không gắn biển số là từ 10.000.000 đồng đến 12.000.000 đồng, trừ 02 điểm. Mức phạt tiền cho lái xe mô tô không gắn biển số là từ 4.000.000 đồng đến 6.000.000 đồng, trừ 06 điểm. Do đó, lái xe ô tô bị phạt tiền cao hơn và trừ điểm ít hơn so với lái xe mô tô.", "gold_units": ["ND168-2024/D13/K13/a", "ND168-2024/D13/K13/b", "ND168-2024/D14/K8/b"], "required_numbers": [{"value": 10000000, "unit": "vnd"}, {"value": 12000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}, {"value": 6, "unit": "diem"}, {"value": 4000000, "unit": "vnd"}, {"value": 6000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-020:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là cán bộ phường, vừa thấy một xe ô tô và một xe mô tô đều không gắn biển số đúng quy định. Tôi muốn biết sự khác nhau về mức phạt tiền và điểm trừ giữa hai loại xe này là gì?
+- Đáp: Lái xe ô tô bị phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng và trừ 02 điểm. Lái xe mô tô bị phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng và trừ 06 điểm. Vì vậy, lái xe ô tô bị phạt tiền cao hơn và trừ điểm ít hơn so với lái xe mô tô.
+- Ghi chú: Giả định lái xe ô tô và mô tô đều vi phạm cùng hành vi không gắn biển số.
+
+```json
+{"qid": "t3-so_sanh-020", "question": "Tôi là cán bộ phường, vừa thấy một xe ô tô và một xe mô tô đều không gắn biển số đúng quy định. Tôi muốn biết sự khác nhau về mức phạt tiền và điểm trừ giữa hai loại xe này là gì?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Lái xe ô tô bị phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng và trừ 02 điểm. Lái xe mô tô bị phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng và trừ 06 điểm. Vì vậy, lái xe ô tô bị phạt tiền cao hơn và trừ điểm ít hơn so với lái xe mô tô.", "gold_units": ["ND168-2024/D13/K13/a", "ND168-2024/D13/K13/b", "ND168-2024/D14/K8/b"], "required_numbers": [{"value": 10000000, "unit": "vnd"}, {"value": 12000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}, {"value": 6, "unit": "diem"}, {"value": 4000000, "unit": "vnd"}, {"value": 6000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-020:2"}
+```
+
+### W3-so_sanh-021 · tier B · vai: sinh viên đi xe máy · kiểu: tinh_huong_nguoi_khac · cosine TF-IDF 0.50
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D10/K2, ND336-2025/D10/K2/a, ND336-2025/D10/K2/b, ND336-2025/D10/K2/c, ND336-2025/D10/K2/d
+
+Điều 10. Xử phạt các hành vi vi phạm về thanh toán điện tử giao thông đường bộ, hoạt động trạm thu phí đường bộ
+2. Phạt tiền từ 10.000.000 đồng đến 20.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+a) Không thực hiện công khai, niêm yết công khai tại trạm thu phí theo quy định;
+b) Tổ chức bán vé, soát vé không kịp thời, sách nhiễu đối với người mua vé; không bán đầy đủ hoặc hạn chế, giới hạn thời gian bán các loại vé tháng, vé quý theo quy định;
+c) Nhận tiền mặt của người sử dụng phương tiện giao thông đường bộ mà không giao vé hoặc giao vé không đúng chủng loại phương tiện lưu thông qua trạm thu phí;
+d) Không thực hiện đúng quy trình nghiệp vụ để phương tiện giao thông đường bộ (đối tượng phải mua vé) không có vé đi qua trạm thu phí.
+
+### Nguồn 2
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D13/K2
+
+Điều 13. Xử phạt nhân viên phục vụ trên xe buýt, xe vận chuyển hành khách theo tuyến cố định, xe vận chuyển hành khách theo hợp đồng
+2. Phạt tiền từ 100.000 đồng đến 200.000 đồng đối với nhân viên phục vụ trên xe buýt thực hiện hành vi vi phạm: thu tiền vé nhưng không trao vé cho hành khách (vé giấy hoặc vé điện tử); thu tiền vé cao hơn quy định.
+
+[0] 10.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D10/K2)
+[1] 20.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D10/K2)
+[2] 100.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D13/K2)
+[3] 200.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D13/K2)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi đang làm công ty thu phí điện tử, còn anh ấy làm nhân viên xe buýt, họ bị phạt tiền khác nhau như thế nào?
+- Đáp: Công ty thu phí điện tử có thể bị phạt từ 10.000.000 đồng đến 20.000.000 đồng, trong khi nhân viên xe buýt bị phạt từ 100.000 đồng đến 200.000 đồng. Do đó, mức phạt của công ty thu phí điện tử nặng hơn nhiều so với nhân viên xe buýt.
+
+```json
+{"qid": "t3-so_sanh-021", "question": "Anh tôi đang làm công ty thu phí điện tử, còn anh ấy làm nhân viên xe buýt, họ bị phạt tiền khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "B", "answer": "Công ty thu phí điện tử có thể bị phạt từ 10.000.000 đồng đến 20.000.000 đồng, trong khi nhân viên xe buýt bị phạt từ 100.000 đồng đến 200.000 đồng. Do đó, mức phạt của công ty thu phí điện tử nặng hơn nhiều so với nhân viên xe buýt.", "gold_units": ["ND336-2025/D10/K2", "ND336-2025/D13/K2"], "required_numbers": [{"value": 10000000, "unit": "vnd"}, {"value": 20000000, "unit": "vnd"}, {"value": 100000, "unit": "vnd"}, {"value": 200000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-021:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi quản lý trạm thu phí, trong khi anh ấy làm nhân viên xe buýt, mức phạt tiền của họ khác nhau như thế nào?
+- Đáp: Công ty quản lý trạm thu phí có thể bị phạt từ 10.000.000 đồng đến 20.000.000 đồng, còn nhân viên xe buýt bị phạt từ 100.000 đồng đến 200.000 đồng. Vì vậy, mức phạt của công ty trạm thu phí cao hơn nhiều so với nhân viên xe buýt.
+
+```json
+{"qid": "t3-so_sanh-021", "question": "Công ty tôi quản lý trạm thu phí, trong khi anh ấy làm nhân viên xe buýt, mức phạt tiền của họ khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "B", "answer": "Công ty quản lý trạm thu phí có thể bị phạt từ 10.000.000 đồng đến 20.000.000 đồng, còn nhân viên xe buýt bị phạt từ 100.000 đồng đến 200.000 đồng. Vì vậy, mức phạt của công ty trạm thu phí cao hơn nhiều so với nhân viên xe buýt.", "gold_units": ["ND336-2025/D10/K2", "ND336-2025/D13/K2"], "required_numbers": [{"value": 10000000, "unit": "vnd"}, {"value": 20000000, "unit": "vnd"}, {"value": 100000, "unit": "vnd"}, {"value": 200000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-021:2"}
+```
+
+### W3-so_sanh-022 · tier A · vai: tài xế xe tải · kiểu: neu_van_ban · cosine TF-IDF 0.58
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K8, ND168-2024/D7/K8/a, ND168-2024/D7/K8/b
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+8. Phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe chạy quá tốc độ quy định trên 20 km/h;
+b) Điều khiển xe trên đường mà trong máu hoặc hơi thở có nồng độ cồn vượt quá 50 miligam đến 80 miligam/100 mililít máu hoặc vượt quá 0,25 miligam đến 0,4 miligam/1 lít khí thở.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D7/K13/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K13/b
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+b) Thực hiện hành vi quy định tại điểm đ khoản 4; điểm a khoản 6; điểm c, điểm d, điểm đ khoản 7; điểm a khoản 8 Điều này bị trừ điểm giấy phép lái xe 04 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D7/K13/d)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K13/d
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+d) Thực hiện hành vi quy định tại điểm b khoản 8, khoản 10 Điều này bị trừ điểm giấy phép lái xe 10 điểm.
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D8/K9, ND168-2024/D8/K9/a, ND168-2024/D8/K9/b, ND168-2024/D8/K9/c, ND168-2024/D8/K9/d, ND168-2024/D8/K9/đ, ND168-2024/D8/K9/e
+
+Điều 8. Xử phạt người điều khiển xe máy chuyên dùng vi phạm quy tắc giao thông đường bộ
+9. Phạt tiền từ 18.000.000 đồng đến 20.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe trên đường mà trong máu hoặc hơi thở có nồng độ cồn vượt quá 80 miligam/100 mililít máu hoặc vượt quá 0,4 miligam/1 lít khí thở;
+b) Không chấp hành yêu cầu kiểm tra về nồng độ cồn của người thi hành công vụ;
+c) Điều khiển xe trên đường mà trong cơ thể có chất ma túy hoặc chất kích thích khác mà pháp luật cấm sử dụng;
+d) Không chấp hành yêu cầu kiểm tra về chất ma túy hoặc chất kích thích khác mà pháp luật cấm sử dụng của người thi hành công vụ;
+đ) Lùi xe trên đường cao tốc; đi ngược chiều trên đường cao tốc; quay đầu xe trên đường cao tốc;
+e) Vi phạm quy định tại điểm b khoản 8 Điều này mà gây tai nạn giao thông.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D8/K8/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D8/K8/b
+
+Điều 8. Xử phạt người điều khiển xe máy chuyên dùng vi phạm quy tắc giao thông đường bộ
+8. Phạt tiền từ 14.000.000 đồng đến 16.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+b) Điều khiển xe máy chuyên dùng có tốc độ thiết kế nhỏ hơn tốc độ tối thiểu quy định đối với đường cao tốc đi vào đường cao tốc, trừ phương tiện, thiết bị phục vụ việc quản lý, bảo trì đường cao tốc;
+
+[0] 6.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D7/K8)
+[1] 8.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D7/K8)
+[2] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D7/K13/b)
+[3] 10 điểm (số điểm bị trừ, nêu tại ND168-2024/D7/K13/d)
+[4] 18.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D8/K9)
+[5] 20.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D8/K9)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, nhưng muốn biết khi lái xe máy chạy quá 20 km/h trên đường thì mức phạt tiền và điểm trừ khác nhau như thế nào giữa xe máy thông thường và xe máy chuyên dùng, và bên nào nặng hơn?
+- Đáp: Nếu lái xe máy thông thường chạy quá 20 km/h trên đường, mức phạt tiền là từ 6.000.000 đồng đến 8.000.000 đồng và bị trừ 04 điểm. Nếu lái xe máy chuyên dùng vi phạm cùng hành vi, mức phạt tiền là từ 18.000.000 đồng đến 20.000.000 đồng và không bị trừ điểm. Do vậy, vi phạm xe máy chuyên dùng nặng hơn về mức phạt tiền. (Điều 7 Khoản 8 và Khoản 13 của Nghị định 168/2024/NĐ-CP)
+- Ghi chú: Giả định xe máy chuyên dùng không có trừ điểm vì không có quy định trong nguồn
+
+```json
+{"qid": "t3-so_sanh-022", "question": "Tôi là tài xế xe tải, nhưng muốn biết khi lái xe máy chạy quá 20 km/h trên đường thì mức phạt tiền và điểm trừ khác nhau như thế nào giữa xe máy thông thường và xe máy chuyên dùng, và bên nào nặng hơn?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Nếu lái xe máy thông thường chạy quá 20 km/h trên đường, mức phạt tiền là từ 6.000.000 đồng đến 8.000.000 đồng và bị trừ 04 điểm. Nếu lái xe máy chuyên dùng vi phạm cùng hành vi, mức phạt tiền là từ 18.000.000 đồng đến 20.000.000 đồng và không bị trừ điểm. Do vậy, vi phạm xe máy chuyên dùng nặng hơn về mức phạt tiền. (Điều 7 Khoản 8 và Khoản 13 của Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D7/K8", "ND168-2024/D7/K13/b", "ND168-2024/D8/K9"], "required_numbers": [{"value": 6000000, "unit": "vnd"}, {"value": 8000000, "unit": "vnd"}, {"value": 4, "unit": "diem"}, {"value": 18000000, "unit": "vnd"}, {"value": 20000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-022:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu tôi lái xe máy chạy quá 20 km/h trên đường, mức phạt tiền và điểm trừ sẽ khác nhau giữa xe máy thông thường và xe máy chuyên dùng như thế nào, và bên nào nặng hơn?
+- Đáp: Lái xe máy thông thường chạy quá 20 km/h trên đường sẽ bị phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng và trừ 04 điểm. Lái xe máy chuyên dùng vi phạm cùng hành vi sẽ bị phạt tiền từ 18.000.000 đồng đến 20.000.000 đồng và không bị trừ điểm. Vì vậy, vi phạm xe máy chuyên dùng nặng hơn về mức phạt tiền. (Điều 7 Khoản 8 và Khoản 13 của Nghị định 168/2024/NĐ-CP)
+- Ghi chú: Giả định xe máy chuyên dùng không có trừ điểm vì không có quy định trong nguồn
+
+```json
+{"qid": "t3-so_sanh-022", "question": "Nếu tôi lái xe máy chạy quá 20 km/h trên đường, mức phạt tiền và điểm trừ sẽ khác nhau giữa xe máy thông thường và xe máy chuyên dùng như thế nào, và bên nào nặng hơn?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Lái xe máy thông thường chạy quá 20 km/h trên đường sẽ bị phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng và trừ 04 điểm. Lái xe máy chuyên dùng vi phạm cùng hành vi sẽ bị phạt tiền từ 18.000.000 đồng đến 20.000.000 đồng và không bị trừ điểm. Vì vậy, vi phạm xe máy chuyên dùng nặng hơn về mức phạt tiền. (Điều 7 Khoản 8 và Khoản 13 của Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D7/K8", "ND168-2024/D7/K13/b", "ND168-2024/D8/K9"], "required_numbers": [{"value": 6000000, "unit": "vnd"}, {"value": 8000000, "unit": "vnd"}, {"value": 4, "unit": "diem"}, {"value": 18000000, "unit": "vnd"}, {"value": 20000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-022:2"}
+```
+
+### W3-so_sanh-023 · tier A · vai: tài xế công nghệ · kiểu: tinh_huong_ban_than · cosine TF-IDF 0.44
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K13, ND168-2024/D32/K13/a, ND168-2024/D32/K13/b, ND168-2024/D32/K13/c, ND168-2024/D32/K13/d, ND168-2024/D32/K13/đ, ND168-2024/D32/K13/e
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+13. Phạt tiền từ 20.000.000 đồng đến 26.000.000 đồng đối với cá nhân, từ 40.000.000 đồng đến 52.000.000 đồng đối với tổ chức là chủ xe ô tô, xe máy chuyên dùng và các loại xe tương tự xe ô tô thực hiện một trong các hành vi vi phạm sau đây:
+a) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm a, điểm b khoản 6 Điều 21 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm a, điểm b khoản 6 Điều 21 của Nghị định này;
+b) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 2 Điều 22 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 2 Điều 22 của Nghị định này;
+c) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 3 Điều 34 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 3 Điều 34 của Nghị định này;
+d) Đưa phương tiện gắn biển số không đúng với chứng nhận đăng ký xe hoặc gắn biển số không do cơ quan có thẩm quyền cấp (kể cả rơ moóc và sơ mi rơ moóc) tham gia giao thông;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/c
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+c) Thực hiện hành vi quy định tại điểm e khoản 7, điểm b khoản 11, điểm a khoản 13, khoản 15, điểm b khoản 16 Điều này mà phương tiện đó có thùng xe, khối lượng hàng hóa cho phép chuyên chở không đúng theo quy định hiện hành thì còn bị tước quyền sử dụng chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường và tem kiểm định của phương tiện từ 01 tháng đến 03 tháng;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/đ
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+đ) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chở vượt trên 50% số người quy định được phép chở của phương tiện còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có). Thực hiện hành vi quy định tại điểm a, điểm b khoản 11; điểm a, điểm b, điểm c, điểm đ khoản 13; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16 Điều này còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có),
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/a
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm đ, điểm g, điểm m khoản 7; điểm đ, điểm e khoản 8; điểm b, điểm c, điểm d, điểm đ khoản 9; điểm a, điểm b, điểm đ khoản 11; điểm a khoản 12; điểm c khoản 13; điểm đ, điểm h khoản 14 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/c
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+c) Thực hiện hành vi quy định tại điểm a, điểm b, điểm đ, điểm e khoản 13; điểm a, điểm b, điểm c, điểm d khoản 14; điểm a khoản 16 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 04 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/g)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/g
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+g) Thực hiện hành vi quy định tại điểm d khoản 13, điểm b khoản 16 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 10 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D21/K6/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K6/a
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+6. Phạt tiền từ 5.000.000 đồng đến 7.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe (kể cả rơ moóc và sơ mi rơ moóc) chở hàng vượt trọng tải (khối lượng hàng chuyên chở) cho phép tham gia giao thông được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 50% đến 100%;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D21/K6/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K6/b
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+6. Phạt tiền từ 5.000.000 đồng đến 7.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+b) Điều khiển xe kéo theo rơ moóc, sơ mi rơ moóc mà khối lượng toàn bộ (bao gồm khối lượng bản thân rơ moóc, sơ mi rơ moóc và khối lượng hàng chuyên chở) của rơ moóc, sơ mi rơ moóc vượt khối lượng cho phép kéo theo được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 50% đến 100%;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D22/K2)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D22/K2
+
+Điều 22. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển hàng siêu trường, siêu trọng
+2. Phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng đối với hành vi chở hàng siêu trường, siêu trọng có giấy phép lưu hành còn giá trị sử dụng nhưng kích thước bao ngoài của xe (sau khi đã xếp hàng lên xe) vượt quá quy định trong giấy phép lưu hành.
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K4, ND168-2024/D6/K4/a, ND168-2024/D6/K4/b, ND168-2024/D6/K4/c, ND168-2024/D6/K4/d, ND168-2024/D6/K4/đ, ND168-2024/D6/K4/e, ND168-2024/D6/K4/g, ND168-2024/D6/K4/h, ND168-2024/D6/K4/i, ND168-2024/D6/K4/k, ND168-2024/D6/K4/l
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+4. Phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe không đủ điều kiện đã thu phí theo hình thức điện tử tự động không dừng (xe không gắn thẻ đầu cuối) đi vào làn đường dành riêng thu phí theo hình thức điện tử tự động không dừng tại các trạm thu phí;
+b) Dừng xe, đỗ xe tại vị trí: bên trái đường một chiều hoặc bên trái (theo hướng lưu thông) của đường đôi; trên đoạn đường cong hoặc gần đầu dốc nơi tầm nhìn bị che khuất; trên cầu (trừ trường hợp tổ chức giao thông cho phép), gầm cầu vượt (trừ những nơi cho phép dừng xe, đỗ xe), song song với một xe khác đang dừng, đỗ, trừ hành vi vi phạm quy định tại điểm c khoản 7 Điều này;
+c) Không thực hiện biện pháp bảo đảm an toàn theo quy định khi xe ô tô bị hư hỏng ngay tại nơi đường bộ giao nhau cùng mức với đường sắt;
+d) Không nhường đường cho xe xin vượt khi có đủ điều kiện an toàn;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D6/K16/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K16/a
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+16. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm h, điểm i khoản 3; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm g khoản 4; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g, điểm i, điểm k, điểm n, điểm o khoản 5 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K7/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K7/c
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+7. Phạt tiền từ 12.000.000 đồng đến 14.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+c) Dừng xe, đỗ xe trên đường cao tốc không đúng nơi quy định; không có báo hiệu bằng đèn khẩn cấp khi gặp sự cố kỹ thuật hoặc bất khả kháng khác buộc phải dừng xe, đỗ xe ở làn dừng xe khẩn cấp hoặc dải dừng xe khẩn cấp trên đường cao tốc; không có báo hiệu bằng đèn khẩn cấp, không đặt biển cảnh báo “Chú ý xe đỗ” (hoặc đèn cảnh báo) về phía sau xe khoảng cách tối thiểu 150 mét khi dừng xe, đỗ xe trong trường hợp gặp sự cố kỹ thuật hoặc bất khả kháng khác buộc phải dừng xe, đỗ xe trên một phần làn đường xe chạy trên đường cao tốc.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K11/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K11/đ
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+11. Phạt tiền từ 30.000.000 đồng đến 40.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+đ) Điều khiển xe đi ngược chiều trên đường cao tốc, lùi xe trên đường cao tốc, quay đầu xe trên đường cao tốc, trừ các xe ưu tiên đang đi làm nhiệm vụ khẩn cấp theo quy định.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K8)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K8
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+8. Phạt tiền từ 16.000.000 đồng đến 18.000.000 đồng đối với người điều khiển xe thực hiện hành vi vi phạm gây tai nạn giao thông không dừng ngay phương tiện, không giữ nguyên hiện trường, không trợ giúp người bị nạn, không ở lại hiện trường hoặc không đến trình báo ngay với cơ quan công an, Ủy ban nhân dân nơi gần nhất.
+
+[0] 20.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K13)
+[1] 26.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K13)
+[2] 40.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K13)
+[3] 52.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K13)
+[4] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/c)
+[5] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/c)
+[6] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/đ)
+[7] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/đ)
+[8] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/a)
+[9] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/c)
+[10] 10 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/g)
+[11] 2.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D6/K4)
+[12] 3.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D6/K4)
+[13] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D6/K16/a)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi lái một xe tải chở hàng vượt 50% trọng tải, còn khi lái một xe ô tô chở khách bình thường, mức phạt tiền và điểm trừ sẽ khác nhau không?
+- Đáp: Nếu lái xe tải chở hàng vượt 50% trọng tải, mức phạt tiền là từ 20.000.000 đồng đến 26.000.000 đồng và trừ điểm giấy phép lái xe 02 điểm. Nếu lái xe ô tô chở khách bình thường, mức phạt tiền là từ 2.000.000 đồng đến 3.000.000 đồng và trừ điểm giấy phép lái xe 02 điểm. Mức phạt tiền nặng hơn đối với xe tải chở hàng.
+- Ghi chú: Giả định xe tải là xe ô tô chở hàng, xe ô tô chở khách là xe ô tô chở người
+
+```json
+{"qid": "t3-so_sanh-023", "question": "Tôi lái một xe tải chở hàng vượt 50% trọng tải, còn khi lái một xe ô tô chở khách bình thường, mức phạt tiền và điểm trừ sẽ khác nhau không?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Nếu lái xe tải chở hàng vượt 50% trọng tải, mức phạt tiền là từ 20.000.000 đồng đến 26.000.000 đồng và trừ điểm giấy phép lái xe 02 điểm. Nếu lái xe ô tô chở khách bình thường, mức phạt tiền là từ 2.000.000 đồng đến 3.000.000 đồng và trừ điểm giấy phép lái xe 02 điểm. Mức phạt tiền nặng hơn đối với xe tải chở hàng.", "gold_units": ["ND168-2024/D32/K13", "ND168-2024/D6/K4"], "required_numbers": [{"value": 20000000, "unit": "vnd"}, {"value": 26000000, "unit": "vnd"}, {"value": 2000000, "unit": "vnd"}, {"value": 3000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-023:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi lái một xe ô tô chở khách bình thường, còn khi lái một xe máy chuyên dùng, mức phạt tiền và điểm trừ sẽ khác nhau không?
+- Đáp: Cả hai trường hợp đều bị phạt tiền từ 20.000.000 đồng đến 26.000.000 đồng và trừ điểm giấy phép lái xe 02 điểm. Mức phạt tiền và điểm trừ là giống nhau cho cả xe ô tô chở khách và xe máy chuyên dùng.
+- Ghi chú: Giả định xe máy chuyên dùng là xe máy có động cơ, không phải xe máy thường
+
+```json
+{"qid": "t3-so_sanh-023", "question": "Tôi lái một xe ô tô chở khách bình thường, còn khi lái một xe máy chuyên dùng, mức phạt tiền và điểm trừ sẽ khác nhau không?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Cả hai trường hợp đều bị phạt tiền từ 20.000.000 đồng đến 26.000.000 đồng và trừ điểm giấy phép lái xe 02 điểm. Mức phạt tiền và điểm trừ là giống nhau cho cả xe ô tô chở khách và xe máy chuyên dùng.", "gold_units": ["ND168-2024/D32/K13"], "required_numbers": [{"value": 20000000, "unit": "vnd"}, {"value": 26000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-023:2"}
+```
+
+### W3-so_sanh-024 · tier A · vai: tài xế xe tải · kiểu: tinh_huong_nguoi_khac · cosine TF-IDF 0.52
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K12, ND168-2024/D32/K12/a, ND168-2024/D32/K12/b, ND168-2024/D32/K12/c, ND168-2024/D32/K12/d
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+12. Phạt tiền từ 16.000.000 đồng đến 18.000.000 đồng đối với cá nhân, từ 32.000.000 đồng đến 36.000.000 đồng đối với tổ chức là chủ xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ, xe máy chuyên dùng và các loại xe tương tự xe ô tô, phương tiện giao thông thông minh thực hiện một trong các hành vi vi phạm sau đây:
+a) Đưa phương tiện không có chứng nhận đăng ký xe (hoặc bản sao chứng nhận đăng ký xe có chứng thực kèm theo bản gốc giấy biên nhận của tổ chức tín dụng, chi nhánh ngân hàng nước ngoài trong trường hợp tổ chức tín dụng, chi nhánh ngân hàng nước ngoài giữ bản gốc chứng nhận đăng ký xe) tham gia giao thông hoặc có nhưng đã hết hạn sử dụng, hết hiệu lực; đưa phương tiện có chứng nhận đăng ký xe tạm thời, phương tiện có phạm vi hoạt động hạn chế tham gia giao thông quá thời hạn, tuyến đường, phạm vi cho phép;
+b) Đưa phương tiện không gắn biển số (đối với loại xe có quy định phải gắn biển số) tham gia giao thông;
+c) Lắp đặt, sử dụng thiết bị thay đổi biển số trên xe trái quy định (kể cả rơ moóc và sơ mi rơ moóc);
+d) Đưa phương tiện giao thông thông minh không có giấy phép hoạt động hoặc giấy phép hoạt động hết hạn sử dụng hoặc hoạt động không đúng nội dung ghi trong giấy phép tham gia giao thông.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/a
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm đ, điểm g, điểm m khoản 7; điểm đ, điểm e khoản 8; điểm b, điểm c, điểm d, điểm đ khoản 9; điểm a, điểm b, điểm đ khoản 11; điểm a khoản 12; điểm c khoản 13; điểm đ, điểm h khoản 14 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/đ
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+đ) Thực hiện hành vi quy định tại điểm h khoản 8, điểm b khoản 12 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 06 điểm;
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D37/K4, ND168-2024/D37/K4/a, ND168-2024/D37/K4/b
+
+Điều 37. Xử phạt người điều khiển phương tiện giao thông cơ giới đường bộ gắn biển số nước ngoài
+4. Phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển phương tiện không gắn biển số tạm thời hoặc gắn biển số tạm thời không do cơ quan có thẩm quyền cấp (nếu có quy định phải gắn biển số tạm thời);
+b) Điều khiển xe ô tô có tay lái bên phải tham gia giao thông mà không đi theo đoàn, không có người, phương tiện hỗ trợ, hướng dẫn giao thông theo quy định.
+
+[0] 16.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K12)
+[1] 18.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K12)
+[2] 32.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K12)
+[3] 36.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K12)
+[4] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/a)
+[5] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/đ)
+[6] 8.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D37/K4)
+[7] 10.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D37/K4)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, anh tôi lái xe ô tô chở khách mà không có giấy đăng ký, còn công ty tôi lái xe có biển số nước ngoài mà không gắn biển số tạm thời. Bạn cho biết mức phạt tiền và điểm trừ giấy phép của hai trường hợp này là bao nhiêu?
+- Đáp: Nếu lái xe ô tô chở khách mà không có giấy đăng ký, mức phạt tiền là từ 16.000.000 đồng đến 18.000.000 đồng và trừ 02 điểm giấy phép. Nếu lái xe có biển số nước ngoài mà không gắn biển số tạm thời, mức phạt tiền là từ 8.000.000 đồng đến 10.000.000 đồng và trừ 06 điểm giấy phép.
+- ⚠ qua_dai (57 từ); chep_nguyen_van: “không gắn biển số tạm thời …”
+- Ghi chú: Giả định xe ô tô chở khách là xe ô tô, không phải xe máy.
+
+```json
+{"qid": "t3-so_sanh-024", "question": "Tôi là tài xế xe tải, anh tôi lái xe ô tô chở khách mà không có giấy đăng ký, còn công ty tôi lái xe có biển số nước ngoài mà không gắn biển số tạm thời. Bạn cho biết mức phạt tiền và điểm trừ giấy phép của hai trường hợp này là bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Nếu lái xe ô tô chở khách mà không có giấy đăng ký, mức phạt tiền là từ 16.000.000 đồng đến 18.000.000 đồng và trừ 02 điểm giấy phép. Nếu lái xe có biển số nước ngoài mà không gắn biển số tạm thời, mức phạt tiền là từ 8.000.000 đồng đến 10.000.000 đồng và trừ 06 điểm giấy phép.", "gold_units": ["ND168-2024/D32/K12", "ND168-2024/D32/K21/a", "ND168-2024/D32/K21/đ", "ND168-2024/D37/K4"], "required_numbers": [{"value": 16000000, "unit": "vnd"}, {"value": 18000000, "unit": "vnd"}, {"value": 32000000, "unit": "vnd"}, {"value": 36000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}, {"value": 6, "unit": "diem"}, {"value": 8000000, "unit": "vnd"}, {"value": 10000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-024:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi đang vận chuyển hàng bằng xe tải, nhưng anh tôi lái xe ô tô chở khách mà không có chứng nhận đăng ký, trong khi tôi lái xe có biển số nước ngoài mà không gắn biển số tạm thời. Bạn cho biết mức phạt tiền và điểm trừ giấy phép của hai trường hợp này là bao nhiêu?
+- Đáp: Nếu lái xe ô tô chở khách mà không có chứng nhận đăng ký, mức phạt tiền là từ 16.000.000 đồng đến 18.000.000 đồng và trừ 02 điểm giấy phép. Nếu lái xe có biển số nước ngoài mà không gắn biển số tạm thời, mức phạt tiền là từ 8.000.000 đồng đến 10.000.000 đồng và trừ 06 điểm giấy phép.
+- ⚠ qua_dai (62 từ); chep_nguyen_van: “không có chứng nhận đăng ký …”
+- Ghi chú: Giả định xe ô tô chở khách là xe ô tô, không phải xe máy.
+
+```json
+{"qid": "t3-so_sanh-024", "question": "Công ty tôi đang vận chuyển hàng bằng xe tải, nhưng anh tôi lái xe ô tô chở khách mà không có chứng nhận đăng ký, trong khi tôi lái xe có biển số nước ngoài mà không gắn biển số tạm thời. Bạn cho biết mức phạt tiền và điểm trừ giấy phép của hai trường hợp này là bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Nếu lái xe ô tô chở khách mà không có chứng nhận đăng ký, mức phạt tiền là từ 16.000.000 đồng đến 18.000.000 đồng và trừ 02 điểm giấy phép. Nếu lái xe có biển số nước ngoài mà không gắn biển số tạm thời, mức phạt tiền là từ 8.000.000 đồng đến 10.000.000 đồng và trừ 06 điểm giấy phép.", "gold_units": ["ND168-2024/D32/K12", "ND168-2024/D32/K21/a", "ND168-2024/D32/K21/đ", "ND168-2024/D37/K4"], "required_numbers": [{"value": 16000000, "unit": "vnd"}, {"value": 18000000, "unit": "vnd"}, {"value": 32000000, "unit": "vnd"}, {"value": 36000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}, {"value": 6, "unit": "diem"}, {"value": 8000000, "unit": "vnd"}, {"value": 10000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-024:2"}
+```
+
+### W3-so_sanh-025 · tier A · vai: sinh viên đi xe máy · kiểu: ngan · cosine TF-IDF 0.61
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K4, ND168-2024/D26/K4/a, ND168-2024/D26/K4/b, ND168-2024/D26/K4/c, ND168-2024/D26/K4/d, ND168-2024/D26/K4/đ, ND168-2024/D26/K4/e, ND168-2024/D26/K4/g
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+4. Phạt tiền từ 3.000.000 đồng đến 4.000.000 đồng đối với cá nhân, từ 6.000.000 đồng đến 8.000.000 đồng đối với tổ chức kinh doanh vận tải, dịch vụ hỗ trợ vận tải thực hiện một trong các hành vi vi phạm sau đây:
+a) Không cấp thẻ nhận dạng lái xe cho lái xe theo quy định;
+b) Sử dụng lái xe, nhân viên phục vụ trên xe để tham gia kinh doanh vận tải bằng xe ô tô mà không được tập huấn, hướng dẫn về nghiệp vụ vận tải hành khách và an toàn giao thông theo quy định (đối với hình thức kinh doanh vận tải có quy định lái xe, nhân viên phục vụ trên xe phải được tập huấn, hướng dẫn nghiệp vụ), trừ các hành vi vi phạm quy định tại điểm c, điểm d khoản này;
+c) Sử dụng lái xe, người quản lý trên xe để tham gia kinh doanh vận tải bằng xe ô tô mà không được hướng dẫn về quy trình bảo đảm an toàn khi đưa đón trẻ em mầm non, học sinh;
+d) Sử dụng lái xe, người áp tải vận chuyển hàng hóa nguy hiểm mà không được tập huấn về vận chuyển hàng hóa nguy hiểm;
+đ) Sử dụng xe ô tô kinh doanh vận tải hành khách không có dây đai an toàn tại các vị trí ghế ngồi, giường nằm theo quy định (trừ xe buýt nội tỉnh);
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D26/K12)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K12
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+12. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm quy định tại điểm c khoản 2; điểm a, điểm b, điểm đ, điểm g khoản 4; điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 7; điểm c khoản 8 Điều này còn bị áp dụng các hình thức xử phạt bổ sung tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có hoặc đã được cấp) đối với xe vi phạm.
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D27/K3, ND168-2024/D27/K3/a, ND168-2024/D27/K3/b, ND168-2024/D27/K3/c, ND168-2024/D27/K3/d
+
+Điều 27. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô kinh doanh vận tải chở trẻ em mầm non, học sinh, xe ô tô kinh doanh vận tải kết hợp với hoạt động đưa đón trẻ em mầm non, học sinh
+3. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với người điều khiển xe ô tô kinh doanh vận tải chở trẻ em mầm non, học sinh, xe ô tô kinh doanh vận tải kết hợp với hoạt động đưa đón trẻ em mầm non, học sinh thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe không có thiết bị giám sát hành trình hoặc có lắp thiết bị giám sát hành trình nhưng không có tác dụng trong quá trình xe tham gia giao thông theo quy định hoặc làm sai lệch dữ liệu của thiết bị giám sát hành trình lắp trên xe ô tô;
+b) Điều khiển xe không có thiết bị ghi nhận hình ảnh trẻ em mầm non, học sinh hoặc không có thiết bị có chức năng cảnh báo, chống bỏ quên trẻ em trên xe hoặc không có thiết bị ghi nhận hình ảnh trẻ em mầm non, học sinh và thiết bị có chức năng cảnh báo, chống bỏ quên trẻ em trên xe;
+c) Điều khiển xe ô tô kinh doanh vận tải chở trẻ em mầm non, học sinh không có màu sơn theo quy định;
+d) Điều khiển xe ô tô kinh doanh vận tải chở trẻ em mầm non, học sinh, xe ô tô kinh doanh vận tải kết hợp với hoạt động đưa đón trẻ em mầm non, học sinh không có biển báo dấu hiệu nhận biết là xe chở trẻ em mầm non, học sinh theo quy định.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D27/K4)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D27/K4
+
+Điều 27. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô kinh doanh vận tải chở trẻ em mầm non, học sinh, xe ô tô kinh doanh vận tải kết hợp với hoạt động đưa đón trẻ em mầm non, học sinh
+4. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi quy định tại khoản 2, khoản 3 Điều này bị trừ điểm giấy phép lái xe 02 điểm.
+
+[0] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D26/K12)
+[1] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D26/K12)
+[2] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D26/K4)
+[3] 4.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D26/K4)
+[4] 6.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D26/K4)
+[5] 8.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D26/K4)
+[6] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D27/K3)
+[7] 5.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D27/K3)
+[8] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D27/K4)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Nếu tôi vi phạm không cấp thẻ nhận dạng lái xe, phạt tiền bao nhiêu, còn công ty tôi vi phạm cùng điều kiện thì phạt bao nhiêu?
+- Đáp: Bạn sẽ bị phạt tiền từ 3.000.000 đồng đến 4.000.000 đồng, trong khi công ty bạn sẽ bị phạt từ 6.000.000 đồng đến 8.000.000 đồng. Phạt nặng hơn là đối với công ty.
+- ⚠ chep_nguyen_van: “cấp thẻ nhận dạng lái xe …”
+- Ghi chú: Giả định người hỏi là cá nhân, công ty là tổ chức kinh doanh vận tải
+
+```json
+{"qid": "t3-so_sanh-025", "question": "Nếu tôi vi phạm không cấp thẻ nhận dạng lái xe, phạt tiền bao nhiêu, còn công ty tôi vi phạm cùng điều kiện thì phạt bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Bạn sẽ bị phạt tiền từ 3.000.000 đồng đến 4.000.000 đồng, trong khi công ty bạn sẽ bị phạt từ 6.000.000 đồng đến 8.000.000 đồng. Phạt nặng hơn là đối với công ty.", "gold_units": ["ND168-2024/D26/K4"], "required_numbers": [{"value": 3000000, "unit": "vnd"}, {"value": 4000000, "unit": "vnd"}, {"value": 6000000, "unit": "vnd"}, {"value": 8000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-025:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu tôi vi phạm không cấp thẻ nhận dạng lái xe hay không có dây an toàn, mức phạt tiền khác nhau bao nhiêu?
+- Đáp: Bạn sẽ bị phạt tiền từ 3.000.000 đồng đến 4.000.000 đồng cho cả hai trường hợp, trong khi công ty bạn sẽ bị phạt từ 6.000.000 đồng đến 8.000.000 đồng. Phạt nặng hơn là đối với công ty.
+- ⚠ chep_nguyen_van: “cấp thẻ nhận dạng lái xe …”
+- Ghi chú: Giả định người hỏi là cá nhân, công ty là tổ chức kinh doanh vận tải
+
+```json
+{"qid": "t3-so_sanh-025", "question": "Nếu tôi vi phạm không cấp thẻ nhận dạng lái xe hay không có dây an toàn, mức phạt tiền khác nhau bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Bạn sẽ bị phạt tiền từ 3.000.000 đồng đến 4.000.000 đồng cho cả hai trường hợp, trong khi công ty bạn sẽ bị phạt từ 6.000.000 đồng đến 8.000.000 đồng. Phạt nặng hơn là đối với công ty.", "gold_units": ["ND168-2024/D26/K4"], "required_numbers": [{"value": 3000000, "unit": "vnd"}, {"value": 4000000, "unit": "vnd"}, {"value": 6000000, "unit": "vnd"}, {"value": 8000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-025:2"}
+```
+
+### W3-so_sanh-026 · tier B · vai: người lớn tuổi đi xe đạp điện · kiểu: tinh_huong_ban_than · cosine TF-IDF 0.43
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D5/K5, ND336-2025/D5/K5/a, ND336-2025/D5/K5/b, ND336-2025/D5/K5/c, ND336-2025/D5/K5/d
+
+Điều 5. Xử phạt các hành vi vi phạm quy định về sử dụng, khai thác trong phạm vi đất dành cho kết cấu hạ tầng đường bộ
+5. Phạt tiền từ 10.000.000 đồng đến 15.000.000 đồng đối với cá nhân, từ 20.000.000 đồng đến 30.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+a) Xây dựng, lắp đặt biển quảng cáo trong phạm vi hành lang an toàn đường bộ mà không có văn bản chấp thuận theo quy định, trừ hành vi vi phạm quy định tại điểm d khoản 6 Điều này;
+b) Không thực hiện việc tháo dỡ biển quảng cáo, các bộ phận của biển quảng cáo khi có yêu cầu của cơ quan quản lý đường bộ, người quản lý, sử dụng đường bộ;
+c) Không xóa bỏ, đóng điểm đấu nối tạm thời khi hết thời hạn đấu nối tạm;
+d) Không hoàn trả nguyên trạng hành lang an toàn đường bộ; không sửa chữa, bổ sung kết cấu hạ tầng đường bộ bị ảnh hưởng do việc thực hiện đấu nối tạm thời.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D5/K6/d)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D5/K6/d
+
+Điều 5. Xử phạt các hành vi vi phạm quy định về sử dụng, khai thác trong phạm vi đất dành cho kết cấu hạ tầng đường bộ
+6. Phạt tiền từ 15.000.000 đồng đến 20.000.000 đồng đối với cá nhân, từ 30.000.000 đồng đến 40.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+d) Xây dựng, lắp đặt biển quảng cáo trong phạm vi hành lang an toàn đường cao tốc.
+
+### Nguồn 2
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D7/K1, ND336-2025/D7/K1/a, ND336-2025/D7/K1/b, ND336-2025/D7/K1/c, ND336-2025/D7/K1/d
+
+Điều 7. Xử phạt hành vi vi phạm quy định về đào tạo thẩm tra viên, điều kiện kinh doanh dịch vụ thẩm tra an toàn giao thông đường bộ
+1. Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng đối với cơ sở đào tạo thẩm tra viên an toàn giao thông đường bộ thực hiện một trong các hành vi vi phạm sau đây:
+a) Không có đủ thiết bị nghe, nhìn theo quy định;
+b) Không có đủ máy tính, thiết bị đo độ phản quang của báo hiệu đường bộ theo quy định;
+c) Không có số giảng viên cơ hữu đảm nhận giảng dạy theo quy định;
+d) Sử dụng giảng viên tham gia giảng dạy không đáp ứng điều kiện về tiêu chuẩn theo quy định.
+
+[0] 10.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D5/K5)
+[1] 15.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D5/K5)
+[2] 20.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D5/K5)
+[3] 30.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D5/K5)
+[4] 4.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D7/K1)
+[5] 6.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D7/K1)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi đang làm việc tại công ty xây dựng, và tôi muốn biết mức phạt tiền khi công ty tôi xây dựng biển quảng cáo trong hành lang an toàn đường bộ mà không có giấy phép, so với khi tôi làm việc cá nhân làm việc cùng việc đó?
+- Đáp: Nếu công ty thực hiện vi phạm, mức phạt tiền là từ 20.000.000 đồng đến 30.000.000 đồng. Nếu cá nhân thực hiện vi phạm, mức phạt tiền là từ 10.000.000 đồng đến 15.000.000 đồng. Do đó, phạt tiền nặng hơn đối với tổ chức.
+- ⚠ chep_nguyen_van: “an toàn đường bộ mà không …”
+- Ghi chú: giả định người hỏi là cá nhân làm việc trong công ty
+
+```json
+{"qid": "t3-so_sanh-026", "question": "Tôi đang làm việc tại công ty xây dựng, và tôi muốn biết mức phạt tiền khi công ty tôi xây dựng biển quảng cáo trong hành lang an toàn đường bộ mà không có giấy phép, so với khi tôi làm việc cá nhân làm việc cùng việc đó?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "B", "answer": "Nếu công ty thực hiện vi phạm, mức phạt tiền là từ 20.000.000 đồng đến 30.000.000 đồng. Nếu cá nhân thực hiện vi phạm, mức phạt tiền là từ 10.000.000 đồng đến 15.000.000 đồng. Do đó, phạt tiền nặng hơn đối với tổ chức.", "gold_units": ["ND336-2025/D5/K5", "ND336-2025/D5/K5/a"], "required_numbers": [{"value": 20000000, "unit": "vnd"}, {"value": 30000000, "unit": "vnd"}, {"value": 10000000, "unit": "vnd"}, {"value": 15000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-026:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là một người lớn tuổi đi xe đạp điện, và tôi muốn biết mức phạt tiền khi tôi xây dựng biển quảng cáo trong hành lang an toàn đường cao tốc mà không có giấy phép, so với khi một công ty thực hiện cùng việc đó?
+- Đáp: Nếu cá nhân thực hiện vi phạm, mức phạt tiền là từ 15.000.000 đồng đến 20.000.000 đồng. Nếu công ty thực hiện vi phạm, mức phạt tiền là từ 30.000.000 đồng đến 40.000.000 đồng. Do đó, phạt tiền nặng hơn đối với tổ chức.
+- ⚠ chep_nguyen_van: “hành lang an toàn đường cao …”
+- Ghi chú: giả định người hỏi là cá nhân đi xe đạp điện
+
+```json
+{"qid": "t3-so_sanh-026", "question": "Tôi là một người lớn tuổi đi xe đạp điện, và tôi muốn biết mức phạt tiền khi tôi xây dựng biển quảng cáo trong hành lang an toàn đường cao tốc mà không có giấy phép, so với khi một công ty thực hiện cùng việc đó?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "B", "answer": "Nếu cá nhân thực hiện vi phạm, mức phạt tiền là từ 15.000.000 đồng đến 20.000.000 đồng. Nếu công ty thực hiện vi phạm, mức phạt tiền là từ 30.000.000 đồng đến 40.000.000 đồng. Do đó, phạt tiền nặng hơn đối với tổ chức.", "gold_units": ["ND336-2025/D5/K6/d"], "required_numbers": [{"value": 15000000, "unit": "vnd"}, {"value": 30000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-026:2"}
+```
+
+### W3-so_sanh-027 · tier A · vai: cán bộ phường · kiểu: neu_van_ban · cosine TF-IDF 0.53
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K9, ND168-2024/D7/K9/a, ND168-2024/D7/K9/b, ND168-2024/D7/K9/c, ND168-2024/D7/K9/d, ND168-2024/D7/K9/đ, ND168-2024/D7/K9/e, ND168-2024/D7/K9/g, ND168-2024/D7/K9/h, ND168-2024/D7/K9/i, ND168-2024/D7/K9/k
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+9. Phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe lạng lách, đánh võng trên đường bộ; sử dụng chân chống hoặc vật khác quệt xuống đường khi xe đang chạy;
+b) Điều khiển xe thành nhóm từ 02 xe trở lên chạy quá tốc độ quy định;
+c) Gây tai nạn giao thông không dừng ngay phương tiện, không giữ nguyên hiện trường, không trợ giúp người bị nạn, không ở lại hiện trường hoặc không đến trình báo ngay với cơ quan công an, Ủy ban nhân dân nơi gần nhất;
+d) Điều khiển xe trên đường mà trong máu hoặc hơi thở có nồng độ cồn vượt quá 80 miligam/100 mililít máu hoặc vượt quá 0,4 miligam/1 lít khí thở;
+đ) Không chấp hành yêu cầu kiểm tra về nồng độ cồn của người thi hành công vụ;
+e) Điều khiển xe trên đường mà trong cơ thể có chất ma túy hoặc chất kích thích khác mà pháp luật cấm sử dụng;
+g) Không chấp hành yêu cầu kiểm tra về chất ma túy hoặc chất kích thích khác mà pháp luật cấm sử dụng của người thi hành công vụ;
+h) Ngồi phía sau vòng tay qua người ngồi trước để điều khiển xe, trừ trường hợp chở trẻ em dưới 06 tuổi ngồi phía trước;
+i) Điều khiển xe thành đoàn gây cản trở giao thông, trừ trường hợp được cơ quan có thẩm quyền cấp phép;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D7/K12/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K12/b
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+12. Ngoài việc bị áp dụng hình thức xử phạt chính, người điều khiển xe thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung sau đây:
+b) Thực hiện hành vi quy định tại điểm a, điểm b, điểm h, điểm i, điểm k khoản 9 Điều này bị tước quyền sử dụng giấy phép lái xe từ 10 tháng đến 12 tháng;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D7/K12/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K12/c
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+12. Ngoài việc bị áp dụng hình thức xử phạt chính, người điều khiển xe thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung sau đây:
+c) Thực hiện hành vi quy định tại điểm d, điểm đ, điểm e, điểm g khoản 9; khoản 11 Điều này bị tước quyền sử dụng giấy phép lái xe từ 22 tháng đến 24 tháng.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D7/K13/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K13/c
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+c) Thực hiện hành vi quy định tại điểm b khoản 7, điểm c khoản 9 Điều này bị trừ điểm giấy phép lái xe 06 điểm;
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D9/K3, ND168-2024/D9/K3/a, ND168-2024/D9/K3/b, ND168-2024/D9/K3/c, ND168-2024/D9/K3/d
+
+Điều 9. Xử phạt người điều khiển xe đạp, xe đạp máy, người điều khiển xe thô sơ khác vi phạm quy tắc giao thông đường bộ
+3. Phạt tiền từ 300.000 đồng đến 400.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe lạng lách, đánh võng; đuổi nhau trên đường;
+b) Đi xe bằng một bánh đối với xe đạp, xe đạp máy; đi xe bằng hai bánh đối với xe xích lô;
+c) Đi vào khu vực cấm, đường có biển báo hiệu nội dung cấm đi vào đối với loại phương tiện đang điều khiển; đi ngược chiều đường của đường một chiều, đường có biển “Cấm đi ngược chiều";
+d) Điều khiển xe trên đường mà trong máu hoặc hơi thở có nồng độ cồn vượt quá 50 miligam đến 80 miligam/100 mililít máu hoặc vượt quá 0,25 miligam đến 0,4 miligam/1 lít khí thở.
+
+[0] 10 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D7/K12/b)
+[1] 12 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D7/K12/b)
+[2] 22 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D7/K12/c)
+[3] 24 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D7/K12/c)
+[4] 8.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D7/K9)
+[5] 10.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D7/K9)
+[6] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D7/K13/c)
+[7] 300.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D9/K3)
+[8] 400.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D9/K3)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Theo Nghị định 168/2024/NĐ-CP, nếu tôi lái xe máy và có nồng độ cồn 90 mg/100ml, tôi sẽ bị phạt tiền bao nhiêu và mất giấy phép lái xe bao lâu? Nếu con tôi lái xe đạp với nồng độ cồn 60 mg/100ml, phạt tiền và mất giấy phép như thế nào?
+- Đáp: Nếu lái xe máy với nồng độ cồn 90 mg/100ml, phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng và tước quyền sử dụng giấy phép lái xe từ 10 tháng đến 12 tháng. Nếu lái xe đạp với nồng độ cồn 60 mg/100ml, phạt tiền từ 300.000 đồng đến 400.000 đồng và không bị tước quyền sử dụng giấy phép lái xe.
+- ⚠ qua_dai (52 từ); so_la: 60, 90
+- Ghi chú: Giả định xe máy là xe mô tô, xe đạp là xe thô sơ
+
+```json
+{"qid": "t3-so_sanh-027", "question": "Theo Nghị định 168/2024/NĐ-CP, nếu tôi lái xe máy và có nồng độ cồn 90 mg/100ml, tôi sẽ bị phạt tiền bao nhiêu và mất giấy phép lái xe bao lâu? Nếu con tôi lái xe đạp với nồng độ cồn 60 mg/100ml, phạt tiền và mất giấy phép như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Nếu lái xe máy với nồng độ cồn 90 mg/100ml, phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng và tước quyền sử dụng giấy phép lái xe từ 10 tháng đến 12 tháng. Nếu lái xe đạp với nồng độ cồn 60 mg/100ml, phạt tiền từ 300.000 đồng đến 400.000 đồng và không bị tước quyền sử dụng giấy phép lái xe.", "gold_units": ["ND168-2024/D7/K9", "ND168-2024/D7/K12/b", "ND168-2024/D9/K3"], "required_numbers": [{"value": 8000000, "unit": "vnd"}, {"value": 10000000, "unit": "vnd"}, {"value": 10, "unit": "thang"}, {"value": 12, "unit": "thang"}, {"value": 300000, "unit": "vnd"}, {"value": 400000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-027:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Theo Nghị định 168/2024/NĐ-CP, nếu tôi lái xe máy và có nồng độ cồn 80 mg/100ml, tôi sẽ bị phạt tiền bao nhiêu và mất giấy phép lái xe bao lâu? Nếu con tôi lái xe đạp với nồng độ cồn 50 mg/100ml, phạt tiền và mất giấy phép như thế nào?
+- Đáp: Nếu lái xe máy với nồng độ cồn 80 mg/100ml, phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng và tước quyền sử dụng giấy phép lái xe từ 10 tháng đến 12 tháng. Nếu lái xe đạp với nồng độ cồn 50 mg/100ml, phạt tiền từ 300.000 đồng đến 400.000 đồng và không bị tước quyền sử dụng giấy phép lái xe.
+- ⚠ qua_dai (52 từ)
+- Ghi chú: Giả định xe máy là xe mô tô, xe đạp là xe thô sơ
+
+```json
+{"qid": "t3-so_sanh-027", "question": "Theo Nghị định 168/2024/NĐ-CP, nếu tôi lái xe máy và có nồng độ cồn 80 mg/100ml, tôi sẽ bị phạt tiền bao nhiêu và mất giấy phép lái xe bao lâu? Nếu con tôi lái xe đạp với nồng độ cồn 50 mg/100ml, phạt tiền và mất giấy phép như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Nếu lái xe máy với nồng độ cồn 80 mg/100ml, phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng và tước quyền sử dụng giấy phép lái xe từ 10 tháng đến 12 tháng. Nếu lái xe đạp với nồng độ cồn 50 mg/100ml, phạt tiền từ 300.000 đồng đến 400.000 đồng và không bị tước quyền sử dụng giấy phép lái xe.", "gold_units": ["ND168-2024/D7/K9", "ND168-2024/D7/K12/b", "ND168-2024/D9/K3"], "required_numbers": [{"value": 8000000, "unit": "vnd"}, {"value": 10000000, "unit": "vnd"}, {"value": 10, "unit": "thang"}, {"value": 12, "unit": "thang"}, {"value": 300000, "unit": "vnd"}, {"value": 400000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-027:2"}
+```
+
+### W3-so_sanh-028 · tier A · vai: sinh viên đi xe máy · kiểu: tinh_huong_nguoi_khac · cosine TF-IDF 0.45
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K7, ND168-2024/D6/K7/a, ND168-2024/D6/K7/b, ND168-2024/D6/K7/c
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+7. Phạt tiền từ 12.000.000 đồng đến 14.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe chạy quá tốc độ quy định trên 35 km/h;
+b) Điều khiển xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ đi vào đường cao tốc;
+c) Dừng xe, đỗ xe trên đường cao tốc không đúng nơi quy định; không có báo hiệu bằng đèn khẩn cấp khi gặp sự cố kỹ thuật hoặc bất khả kháng khác buộc phải dừng xe, đỗ xe ở làn dừng xe khẩn cấp hoặc dải dừng xe khẩn cấp trên đường cao tốc; không có báo hiệu bằng đèn khẩn cấp, không đặt biển cảnh báo “Chú ý xe đỗ” (hoặc đèn cảnh báo) về phía sau xe khoảng cách tối thiểu 150 mét khi dừng xe, đỗ xe trong trường hợp gặp sự cố kỹ thuật hoặc bất khả kháng khác buộc phải dừng xe, đỗ xe trên một phần làn đường xe chạy trên đường cao tốc.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D6/K16/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K16/b
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+16. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+b) Thực hiện hành vi quy định tại điểm h khoản 5; khoản 6; điểm b khoản 7; điểm b, điểm c, điểm d khoản 9 Điều này bị trừ điểm giấy phép lái xe 04 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D6/K16/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K16/c
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+16. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+c) Thực hiện hành vi quy định tại điểm p khoản 5; điểm a, điểm c khoản 7; khoản 8 Điều này bị trừ điểm giấy phép lái xe 06 điểm;
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D8/K3, ND168-2024/D8/K3/a, ND168-2024/D8/K3/b, ND168-2024/D8/K3/c, ND168-2024/D8/K3/d, ND168-2024/D8/K3/đ
+
+Điều 8. Xử phạt người điều khiển xe máy chuyên dùng vi phạm quy tắc giao thông đường bộ
+3. Phạt tiền từ 800.000 đồng đến 1.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Chạy quá tốc độ quy định từ 05 km/h đến dưới 10 km/h;
+b) Sử dụng còi, rú ga liên tục; sử dụng còi hơi, sử dụng đèn chiếu xa khi gặp người đi bộ qua đường hoặc khi đi trên đoạn đường qua khu dân cư có hệ thống chiếu sáng đang hoạt động hoặc khi gặp xe đi ngược chiều (trừ trường hợp dải phân cách có khả năng chống chói) hoặc khi chuyển hướng xe tại nơi đường giao nhau, trừ các xe ưu tiên đang đi làm nhiệm vụ theo quy định;
+c) Không sử dụng hoặc sử dụng không đủ đèn chiếu sáng trong thời gian từ 18 giờ ngày hôm trước đến 06 giờ ngày hôm sau hoặc khi có sương mù, khói, bụi, trời mưa, thời tiết xấu làm hạn chế tầm nhìn;
+d) Tránh xe, vượt xe không đúng quy định; không nhường đường cho xe đi ngược chiều theo quy định tại nơi đường hẹp, đường dốc, nơi có chướng ngại vật;
+đ) Điều khiển xe chạy dưới tốc độ tối thiểu trên đoạn đường bộ có quy định tốc độ tối thiểu cho phép.
+
+[0] 12.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D6/K7)
+[1] 14.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D6/K7)
+[2] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D6/K16/b)
+[3] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D6/K16/c)
+[4] 800.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D8/K3)
+[5] 1.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D8/K3)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi nghe anh tôi lái xe máy chạy quá tốc độ quy định từ 5 đến dưới 10 km/h, còn anh tôi lái xe ô tô chạy quá 35 km/h, mức phạt tiền và điểm trừ của hai trường hợp là bao nhiêu?
+- Đáp: Mức phạt tiền cho xe ô tô là từ 12.000.000 đồng đến 14.000.000 đồng và trừ 04 điểm giấy phép lái xe. Mức phạt tiền cho xe máy là từ 800.000 đồng đến 1.000.000 đồng, không có trừ điểm. (khoản 3 Điều 28 Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “chạy quá tốc độ quy định …”
+- Ghi chú: giả định rằng xe máy là xe mô tô
+
+```json
+{"qid": "t3-so_sanh-028", "question": "Tôi nghe anh tôi lái xe máy chạy quá tốc độ quy định từ 5 đến dưới 10 km/h, còn anh tôi lái xe ô tô chạy quá 35 km/h, mức phạt tiền và điểm trừ của hai trường hợp là bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền cho xe ô tô là từ 12.000.000 đồng đến 14.000.000 đồng và trừ 04 điểm giấy phép lái xe. Mức phạt tiền cho xe máy là từ 800.000 đồng đến 1.000.000 đồng, không có trừ điểm. (khoản 3 Điều 28 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D6/K7", "ND168-2024/D6/K16/b", "ND168-2024/D8/K3"], "required_numbers": [{"value": 12000000, "unit": "vnd"}, {"value": 14000000, "unit": "vnd"}, {"value": 4, "unit": "diem"}, {"value": 800000, "unit": "vnd"}, {"value": 1000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-028:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi thấy anh em tôi lái xe máy chạy quá tốc độ quy định từ 5 đến dưới 10 km/h, và anh em tôi lái xe ô tô chạy quá 35 km/h, mức phạt tiền và điểm trừ của hai trường hợp là bao nhiêu?
+- Đáp: Mức phạt tiền cho xe ô tô là từ 12.000.000 đồng đến 14.000.000 đồng và trừ 04 điểm giấy phép lái xe. Mức phạt tiền cho xe máy là từ 800.000 đồng đến 1.000.000 đồng, không có trừ điểm. (khoản 3 Điều 28 Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “chạy quá tốc độ quy định …”
+- Ghi chú: giả định rằng xe máy là xe mô tô
+
+```json
+{"qid": "t3-so_sanh-028", "question": "Tôi thấy anh em tôi lái xe máy chạy quá tốc độ quy định từ 5 đến dưới 10 km/h, và anh em tôi lái xe ô tô chạy quá 35 km/h, mức phạt tiền và điểm trừ của hai trường hợp là bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền cho xe ô tô là từ 12.000.000 đồng đến 14.000.000 đồng và trừ 04 điểm giấy phép lái xe. Mức phạt tiền cho xe máy là từ 800.000 đồng đến 1.000.000 đồng, không có trừ điểm. (khoản 3 Điều 28 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D6/K7", "ND168-2024/D6/K16/b", "ND168-2024/D8/K3"], "required_numbers": [{"value": 12000000, "unit": "vnd"}, {"value": 14000000, "unit": "vnd"}, {"value": 4, "unit": "diem"}, {"value": 800000, "unit": "vnd"}, {"value": 1000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-028:2"}
+```
+
+### W3-so_sanh-029 · tier A · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_ban_than · cosine TF-IDF 0.41
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D12/K8
+
+Điều 12. Xử phạt, trừ điểm giấy phép lái xe các hành vi vi phạm khác về quy tắc giao thông đường bộ; sử dụng lòng đường, vỉa hè vào mục đích khác
+8. Phạt tiền từ 2.000.000 đồng đến 4.000.000 đồng đối với cá nhân, từ 4.000.000 đồng đến 8.000.000 đồng đối với tổ chức cố ý thay đổi, xóa dấu vết hiện trường vụ tai nạn giao thông, trừ các hành vi vi phạm quy định tại điểm g khoản 4, khoản 8 Điều 6; điểm b khoản 5, điểm c khoản 9 Điều 7; điểm d khoản 5, điểm c khoản 8 Điều 8; điểm a khoản 4 Điều 9 của Nghị định này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K4/g)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K4/g
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+4. Phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+g) Điều khiển xe có liên quan trực tiếp đến vụ tai nạn giao thông mà không dừng ngay phương tiện, không giữ nguyên hiện trường, không trợ giúp người bị nạn, trừ hành vi vi phạm quy định tại khoản 8 Điều này;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K8)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K8
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+8. Phạt tiền từ 16.000.000 đồng đến 18.000.000 đồng đối với người điều khiển xe thực hiện hành vi vi phạm gây tai nạn giao thông không dừng ngay phương tiện, không giữ nguyên hiện trường, không trợ giúp người bị nạn, không ở lại hiện trường hoặc không đến trình báo ngay với cơ quan công an, Ủy ban nhân dân nơi gần nhất.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D7/K5/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K5/b
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+5. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+b) Chuyển hướng không nhường quyền đi trước cho: người đi bộ, xe lăn của người khuyết tật qua đường tại nơi có vạch kẻ đường dành cho người đi bộ; xe thô sơ đang đi trên phần đường dành cho xe thô sơ;
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K15
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+15. Phạt tiền từ 30.000.000 đồng đến 40.000.000 đồng đối với cá nhân, từ 60.000.000 đồng đến 80.000.000 đồng đối với tổ chức là chủ xe ô tô, xe máy chuyên dùng và các loại xe tương tự xe ô tô khi giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 7 Điều 21 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 7 Điều 21 của Nghị định này.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/c
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+c) Thực hiện hành vi quy định tại điểm e khoản 7, điểm b khoản 11, điểm a khoản 13, khoản 15, điểm b khoản 16 Điều này mà phương tiện đó có thùng xe, khối lượng hàng hóa cho phép chuyên chở không đúng theo quy định hiện hành thì còn bị tước quyền sử dụng chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường và tem kiểm định của phương tiện từ 01 tháng đến 03 tháng;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/đ
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+đ) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chở vượt trên 50% số người quy định được phép chở của phương tiện còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có). Thực hiện hành vi quy định tại điểm a, điểm b khoản 11; điểm a, điểm b, điểm c, điểm đ khoản 13; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16 Điều này còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có),
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/e)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/e
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+e) Thực hiện hành vi quy định tại khoản 15 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 08 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D21/K7)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K7
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+7. Phạt tiền từ 7.000.000 đồng đến 8.000.000 đồng đối với một trong các hành vi sau đây:
+
+[0] 2.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D12/K8)
+[1] 4.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D12/K8)
+[2] 8.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D12/K8)
+[3] 30.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K15)
+[4] 40.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K15)
+[5] 60.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K15)
+[6] 80.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K15)
+[7] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/c)
+[8] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/c)
+[9] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/đ)
+[10] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/đ)
+[11] 08 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/e)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi có con 12 tuổi, anh ấy lái xe ô tô và đã không dừng ngay sau tai nạn, còn con tôi lái xe máy và cũng không dừng ngay. Tôi muốn biết mức phạt tiền của mỗi người là bao nhiêu và ai bị phạt nặng hơn?
+- Đáp: Người lái xe ô tô sẽ bị phạt từ 2.000.000 đồng đến 4.000.000 đồng, trong khi người lái xe máy sẽ bị phạt từ 1.000.000 đồng đến 2.000.000 đồng. Do đó, người lái xe ô tô bị phạt nặng hơn.
+- Ghi chú: Giả định con tôi lái xe máy, người lái xe ô tô là người khác
+
+```json
+{"qid": "t3-so_sanh-029", "question": "Tôi có con 12 tuổi, anh ấy lái xe ô tô và đã không dừng ngay sau tai nạn, còn con tôi lái xe máy và cũng không dừng ngay. Tôi muốn biết mức phạt tiền của mỗi người là bao nhiêu và ai bị phạt nặng hơn?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Người lái xe ô tô sẽ bị phạt từ 2.000.000 đồng đến 4.000.000 đồng, trong khi người lái xe máy sẽ bị phạt từ 1.000.000 đồng đến 2.000.000 đồng. Do đó, người lái xe ô tô bị phạt nặng hơn.", "gold_units": ["ND168-2024/D12/K8", "ND168-2024/D7/K5/b"], "required_numbers": [{"value": 2000000, "unit": "vnd"}, {"value": 4000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-029:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi là chủ xe ô tô chuyên dùng và đã giao xe cho người khác điều khiển vi phạm quy định, trong khi tôi cũng là chủ xe máy chuyên dùng và đã cho người khác điều khiển vi phạm. Tôi muốn biết mức phạt tiền của chủ xe ô tô và chủ xe máy là bao nhiêu và ai bị phạt nặng hơn?
+- Đáp: Chủ xe ô tô chuyên dùng sẽ bị phạt từ 30.000.000 đồng đến 40.000.000 đồng, trong khi chủ xe máy chuyên dùng sẽ bị phạt từ 60.000.000 đồng đến 80.000.000 đồng. Do đó, chủ xe máy bị phạt nặng hơn.
+- ⚠ qua_dai (66 từ)
+- Ghi chú: Giả định chủ xe máy là người khác
+
+```json
+{"qid": "t3-so_sanh-029", "question": "Công ty tôi là chủ xe ô tô chuyên dùng và đã giao xe cho người khác điều khiển vi phạm quy định, trong khi tôi cũng là chủ xe máy chuyên dùng và đã cho người khác điều khiển vi phạm. Tôi muốn biết mức phạt tiền của chủ xe ô tô và chủ xe máy là bao nhiêu và ai bị phạt nặng hơn?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Chủ xe ô tô chuyên dùng sẽ bị phạt từ 30.000.000 đồng đến 40.000.000 đồng, trong khi chủ xe máy chuyên dùng sẽ bị phạt từ 60.000.000 đồng đến 80.000.000 đồng. Do đó, chủ xe máy bị phạt nặng hơn.", "gold_units": ["ND168-2024/D32/K15"], "required_numbers": [{"value": 30000000, "unit": "vnd"}, {"value": 40000000, "unit": "vnd"}, {"value": 60000000, "unit": "vnd"}, {"value": 80000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-029:2"}
+```
+
+### W3-so_sanh-030 · tier B · vai: người lớn tuổi đi xe đạp điện · kiểu: ngan · cosine TF-IDF 0.43
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D5/K1
+
+Điều 5. Xử phạt các hành vi vi phạm quy định về sử dụng, khai thác trong phạm vi đất dành cho kết cấu hạ tầng đường bộ
+1. Phạt tiền từ 500.000 đồng đến 1.000.000 đồng đối với cá nhân, từ 1.000.000 đồng đến 2.000.000 đồng đối với tổ chức thực hiện hành vi vi phạm trồng cây trong phạm vi hành lang an toàn đường bộ làm che khuất tầm nhìn của người điều khiển phương tiện giao thông hoặc che lấp báo hiệu đường bộ, trừ hành vi vi phạm quy định tại điểm c khoản 4 Điều này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D5/K4/c)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D5/K4/c
+
+Điều 5. Xử phạt các hành vi vi phạm quy định về sử dụng, khai thác trong phạm vi đất dành cho kết cấu hạ tầng đường bộ
+4. Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng đối với cá nhân, từ 8.000.000 đồng đến 10.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+c) Tự ý gắn, treo, lắp đặt, để vào công trình báo hiệu đường bộ nội dung không liên quan tới ý nghĩa, mục đích của báo hiệu đường bộ, làm sai lệch hoặc mất tác dụng của báo hiệu đường bộ;
+
+### Nguồn 2
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D7/K3, ND336-2025/D7/K3/a, ND336-2025/D7/K3/b, ND336-2025/D7/K3/c
+
+Điều 7. Xử phạt hành vi vi phạm quy định về đào tạo thẩm tra viên, điều kiện kinh doanh dịch vụ thẩm tra an toàn giao thông đường bộ
+3. Phạt tiền từ 20.000.000 đồng đến 30.000.000 đồng đối với tổ chức kinh doanh dịch vụ thẩm tra an toàn giao thông đường bộ thực hiện một trong các hành vi vi phạm sau đây:
+a) Không độc lập với đơn vị thi công, tổ chức tư vấn thiết kế theo quy định;
+b) Sử dụng người không có chứng chỉ thẩm tra viên an toàn giao thông đường bộ hoặc có chứng chỉ nhưng không còn giá trị sử dụng để thẩm tra an toàn giao thông đường bộ;
+c) Không đáp ứng điều kiện về năng lực khi thẩm tra đối với dự án nhóm C, công trình đường bộ đang khai thác theo quy định.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND336-2025/D7/K5/b)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D7/K5/b
+
+Điều 7. Xử phạt hành vi vi phạm quy định về đào tạo thẩm tra viên, điều kiện kinh doanh dịch vụ thẩm tra an toàn giao thông đường bộ
+5. Ngoài việc bị phạt tiền, tổ chức thực hiện hành vi vi phạm còn bị áp dụng hình thức xử phạt bổ sung:
+b) Tổ chức kinh doanh dịch vụ thẩm tra an toàn giao thông đường bộ thực hiện hành vi vi phạm quy định tại khoản 3, khoản 4 Điều này còn bị đình chỉ hoạt động thẩm tra an toàn giao thông đường bộ từ 01 tháng đến 03 tháng.
+
+[0] 500.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D5/K1)
+[1] 1.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D5/K1)
+[2] 2.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D5/K1)
+[3] 20.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D7/K3)
+[4] 30.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D7/K3)
+[5] 01 tháng (thời hạn đình chỉ tối thiểu, nêu tại ND336-2025/D7/K5/b)
+[6] 03 tháng (thời hạn đình chỉ tối đa, nêu tại ND336-2025/D7/K5/b)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi đi xe đạp điện, muốn biết mức phạt tiền khi trồng cây che tầm nhìn so với khi tự ý gắn biển báo không liên quan tới ý nghĩa của biển báo, ai nặng hơn?
+- Đáp: Mức phạt tiền khi trồng cây che tầm nhìn là từ 500.000 đồng đến 1.000.000 đồng đối với cá nhân, trong khi mức phạt khi gắn biển báo sai lệch là từ 4.000.000 đồng đến 6.000.000 đồng đối với cá nhân. Do đó, vi phạm gắn biển báo nặng hơn.
+- ⚠ chep_nguyen_van: “không liên quan tới ý nghĩa …”
+
+```json
+{"qid": "t3-so_sanh-030", "question": "Tôi đi xe đạp điện, muốn biết mức phạt tiền khi trồng cây che tầm nhìn so với khi tự ý gắn biển báo không liên quan tới ý nghĩa của biển báo, ai nặng hơn?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "B", "answer": "Mức phạt tiền khi trồng cây che tầm nhìn là từ 500.000 đồng đến 1.000.000 đồng đối với cá nhân, trong khi mức phạt khi gắn biển báo sai lệch là từ 4.000.000 đồng đến 6.000.000 đồng đối với cá nhân. Do đó, vi phạm gắn biển báo nặng hơn.", "gold_units": ["ND336-2025/D5/K1", "ND336-2025/D5/K4/c"], "required_numbers": [{"value": 500000, "unit": "vnd"}, {"value": 1000000, "unit": "vnd"}, {"value": 2000000, "unit": "vnd"}, {"value": 20000000, "unit": "vnd"}, {"value": 30000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-030:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi muốn biết mức phạt tiền khi một công ty không độc lập với đơn vị thi công so với khi sử dụng thẩm tra viên không có chứng chỉ, ai nặng hơn?
+- Đáp: Cả hai vi phạm đều bị phạt tiền từ 20.000.000 đồng đến 30.000.000 đồng. Vì mức phạt giống nhau, không có sự khác biệt về mức nặng.
+- ⚠ chep_nguyen_van: “không độc lập với đơn vị …”
+
+```json
+{"qid": "t3-so_sanh-030", "question": "Tôi muốn biết mức phạt tiền khi một công ty không độc lập với đơn vị thi công so với khi sử dụng thẩm tra viên không có chứng chỉ, ai nặng hơn?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "B", "answer": "Cả hai vi phạm đều bị phạt tiền từ 20.000.000 đồng đến 30.000.000 đồng. Vì mức phạt giống nhau, không có sự khác biệt về mức nặng.", "gold_units": ["ND336-2025/D7/K3"], "required_numbers": [{"value": 20000000, "unit": "vnd"}, {"value": 30000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-030:2"}
+```
+
+### W3-so_sanh-031 · tier B · vai: tài xế công nghệ · kiểu: neu_van_ban · cosine TF-IDF 0.45
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D5/K3
+
+Điều 5. Xử phạt các hành vi vi phạm quy định về sử dụng, khai thác trong phạm vi đất dành cho kết cấu hạ tầng đường bộ
+3. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với cá nhân, từ 6.000.000 đồng đến 10.000.000 đồng đối với tổ chức thực hiện hành vi vi phạm dựng rạp, lều quán, cổng ra vào, tường rào các loại, công trình khác trái phép trong phạm vi đất dành cho kết cấu hạ tầng đường bộ trừ các hành vi vi phạm quy định tại điểm d khoản 4; điểm a khoản 5; điểm a, điểm b, điểm d khoản 6 Điều này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D5/K4/d)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D5/K4/d
+
+Điều 5. Xử phạt các hành vi vi phạm quy định về sử dụng, khai thác trong phạm vi đất dành cho kết cấu hạ tầng đường bộ
+4. Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng đối với cá nhân, từ 8.000.000 đồng đến 10.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+d) Dựng rạp, lều quán, công trình khác trái phép trong khu vực đô thị tại hầm đường bộ, cầu vượt, hầm cho người đi bộ, gầm cầu vượt, trừ hành vi vi phạm quy định tại điểm a khoản 6 Điều này;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D5/K5/a)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D5/K5/a
+
+Điều 5. Xử phạt các hành vi vi phạm quy định về sử dụng, khai thác trong phạm vi đất dành cho kết cấu hạ tầng đường bộ
+5. Phạt tiền từ 10.000.000 đồng đến 15.000.000 đồng đối với cá nhân, từ 20.000.000 đồng đến 30.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+a) Xây dựng, lắp đặt biển quảng cáo trong phạm vi hành lang an toàn đường bộ mà không có văn bản chấp thuận theo quy định, trừ hành vi vi phạm quy định tại điểm d khoản 6 Điều này;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D5/K6/a)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D5/K6/a
+
+Điều 5. Xử phạt các hành vi vi phạm quy định về sử dụng, khai thác trong phạm vi đất dành cho kết cấu hạ tầng đường bộ
+6. Phạt tiền từ 15.000.000 đồng đến 20.000.000 đồng đối với cá nhân, từ 30.000.000 đồng đến 40.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+a) Chiếm dụng đất của đường bộ hoặc đất hành lang an toàn đường bộ để xây dựng nhà ở;
+
+### Nguồn 2
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D8/K4, ND336-2025/D8/K4/a, ND336-2025/D8/K4/b, ND336-2025/D8/K4/c, ND336-2025/D8/K4/d
+
+Điều 8. Xử phạt các hành vi vi phạm quy định về thi công trong phạm vi bảo vệ kết cấu hạ tầng đường bộ
+4. Phạt tiền từ 7.000.000 đồng đến 10.000.000 đồng đối với cá nhân, từ 14.000.000 đồng đến 20.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+a) Thi công trên đường bộ đang khai thác không đặt đèn cảnh báo giao thông và chiếu sáng ban đêm;
+b) Thi công trên đường bộ đang khai thác có bố trí báo hiệu, rào chắn tạm thời tại nơi thi công nhưng không đầy đủ theo giấy phép thi công hoặc văn bản chấp thuận của cơ quan có thẩm quyền, trừ hành vi vi phạm quy định tại điểm c khoản 5 Điều này;
+c) Thi công công trình trong phạm vi đất dành cho kết cấu hạ tầng đường bộ không có giấy phép thi công hoặc không có văn bản chấp thuận của cơ quan có thẩm quyền theo quy định;
+d) Thi công công trình trên đường bộ đang khai thác không đúng giấy phép thi công gây hư hỏng, hủy hoại công trình đường bộ đang khai thác.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D8/K5/c)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D8/K5/c
+
+Điều 8. Xử phạt các hành vi vi phạm quy định về thi công trong phạm vi bảo vệ kết cấu hạ tầng đường bộ
+5. Phạt tiền từ 10.000.000 đồng đến 15.000.000 đồng đối với cá nhân, từ 20.000.000 đồng đến 30.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+c) Thi công trên đường bộ đang khai thác không bố trí báo hiệu, rào chắn tạm thời tại nơi thi công theo giấy phép thi công hoặc văn bản chấp thuận của cơ quan có thẩm quyền;
+
+[0] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D5/K3)
+[1] 5.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D5/K3)
+[2] 6.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D5/K3)
+[3] 10.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D5/K3)
+[4] 7.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D8/K4)
+[5] 10.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D8/K4)
+[6] 14.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D8/K4)
+[7] 20.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D8/K4)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, nếu tôi xây dựng một rạp, lều quán trái phép trên đất dành cho kết cấu hạ tầng đường bộ, mức phạt tiền của cá nhân và tổ chức là bao nhiêu?
+- Đáp: Nếu cá nhân xây dựng rạp, lều quán trái phép, mức phạt tiền là từ 3.000.000 đồng đến 5.000.000 đồng. Nếu tổ chức thực hiện, mức phạt tiền là từ 6.000.000 đồng đến 10.000.000 đồng. Do đó, tổ chức bị phạt nặng hơn.
+- ⚠ chep_nguyen_van: “cho kết cấu hạ tầng đường …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-so_sanh-031", "question": "Tôi là tài xế công nghệ, nếu tôi xây dựng một rạp, lều quán trái phép trên đất dành cho kết cấu hạ tầng đường bộ, mức phạt tiền của cá nhân và tổ chức là bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "B", "answer": "Nếu cá nhân xây dựng rạp, lều quán trái phép, mức phạt tiền là từ 3.000.000 đồng đến 5.000.000 đồng. Nếu tổ chức thực hiện, mức phạt tiền là từ 6.000.000 đồng đến 10.000.000 đồng. Do đó, tổ chức bị phạt nặng hơn.", "gold_units": ["ND336-2025/D5/K3"], "required_numbers": [{"value": 3000000, "unit": "vnd"}, {"value": 5000000, "unit": "vnd"}, {"value": 6000000, "unit": "vnd"}, {"value": 10000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-031:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là tài xế công nghệ, khi thi công trên đường bộ mà không đặt đèn cảnh báo giao thông, mức phạt tiền của cá nhân và tổ chức là bao nhiêu?
+- Đáp: Nếu cá nhân thi công mà không đặt đèn cảnh báo, mức phạt tiền là từ 7.000.000 đồng đến 10.000.000 đồng. Nếu tổ chức thực hiện, mức phạt tiền là từ 14.000.000 đồng đến 20.000.000 đồng. Vì vậy, tổ chức bị phạt nặng hơn.
+- ⚠ chep_nguyen_van: “không đặt đèn cảnh báo giao …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-so_sanh-031", "question": "Tôi là tài xế công nghệ, khi thi công trên đường bộ mà không đặt đèn cảnh báo giao thông, mức phạt tiền của cá nhân và tổ chức là bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "B", "answer": "Nếu cá nhân thi công mà không đặt đèn cảnh báo, mức phạt tiền là từ 7.000.000 đồng đến 10.000.000 đồng. Nếu tổ chức thực hiện, mức phạt tiền là từ 14.000.000 đồng đến 20.000.000 đồng. Vì vậy, tổ chức bị phạt nặng hơn.", "gold_units": ["ND336-2025/D8/K4"], "required_numbers": [{"value": 7000000, "unit": "vnd"}, {"value": 10000000, "unit": "vnd"}, {"value": 14000000, "unit": "vnd"}, {"value": 20000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-031:2"}
+```
+
+### W3-so_sanh-032 · tier A · vai: tài xế công nghệ · kiểu: nhieu_dieu_kien · cosine TF-IDF 0.44
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K8, ND168-2024/D13/K8/a, ND168-2024/D13/K8/b
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+8. Phạt tiền từ 20.000.000 đồng đến 26.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe gắn biển số không đúng với chứng nhận đăng ký xe hoặc gắn biển số không do cơ quan có thẩm quyền cấp (kể cả rơ moóc và sơ mi rơ moóc);
+b) Điều khiển xe không gắn đủ biển số hoặc gắn biển số không đúng vị trí, không đúng quy cách theo quy định; gắn biển số không rõ chữ, số hoặc sơn, dán lên chữ, số của biển số xe; gắn biển số bị bẻ cong, che lấp, làm thay đổi chữ, số, màu sắc (của chữ, số, nền biển số xe), hình dạng, kích thước của biển số xe; sử dụng chất liệu, vật liệu, thiết bị làm thay đổi khả năng nhận diện thông tin biển số xe của phương tiện, thiết bị kỹ thuật nghiệp vụ (kể cả rơ moóc và sơ mi rơ moóc).
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D13/K13/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K13/b
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+b) Thực hiện hành vi quy định tại điểm b khoản 7, điểm b khoản 8 Điều này bị trừ điểm giấy phép lái xe 06 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D13/K13/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K13/c
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+c) Thực hiện hành vi quy định tại điểm a khoản 8 Điều này bị trừ điểm giấy phép lái xe 10 điểm.
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K8, ND168-2024/D32/K8/a, ND168-2024/D32/K8/b, ND168-2024/D32/K8/c, ND168-2024/D32/K8/d, ND168-2024/D32/K8/đ, ND168-2024/D32/K8/e, ND168-2024/D32/K8/g, ND168-2024/D32/K8/h
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+8. Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng đối với cá nhân, từ 8.000.000 đến 12.000.000 đồng đối với tổ chức là chủ xe mô tô, xe gắn máy và các loại xe tương tự xe mô tô, các loại xe tương tự xe gắn máy thực hiện một trong các hành vi vi phạm sau đây:
+a) Tẩy xóa, sửa chữa hoặc giả mạo hồ sơ đăng ký xe nhưng chưa đến mức truy cứu trách nhiệm hình sự;
+b) Tự ý thay đổi khung, máy, hình dáng, kích thước, đặc tính của xe;
+c) Khai báo không đúng sự thật hoặc sử dụng các giấy tờ, tài liệu giả để được cấp lại biển số xe, chứng nhận đăng ký xe nhưng chưa đến mức bị truy cứu trách nhiệm hình sự;
+d) Không làm thủ tục thu hồi chứng nhận đăng ký xe, biển số xe theo quy định;
+đ) Đưa phương tiện không có chứng nhận đăng ký xe (hoặc bản sao chứng nhận đăng ký xe có chứng thực kèm theo bản gốc giấy biên nhận của tổ chức tín dụng, chi nhánh ngân hàng nước ngoài trong trường hợp tổ chức tín dụng, chi nhánh ngân hàng nước ngoài giữ bản gốc chứng nhận đăng ký xe) tham gia giao thông hoặc có nhưng đã hết hạn sử dụng, hết hiệu lực; đưa phương tiện có chứng nhận đăng ký xe tạm thời, phương tiện có phạm vi hoạt động hạn chế tham gia giao thông quá thời hạn, tuyến đường, phạm vi cho phép;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/a
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm đ, điểm g, điểm m khoản 7; điểm đ, điểm e khoản 8; điểm b, điểm c, điểm d, điểm đ khoản 9; điểm a, điểm b, điểm đ khoản 11; điểm a khoản 12; điểm c khoản 13; điểm đ, điểm h khoản 14 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/đ
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+đ) Thực hiện hành vi quy định tại điểm h khoản 8, điểm b khoản 12 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 06 điểm;
+
+[0] 20.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D13/K8)
+[1] 26.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D13/K8)
+[2] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D13/K13/b)
+[3] 10 điểm (số điểm bị trừ, nêu tại ND168-2024/D13/K13/c)
+[4] 4.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K8)
+[5] 6.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K8)
+[6] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/a)
+[7] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/đ)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Nếu tôi lái xe ô tô gắn biển số sai, tôi sẽ bị phạt tiền bao nhiêu và trừ bao nhiêu điểm? Nếu chủ xe mô tô làm việc tương tự, mức phạt và trừ điểm là bao nhiêu?
+- Đáp: Bạn sẽ bị phạt tiền từ 20.000.000 đồng đến 26.000.000 đồng và trừ 06 điểm. Chủ xe mô tô sẽ bị phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng và trừ 02 điểm.
+- Ghi chú: Giả định người hỏi là tài xế công nghệ, nên câu hỏi dùng ngôn ngữ thân thiện
+
+```json
+{"qid": "t3-so_sanh-032", "question": "Nếu tôi lái xe ô tô gắn biển số sai, tôi sẽ bị phạt tiền bao nhiêu và trừ bao nhiêu điểm? Nếu chủ xe mô tô làm việc tương tự, mức phạt và trừ điểm là bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Bạn sẽ bị phạt tiền từ 20.000.000 đồng đến 26.000.000 đồng và trừ 06 điểm. Chủ xe mô tô sẽ bị phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng và trừ 02 điểm.", "gold_units": ["ND168-2024/D13/K8", "ND168-2024/D13/K13/b", "ND168-2024/D32/K8", "ND168-2024/D32/K21/a"], "required_numbers": [{"value": 20000000, "unit": "vnd"}, {"value": 26000000, "unit": "vnd"}, {"value": 6, "unit": "diem"}, {"value": 10, "unit": "diem"}, {"value": 4000000, "unit": "vnd"}, {"value": 6000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-032:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu tôi lái xe ô tô gắn biển số không đúng, tôi sẽ bị phạt tiền bao nhiêu và trừ bao nhiêu điểm? Nếu chủ xe mô tô tẩy xóa hồ sơ đăng ký, mức phạt và trừ điểm là bao nhiêu?
+- Đáp: Bạn sẽ bị phạt tiền từ 20.000.000 đồng đến 26.000.000 đồng và trừ 06 điểm. Chủ xe mô tô sẽ bị phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng và trừ 02 điểm.
+- Ghi chú: Giả định người hỏi là tài xế công nghệ, nên câu hỏi dùng ngôn ngữ thân thiện
+
+```json
+{"qid": "t3-so_sanh-032", "question": "Nếu tôi lái xe ô tô gắn biển số không đúng, tôi sẽ bị phạt tiền bao nhiêu và trừ bao nhiêu điểm? Nếu chủ xe mô tô tẩy xóa hồ sơ đăng ký, mức phạt và trừ điểm là bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Bạn sẽ bị phạt tiền từ 20.000.000 đồng đến 26.000.000 đồng và trừ 06 điểm. Chủ xe mô tô sẽ bị phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng và trừ 02 điểm.", "gold_units": ["ND168-2024/D13/K8", "ND168-2024/D13/K13/b", "ND168-2024/D32/K8", "ND168-2024/D32/K21/a"], "required_numbers": [{"value": 20000000, "unit": "vnd"}, {"value": 26000000, "unit": "vnd"}, {"value": 6, "unit": "diem"}, {"value": 10, "unit": "diem"}, {"value": 4000000, "unit": "vnd"}, {"value": 6000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-032:2"}
+```
+
+### W3-so_sanh-033 · tier A · vai: cán bộ phường · kiểu: neu_van_ban · cosine TF-IDF 0.57
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K8
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+8. Phạt tiền từ 16.000.000 đồng đến 18.000.000 đồng đối với người điều khiển xe thực hiện hành vi vi phạm gây tai nạn giao thông không dừng ngay phương tiện, không giữ nguyên hiện trường, không trợ giúp người bị nạn, không ở lại hiện trường hoặc không đến trình báo ngay với cơ quan công an, Ủy ban nhân dân nơi gần nhất.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D6/K16/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K16/c
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+16. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+c) Thực hiện hành vi quy định tại điểm p khoản 5; điểm a, điểm c khoản 7; khoản 8 Điều này bị trừ điểm giấy phép lái xe 06 điểm;
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D8/K8, ND168-2024/D8/K8/a, ND168-2024/D8/K8/b, ND168-2024/D8/K8/c, ND168-2024/D8/K8/d
+
+Điều 8. Xử phạt người điều khiển xe máy chuyên dùng vi phạm quy tắc giao thông đường bộ
+8. Phạt tiền từ 14.000.000 đồng đến 16.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe không quan sát, giảm tốc độ hoặc dừng lại để bảo đảm an toàn theo quy định mà gây tai nạn giao thông; điều khiển xe chạy quá tốc độ quy định gây tai nạn giao thông; dừng xe, đỗ xe, quay đầu xe, lùi xe, tránh xe, vượt xe, chuyển hướng, chuyển làn đường không đúng quy định gây tai nạn giao thông; mở cửa xe, để cửa xe mở không bảo đảm an toàn gây tai nạn giao thông; không đi đúng phần đường, làn đường, không giữ khoảng cách an toàn giữa hai xe theo quy định gây tai nạn giao thông hoặc đi vào đường có biển báo hiệu có nội dung cấm đi vào đối với loại phương tiện đang điều khiển, đi ngược chiều của đường một chiều, đi ngược chiều trên đường có biển “Cấm đi ngược chiều” gây tai nạn giao thông, trừ các hành vi vi phạm quy định tại điểm b khoản 8, điểm đ khoản 9 Điều này;
+b) Điều khiển xe máy chuyên dùng có tốc độ thiết kế nhỏ hơn tốc độ tối thiểu quy định đối với đường cao tốc đi vào đường cao tốc, trừ phương tiện, thiết bị phục vụ việc quản lý, bảo trì đường cao tốc;
+c) Gây tai nạn giao thông không dừng ngay phương tiện, không giữ nguyên hiện trường, không trợ giúp người bị nạn, không ở lại hiện trường hoặc không đến trình báo ngay với cơ quan công an, Ủy ban nhân dân nơi gần nhất;
+…
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D8/K9/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D8/K9/đ
+
+Điều 8. Xử phạt người điều khiển xe máy chuyên dùng vi phạm quy tắc giao thông đường bộ
+9. Phạt tiền từ 18.000.000 đồng đến 20.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+đ) Lùi xe trên đường cao tốc; đi ngược chiều trên đường cao tốc; quay đầu xe trên đường cao tốc;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D8/K1/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D8/K1/a
+
+Điều 8. Xử phạt người điều khiển xe máy chuyên dùng vi phạm quy tắc giao thông đường bộ
+1. Phạt tiền từ 400.000 đồng đến 600.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Không chấp hành hiệu lệnh, chỉ dẫn của biển báo hiệu, vạch kẻ đường, trừ các hành vi vi phạm quy định tại điểm a, điểm b, điểm c, điểm đ khoản 2; điểm a, điểm d, điểm đ khoản 3; khoản 4; điểm a, điểm c khoản 5; điểm a, điểm b, điểm d, điểm đ, điểm e, điểm i khoản 6; điểm c, điểm d khoản 7; điểm a, điểm b khoản 8; điểm đ khoản 9 Điều này;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D8/K1/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D8/K1/b
+
+Điều 8. Xử phạt người điều khiển xe máy chuyên dùng vi phạm quy tắc giao thông đường bộ
+1. Phạt tiền từ 400.000 đồng đến 600.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+b) Không báo hiệu bằng đèn khẩn cấp hoặc không đặt biển cảnh báo “Chú ý xe đỗ” theo quy định trong trường hợp gặp sự cố kỹ thuật (hoặc bất khả kháng khác) buộc phải đỗ xe chiếm một phần đường xe chạy hoặc tại nơi không được phép đỗ xe, trừ hành vi vi phạm quy định tại điểm b khoản 6 Điều này.
+
+[0] 16.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D6/K8)
+[1] 18.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D6/K8)
+[2] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D6/K16/c)
+[3] 14.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D8/K8)
+[4] 16.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D8/K8)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Theo Nghị định 168/2024/NĐ-CP, mức phạt tiền khi một người điều khiển xe máy chạy ngược chiều trên đường cao tốc lớn hơn mức phạt khi điều khiển ô tô chạy ngược chiều trên đường cao tốc không?
+- Đáp: Mức phạt tiền khi điều khiển xe máy chạy ngược chiều trên đường cao tốc là từ 18.000.000 đồng đến 20.000.000 đồng. Không có quy định về mức phạt khi điều khiển ô tô chạy ngược chiều trên đường cao tốc.
+- ⚠ chep_nguyen_van: “ngược chiều trên đường cao tốc …”
+- Ghi chú: Giả định ô tô không có quy định về vi phạm này trong Nghị định 168/2024/NĐ-CP.
+
+```json
+{"qid": "t3-so_sanh-033", "question": "Theo Nghị định 168/2024/NĐ-CP, mức phạt tiền khi một người điều khiển xe máy chạy ngược chiều trên đường cao tốc lớn hơn mức phạt khi điều khiển ô tô chạy ngược chiều trên đường cao tốc không?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền khi điều khiển xe máy chạy ngược chiều trên đường cao tốc là từ 18.000.000 đồng đến 20.000.000 đồng. Không có quy định về mức phạt khi điều khiển ô tô chạy ngược chiều trên đường cao tốc.", "gold_units": ["ND168-2024/D8/K9/đ"], "required_numbers": [{"value": 16000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-033:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Theo Nghị định 168/2024/NĐ-CP, mức phạt tiền và điểm trừ khi một người điều khiển ô tô gây tai nạn giao thông mà không dừng ngay phương tiện, không giữ nguyên hiện trường, không trợ giúp người bị nạn, không ở lại hiện trường hoặc không báo ngay với cơ quan công an lớn hơn mức phạt khi điều khiển xe máy chuyên dùng gây tai nạn giao thông với cùng hành vi?
+- Đáp: Mức phạt tiền khi điều khiển ô tô là từ 16.000.000 đồng đến 18.000.000 đồng và trừ 06 điểm. Mức phạt tiền khi điều khiển xe máy chuyên dùng là từ 14.000.000 đồng đến 16.000.000 đồng. Do đó, mức phạt của ô tô lớn hơn mức phạt của xe máy.
+- ⚠ qua_dai (73 từ); chep_nguyen_van: “báo ngay với cơ quan công …”
+- Ghi chú: Giả định người điều khiển xe máy chuyên dùng thực hiện cùng hành vi gây tai nạn và không dừng ngay phương tiện.
+
+```json
+{"qid": "t3-so_sanh-033", "question": "Theo Nghị định 168/2024/NĐ-CP, mức phạt tiền và điểm trừ khi một người điều khiển ô tô gây tai nạn giao thông mà không dừng ngay phương tiện, không giữ nguyên hiện trường, không trợ giúp người bị nạn, không ở lại hiện trường hoặc không báo ngay với cơ quan công an lớn hơn mức phạt khi điều khiển xe máy chuyên dùng gây tai nạn giao thông với cùng hành vi?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền khi điều khiển ô tô là từ 16.000.000 đồng đến 18.000.000 đồng và trừ 06 điểm. Mức phạt tiền khi điều khiển xe máy chuyên dùng là từ 14.000.000 đồng đến 16.000.000 đồng. Do đó, mức phạt của ô tô lớn hơn mức phạt của xe máy.", "gold_units": ["ND168-2024/D6/K8", "ND168-2024/D6/K16/c", "ND168-2024/D8/K8"], "required_numbers": [{"value": 16000000, "unit": "vnd"}, {"value": 18000000, "unit": "vnd"}, {"value": 6, "unit": "diem"}, {"value": 14000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-033:2"}
+```
+
+### W3-so_sanh-034 · tier B · vai: cán bộ phường · kiểu: nhieu_dieu_kien · cosine TF-IDF 0.40
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D12/K6, ND336-2025/D12/K6/a, ND336-2025/D12/K6/b, ND336-2025/D12/K6/c, ND336-2025/D12/K6/d, ND336-2025/D12/K6/đ, ND336-2025/D12/K6/e, ND336-2025/D12/K6/g, ND336-2025/D12/K6/h, ND336-2025/D12/K6/i, ND336-2025/D12/K6/k, ND336-2025/D12/K6/l
+
+Điều 12. Xử phạt các hành vi vi phạm quy định về vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+6. Phạt tiền từ 12.000.000 đồng đến 16.000.000 đồng đối với cá nhân, từ 24.000.000 đồng đến 32.000.000 đồng đối với tổ chức kinh doanh vận tải, dịch vụ hỗ trợ vận tải thực hiện một trong các hành vi vi phạm sau đây:
+a) Kinh doanh vận tải bằng xe ô tô, xe bốn bánh có gắn động cơ mà không có giấy phép kinh doanh vận tải theo quy định, trừ hành vi quy định tại điểm i khoản này;
+b) Thực hiện không đúng hình thức kinh doanh đã đăng ký trong giấy phép kinh doanh vận tải;
+c) Thành lập, tổ chức điểm giao dịch đón, trả khách, bốc dỡ hàng hóa trái phép;
+d) Không xây dựng quy trình đảm bảo an toàn giao thông cho xe ra, vào bến hoặc có xây dựng nhưng thực hiện không đúng, không đầy đủ quy trình đảm bảo an toàn giao thông cho xe ra, vào bến; không niêm yết hoặc niêm yết không đầy đủ, chính xác các thông tin tại bến xe theo quy định;
+đ) Không gửi hóa đơn điện tử, không gửi nội dung tối thiểu của hợp đồng điện tử theo quy định;
+e) Không thực hiện hoặc thực hiện không đầy đủ, không đúng quy định về quản lý, áp dụng thông tin từ phần mềm quản lý bến xe khách;
+g) Sử dụng hợp đồng điện tử không có giao diện phần mềm cung cấp cho hành khách hoặc người thuê vận tải theo quy định hoặc có nhưng giao diện không bảo đảm các yêu cầu theo quy định;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND336-2025/D12/K8/b)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D12/K8/b
+
+Điều 12. Xử phạt các hành vi vi phạm quy định về vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+8. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung sau đây:
+b) Thực hiện hành vi vi phạm quy định tại điểm b khoản 3; điểm b khoản 4; điểm b, điểm h khoản 6 Điều này bị tước quyền sử dụng giấy phép kinh doanh vận tải từ 01 tháng đến 03 tháng.
+
+### Nguồn 2
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D5/K2, ND336-2025/D5/K2/a, ND336-2025/D5/K2/b, ND336-2025/D5/K2/c, ND336-2025/D5/K2/d
+
+Điều 5. Xử phạt các hành vi vi phạm quy định về sử dụng, khai thác trong phạm vi đất dành cho kết cấu hạ tầng đường bộ
+2. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với cá nhân, từ 2.000.000 đồng đến 4.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+a) Dựng cổng chào trái phép trong phạm vi đất dành cho kết cấu hạ tầng đường bộ gây ảnh hưởng đến an toàn giao thông đường bộ;
+b) Treo băng rôn trái phép trong phạm vi đất của đường bộ gây ảnh hưởng đến an toàn giao thông đường bộ;
+c) Đặt, treo biển hiệu, bảng quảng cáo trên đất của đường bộ ở đoạn đường ngoài đô thị trừ việc đặt, treo biển hiệu, bảng quảng cáo tại lòng đường và trừ hành vi vi phạm quy định tại điểm a khoản 5 Điều này;
+d) Đổ rác thải ra đường bộ không đúng nơi quy định, trừ hành vi vi phạm quy định tại điểm a khoản 4 Điều này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D5/K5/a)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D5/K5/a
+
+Điều 5. Xử phạt các hành vi vi phạm quy định về sử dụng, khai thác trong phạm vi đất dành cho kết cấu hạ tầng đường bộ
+5. Phạt tiền từ 10.000.000 đồng đến 15.000.000 đồng đối với cá nhân, từ 20.000.000 đồng đến 30.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+a) Xây dựng, lắp đặt biển quảng cáo trong phạm vi hành lang an toàn đường bộ mà không có văn bản chấp thuận theo quy định, trừ hành vi vi phạm quy định tại điểm d khoản 6 Điều này;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D5/K4/a)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D5/K4/a
+
+Điều 5. Xử phạt các hành vi vi phạm quy định về sử dụng, khai thác trong phạm vi đất dành cho kết cấu hạ tầng đường bộ
+4. Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng đối với cá nhân, từ 8.000.000 đồng đến 10.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+a) Đổ, để trái phép vật liệu, chất phế thải trong hành lang an toàn đường bộ;
+
+[0] 12.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D12/K6)
+[1] 16.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D12/K6)
+[2] 24.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D12/K6)
+[3] 32.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D12/K6)
+[4] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND336-2025/D12/K8/b)
+[5] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND336-2025/D12/K8/b)
+[6] 1.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D5/K2)
+[7] 2.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D5/K2)
+[8] 4.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D5/K2)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là cán bộ phường, muốn biết mức phạt tiền tối thiểu và tối đa khi một cá nhân vi phạm quy định về kinh doanh vận tải bằng xe ô tô mà không có giấy phép, so với khi vi phạm quy định về dựng cổng chào trái phép trên đất dành cho hạ tầng đường bộ.
+- Đáp: Mức phạt tiền tối thiểu cho cá nhân khi vi phạm kinh doanh vận tải bằng xe ô tô mà không có giấy phép là 12.000.000 đồng, tối đa là 16.000.000 đồng. Mức phạt tiền tối thiểu khi vi phạm dựng cổng chào trái phép là 1.000.000 đồng, tối đa là 2.000.000 đồng. Do đó, mức phạt cao hơn là vi phạm kinh doanh vận tải bằng xe ô tô mà không có giấy phép.
+- ⚠ qua_dai (58 từ); chep_nguyen_van: “doanh vận tải bằng xe ô …”
+
+```json
+{"qid": "t3-so_sanh-034", "question": "Tôi là cán bộ phường, muốn biết mức phạt tiền tối thiểu và tối đa khi một cá nhân vi phạm quy định về kinh doanh vận tải bằng xe ô tô mà không có giấy phép, so với khi vi phạm quy định về dựng cổng chào trái phép trên đất dành cho hạ tầng đường bộ.", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "B", "answer": "Mức phạt tiền tối thiểu cho cá nhân khi vi phạm kinh doanh vận tải bằng xe ô tô mà không có giấy phép là 12.000.000 đồng, tối đa là 16.000.000 đồng. Mức phạt tiền tối thiểu khi vi phạm dựng cổng chào trái phép là 1.000.000 đồng, tối đa là 2.000.000 đồng. Do đó, mức phạt cao hơn là vi phạm kinh doanh vận tải bằng xe ô tô mà không có giấy phép.", "gold_units": ["ND336-2025/D12/K6", "ND336-2025/D5/K2"], "required_numbers": [{"value": 12000000, "unit": "vnd"}, {"value": 16000000, "unit": "vnd"}, {"value": 1000000, "unit": "vnd"}, {"value": 2000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-034:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là cán bộ phường, muốn biết mức phạt tiền tối thiểu và tối đa khi một tổ chức kinh doanh vận tải bằng xe ô tô mà không có giấy phép, so với khi vi phạm quy định về đặt biển quảng cáo trái phép trên đất dành cho hạ tầng đường bộ.
+- Đáp: Mức phạt tiền tối thiểu cho tổ chức khi vi phạm kinh doanh vận tải bằng xe ô tô mà không có giấy phép là 24.000.000 đồng, tối đa là 32.000.000 đồng. Mức phạt tiền tối thiểu khi vi phạm đặt biển quảng cáo trái phép là 2.000.000 đồng, tối đa là 4.000.000 đồng. Do đó, mức phạt cao hơn là vi phạm kinh doanh vận tải bằng xe ô tô mà không có giấy phép.
+- ⚠ qua_dai (54 từ); chep_nguyen_van: “doanh vận tải bằng xe ô …”
+
+```json
+{"qid": "t3-so_sanh-034", "question": "Tôi là cán bộ phường, muốn biết mức phạt tiền tối thiểu và tối đa khi một tổ chức kinh doanh vận tải bằng xe ô tô mà không có giấy phép, so với khi vi phạm quy định về đặt biển quảng cáo trái phép trên đất dành cho hạ tầng đường bộ.", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "B", "answer": "Mức phạt tiền tối thiểu cho tổ chức khi vi phạm kinh doanh vận tải bằng xe ô tô mà không có giấy phép là 24.000.000 đồng, tối đa là 32.000.000 đồng. Mức phạt tiền tối thiểu khi vi phạm đặt biển quảng cáo trái phép là 2.000.000 đồng, tối đa là 4.000.000 đồng. Do đó, mức phạt cao hơn là vi phạm kinh doanh vận tải bằng xe ô tô mà không có giấy phép.", "gold_units": ["ND336-2025/D12/K6", "ND336-2025/D5/K2"], "required_numbers": [{"value": 24000000, "unit": "vnd"}, {"value": 32000000, "unit": "vnd"}, {"value": 4000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-034:2"}
+```
+
+### W3-so_sanh-035 · tier B · vai: tài xế công nghệ · kiểu: ngan · cosine TF-IDF 0.50
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D14/K2, ND336-2025/D14/K2/a, ND336-2025/D14/K2/b, ND336-2025/D14/K2/c, ND336-2025/D14/K2/d, ND336-2025/D14/K2/đ, ND336-2025/D14/K2/e
+
+Điều 14. Xử phạt các hành vi vi phạm về vận tải nội bộ
+2. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với cá nhân, từ 6.000.000 đồng đến 10.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+a) Không tổ chức thực hiện hoặc có tổ chức thực hiện nhưng không đầy đủ các nội dung về công tác quản lý an toàn giao thông theo quy định, trừ hành vi vi phạm quy định tại điểm b khoản này;
+b) Không theo dõi, giám sát hoạt động của lái xe, phương tiện trong suốt quá trình hoạt động vận tải nội bộ;
+c) Sử dụng xe ô tô chở người có giường nằm hai tầng để hoạt động trên các tuyến đường cấp V và cấp VI miền núi;
+d) Sử dụng xe vận tải nội bộ để kinh doanh vận tải hành khách, hàng hóa;
+đ) Sử dụng xe vận tải nội bộ để vận chuyển người, hàng hóa không đúng đối tượng theo quy định;
+e) Sử dụng xe ô tô thuộc sở hữu của thành viên hợp tác xã để vận tải nội bộ mà không có hợp đồng dịch vụ giữa thành viên với hợp tác xã theo quy định hoặc sử dụng xe ô tô không thuộc quyền sở hữu hoặc quyền sử dụng hợp pháp theo quy định.
+
+### Nguồn 2
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D8/K5, ND336-2025/D8/K5/a, ND336-2025/D8/K5/b, ND336-2025/D8/K5/c, ND336-2025/D8/K5/d, ND336-2025/D8/K5/đ, ND336-2025/D8/K5/e, ND336-2025/D8/K5/g
+
+Điều 8. Xử phạt các hành vi vi phạm quy định về thi công trong phạm vi bảo vệ kết cấu hạ tầng đường bộ
+5. Phạt tiền từ 10.000.000 đồng đến 15.000.000 đồng đối với cá nhân, từ 20.000.000 đồng đến 30.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+a) Thi công công trình trên đường đô thị không thực hiện đúng thời gian theo giấy phép thi công hoặc văn bản chấp thuận;
+b) Thi công trên đường bộ đang khai thác không thực hiện đầy đủ biện pháp tổ chức giao thông để xảy ra tai nạn giao thông;
+c) Thi công trên đường bộ đang khai thác không bố trí báo hiệu, rào chắn tạm thời tại nơi thi công theo giấy phép thi công hoặc văn bản chấp thuận của cơ quan có thẩm quyền;
+d) Không thực hiện việc di dời công trình khi cơ quan quản lý đường bộ có thẩm quyền, người quản lý, sử dụng đường bộ yêu cầu theo quy định;
+đ) Không thực hiện việc di dời công trình khi công trình ảnh hưởng đến an toàn giao thông đường bộ, an toàn công trình đường bộ mà không có biện pháp khắc phục;
+e) Không bàn giao công trình, hồ sơ hoàn thành công trình, quy trình bảo trì theo quy định sau khi hoàn thành xây dựng công trình đường bộ để bồi hoàn;
+g) Không hoàn trả hoặc hoàn trả kết cấu hạ tầng đường bộ bị ảnh hưởng không đáp ứng theo quy định.
+
+[0] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D14/K2)
+[1] 5.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D14/K2)
+[2] 6.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D14/K2)
+[3] 10.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D14/K2)
+[4] 10.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D8/K5)
+[5] 15.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D8/K5)
+[6] 20.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D8/K5)
+[7] 30.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D8/K5)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Nếu tôi là cá nhân không tổ chức quản lý an toàn giao thông khi vận chuyển nội bộ, còn công ty tôi làm điều đó thì mức phạt tiền khác nhau bao nhiêu?
+- Đáp: Cá nhân sẽ bị phạt từ 3.000.000 đồng đến 5.000.000 đồng, trong khi công ty sẽ bị phạt từ 6.000.000 đồng đến 10.000.000 đồng. Vì vậy, công ty nặng hơn cá nhân.
+- ⚠ chep_nguyen_van: “quản lý an toàn giao thông …”
+
+```json
+{"qid": "t3-so_sanh-035", "question": "Nếu tôi là cá nhân không tổ chức quản lý an toàn giao thông khi vận chuyển nội bộ, còn công ty tôi làm điều đó thì mức phạt tiền khác nhau bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "B", "answer": "Cá nhân sẽ bị phạt từ 3.000.000 đồng đến 5.000.000 đồng, trong khi công ty sẽ bị phạt từ 6.000.000 đồng đến 10.000.000 đồng. Vì vậy, công ty nặng hơn cá nhân.", "gold_units": ["ND336-2025/D14/K2"], "required_numbers": [{"value": 3000000, "unit": "vnd"}, {"value": 5000000, "unit": "vnd"}, {"value": 6000000, "unit": "vnd"}, {"value": 10000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-035:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Khi tôi là cá nhân không bố trí báo hiệu, rào chắn tạm thời trong công trình thi công trên đường bộ, còn công ty tôi làm điều đó thì mức phạt tiền khác nhau là bao nhiêu?
+- Đáp: Cá nhân sẽ bị phạt từ 10.000.000 đồng đến 15.000.000 đồng, trong khi công ty sẽ bị phạt từ 20.000.000 đồng đến 30.000.000 đồng. Vì vậy, công ty nặng hơn cá nhân.
+- ⚠ chep_nguyen_van: “báo hiệu rào chắn tạm thời …”
+
+```json
+{"qid": "t3-so_sanh-035", "question": "Khi tôi là cá nhân không bố trí báo hiệu, rào chắn tạm thời trong công trình thi công trên đường bộ, còn công ty tôi làm điều đó thì mức phạt tiền khác nhau là bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "B", "answer": "Cá nhân sẽ bị phạt từ 10.000.000 đồng đến 15.000.000 đồng, trong khi công ty sẽ bị phạt từ 20.000.000 đồng đến 30.000.000 đồng. Vì vậy, công ty nặng hơn cá nhân.", "gold_units": ["ND336-2025/D8/K5"], "required_numbers": [{"value": 10000000, "unit": "vnd"}, {"value": 15000000, "unit": "vnd"}, {"value": 20000000, "unit": "vnd"}, {"value": 30000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-035:2"}
+```
+
+### W3-so_sanh-036 · tier A · vai: tài xế xe tải · kiểu: nhieu_dieu_kien · cosine TF-IDF 0.42
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → 2027-12-31
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K3, ND168-2024/D21/K3/a, ND168-2024/D21/K3/b
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+3. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Không sử dụng thẻ nhận dạng lái xe để đăng nhập thông tin theo quy định hoặc sử dụng thẻ nhận dạng lái xe của lái xe khác để đăng nhập thông tin khi điều khiển xe tham gia kinh doanh vận tải hàng hóa;
+b) Điều khiển xe ô tô đầu kéo không lắp thiết bị ghi nhận hình ảnh người lái xe hoặc có lắp thiết bị ghi nhận hình ảnh người lái xe nhưng không có tác dụng trong quá trình xe tham gia giao thông theo quy định hoặc làm sai lệch dữ liệu của thiết bị ghi nhận hình ảnh người lái xe lắp trên xe ô tô.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D21/K13/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K13/a
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm b, điểm c, điểm đ khoản 2; điểm a khoản 3; khoản 4; khoản 5; điểm c, điểm d, điểm đ khoản 6 Điều này bị trừ điểm giấy phép lái xe (khi điều khiển xe ô tô) 02 điểm;
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K3, ND168-2024/D32/K3/a, ND168-2024/D32/K3/b, ND168-2024/D32/K3/c
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+3. Phạt tiền từ 800.000 đồng đến 1.000.000 đồng đối với cá nhân, từ 1.600.000 đồng đến 2.000.000 đồng đối với tổ chức là chủ xe mô tô, xe gắn máy và các loại xe tương tự xe mô tô, các loại xe tương tự xe gắn máy thực hiện một trong các hành vi vi phạm sau đây:
+a) Không làm thủ tục cấp chứng nhận đăng ký xe, biển số xe trong trường hợp thay đổi chủ xe theo quy định;
+b) Không làm thủ tục đổi chứng nhận đăng ký xe, biển số xe theo quy định;
+c) Lắp đặt, sử dụng thiết bị âm thanh, ánh sáng trên xe gây mất trật tự, an toàn giao thông đường bộ.
+
+[0] 1.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D21/K3)
+[1] 2.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D21/K3)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D21/K13/a)
+[3] 800.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K3)
+[4] 1.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K3)
+[5] 1.600.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K3)
+[6] 2.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K3)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Nếu tôi không lắp thiết bị ghi hình khi điều khiển xe tải, mức phạt tiền và điểm trừ là bao nhiêu, và so với chủ xe mô tô không đăng ký biển số thì khác nhau như thế nào?
+- Đáp: Mức phạt tiền cho người điều khiển xe tải là từ 1.000.000 đồng đến 2.000.000 đồng và bị trừ 02 điểm. Mức phạt tiền cho chủ xe mô tô là từ 800.000 đồng đến 1.000.000 đồng. Phạt tiền của người điều khiển xe tải cao hơn so với chủ xe mô tô.
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-so_sanh-036", "question": "Nếu tôi không lắp thiết bị ghi hình khi điều khiển xe tải, mức phạt tiền và điểm trừ là bao nhiêu, và so với chủ xe mô tô không đăng ký biển số thì khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền cho người điều khiển xe tải là từ 1.000.000 đồng đến 2.000.000 đồng và bị trừ 02 điểm. Mức phạt tiền cho chủ xe mô tô là từ 800.000 đồng đến 1.000.000 đồng. Phạt tiền của người điều khiển xe tải cao hơn so với chủ xe mô tô.", "gold_units": ["ND168-2024/D21/K3", "ND168-2024/D32/K3"], "required_numbers": [{"value": 1000000, "unit": "vnd"}, {"value": 2000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}, {"value": 800000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-036:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu tôi không dùng thẻ nhận dạng lái xe khi vận chuyển hàng, mức phạt tiền và điểm trừ là bao nhiêu, và so với chủ xe mô tô không làm thủ tục đổi chứng nhận thì khác nhau như thế nào?
+- Đáp: Mức phạt tiền cho người điều khiển xe tải là từ 1.000.000 đồng đến 2.000.000 đồng và bị trừ 02 điểm. Mức phạt tiền cho chủ xe mô tô là từ 800.000 đồng đến 1.000.000 đồng. Phạt tiền của người điều khiển xe tải cao hơn so với chủ xe mô tô.
+- ⚠ chep_nguyen_van: “không làm thủ tục đổi chứng …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-so_sanh-036", "question": "Nếu tôi không dùng thẻ nhận dạng lái xe khi vận chuyển hàng, mức phạt tiền và điểm trừ là bao nhiêu, và so với chủ xe mô tô không làm thủ tục đổi chứng nhận thì khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền cho người điều khiển xe tải là từ 1.000.000 đồng đến 2.000.000 đồng và bị trừ 02 điểm. Mức phạt tiền cho chủ xe mô tô là từ 800.000 đồng đến 1.000.000 đồng. Phạt tiền của người điều khiển xe tải cao hơn so với chủ xe mô tô.", "gold_units": ["ND168-2024/D21/K3", "ND168-2024/D32/K3"], "required_numbers": [{"value": 1000000, "unit": "vnd"}, {"value": 2000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}, {"value": 800000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-036:2"}
+```
+
+### W3-so_sanh-037 · tier B · vai: người lớn tuổi đi xe đạp điện · kiểu: tinh_huong_nguoi_khac · cosine TF-IDF 0.47
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D10/K3, ND336-2025/D10/K3/a, ND336-2025/D10/K3/b, ND336-2025/D10/K3/c, ND336-2025/D10/K3/d, ND336-2025/D10/K3/đ
+
+Điều 10. Xử phạt các hành vi vi phạm về thanh toán điện tử giao thông đường bộ, hoạt động trạm thu phí đường bộ
+3. Phạt tiền từ 10.000.000 đồng đến 20.000.000 đồng đối với cá nhân, từ 20.000.000 đồng đến 40.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+a) Không thực hiện đúng quy trình quản lý, vận hành trạm thu phí theo quy định để xảy ra tai nạn giao thông đối với các phương tiện khi phương tiện tham gia giao thông qua trạm thu phí, trừ hành vi vi phạm quy định tại điểm c khoản 5 Điều này;
+b) Phát hành chứng từ thu tiền sử dụng đường bộ không đúng đối tượng, đúng giá trị cho từng đối tượng phải trả tại trạm thu phí;
+c) Xâm nhập hoặc tìm cách xâm nhập hệ thống thanh toán điện tử giao thông đường bộ;
+d) Phá hoại, đánh cắp dữ liệu hệ thống thanh toán điện tử giao thông đường bộ;
+đ) Làm thay đổi trái phép chương trình phần mềm, dữ liệu điện tử sử dụng trong thanh toán điện tử giao thông đường bộ.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND336-2025/D10/K5/c)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D10/K5/c
+
+Điều 10. Xử phạt các hành vi vi phạm về thanh toán điện tử giao thông đường bộ, hoạt động trạm thu phí đường bộ
+5. Phạt tiền từ 50.000.000 đồng đến 70.000.000 đồng đối với tổ chức thực hiện một trong các hành vi vi phạm sau đây:
+c) Không thực hiện đúng quy trình quản lý, vận hành trạm thu phí theo quy định để xảy ra tai nạn giao thông đối với các phương tiện khi phương tiện tham gia giao thông qua trạm thu phí gây hậu quả từ mức nghiêm trọng trở lên;
+
+### Nguồn 2
+Văn bản: Nghị định số 336/2025/NĐ-CP (Quy định xử phạt vi phạm hành chính trong hoạt động đường bộ)
+Hiệu lực của trạng thái này: 2026-03-01 → nay
+Mã điều khoản dùng được cho gold_units: ND336-2025/D12/K4, ND336-2025/D12/K4/a, ND336-2025/D12/K4/b, ND336-2025/D12/K4/c, ND336-2025/D12/K4/d, ND336-2025/D12/K4/đ, ND336-2025/D12/K4/e, ND336-2025/D12/K4/g, ND336-2025/D12/K4/h, ND336-2025/D12/K4/i, ND336-2025/D12/K4/k
+
+Điều 12. Xử phạt các hành vi vi phạm quy định về vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+4. Phạt tiền từ 5.000.000 đồng đến 10.000.000 đồng đối với cá nhân, từ 10.000.000 đồng đến 20.000.000 đồng đối với tổ chức kinh doanh vận tải, dịch vụ hỗ trợ vận tải thực hiện một trong các hành vi vi phạm sau đây:
+a) Thực hiện công bố bến xe hàng, trạm dừng nghỉ không đúng quy định; không thực hiện thủ tục công bố lại bến xe khách, bến xe hàng, trạm dừng nghỉ theo quy định;
+b) Không có bộ phận quản lý an toàn theo quy định hoặc có nhưng bộ phận này không thực hiện đầy đủ các nhiệm vụ theo quy định;
+c) Không lập hoặc có lập nhưng không cập nhật đầy đủ, chính xác lý lịch phương tiện, lý lịch hành nghề của lái xe theo quy định;
+d) Sử dụng xe taxi chở hành khách không lắp đồng hồ tính tiền (đối với loại xe đăng ký sử dụng đồng hồ tính tiền) hoặc lắp đồng hồ tính tiền không đúng quy định; không có thiết bị in hóa đơn (phiếu thu tiền) được kết nối với đồng hồ tính tiền theo quy định hoặc có nhưng không sử dụng được hoặc in ra phiếu thu tiền nhưng không có đầy đủ các thông tin theo quy định;
+đ) Sử dụng xe taxi chở hành khách mà trên xe không có thiết bị để kết nối trực tiếp với hành khách theo quy định (đối với loại xe đăng ký sử dụng phần mềm tính tiền) hoặc sử dụng phần mềm tính tiền không bảo đảm các yêu cầu theo quy định;
+e) Không thực hiện đúng tiêu chuẩn chất lượng dịch vụ vận tải đã công bố;
+g) Không thực hiện đúng giá dịch vụ xe ra, vào bến xe đã kê khai, công bố;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND336-2025/D12/K8/b)
+Mã điều khoản dùng được cho gold_units: ND336-2025/D12/K8/b
+
+Điều 12. Xử phạt các hành vi vi phạm quy định về vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+8. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung sau đây:
+b) Thực hiện hành vi vi phạm quy định tại điểm b khoản 3; điểm b khoản 4; điểm b, điểm h khoản 6 Điều này bị tước quyền sử dụng giấy phép kinh doanh vận tải từ 01 tháng đến 03 tháng.
+
+[0] 10.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D10/K3)
+[1] 20.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D10/K3)
+[2] 40.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D10/K3)
+[3] 5.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND336-2025/D12/K4)
+[4] 10.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D12/K4)
+[5] 20.000.000 đồng (mức phạt tiền tối đa, nêu tại ND336-2025/D12/K4)
+[6] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND336-2025/D12/K8/b)
+[7] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND336-2025/D12/K8/b)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi đi xe đạp điện qua trạm thu phí, nhưng anh ấy không thanh toán đúng quy trình. Còn công ty tôi, một tổ chức, cũng vi phạm cùng hành vi. Phạt tiền của cá nhân và tổ chức khác nhau như thế nào?
+- Đáp: Cá nhân bị phạt từ 10.000.000 đồng đến 20.000.000 đồng, trong khi tổ chức bị phạt từ 20.000.000 đồng đến 40.000.000 đồng. Do đó, tổ chức phải chịu mức phạt cao hơn cá nhân.
+
+```json
+{"qid": "t3-so_sanh-037", "question": "Anh tôi đi xe đạp điện qua trạm thu phí, nhưng anh ấy không thanh toán đúng quy trình. Còn công ty tôi, một tổ chức, cũng vi phạm cùng hành vi. Phạt tiền của cá nhân và tổ chức khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "B", "answer": "Cá nhân bị phạt từ 10.000.000 đồng đến 20.000.000 đồng, trong khi tổ chức bị phạt từ 20.000.000 đồng đến 40.000.000 đồng. Do đó, tổ chức phải chịu mức phạt cao hơn cá nhân.", "gold_units": ["ND336-2025/D10/K3"], "required_numbers": [{"value": 10000000, "unit": "vnd"}, {"value": 20000000, "unit": "vnd"}, {"value": 40000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-037:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi cung cấp dịch vụ dừng nghỉ cho xe tải, nhưng không thực hiện thủ tục công bố lại bến xe đúng quy định. Anh tôi, một cá nhân, cũng vi phạm cùng hành vi. Phạt tiền của cá nhân và tổ chức khác nhau như thế nào?
+- Đáp: Cá nhân bị phạt từ 5.000.000 đồng đến 10.000.000 đồng, trong khi tổ chức bị phạt từ 10.000.000 đồng đến 20.000.000 đồng. Vì vậy, tổ chức phải chịu mức phạt cao hơn cá nhân.
+- ⚠ chep_nguyen_van: “hiện thủ tục công bố lại …”
+
+```json
+{"qid": "t3-so_sanh-037", "question": "Công ty tôi cung cấp dịch vụ dừng nghỉ cho xe tải, nhưng không thực hiện thủ tục công bố lại bến xe đúng quy định. Anh tôi, một cá nhân, cũng vi phạm cùng hành vi. Phạt tiền của cá nhân và tổ chức khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "B", "answer": "Cá nhân bị phạt từ 5.000.000 đồng đến 10.000.000 đồng, trong khi tổ chức bị phạt từ 10.000.000 đồng đến 20.000.000 đồng. Vì vậy, tổ chức phải chịu mức phạt cao hơn cá nhân.", "gold_units": ["ND336-2025/D12/K4"], "required_numbers": [{"value": 5000000, "unit": "vnd"}, {"value": 10000000, "unit": "vnd"}, {"value": 20000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-037:2"}
+```
+
+### W3-so_sanh-038 · tier A · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_nguoi_khac · cosine TF-IDF 0.47
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D11/K1, ND168-2024/D11/K1/a, ND168-2024/D11/K1/b, ND168-2024/D11/K1/c, ND168-2024/D11/K1/d, ND168-2024/D11/K1/đ, ND168-2024/D11/K1/e, ND168-2024/D11/K1/g
+
+Điều 11. Xử phạt người điều khiển, dẫn dắt vật nuôi, điều khiển xe vật nuôi kéo vi phạm quy tắc giao thông đường bộ
+1. Phạt tiền từ 150.000 đồng đến 250.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Không nhường đường theo quy định, không báo hiệu bằng tay khi chuyển hướng;
+b) Không chấp hành hiệu lệnh hoặc chỉ dẫn của đèn tín hiệu, biển báo hiệu, vạch kẻ đường, trừ hành vi vi phạm quy định tại khoản 3 Điều này;
+c) Không đủ dụng cụ đựng chất thải của vật nuôi hoặc không dọn sạch chất thải của vật nuôi thải ra đường, vỉa hè;
+d) Để vật nuôi đi trên đường bộ không bảo đảm an toàn cho người, phương tiện đang tham gia giao thông;
+đ) Đi dàn hàng ngang từ 02 xe trở lên;
+e) Để vật nuôi kéo xe mà không có người điều khiển;
+g) Điều khiển xe không có báo hiệu theo quy định.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D11/K3)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D11/K3
+
+Điều 11. Xử phạt người điều khiển, dẫn dắt vật nuôi, điều khiển xe vật nuôi kéo vi phạm quy tắc giao thông đường bộ
+3. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với người điều khiển, dẫn dắt vật nuôi, điều khiển xe vật nuôi kéo đi vào đường cao tốc.
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D9/K2, ND168-2024/D9/K2/a, ND168-2024/D9/K2/b, ND168-2024/D9/K2/c, ND168-2024/D9/K2/d, ND168-2024/D9/K2/đ
+
+Điều 9. Xử phạt người điều khiển xe đạp, xe đạp máy, người điều khiển xe thô sơ khác vi phạm quy tắc giao thông đường bộ
+2. Phạt tiền từ 150.000 đồng đến 250.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe đạp, xe đạp máy buông cả hai tay; chuyển hướng đột ngột trước đầu xe cơ giới đang chạy; dùng chân điều khiển xe đạp, xe đạp máy;
+b) Không chấp hành hiệu lệnh, chỉ dẫn của người điều khiển giao thông hoặc người kiểm soát giao thông;
+c) Người đang điều khiển xe hoặc chở người ngồi trên xe bám, kéo, đẩy xe khác, vật khác, mang vác vật cồng kềnh; điều khiển xe kéo theo xe khác, vật khác;
+d) Không nhường đường cho xe xin vượt khi có đủ điều kiện an toàn hoặc gây cản trở đối với xe cơ giới xin vượt, gây cản trở xe ưu tiên;
+đ) Không chấp hành hiệu lệnh của đèn tín hiệu giao thông.
+
+[0] 150.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D11/K1)
+[1] 250.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D11/K1)
+[2] 150.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D9/K2)
+[3] 250.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D9/K2)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Con tôi đang mang con chó đi dọc đường, anh tôi thấy nó không dọn sạch chất thải và không báo hiệu khi chuyển hướng. Phạt tiền sẽ là bao nhiêu?
+- Đáp: Phạt tiền từ 150.000 đồng đến 250.000 đồng. (Điều 11, Khoản 1 Nghị định 168/2024/NĐ-CP)
+
+```json
+{"qid": "t3-so_sanh-038", "question": "Con tôi đang mang con chó đi dọc đường, anh tôi thấy nó không dọn sạch chất thải và không báo hiệu khi chuyển hướng. Phạt tiền sẽ là bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Phạt tiền từ 150.000 đồng đến 250.000 đồng. (Điều 11, Khoản 1 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D11/K1"], "required_numbers": [{"value": 150000, "unit": "vnd"}, {"value": 250000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-038:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Con tôi đang đi xe đạp và đã buông tay khi xe đạp máy đang chạy qua. Phạt tiền sẽ là bao nhiêu?
+- Đáp: Phạt tiền từ 150.000 đồng đến 250.000 đồng. (Điều 9, Khoản 2 Nghị định 168/2024/NĐ-CP)
+
+```json
+{"qid": "t3-so_sanh-038", "question": "Con tôi đang đi xe đạp và đã buông tay khi xe đạp máy đang chạy qua. Phạt tiền sẽ là bao nhiêu?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Phạt tiền từ 150.000 đồng đến 250.000 đồng. (Điều 9, Khoản 2 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D9/K2"], "required_numbers": [{"value": 150000, "unit": "vnd"}, {"value": 250000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-038:2"}
+```
+
+### W3-so_sanh-039 · tier A · vai: sinh viên đi xe máy · kiểu: ngan · cosine TF-IDF 0.42
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K8
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+8. Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng đối với người điều khiển xe thực hiện hành vi đón, trả hành khách trên đường cao tốc.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D20/K10/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K10/c
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+10. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+c) Thực hiện hành vi vi phạm quy định tại khoản 8, khoản 8a Điều này bị trừ điểm giấy phép lái xe 06 điểm;
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K8, ND168-2024/D26/K8/a, ND168-2024/D26/K8/b, ND168-2024/D26/K8/c, ND168-2024/D26/K8/d
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+8. Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng đối với cá nhân, từ 20.000.000 đồng đến 24.000.000 đồng đối với tổ chức kinh doanh vận tải, dịch vụ hỗ trợ vận tải thực hiện một trong các hành vi vi phạm sau đây:
+a) Không tổ chức khám sức khỏe định kỳ cho lái xe theo quy định hoặc có tổ chức khám nhưng không đầy đủ các nội dung theo quy định;
+b) Vi phạm quy định về kinh doanh, điều kiện kinh doanh vận tải bằng xe ô tô để xảy ra tai nạn giao thông gây hậu quả từ mức nghiêm trọng trở lên;
+c) Sử dụng xe ô tô kinh doanh vận tải để đón, trả khách; nhận, trả hàng trên đường cao tốc.
+d) Sử dụng xe ô tô kinh doanh vận tải hành khách theo hợp đồng mà xác nhận đặt chỗ cho từng hành khách đi xe ngoài hợp đồng đã ký kết hoặc bán vé, thu tiền ngoài hợp đồng đã ký kết; ấn định hành trình, lịch trình cố định để phục vụ cho nhiều hành khách hoặc nhiều người thuê vận tải khác nhau.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D26/K12)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K12
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+12. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm quy định tại điểm c khoản 2; điểm a, điểm b, điểm đ, điểm g khoản 4; điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 7; điểm c khoản 8 Điều này còn bị áp dụng các hình thức xử phạt bổ sung tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có hoặc đã được cấp) đối với xe vi phạm.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D26/K14/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K14/b
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+14. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+b) Thực hiện hành vi quy định tại điểm c khoản 8 Điều này trong trường hợp cá nhân kinh doanh vận tải là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 06 điểm.
+
+[0] 10.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D20/K8)
+[1] 12.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D20/K8)
+[2] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D20/K10/c)
+[3] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D26/K12)
+[4] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D26/K12)
+[5] 10.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D26/K8)
+[6] 12.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D26/K8)
+[7] 20.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D26/K8)
+[8] 24.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D26/K8)
+[9] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D26/K14/b)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Nếu tôi là cá nhân lái xe ô tô chở hành khách, phạt khi đón khách trên đường cao tốc lớn hơn so với tổ chức kinh doanh vận tải?
+- Đáp: Cá nhân lái xe ô tô chở hành khách bị phạt từ 10.000.000 đồng đến 12.000.000 đồng và trừ 06 điểm. Tổ chức kinh doanh vận tải bị phạt từ 20.000.000 đồng đến 24.000.000 đồng và trừ 06 điểm. Do đó, tổ chức bị phạt nhiều hơn.
+- ⚠ chep_nguyen_van: “tổ chức kinh doanh vận tải …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-so_sanh-039", "question": "Nếu tôi là cá nhân lái xe ô tô chở hành khách, phạt khi đón khách trên đường cao tốc lớn hơn so với tổ chức kinh doanh vận tải?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Cá nhân lái xe ô tô chở hành khách bị phạt từ 10.000.000 đồng đến 12.000.000 đồng và trừ 06 điểm. Tổ chức kinh doanh vận tải bị phạt từ 20.000.000 đồng đến 24.000.000 đồng và trừ 06 điểm. Do đó, tổ chức bị phạt nhiều hơn.", "gold_units": ["ND168-2024/D20/K8", "ND168-2024/D20/K10/c"], "required_numbers": [{"value": 10000000, "unit": "vnd"}, {"value": 12000000, "unit": "vnd"}, {"value": 6, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-039:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu công ty tôi là tổ chức kinh doanh vận tải, phạt khi đón khách trên đường cao tốc lớn hơn so với cá nhân tôi lái xe ô tô chở hành khách?
+- Đáp: Tổ chức kinh doanh vận tải bị phạt từ 20.000.000 đồng đến 24.000.000 đồng và trừ 06 điểm. Cá nhân lái xe ô tô chở hành khách bị phạt từ 10.000.000 đồng đến 12.000.000 đồng và trừ 06 điểm. Do đó, cá nhân bị phạt ít hơn.
+- ⚠ chep_nguyen_van: “tổ chức kinh doanh vận tải …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-so_sanh-039", "question": "Nếu công ty tôi là tổ chức kinh doanh vận tải, phạt khi đón khách trên đường cao tốc lớn hơn so với cá nhân tôi lái xe ô tô chở hành khách?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Tổ chức kinh doanh vận tải bị phạt từ 20.000.000 đồng đến 24.000.000 đồng và trừ 06 điểm. Cá nhân lái xe ô tô chở hành khách bị phạt từ 10.000.000 đồng đến 12.000.000 đồng và trừ 06 điểm. Do đó, cá nhân bị phạt ít hơn.", "gold_units": ["ND168-2024/D26/K8", "ND168-2024/D26/K14/b"], "required_numbers": [{"value": 10000000, "unit": "vnd"}, {"value": 12000000, "unit": "vnd"}, {"value": 20000000, "unit": "vnd"}, {"value": 24000000, "unit": "vnd"}, {"value": 6, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-039:2"}
+```
+
+### W3-so_sanh-040 · tier A · vai: cán bộ phường · kiểu: tinh_huong_ban_than · cosine TF-IDF 0.49
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K3, ND168-2024/D20/K3/a, ND168-2024/D20/K3/b, ND168-2024/D20/K3/c, ND168-2024/D20/K3/d, ND168-2024/D20/K3/đ, ND168-2024/D20/K3/e, ND168-2024/D20/K3/g, ND168-2024/D20/K3/h, ND168-2024/D20/K3/i, ND168-2024/D20/K3/k
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+3. Phạt tiền từ 600.000 đồng đến 800.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Không đóng cửa lên xuống khi xe đang chạy;
+b) Để người ngồi trên xe khi xe xuống phà, đang trên phà và khi lên bến (trừ người lái xe, trẻ em, phụ nữ mang thai, người già yếu, người bệnh, người khuyết tật);
+c) Không chạy đúng tuyến đường, lịch trình, hành trình vận tải được phép hoạt động theo quy định;
+d) Để người mắc võng nằm trên xe khi xe đang chạy;
+đ) Sắp xếp, chằng buộc hành lý, hàng hóa không bảo đảm an toàn; để rơi hành lý, hàng hóa trên xe xuống đường; để hàng hóa trong khoang chở hành khách;
+e) Chở hành lý, hàng hóa vượt quá kích thước bao ngoài của xe;
+g) Điều khiển xe vận tải hành khách không có nhân viên phục vụ trên xe đối với những xe quy định phải có nhân viên phục vụ;
+h) Điều khiển xe ô tô kinh doanh vận tải không có dây đai an toàn tại các vị trí ghế ngồi, giường nằm theo quy định (trừ xe buýt nội tỉnh);
+i) Điều khiển xe ô tô kinh doanh vận tải không có hướng dẫn cho hành khách về an toàn giao thông và thoát hiểm khi xảy ra sự cố trên xe theo quy định;
+k) Điều khiển xe không niêm yết hành trình chạy xe hoặc niêm yết hành trình chạy xe không đúng với hành trình đã được cơ quan có thẩm quyền cấp phép.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D20/K10/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K10/a
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+10. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm c, điểm d, điểm e khoản 3; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g, điểm h, điểm i, điểm k, điểm m khoản 5; khoản 6; khoản 7 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Nguồn 2
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K2, ND168-2024/D7/K2/a, ND168-2024/D7/K2/b, ND168-2024/D7/K2/c, ND168-2024/D7/K2/d, ND168-2024/D7/K2/đ, ND168-2024/D7/K2/e, ND168-2024/D7/K2/g, ND168-2024/D7/K2/h, ND168-2024/D7/K2/i, ND168-2024/D7/K2/k
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+2. Phạt tiền từ 400.000 đồng đến 600.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Dừng xe, đỗ xe trên phần đường xe chạy ở đoạn đường ngoài đô thị nơi có lề đường;
+b) Điều khiển xe chạy quá tốc độ quy định từ 05 km/h đến dưới 10 km/h;
+c) Điều khiển xe chạy tốc độ thấp mà không đi bên phải phần đường xe chạy gây cản trở giao thông;
+d) Dừng xe, đỗ xe ở lòng đường gây cản trở giao thông; tụ tập từ 03 xe trở lên ở lòng đường, trong hầm đường bộ; đỗ, để xe ở lòng đường, vỉa hè trái phép;
+đ) Xe không được quyền ưu tiên lắp đặt, sử dụng thiết bị phát tín hiệu của xe được quyền ưu tiên;
+e) Dừng xe, đỗ xe trên điểm đón, trả khách, nơi đường bộ giao nhau, trên phần đường dành cho người đi bộ qua đường; dừng xe nơi có biển “Cấm dừng xe và đỗ xe”; đỗ xe tại nơi có biển “Cấm đỗ xe” hoặc biển “Cấm dừng xe và đỗ xe”; không tuân thủ các quy định về dừng xe, đỗ xe tại nơi đường bộ giao nhau cùng mức với đường sắt; dừng xe, đỗ xe trong phạm vi hành lang an toàn giao thông đường sắt;
+g) Chở theo 02 người trên xe, trừ trường hợp chở người bệnh đi cấp cứu, trẻ em dưới 12 tuổi, người già yếu hoặc người khuyết tật, áp giải người có hành vi vi phạm pháp luật;
+…
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D7/K4/d)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K4/d
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+4. Phạt tiền từ 800.000 đồng đến 1.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+d) Quay đầu xe trong hầm đường bộ;
+
+[0] 600.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D20/K3)
+[1] 800.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D20/K3)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D20/K10/a)
+[3] 400.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D7/K2)
+[4] 600.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D7/K2)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi lái xe buýt chở khách và tôi lái xe máy, khi dừng xe trên lề đường ngoài đô thị, mức phạt tiền và điểm trừ khác nhau như thế nào?
+- Đáp: Mức phạt tiền cho xe buýt chở khách khi dừng xe trên lề đường ngoài đô thị là từ 600.000 đồng đến 800.000 đồng, trừ 02 điểm giấy phép lái xe. Mức phạt tiền cho xe máy khi dừng xe trên lề đường ngoài đô thị là từ 400.000 đồng đến 600.000 đồng, không trừ điểm giấy phép lái xe. Do đó, xe buýt chở khách bị phạt tiền cao hơn và bị trừ điểm, trong khi xe máy bị phạt tiền thấp hơn và không bị trừ điểm.
+- Ghi chú: Giả định xe buýt chở khách và xe máy là hai loại xe khác nhau, không có sự nhầm lẫn giữa xe máy và xe gắn máy.
+
+```json
+{"qid": "t3-so_sanh-040", "question": "Tôi lái xe buýt chở khách và tôi lái xe máy, khi dừng xe trên lề đường ngoài đô thị, mức phạt tiền và điểm trừ khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền cho xe buýt chở khách khi dừng xe trên lề đường ngoài đô thị là từ 600.000 đồng đến 800.000 đồng, trừ 02 điểm giấy phép lái xe. Mức phạt tiền cho xe máy khi dừng xe trên lề đường ngoài đô thị là từ 400.000 đồng đến 600.000 đồng, không trừ điểm giấy phép lái xe. Do đó, xe buýt chở khách bị phạt tiền cao hơn và bị trừ điểm, trong khi xe máy bị phạt tiền thấp hơn và không bị trừ điểm.", "gold_units": ["ND168-2024/D20/K3", "ND168-2024/D7/K2"], "required_numbers": [{"value": 600000, "unit": "vnd"}, {"value": 800000, "unit": "vnd"}, {"value": 400000, "unit": "vnd"}, {"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-040:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi lái xe buýt chở khách và tôi lái xe máy, khi quay đầu xe trong hầm đường bộ, mức phạt tiền và điểm trừ khác nhau như thế nào?
+- Đáp: Mức phạt tiền cho xe buýt chở khách khi quay đầu xe trong hầm đường bộ là từ 600.000 đồng đến 800.000 đồng, trừ 02 điểm giấy phép lái xe. Mức phạt tiền cho xe máy khi quay đầu xe trong hầm đường bộ là từ 800.000 đồng đến 1.000.000 đồng, không trừ điểm giấy phép lái xe. Do đó, xe máy bị phạt tiền cao hơn và không bị trừ điểm, trong khi xe buýt chở khách bị phạt tiền thấp hơn và bị trừ điểm.
+- ⚠ chep_nguyen_van: “quay đầu xe trong hầm đường …”
+- Ghi chú: Giả định xe buýt chở khách và xe máy là hai loại xe khác nhau, không có sự nhầm lẫn giữa xe máy và xe gắn máy.
+
+```json
+{"qid": "t3-so_sanh-040", "question": "Tôi lái xe buýt chở khách và tôi lái xe máy, khi quay đầu xe trong hầm đường bộ, mức phạt tiền và điểm trừ khác nhau như thế nào?", "as_of": "2026-11-03", "question_type": "so_sanh", "tier": "A", "answer": "Mức phạt tiền cho xe buýt chở khách khi quay đầu xe trong hầm đường bộ là từ 600.000 đồng đến 800.000 đồng, trừ 02 điểm giấy phép lái xe. Mức phạt tiền cho xe máy khi quay đầu xe trong hầm đường bộ là từ 800.000 đồng đến 1.000.000 đồng, không trừ điểm giấy phép lái xe. Do đó, xe máy bị phạt tiền cao hơn và không bị trừ điểm, trong khi xe buýt chở khách bị phạt tiền thấp hơn và bị trừ điểm.", "gold_units": ["ND168-2024/D20/K3", "ND168-2024/D7/K4/d"], "required_numbers": [{"value": 600000, "unit": "vnd"}, {"value": 800000, "unit": "vnd"}, {"value": 400000, "unit": "vnd"}, {"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-so_sanh-040:2"}
+```
+
+## tru_diem — số điểm bị trừ trên giấy phép lái xe
+
+### W3-tru_diem-001 · tier A · vai: người lớn tuổi đi xe đạp điện · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K8, ND168-2024/D7/K8/a, ND168-2024/D7/K8/b
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+8. Phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe chạy quá tốc độ quy định trên 20 km/h;
+b) Điều khiển xe trên đường mà trong máu hoặc hơi thở có nồng độ cồn vượt quá 50 miligam đến 80 miligam/100 mililít máu hoặc vượt quá 0,25 miligam đến 0,4 miligam/1 lít khí thở.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D7/K13/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K13/b
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+b) Thực hiện hành vi quy định tại điểm đ khoản 4; điểm a khoản 6; điểm c, điểm d, điểm đ khoản 7; điểm a khoản 8 Điều này bị trừ điểm giấy phép lái xe 04 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D7/K13/d)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K13/d
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+d) Thực hiện hành vi quy định tại điểm b khoản 8, khoản 10 Điều này bị trừ điểm giấy phép lái xe 10 điểm.
+
+[0] 6.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D7/K8)
+[1] 8.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D7/K8)
+[2] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D7/K13/b)
+[3] 10 điểm (số điểm bị trừ, nêu tại ND168-2024/D7/K13/d)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi đang lái xe máy, chạy quá 20 km/h trên đường, có bị trừ bao nhiêu điểm trên giấy phép?
+- Đáp: Bạn sẽ bị trừ 04 điểm trên giấy phép lái xe.
+- ⚠ tham_chieu_ngu_canh
+- Ghi chú: điều khiển xe mô tô/xe gắn máy
+
+```json
+{"qid": "t3-tru_diem-001", "question": "Tôi đang lái xe máy, chạy quá 20 km/h trên đường, có bị trừ bao nhiêu điểm trên giấy phép?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 04 điểm trên giấy phép lái xe.", "gold_units": ["ND168-2024/D7/K13/b"], "required_numbers": [{"value": 4, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-001:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi lái xe máy, cồn trong máu 60 mg/100 ml, có bị trừ bao nhiêu điểm?
+- Đáp: Bạn sẽ bị trừ 10 điểm trên giấy phép lái xe.
+- Ghi chú: điều khiển xe mô tô/xe gắn máy
+
+```json
+{"qid": "t3-tru_diem-001", "question": "Tôi lái xe máy, cồn trong máu 60 mg/100 ml, có bị trừ bao nhiêu điểm?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 10 điểm trên giấy phép lái xe.", "gold_units": ["ND168-2024/D7/K13/d"], "required_numbers": [{"value": 10, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-001:2"}
+```
+
+### W3-tru_diem-002 · tier A · vai: tài xế xe tải · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K4, ND168-2024/D13/K4/a, ND168-2024/D13/K4/b, ND168-2024/D13/K4/c
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+4. Phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe không có chứng nhận đăng ký xe (hoặc bản sao chứng nhận đăng ký xe có chứng thực kèm theo bản gốc giấy biên nhận của tổ chức tín dụng, chi nhánh ngân hàng nước ngoài trong trường hợp tổ chức tín dụng, chi nhánh ngân hàng nước ngoài giữ bản gốc chứng nhận đăng ký xe) hoặc sử dụng chứng nhận đăng ký xe (hoặc bản sao chứng nhận đăng ký xe có chứng thực kèm theo bản gốc giấy biên nhận của tổ chức tín dụng, chi nhánh ngân hàng nước ngoài trong trường hợp tổ chức tín dụng, chi nhánh ngân hàng nước ngoài giữ bản gốc chứng nhận đăng ký xe) đã hết hạn sử dụng, hết hiệu lực (kể cả rơ moóc và sơ mi rơ moóc);
+b) Điều khiển xe ô tô tải (kể cả rơ moóc và sơ mi rơ moóc) có kích thước thùng xe không đúng với thông số kỹ thuật được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe;
+c) Điều khiển xe dán, lắp phù hiệu, biểu trưng nhận diện tương tự của các cơ quan nhà nước, cơ quan ngoại giao, tổ chức quốc tế tại Việt Nam.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D13/K13/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K13/a
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm a, điểm b khoản 3; khoản 4; khoản 5; khoản 6; điểm a khoản 7 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+[0] 2.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D13/K4)
+[1] 3.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D13/K4)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D13/K13/a)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, khi đang di chuyển, tôi đã kéo một thùng hàng mà kích thước thùng không khớp với thông số kỹ thuật ghi trong giấy kiểm định an toàn. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
+- Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 13, khoản 13a, Nghị định 168/2024/NĐ-CP)
+- ⚠ tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-tru_diem-002", "question": "Tôi là tài xế xe tải, khi đang di chuyển, tôi đã kéo một thùng hàng mà kích thước thùng không khớp với thông số kỹ thuật ghi trong giấy kiểm định an toàn. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 13, khoản 13a, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D13/K13/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-002:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, khi đang lái xe, tôi phát hiện giấy đăng ký xe đã hết hạn. Tôi vẫn tiếp tục điều khiển xe. Số điểm bị trừ là bao nhiêu?
+- Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 13, khoản 13a, Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “đăng ký xe đã hết hạn …”
+
+```json
+{"qid": "t3-tru_diem-002", "question": "Tôi là tài xế xe tải, khi đang lái xe, tôi phát hiện giấy đăng ký xe đã hết hạn. Tôi vẫn tiếp tục điều khiển xe. Số điểm bị trừ là bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 13, khoản 13a, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D13/K13/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-002:2"}
+```
+
+### W3-tru_diem-003 · tier A · vai: cán bộ phường · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K5, ND168-2024/D21/K5/a, ND168-2024/D21/K5/b, ND168-2024/D21/K5/c, ND168-2024/D21/K5/d
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+5. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe (kể cả rơ moóc và sơ mi rơ moóc) chở hàng vượt trọng tải (khối lượng hàng chuyên chở) cho phép tham gia giao thông được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 30% đến 50%;
+b) Điều khiển xe ô tô kinh doanh vận tải, xe vận tải nội bộ quá thời gian quy định tại khoản 1 Điều 64 của Luật Trật tự, an toàn giao thông đường bộ; không thực hiện đúng quy định về thời gian nghỉ giữa hai lần lái xe liên tục của người lái xe;
+c) Điều khiển xe ô tô kinh doanh vận tải, xe ô tô đầu kéo, xe vận tải nội bộ không lắp thiết bị giám sát hành trình hoặc có lắp thiết bị giám sát hành trình nhưng không có tác dụng trong quá trình xe tham gia giao thông theo quy định hoặc làm sai lệch dữ liệu của thiết bị giám sát hành trình lắp trên xe ô tô;".
+d) Điều khiển xe kéo theo rơ moóc, sơ mi rơ moóc mà khối lượng toàn bộ (bao gồm khối lượng bản thân rơ moóc, sơ mi rơ moóc và khối lượng hàng chuyên chở) của rơ moóc, sơ mi rơ moóc vượt khối lượng cho phép kéo theo được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 30% đến 50%.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D21/K13/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K13/a
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm b, điểm c, điểm đ khoản 2; điểm a khoản 3; khoản 4; khoản 5; điểm c, điểm d, điểm đ khoản 6 Điều này bị trừ điểm giấy phép lái xe (khi điều khiển xe ô tô) 02 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D64/K1)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D64/K1
+
+Điều 64. Thời gian làm việc của người lái xe ô tô kinh doanh vận tải và vận tải nội bộ
+1. Thời gian lái xe của người lái xe ô tô không quá 10 giờ trong một ngày và không quá 48 giờ trong một tuần; lái xe liên tục không quá 04 giờ và bảo đảm các quy định có liên quan của Bộ luật Lao động.
+
+[0] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D21/K5)
+[1] 5.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D21/K5)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D21/K13/a)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi vừa lái xe tải chở hàng và thấy trọng tải vượt quá giới hạn cho phép, giờ tôi bị trừ bao nhiêu điểm trên giấy phép?
+- Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 21, Khoản 13, Nghị định 168/2024/NĐ-CP)
+- ⚠ tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-tru_diem-003", "question": "Tôi vừa lái xe tải chở hàng và thấy trọng tải vượt quá giới hạn cho phép, giờ tôi bị trừ bao nhiêu điểm trên giấy phép?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 21, Khoản 13, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D21/K13/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-003:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Trong chuyến đi hôm qua, tôi đã kéo rơ moóc với tổng khối lượng vượt quá giới hạn cho phép, điểm trừ trên giấy phép là bao nhiêu?
+- Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 21, Khoản 13, Nghị định 168/2024/NĐ-CP)
+
+```json
+{"qid": "t3-tru_diem-003", "question": "Trong chuyến đi hôm qua, tôi đã kéo rơ moóc với tổng khối lượng vượt quá giới hạn cho phép, điểm trừ trên giấy phép là bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 21, Khoản 13, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D21/K13/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-003:2"}
+```
+
+### W3-tru_diem-004 · tier A · vai: cán bộ phường · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K11, ND168-2024/D32/K11/a, ND168-2024/D32/K11/b, ND168-2024/D32/K11/c, ND168-2024/D32/K11/d, ND168-2024/D32/K11/đ, ND168-2024/D32/K11/e
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+11. Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng đối với cá nhân, từ 20.000.000 đồng đến 24.000.000 đồng đối với tổ chức là chủ xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ, xe máy chuyên dùng và các loại xe tương tự xe ô tô thực hiện một trong các hành vi vi phạm sau đây:
+a) Đưa xe cơ giới, xe máy chuyên dùng không có giấy chứng nhận hoặc tem kiểm định an toàn kỹ thuật và bảo vệ môi trường (đối với loại xe có quy định phải kiểm định) hoặc có nhưng đã hết hiệu lực (hạn sử dụng) từ 01 tháng trở lên (kể cả rơ moóc và sơ mi rơ moóc) tham gia giao thông;
+b) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm a, điểm d khoản 5 Điều 21 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm a, điểm d khoản 5 Điều 21 của Nghị định này;
+c) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 2 Điều 34 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 2 Điều 34 của Nghị định này;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/c
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+c) Thực hiện hành vi quy định tại điểm e khoản 7, điểm b khoản 11, điểm a khoản 13, khoản 15, điểm b khoản 16 Điều này mà phương tiện đó có thùng xe, khối lượng hàng hóa cho phép chuyên chở không đúng theo quy định hiện hành thì còn bị tước quyền sử dụng chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường và tem kiểm định của phương tiện từ 01 tháng đến 03 tháng;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/d)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/d
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+d) Thực hiện hành vi quy định tại điểm d khoản 11, điểm h khoản 14, điểm c khoản 16 Điều này bị tước quyền sử dụng chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường và tem kiểm định của phương tiện từ 01 tháng đến 03 tháng;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/đ
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+đ) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chở vượt trên 50% số người quy định được phép chở của phương tiện còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có). Thực hiện hành vi quy định tại điểm a, điểm b khoản 11; điểm a, điểm b, điểm c, điểm đ khoản 13; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16 Điều này còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có),
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/a
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm đ, điểm g, điểm m khoản 7; điểm đ, điểm e khoản 8; điểm b, điểm c, điểm d, điểm đ khoản 9; điểm a, điểm b, điểm đ khoản 11; điểm a khoản 12; điểm c khoản 13; điểm đ, điểm h khoản 14 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D21/K5/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K5/a
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+5. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe (kể cả rơ moóc và sơ mi rơ moóc) chở hàng vượt trọng tải (khối lượng hàng chuyên chở) cho phép tham gia giao thông được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 30% đến 50%;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D21/K5/d)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K5/d
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+5. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+d) Điều khiển xe kéo theo rơ moóc, sơ mi rơ moóc mà khối lượng toàn bộ (bao gồm khối lượng bản thân rơ moóc, sơ mi rơ moóc và khối lượng hàng chuyên chở) của rơ moóc, sơ mi rơ moóc vượt khối lượng cho phép kéo theo được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 30% đến 50%.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D34/K2)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D34/K2
+
+Điều 34. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển quá khổ giới hạn, xe quá tải trọng, xe bánh xích lưu hành đường bộ (kể cả xe ô tô chở hành khách)
+2. Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng đối với hành vi điều khiển xe mà tổng trọng lượng (khối lượng toàn bộ) của xe vượt quá tải trọng cho phép của đường bộ trên 10% đến 20%, trừ trường hợp có giấy phép lưu hành còn giá trị sử dụng.
+
+[0] 10.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K11)
+[1] 12.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K11)
+[2] 20.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K11)
+[3] 24.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K11)
+[4] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/c)
+[5] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/c)
+[6] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/d)
+[7] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/d)
+[8] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/đ)
+[9] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/đ)
+[10] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/a)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi lái xe tải chở hàng vượt quá 30% trọng tải cho phép, có bị trừ điểm trên giấy phép lái xe không?
+- Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, khoản 21, điểm a, khoản 7; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16. (khoản 21 Điều 32 Nghị định 168/2024/NĐ-CP)
+- ⚠ tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-tru_diem-004", "question": "Tôi lái xe tải chở hàng vượt quá 30% trọng tải cho phép, có bị trừ điểm trên giấy phép lái xe không?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, khoản 21, điểm a, khoản 7; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16. (khoản 21 Điều 32 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K21/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-004:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi điều khiển xe tải kéo rơ moóc, khối lượng toàn bộ vượt 30% trọng tải cho phép, có bị trừ điểm trên giấy phép lái xe không?
+- Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, khoản 21, điểm a, khoản 7; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16. (khoản 21 Điều 32 Nghị định 168/2024/NĐ-CP)
+- ⚠ tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-tru_diem-004", "question": "Tôi điều khiển xe tải kéo rơ moóc, khối lượng toàn bộ vượt 30% trọng tải cho phép, có bị trừ điểm trên giấy phép lái xe không?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, khoản 21, điểm a, khoản 7; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16. (khoản 21 Điều 32 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K21/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-004:2"}
+```
+
+### W3-tru_diem-005 · tier A · vai: người lớn tuổi đi xe đạp điện · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K7, ND168-2024/D32/K7/a, ND168-2024/D32/K7/b, ND168-2024/D32/K7/c, ND168-2024/D32/K7/d, ND168-2024/D32/K7/đ, ND168-2024/D32/K7/e, ND168-2024/D32/K7/g, ND168-2024/D32/K7/h, ND168-2024/D32/K7/i, ND168-2024/D32/K7/k, ND168-2024/D32/K7/l, ND168-2024/D32/K7/m, ND168-2024/D32/K7/n, ND168-2024/D32/K7/o
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+7. Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng đối với cá nhân, từ 8.000.000 đồng đến 12.000.000 đồng đối với tổ chức là chủ xe ô tô (kể cả rơ moóc và sơ mi rơ moóc), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ, xe máy chuyên dùng và các loại xe tương tự xe ô tô thực hiện một trong các hành vi vi phạm sau đây:
+a) Tẩy xóa, sửa chữa hoặc giả mạo hồ sơ đăng ký xe nhưng chưa đến mức truy cứu trách nhiệm hình sự;
+b) Không làm thủ tục thu hồi chứng nhận đăng ký xe; biển số xe; theo quy định;
+c) Không làm thủ tục đổi chứng nhận đăng ký xe, biển số xe theo quy định;
+d) Khai báo không đúng sự thật hoặc sử dụng các giấy tờ, tài liệu giả để được cấp lại biển số xe, chứng nhận đăng ký xe, nhưng chưa đến mức bị truy cứu trách nhiệm hình sự;
+đ) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm e khoản 3; điểm i khoản 5 Điều 20 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm e khoản 3; điểm i khoản 5 Điều 20 của Nghị định này;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/c
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+c) Thực hiện hành vi quy định tại điểm e khoản 7, điểm b khoản 11, điểm a khoản 13, khoản 15, điểm b khoản 16 Điều này mà phương tiện đó có thùng xe, khối lượng hàng hóa cho phép chuyên chở không đúng theo quy định hiện hành thì còn bị tước quyền sử dụng chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường và tem kiểm định của phương tiện từ 01 tháng đến 03 tháng;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/a
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm đ, điểm g, điểm m khoản 7; điểm đ, điểm e khoản 8; điểm b, điểm c, điểm d, điểm đ khoản 9; điểm a, điểm b, điểm đ khoản 11; điểm a khoản 12; điểm c khoản 13; điểm đ, điểm h khoản 14 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D20/K3/e)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K3/e
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+3. Phạt tiền từ 600.000 đồng đến 800.000 đồng đối với một trong các hành vi vi phạm sau đây:
+e) Chở hành lý, hàng hóa vượt quá kích thước bao ngoài của xe;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D20/K5/i)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K5/i
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+5. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+i) Chở hành lý, hàng hóa vượt quá trọng tải theo thiết kế của xe;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D21/K2/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K2/a
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+2. Phạt tiền từ 800.000 đồng đến 1.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe (kể cả rơ moóc và sơ mi rơ moóc) chở hàng vượt trọng tải (khối lượng hàng chuyên chở) cho phép tham gia giao thông được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 10% đến 30% (trừ xe xi téc chở chất lỏng), trên 20% đến 30% đối với xe xi téc chở chất lỏng;
+
+[0] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/c)
+[1] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/c)
+[2] 4.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K7)
+[3] 6.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K7)
+[4] 8.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K7)
+[5] 12.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K7)
+[6] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/a)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là người lớn tuổi, tôi đang lái xe ô tô chở hàng và đã vượt quá trọng tải cho phép. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
+- Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (khoản 3 Điều 32 Nghị định 168/2024/NĐ-CP)
+- ⚠ tham_chieu_ngu_canh
+- Ghi chú: giả định là người lớn tuổi lái xe ô tô chở hàng
+
+```json
+{"qid": "t3-tru_diem-005", "question": "Tôi là người lớn tuổi, tôi đang lái xe ô tô chở hàng và đã vượt quá trọng tải cho phép. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (khoản 3 Điều 32 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K21/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-005:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là người lớn tuổi, tôi đang lái xe ô tô chở hành khách và đã chở hành lý vượt quá kích thước bao ngoài của xe. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
+- Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (khoản 3 Điều 32 Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “kích thước bao ngoài của xe …”; tham_chieu_ngu_canh
+- Ghi chú: giả định là người lớn tuổi lái xe ô tô chở hành khách
+
+```json
+{"qid": "t3-tru_diem-005", "question": "Tôi là người lớn tuổi, tôi đang lái xe ô tô chở hành khách và đã chở hành lý vượt quá kích thước bao ngoài của xe. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (khoản 3 Điều 32 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K21/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-005:2"}
+```
+
+### W3-tru_diem-006 · tier A · vai: sinh viên đi xe máy · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K5, ND168-2024/D13/K5/a, ND168-2024/D13/K5/b, ND168-2024/D13/K5/c, ND168-2024/D13/K5/d
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+5. Phạt tiền từ 3.000.000 đồng đến 4.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe có giấy chứng nhận hoặc tem kiểm định an toàn kỹ thuật và bảo vệ môi trường nhưng đã hết hiệu lực (hạn sử dụng) dưới 01 tháng (kể cả rơ moóc và sơ mi rơ moóc);
+b) Điều khiển xe không đủ hệ thống hàm hoặc có đủ hệ thống hãm nhưng không có tác dụng, không đúng tiêu chuẩn an toàn kỹ thuật (kể cả rơ moóc và sơ mi rơ moóc);
+c) Điều khiển xe kinh doanh vận tải có niên hạn sử dụng không bảo đảm điều kiện của hình thức kinh doanh đã đăng ký;
+d) Điều khiển xe lắp đặt, sử dụng còi vượt quá âm lượng theo quy định.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D13/K13/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K13/a
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm a, điểm b khoản 3; khoản 4; khoản 5; khoản 6; điểm a khoản 7 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+[0] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D13/K5)
+[1] 4.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D13/K5)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D13/K13/a)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi lái xe ô tô đã hết hạn kiểm định an toàn 20 ngày, anh ấy bị trừ bao nhiêu điểm trên giấy phép?
+- Đáp: Anh ấy bị trừ 02 điểm trên giấy phép lái xe. (Điều 13, Khoản 13, Nghị định 168/2024/NĐ-CP)
+- ⚠ tham_chieu_ngu_canh
+- Ghi chú: Không đề cập đến xe máy, chỉ xe ô tô
+
+```json
+{"qid": "t3-tru_diem-006", "question": "Anh tôi lái xe ô tô đã hết hạn kiểm định an toàn 20 ngày, anh ấy bị trừ bao nhiêu điểm trên giấy phép?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Anh ấy bị trừ 02 điểm trên giấy phép lái xe. (Điều 13, Khoản 13, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D13/K13/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-006:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi có một nhân viên lái xe ô tô, xe đã hết hạn kiểm định an toàn 15 ngày, anh ấy bị trừ bao nhiêu điểm?
+- Đáp: Anh ấy bị trừ 02 điểm trên giấy phép lái xe. (Điều 13, Khoản 13, Nghị định 168/2024/NĐ-CP)
+- Ghi chú: Không đề cập đến xe máy, chỉ xe ô tô
+
+```json
+{"qid": "t3-tru_diem-006", "question": "Công ty tôi có một nhân viên lái xe ô tô, xe đã hết hạn kiểm định an toàn 15 ngày, anh ấy bị trừ bao nhiêu điểm?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Anh ấy bị trừ 02 điểm trên giấy phép lái xe. (Điều 13, Khoản 13, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D13/K13/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-006:2"}
+```
+
+### W3-tru_diem-007 · tier A · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K11, ND168-2024/D6/K11/a, ND168-2024/D6/K11/b, ND168-2024/D6/K11/c, ND168-2024/D6/K11/d, ND168-2024/D6/K11/đ
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+11. Phạt tiền từ 30.000.000 đồng đến 40.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe trên đường mà trong máu hoặc hơi thở có nồng độ cồn vượt quá 80 miligam/100 mililít máu hoặc vượt quá 0,4 miligam/1 lít khí thở;
+b) Không chấp hành yêu cầu kiểm tra về nồng độ cồn của người thi hành công vụ;
+c) Điều khiển xe trên đường mà trong cơ thể có chất ma túy hoặc chất kích thích khác mà pháp luật cấm sử dụng;
+d) Không chấp hành yêu cầu kiểm tra về chất ma túy hoặc chất kích thích khác mà pháp luật cấm sử dụng của người thi hành công vụ;
+đ) Điều khiển xe đi ngược chiều trên đường cao tốc, lùi xe trên đường cao tốc, quay đầu xe trên đường cao tốc, trừ các xe ưu tiên đang đi làm nhiệm vụ khẩn cấp theo quy định.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D6/K15/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K15/c
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+15. Ngoài việc bị phạt tiền, người điều khiển xe thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung sau đây:
+c) Thực hiện hành vi quy định tại điểm a, điểm b, điểm c, điểm d khoản 11; khoản 13; khoản 14 Điều này bị tước quyền sử dụng giấy phép lái xe từ 22 tháng đến 24 tháng.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D6/K16/d)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K16/d
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+16. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+d) Thực hiện hành vi quy định tại điểm a khoản 9, khoản 10, điểm đ khoản 11 Điều này bị trừ điểm giấy phép lái xe 10 điểm.
+
+[0] 30.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D6/K11)
+[1] 40.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D6/K11)
+[2] 22 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D6/K15/c)
+[3] 24 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D6/K15/c)
+[4] 10 điểm (số điểm bị trừ, nêu tại ND168-2024/D6/K16/d)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi đã lái xe trên đường cao tốc khi hơi thở có nồng độ cồn 0,5 mg/1 lít, sau khi bị kiểm tra, tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
+- Đáp: Bạn sẽ bị trừ 10 điểm trên giấy phép lái xe. (Điều 6, khoản 16, điểm d, Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “hơi thở có nồng độ cồn …”; tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-tru_diem-007", "question": "Tôi đã lái xe trên đường cao tốc khi hơi thở có nồng độ cồn 0,5 mg/1 lít, sau khi bị kiểm tra, tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 10 điểm trên giấy phép lái xe. (Điều 6, khoản 16, điểm d, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D6/K16/d"], "required_numbers": [{"value": 10, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-007:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Con tôi, khi lái xe trên đường cao tốc, đã bị kiểm tra hơi thở và phát hiện nồng độ cồn 0,6 mg/1 lít, tôi muốn biết số điểm bị trừ trên giấy phép lái xe của anh ấy là bao nhiêu?
+- Đáp: Số điểm bị trừ là 10 điểm trên giấy phép lái xe. (Điều 6, khoản 16, điểm d, Nghị định 168/2024/NĐ-CP)
+
+```json
+{"qid": "t3-tru_diem-007", "question": "Con tôi, khi lái xe trên đường cao tốc, đã bị kiểm tra hơi thở và phát hiện nồng độ cồn 0,6 mg/1 lít, tôi muốn biết số điểm bị trừ trên giấy phép lái xe của anh ấy là bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Số điểm bị trừ là 10 điểm trên giấy phép lái xe. (Điều 6, khoản 16, điểm d, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D6/K16/d"], "required_numbers": [{"value": 10, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-007:2"}
+```
+
+### W3-tru_diem-008 · tier A · vai: tài xế xe tải · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D29/K3
+
+Điều 29. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe cứu hộ giao thông đường bộ
+3. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với hành vi vi phạm điều khiển xe ô tô cứu hộ giao thông đường bộ không lắp thiết bị giám sát hành trình hoặc có lắp thiết bị giám sát hành trình nhưng không có tác dụng trong quá trình xe tham gia giao thông theo quy định hoặc làm sai lệch dữ liệu của thiết bị giám sát hành trình lắp trên xe ô tô.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D29/K4)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D29/K4
+
+Điều 29. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe cứu hộ giao thông đường bộ
+4. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi quy định tại khoản 3, khoản 3a Điều này bị trừ điểm giấy phép lái xe 02 điểm.
+
+[0] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D29/K3)
+[1] 5.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D29/K3)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D29/K4)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi, một tài xế xe tải, vừa được cảnh sát hỏi về việc xe cứu hộ của anh ta không có thiết bị giám sát hành trình khi tham gia giao thông. Anh ta muốn biết, nếu bị phát hiện vi phạm, số điểm trên giấy phép lái xe của anh ta sẽ bị trừ bao nhiêu điểm?
+- Đáp: Số điểm bị trừ là 02 điểm. (Điều 29 Khoản 4 Nghị định 168/2024/NĐ-CP)
+- ⚠ qua_dai (59 từ); chep_nguyen_van: “thiết bị giám sát hành trình …”; tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-tru_diem-008", "question": "Anh tôi, một tài xế xe tải, vừa được cảnh sát hỏi về việc xe cứu hộ của anh ta không có thiết bị giám sát hành trình khi tham gia giao thông. Anh ta muốn biết, nếu bị phát hiện vi phạm, số điểm trên giấy phép lái xe của anh ta sẽ bị trừ bao nhiêu điểm?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Số điểm bị trừ là 02 điểm. (Điều 29 Khoản 4 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D29/K4"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-008:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi đang thuê một tài xế xe tải để điều khiển xe cứu hộ trong một sự cố giao thông. Khi kiểm tra, anh ta phát hiện xe không lắp thiết bị giám sát hành trình. Tôi muốn biết, nếu anh ta bị xử phạt vì điều này, số điểm trên giấy phép lái xe của anh ta sẽ bị trừ bao nhiêu?
+- Đáp: Số điểm bị trừ là 02 điểm. (Điều 29 Khoản 4 Nghị định 168/2024/NĐ-CP)
+- ⚠ qua_dai (65 từ); chep_nguyen_van: “không lắp thiết bị giám sát …”; tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-tru_diem-008", "question": "Công ty tôi đang thuê một tài xế xe tải để điều khiển xe cứu hộ trong một sự cố giao thông. Khi kiểm tra, anh ta phát hiện xe không lắp thiết bị giám sát hành trình. Tôi muốn biết, nếu anh ta bị xử phạt vì điều này, số điểm trên giấy phép lái xe của anh ta sẽ bị trừ bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Số điểm bị trừ là 02 điểm. (Điều 29 Khoản 4 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D29/K4"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-008:2"}
+```
+
+### W3-tru_diem-009 · tier A · vai: tài xế xe tải · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K7
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+7. Phạt tiền từ 5.000.000 đồng đến 7.000.000 đồng đối với hành vi vi phạm điều khiển xe chở hành khách không có hoặc không gắn phù hiệu theo quy định hoặc có nhưng đã hết giá trị sử dụng hoặc sử dụng phù hiệu không do cơ quan có thẩm quyền cấp.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D20/K10/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K10/a
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+10. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm c, điểm d, điểm e khoản 3; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g, điểm h, điểm i, điểm k, điểm m khoản 5; khoản 6; khoản 7 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+[0] 5.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D20/K7)
+[1] 7.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D20/K7)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D20/K10/a)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi lái xe tải, nhưng trong một lần giao dịch, tôi đã điều khiển xe ô tô chở hành khách mà không gắn biển hiệu, có bị trừ bao nhiêu điểm?
+- Đáp: Bạn sẽ bị trừ 02 điểm. (Điều 20, Khoản 10, Điều 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “khiển xe ô tô chở hành …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-tru_diem-009", "question": "Tôi lái xe tải, nhưng trong một lần giao dịch, tôi đã điều khiển xe ô tô chở hành khách mà không gắn biển hiệu, có bị trừ bao nhiêu điểm?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm. (Điều 20, Khoản 10, Điều 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D20/K10/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-009:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi lái xe tải, nhưng khi chuyển sang khu vực, tôi đã điều khiển xe ô tô chở hành khách mà biển hiệu hết hạn, điểm trừ là bao nhiêu?
+- Đáp: Bạn sẽ bị trừ 02 điểm. (Điều 20, Khoản 10, Điều 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “khiển xe ô tô chở hành …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-tru_diem-009", "question": "Tôi lái xe tải, nhưng khi chuyển sang khu vực, tôi đã điều khiển xe ô tô chở hành khách mà biển hiệu hết hạn, điểm trừ là bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm. (Điều 20, Khoản 10, Điều 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D20/K10/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-009:2"}
+```
+
+### W3-tru_diem-010 · tier A · vai: tài xế công nghệ · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K10, ND168-2024/D21/K10/a, ND168-2024/D21/K10/b
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+10. Phạt tiền từ 18.000.000 đồng đến 22.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Vận chuyển hàng hóa là phương tiện vận tải, máy móc, thiết bị kỹ thuật, hàng dạng trụ không chằng buộc hoặc chằng buộc không theo quy định (trừ việc vận chuyển máy móc khổ lớn (quá khổ) trên phương tiện chuyên dùng và phải có giấy phép lưu hành trên đường bộ);
+b) Chở công-ten-nơ trên xe (kể cả sơ mi rơ moóc) mà không sử dụng cơ cấu khoá hãm công-ten-nơ với xe hoặc có sử dụng cơ cấu khoá hãm nhưng công-ten- nơ vẫn bị xê dịch trong quá trình vận chuyển.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D21/K13/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K13/b
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+b) Thực hiện hành vi quy định tại điểm a, điểm b khoản 6; điểm c, điểm d, điểm đ khoản 8; khoản 10 Điều này bị trừ điểm giấy phép lái xe 04 điểm;
+
+[0] 18.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D21/K10)
+[1] 22.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D21/K10)
+[2] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D21/K13/b)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi lái xe tải vận chuyển hàng hóa mà không buộc chặt hàng, anh ấy bị trừ bao nhiêu điểm trên giấy phép lái xe?
+- Đáp: Xe tải của anh tôi bị trừ 04 điểm trên giấy phép lái xe. (Điều 21, Khoản 13, Nghị định 168/2024/NĐ-CP)
+- ⚠ tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-tru_diem-010", "question": "Anh tôi lái xe tải vận chuyển hàng hóa mà không buộc chặt hàng, anh ấy bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Xe tải của anh tôi bị trừ 04 điểm trên giấy phép lái xe. (Điều 21, Khoản 13, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D21/K13/b"], "required_numbers": [{"value": 4, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-010:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi thuê một xe tải để chở hàng, nhưng hàng không được chằng buộc đúng quy định, công ty muốn biết điểm trừ trên giấy phép lái xe của tài xế là bao nhiêu?
+- Đáp: Tài xế của công ty bị trừ 04 điểm trên giấy phép lái xe. (Điều 21, Khoản 13, Nghị định 168/2024/NĐ-CP)
+
+```json
+{"qid": "t3-tru_diem-010", "question": "Công ty tôi thuê một xe tải để chở hàng, nhưng hàng không được chằng buộc đúng quy định, công ty muốn biết điểm trừ trên giấy phép lái xe của tài xế là bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Tài xế của công ty bị trừ 04 điểm trên giấy phép lái xe. (Điều 21, Khoản 13, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D21/K13/b"], "required_numbers": [{"value": 4, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-010:2"}
+```
+
+### W3-tru_diem-011 · tier A · vai: tài xế công nghệ · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K5
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+5. Phạt tiền từ 800.000 đồng đến 1.200.000 đồng trên mỗi người vượt quá quy định được phép chở của phương tiện nhưng tổng mức phạt tiền tối đa không vượt quá 75.000.000 đồng đối với chủ phương tiện là cá nhân, từ 1.600.000 đồng đến 2.400.000 đồng trên mỗi người vượt quá quy định được phép chở của phương tiện nhưng tổng mức phạt tiền tối đa không vượt quá 150.000.000 đồng đối với chủ phương tiện là tổ chức giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 2 Điều 20 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 2 Điều 20 của Nghị định này.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/đ
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+đ) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chở vượt trên 50% số người quy định được phép chở của phương tiện còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có). Thực hiện hành vi quy định tại điểm a, điểm b khoản 11; điểm a, điểm b, điểm c, điểm đ khoản 13; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16 Điều này còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có),
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/d)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/d
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+d) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện chở vượt trên 50% đến 100% số người quy định được phép chở của phương tiện, còn bị trừ điểm giấy phép lái xe 04 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/h)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/h
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+h) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện chở vượt trên 100% số người quy định được phép chở của phương tiện còn bị trừ điểm giấy phép lái xe 10 điểm.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D20/K2)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K2
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+2. Phạt tiền từ 400.000 đồng đến 600.000 đồng trên mỗi người vượt quá quy định được phép chở của phương tiện nhưng tổng mức phạt tiền tối đa không vượt quá 75.000.000 đồng đối với người điều khiển xe ô tô chở hành khách, ô tô chở người (trừ xe buýt) thực hiện hành vi vi phạm chở quá số người quy định được phép chở của phương tiện, trừ các hành vi vi phạm quy định tại khoản 4 Điều này.
+
+[0] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/đ)
+[1] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/đ)
+[2] 800.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K5)
+[3] 1.200.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K5)
+[4] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/d)
+[5] 10 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/h)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi lái xe buýt qua đêm, khi đến trạm, anh ta thấy có 12 hành khách trên xe, trong khi quy định chỉ cho phép 10 người. Anh tôi muốn biết, nếu bị phát hiện, số điểm trên giấy phép lái xe của anh ta sẽ bị trừ bao nhiêu điểm?
+- Đáp: Nếu người điều khiển xe buýt chở vượt quá 50% số người quy định được phép chở, thì sẽ bị trừ 04 điểm. (Điều 32 Khoản 21 Điểm d Nghị định 168/2024/NĐ-CP)
+- ⚠ qua_dai (52 từ); tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-tru_diem-011", "question": "Anh tôi lái xe buýt qua đêm, khi đến trạm, anh ta thấy có 12 hành khách trên xe, trong khi quy định chỉ cho phép 10 người. Anh tôi muốn biết, nếu bị phát hiện, số điểm trên giấy phép lái xe của anh ta sẽ bị trừ bao nhiêu điểm?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Nếu người điều khiển xe buýt chở vượt quá 50% số người quy định được phép chở, thì sẽ bị trừ 04 điểm. (Điều 32 Khoản 21 Điểm d Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K21/d"], "required_numbers": [{"value": 4, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-011:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi điều hành một chiếc xe buýt, và trong một chuyến đi, xe đã chở 15 hành khách, trong khi quy định chỉ cho phép 10 người. Khi bị kiểm tra, tôi muốn biết, số điểm trên giấy phép lái xe của người điều khiển sẽ bị trừ bao nhiêu?
+- Đáp: Nếu người điều khiển xe buýt chở vượt quá 100% số người quy định được phép chở, thì sẽ bị trừ 10 điểm. (Điều 32 Khoản 21 Điểm h Nghị định 168/2024/NĐ-CP)
+- ⚠ qua_dai (52 từ); chep_nguyen_van: “giấy phép lái xe của người …”; tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-tru_diem-011", "question": "Công ty tôi điều hành một chiếc xe buýt, và trong một chuyến đi, xe đã chở 15 hành khách, trong khi quy định chỉ cho phép 10 người. Khi bị kiểm tra, tôi muốn biết, số điểm trên giấy phép lái xe của người điều khiển sẽ bị trừ bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Nếu người điều khiển xe buýt chở vượt quá 100% số người quy định được phép chở, thì sẽ bị trừ 10 điểm. (Điều 32 Khoản 21 Điểm h Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K21/h"], "required_numbers": [{"value": 10, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-011:2"}
+```
+
+### W3-tru_diem-012 · tier A · vai: tài xế xe tải · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K10, ND168-2024/D6/K10/a, ND168-2024/D6/K10/b
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+10. Phạt tiền từ 20.000.000 đồng đến 22.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe không quan sát, giảm tốc độ hoặc dừng lại để bảo đảm an toàn theo quy định mà gây tai nạn giao thông; điều khiển xe chạy quá tốc độ quy định gây tai nạn giao thông; dừng xe, đỗ xe, quay đầu xe, lùi xe, tránh xe, vượt xe, chuyển hướng, chuyển làn đường không đúng quy định gây tai nạn giao thông; không đi đúng phần đường, làn đường, không giữ khoảng cách an toàn giữa hai xe theo quy định gây tai nạn giao thông hoặc đi vào đường có biển báo hiệu có nội dung cấm đi vào đối với loại phương tiện đang điều khiển gây tai nạn giao thông, trừ các hành vi vi phạm quy định tại điểm đ khoản 11 Điều này;
+b) Vi phạm quy định tại một trong các điểm, khoản sau của Điều này mà gây tai nạn giao thông: điểm a, điểm b, điểm c, điểm d, điểm đ khoản 1; điểm c khoản 2; điểm b, điểm g, điểm h, điểm n, điểm o, điểm p, khoản 3; điểm a, điểm c, điểm d khoản 4; điểm c, điểm d, điểm e, điểm h, điểm n, điểm o, điểm q khoản 5; điểm b khoản 7; điểm b, điểm c, điểm d khoản 9 Điều này.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D6/K16/d)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K16/d
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+16. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+d) Thực hiện hành vi quy định tại điểm a khoản 9, khoản 10, điểm đ khoản 11 Điều này bị trừ điểm giấy phép lái xe 10 điểm.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K11/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K11/đ
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+11. Phạt tiền từ 30.000.000 đồng đến 40.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+đ) Điều khiển xe đi ngược chiều trên đường cao tốc, lùi xe trên đường cao tốc, quay đầu xe trên đường cao tốc, trừ các xe ưu tiên đang đi làm nhiệm vụ khẩn cấp theo quy định.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K1/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K1/a
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+1. Phạt tiền từ 400.000 đồng đến 600.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Không chấp hành hiệu lệnh, chỉ dẫn của biển báo hiệu, vạch kẻ đường, trừ các hành vi vi phạm quy định tại điểm a, điểm c, điểm d, điểm đ khoản 2; điểm a, điểm d, điểm đ, điểm e, điểm n, điểm o khoản 3; điểm a, điểm b, điểm đ, điểm e, điểm i, điểm k, điểm l khoản 4; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm i, điểm k khoản 5; điểm a khoản 6; khoản 7; điểm b, điểm d khoản 9; điểm a khoản 10; điểm đ khoản 11 Điều này;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K1/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K1/b
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+1. Phạt tiền từ 400.000 đồng đến 600.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+b) Khi ra, vào vị trí dừng xe, đỗ xe không có tín hiệu báo cho người điều khiển phương tiện khác biết;
+
+[0] 20.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D6/K10)
+[1] 22.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D6/K10)
+[2] 10 điểm (số điểm bị trừ, nêu tại ND168-2024/D6/K16/d)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, khi đang di chuyển trên đường đã không quan sát, giảm tốc độ và dừng lại để bảo đảm an toàn, nhưng lại gây tai nạn giao thông. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
+- Đáp: Bạn sẽ bị trừ 10 điểm trên giấy phép lái xe. (khoản d Điều 16 Điều 6 Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “dừng lại để bảo đảm an …”; tham_chieu_ngu_canh
+- Ghi chú: Không đề cập đến loại xe khác, chỉ xe tải
+
+```json
+{"qid": "t3-tru_diem-012", "question": "Tôi là tài xế xe tải, khi đang di chuyển trên đường đã không quan sát, giảm tốc độ và dừng lại để bảo đảm an toàn, nhưng lại gây tai nạn giao thông. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 10 điểm trên giấy phép lái xe. (khoản d Điều 16 Điều 6 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D6/K16/d"], "required_numbers": [{"value": 10, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-012:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là tài xế xe tải, khi đang trên đường cao tốc đã lùi xe và gây tai nạn giao thông. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
+- Đáp: Bạn sẽ bị trừ 10 điểm trên giấy phép lái xe. (khoản d Điều 16 Điều 6 Nghị định 168/2024/NĐ-CP)
+- ⚠ tham_chieu_ngu_canh
+- Ghi chú: Lùi xe trên đường cao tốc thuộc điểm a khoản 9,10,điều 16 d
+
+```json
+{"qid": "t3-tru_diem-012", "question": "Tôi là tài xế xe tải, khi đang trên đường cao tốc đã lùi xe và gây tai nạn giao thông. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 10 điểm trên giấy phép lái xe. (khoản d Điều 16 Điều 6 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D6/K16/d"], "required_numbers": [{"value": 10, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-012:2"}
+```
+
+### W3-tru_diem-013 · tier A · vai: người mới học lái ô tô · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K3, ND168-2024/D7/K3/a, ND168-2024/D7/K3/b, ND168-2024/D7/K3/c, ND168-2024/D7/K3/d, ND168-2024/D7/K3/đ, ND168-2024/D7/K3/e, ND168-2024/D7/K3/g, ND168-2024/D7/K3/h, ND168-2024/D7/K3/i, ND168-2024/D7/K3/k, ND168-2024/D7/K3/l
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+3. Phạt tiền từ 600.000 đồng đến 800.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Chuyển hướng không quan sát hoặc không bảo đảm khoảng cách an toàn với xe phía sau hoặc không giảm tốc độ hoặc không có tín hiệu báo hướng rẽ hoặc có tín hiệu báo hướng rẽ nhưng không sử dụng liên tục trong quá trình chuyển hướng (trừ trường hợp điều khiển xe đi theo hướng cong của đoạn đường bộ ở nơi đường không giao nhau cùng mức); điều khiển xe rẽ trái tại nơi có biển báo hiệu có nội dung cấm rẽ trái đối với loại phương tiện đang điều khiển; điều khiển xe rẽ phải tại nơi có biển báo hiệu có nội dung cấm rẽ phải đối với loại phương tiện đang điều khiển;
+b) Chở theo từ 03 người trở lên trên xe;
+c) Dừng xe, đỗ xe trên cầu;
+d) Điều khiển xe không đi bên phải theo chiều đi của mình; đi không đúng phần đường, làn đường quy định (làn cùng chiều hoặc làn ngược chiều); điều khiển xe đi qua dải phân cách cố định ở giữa hai phần đường xe chạy;
+đ) Vượt bên phải trong trường hợp không được phép;
+e) Người đang điều khiển xe hoặc chở người ngồi trên xe bám, kéo, đẩy xe khác, vật khác, dẫn dắt vật nuôi, mang vác vật cồng kềnh; chở người đứng trên yên, giá đèo hàng hoặc ngồi trên tay lái của xe;
+g) Điều khiển xe kéo theo xe khác, vật khác;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D7/K13/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D7/K13/a
+
+Điều 7. Xử phạt, trừ điểm giấy phép lái của người điều khiển xe mô tô, xe gắn máy, các loại xe tương tự xe mô tô và các loại xe tương tự xe gắn máy vi phạm quy tắc giao thông đường bộ
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm b khoản 3; khoản 5; điểm b, điểm c, điểm d khoản 6; điểm a khoản 7 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+[0] 600.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D7/K3)
+[1] 800.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D7/K3)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D7/K13/a)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi vừa lái xe máy và chở ba người cùng lên xe, sau đó bị cảnh sát dừng lại. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
+- Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 7, Khoản 13, Nghị định 168/2024/NĐ-CP)
+- ⚠ tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-tru_diem-013", "question": "Tôi vừa lái xe máy và chở ba người cùng lên xe, sau đó bị cảnh sát dừng lại. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 7, Khoản 13, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D7/K13/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-013:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi đang lái xe máy và muốn rẽ trái nhưng quên bật tín hiệu báo, sau đó bị cảnh sát dừng lại. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
+- Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 7, Khoản 13, Nghị định 168/2024/NĐ-CP)
+- ⚠ tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-tru_diem-013", "question": "Tôi đang lái xe máy và muốn rẽ trái nhưng quên bật tín hiệu báo, sau đó bị cảnh sát dừng lại. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 7, Khoản 13, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D7/K13/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-013:2"}
+```
+
+### W3-tru_diem-014 · tier A · vai: phụ huynh có con dưới 18 tuổi · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K7, ND168-2024/D6/K7/a, ND168-2024/D6/K7/b, ND168-2024/D6/K7/c
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+7. Phạt tiền từ 12.000.000 đồng đến 14.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe chạy quá tốc độ quy định trên 35 km/h;
+b) Điều khiển xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ đi vào đường cao tốc;
+c) Dừng xe, đỗ xe trên đường cao tốc không đúng nơi quy định; không có báo hiệu bằng đèn khẩn cấp khi gặp sự cố kỹ thuật hoặc bất khả kháng khác buộc phải dừng xe, đỗ xe ở làn dừng xe khẩn cấp hoặc dải dừng xe khẩn cấp trên đường cao tốc; không có báo hiệu bằng đèn khẩn cấp, không đặt biển cảnh báo “Chú ý xe đỗ” (hoặc đèn cảnh báo) về phía sau xe khoảng cách tối thiểu 150 mét khi dừng xe, đỗ xe trong trường hợp gặp sự cố kỹ thuật hoặc bất khả kháng khác buộc phải dừng xe, đỗ xe trên một phần làn đường xe chạy trên đường cao tốc.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D6/K16/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K16/b
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+16. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+b) Thực hiện hành vi quy định tại điểm h khoản 5; khoản 6; điểm b khoản 7; điểm b, điểm c, điểm d khoản 9 Điều này bị trừ điểm giấy phép lái xe 04 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D6/K16/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K16/c
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+16. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+c) Thực hiện hành vi quy định tại điểm p khoản 5; điểm a, điểm c khoản 7; khoản 8 Điều này bị trừ điểm giấy phép lái xe 06 điểm;
+
+[0] 12.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D6/K7)
+[1] 14.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D6/K7)
+[2] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D6/K16/b)
+[3] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D6/K16/c)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Con tôi đã dừng xe trên đường cao tốc mà không bật đèn khẩn cấp, có bị trừ điểm trên giấy phép lái xe không?
+- Đáp: Có, con sẽ bị trừ 04 điểm trên giấy phép lái xe. Trừ điểm này áp dụng khi người điều khiển xe dừng xe trên đường cao tốc mà không bật đèn khẩn cấp hoặc không đặt biển cảnh báo “Chú ý xe đỗ” trong khoảng cách tối thiểu 150 mét. (Điều 6, Khoản 16, Điểm b, Nghị định 168/2024/NĐ-CP)
+- ⚠ tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-tru_diem-014", "question": "Con tôi đã dừng xe trên đường cao tốc mà không bật đèn khẩn cấp, có bị trừ điểm trên giấy phép lái xe không?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Có, con sẽ bị trừ 04 điểm trên giấy phép lái xe. Trừ điểm này áp dụng khi người điều khiển xe dừng xe trên đường cao tốc mà không bật đèn khẩn cấp hoặc không đặt biển cảnh báo “Chú ý xe đỗ” trong khoảng cách tối thiểu 150 mét. (Điều 6, Khoản 16, Điểm b, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D6/K16/b"], "required_numbers": [{"value": 4, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-014:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Con tôi đã lái xe vượt quá tốc độ quy định trên 35 km/h, có bị trừ điểm trên giấy phép lái xe không?
+- Đáp: Có, con sẽ bị trừ 04 điểm trên giấy phép lái xe. Trừ điểm này áp dụng khi người điều khiển xe chạy quá tốc độ quy định trên 35 km/h. (Điều 6, Khoản 16, Điểm b, Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “quy định trên 35 km h …”; tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-tru_diem-014", "question": "Con tôi đã lái xe vượt quá tốc độ quy định trên 35 km/h, có bị trừ điểm trên giấy phép lái xe không?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Có, con sẽ bị trừ 04 điểm trên giấy phép lái xe. Trừ điểm này áp dụng khi người điều khiển xe chạy quá tốc độ quy định trên 35 km/h. (Điều 6, Khoản 16, Điểm b, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D6/K16/b"], "required_numbers": [{"value": 4, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-014:2"}
+```
+
+### W3-tru_diem-015 · tier A · vai: cán bộ phường · kiểu: nhieu_dieu_kien
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D12/K11, ND168-2024/D12/K11/a, ND168-2024/D12/K11/b, ND168-2024/D12/K11/c
+
+Điều 12. Xử phạt, trừ điểm giấy phép lái xe các hành vi vi phạm khác về quy tắc giao thông đường bộ; sử dụng lòng đường, vỉa hè vào mục đích khác
+11. Phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng đối với cá nhân thực hiện một trong các hành vi vi phạm sau đây:
+a) Đặt, để chướng ngại vật, vật cản khác trái phép trên đường bộ; đổ chất gây trơn trượt trên đường bộ; đổ, xả thải, làm rơi vãi hóa chất, chất thải gây mất an toàn giao thông đường bộ;
+b) Xâm phạm tính mạng, sức khỏe, tài sản của người bị nạn, người gây tai nạn giao thông đường bộ hoặc người giúp đỡ, cứu chữa, đưa người bị nạn đi cấp cứu;
+c) Hủy hoại, làm hư hỏng, làm mất tác dụng thiết bị điều khiển, giám sát giao thông đường bộ, thiết bị thông minh hỗ trợ chỉ huy, điều khiển giao thông đường bộ.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D12/K17)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D12/K17
+
+Điều 12. Xử phạt, trừ điểm giấy phép lái xe các hành vi vi phạm khác về quy tắc giao thông đường bộ; sử dụng lòng đường, vỉa hè vào mục đích khác
+17. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân thực hiện hành vi quy định tại điểm a, điểm b khoản 11 Điều này nếu là người điều khiển phương tiện bị trừ điểm giấy phép lái xe 02 điểm.
+
+[0] 6.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D12/K11)
+[1] 8.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D12/K11)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D12/K17)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi dừng xe trên vỉa hè để đổ chất gây trơn trượt, có bị trừ bao nhiêu điểm giấy phép lái xe?
+- Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 12, Khoản 17 Nghị định 168/2024/NĐ-CP)
+
+```json
+{"qid": "t3-tru_diem-015", "question": "Tôi dừng xe trên vỉa hè để đổ chất gây trơn trượt, có bị trừ bao nhiêu điểm giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 12, Khoản 17 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D12/K17"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-015:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi đã đặt một vật cản trên đường để dừng xe, có bị trừ bao nhiêu điểm giấy phép lái xe?
+- Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 12, Khoản 17 Nghị định 168/2024/NĐ-CP)
+
+```json
+{"qid": "t3-tru_diem-015", "question": "Tôi đã đặt một vật cản trên đường để dừng xe, có bị trừ bao nhiêu điểm giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 12, Khoản 17 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D12/K17"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-015:2"}
+```
+
+### W3-tru_diem-016 · tier A · vai: cán bộ phường · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D34/K3, ND168-2024/D34/K3/a, ND168-2024/D34/K3/b, ND168-2024/D34/K3/c, ND168-2024/D34/K3/d
+
+Điều 34. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển quá khổ giới hạn, xe quá tải trọng, xe bánh xích lưu hành đường bộ (kể cả xe ô tô chở hành khách)
+3. Phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Chở hàng vượt khổ giới hạn của xe hoặc của đường bộ ghi trong giấy phép lưu hành;
+b) Điều khiển xe bánh xích tham gia giao thông không có giấy phép lưu hành hoặc có giấy phép lưu hành nhưng không còn giá trị sử dụng theo quy định hoặc lưu thông trực tiếp trên đường mà không thực hiện biện pháp bảo vệ đường theo quy định;
+c) Điều khiển xe có kích thước bao ngoài vượt quá khép giới hạn của đường bộ hoặc chở hàng vượt khổ giới hạn của đường bộ hoặc chở hàng vượt quá kích thước giới hạn xếp hàng hóa của xe tham gia giao thông, trừ trường hợp có giấy phép lưu hành còn giá trị sử dụng;
+d) Điều khiển xe có kích thước bao ngoài vượt quá kích thước giới hạn cho phép của xe theo quy định, trừ trường hợp có giấy phép lưu hành còn giá trị sử dụng.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D34/K7/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D34/K7/a
+
+Điều 34. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển quá khổ giới hạn, xe quá tải trọng, xe bánh xích lưu hành đường bộ (kể cả xe ô tô chở hành khách)
+7. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại khoản 1, khoản 3, điểm a khoản 4 Điều này còn bị trừ điểm giấy phép lái xe 02 điểm;
+
+[0] 8.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D34/K3)
+[1] 10.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D34/K3)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D34/K7/a)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Cán bộ phường, anh tôi lái xe tải chở hàng vượt khổ giới hạn, được trừ bao nhiêu điểm trên giấy phép?
+- Đáp: Trừ 02 điểm trên giấy phép lái xe.
+(Khoản 7 Điểm a Điều 34 Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “chở hàng vượt khổ giới hạn …”; tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-tru_diem-016", "question": "Cán bộ phường, anh tôi lái xe tải chở hàng vượt khổ giới hạn, được trừ bao nhiêu điểm trên giấy phép?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Trừ 02 điểm trên giấy phép lái xe.\n(Khoản 7 Điểm a Điều 34 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D34/K7/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-016:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Cán bộ phường, công ty tôi đã chở hàng vượt khổ giới hạn, số điểm bị trừ là bao nhiêu?
+- Đáp: Trừ 02 điểm trên giấy phép lái xe.
+(Khoản 7 Điểm a Điều 34 Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “chở hàng vượt khổ giới hạn …”
+
+```json
+{"qid": "t3-tru_diem-016", "question": "Cán bộ phường, công ty tôi đã chở hàng vượt khổ giới hạn, số điểm bị trừ là bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Trừ 02 điểm trên giấy phép lái xe.\n(Khoản 7 Điểm a Điều 34 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D34/K7/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-016:2"}
+```
+
+### W3-tru_diem-017 · tier A · vai: tài xế xe tải · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K8, ND168-2024/D32/K8/a, ND168-2024/D32/K8/b, ND168-2024/D32/K8/c, ND168-2024/D32/K8/d, ND168-2024/D32/K8/đ, ND168-2024/D32/K8/e, ND168-2024/D32/K8/g, ND168-2024/D32/K8/h
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+8. Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng đối với cá nhân, từ 8.000.000 đến 12.000.000 đồng đối với tổ chức là chủ xe mô tô, xe gắn máy và các loại xe tương tự xe mô tô, các loại xe tương tự xe gắn máy thực hiện một trong các hành vi vi phạm sau đây:
+a) Tẩy xóa, sửa chữa hoặc giả mạo hồ sơ đăng ký xe nhưng chưa đến mức truy cứu trách nhiệm hình sự;
+b) Tự ý thay đổi khung, máy, hình dáng, kích thước, đặc tính của xe;
+c) Khai báo không đúng sự thật hoặc sử dụng các giấy tờ, tài liệu giả để được cấp lại biển số xe, chứng nhận đăng ký xe nhưng chưa đến mức bị truy cứu trách nhiệm hình sự;
+d) Không làm thủ tục thu hồi chứng nhận đăng ký xe, biển số xe theo quy định;
+đ) Đưa phương tiện không có chứng nhận đăng ký xe (hoặc bản sao chứng nhận đăng ký xe có chứng thực kèm theo bản gốc giấy biên nhận của tổ chức tín dụng, chi nhánh ngân hàng nước ngoài trong trường hợp tổ chức tín dụng, chi nhánh ngân hàng nước ngoài giữ bản gốc chứng nhận đăng ký xe) tham gia giao thông hoặc có nhưng đã hết hạn sử dụng, hết hiệu lực; đưa phương tiện có chứng nhận đăng ký xe tạm thời, phương tiện có phạm vi hoạt động hạn chế tham gia giao thông quá thời hạn, tuyến đường, phạm vi cho phép;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/a
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm đ, điểm g, điểm m khoản 7; điểm đ, điểm e khoản 8; điểm b, điểm c, điểm d, điểm đ khoản 9; điểm a, điểm b, điểm đ khoản 11; điểm a khoản 12; điểm c khoản 13; điểm đ, điểm h khoản 14 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/đ
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+đ) Thực hiện hành vi quy định tại điểm h khoản 8, điểm b khoản 12 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 06 điểm;
+
+[0] 4.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K8)
+[1] 6.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K8)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/a)
+[3] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/đ)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi, một tài xế xe tải, đã đưa xe vào đường mà không có chứng nhận đăng ký xe hợp lệ. Anh ấy muốn biết số điểm giấy phép sẽ bị trừ khi bị xử phạt theo quy định hiện hành.
+- Đáp: Nếu xe tải của anh tôi được xác định vi phạm hành vi đưa phương tiện không có chứng nhận đăng ký xe, thì số điểm bị trừ là 02 điểm. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, điều 32, khoản 21, điểm đ, khoản 8.
+- ⚠ chep_nguyen_van: “có chứng nhận đăng ký xe …”
+
+```json
+{"qid": "t3-tru_diem-017", "question": "Anh tôi, một tài xế xe tải, đã đưa xe vào đường mà không có chứng nhận đăng ký xe hợp lệ. Anh ấy muốn biết số điểm giấy phép sẽ bị trừ khi bị xử phạt theo quy định hiện hành.", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Nếu xe tải của anh tôi được xác định vi phạm hành vi đưa phương tiện không có chứng nhận đăng ký xe, thì số điểm bị trừ là 02 điểm. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, điều 32, khoản 21, điểm đ, khoản 8.", "gold_units": ["ND168-2024/D32/K21/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-017:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi, một doanh nghiệp vận tải, đã cho một tài xế xe tải tham gia giao thông với phương tiện có chứng nhận đăng ký xe tạm thời đã hết hạn. Tôi muốn biết số điểm giấy phép sẽ bị trừ khi bị xử phạt.
+- Đáp: Khi phương tiện có chứng nhận đăng ký xe tạm thời đã hết hạn, số điểm bị trừ là 06 điểm. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, điều 32, khoản 21, điểm đ, khoản 8.
+- ⚠ chep_nguyen_van: “chứng nhận đăng ký xe tạm …”
+
+```json
+{"qid": "t3-tru_diem-017", "question": "Công ty tôi, một doanh nghiệp vận tải, đã cho một tài xế xe tải tham gia giao thông với phương tiện có chứng nhận đăng ký xe tạm thời đã hết hạn. Tôi muốn biết số điểm giấy phép sẽ bị trừ khi bị xử phạt.", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Khi phương tiện có chứng nhận đăng ký xe tạm thời đã hết hạn, số điểm bị trừ là 06 điểm. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, điều 32, khoản 21, điểm đ, khoản 8.", "gold_units": ["ND168-2024/D32/K21/đ"], "required_numbers": [{"value": 6, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-017:2"}
+```
+
+### W3-tru_diem-018 · tier A · vai: cán bộ phường · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K13, ND168-2024/D32/K13/a, ND168-2024/D32/K13/b, ND168-2024/D32/K13/c, ND168-2024/D32/K13/d, ND168-2024/D32/K13/đ, ND168-2024/D32/K13/e
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+13. Phạt tiền từ 20.000.000 đồng đến 26.000.000 đồng đối với cá nhân, từ 40.000.000 đồng đến 52.000.000 đồng đối với tổ chức là chủ xe ô tô, xe máy chuyên dùng và các loại xe tương tự xe ô tô thực hiện một trong các hành vi vi phạm sau đây:
+a) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm a, điểm b khoản 6 Điều 21 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm a, điểm b khoản 6 Điều 21 của Nghị định này;
+b) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 2 Điều 22 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 2 Điều 22 của Nghị định này;
+c) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 3 Điều 34 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 3 Điều 34 của Nghị định này;
+d) Đưa phương tiện gắn biển số không đúng với chứng nhận đăng ký xe hoặc gắn biển số không do cơ quan có thẩm quyền cấp (kể cả rơ moóc và sơ mi rơ moóc) tham gia giao thông;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/c
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+c) Thực hiện hành vi quy định tại điểm e khoản 7, điểm b khoản 11, điểm a khoản 13, khoản 15, điểm b khoản 16 Điều này mà phương tiện đó có thùng xe, khối lượng hàng hóa cho phép chuyên chở không đúng theo quy định hiện hành thì còn bị tước quyền sử dụng chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường và tem kiểm định của phương tiện từ 01 tháng đến 03 tháng;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/đ
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+đ) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chở vượt trên 50% số người quy định được phép chở của phương tiện còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có). Thực hiện hành vi quy định tại điểm a, điểm b khoản 11; điểm a, điểm b, điểm c, điểm đ khoản 13; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16 Điều này còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có),
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/a
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm đ, điểm g, điểm m khoản 7; điểm đ, điểm e khoản 8; điểm b, điểm c, điểm d, điểm đ khoản 9; điểm a, điểm b, điểm đ khoản 11; điểm a khoản 12; điểm c khoản 13; điểm đ, điểm h khoản 14 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/c
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+c) Thực hiện hành vi quy định tại điểm a, điểm b, điểm đ, điểm e khoản 13; điểm a, điểm b, điểm c, điểm d khoản 14; điểm a khoản 16 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 04 điểm;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/g)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/g
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+g) Thực hiện hành vi quy định tại điểm d khoản 13, điểm b khoản 16 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 10 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D21/K6/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K6/a
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+6. Phạt tiền từ 5.000.000 đồng đến 7.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe (kể cả rơ moóc và sơ mi rơ moóc) chở hàng vượt trọng tải (khối lượng hàng chuyên chở) cho phép tham gia giao thông được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 50% đến 100%;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D21/K6/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K6/b
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+6. Phạt tiền từ 5.000.000 đồng đến 7.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+b) Điều khiển xe kéo theo rơ moóc, sơ mi rơ moóc mà khối lượng toàn bộ (bao gồm khối lượng bản thân rơ moóc, sơ mi rơ moóc và khối lượng hàng chuyên chở) của rơ moóc, sơ mi rơ moóc vượt khối lượng cho phép kéo theo được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 50% đến 100%;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D22/K2)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D22/K2
+
+Điều 22. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển hàng siêu trường, siêu trọng
+2. Phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng đối với hành vi chở hàng siêu trường, siêu trọng có giấy phép lưu hành còn giá trị sử dụng nhưng kích thước bao ngoài của xe (sau khi đã xếp hàng lên xe) vượt quá quy định trong giấy phép lưu hành.
+
+[0] 20.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K13)
+[1] 26.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K13)
+[2] 40.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K13)
+[3] 52.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K13)
+[4] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/c)
+[5] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/c)
+[6] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/đ)
+[7] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/đ)
+[8] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/a)
+[9] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/c)
+[10] 10 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/g)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi vừa lái xe qua ngã tư, nhưng lại không dừng lại khi có biển báo dừng, và tiếp tục đi qua. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
+- Đáp: Bạn sẽ bị trừ 04 điểm trên giấy phép lái xe. (khoản 3 Điều 21 Nghị định 168/2024/NĐ-CP)
+- ⚠ tham_chieu_ngu_canh
+- Ghi chú: Giả định hành vi là vi phạm điểm a, điểm b, điểm đ, điểm e khoản 13 trong Nghị định 168/2024/NĐ-CP
+
+```json
+{"qid": "t3-tru_diem-018", "question": "Tôi vừa lái xe qua ngã tư, nhưng lại không dừng lại khi có biển báo dừng, và tiếp tục đi qua. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 04 điểm trên giấy phép lái xe. (khoản 3 Điều 21 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K21/c"], "required_numbers": [{"value": 4, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-018:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi đã lái xe qua ngã tư mà không dừng lại khi có biển báo dừng, và tiếp tục đi qua. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?
+- Đáp: Bạn sẽ bị trừ 04 điểm trên giấy phép lái xe. (khoản 3 Điều 21 Nghị định 168/2024/NĐ-CP)
+- ⚠ tham_chieu_ngu_canh
+- Ghi chú: Giả định hành vi là vi phạm điểm a, điểm b, điểm đ, điểm e khoản 13 trong Nghị định 168/2024/NĐ-CP
+
+```json
+{"qid": "t3-tru_diem-018", "question": "Tôi đã lái xe qua ngã tư mà không dừng lại khi có biển báo dừng, và tiếp tục đi qua. Tôi bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 04 điểm trên giấy phép lái xe. (khoản 3 Điều 21 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K21/c"], "required_numbers": [{"value": 4, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-018:2"}
+```
+
+### W3-tru_diem-019 · tier A · vai: chủ doanh nghiệp vận tải · kiểu: neu_van_ban
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K8
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+8. Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng đối với người điều khiển xe thực hiện hành vi đón, trả hành khách trên đường cao tốc.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D20/K10/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K10/c
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+10. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+c) Thực hiện hành vi vi phạm quy định tại khoản 8, khoản 8a Điều này bị trừ điểm giấy phép lái xe 06 điểm;
+
+[0] 10.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D20/K8)
+[1] 12.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D20/K8)
+[2] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D20/K10/c)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Theo Nghị định 168/2024/NĐ-CP, khi lái xe ô tô chở hành khách đón, trả hành khách trên đường cao tốc, số điểm giấy phép lái xe bị trừ là bao nhiêu?
+- Đáp: Số điểm giấy phép lái xe bị trừ là 06 điểm. (Điều 20, khoản 10c Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “hành khách trên đường cao tốc …”
+
+```json
+{"qid": "t3-tru_diem-019", "question": "Theo Nghị định 168/2024/NĐ-CP, khi lái xe ô tô chở hành khách đón, trả hành khách trên đường cao tốc, số điểm giấy phép lái xe bị trừ là bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Số điểm giấy phép lái xe bị trừ là 06 điểm. (Điều 20, khoản 10c Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D20/K10/c"], "required_numbers": [{"value": 6, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-019:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Theo Nghị định 168/2024/NĐ-CP, nếu một tài xế của công ty tôi đón và trả hành khách trên đường cao tốc, thì giấy phép lái xe của anh ta sẽ bị trừ bao nhiêu điểm?
+- Đáp: Số điểm giấy phép lái xe bị trừ là 06 điểm. (Điều 20, khoản 10c Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “hành khách trên đường cao tốc …”
+
+```json
+{"qid": "t3-tru_diem-019", "question": "Theo Nghị định 168/2024/NĐ-CP, nếu một tài xế của công ty tôi đón và trả hành khách trên đường cao tốc, thì giấy phép lái xe của anh ta sẽ bị trừ bao nhiêu điểm?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Số điểm giấy phép lái xe bị trừ là 06 điểm. (Điều 20, khoản 10c Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D20/K10/c"], "required_numbers": [{"value": 6, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-019:2"}
+```
+
+### W3-tru_diem-020 · tier A · vai: chủ doanh nghiệp vận tải · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D27/K3, ND168-2024/D27/K3/a, ND168-2024/D27/K3/b, ND168-2024/D27/K3/c, ND168-2024/D27/K3/d
+
+Điều 27. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô kinh doanh vận tải chở trẻ em mầm non, học sinh, xe ô tô kinh doanh vận tải kết hợp với hoạt động đưa đón trẻ em mầm non, học sinh
+3. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với người điều khiển xe ô tô kinh doanh vận tải chở trẻ em mầm non, học sinh, xe ô tô kinh doanh vận tải kết hợp với hoạt động đưa đón trẻ em mầm non, học sinh thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe không có thiết bị giám sát hành trình hoặc có lắp thiết bị giám sát hành trình nhưng không có tác dụng trong quá trình xe tham gia giao thông theo quy định hoặc làm sai lệch dữ liệu của thiết bị giám sát hành trình lắp trên xe ô tô;
+b) Điều khiển xe không có thiết bị ghi nhận hình ảnh trẻ em mầm non, học sinh hoặc không có thiết bị có chức năng cảnh báo, chống bỏ quên trẻ em trên xe hoặc không có thiết bị ghi nhận hình ảnh trẻ em mầm non, học sinh và thiết bị có chức năng cảnh báo, chống bỏ quên trẻ em trên xe;
+c) Điều khiển xe ô tô kinh doanh vận tải chở trẻ em mầm non, học sinh không có màu sơn theo quy định;
+d) Điều khiển xe ô tô kinh doanh vận tải chở trẻ em mầm non, học sinh, xe ô tô kinh doanh vận tải kết hợp với hoạt động đưa đón trẻ em mầm non, học sinh không có biển báo dấu hiệu nhận biết là xe chở trẻ em mầm non, học sinh theo quy định.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D27/K4)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D27/K4
+
+Điều 27. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô kinh doanh vận tải chở trẻ em mầm non, học sinh, xe ô tô kinh doanh vận tải kết hợp với hoạt động đưa đón trẻ em mầm non, học sinh
+4. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi quy định tại khoản 2, khoản 3 Điều này bị trừ điểm giấy phép lái xe 02 điểm.
+
+[0] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D27/K3)
+[1] 5.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D27/K3)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D27/K4)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Công ty tôi đang vận chuyển học sinh, nhưng một chiếc xe của chúng tôi không lắp thiết bị ghi hình trẻ em. Tôi muốn biết có bị trừ bao nhiêu điểm trên giấy phép lái xe không?
+- Đáp: Xe ô tô kinh doanh vận tải chở trẻ em mà không có thiết bị ghi hình sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 27 Khoản 4 Nghị định 168/2024/NĐ-CP)
+- ⚠ tham_chieu_ngu_canh
+- Ghi chú: Giả định xe là ô tô chở khách, không phải xe máy.
+
+```json
+{"qid": "t3-tru_diem-020", "question": "Công ty tôi đang vận chuyển học sinh, nhưng một chiếc xe của chúng tôi không lắp thiết bị ghi hình trẻ em. Tôi muốn biết có bị trừ bao nhiêu điểm trên giấy phép lái xe không?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Xe ô tô kinh doanh vận tải chở trẻ em mà không có thiết bị ghi hình sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 27 Khoản 4 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D27/K4"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-020:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Anh tôi lái xe công ty chở học sinh, nhưng xe không có thiết bị giám sát hành trình. Anh ấy muốn biết điểm bị trừ là bao nhiêu?
+- Đáp: Xe ô tô kinh doanh vận tải chở trẻ em mà không có thiết bị giám sát hành trình sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 27 Khoản 4 Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “có thiết bị giám sát hành …”
+- Ghi chú: Giả định xe là ô tô chở khách, không phải xe máy.
+
+```json
+{"qid": "t3-tru_diem-020", "question": "Anh tôi lái xe công ty chở học sinh, nhưng xe không có thiết bị giám sát hành trình. Anh ấy muốn biết điểm bị trừ là bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Xe ô tô kinh doanh vận tải chở trẻ em mà không có thiết bị giám sát hành trình sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 27 Khoản 4 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D27/K4"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-020:2"}
+```
+
+### W3-tru_diem-021 · tier A · vai: người lớn tuổi đi xe đạp điện · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K8, ND168-2024/D26/K8/a, ND168-2024/D26/K8/b, ND168-2024/D26/K8/c, ND168-2024/D26/K8/d
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+8. Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng đối với cá nhân, từ 20.000.000 đồng đến 24.000.000 đồng đối với tổ chức kinh doanh vận tải, dịch vụ hỗ trợ vận tải thực hiện một trong các hành vi vi phạm sau đây:
+a) Không tổ chức khám sức khỏe định kỳ cho lái xe theo quy định hoặc có tổ chức khám nhưng không đầy đủ các nội dung theo quy định;
+b) Vi phạm quy định về kinh doanh, điều kiện kinh doanh vận tải bằng xe ô tô để xảy ra tai nạn giao thông gây hậu quả từ mức nghiêm trọng trở lên;
+c) Sử dụng xe ô tô kinh doanh vận tải để đón, trả khách; nhận, trả hàng trên đường cao tốc.
+d) Sử dụng xe ô tô kinh doanh vận tải hành khách theo hợp đồng mà xác nhận đặt chỗ cho từng hành khách đi xe ngoài hợp đồng đã ký kết hoặc bán vé, thu tiền ngoài hợp đồng đã ký kết; ấn định hành trình, lịch trình cố định để phục vụ cho nhiều hành khách hoặc nhiều người thuê vận tải khác nhau.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D26/K12)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K12
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+12. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm quy định tại điểm c khoản 2; điểm a, điểm b, điểm đ, điểm g khoản 4; điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 7; điểm c khoản 8 Điều này còn bị áp dụng các hình thức xử phạt bổ sung tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có hoặc đã được cấp) đối với xe vi phạm.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D26/K14/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K14/b
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+14. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+b) Thực hiện hành vi quy định tại điểm c khoản 8 Điều này trong trường hợp cá nhân kinh doanh vận tải là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 06 điểm.
+
+[0] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D26/K12)
+[1] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D26/K12)
+[2] 10.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D26/K8)
+[3] 12.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D26/K8)
+[4] 20.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D26/K8)
+[5] 24.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D26/K8)
+[6] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D26/K14/b)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi đang lái xe đạp điện và đã bị cảnh sát ghi nhận vi phạm quy định về việc không tổ chức khám sức khỏe định kỳ cho người điều khiển xe, tôi sẽ bị trừ bao nhiêu điểm trên giấy phép lái xe?
+- Đáp: Bạn sẽ bị trừ 06 điểm trên giấy phép lái xe. (Điều 26, Khoản 14, Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “chức khám sức khỏe định kỳ …”; tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-tru_diem-021", "question": "Tôi đang lái xe đạp điện và đã bị cảnh sát ghi nhận vi phạm quy định về việc không tổ chức khám sức khỏe định kỳ cho người điều khiển xe, tôi sẽ bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 06 điểm trên giấy phép lái xe. (Điều 26, Khoản 14, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D26/K14/b"], "required_numbers": [{"value": 6, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-021:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Khi tôi điều khiển xe đạp điện và bị cảnh sát ghi nhận vi phạm không tổ chức khám sức khỏe định kỳ, số điểm bị trừ trên giấy phép lái xe là bao nhiêu?
+- Đáp: Bạn sẽ bị trừ 06 điểm trên giấy phép lái xe. (Điều 26, Khoản 14, Nghị định 168/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “chức khám sức khỏe định kỳ …”
+
+```json
+{"qid": "t3-tru_diem-021", "question": "Khi tôi điều khiển xe đạp điện và bị cảnh sát ghi nhận vi phạm không tổ chức khám sức khỏe định kỳ, số điểm bị trừ trên giấy phép lái xe là bao nhiêu?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 06 điểm trên giấy phép lái xe. (Điều 26, Khoản 14, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D26/K14/b"], "required_numbers": [{"value": 6, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-021:2"}
+```
+
+### W3-tru_diem-022 · tier A · vai: tài xế xe tải · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D24/K2
+
+Điều 24. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển động vật sống, thực phẩm tươi sống
+2. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với hành vi vi phạm vận chuyển thực phẩm tươi sống không chấp hành quy định về an toàn thực phẩm, vệ sinh dịch tễ, phòng dịch và bảo đảm vệ sinh môi trường theo quy định.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D24/K3)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D24/K3
+
+Điều 24. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển động vật sống, thực phẩm tươi sống
+3. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 2 Điều này còn bị trừ điểm giấy phép lái xe 02 điểm.
+
+[0] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D24/K2)
+[1] 5.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D24/K2)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D24/K3)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi lái xe tải, hôm qua mang thực phẩm tươi sang khách hàng, nhưng có ai bảo anh ấy bị trừ bao nhiêu điểm?
+- Đáp: Anh ấy bị trừ 02 điểm. (khoản 3 Điều 24 Nghị định 168/2024/NĐ-CP)
+
+```json
+{"qid": "t3-tru_diem-022", "question": "Anh tôi lái xe tải, hôm qua mang thực phẩm tươi sang khách hàng, nhưng có ai bảo anh ấy bị trừ bao nhiêu điểm?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Anh ấy bị trừ 02 điểm. (khoản 3 Điều 24 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D24/K3"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-022:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi giao hàng thực phẩm tươi, một lái xe đã vi phạm, tôi muốn biết số điểm bị trừ?
+- Đáp: Lái xe bị trừ 02 điểm. (khoản 3 Điều 24 Nghị định 168/2024/NĐ-CP)
+
+```json
+{"qid": "t3-tru_diem-022", "question": "Công ty tôi giao hàng thực phẩm tươi, một lái xe đã vi phạm, tôi muốn biết số điểm bị trừ?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Lái xe bị trừ 02 điểm. (khoản 3 Điều 24 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D24/K3"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-022:2"}
+```
+
+### W3-tru_diem-023 · tier A · vai: người lớn tuổi đi xe đạp điện · kiểu: nhieu_dieu_kien
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D23/K4
+
+Điều 23. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển hàng hóa nguy hiểm
+4. Phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng đối với hành vi vận chuyển hàng hóa nguy hiểm là thuốc nổ, khí đốt, xăng, dầu và các chất dễ cháy, nổ, chất rắn khử nhạy khác đi qua các công trình hầm có chiều dài từ 100 mét trở lên.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D23/K7/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D23/K7/a
+
+Điều 23. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô thực hiện hành vi vi phạm quy định về vận chuyển hàng hóa nguy hiểm
+7. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại khoản 3, khoản 4 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+[0] 6.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D23/K4)
+[1] 8.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D23/K4)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D23/K7/a)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là người lớn tuổi đi xe đạp điện, nhưng tôi muốn biết nếu một chiếc ô tô chở xăng đi qua một hầm dài 150 mét, có bị trừ bao nhiêu điểm trên giấy phép lái xe?
+- Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, khoản 7, điều 23, mục a.
+- ⚠ tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-tru_diem-023", "question": "Tôi là người lớn tuổi đi xe đạp điện, nhưng tôi muốn biết nếu một chiếc ô tô chở xăng đi qua một hầm dài 150 mét, có bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, khoản 7, điều 23, mục a.", "gold_units": ["ND168-2024/D23/K7/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-023:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là người lớn tuổi đi xe đạp điện, nhưng tôi muốn biết nếu một chiếc ô tô chở thuốc nổ đi qua một hầm dài 110 mét, có bị trừ bao nhiêu điểm trên giấy phép lái xe?
+- Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, khoản 7, điều 23, mục a.
+- ⚠ tham_chieu_ngu_canh
+
+```json
+{"qid": "t3-tru_diem-023", "question": "Tôi là người lớn tuổi đi xe đạp điện, nhưng tôi muốn biết nếu một chiếc ô tô chở thuốc nổ đi qua một hầm dài 110 mét, có bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. Điều này được quy định trong Nghị định 168/2024/NĐ-CP, khoản 7, điều 23, mục a.", "gold_units": ["ND168-2024/D23/K7/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-023:2"}
+```
+
+### W3-tru_diem-024 · tier A · vai: tài xế công nghệ · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → 2027-12-31
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K5, ND168-2024/D20/K5/a, ND168-2024/D20/K5/b, ND168-2024/D20/K5/c, ND168-2024/D20/K5/d, ND168-2024/D20/K5/đ, ND168-2024/D20/K5/e, ND168-2024/D20/K5/g, ND168-2024/D20/K5/h, ND168-2024/D20/K5/i, ND168-2024/D20/K5/k, ND168-2024/D20/K5/l, ND168-2024/D20/K5/m
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+5. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Để người lên, xuống xe khi xe đang chạy;
+b) Xếp hành lý, hàng hóa trên xe làm lệch xe;
+c) Đón, trả hành khách không đúng nơi quy định trên những tuyến đường đã xác định nơi đón, trả khách hoặc dừng đón, trả hành khách quá thời gian quy định, trừ hành vi vi phạm quy định tại khoản 8 Điều này;
+d) Đón, trả hành khách tại nơi cấm dừng, cấm đỗ, nơi đường cong tầm nhìn bị che khuất, trừ hành vi vi phạm quy định tại khoản 8 Điều này;
+đ) Điều khiển xe vận tải hành khách theo hợp đồng sử dụng hợp đồng bằng văn bản giấy mà không có hợp đồng vận tải, danh sách hành khách theo quy định; có hợp đồng vận tải nhưng không đúng theo quy định; đón khách, chở người không có tên trong danh sách hành khách theo hợp đồng đã ký;
+e) Vận chuyển hành khách theo tuyến cố định không có hoặc không mang theo lệnh vận chuyển hoặc có mang theo lệnh vận chuyển nhưng không ghi đầy đủ thông tin, không có xác nhận của bến xe khách nơi đi, bến xe khách nơi đến theo quy định;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D20/K10/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K10/a
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+10. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm c, điểm d, điểm e khoản 3; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g, điểm h, điểm i, điểm k, điểm m khoản 5; khoản 6; khoản 7 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D20/K8)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K8
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+8. Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng đối với người điều khiển xe thực hiện hành vi đón, trả hành khách trên đường cao tốc.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D37/K1/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D37/K1/b
+
+Điều 37. Xử phạt người điều khiển phương tiện giao thông cơ giới đường bộ gắn biển số nước ngoài
+1. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với người điều khiển phương tiện giao thông cơ giới đường bộ gắn biển số nước ngoài thực hiện một trong các hành vi vi phạm sau đây:
+b) Điều khiển xe chở hành khách không có danh sách hành khách theo quy định.
+
+[0] 1.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D20/K5)
+[1] 2.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D20/K5)
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D20/K10/a)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi vừa dừng xe trên đường cao tốc để đón khách, sau đó tiếp tục chạy, có bị trừ bao nhiêu điểm trên giấy phép lái xe?
+- Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 20, Khoản 10, Nghị định 168/2024/NĐ-CP)
+- ⚠ tham_chieu_ngu_canh
+- Ghi chú: Không đề cập đến số tiền phạt, chỉ hỏi điểm trừ
+
+```json
+{"qid": "t3-tru_diem-024", "question": "Tôi vừa dừng xe trên đường cao tốc để đón khách, sau đó tiếp tục chạy, có bị trừ bao nhiêu điểm trên giấy phép lái xe?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 20, Khoản 10, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D20/K10/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-024:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi vừa cho hành khách lên và xuống khi xe đang chạy, có bị trừ điểm nào không?
+- Đáp: Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 20, Khoản 10, Nghị định 168/2024/NĐ-CP)
+- Ghi chú: Không đề cập đến mức phạt tiền, chỉ hỏi điểm trừ
+
+```json
+{"qid": "t3-tru_diem-024", "question": "Tôi vừa cho hành khách lên và xuống khi xe đang chạy, có bị trừ điểm nào không?", "as_of": "2026-11-03", "question_type": "tru_diem", "tier": "A", "answer": "Bạn sẽ bị trừ 02 điểm trên giấy phép lái xe. (Điều 20, Khoản 10, Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D20/K10/a"], "required_numbers": [{"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-tru_diem-024:2"}
+```
+
+## theo_thoi_diem — câu trả lời khác nhau trước/sau một mốc sửa đổi (đi theo cặp)
+
+### W3-theo_thoi_diem-001 · tier A · vai: chủ doanh nghiệp vận tải · kiểu: tinh_huong_ban_than · trước mốc: chưa có hiệu lực
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Trạng thái trước mốc (áp dụng tại 2024-12-31)
+Chưa có hiệu lực (không có phiên bản).
+
+### Trạng thái sau mốc (áp dụng tại 2025-01-01)
+Văn bản: Luật Đường bộ số 35/2024/QH15
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D34/K2, LUAT35-2024/D34/K2/a, LUAT35-2024/D34/K2/b, LUAT35-2024/D34/K2/c, LUAT35-2024/D34/K2/d, LUAT35-2024/D34/K2/đ
+
+Điều 34. Thi công xây dựng công trình thủy lợi, thủy điện trong phạm vi bảo vệ công trình đường bộ đang khai thác
+2. Khi thi công xây dựng công trình thủy lợi, thủy điện giao cắt với đường bộ đang khai thác phải thực hiện quy định tại khoản 1 Điều này và các quy định sau đây:
+a) Vị trí xây dựng không ảnh hưởng đến vận hành, khai thác và hoạt động bình thường của các công trình đường bộ hiện có, trừ quy định tại điểm d khoản này;
+b) Thực hiện biện pháp bảo đảm an toàn cho công trình đường bộ hiện có, công trình liền kề, bảo đảm giao thông thông suốt, an toàn và bảo vệ môi trường; bảo đảm các quy định về tĩnh không của đường bộ, phạm vi bảo vệ trên không, phạm vi bảo vệ bên dưới của công trình đường bộ;
+c) Không được làm xói lở mố, trụ cầu, tường chắn bảo vệ công trình đường bộ khi nạo vét và thi công trên sông, kênh, mương trong phạm vi bảo vệ kết cấu hạ tầng đường bộ;
+d) Trước khi xây dựng công trình thủy lợi, thủy điện cắt ngang, chồng lấn lên vị trí đường bộ hoặc ảnh hưởng đến công trình đường bộ đang khai thác, chủ đầu tư dự án xây dựng công trình thủy lợi, thủy điện phải xây dựng công trình đường bộ để bồi hoàn, thay thế cho phần công trình đường bộ bị ảnh hưởng hoặc bồi hoàn bằng kinh phí xây dựng đoạn đường thay thế. Công trình đường bộ để bồi hoàn có cấp kỹ thuật, quy mô không thấp hơn công trình đường bộ bị ảnh hưởng;
+…
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT35-2024/D34/K1)
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D34/K1
+
+Điều 34. Thi công xây dựng công trình thủy lợi, thủy điện trong phạm vi bảo vệ công trình đường bộ đang khai thác
+1. Khi thi công xây dựng công trình thủy lợi, thủy điện trong phạm vi bảo vệ công trình đường bộ đang khai thác phải thực hiện theo quy định tại Điều 19 và Điều 32 của Luật này.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2024-12-31): Tôi đang chuẩn bị xây dựng công trình thủy lợi cắt ngang đường bộ, có cần phải xây dựng đường bộ thay thế trước khi bắt đầu công việc?
+- Đáp: chưa có quy định có hiệu lực tại thời điểm này trong dữ liệu
+- ⚠ chep_nguyen_van: “xây dựng công trình thủy lợi …”
+- Hỏi (2025-01-01): Tôi đang chuẩn bị xây dựng công trình thủy lợi cắt ngang đường bộ, có cần phải xây dựng đường bộ thay thế trước khi bắt đầu công việc?
+- Đáp: Khi công trình thủy lợi cắt ngang đường bộ, chủ đầu tư phải xây dựng đường bộ để bồi hoàn hoặc thay thế phần bị ảnh hưởng, với cấp kỹ thuật và quy mô không thấp hơn công trình bị ảnh hưởng. (Khoản d Điều 34 Luật Đường bộ số 35/2024/QH15)
+- ⚠ chep_nguyen_van: “xây dựng công trình thủy lợi …”
+
+```json
+{"qid": "t3-theo_thoi_diem-001a", "question": "Tôi đang chuẩn bị xây dựng công trình thủy lợi cắt ngang đường bộ, có cần phải xây dựng đường bộ thay thế trước khi bắt đầu công việc?", "as_of": "2024-12-31", "question_type": "theo_thoi_diem", "tier": "A", "answer": "chưa có quy định có hiệu lực tại thời điểm này trong dữ liệu", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-001:1a", "pair_id": "p3-001"}
+{"qid": "t3-theo_thoi_diem-001b", "question": "Tôi đang chuẩn bị xây dựng công trình thủy lợi cắt ngang đường bộ, có cần phải xây dựng đường bộ thay thế trước khi bắt đầu công việc?", "as_of": "2025-01-01", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Khi công trình thủy lợi cắt ngang đường bộ, chủ đầu tư phải xây dựng đường bộ để bồi hoàn hoặc thay thế phần bị ảnh hưởng, với cấp kỹ thuật và quy mô không thấp hơn công trình bị ảnh hưởng. (Khoản d Điều 34 Luật Đường bộ số 35/2024/QH15)", "gold_units": ["LUAT35-2024/D34/K2", "LUAT35-2024/D34/K2/d"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-001:1b", "pair_id": "p3-001"}
+```
+
+### W3-theo_thoi_diem-002 · tier B · vai: chủ doanh nghiệp vận tải · kiểu: tinh_huong_nguoi_khac · trước mốc: chưa có hiệu lực
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Trạng thái trước mốc (áp dụng tại 2024-12-31)
+Chưa có hiệu lực (không có phiên bản).
+
+### Trạng thái sau mốc (áp dụng tại 2025-01-01)
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D50/K2
+
+Điều 50. Đầu tư trạm dừng nghỉ đối với dự án đường cao tốc đầu tư công
+2. Trường hợp lựa chọn được nhà đầu tư trạm dừng nghỉ theo quy định pháp luật đấu thầu về lựa chọn nhà đầu tư dự án có sử dụng đất không thành công, cơ quan có thẩm quyền tổ chức đầu tư trạm dừng nghỉ trong dự án đường cao tốc theo hình thức đầu tư công.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2024-12-31): Công ty tôi muốn đầu tư trạm dừng nghỉ trong dự án đường cao tốc, có thể làm như thế nào?
+- Đáp: Chưa có quy định có hiệu lực tại thời điểm này trong dữ liệu.
+- ⚠ chep_nguyen_van: “dừng nghỉ trong dự án đường …”
+- Hỏi (2025-01-01): Công ty tôi muốn đầu tư trạm dừng nghỉ trong dự án đường cao tốc, có thể làm như thế nào?
+- Đáp: Nếu quá trình đấu thầu không thành công, cơ quan có thẩm quyền có thể tổ chức đầu tư trạm dừng nghỉ theo hình thức đầu tư công. (Điều 50 Nghị định 165/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “dừng nghỉ trong dự án đường …”
+
+```json
+{"qid": "t3-theo_thoi_diem-002a", "question": "Công ty tôi muốn đầu tư trạm dừng nghỉ trong dự án đường cao tốc, có thể làm như thế nào?", "as_of": "2024-12-31", "question_type": "theo_thoi_diem", "tier": "B", "answer": "Chưa có quy định có hiệu lực tại thời điểm này trong dữ liệu.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-002:1a", "pair_id": "p3-002"}
+{"qid": "t3-theo_thoi_diem-002b", "question": "Công ty tôi muốn đầu tư trạm dừng nghỉ trong dự án đường cao tốc, có thể làm như thế nào?", "as_of": "2025-01-01", "question_type": "theo_thoi_diem", "tier": "B", "answer": "Nếu quá trình đấu thầu không thành công, cơ quan có thẩm quyền có thể tổ chức đầu tư trạm dừng nghỉ theo hình thức đầu tư công. (Điều 50 Nghị định 165/2024/NĐ-CP)", "gold_units": ["ND165-2024/D50/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-002:1b", "pair_id": "p3-002"}
+```
+
+**Nháp 2**
+
+- Hỏi (2024-12-31): Công ty tôi muốn xây dựng trạm dừng nghỉ trong dự án đường cao tốc, có quy định nào hướng dẫn?
+- Đáp: Chưa có quy định có hiệu lực tại thời điểm này trong dữ liệu.
+- ⚠ chep_nguyen_van: “dừng nghỉ trong dự án đường …”
+- Hỏi (2025-01-01): Công ty tôi muốn xây dựng trạm dừng nghỉ trong dự án đường cao tốc, có quy định nào hướng dẫn?
+- Đáp: Khi đấu thầu không thành công, cơ quan có thẩm quyền có thể tổ chức đầu tư trạm dừng nghỉ theo hình thức đầu tư công. (Điều 50 Nghị định 165/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “dừng nghỉ trong dự án đường …”
+
+```json
+{"qid": "t3-theo_thoi_diem-002a", "question": "Công ty tôi muốn xây dựng trạm dừng nghỉ trong dự án đường cao tốc, có quy định nào hướng dẫn?", "as_of": "2024-12-31", "question_type": "theo_thoi_diem", "tier": "B", "answer": "Chưa có quy định có hiệu lực tại thời điểm này trong dữ liệu.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-002:2a", "pair_id": "p3-002"}
+{"qid": "t3-theo_thoi_diem-002b", "question": "Công ty tôi muốn xây dựng trạm dừng nghỉ trong dự án đường cao tốc, có quy định nào hướng dẫn?", "as_of": "2025-01-01", "question_type": "theo_thoi_diem", "tier": "B", "answer": "Khi đấu thầu không thành công, cơ quan có thẩm quyền có thể tổ chức đầu tư trạm dừng nghỉ theo hình thức đầu tư công. (Điều 50 Nghị định 165/2024/NĐ-CP)", "gold_units": ["ND165-2024/D50/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-002:2b", "pair_id": "p3-002"}
+```
+
+### W3-theo_thoi_diem-003 · tier historical · vai: phụ huynh có con dưới 18 tuổi · kiểu: ngan · trước mốc: chưa có hiệu lực
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Trạng thái trước mốc (áp dụng tại 2024-12-31)
+Chưa có hiệu lực (không có phiên bản).
+
+### Trạng thái sau mốc (áp dụng tại 2025-01-01)
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D19/K3, TT35-2024-BGTVT/D19/K3/a, TT35-2024-BGTVT/D19/K3/b, TT35-2024-BGTVT/D19/K3/c, TT35-2024-BGTVT/D19/K3/d, TT35-2024-BGTVT/D19/K3/đ, TT35-2024-BGTVT/D19/K3/e, TT35-2024-BGTVT/D19/K3/g, TT35-2024-BGTVT/D19/K3/h, TT35-2024-BGTVT/D19/K3/i
+
+Điều 19. Hội đồng sát hạch
+3. Nhiệm vụ của Hội đồng sát hạch
+a) Chỉ đạo kiểm tra và yêu cầu hoàn thiện các điều kiện tổ chức kỳ sát hạch;
+b) Phân công và sắp xếp kế hoạch thực hiện kỳ sát hạch;
+c) Phổ biến, hướng dẫn các quy định, nội quy sát hạch, thông báo mức phí, lệ phí sát hạch, cấp giấy phép lái xe và các quy định cần thiết cho các sát hạch viên và người dự sát hạch;
+d) Tổ chức kỳ sát hạch theo quy định;
+đ) Lập biên bản các trường hợp vi phạm để xử lý vi phạm theo thẩm quyền hoặc báo cáo, đề nghị cơ quan có thẩm quyền xử lý vi phạm theo quy định;
+e) Yêu cầu thí sinh bồi thường thiệt hại nếu để xảy ra tai nạn do lỗi của thí sinh dự sát hạch gây ra trong quá trình sát hạch;
+g) Tổng hợp kết quả kỳ sát hạch và ký xác nhận biên bản;
+h) Gửi các văn bản, tài liệu của kỳ sát hạch để lưu trữ tại cơ sở đào tạo lái xe, trung tâm sát hạch lái xe và đơn vị được Sở Giao thông vận tải giao nhiệm vụ quản lý sát hạch, cấp giấy phép lái xe;
+i) Nhiệm vụ, quyền hạn của các thành viên hội đồng sát hạch theo quy định tại Phụ lục XVIII ban hành kèm theo Thông tư này.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2024-12-31): Con tôi 16 tuổi muốn tham gia kỳ sát hạch lái xe, cần chuẩn bị gì?
+- Đáp: Chưa có quy định có hiệu lực tại thời điểm này trong dữ liệu.
+- Hỏi (2025-01-01): Con tôi 16 tuổi muốn tham gia kỳ sát hạch lái xe, cần chuẩn bị gì?
+- Đáp: Con cần chuẩn bị hồ sơ, tham gia các kỳ sát hạch theo quy định, và Hội đồng sát hạch sẽ chỉ đạo kiểm tra, phân công kế hoạch, phổ biến quy định, tổ chức kỳ sát hạch, lập biên bản vi phạm, yêu cầu bồi thường thiệt hại, tổng hợp kết quả, gửi tài liệu lưu trữ.
+
+```json
+{"qid": "t3-theo_thoi_diem-003a", "question": "Con tôi 16 tuổi muốn tham gia kỳ sát hạch lái xe, cần chuẩn bị gì?", "as_of": "2024-12-31", "question_type": "theo_thoi_diem", "tier": "historical", "answer": "Chưa có quy định có hiệu lực tại thời điểm này trong dữ liệu.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-003:1a", "pair_id": "p3-003"}
+{"qid": "t3-theo_thoi_diem-003b", "question": "Con tôi 16 tuổi muốn tham gia kỳ sát hạch lái xe, cần chuẩn bị gì?", "as_of": "2025-01-01", "question_type": "theo_thoi_diem", "tier": "historical", "answer": "Con cần chuẩn bị hồ sơ, tham gia các kỳ sát hạch theo quy định, và Hội đồng sát hạch sẽ chỉ đạo kiểm tra, phân công kế hoạch, phổ biến quy định, tổ chức kỳ sát hạch, lập biên bản vi phạm, yêu cầu bồi thường thiệt hại, tổng hợp kết quả, gửi tài liệu lưu trữ.", "gold_units": ["TT35-2024-BGTVT/D19/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-003:1b", "pair_id": "p3-003"}
+```
+
+### W3-theo_thoi_diem-004 · tier A · vai: tài xế công nghệ · kiểu: nhieu_dieu_kien · trước mốc: chưa có hiệu lực
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Trạng thái trước mốc (áp dụng tại 2024-12-31)
+Chưa có hiệu lực (không có phiên bản).
+
+### Trạng thái sau mốc (áp dụng tại 2025-01-01)
+Văn bản: Nghị định số 151/2024/NĐ-CP (Quy định chi tiết một số điều và biện pháp thi hành Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND151-2024/D32/K5, ND151-2024/D32/K5/a, ND151-2024/D32/K5/b
+
+Điều 32. Xe cơ giới nước ngoài và người nước ngoài điều khiển phương tiện tham gia giao thông tại Việt Nam
+5. Điều kiện đối với người nước ngoài điều khiển xe cơ giới nước ngoài tham gia giao thông tại Việt Nam:
+a) Có hộ chiếu, thị thực hoặc giấy tờ có giá trị đi lại quốc tế, giấy tờ có giá trị cư trú tại Việt Nam, trừ trường hợp được miễn thị thực và không thuộc trường hợp chưa cho nhập cảnh theo quy định của pháp luật về nhập cảnh, xuất cảnh, quá cảnh, cư trú của người nước ngoài tại Việt Nam.
+Trường hợp người nước ngoài nhập cảnh theo diện đơn phương miễn thị thực thì hộ chiếu phải còn thời hạn sử dụng ít nhất 06 tháng; người nước ngoài sử dụng thị thực điện tử phải nhập cảnh qua các cửa khẩu quốc tế do Chính phủ quyết định theo quy định của pháp luật về nhập cảnh, xuất cảnh, quá cảnh, cư trú của người nước ngoài tại Việt Nam;
+b) Có giấy phép lái xe phù hợp với loại xe được phép điều khiển, có giá trị sử dụng trong phạm vi lãnh thổ Việt Nam và còn hiệu lực.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2024-12-31): Tôi là tài xế công nghệ, có hộ chiếu còn hạn 8 tháng, muốn lái xe ô tô nước ngoài vào Việt Nam vào ngày 15/12/2024, cần giấy phép lái xe hợp lệ chưa?
+- Đáp: Chưa có quy định có hiệu lực tại thời điểm này trong dữ liệu
+- Hỏi (2025-01-01): Tôi là tài xế công nghệ, có hộ chiếu còn hạn 8 tháng, muốn lái xe ô tô nước ngoài vào Việt Nam vào ngày 15/01/2025, cần giấy phép lái xe hợp lệ chưa?
+- Đáp: Bạn cần có hộ chiếu còn hạn ít nhất 06 tháng và giấy phép lái xe phù hợp với loại xe, có giá trị sử dụng trong phạm vi lãnh thổ Việt Nam và còn hiệu lực. (Điều 32, Khoản 5, Nghị định 151/2024/NĐ-CP)
+
+```json
+{"qid": "t3-theo_thoi_diem-004a", "question": "Tôi là tài xế công nghệ, có hộ chiếu còn hạn 8 tháng, muốn lái xe ô tô nước ngoài vào Việt Nam vào ngày 15/12/2024, cần giấy phép lái xe hợp lệ chưa?", "as_of": "2024-12-31", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Chưa có quy định có hiệu lực tại thời điểm này trong dữ liệu", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-004:1a", "pair_id": "p3-004"}
+{"qid": "t3-theo_thoi_diem-004b", "question": "Tôi là tài xế công nghệ, có hộ chiếu còn hạn 8 tháng, muốn lái xe ô tô nước ngoài vào Việt Nam vào ngày 15/01/2025, cần giấy phép lái xe hợp lệ chưa?", "as_of": "2025-01-01", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Bạn cần có hộ chiếu còn hạn ít nhất 06 tháng và giấy phép lái xe phù hợp với loại xe, có giá trị sử dụng trong phạm vi lãnh thổ Việt Nam và còn hiệu lực. (Điều 32, Khoản 5, Nghị định 151/2024/NĐ-CP)", "gold_units": ["ND151-2024/D32/K5/a", "ND151-2024/D32/K5/b"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-004:1b", "pair_id": "p3-004"}
+```
+
+### W3-theo_thoi_diem-005 · tier historical · vai: người lớn tuổi đi xe đạp điện · kiểu: neu_van_ban · trước mốc: chưa có hiệu lực
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Trạng thái trước mốc (áp dụng tại 2024-12-31)
+Chưa có hiệu lực (không có phiên bản).
+
+### Trạng thái sau mốc (áp dụng tại 2025-01-01)
+Văn bản: Thông tư số 35/2024/TT-BGTVT (Quy định về đào tạo, sát hạch, cấp giấy phép lái xe; cấp, sử dụng giấy phép lái xe quốc tế; đào tạo, kiểm tra, cấp chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-08-31
+Mã điều khoản dùng được cho gold_units: TT35-2024-BGTVT/D3/K10
+
+Điều 3. Giải thích từ ngữ
+10. Hệ thống thông tin đào tạo lái xe gồm hệ thống thông tin đào tạo lái xe tại cơ sở đào tạo lái xe và hệ thống thông tin đào tạo lái xe tại Sở Giao thông vận tải.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2024-12-31): Tôi là người lớn tuổi, muốn học lái xe ô tô, có thể đăng ký qua hệ thống thông tin nào?
+- Đáp: Chưa có quy định có hiệu lực tại thời điểm này trong dữ liệu.
+- Hỏi (2025-01-01): Tôi là người lớn tuổi, muốn học lái xe ô tô, có thể đăng ký qua hệ thống thông tin nào?
+- Đáp: Bạn có thể đăng ký học lái xe ô tô qua hệ thống thông tin đào tạo lái xe tại cơ sở đào tạo lái xe hoặc tại Sở Giao thông vận tải. (TT35-2024-BGTVT/D3/K10)
+
+```json
+{"qid": "t3-theo_thoi_diem-005a", "question": "Tôi là người lớn tuổi, muốn học lái xe ô tô, có thể đăng ký qua hệ thống thông tin nào?", "as_of": "2024-12-31", "question_type": "theo_thoi_diem", "tier": "historical", "answer": "Chưa có quy định có hiệu lực tại thời điểm này trong dữ liệu.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-005:1a", "pair_id": "p3-005"}
+{"qid": "t3-theo_thoi_diem-005b", "question": "Tôi là người lớn tuổi, muốn học lái xe ô tô, có thể đăng ký qua hệ thống thông tin nào?", "as_of": "2025-01-01", "question_type": "theo_thoi_diem", "tier": "historical", "answer": "Bạn có thể đăng ký học lái xe ô tô qua hệ thống thông tin đào tạo lái xe tại cơ sở đào tạo lái xe hoặc tại Sở Giao thông vận tải. (TT35-2024-BGTVT/D3/K10)", "gold_units": ["TT35-2024-BGTVT/D3/K10"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-005:1b", "pair_id": "p3-005"}
+```
+
+**Nháp 2**
+
+- Hỏi (2024-12-31): Là người lớn tuổi, tôi muốn học lái xe ô tô, đăng ký học có thể làm qua hệ thống thông tin nào?
+- Đáp: Chưa có quy định có hiệu lực tại thời điểm này trong dữ liệu.
+- Hỏi (2025-01-01): Là người lớn tuổi, tôi muốn học lái xe ô tô, đăng ký học có thể làm qua hệ thống thông tin nào?
+- Đáp: Bạn có thể đăng ký học lái xe ô tô qua hệ thống thông tin đào tạo lái xe tại cơ sở đào tạo lái xe hoặc tại Sở Giao thông vận tải. (TT35-2024-BGTVT/D3/K10)
+
+```json
+{"qid": "t3-theo_thoi_diem-005a", "question": "Là người lớn tuổi, tôi muốn học lái xe ô tô, đăng ký học có thể làm qua hệ thống thông tin nào?", "as_of": "2024-12-31", "question_type": "theo_thoi_diem", "tier": "historical", "answer": "Chưa có quy định có hiệu lực tại thời điểm này trong dữ liệu.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-005:2a", "pair_id": "p3-005"}
+{"qid": "t3-theo_thoi_diem-005b", "question": "Là người lớn tuổi, tôi muốn học lái xe ô tô, đăng ký học có thể làm qua hệ thống thông tin nào?", "as_of": "2025-01-01", "question_type": "theo_thoi_diem", "tier": "historical", "answer": "Bạn có thể đăng ký học lái xe ô tô qua hệ thống thông tin đào tạo lái xe tại cơ sở đào tạo lái xe hoặc tại Sở Giao thông vận tải. (TT35-2024-BGTVT/D3/K10)", "gold_units": ["TT35-2024-BGTVT/D3/K10"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-005:2b", "pair_id": "p3-005"}
+```
+
+### W3-theo_thoi_diem-006 · tier A · vai: người lớn tuổi đi xe đạp điện · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Trạng thái trước mốc (áp dụng tại 2025-12-31)
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-12-31
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K4, ND168-2024/D26/K4/a, ND168-2024/D26/K4/b, ND168-2024/D26/K4/c, ND168-2024/D26/K4/d, ND168-2024/D26/K4/đ, ND168-2024/D26/K4/g
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+4. Phạt tiền từ 3.000.000 đồng đến 4.000.000 đồng đối với cá nhân, từ 6.000.000 đồng đến 8.000.000 đồng đối với tổ chức kinh doanh vận tải, dịch vụ hỗ trợ vận tải thực hiện một trong các hành vi vi phạm sau đây:
+a) Không cấp thẻ nhận dạng lái xe cho lái xe theo quy định;
+b) Sử dụng lái xe, nhân viên phục vụ trên xe để tham gia kinh doanh vận tải bằng xe ô tô mà không được tập huấn, hướng dẫn về nghiệp vụ vận tải hành khách và an toàn giao thông theo quy định (đối với hình thức kinh doanh vận tải có quy định lái xe, nhân viên phục vụ trên xe phải được tập huấn, hướng dẫn nghiệp vụ), trừ các hành vi vi phạm quy định tại điểm c, điểm d khoản này;
+c) Sử dụng lái xe, người quản lý trên xe để tham gia kinh doanh vận tải bằng xe ô tô mà không được hướng dẫn về quy trình bảo đảm an toàn khi đưa đón trẻ em mầm non, học sinh;
+d) Sử dụng lái xe, người áp tải vận chuyển hàng hóa nguy hiểm mà không được tập huấn về vận chuyển hàng hóa nguy hiểm;
+đ) Sử dụng xe ô tô kinh doanh vận tải hành khách không có dây đai an toàn tại các vị trí ghế ngồi, giường nằm theo quy định (trừ xe buýt nội tỉnh);
+g) Không thực hiện việc niêm yết thông tin trên xe theo quy định hoặc có niêm yết nhưng không chính xác, không đầy đủ thông tin theo quy định.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D26/K12)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K12
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+12. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm quy định tại điểm c khoản 2; điểm a, điểm b, điểm đ, điểm g khoản 4; điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 7; điểm c khoản 8 Điều này còn bị áp dụng các hình thức xử phạt bổ sung tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có hoặc đã được cấp) đối với xe vi phạm.
+
+### Trạng thái sau mốc (áp dụng tại 2026-01-01)
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K4, ND168-2024/D26/K4/a, ND168-2024/D26/K4/b, ND168-2024/D26/K4/c, ND168-2024/D26/K4/d, ND168-2024/D26/K4/đ, ND168-2024/D26/K4/e, ND168-2024/D26/K4/g
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+4. Phạt tiền từ 3.000.000 đồng đến 4.000.000 đồng đối với cá nhân, từ 6.000.000 đồng đến 8.000.000 đồng đối với tổ chức kinh doanh vận tải, dịch vụ hỗ trợ vận tải thực hiện một trong các hành vi vi phạm sau đây:
+a) Không cấp thẻ nhận dạng lái xe cho lái xe theo quy định;
+b) Sử dụng lái xe, nhân viên phục vụ trên xe để tham gia kinh doanh vận tải bằng xe ô tô mà không được tập huấn, hướng dẫn về nghiệp vụ vận tải hành khách và an toàn giao thông theo quy định (đối với hình thức kinh doanh vận tải có quy định lái xe, nhân viên phục vụ trên xe phải được tập huấn, hướng dẫn nghiệp vụ), trừ các hành vi vi phạm quy định tại điểm c, điểm d khoản này;
+c) Sử dụng lái xe, người quản lý trên xe để tham gia kinh doanh vận tải bằng xe ô tô mà không được hướng dẫn về quy trình bảo đảm an toàn khi đưa đón trẻ em mầm non, học sinh;
+d) Sử dụng lái xe, người áp tải vận chuyển hàng hóa nguy hiểm mà không được tập huấn về vận chuyển hàng hóa nguy hiểm;
+đ) Sử dụng xe ô tô kinh doanh vận tải hành khách không có dây đai an toàn tại các vị trí ghế ngồi, giường nằm theo quy định (trừ xe buýt nội tỉnh);
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D26/K12)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D26/K12
+
+Điều 26. Xử phạt các hành vi vi phạm quy định về trật tự, an toàn giao thông đường bộ trong vận tải đường bộ, dịch vụ hỗ trợ vận tải đường bộ
+12. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm quy định tại điểm c khoản 2; điểm a, điểm b, điểm đ, điểm g khoản 4; điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 7; điểm c khoản 8 Điều này còn bị áp dụng các hình thức xử phạt bổ sung tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có hoặc đã được cấp) đối với xe vi phạm.
+
+[0] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D26/K12) — trạng thái tại 2025-12-31
+[1] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D26/K12) — trạng thái tại 2025-12-31
+[2] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D26/K4) — trạng thái tại 2025-12-31
+[3] 4.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D26/K4) — trạng thái tại 2025-12-31
+[4] 6.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D26/K4) — trạng thái tại 2025-12-31
+[5] 8.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D26/K4) — trạng thái tại 2025-12-31
+[6] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D26/K12) — trạng thái tại 2026-01-01
+[7] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D26/K12) — trạng thái tại 2026-01-01
+[8] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D26/K4) — trạng thái tại 2026-01-01
+[9] 4.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D26/K4) — trạng thái tại 2026-01-01
+[10] 6.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D26/K4) — trạng thái tại 2026-01-01
+[11] 8.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D26/K4) — trạng thái tại 2026-01-01
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-12-31): Anh tôi đang lái xe đạp điện qua đường phố, nhưng xe của anh ấy không có dây đai an toàn. Nếu anh ấy bị phát hiện, anh ấy sẽ bị phạt tiền và tước quyền sử dụng phù hiệu trong bao lâu?
+- Đáp: Nếu vi phạm, anh ấy sẽ bị phạt tiền từ 3.000.000 đồng đến 4.000.000 đồng và tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng. (khoản 12 Điều 26 Nghị định 168/2024/NĐ-CP)
+- ⚠ so_cau_sai (1/2); chep_nguyen_van: “không có dây đai an toàn …”
+
+```json
+{"qid": "t3-theo_thoi_diem-006a", "question": "Anh tôi đang lái xe đạp điện qua đường phố, nhưng xe của anh ấy không có dây đai an toàn. Nếu anh ấy bị phát hiện, anh ấy sẽ bị phạt tiền và tước quyền sử dụng phù hiệu trong bao lâu?", "as_of": "2025-12-31", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Nếu vi phạm, anh ấy sẽ bị phạt tiền từ 3.000.000 đồng đến 4.000.000 đồng và tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng. (khoản 12 Điều 26 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D26/K12"], "required_numbers": [{"value": 1, "unit": "thang"}, {"value": 3, "unit": "thang"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-006:1a", "pair_id": "p3-006"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-12-31): Công ty tôi đang vận chuyển hành khách bằng xe ô tô, nhưng không có dây đai an toàn cho hành khách. Nếu bị kiểm tra, công ty sẽ bị phạt tiền và tước quyền sử dụng phù hiệu trong bao lâu?
+- Đáp: Nếu vi phạm, công ty sẽ bị phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng và tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng. (khoản 12 Điều 26 Nghị định 168/2024/NĐ-CP)
+- ⚠ so_cau_sai (1/2); as_of_sua (2026-01-01 → 2025-12-31); chi_so_so_sai (6); chi_so_so_sai (7); chep_nguyen_van: “không có dây đai an toàn …”
+
+```json
+{"qid": "t3-theo_thoi_diem-006a", "question": "Công ty tôi đang vận chuyển hành khách bằng xe ô tô, nhưng không có dây đai an toàn cho hành khách. Nếu bị kiểm tra, công ty sẽ bị phạt tiền và tước quyền sử dụng phù hiệu trong bao lâu?", "as_of": "2025-12-31", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Nếu vi phạm, công ty sẽ bị phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng và tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng. (khoản 12 Điều 26 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D26/K12"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-006:2a", "pair_id": "p3-006"}
+```
+
+### W3-theo_thoi_diem-007 · tier A · vai: tài xế công nghệ · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Trạng thái trước mốc (áp dụng tại 2025-12-31)
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → 2025-12-31
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K3, ND168-2024/D6/K3/a, ND168-2024/D6/K3/b, ND168-2024/D6/K3/c, ND168-2024/D6/K3/d, ND168-2024/D6/K3/đ, ND168-2024/D6/K3/e, ND168-2024/D6/K3/g, ND168-2024/D6/K3/h, ND168-2024/D6/K3/i, ND168-2024/D6/K3/k, ND168-2024/D6/K3/l, ND168-2024/D6/K3/n, ND168-2024/D6/K3/o, ND168-2024/D6/K3/p
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+3. Phạt tiền từ 800.000 đồng đến 1.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe chạy quá tốc độ quy định từ 05 km/h đến dưới 10 km/h;
+b) Sử dụng còi, rú ga liên tục; sử dụng còi hơi, sử dụng đèn chiếu xa khi gặp người đi bộ qua đường hoặc khi đi trên đoạn đường qua khu dân cư có hệ thống chiếu sáng đang hoạt động hoặc khi gặp xe đi ngược chiều (trừ trường hợp dải phân cách có khả năng chống chói) hoặc khi chuyển hướng xe tại nơi đường giao nhau, trừ các xe ưu tiên đang đi làm nhiệm vụ theo quy định;
+c) Chuyển hướng không quan sát hoặc không bảo đảm khoảng cách an toàn với xe phía sau hoặc không giảm tốc độ hoặc không có tín hiệu báo hướng rẽ hoặc có tín hiệu báo hướng rẽ nhưng không sử dụng liên tục trong quá trình chuyển hướng (trừ trường hợp điều khiển xe đi theo hướng cong của đoạn đường bộ ở nơi đường không giao nhau cùng mức);
+d) Không tuân thủ các quy định về dừng xe, đỗ xe tại nơi đường bộ giao nhau cùng mức với đường sắt; dừng xe, đỗ xe trong phạm vi bảo vệ công trình đường sắt, phạm vi an toàn của đường sắt;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D6/K16/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K16/a
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+16. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm h, điểm i khoản 3; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm g khoản 4; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g, điểm i, điểm k, điểm n, điểm o khoản 5 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K4/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K4/đ
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+4. Phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+đ) Lùi xe, quay đầu xe trong hầm đường bộ; dừng xe, đỗ xe trong hầm đường bộ không đúng nơi quy định; không có báo hiệu bằng đèn khẩn cấp, không đặt biển cảnh báo "Chú ý xe đỗ" (hoặc đèn cảnh báo) về phía sau xe khoảng cách đảm bảo an toàn khi dừng xe, đỗ xe trong hầm đường bộ trong trường hợp gặp sự cố kỹ thuật hoặc bất khả kháng khác buộc phải dừng xe, đỗ xe;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K7/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K7/c
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+7. Phạt tiền từ 12.000.000 đồng đến 14.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+c) Dừng xe, đỗ xe trên đường cao tốc không đúng nơi quy định; không có báo hiệu bằng đèn khẩn cấp khi gặp sự cố kỹ thuật hoặc bất khả kháng khác buộc phải dừng xe, đỗ xe ở làn dừng xe khẩn cấp trên đường cao tốc; không có báo hiệu bằng đèn khẩn cấp, không đặt biển cảnh báo “Chú ý xe đỗ” (hoặc đèn cảnh báo) về phía sau xe khoảng cách tối thiểu 150 mét khi dừng xe, đỗ xe trong trường hợp gặp sự cố kỹ thuật hoặc bất khả kháng khác buộc phải dừng xe, đỗ xe trên một phần làn đường xe chạy trên đường cao tốc.
+
+### Trạng thái sau mốc (áp dụng tại 2026-01-01)
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-01-01 → 2026-08-14
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K3, ND168-2024/D6/K3/a, ND168-2024/D6/K3/b, ND168-2024/D6/K3/c, ND168-2024/D6/K3/d, ND168-2024/D6/K3/đ, ND168-2024/D6/K3/e, ND168-2024/D6/K3/g, ND168-2024/D6/K3/h, ND168-2024/D6/K3/i, ND168-2024/D6/K3/k, ND168-2024/D6/K3/l, ND168-2024/D6/K3/m, ND168-2024/D6/K3/n, ND168-2024/D6/K3/o, ND168-2024/D6/K3/p
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+3. Phạt tiền từ 800.000 đồng đến 1.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe chạy quá tốc độ quy định từ 05 km/h đến dưới 10 km/h;
+b) Sử dụng còi, rú ga liên tục; sử dụng còi hơi, sử dụng đèn chiếu xa khi gặp người đi bộ qua đường hoặc khi đi trên đoạn đường qua khu dân cư có hệ thống chiếu sáng đang hoạt động hoặc khi gặp xe đi ngược chiều (trừ trường hợp dải phân cách có khả năng chống chói) hoặc khi chuyển hướng xe tại nơi đường giao nhau, trừ các xe ưu tiên đang đi làm nhiệm vụ theo quy định;
+c) Chuyển hướng không quan sát hoặc không bảo đảm khoảng cách an toàn với xe phía sau hoặc không giảm tốc độ hoặc không có tín hiệu báo hướng rẽ hoặc có tín hiệu báo hướng rẽ nhưng không sử dụng liên tục trong quá trình chuyển hướng (trừ trường hợp điều khiển xe đi theo hướng cong của đoạn đường bộ ở nơi đường không giao nhau cùng mức);
+d) Không tuân thủ các quy định về dừng xe, đỗ xe tại nơi đường bộ giao nhau cùng mức với đường sắt; dừng xe, đỗ xe trong phạm vi bảo vệ công trình đường sắt, phạm vi an toàn của đường sắt;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D6/K16/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K16/a
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+16. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm h, điểm i khoản 3; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm g khoản 4; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g, điểm i, điểm k, điểm n, điểm o khoản 5 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K4/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K4/đ
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+4. Phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+đ) Lùi xe, quay đầu xe trong hầm đường bộ; dừng xe, đỗ xe trong hầm đường bộ không đúng nơi quy định; không có báo hiệu bằng đèn khẩn cấp, không đặt biển cảnh báo "Chú ý xe đỗ" (hoặc đèn cảnh báo) về phía sau xe khoảng cách đảm bảo an toàn khi dừng xe, đỗ xe trong hầm đường bộ trong trường hợp gặp sự cố kỹ thuật hoặc bất khả kháng khác buộc phải dừng xe, đỗ xe;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D6/K7/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D6/K7/c
+
+Điều 6. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ
+7. Phạt tiền từ 12.000.000 đồng đến 14.000.000 đồng đối với người điều khiển xe thực hiện một trong các hành vi vi phạm sau đây:
+c) Dừng xe, đỗ xe trên đường cao tốc không đúng nơi quy định; không có báo hiệu bằng đèn khẩn cấp khi gặp sự cố kỹ thuật hoặc bất khả kháng khác buộc phải dừng xe, đỗ xe ở làn dừng xe khẩn cấp trên đường cao tốc; không có báo hiệu bằng đèn khẩn cấp, không đặt biển cảnh báo “Chú ý xe đỗ” (hoặc đèn cảnh báo) về phía sau xe khoảng cách tối thiểu 150 mét khi dừng xe, đỗ xe trong trường hợp gặp sự cố kỹ thuật hoặc bất khả kháng khác buộc phải dừng xe, đỗ xe trên một phần làn đường xe chạy trên đường cao tốc.
+
+[0] 800.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D6/K3) — trạng thái tại 2025-12-31
+[1] 1.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D6/K3) — trạng thái tại 2025-12-31
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D6/K16/a) — trạng thái tại 2025-12-31
+[3] 800.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D6/K3) — trạng thái tại 2026-01-01
+[4] 1.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D6/K3) — trạng thái tại 2026-01-01
+[5] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D6/K16/a) — trạng thái tại 2026-01-01
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2025-12-31): Tôi đang lái xe ô tô và vượt quá tốc độ quy định 7 km/h, tôi sẽ bị phạt tiền bao nhiêu?
+- Đáp: Bạn sẽ bị phạt tiền từ 800.000 đồng đến 1.000.000 đồng. (khoản 3 Điều 6 Nghị định 168/2024/NĐ-CP)
+- ⚠ so_cau_sai (1/2)
+
+```json
+{"qid": "t3-theo_thoi_diem-007a", "question": "Tôi đang lái xe ô tô và vượt quá tốc độ quy định 7 km/h, tôi sẽ bị phạt tiền bao nhiêu?", "as_of": "2025-12-31", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Bạn sẽ bị phạt tiền từ 800.000 đồng đến 1.000.000 đồng. (khoản 3 Điều 6 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D6/K3"], "required_numbers": [{"value": 800000, "unit": "vnd"}, {"value": 1000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-007:1a", "pair_id": "p3-007"}
+```
+
+**Nháp 2**
+
+- Hỏi (2025-12-31): Tôi đang lái xe ô tô và vượt quá tốc độ quy định 7 km/h, tôi sẽ bị phạt tiền bao nhiêu?
+- Đáp: Bạn sẽ bị phạt tiền từ 800.000 đồng đến 1.000.000 đồng. (khoản 3 Điều 6 Nghị định 168/2024/NĐ-CP)
+- ⚠ so_cau_sai (1/2); as_of_sua (2026-01-01 → 2025-12-31)
+
+```json
+{"qid": "t3-theo_thoi_diem-007a", "question": "Tôi đang lái xe ô tô và vượt quá tốc độ quy định 7 km/h, tôi sẽ bị phạt tiền bao nhiêu?", "as_of": "2025-12-31", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Bạn sẽ bị phạt tiền từ 800.000 đồng đến 1.000.000 đồng. (khoản 3 Điều 6 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D6/K3"], "required_numbers": [{"value": 800000, "unit": "vnd"}, {"value": 1000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-007:2a", "pair_id": "p3-007"}
+```
+
+### W3-theo_thoi_diem-008 · tier B · vai: tài xế công nghệ · kiểu: nhieu_dieu_kien
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Trạng thái trước mốc (áp dụng tại 2026-06-30)
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2026-06-30
+Mã điều khoản dùng được cho gold_units: ND165-2024/D20/K2, ND165-2024/D20/K2/a, ND165-2024/D20/K2/b, ND165-2024/D20/K2/c, ND165-2024/D20/K2/d, ND165-2024/D20/K2/đ
+
+Điều 20. Bảo vệ kết cấu hạ tầng đường bộ
+2. Thực hiện các biện pháp phòng ngừa, ngăn chặn, xử lý các hành vi bị nghiêm cấm theo quy định tại khoản 1, khoản 2, khoản 3, khoản 4 Điều 7 của Nghị định này và quy định tại điểm b khoản 1 Điều 21 Luật Đường bộ và các quy định sau:
+a) Kiểm tra tải trọng xe tại các công trình kiểm soát tải trọng xe trên đường bộ;
+b) Tổ chức thực hiện tuần đường, tuần kiểm đường bộ để phát hiện và ngăn chặn các hành vi xây dựng công trình trái phép trên đường bộ và trong phạm vi bảo vệ kết cấu hạ tầng đường bộ; đấu nối trái phép vào đường bộ; lấn, chiếm, sử dụng trái phép đất của đường bộ, hành lang an toàn đường bộ và các hành vi vi phạm đối với kết cấu hạ tầng đường bộ;
+c) Khai thác, sử dụng, chuyển nhượng, cho thuê kết cấu hạ tầng đường bộ trái quy định của Luật Đường bộ, quy định của pháp luật quản lý, sử dụng tài sản công, quy định của pháp luật xây dựng;
+d) Xác định và công khai mốc lộ giới hành lang an toàn đường bộ, phạm vi đất đã được bồi thường và thu hồi; bảo vệ mốc lộ giới hành lang an toàn đường bộ và diện tích đất đã được bồi thường, thu hồi.
+Đối với dự án đầu tư xây dựng mới đường bộ hoặc nâng cấp cải tạo đường bộ, mốc lộ giới hành lang an toàn đường bộ được xác định theo quy mô tuyến đường trong quy hoạch được duyệt và thực hiện cắm mốc lộ giới trong giai đoạn thực hiện đầu tư xây dựng đường bộ;
+đ) Tuyên truyền phổ biến chính sách, pháp luật về bảo vệ kết cấu hạ tầng đường bộ.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT35-2024/D21/K1/b)
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D21/K1/b
+
+Điều 21. Bảo vệ kết cấu hạ tầng đường bộ
+1. Bảo vệ kết cấu hạ tầng đường bộ bao gồm:
+b) Thực hiện các biện pháp phòng ngừa, ngăn chặn, xử lý hành vi huỷ hoại, lấn, chiếm, sử dụng trái phép kết cấu hạ tầng đường bộ, đấu nối trái phép vào đường bộ và các hành vi vi phạm pháp luật khác trong phạm vi bảo vệ kết cấu hạ tầng đường bộ.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND165-2024/D7/K1)
+Mã điều khoản dùng được cho gold_units: ND165-2024/D7/K1
+
+Điều 7. Điều chỉnh loại đường theo cấp quản lý
+1. Bộ Giao thông vận tải quyết định điều chỉnh quốc lộ thành đường địa phương; đường địa phương và đường khác thành quốc lộ đối với các trường hợp sau:
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND165-2024/D7/K2)
+Mã điều khoản dùng được cho gold_units: ND165-2024/D7/K2
+
+Điều 7. Điều chỉnh loại đường theo cấp quản lý
+2. Ủy ban nhân dân cấp tỉnh quyết định điều chỉnh các loại đường địa phương theo cấp quản lý khi có thay đổi trong quy hoạch tỉnh, quy hoạch đô thị, quy hoạch khác có liên quan được cấp có thẩm quyền phê duyệt, trừ quy định tại khoản 1 Điều này.
+
+### Trạng thái sau mốc (áp dụng tại 2026-07-01)
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2026-07-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D20/K2, ND165-2024/D20/K2/a, ND165-2024/D20/K2/b, ND165-2024/D20/K2/c, ND165-2024/D20/K2/d, ND165-2024/D20/K2/đ
+
+Điều 20. Bảo vệ kết cấu hạ tầng đường bộ
+2. Thực hiện các biện pháp phòng ngừa, ngăn chặn, xử lý các hành vi bị nghiêm cấm theo quy định tại khoản 1, khoản 2, khoản 3, khoản 4, khoản 6 Điều 7, điểm b khoản 1 Điều 21 Luật Đường bộ và các quy định sau:
+a) Tổ chức vận hành, khai thác, sử dụng công trình kiểm soát tải trọng xe trên đường bộ để thực hiện các quy định tại điểm c, điểm d khoản 4 Điều 39 Luật Đường bộ;
+b) Tổ chức thực hiện tuần đường, tuần kiểm đường bộ để phát hiện và ngăn chặn các hành vi xây dựng công trình trái phép trên đường bộ và trong phạm vi bảo vệ kết cấu hạ tầng đường bộ; đầu nối trái phép vào đường bộ; lấn, chiếm, sử dụng trái phép đất của đường bộ, hành lang an toàn đường bộ và các hành vi vi phạm đối với kết cấu hạ tầng đường bộ;
+c) Khai thác, sử dụng, chuyển nhượng, cho thuê kết cấu hạ tầng đường bộ trái quy định của Luật Đường bộ, quy định của pháp luật quản lý, sử dụng tài sản công, quy định của pháp luật xây dựng;
+d) Xác định và công khai mốc lộ giới hành lang an toàn đường bộ, phạm vi đất đai được bồi thường và thu hồi; bảo vệ mốc lộ giới hành lang an toàn đường bộ và diện tích đất đai được bồi thường, thu hồi;
+đ) Tuyên truyền phổ biến chính sách, pháp luật về bảo vệ kết cấu hạ tầng đường bộ.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT35-2024/D21/K1/b)
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D21/K1/b
+
+Điều 21. Bảo vệ kết cấu hạ tầng đường bộ
+1. Bảo vệ kết cấu hạ tầng đường bộ bao gồm:
+b) Thực hiện các biện pháp phòng ngừa, ngăn chặn, xử lý hành vi huỷ hoại, lấn, chiếm, sử dụng trái phép kết cấu hạ tầng đường bộ, đấu nối trái phép vào đường bộ và các hành vi vi phạm pháp luật khác trong phạm vi bảo vệ kết cấu hạ tầng đường bộ.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT35-2024/D7/K1)
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D7/K1
+
+Điều 7. Các hành vi bị nghiêm cấm
+1. Phá hoại kết cấu hạ tầng đường bộ; khai thác, sử dụng kết cấu hạ tầng đường bộ trái quy định của pháp luật.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT35-2024/D7/K2)
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D7/K2
+
+Điều 7. Các hành vi bị nghiêm cấm
+2. Đấu nối trái phép vào đường chính, đường nhánh; tháo dỡ, di chuyển trái phép hoặc làm sai lệch công trình đường bộ.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-06-30): Tôi có thể kiểm tra tải trọng xe trên cầu bằng thiết bị kiểm soát tải trọng không?
+- Đáp: Bạn có thể kiểm tra tải trọng xe tại các công trình kiểm soát tải trọng trên đường bộ. (Điều 20, khoản 2, điểm a Nghị định 165/2024/NĐ-CP)
+- Hỏi (2026-07-01): Tôi có thể kiểm tra tải trọng xe trên cầu bằng thiết bị kiểm soát tải trọng không?
+- Đáp: Bạn phải tổ chức vận hành, khai thác, sử dụng công trình kiểm soát tải trọng xe trên đường bộ để thực hiện các quy định tại điểm c, điểm d khoản 4 Điều 39 Luật Đường bộ. (Điều 20, khoản 2, điểm a Nghị định 165/2024/NĐ-CP)
+
+```json
+{"qid": "t3-theo_thoi_diem-008a", "question": "Tôi có thể kiểm tra tải trọng xe trên cầu bằng thiết bị kiểm soát tải trọng không?", "as_of": "2026-06-30", "question_type": "theo_thoi_diem", "tier": "B", "answer": "Bạn có thể kiểm tra tải trọng xe tại các công trình kiểm soát tải trọng trên đường bộ. (Điều 20, khoản 2, điểm a Nghị định 165/2024/NĐ-CP)", "gold_units": ["ND165-2024/D20/K2/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-008:1a", "pair_id": "p3-008"}
+{"qid": "t3-theo_thoi_diem-008b", "question": "Tôi có thể kiểm tra tải trọng xe trên cầu bằng thiết bị kiểm soát tải trọng không?", "as_of": "2026-07-01", "question_type": "theo_thoi_diem", "tier": "B", "answer": "Bạn phải tổ chức vận hành, khai thác, sử dụng công trình kiểm soát tải trọng xe trên đường bộ để thực hiện các quy định tại điểm c, điểm d khoản 4 Điều 39 Luật Đường bộ. (Điều 20, khoản 2, điểm a Nghị định 165/2024/NĐ-CP)", "gold_units": ["ND165-2024/D20/K2/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-008:1b", "pair_id": "p3-008"}
+```
+
+### W3-theo_thoi_diem-009 · tier B · vai: phụ huynh có con dưới 18 tuổi · kiểu: tinh_huong_nguoi_khac · trước mốc: chưa có hiệu lực
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Trạng thái trước mốc (áp dụng tại 2026-06-30)
+Chưa có hiệu lực (không có phiên bản).
+
+### Trạng thái sau mốc (áp dụng tại 2026-07-01)
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2026-07-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D52a/K1
+
+Điều 52a. Đầu tư mở rộng trạm dừng nghỉ đã ký hợp đồng kinh doanh, khai thác
+1. Việc đầu tư mở rộng trạm dừng nghỉ nhằm hoàn thiện hệ thống kết cấu hạ tầng, đáp ứng nhu cầu sử dụng dịch vụ của người và phương tiện tham gia giao thông.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-06-30): Anh tôi thấy trạm dừng nghỉ mới mở rộng, có hợp đồng kinh doanh, liệu có quy định gì về việc mở rộng trạm dừng nghỉ?
+- Đáp: Chưa có quy định có hiệu lực tại thời điểm này trong dữ liệu.
+- Hỏi (2026-07-01): Anh tôi thấy trạm dừng nghỉ mới mở rộng, có hợp đồng kinh doanh, liệu có quy định gì về việc mở rộng trạm dừng nghỉ?
+- Đáp: Có, theo Nghị định số 165/2024/NĐ-CP, việc đầu tư mở rộng trạm dừng nghỉ nhằm hoàn thiện hệ thống kết cấu hạ tầng, đáp ứng nhu cầu sử dụng dịch vụ của người và phương tiện tham gia giao thông. (Điều 52a Nghị định 165/2024/NĐ-CP)
+
+```json
+{"qid": "t3-theo_thoi_diem-009a", "question": "Anh tôi thấy trạm dừng nghỉ mới mở rộng, có hợp đồng kinh doanh, liệu có quy định gì về việc mở rộng trạm dừng nghỉ?", "as_of": "2026-06-30", "question_type": "theo_thoi_diem", "tier": "B", "answer": "Chưa có quy định có hiệu lực tại thời điểm này trong dữ liệu.", "gold_units": [], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-009:1a", "pair_id": "p3-009"}
+{"qid": "t3-theo_thoi_diem-009b", "question": "Anh tôi thấy trạm dừng nghỉ mới mở rộng, có hợp đồng kinh doanh, liệu có quy định gì về việc mở rộng trạm dừng nghỉ?", "as_of": "2026-07-01", "question_type": "theo_thoi_diem", "tier": "B", "answer": "Có, theo Nghị định số 165/2024/NĐ-CP, việc đầu tư mở rộng trạm dừng nghỉ nhằm hoàn thiện hệ thống kết cấu hạ tầng, đáp ứng nhu cầu sử dụng dịch vụ của người và phương tiện tham gia giao thông. (Điều 52a Nghị định 165/2024/NĐ-CP)", "gold_units": ["ND165-2024/D52a/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-009:1b", "pair_id": "p3-009"}
+```
+
+### W3-theo_thoi_diem-010 · tier B · vai: chủ doanh nghiệp vận tải · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Trạng thái trước mốc (áp dụng tại 2026-06-30)
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2026-06-30
+Mã điều khoản dùng được cho gold_units: ND165-2024/D64/K3
+
+Điều 64. Quy định chung về hệ thống quản lý giao thông thông minh
+3. Các hệ thống: hệ thống đèn tín hiệu giao thông đường bộ; hệ thống camera trên tuyến đường bộ, nút giao thông đường bộ; hệ thống quản lý dữ liệu thiết bị giám sát hành trình và thiết bị ghi nhận hình ảnh người lái xe; hệ thống thiết bị kỹ thuật nghiệp vụ kiểm tra, kiểm soát tải trọng xe cơ giới; hệ thống giám sát bảo đảm an ninh, trật tự, an toàn giao thông đường bộ; hệ thống quản lý cơ sở dữ liệu về trật tự, an toàn giao thông đường bộ được thực hiện theo các quy định tại Luật Trật tự, an toàn giao thông đường bộ.
+
+### Trạng thái sau mốc (áp dụng tại 2026-07-01)
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2026-07-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D64/K3
+
+Điều 64. Quy định chung về hệ thống quản lý giao thông thông minh
+3. Trung tâm quản lý hệ thống giao thông thông minh quản lý tập trung cơ sở dữ liệu đường bộ, có chức năng điều phối giao thông liên vùng trên phạm vi vùng, quốc gia; thực hiện kết nối, chia sẻ dữ liệu và tiếp nhận dữ liệu của Trung tâm Chỉ huy giao thông, Trung tâm giám sát, điều hành đô thị thông minh cấp tỉnh, thành phố và các hệ thống chuyên ngành khác.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-06-30): Tôi là chủ doanh nghiệp vận tải, công ty tôi muốn triển khai hệ thống camera giám sát hành trình trên tuyến đường bộ. Hệ thống này có được quản lý theo quy định hiện hành không?
+- Đáp: Có, hệ thống camera giám sát hành trình được quy định trong Điều 64, Khoản 3 của Nghị định số 165/2024/NĐ-CP, hiệu lực đến 30/06/2026.
+- Hỏi (2026-07-01): Tôi là chủ doanh nghiệp vận tải, công ty tôi muốn triển khai hệ thống camera giám sát hành trình trên tuyến đường bộ. Hệ thống này có được quản lý theo quy định mới không?
+- Đáp: Có, hệ thống camera giám sát hành trình được quy định trong Điều 64, Khoản 3 của Nghị định số 165/2024/NĐ-CP, hiệu lực từ 01/07/2026.
+
+```json
+{"qid": "t3-theo_thoi_diem-010a", "question": "Tôi là chủ doanh nghiệp vận tải, công ty tôi muốn triển khai hệ thống camera giám sát hành trình trên tuyến đường bộ. Hệ thống này có được quản lý theo quy định hiện hành không?", "as_of": "2026-06-30", "question_type": "theo_thoi_diem", "tier": "B", "answer": "Có, hệ thống camera giám sát hành trình được quy định trong Điều 64, Khoản 3 của Nghị định số 165/2024/NĐ-CP, hiệu lực đến 30/06/2026.", "gold_units": ["ND165-2024/D64/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-010:1a", "pair_id": "p3-010"}
+{"qid": "t3-theo_thoi_diem-010b", "question": "Tôi là chủ doanh nghiệp vận tải, công ty tôi muốn triển khai hệ thống camera giám sát hành trình trên tuyến đường bộ. Hệ thống này có được quản lý theo quy định mới không?", "as_of": "2026-07-01", "question_type": "theo_thoi_diem", "tier": "B", "answer": "Có, hệ thống camera giám sát hành trình được quy định trong Điều 64, Khoản 3 của Nghị định số 165/2024/NĐ-CP, hiệu lực từ 01/07/2026.", "gold_units": ["ND165-2024/D64/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-010:1b", "pair_id": "p3-010"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-06-30): Tôi là chủ doanh nghiệp vận tải, công ty tôi muốn triển khai trung tâm quản lý dữ liệu giao thông liên vùng. Trung tâm này có được phép điều phối giao thông theo quy định hiện hành không?
+- Đáp: Không, theo Khoản 3 Điều 64 của Nghị định số 165/2024/NĐ-CP, tính đến 30/06/2026, trung tâm quản lý dữ liệu không được quy định để điều phối giao thông liên vùng.
+- Hỏi (2026-07-01): Tôi là chủ doanh nghiệp vận tải, công ty tôi muốn triển khai trung tâm quản lý dữ liệu giao thông liên vùng. Trung tâm này có được phép điều phối giao thông theo quy định mới không?
+- Đáp: Có, theo Khoản 3 Điều 64 của Nghị định số 165/2024/NĐ-CP, từ 01/07/2026, trung tâm quản lý dữ liệu được quy định để điều phối giao thông liên vùng.
+
+```json
+{"qid": "t3-theo_thoi_diem-010a", "question": "Tôi là chủ doanh nghiệp vận tải, công ty tôi muốn triển khai trung tâm quản lý dữ liệu giao thông liên vùng. Trung tâm này có được phép điều phối giao thông theo quy định hiện hành không?", "as_of": "2026-06-30", "question_type": "theo_thoi_diem", "tier": "B", "answer": "Không, theo Khoản 3 Điều 64 của Nghị định số 165/2024/NĐ-CP, tính đến 30/06/2026, trung tâm quản lý dữ liệu không được quy định để điều phối giao thông liên vùng.", "gold_units": ["ND165-2024/D64/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-010:2a", "pair_id": "p3-010"}
+{"qid": "t3-theo_thoi_diem-010b", "question": "Tôi là chủ doanh nghiệp vận tải, công ty tôi muốn triển khai trung tâm quản lý dữ liệu giao thông liên vùng. Trung tâm này có được phép điều phối giao thông theo quy định mới không?", "as_of": "2026-07-01", "question_type": "theo_thoi_diem", "tier": "B", "answer": "Có, theo Khoản 3 Điều 64 của Nghị định số 165/2024/NĐ-CP, từ 01/07/2026, trung tâm quản lý dữ liệu được quy định để điều phối giao thông liên vùng.", "gold_units": ["ND165-2024/D64/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-010:2b", "pair_id": "p3-010"}
+```
+
+### W3-theo_thoi_diem-011 · tier B · vai: chủ doanh nghiệp vận tải · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Trạng thái trước mốc (áp dụng tại 2026-06-30)
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → 2026-06-30
+Mã điều khoản dùng được cho gold_units: ND165-2024/D46/K4
+
+Điều 46. Mở rộng, nâng cấp đường cao tốc trong trường hợp lập dự án đầu tư mở rộng, nâng cấp để đấu thầu lựa chọn nhà đầu tư theo phương thức đối tác công tư
+4. Trường hợp nhà đầu tư hiện hữu tham dự thầu dự án mở rộng, nâng cấp, việc xem xét tư cách hợp lệ của nhà đầu tư thực hiện theo quy định tại Điều 29 Luật Đầu tư theo phương thức đối tác công tư.
+
+### Trạng thái sau mốc (áp dụng tại 2026-07-01)
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2026-07-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D46/K4
+
+Điều 46. Mở rộng, nâng cấp đường cao tốc trong trường hợp lập dự án đầu tư mở rộng, nâng cấp để đấu thầu lựa chọn nhà đầu tư theo phương thức đối tác công tư
+4. Trường hợp nhà đầu tư hiện hữu tham gia thực hiện dự án mở rộng, nâng cấp thì thực hiện theo quy định tại Luật Đầu tư theo phương thức đối tác công tư.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-06-30): Anh tôi, công ty vận tải, đang chuẩn bị đấu thầu mở rộng đường cao tốc. Khi nhà đầu tư hiện hữu tham dự thầu, anh tôi có thể áp dụng quy định nào để xác định tính hợp lệ của nhà đầu tư?
+- Đáp: Nhà đầu tư hiện hữu tham dự thầu phải được xem xét tính hợp lệ theo quy định tại Luật Đầu tư theo phương thức đối tác công tư.
+- ⚠ chep_nguyen_van: “hợp lệ của nhà đầu tư …”
+- Hỏi (2026-07-01): Anh tôi, công ty vận tải, đang chuẩn bị đấu thầu mở rộng đường cao tốc. Khi nhà đầu tư hiện hữu tham gia thực hiện dự án, anh tôi có thể áp dụng quy định nào để xác định tính hợp lệ của nhà đầu tư?
+- Đáp: Nhà đầu tư hiện hữu tham gia thực hiện dự án phải được xem xét tính hợp lệ theo quy định tại Luật Đầu tư theo phương thức đối tác công tư.
+- ⚠ chep_nguyen_van: “hiện hữu tham gia thực hiện …”
+
+```json
+{"qid": "t3-theo_thoi_diem-011a", "question": "Anh tôi, công ty vận tải, đang chuẩn bị đấu thầu mở rộng đường cao tốc. Khi nhà đầu tư hiện hữu tham dự thầu, anh tôi có thể áp dụng quy định nào để xác định tính hợp lệ của nhà đầu tư?", "as_of": "2026-06-30", "question_type": "theo_thoi_diem", "tier": "B", "answer": "Nhà đầu tư hiện hữu tham dự thầu phải được xem xét tính hợp lệ theo quy định tại Luật Đầu tư theo phương thức đối tác công tư.", "gold_units": ["ND165-2024/D46/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-011:1a", "pair_id": "p3-011"}
+{"qid": "t3-theo_thoi_diem-011b", "question": "Anh tôi, công ty vận tải, đang chuẩn bị đấu thầu mở rộng đường cao tốc. Khi nhà đầu tư hiện hữu tham gia thực hiện dự án, anh tôi có thể áp dụng quy định nào để xác định tính hợp lệ của nhà đầu tư?", "as_of": "2026-07-01", "question_type": "theo_thoi_diem", "tier": "B", "answer": "Nhà đầu tư hiện hữu tham gia thực hiện dự án phải được xem xét tính hợp lệ theo quy định tại Luật Đầu tư theo phương thức đối tác công tư.", "gold_units": ["ND165-2024/D46/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-011:1b", "pair_id": "p3-011"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-06-30): Công ty tôi đang lên kế hoạch đấu thầu mở rộng đường cao tốc. Khi nhà đầu tư hiện hữu tham dự thầu, công ty tôi cần tham khảo quy định nào để xác định tính hợp lệ của nhà đầu tư?
+- Đáp: Nhà đầu tư hiện hữu tham dự thầu phải được xem xét tính hợp lệ theo quy định tại Luật Đầu tư theo phương thức đối tác công tư.
+- ⚠ chep_nguyen_van: “hợp lệ của nhà đầu tư …”
+- Hỏi (2026-07-01): Công ty tôi đang lên kế hoạch đấu thầu mở rộng đường cao tốc. Khi nhà đầu tư hiện hữu tham gia thực hiện dự án, công ty tôi cần tham khảo quy định nào để xác định tính hợp lệ của nhà đầu tư?
+- Đáp: Nhà đầu tư hiện hữu tham gia thực hiện dự án phải được xem xét tính hợp lệ theo quy định tại Luật Đầu tư theo phương thức đối tác công tư.
+- ⚠ chep_nguyen_van: “hiện hữu tham gia thực hiện …”
+
+```json
+{"qid": "t3-theo_thoi_diem-011a", "question": "Công ty tôi đang lên kế hoạch đấu thầu mở rộng đường cao tốc. Khi nhà đầu tư hiện hữu tham dự thầu, công ty tôi cần tham khảo quy định nào để xác định tính hợp lệ của nhà đầu tư?", "as_of": "2026-06-30", "question_type": "theo_thoi_diem", "tier": "B", "answer": "Nhà đầu tư hiện hữu tham dự thầu phải được xem xét tính hợp lệ theo quy định tại Luật Đầu tư theo phương thức đối tác công tư.", "gold_units": ["ND165-2024/D46/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-011:2a", "pair_id": "p3-011"}
+{"qid": "t3-theo_thoi_diem-011b", "question": "Công ty tôi đang lên kế hoạch đấu thầu mở rộng đường cao tốc. Khi nhà đầu tư hiện hữu tham gia thực hiện dự án, công ty tôi cần tham khảo quy định nào để xác định tính hợp lệ của nhà đầu tư?", "as_of": "2026-07-01", "question_type": "theo_thoi_diem", "tier": "B", "answer": "Nhà đầu tư hiện hữu tham gia thực hiện dự án phải được xem xét tính hợp lệ theo quy định tại Luật Đầu tư theo phương thức đối tác công tư.", "gold_units": ["ND165-2024/D46/K4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-011:2b", "pair_id": "p3-011"}
+```
+
+### W3-theo_thoi_diem-012 · tier A · vai: tài xế công nghệ · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Trạng thái trước mốc (áp dụng tại 2026-08-14)
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → 2026-08-14
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K3, ND168-2024/D13/K3/a, ND168-2024/D13/K3/b, ND168-2024/D13/K3/c, ND168-2024/D13/K3/d
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+3. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe lắp thêm đèn phía trước, phía sau, trên nóc, dưới gầm, một hoặc cả hai bên thành xe, trừ đèn sương mù dạng rời được lấp theo quy định;
+b) Điều khiển xe có hệ thống chuyển hướng của xe không đúng tiêu chuẩn an toàn kỹ thuật;
+c) Điều khiển xe không lắp đủ bánh lốp hoặc lắp bánh lốp không đúng kích cỡ hoặc không bảo đảm tiêu chuẩn kỹ thuật (kể cả rơ moóc và sơ mi rơ moóc);
+d) Điều khiển xe ô tô kinh doanh vận tải hành khách lắp thêm hoặc tháo bớt ghế, giường nằm hoặc có kích thước khoang chở hành lý (hầm xe) không đúng với thông số kỹ thuật được ghi trong giấy chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D13/K13/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K13/a
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm a, điểm b khoản 3; khoản 4; khoản 5; khoản 6; điểm a khoản 7 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Trạng thái sau mốc (áp dụng tại 2026-08-15)
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K3, ND168-2024/D13/K3/a, ND168-2024/D13/K3/b, ND168-2024/D13/K3/c, ND168-2024/D13/K3/d
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+3. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe lắp thêm đèn phía trước, phía sau, trên nóc, dưới gầm, một hoặc cả hai bên thành xe, trừ đèn sương mù dạng rời được lấp theo quy định;
+b) Điều khiển xe có hệ thống chuyển hướng của xe không đúng tiêu chuẩn an toàn kỹ thuật;
+c) Điều khiển xe không lắp đủ bánh lốp hoặc lắp bánh lốp không đúng kích cỡ hoặc không bảo đảm tiêu chuẩn kỹ thuật (kể cả rơ moóc và sơ mi rơ moóc);
+d) Điều khiển xe ô tô kinh doanh vận tải hành khách lắp thêm hoặc tháo bớt ghế, giường nằm hoặc có kích thước khoang chở hành lý (hầm xe) không đúng với thông số kỹ thuật được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D13/K13/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D13/K13/a
+
+Điều 13. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ và các loại xe tương tư xe ô tô vi phạm quy định về điều kiện của phương tiện khi tham gia giao thông
+13. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển xe thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm a, điểm b khoản 3; khoản 4; khoản 5; khoản 6; điểm a khoản 7 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+[0] 1.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D13/K3) — trạng thái tại 2026-08-14
+[1] 2.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D13/K3) — trạng thái tại 2026-08-14
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D13/K13/a) — trạng thái tại 2026-08-14
+[3] 1.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D13/K3) — trạng thái tại 2026-08-15
+[4] 2.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D13/K3) — trạng thái tại 2026-08-15
+[5] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D13/K13/a) — trạng thái tại 2026-08-15
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-08-14): Tôi đang lái xe ô tô chở khách và đã lắp thêm đèn phía trước và phía sau, có phải bị phạt tiền và trừ điểm giấy phép lái xe không?
+- Đáp: Bạn sẽ bị phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng và bị trừ 02 điểm giấy phép lái xe. (khoản 3 Điều 13 Nghị định 168/2024/NĐ-CP)
+- ⚠ so_cau_sai (1/2); chep_nguyen_van: “trừ điểm giấy phép lái xe …”
+
+```json
+{"qid": "t3-theo_thoi_diem-012a", "question": "Tôi đang lái xe ô tô chở khách và đã lắp thêm đèn phía trước và phía sau, có phải bị phạt tiền và trừ điểm giấy phép lái xe không?", "as_of": "2026-08-14", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Bạn sẽ bị phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng và bị trừ 02 điểm giấy phép lái xe. (khoản 3 Điều 13 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D13/K3", "ND168-2024/D13/K13/a"], "required_numbers": [{"value": 1000000, "unit": "vnd"}, {"value": 2000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-012:1a", "pair_id": "p3-012"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-08-14): Tôi đang lái xe ô tô chở khách và đã lắp thêm đèn phía trước và phía sau, có phải bị phạt tiền và trừ điểm giấy phép lái xe không?
+- Đáp: Bạn sẽ bị phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng và bị trừ 02 điểm giấy phép lái xe. (khoản 3 Điều 13 Nghị định 168/2024/NĐ-CP)
+- ⚠ so_cau_sai (1/2); as_of_sua (2026-08-15 → 2026-08-14); chep_nguyen_van: “trừ điểm giấy phép lái xe …”
+
+```json
+{"qid": "t3-theo_thoi_diem-012a", "question": "Tôi đang lái xe ô tô chở khách và đã lắp thêm đèn phía trước và phía sau, có phải bị phạt tiền và trừ điểm giấy phép lái xe không?", "as_of": "2026-08-14", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Bạn sẽ bị phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng và bị trừ 02 điểm giấy phép lái xe. (khoản 3 Điều 13 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D13/K3", "ND168-2024/D13/K13/a"], "required_numbers": [{"value": 1000000, "unit": "vnd"}, {"value": 2000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-012:2a", "pair_id": "p3-012"}
+```
+
+### W3-theo_thoi_diem-013 · tier A · vai: tài xế công nghệ · kiểu: ngan
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Trạng thái trước mốc (áp dụng tại 2026-08-14)
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → 2026-08-14
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K7, ND168-2024/D32/K7/a, ND168-2024/D32/K7/b, ND168-2024/D32/K7/c, ND168-2024/D32/K7/d, ND168-2024/D32/K7/đ, ND168-2024/D32/K7/e, ND168-2024/D32/K7/g, ND168-2024/D32/K7/h, ND168-2024/D32/K7/i, ND168-2024/D32/K7/k, ND168-2024/D32/K7/l, ND168-2024/D32/K7/m, ND168-2024/D32/K7/n, ND168-2024/D32/K7/o
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+7. Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng đối với cá nhân, từ 8.000.000 đồng đến 12.000.000 đồng đối với tổ chức là chủ xe ô tô (kể cả rơ moóc và sơ mi rơ moóc), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ, xe máy chuyên dùng và các loại xe tương tự xe ô tô thực hiện một trong các hành vi vi phạm sau đây:
+a) Tẩy xóa, sửa chữa hoặc giả mạo hồ sơ đăng ký xe nhưng chưa đến mức truy cứu trách nhiệm hình sự;
+b) Không làm thủ tục thu hồi chứng nhận đăng ký xe; biển số xe; giấy chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường theo quy định;
+c) Không làm thủ tục đổi chứng nhận đăng ký xe, biển số xe theo quy định;
+d) Khai báo không đúng sự thật hoặc sử dụng các giấy tờ, tài liệu giả để được cấp lại biển số xe, chứng nhận đăng ký xe, giấy chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường nhưng chưa đến mức bị truy cứu trách nhiệm hình sự;
+đ) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm e khoản 3; điểm i khoản 5 Điều 20 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm e khoản 3; điểm i khoản 5 Điều 20 của Nghị định này;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/c
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+c) Thực hiện hành vi quy định tại điểm e khoản 7, điểm b khoản 11, điểm a khoản 13, khoản 15, điểm b khoản 16 Điều này mà phương tiện đó có thùng xe, khối lượng hàng hóa cho phép chuyên chở không đúng theo quy định hiện hành thì còn bị tước quyền sử dụng giấy chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường và tem kiểm định của phương tiện từ 01 tháng đến 03 tháng;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/đ
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+đ) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chở vượt trên 50% số người quy định được phép chở của phương tiện còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có). Thực hiện hành vi quy định tại điểm e, điểm g khoản 7; điểm a, điểm b khoản 11; điểm a, điểm b, điểm c, điểm đ khoản 13; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g khoản 14; khoản 15; khoản 16 Điều này còn bị tước quyền sử dụng phù hiệu từ 01 tháng đến 03 tháng (nếu có),
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/a
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm đ, điểm g, điểm m khoản 7; điểm đ, điểm e khoản 8; điểm b, điểm c, điểm d, điểm đ khoản 9; điểm a, điểm b, điểm đ khoản 11; điểm a khoản 12; điểm c khoản 13; điểm đ, điểm h khoản 14 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D20/K3/e)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K3/e
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+3. Phạt tiền từ 600.000 đồng đến 800.000 đồng đối với một trong các hành vi vi phạm sau đây:
+e) Chở hành lý, hàng hóa vượt quá kích thước bao ngoài của xe;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D20/K5/i)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K5/i
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+5. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+i) Chở hành lý, hàng hóa vượt quá trọng tải theo thiết kế của xe;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D21/K2/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K2/a
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+2. Phạt tiền từ 800.000 đồng đến 1.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe (kể cả rơ moóc và sơ mi rơ moóc) chở hàng vượt trọng tải (khối lượng hàng chuyên chở) cho phép tham gia giao thông được ghi trong giấy chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 10% đến 30% (trừ xe xi téc chở chất lỏng), trên 20% đến 30% đối với xe xi téc chở chất lỏng;
+
+### Trạng thái sau mốc (áp dụng tại 2026-08-15)
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K7, ND168-2024/D32/K7/a, ND168-2024/D32/K7/b, ND168-2024/D32/K7/c, ND168-2024/D32/K7/d, ND168-2024/D32/K7/đ, ND168-2024/D32/K7/e, ND168-2024/D32/K7/g, ND168-2024/D32/K7/h, ND168-2024/D32/K7/i, ND168-2024/D32/K7/k, ND168-2024/D32/K7/l, ND168-2024/D32/K7/m, ND168-2024/D32/K7/n, ND168-2024/D32/K7/o
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+7. Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng đối với cá nhân, từ 8.000.000 đồng đến 12.000.000 đồng đối với tổ chức là chủ xe ô tô (kể cả rơ moóc và sơ mi rơ moóc), xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ, xe máy chuyên dùng và các loại xe tương tự xe ô tô thực hiện một trong các hành vi vi phạm sau đây:
+a) Tẩy xóa, sửa chữa hoặc giả mạo hồ sơ đăng ký xe nhưng chưa đến mức truy cứu trách nhiệm hình sự;
+b) Không làm thủ tục thu hồi chứng nhận đăng ký xe; biển số xe; theo quy định;
+c) Không làm thủ tục đổi chứng nhận đăng ký xe, biển số xe theo quy định;
+d) Khai báo không đúng sự thật hoặc sử dụng các giấy tờ, tài liệu giả để được cấp lại biển số xe, chứng nhận đăng ký xe, nhưng chưa đến mức bị truy cứu trách nhiệm hình sự;
+đ) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm e khoản 3; điểm i khoản 5 Điều 20 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm e khoản 3; điểm i khoản 5 Điều 20 của Nghị định này;
+…
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K18/c)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K18/c
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+18. Ngoài việc bị phạt tiền, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị áp dụng các hình thức xử phạt bổ sung như sau:
+c) Thực hiện hành vi quy định tại điểm e khoản 7, điểm b khoản 11, điểm a khoản 13, khoản 15, điểm b khoản 16 Điều này mà phương tiện đó có thùng xe, khối lượng hàng hóa cho phép chuyên chở không đúng theo quy định hiện hành thì còn bị tước quyền sử dụng chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường và tem kiểm định của phương tiện từ 01 tháng đến 03 tháng;
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D32/K21/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21/a
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm đ, điểm g, điểm m khoản 7; điểm đ, điểm e khoản 8; điểm b, điểm c, điểm d, điểm đ khoản 9; điểm a, điểm b, điểm đ khoản 11; điểm a khoản 12; điểm c khoản 13; điểm đ, điểm h khoản 14 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D20/K3/e)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K3/e
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+3. Phạt tiền từ 600.000 đồng đến 800.000 đồng đối với một trong các hành vi vi phạm sau đây:
+e) Chở hành lý, hàng hóa vượt quá kích thước bao ngoài của xe;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D20/K5/i)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K5/i
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+5. Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+i) Chở hành lý, hàng hóa vượt quá trọng tải theo thiết kế của xe;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D21/K2/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D21/K2/a
+
+Điều 21. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô tải, máy kéo (bao gồm cả rơ moóc hoặc sơ mi rơ moóc được kéo theo) và các loại xe tương tự xe ô tô vận chuyển hàng hóa vi phạm quy định về bảo đảm trật tự, an toàn giao thông đường bộ với xe ô tô vận chuyển hàng hóa
+2. Phạt tiền từ 800.000 đồng đến 1.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Điều khiển xe (kể cả rơ moóc và sơ mi rơ moóc) chở hàng vượt trọng tải (khối lượng hàng chuyên chở) cho phép tham gia giao thông được ghi trong chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường của xe trên 10% đến 30% (trừ xe xi téc chở chất lỏng), trên 20% đến 30% đối với xe xi téc chở chất lỏng;
+
+[0] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/c) — trạng thái tại 2026-08-14
+[1] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/c) — trạng thái tại 2026-08-14
+[2] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/đ) — trạng thái tại 2026-08-14
+[3] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/đ) — trạng thái tại 2026-08-14
+[4] 4.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K7) — trạng thái tại 2026-08-14
+[5] 6.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K7) — trạng thái tại 2026-08-14
+[6] 8.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K7) — trạng thái tại 2026-08-14
+[7] 12.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K7) — trạng thái tại 2026-08-14
+[8] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/a) — trạng thái tại 2026-08-14
+[9] 01 tháng (thời hạn tước quyền sử dụng tối thiểu, nêu tại ND168-2024/D32/K18/c) — trạng thái tại 2026-08-15
+[10] 03 tháng (thời hạn tước quyền sử dụng tối đa, nêu tại ND168-2024/D32/K18/c) — trạng thái tại 2026-08-15
+[11] 4.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K7) — trạng thái tại 2026-08-15
+[12] 6.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K7) — trạng thái tại 2026-08-15
+[13] 8.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D32/K7) — trạng thái tại 2026-08-15
+[14] 12.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D32/K7) — trạng thái tại 2026-08-15
+[15] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/a) — trạng thái tại 2026-08-15
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-08-14): Tôi là tài xế ô tô chở khách, vừa không làm thủ tục đổi biển số xe. Phạt tiền sẽ là bao nhiêu?
+- Đáp: Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng. (khoản 7 Điều 32 Nghị định 168/2024/NĐ-CP)
+- ⚠ dap_an_cap_giong_nhau
+- Hỏi (2026-08-15): Tôi là tài xế ô tô chở khách, vừa không làm thủ tục đổi biển số xe. Phạt tiền sẽ là bao nhiêu?
+- Đáp: Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng. (khoản 7 Điều 32 Nghị định 168/2024/NĐ-CP)
+- ⚠ dap_an_cap_giong_nhau; chi_so_so_sai (4); chi_so_so_sai (5); chi_so_so_sai (6); chi_so_so_sai (7)
+
+```json
+{"qid": "t3-theo_thoi_diem-013a", "question": "Tôi là tài xế ô tô chở khách, vừa không làm thủ tục đổi biển số xe. Phạt tiền sẽ là bao nhiêu?", "as_of": "2026-08-14", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng. (khoản 7 Điều 32 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K7"], "required_numbers": [{"value": 4000000, "unit": "vnd"}, {"value": 6000000, "unit": "vnd"}, {"value": 8000000, "unit": "vnd"}, {"value": 12000000, "unit": "vnd"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-013:1a", "pair_id": "p3-013"}
+{"qid": "t3-theo_thoi_diem-013b", "question": "Tôi là tài xế ô tô chở khách, vừa không làm thủ tục đổi biển số xe. Phạt tiền sẽ là bao nhiêu?", "as_of": "2026-08-15", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng. (khoản 7 Điều 32 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D32/K7"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-013:1b", "pair_id": "p3-013"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-08-14): Công ty tôi vận chuyển hàng bằng xe tải, vừa chở hàng vượt trọng tải 15%. Phạt tiền sẽ là bao nhiêu?
+- Đáp: Phạt tiền từ 800.000 đồng đến 1.000.000 đồng. (khoản 2 Điều 21 Nghị định 168/2024/NĐ-CP)
+- ⚠ dap_an_cap_giong_nhau
+- Hỏi (2026-08-15): Công ty tôi vận chuyển hàng bằng xe tải, vừa chở hàng vượt trọng tải 15%. Phạt tiền sẽ là bao nhiêu?
+- Đáp: Phạt tiền từ 800.000 đồng đến 1.000.000 đồng. (khoản 2 Điều 21 Nghị định 168/2024/NĐ-CP)
+- ⚠ dap_an_cap_giong_nhau; chi_so_so_sai (2); chi_so_so_sai (3)
+
+```json
+{"qid": "t3-theo_thoi_diem-013a", "question": "Công ty tôi vận chuyển hàng bằng xe tải, vừa chở hàng vượt trọng tải 15%. Phạt tiền sẽ là bao nhiêu?", "as_of": "2026-08-14", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Phạt tiền từ 800.000 đồng đến 1.000.000 đồng. (khoản 2 Điều 21 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D21/K2/a"], "required_numbers": [{"value": 1, "unit": "thang"}, {"value": 3, "unit": "thang"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-013:2a", "pair_id": "p3-013"}
+{"qid": "t3-theo_thoi_diem-013b", "question": "Công ty tôi vận chuyển hàng bằng xe tải, vừa chở hàng vượt trọng tải 15%. Phạt tiền sẽ là bao nhiêu?", "as_of": "2026-08-15", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Phạt tiền từ 800.000 đồng đến 1.000.000 đồng. (khoản 2 Điều 21 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D21/K2/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-013:2b", "pair_id": "p3-013"}
+```
+
+### W3-theo_thoi_diem-014 · tier A · vai: sinh viên đi xe máy · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Trạng thái trước mốc (áp dụng tại 2026-08-14)
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → 2026-08-14
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21, ND168-2024/D32/K21/a, ND168-2024/D32/K21/b, ND168-2024/D32/K21/c, ND168-2024/D32/K21/d, ND168-2024/D32/K21/đ, ND168-2024/D32/K21/e, ND168-2024/D32/K21/g, ND168-2024/D32/K21/h
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm đ, điểm g, điểm m khoản 7; điểm đ, điểm e khoản 8; điểm b, điểm c, điểm d, điểm đ khoản 9; điểm a, điểm b, điểm đ khoản 11; điểm a khoản 12; điểm c khoản 13; điểm đ, điểm h khoản 14 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 02 điểm;
+b) Thực hiện hành vi quy định tại điểm e, điểm g khoản 14 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 03 điểm;
+c) Thực hiện hành vi quy định tại điểm a, điểm b, điểm đ khoản 13; điểm a, điểm b, điểm c, điểm d khoản 14; điểm a khoản 16 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 04 điểm;
+d) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện chở vượt trên 50% đến 100% số người quy định được phép chở của phương tiện, còn bị trừ điểm giấy phép lái xe 04 điểm;
+đ) Thực hiện hành vi quy định tại điểm h khoản 8, điểm b khoản 12 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 06 điểm;
+…
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D32/K11/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K11/a
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+11. Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng đối với cá nhân, từ 20.000.000 đồng đến 24.000.000 đồng đối với tổ chức là chủ xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ, xe máy chuyên dùng và các loại xe tương tự xe ô tô thực hiện một trong các hành vi vi phạm sau đây:
+a) Đưa xe cơ giới, xe máy chuyên dùng không có giấy chứng nhận hoặc tem kiểm định an toàn kỹ thuật và bảo vệ môi trường (đối với loại xe có quy định phải kiểm định) hoặc có nhưng đã hết hiệu lực (hạn sử dụng) từ 01 tháng trở lên (kể cả rơ moóc và sơ mi rơ moóc) tham gia giao thông;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D32/K11/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K11/b
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+11. Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng đối với cá nhân, từ 20.000.000 đồng đến 24.000.000 đồng đối với tổ chức là chủ xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ, xe máy chuyên dùng và các loại xe tương tự xe ô tô thực hiện một trong các hành vi vi phạm sau đây:
+b) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm a, điểm d khoản 5 Điều 21 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm a, điểm d khoản 5 Điều 21 của Nghị định này;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D32/K11/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K11/đ
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+11. Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng đối với cá nhân, từ 20.000.000 đồng đến 24.000.000 đồng đối với tổ chức là chủ xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ, xe máy chuyên dùng và các loại xe tương tự xe ô tô thực hiện một trong các hành vi vi phạm sau đây:
+đ) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 7 Điều 20; điểm c khoản 6 Điều 21 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 7 Điều 20; điểm c khoản 6 Điều 21 của Nghị định này.
+
+### Trạng thái sau mốc (áp dụng tại 2026-08-15)
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K21, ND168-2024/D32/K21/a, ND168-2024/D32/K21/b, ND168-2024/D32/K21/c, ND168-2024/D32/K21/d, ND168-2024/D32/K21/đ, ND168-2024/D32/K21/e, ND168-2024/D32/K21/g, ND168-2024/D32/K21/h
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+21. Ngoài việc bị áp dụng hình thức xử phạt, cá nhân, tổ chức thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm đ, điểm g, điểm m khoản 7; điểm đ, điểm e khoản 8; điểm b, điểm c, điểm d, điểm đ khoản 9; điểm a, điểm b, điểm đ khoản 11; điểm a khoản 12; điểm c khoản 13; điểm đ, điểm h khoản 14 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 02 điểm;
+b) Thực hiện hành vi quy định tại điểm e, điểm g khoản 14 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 03 điểm;
+c) Thực hiện hành vi quy định tại điểm a, điểm b, điểm đ, điểm e khoản 13; điểm a, điểm b, điểm c, điểm d khoản 14; điểm a khoản 16 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 04 điểm;
+d) Thực hiện hành vi quy định tại khoản 5, khoản 6 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện chở vượt trên 50% đến 100% số người quy định được phép chở của phương tiện, còn bị trừ điểm giấy phép lái xe 04 điểm;
+đ) Thực hiện hành vi quy định tại điểm h khoản 8, điểm b khoản 12 Điều này trong trường hợp chủ phương tiện là người trực tiếp điều khiển phương tiện còn bị trừ điểm giấy phép lái xe 06 điểm;
+…
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D32/K11/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K11/a
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+11. Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng đối với cá nhân, từ 20.000.000 đồng đến 24.000.000 đồng đối với tổ chức là chủ xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ, xe máy chuyên dùng và các loại xe tương tự xe ô tô thực hiện một trong các hành vi vi phạm sau đây:
+a) Đưa xe cơ giới, xe máy chuyên dùng không có giấy chứng nhận hoặc tem kiểm định an toàn kỹ thuật và bảo vệ môi trường (đối với loại xe có quy định phải kiểm định) hoặc có nhưng đã hết hiệu lực (hạn sử dụng) từ 01 tháng trở lên (kể cả rơ moóc và sơ mi rơ moóc) tham gia giao thông;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D32/K11/b)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K11/b
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+11. Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng đối với cá nhân, từ 20.000.000 đồng đến 24.000.000 đồng đối với tổ chức là chủ xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ, xe máy chuyên dùng và các loại xe tương tự xe ô tô thực hiện một trong các hành vi vi phạm sau đây:
+b) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm a, điểm d khoản 5 Điều 21 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại điểm a, điểm d khoản 5 Điều 21 của Nghị định này;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND168-2024/D32/K11/đ)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D32/K11/đ
+
+Điều 32. Xử phạt, trừ điểm giấy phép lái xe đối với chủ phương tiện vi phạm quy định liên quan đến giao thông đường bộ
+11. Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng đối với cá nhân, từ 20.000.000 đồng đến 24.000.000 đồng đối với tổ chức là chủ xe ô tô, xe chở người bốn bánh có gắn động cơ, xe chở hàng bốn bánh có gắn động cơ, xe máy chuyên dùng và các loại xe tương tự xe ô tô thực hiện một trong các hành vi vi phạm sau đây:
+đ) Giao phương tiện hoặc để cho người làm công, người đại diện điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 7 Điều 20; điểm c khoản 6 Điều 21 của Nghị định này hoặc trực tiếp điều khiển phương tiện thực hiện hành vi vi phạm quy định tại khoản 7 Điều 20; điểm c khoản 6 Điều 21 của Nghị định này.
+
+[0] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/a) — trạng thái tại 2026-08-14
+[1] 03 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/b) — trạng thái tại 2026-08-14
+[2] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/c) — trạng thái tại 2026-08-14
+[3] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/d) — trạng thái tại 2026-08-14
+[4] 08 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/e) — trạng thái tại 2026-08-14
+[5] 10 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/g) — trạng thái tại 2026-08-14
+[6] 10 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/h) — trạng thái tại 2026-08-14
+[7] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/đ) — trạng thái tại 2026-08-14
+[8] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/a) — trạng thái tại 2026-08-15
+[9] 03 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/b) — trạng thái tại 2026-08-15
+[10] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/c) — trạng thái tại 2026-08-15
+[11] 04 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/d) — trạng thái tại 2026-08-15
+[12] 08 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/e) — trạng thái tại 2026-08-15
+[13] 10 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/g) — trạng thái tại 2026-08-15
+[14] 10 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/h) — trạng thái tại 2026-08-15
+[15] 06 điểm (số điểm bị trừ, nêu tại ND168-2024/D32/K21/đ) — trạng thái tại 2026-08-15
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-08-14): Tôi đang lái xe máy và không có giấy chứng nhận kiểm định hợp lệ, tôi sẽ bị phạt tiền bao nhiêu?
+- Đáp: Bạn sẽ bị phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng.
+- ⚠ dap_an_cap_giong_nhau
+- Hỏi (2026-08-15): Tôi đang lái xe máy, giấy kiểm định đã hết hạn, mức phạt tiền là bao nhiêu?
+- Đáp: Bạn sẽ bị phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng.
+- ⚠ dap_an_cap_giong_nhau
+- Ghi chú: Không có điểm trừ trong trường hợp này
+
+```json
+{"qid": "t3-theo_thoi_diem-014a", "question": "Tôi đang lái xe máy và không có giấy chứng nhận kiểm định hợp lệ, tôi sẽ bị phạt tiền bao nhiêu?", "as_of": "2026-08-14", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Bạn sẽ bị phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng.", "gold_units": ["ND168-2024/D32/K11/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-014:1a", "pair_id": "p3-014"}
+{"qid": "t3-theo_thoi_diem-014b", "question": "Tôi đang lái xe máy, giấy kiểm định đã hết hạn, mức phạt tiền là bao nhiêu?", "as_of": "2026-08-15", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Bạn sẽ bị phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng.", "gold_units": ["ND168-2024/D32/K11/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-014:1b", "pair_id": "p3-014"}
+```
+
+### W3-theo_thoi_diem-015 · tier A · vai: cán bộ phường · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Trạng thái trước mốc (áp dụng tại 2026-08-14)
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2025-01-01 → 2026-08-14
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K6, ND168-2024/D20/K6/a, ND168-2024/D20/K6/b, ND168-2024/D20/K6/c, ND168-2024/D20/K6/d, ND168-2024/D20/K6/đ, ND168-2024/D20/K6/e
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+6. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Vận chuyển hàng hóa nguy hiểm, hàng độc hại, dễ cháy, dễ nổ, động vật, hàng có mùi hôi thối hoặc hàng hóa khác ảnh hưởng đến sức khỏe của hành khách trên xe;
+b) Chở người trên mui xe, trong khoang chở hành lý của xe;
+c) Đe dọa, xúc phạm, tranh giành, lôi kéo hành khách; đe dọa, cưỡng ép hành khách sử dụng dịch vụ ngoài ý muốn; chuyển tải, xuống khách hoặc các hành vi khác nhằm trốn tránh phát hiện xe chở quá tải, quá số người theo quy định của pháp luật;
+d) Điều khiển xe ô tô kinh doanh vận tải quá thời gian quy định tại khoản 1 Điều 64 của Luật Trật tự, an toàn giao thông đường bộ; không thực hiện đúng quy định về thời gian nghỉ giữa hai lần lái xe liên tục của người lái xe;
+đ) Điều khiển xe kinh doanh vận tải hành khách không lắp thiết bị giám sát hành trình của xe theo quy định hoặc có lắp thiết bị giám sát hành trình của xe nhưng thiết bị không hoạt động theo quy định hoặc làm sai lệch dữ liệu của thiết bị giám sát hành trình của xe ô tô;
+e) Điều khiển xe chở hành khách liên vận quốc tế không có hoặc không gắn ký hiệu phân biệt quốc gia.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D20/K10/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K10/a
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+10. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm c, điểm d, điểm e khoản 3; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g, điểm h, điểm i, điểm k, điểm m khoản 5; khoản 6; khoản 7 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D64/K1)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D64/K1
+
+Điều 64. Thời gian làm việc của người lái xe ô tô kinh doanh vận tải và vận tải nội bộ
+1. Thời gian lái xe của người lái xe ô tô không quá 10 giờ trong một ngày và không quá 48 giờ trong một tuần; lái xe liên tục không quá 04 giờ và bảo đảm các quy định có liên quan của Bộ luật Lao động.
+
+### Trạng thái sau mốc (áp dụng tại 2026-08-15)
+Văn bản: Nghị định số 168/2024/NĐ-CP (Quy định xử phạt vi phạm hành chính về trật tự, an toàn giao thông trong lĩnh vực giao thông đường bộ; trừ điểm, phục hồi điểm giấy phép lái xe)
+Hiệu lực của trạng thái này: 2026-08-15 → nay
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K6, ND168-2024/D20/K6/a, ND168-2024/D20/K6/b, ND168-2024/D20/K6/c, ND168-2024/D20/K6/d, ND168-2024/D20/K6/đ, ND168-2024/D20/K6/e
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+6. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với một trong các hành vi vi phạm sau đây:
+a) Vận chuyển hàng hóa nguy hiểm, hàng độc hại, dễ cháy, dễ nổ, động vật, hàng có mùi hôi thối hoặc hàng hóa khác ảnh hưởng đến sức khỏe của hành khách trên xe;
+b) Chở người trên mui xe, trong khoang chở hành lý của xe;
+c) Đe dọa, xúc phạm, tranh giành, lôi kéo hành khách; đe dọa, cưỡng ép hành khách sử dụng dịch vụ ngoài ý muốn; chuyển tải, xuống khách hoặc các hành vi khác nhằm trốn tránh phát hiện xe chở quá tải, quá số người theo quy định của pháp luật;
+d) Điều khiển xe ô tô kinh doanh vận tải, xe vận tải nội bộ quá thời gian quy định tại khoản 1 Điều 64 của Luật Trật tự, an toàn giao thông đường bộ; không thực hiện đúng quy định về thời gian nghỉ giữa hai lần lái xe liên tục của người lái xe;
+đ) Điều khiển xe kinh doanh vận tải hành khách, xe vận tải nội bộ không lắp thiết bị giám sát hành trình của xe theo quy định hoặc có lắp thiết bị giám sát hành trình của xe nhưng thiết bị không hoạt động theo quy định hoặc làm sai lệch dữ liệu của thiết bị giám sát hành trình của xe ô tô;
+e) Điều khiển xe chở hành khách liên vận quốc tế không có hoặc không gắn ký hiệu phân biệt quốc gia.
+
+### Điều khoản nêu chế tài áp cho hành vi trên (ND168-2024/D20/K10/a)
+Mã điều khoản dùng được cho gold_units: ND168-2024/D20/K10/a
+
+Điều 20. Xử phạt, trừ điểm giấy phép lái xe của người điều khiển xe ô tô chở hành khách, ô tô chở người và các loại xe tương tự xe ô tô chở hành khách vi phạm quy định về bảo đảm trật trị, an toàn giao thông
+10. Ngoài việc bị áp dụng hình thức xử phạt, người điều khiển phương tiện thực hiện hành vi vi phạm còn bị trừ điểm giấy phép lái xe như sau:
+a) Thực hiện hành vi quy định tại điểm c, điểm d, điểm e khoản 3; điểm a, điểm b, điểm c, điểm d, điểm đ, điểm e, điểm g, điểm h, điểm i, điểm k, điểm m khoản 5; khoản 6; khoản 7 Điều này bị trừ điểm giấy phép lái xe 02 điểm;
+
+### Điều khoản được nguồn trên dẫn chiếu tới (LUAT36-2024/D64/K1)
+Mã điều khoản dùng được cho gold_units: LUAT36-2024/D64/K1
+
+Điều 64. Thời gian làm việc của người lái xe ô tô kinh doanh vận tải và vận tải nội bộ
+1. Thời gian lái xe của người lái xe ô tô không quá 10 giờ trong một ngày và không quá 48 giờ trong một tuần; lái xe liên tục không quá 04 giờ và bảo đảm các quy định có liên quan của Bộ luật Lao động.
+
+[0] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D20/K6) — trạng thái tại 2026-08-14
+[1] 5.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D20/K6) — trạng thái tại 2026-08-14
+[2] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D20/K10/a) — trạng thái tại 2026-08-14
+[3] 3.000.000 đồng (mức phạt tiền tối thiểu, nêu tại ND168-2024/D20/K6) — trạng thái tại 2026-08-15
+[4] 5.000.000 đồng (mức phạt tiền tối đa, nêu tại ND168-2024/D20/K6) — trạng thái tại 2026-08-15
+[5] 02 điểm (số điểm bị trừ, nêu tại ND168-2024/D20/K10/a) — trạng thái tại 2026-08-15
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-08-14): Tôi đã lái xe buýt chở hành khách liên tục 12 giờ, vượt quá giới hạn 4 giờ, có bị phạt tiền và trừ điểm không?
+- Đáp: Bạn sẽ bị phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng và bị trừ 02 điểm giấy phép lái xe. (khoản 6 Điều 20 Nghị định 168/2024/NĐ-CP)
+- ⚠ dap_an_cap_giong_nhau; chi_so_so_sai (3); chi_so_so_sai (4); chi_so_so_sai (5)
+- Hỏi (2026-08-15): Tôi đã lái xe buýt chở hành khách liên tục 12 giờ, vượt quá giới hạn 4 giờ, có bị phạt tiền và trừ điểm không?
+- Đáp: Bạn sẽ bị phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng và bị trừ 02 điểm giấy phép lái xe. (khoản 6 Điều 20 Nghị định 168/2024/NĐ-CP)
+- ⚠ dap_an_cap_giong_nhau
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-theo_thoi_diem-015a", "question": "Tôi đã lái xe buýt chở hành khách liên tục 12 giờ, vượt quá giới hạn 4 giờ, có bị phạt tiền và trừ điểm không?", "as_of": "2026-08-14", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Bạn sẽ bị phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng và bị trừ 02 điểm giấy phép lái xe. (khoản 6 Điều 20 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D20/K6", "ND168-2024/D20/K10/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-015:1a", "pair_id": "p3-015"}
+{"qid": "t3-theo_thoi_diem-015b", "question": "Tôi đã lái xe buýt chở hành khách liên tục 12 giờ, vượt quá giới hạn 4 giờ, có bị phạt tiền và trừ điểm không?", "as_of": "2026-08-15", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Bạn sẽ bị phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng và bị trừ 02 điểm giấy phép lái xe. (khoản 6 Điều 20 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D20/K6", "ND168-2024/D20/K10/a"], "required_numbers": [{"value": 3000000, "unit": "vnd"}, {"value": 5000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-015:1b", "pair_id": "p3-015"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-08-14): Tôi đã vận chuyển hàng hóa nguy hiểm trong xe buýt chở hành khách, có bị phạt tiền và trừ điểm không?
+- Đáp: Bạn sẽ bị phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng và bị trừ 02 điểm giấy phép lái xe. (khoản 6 Điều 20 Nghị định 168/2024/NĐ-CP)
+- ⚠ dap_an_cap_giong_nhau; chep_nguyen_van: “vận chuyển hàng hóa nguy hiểm …”
+- Hỏi (2026-08-15): Tôi đã vận chuyển hàng hóa nguy hiểm trong xe buýt chở hành khách, có bị phạt tiền và trừ điểm không?
+- Đáp: Bạn sẽ bị phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng và bị trừ 02 điểm giấy phép lái xe. (khoản 6 Điều 20 Nghị định 168/2024/NĐ-CP)
+- ⚠ dap_an_cap_giong_nhau; chi_so_so_sai (0); chi_so_so_sai (1); chi_so_so_sai (2); chep_nguyen_van: “vận chuyển hàng hóa nguy hiểm …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-theo_thoi_diem-015a", "question": "Tôi đã vận chuyển hàng hóa nguy hiểm trong xe buýt chở hành khách, có bị phạt tiền và trừ điểm không?", "as_of": "2026-08-14", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Bạn sẽ bị phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng và bị trừ 02 điểm giấy phép lái xe. (khoản 6 Điều 20 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D20/K6", "ND168-2024/D20/K10/a"], "required_numbers": [{"value": 3000000, "unit": "vnd"}, {"value": 5000000, "unit": "vnd"}, {"value": 2, "unit": "diem"}], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-015:2a", "pair_id": "p3-015"}
+{"qid": "t3-theo_thoi_diem-015b", "question": "Tôi đã vận chuyển hàng hóa nguy hiểm trong xe buýt chở hành khách, có bị phạt tiền và trừ điểm không?", "as_of": "2026-08-15", "question_type": "theo_thoi_diem", "tier": "A", "answer": "Bạn sẽ bị phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng và bị trừ 02 điểm giấy phép lái xe. (khoản 6 Điều 20 Nghị định 168/2024/NĐ-CP)", "gold_units": ["ND168-2024/D20/K6", "ND168-2024/D20/K10/a"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-theo_thoi_diem-015:2b", "pair_id": "p3-015"}
+```
+
+## dinh_nghia — khái niệm, thuật ngữ được giải thích
+
+### W3-dinh_nghia-001 · tier A · vai: phụ huynh có con dưới 18 tuổi · kiểu: nhieu_dieu_kien
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Luật Đường bộ số 35/2024/QH15
+Hiệu lực của trạng thái này: 2024-10-01 → nay
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D43/K1
+
+Điều 43. Thanh toán điện tử giao thông đường bộ
+1. Thanh toán điện tử giao thông đường bộ là việc thanh toán các loại phí, giá, tiền dịch vụ liên quan đến hoạt động giao thông của phương tiện giao thông đường bộ thông qua tài khoản giao thông.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Con tôi, 15 tuổi, muốn đăng ký thanh toán phí giao thông bằng tài khoản điện tử, có được coi là đã thực hiện thanh toán điện tử giao thông đường bộ không?
+- Đáp: Có, việc thanh toán phí giao thông bằng tài khoản điện tử của con tôi được coi là thanh toán điện tử giao thông đường bộ. (Điều 43, Luật Đường bộ số 35/2024/QH15)
+- ⚠ chep_nguyen_van: “thanh toán điện tử giao thông …”
+
+```json
+{"qid": "t3-dinh_nghia-001", "question": "Con tôi, 15 tuổi, muốn đăng ký thanh toán phí giao thông bằng tài khoản điện tử, có được coi là đã thực hiện thanh toán điện tử giao thông đường bộ không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "A", "answer": "Có, việc thanh toán phí giao thông bằng tài khoản điện tử của con tôi được coi là thanh toán điện tử giao thông đường bộ. (Điều 43, Luật Đường bộ số 35/2024/QH15)", "gold_units": ["LUAT35-2024/D43/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-dinh_nghia-001:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu tôi, phụ huynh, sử dụng tài khoản giao thông của con tôi để thanh toán phí xe buýt, hành vi này có được coi là thanh toán điện tử giao thông đường bộ?
+- Đáp: Có, việc sử dụng tài khoản giao thông của con tôi để thanh toán phí xe buýt được coi là thanh toán điện tử giao thông đường bộ. (Điều 43, Luật Đường bộ số 35/2024/QH15)
+- ⚠ chep_nguyen_van: “thanh toán điện tử giao thông …”
+
+```json
+{"qid": "t3-dinh_nghia-001", "question": "Nếu tôi, phụ huynh, sử dụng tài khoản giao thông của con tôi để thanh toán phí xe buýt, hành vi này có được coi là thanh toán điện tử giao thông đường bộ?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "A", "answer": "Có, việc sử dụng tài khoản giao thông của con tôi để thanh toán phí xe buýt được coi là thanh toán điện tử giao thông đường bộ. (Điều 43, Luật Đường bộ số 35/2024/QH15)", "gold_units": ["LUAT35-2024/D43/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-dinh_nghia-001:2"}
+```
+
+### W3-dinh_nghia-002 · tier A · vai: người mới học lái ô tô · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 38/2024/TT-BGTVT (Quy định về tốc độ và khoảng cách an toàn của xe cơ giới, xe máy chuyên dùng tham gia giao thông trên đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT38-2024-BGTVT/D3/K2
+
+Điều 3. Giải thích từ ngữ
+2. Đường đôi là đường có chiều đi và chiều về được phân biệt bằng dải phân cách giữa.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi đang lái xe trên đường có dải phân cách giữa, có được coi là đường đôi không?
+- Đáp: Đúng, đường có dải phân cách giữa được coi là đường đôi. (Điều 3, mục 2, Thông tư 38/2024/TT-BGTVT)
+
+```json
+{"qid": "t3-dinh_nghia-002", "question": "Tôi đang lái xe trên đường có dải phân cách giữa, có được coi là đường đôi không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "A", "answer": "Đúng, đường có dải phân cách giữa được coi là đường đôi. (Điều 3, mục 2, Thông tư 38/2024/TT-BGTVT)", "gold_units": ["TT38-2024-BGTVT/D3/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-dinh_nghia-002:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi lái xe trên đường có dải phân cách, có được coi là đường đôi hay đường đơn?
+- Đáp: Đúng, đường có dải phân cách giữa được coi là đường đôi, không phải đường đơn. (Điều 3, mục 2, Thông tư 38/2024/TT-BGTVT)
+
+```json
+{"qid": "t3-dinh_nghia-002", "question": "Tôi lái xe trên đường có dải phân cách, có được coi là đường đôi hay đường đơn?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "A", "answer": "Đúng, đường có dải phân cách giữa được coi là đường đôi, không phải đường đơn. (Điều 3, mục 2, Thông tư 38/2024/TT-BGTVT)", "gold_units": ["TT38-2024-BGTVT/D3/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-dinh_nghia-002:2"}
+```
+
+### W3-dinh_nghia-003 · tier A · vai: sinh viên đi xe máy · kiểu: tinh_huong_ban_than
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Luật Đường bộ số 35/2024/QH15
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D2/K3
+
+Điều 2. Giải thích từ ngữ
+3. Công trình đường bộ bao gồm: đường bộ; công trình phục vụ công tác quản lý, vận hành, khai thác đường bộ; công trình thuộc hệ thống quản lý giao thông thông minh; nhà hạt quản lý đường bộ; kho chứa trang thiết bị, vật tư dự phòng trong lĩnh vực đường bộ; công trình kiểm soát tải trọng xe; trạm thu phí và các công trình khác của đường bộ.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Khi tôi đi xe máy qua công trình xây dựng đường, có được coi là đi qua công trình đường bộ không?
+- Đáp: Có, vì theo Luật Đường bộ, công trình đường bộ bao gồm cả công trình xây dựng đường. Do đó, khi bạn đi qua công trình xây dựng đường, bạn đang đi qua một công trình đường bộ.
+- Ghi chú: Giả định "công trình xây dựng đường" là một phần của công trình đường bộ theo định nghĩa.
+
+```json
+{"qid": "t3-dinh_nghia-003", "question": "Khi tôi đi xe máy qua công trình xây dựng đường, có được coi là đi qua công trình đường bộ không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "A", "answer": "Có, vì theo Luật Đường bộ, công trình đường bộ bao gồm cả công trình xây dựng đường. Do đó, khi bạn đi qua công trình xây dựng đường, bạn đang đi qua một công trình đường bộ.", "gold_units": ["LUAT35-2024/D2/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-dinh_nghia-003:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Khi tôi đi xe máy qua trạm thu phí, có được coi là đi qua công trình đường bộ không?
+- Đáp: Có, trạm thu phí được liệt kê trong danh mục công trình đường bộ theo Luật Đường bộ. Vì vậy, khi bạn đi qua trạm thu phí, bạn đang đi qua một công trình đường bộ.
+- Ghi chú: Giả định trạm thu phí là một phần của công trình đường bộ theo định nghĩa.
+
+```json
+{"qid": "t3-dinh_nghia-003", "question": "Khi tôi đi xe máy qua trạm thu phí, có được coi là đi qua công trình đường bộ không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "A", "answer": "Có, trạm thu phí được liệt kê trong danh mục công trình đường bộ theo Luật Đường bộ. Vì vậy, khi bạn đi qua trạm thu phí, bạn đang đi qua một công trình đường bộ.", "gold_units": ["LUAT35-2024/D2/K3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-dinh_nghia-003:2"}
+```
+
+### W3-dinh_nghia-004 · tier A · vai: người lớn tuổi đi xe đạp điện · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Luật Đường bộ số 35/2024/QH15
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D67/K1
+
+Điều 67. Vận tải đa phương thức
+1. Vận tải đa phương thức là việc vận tải hàng hóa từ địa điểm nhận hàng đến địa điểm trả hàng cho người nhận hàng bằng ít nhất 02 phương thức vận tải, trong đó có phương thức vận tải bằng đường bộ trên cơ sở hợp đồng vận tải đa phương thức.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Trường hợp tôi đi xe đạp điện từ nhà đến công ty, có được coi là vận tải đa phương thức không?
+- Đáp: Không, vì vận tải đa phương thức yêu cầu sử dụng ít nhất hai phương thức vận tải, trong đó có phương thức đường bộ. Việc di chuyển bằng xe đạp điện chỉ là một phương thức duy nhất. (Điều 67 Luật Đường bộ số 35/2024/QH15)
+
+```json
+{"qid": "t3-dinh_nghia-004", "question": "Trường hợp tôi đi xe đạp điện từ nhà đến công ty, có được coi là vận tải đa phương thức không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "A", "answer": "Không, vì vận tải đa phương thức yêu cầu sử dụng ít nhất hai phương thức vận tải, trong đó có phương thức đường bộ. Việc di chuyển bằng xe đạp điện chỉ là một phương thức duy nhất. (Điều 67 Luật Đường bộ số 35/2024/QH15)", "gold_units": ["LUAT35-2024/D67/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-dinh_nghia-004:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Anh tôi thấy xe tải của công ty bên cạnh chuyển hàng từ nhà máy đến bến cảng, sau đó lên tàu, có được coi là vận tải đa phương thức không?
+- Đáp: Có, vì hoạt động này sử dụng ít nhất hai phương thức vận tải, trong đó có phương thức đường bộ. Điều này đáp ứng điều 67 Luật Đường bộ số 35/2024/QH15. (Điều 67 Luật Đường bộ số 35/2024/QH15)
+
+```json
+{"qid": "t3-dinh_nghia-004", "question": "Anh tôi thấy xe tải của công ty bên cạnh chuyển hàng từ nhà máy đến bến cảng, sau đó lên tàu, có được coi là vận tải đa phương thức không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "A", "answer": "Có, vì hoạt động này sử dụng ít nhất hai phương thức vận tải, trong đó có phương thức đường bộ. Điều này đáp ứng điều 67 Luật Đường bộ số 35/2024/QH15. (Điều 67 Luật Đường bộ số 35/2024/QH15)", "gold_units": ["LUAT35-2024/D67/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-dinh_nghia-004:2"}
+```
+
+### W3-dinh_nghia-005 · tier A · vai: người lớn tuổi đi xe đạp điện · kiểu: tinh_huong_nguoi_khac
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Luật Đường bộ số 35/2024/QH15
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: LUAT35-2024/D26/K2, LUAT35-2024/D26/K2/a, LUAT35-2024/D26/K2/b, LUAT35-2024/D26/K2/c, LUAT35-2024/D26/K2/d
+
+Điều 26. Tốc độ thiết kế, tốc độ khai thác và khoảng cách giữa các xe
+2. Tốc độ khai thác trên đường bộ được quy định như sau:
+a) Tốc độ khai thác trên đường bộ là giá trị giới hạn tốc độ (tốc độ tối đa, tốc độ tối thiểu) cho phép phương tiện tham gia giao thông đường bộ bảo đảm an toàn giao thông và khai thác hiệu quả tuyến đường;
+b) Tốc độ khai thác trên đường bộ được xác định trên cơ sở tốc độ thiết kế, hiện trạng của tuyến đường, thời gian lưu thông trong ngày, điều kiện thời tiết, khí hậu, lưu lượng, chủng loại phương tiện tham gia giao thông đường bộ trên đường;
+c) Đối với đường đôi, giá trị giới hạn tốc độ cho từng chiều đường có thể khác nhau;
+d) Trên cùng một chiều đường có nhiều làn đường, giá trị giới hạn tốc độ của các làn đường có thể khác nhau. Làn đường phải bảo đảm yêu cầu về mục đích sử dụng, bề rộng để lưu thông thông suốt, an toàn.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Anh tôi đi xe đạp điện trên đường phố, tốc độ 20 km/h, có được coi là tuân thủ giới hạn tốc độ theo Luật Đường bộ không?
+- Đáp: Nếu tốc độ 20 km/h nằm trong giới hạn tốc độ cho phép, thì được coi là tuân thủ. Giới hạn tốc độ được xác định dựa trên tốc độ thiết kế, hiện trạng tuyến đường, thời gian lưu thông, điều kiện thời tiết, lưu lượng và loại phương tiện tham gia giao thông.
+- ⚠ so_la: 20
+
+```json
+{"qid": "t3-dinh_nghia-005", "question": "Anh tôi đi xe đạp điện trên đường phố, tốc độ 20 km/h, có được coi là tuân thủ giới hạn tốc độ theo Luật Đường bộ không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "A", "answer": "Nếu tốc độ 20 km/h nằm trong giới hạn tốc độ cho phép, thì được coi là tuân thủ. Giới hạn tốc độ được xác định dựa trên tốc độ thiết kế, hiện trạng tuyến đường, thời gian lưu thông, điều kiện thời tiết, lưu lượng và loại phương tiện tham gia giao thông.", "gold_units": ["LUAT35-2024/D26/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-dinh_nghia-005:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi cho thuê xe đạp điện, một lái xe 70 tuổi, khi di chuyển trên đường đôi, có được coi là tuân thủ giới hạn tốc độ nếu tốc độ 15 km/h?
+- Đáp: Nếu tốc độ 15 km/h nằm trong giới hạn tốc độ cho phép, thì được coi là tuân thủ. Giới hạn tốc độ trên đường đôi có thể khác nhau cho từng chiều, và được xác định dựa trên tốc độ thiết kế, hiện trạng tuyến đường, thời gian lưu thông, điều kiện thời tiết, lưu lượng và loại phương tiện tham gia giao thông.
+
+```json
+{"qid": "t3-dinh_nghia-005", "question": "Công ty tôi cho thuê xe đạp điện, một lái xe 70 tuổi, khi di chuyển trên đường đôi, có được coi là tuân thủ giới hạn tốc độ nếu tốc độ 15 km/h?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "A", "answer": "Nếu tốc độ 15 km/h nằm trong giới hạn tốc độ cho phép, thì được coi là tuân thủ. Giới hạn tốc độ trên đường đôi có thể khác nhau cho từng chiều, và được xác định dựa trên tốc độ thiết kế, hiện trạng tuyến đường, thời gian lưu thông, điều kiện thời tiết, lưu lượng và loại phương tiện tham gia giao thông.", "gold_units": ["LUAT35-2024/D26/K2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-dinh_nghia-005:2"}
+```
+
+### W3-dinh_nghia-006 · tier B · vai: phụ huynh có con dưới 18 tuổi · kiểu: neu_van_ban
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 165/2024/NĐ-CP (Quy định chi tiết, hướng dẫn thi hành một số điều của Luật Đường bộ và Điều 77 Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND165-2024/D39/K1
+
+Điều 39. Cấp chứng chỉ thẩm tra viên an toàn giao thông đường bộ
+1. Chứng chỉ thẩm tra viên an toàn giao thông đường bộ (sau đây gọi là chứng chỉ) được Cục Đường bộ Việt Nam cấp và quản lý thống nhất trong phạm vi cả nước; mẫu chứng chỉ theo quy định tại Mẫu số 03 Phụ lục VIII kèm theo Nghị định này và có thời hạn 05 năm kể từ ngày cấp.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Trường hợp con tôi, 15 tuổi, tham gia vào một cuộc thi lái xe mô phỏng, có được coi là thẩm tra viên an toàn giao thông đường bộ không?
+- Đáp: Không, vì theo Nghị định 165/2024/NĐ-CP, chứng chỉ thẩm tra viên an toàn giao thông đường bộ chỉ được cấp cho người đã đủ điều kiện và được Cục Đường bộ Việt Nam quản lý. Con 15 tuổi không đáp ứng điều kiện này.
+- ⚠ chep_nguyen_van: “an toàn giao thông đường bộ …”; so_la: 15
+- Ghi chú: Giả định con 15 tuổi không có chứng chỉ thẩm tra viên
+
+```json
+{"qid": "t3-dinh_nghia-006", "question": "Trường hợp con tôi, 15 tuổi, tham gia vào một cuộc thi lái xe mô phỏng, có được coi là thẩm tra viên an toàn giao thông đường bộ không?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "B", "answer": "Không, vì theo Nghị định 165/2024/NĐ-CP, chứng chỉ thẩm tra viên an toàn giao thông đường bộ chỉ được cấp cho người đã đủ điều kiện và được Cục Đường bộ Việt Nam quản lý. Con 15 tuổi không đáp ứng điều kiện này.", "gold_units": ["ND165-2024/D39/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-dinh_nghia-006:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Nếu một người đã được cấp chứng chỉ thẩm tra viên an toàn giao thông đường bộ, thời hạn của chứng chỉ đó là bao lâu?
+- Đáp: Thời hạn của chứng chỉ thẩm tra viên an toàn giao thông đường bộ là 5 năm kể từ ngày cấp.
+- ⚠ chep_nguyen_van: “an toàn giao thông đường bộ …”
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-dinh_nghia-006", "question": "Nếu một người đã được cấp chứng chỉ thẩm tra viên an toàn giao thông đường bộ, thời hạn của chứng chỉ đó là bao lâu?", "as_of": "2026-11-03", "question_type": "dinh_nghia", "tier": "B", "answer": "Thời hạn của chứng chỉ thẩm tra viên an toàn giao thông đường bộ là 5 năm kể từ ngày cấp.", "gold_units": ["ND165-2024/D39/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-dinh_nghia-006:2"}
+```
+
+## da_buoc — cần ≥ 2 điều khoản nối bằng dẫn chiếu / chế tài
+
+### W3-da_buoc-001 · tier A · vai: tài xế công nghệ · kiểu: tinh_huong_ban_than · DAN_CHIEU → TT79-2024-BCA/D17/K1
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 79/2024/TT-BCA (Quy định về cấp, thu hồi chứng nhận đăng ký xe, biển số xe cơ giới, xe máy chuyên dùng)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/D29/K3, TT79-2024-BCA/D29/K3/a, TT79-2024-BCA/D29/K3/b
+
+Điều 29. Thủ tục đăng ký xe
+3. Chuyển quyền sở hữu xe kèm theo biển số xe trúng đấu giá
+a) Chủ xe nộp hồ sơ, làm thủ tục thu hồi theo quy định tại khoản 1 Điều 16, khoản 1 Điều 17 Thông tư này (chứng từ chuyển quyền sở hữu phải thể hiện rõ nội dung chuyển quyền sở hữu xe kèm theo biển số trúng đấu giá); không phải nộp biển số xe trúng đấu giá;
+b) Tổ chức, cá nhân nhận chuyển quyền sở hữu xe nộp hồ sơ, làm thủ tục đăng ký sang tên xe theo quy định tại khoản 2 Điều 16, khoản 2 Điều 17 Thông tư này (chứng từ chuyển quyền sở hữu phải thể hiện rõ nội dung chuyển quyền sở hữu xe kèm theo biển số trúng đấu giá) và được đăng ký, giữ nguyên biển số xe trúng đấu giá.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT79-2024-BCA/D16/K1)
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/D16/K1
+
+Điều 16. Hồ sơ đăng ký sang tên xe
+1. Hồ sơ thu hồi
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT79-2024-BCA/D17/K1)
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/D17/K1
+
+Điều 17. Thủ tục đăng ký sang tên xe
+1. Thủ tục thu hồi
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT79-2024-BCA/D16/K2)
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/D16/K2
+
+Điều 16. Hồ sơ đăng ký sang tên xe
+2. Hồ sơ đăng ký
+
+### Nguồn 2
+Văn bản: Thông tư số 79/2024/TT-BCA (Quy định về cấp, thu hồi chứng nhận đăng ký xe, biển số xe cơ giới, xe máy chuyên dùng)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/D17/K1, TT79-2024-BCA/D17/K1/a, TT79-2024-BCA/D17/K1/b
+
+Điều 17. Thủ tục đăng ký sang tên xe
+1. Thủ tục thu hồi
+a) Chủ xe kê khai giấy khai thu hồi chứng nhận đăng ký xe, biển số xe trên cổng dịch vụ công, cung cấp mã hồ sơ đăng ký xe trực tuyến hoặc kê khai giấy khai thu hồi chứng nhận đăng ký xe, biển số xe (theo mẫu ĐKX11 ban hành kèm theo Thông tư này) tại cơ quan đăng ký xe; nộp hồ sơ thu hồi quy định tại khoản 1 Điều 16 Thông tư này và nhận giấy hẹn trả kết quả chứng nhận thu hồi chứng nhận đăng ký xe, biển số xe theo quy định;
+b) Sau khi kiểm tra hồ sơ xe hợp lệ, cơ quan đăng ký xe cấp 02 bản chứng nhận thu hồi chứng nhận đăng ký xe, biển số xe theo quy định có dán bản chà số máy, số khung và đóng dấu giáp lai của cơ quan đăng ký xe trên bản chà số máy, số khung xe (01 bản trả cho chủ xe, 01 bản lưu hồ sơ xe). Đối với xe tạm nhập, tái xuất của các đối tượng được hưởng quyền ưu đãi miễn trừ ngoại giao cấp 03 bản chứng nhận thu hồi chứng nhận đăng ký xe, biển số xe (02 bản trả cho chủ xe để nộp cho cơ quan hải quan và cơ quan đăng ký xe, 01 bản lưu hồ sơ xe).
+Trường hợp chủ xe có nhu cầu thì được cấp chứng nhận đăng ký xe tạm thời cùng với chứng nhận thu hồi chứng nhận đăng ký xe, biển số xe, không phải có hồ sơ đăng ký xe tạm thời.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT79-2024-BCA/D16/K1)
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/D16/K1
+
+Điều 16. Hồ sơ đăng ký sang tên xe
+1. Hồ sơ thu hồi
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi vừa mua một chiếc ô tô đã được đấu giá, và muốn chuyển quyền sở hữu cùng biển số trúng đấu giá sang tên mình. Tôi cần làm gì để hoàn tất thủ tục đăng ký sang tên xe?
+- Đáp: Bạn phải nộp hồ sơ thu hồi theo quy định tại khoản 1 Điều 16 Thông tư 79/2024/TT-BCA, chứng từ chuyển quyền sở hữu phải ghi rõ nội dung chuyển quyền sở hữu xe kèm theo biển số trúng đấu giá; sau đó nộp hồ sơ đăng ký sang tên xe theo quy định tại khoản 2 Điều 16 và khoản 2 Điều 17 Thông tư 79/2024/TT-BCA để đăng ký, giữ nguyên biển số xe trúng đấu giá.
+- ⚠ chep_nguyen_van: “thủ tục đăng ký sang tên …”
+- Ghi chú: Giả định xe là ô tô
+
+```json
+{"qid": "t3-da_buoc-001", "question": "Tôi vừa mua một chiếc ô tô đã được đấu giá, và muốn chuyển quyền sở hữu cùng biển số trúng đấu giá sang tên mình. Tôi cần làm gì để hoàn tất thủ tục đăng ký sang tên xe?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "A", "answer": "Bạn phải nộp hồ sơ thu hồi theo quy định tại khoản 1 Điều 16 Thông tư 79/2024/TT-BCA, chứng từ chuyển quyền sở hữu phải ghi rõ nội dung chuyển quyền sở hữu xe kèm theo biển số trúng đấu giá; sau đó nộp hồ sơ đăng ký sang tên xe theo quy định tại khoản 2 Điều 16 và khoản 2 Điều 17 Thông tư 79/2024/TT-BCA để đăng ký, giữ nguyên biển số xe trúng đấu giá.", "gold_units": ["TT79-2024-BCA/D29/K3", "TT79-2024-BCA/D16/K1", "TT79-2024-BCA/D17/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-da_buoc-001:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Sau khi bán xe, tôi muốn thu hồi chứng nhận đăng ký xe và biển số. Tôi cần làm gì để nộp hồ sơ thu hồi?
+- Đáp: Bạn cần kê khai giấy khai thu hồi chứng nhận đăng ký xe, biển số trên cổng dịch vụ công hoặc tại cơ quan đăng ký xe, nộp hồ sơ thu hồi theo quy định tại khoản 1 Điều 16 Thông tư 79/2024/TT-BCA và nhận giấy hẹn trả kết quả chứng nhận thu hồi.
+- ⚠ chep_nguyen_van: “hồi chứng nhận đăng ký xe …”
+- Ghi chú: Giả định xe là ô tô
+
+```json
+{"qid": "t3-da_buoc-001", "question": "Sau khi bán xe, tôi muốn thu hồi chứng nhận đăng ký xe và biển số. Tôi cần làm gì để nộp hồ sơ thu hồi?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "A", "answer": "Bạn cần kê khai giấy khai thu hồi chứng nhận đăng ký xe, biển số trên cổng dịch vụ công hoặc tại cơ quan đăng ký xe, nộp hồ sơ thu hồi theo quy định tại khoản 1 Điều 16 Thông tư 79/2024/TT-BCA và nhận giấy hẹn trả kết quả chứng nhận thu hồi.", "gold_units": ["TT79-2024-BCA/D17/K1", "TT79-2024-BCA/D16/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-da_buoc-001:2"}
+```
+
+### W3-da_buoc-002 · tier A · vai: chủ doanh nghiệp vận tải · kiểu: ngan · DAN_CHIEU → TT79-2024-BCA/D10
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 79/2024/TT-BCA (Quy định về cấp, thu hồi chứng nhận đăng ký xe, biển số xe cơ giới, xe máy chuyên dùng)
+Hiệu lực của trạng thái này: 2025-03-01 → nay
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/D14/K2, TT79-2024-BCA/D14/K2/a, TT79-2024-BCA/D14/K2/b, TT79-2024-BCA/D14/K2/c, TT79-2024-BCA/D14/K2/d
+
+Điều 14. Thủ tục đăng ký xe lần đầu
+2. Thực hiện đăng ký xe bằng dịch vụ công trực tuyến một phần
+a) Chủ xe kê khai giấy khai đăng ký xe theo quy định tại Điều 9 Thông tư này, nhận mã hồ sơ đăng ký xe trực tuyến, lịch hẹn giải quyết hồ sơ do cổng dịch vụ công thông báo qua tin nhắn điện thoại hoặc qua địa chỉ thư điện tử để làm thủ tục đăng ký xe; đưa xe đến cơ quan đăng ký xe để kiểm tra, cung cấp mã hồ sơ đăng ký xe và nộp các giấy tờ quy định tại các điều 10, 11, 12 và Điều 13 Thông tư này cho cơ quan đăng ký xe; đăng ký sử dụng dịch vụ bưu chính (nếu có nhu cầu) để nhận chứng nhận đăng ký xe, biển số xe;
+b) Sau khi cán bộ đăng ký xe kiểm tra hồ sơ xe và thực tế xe bảo đảm hợp lệ thì được cấp biển số theo quy định sau:
+Cấp biển số mới đối với trường hợp chủ xe chưa được cấp biển số định danh hoặc đã có biển số định danh nhưng đang đăng ký cho xe khác.
+Cấp biển số định danh đối với trường hợp chủ xe có biển số định danh đã được thu hồi từ ngày 15/8/2023.
+Trường hợp hồ sơ xe, xe không bảo đảm đúng quy định thì bổ sung, hoàn thiện hồ sơ theo hướng dẫn của cán bộ đăng ký xe tại phiếu hướng dẫn hồ sơ;
+c) Chủ xe nhận giấy hẹn trả kết quả, nộp lệ phí đăng ký xe và nhận biển số xe (trường hợp được cấp biển số định danh mới hoặc trường hợp chủ xe đề nghị sử dụng lại biển số định danh cũ đã thu hồi, nếu cơ quan đăng ký xe chưa tiêu hủy biển số đó theo quy định).
+d) Chủ xe nhận kết quả tại cơ quan đăng ký xe hoặc qua dịch vụ bưu chính.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT79-2024-BCA/D10)
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/D10
+
+Điều 10. Giấy tờ của chủ xe
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT79-2024-BCA/D11)
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/D11
+
+Điều 11. Chứng nhận nguồn gốc xe
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT79-2024-BCA/D12)
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/D12
+
+Điều 12. Chứng nhận quyền sở hữu hợp pháp
+Chứng nhận quyền sở hữu hợp pháp là chứng từ chuyển quyền sở hữu xe, gồm một trong các chứng từ sau đây:
+
+### Nguồn 2
+Văn bản: Thông tư số 79/2024/TT-BCA (Quy định về cấp, thu hồi chứng nhận đăng ký xe, biển số xe cơ giới, xe máy chuyên dùng)
+Hiệu lực của trạng thái này: 2025-03-01 → nay
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/D10/K1
+
+Điều 10. Giấy tờ của chủ xe
+1. Chủ xe là người Việt Nam: Sử dụng tài khoản định danh điện tử mức độ 2 để thực hiện đăng ký xe trên cổng dịch vụ công hoặc ứng dụng định danh quốc gia hoặc xuất trình căn cước hoặc thẻ căn cước công dân, hộ chiếu;
+Đối với lực lượng vũ trang: Xuất trình giấy chứng minh Công an nhân dân hoặc chứng minh Quân đội nhân dân hoặc giấy xác nhận của thủ trưởng cơ quan, đơn vị công tác từ cấp trung đoàn, phòng, hoặc tương đương trở lên (trường hợp chưa được cấp giấy chứng minh của lực lượng vũ trang).
+
+### Nguồn 3
+Văn bản: Thông tư số 79/2024/TT-BCA (Quy định về cấp, thu hồi chứng nhận đăng ký xe, biển số xe cơ giới, xe máy chuyên dùng)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/D10/K2, TT79-2024-BCA/D10/K2/a, TT79-2024-BCA/D10/K2/b
+
+Điều 10. Giấy tờ của chủ xe
+2. Chủ xe là người nước ngoài
+a) Chủ xe là thành viên cơ quan đại diện ngoại giao, cơ quan lãnh sự, cơ quan đại diện của tổ chức quốc tế tại Việt Nam: Xuất trình chứng minh thư ngoại giao, chứng minh thư công vụ, chứng minh thư lãnh sự, chứng minh thư lãnh sự danh dự, chứng minh thư (phổ thông), còn giá trị sử dụng và nộp giấy giới thiệu của Cục Lễ tân Nhà nước, Bộ Ngoại giao hoặc Sở Ngoại vụ;
+b) Trường hợp chủ xe là người nước ngoài sinh sống và làm việc tại Việt Nam (trừ đối tượng quy định tại điểm a Khoản này): Xuất trình thẻ thường trú hoặc thẻ tạm trú (còn thời hạn cư trú tại Việt Nam từ 06 tháng trở lên).
+
+### Nguồn 4
+Văn bản: Thông tư số 79/2024/TT-BCA (Quy định về cấp, thu hồi chứng nhận đăng ký xe, biển số xe cơ giới, xe máy chuyên dùng)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/D10/K3, TT79-2024-BCA/D10/K3/a, TT79-2024-BCA/D10/K3/b, TT79-2024-BCA/D10/K3/c
+
+Điều 10. Giấy tờ của chủ xe
+3. Chủ xe là tổ chức
+a) Chủ xe là tổ chức (trừ đối tượng quy định tại điểm b khoản 3 Điều này): Sử dụng tài khoản định danh điện tử mức độ 2 để thực hiện thủ tục đăng ký xe trên cổng dịch vụ công; trường hợp tổ chức chưa được cấp tài khoản định danh điện tử mức độ 2 thì xuất trình thông báo mã số thuế hoặc quyết định thành lập.
+Trường hợp xe hoạt động kinh doanh vận tải bằng ô tô thì phải có thêm bản sao giấy phép kinh doanh vận tải bằng ô tô do Sở Giao thông vận tải cấp kèm theo bản chính để đối chiếu; trường hợp xe của tổ chức, cá nhân khác thì phải có hợp đồng thuê phương tiện hoặc hợp đồng hợp tác kinh doanh hoặc hợp đồng dịch vụ.
+Trường hợp xe của doanh nghiệp quân đội phải có Giấy giới thiệu của Cục Xe - Máy, Bộ Quốc phòng;
+b) Chủ xe là cơ quan đại diện ngoại giao, cơ quan lãnh sự và cơ quan đại diện của tổ chức quốc tế tại Việt Nam: Giấy giới thiệu của Cục Lễ tân Nhà nước, Bộ Ngoại giao hoặc Sở Ngoại vụ;
+c) Người được cơ quan, tổ chức giới thiệu đi làm thủ tục thì phải nộp giấy tờ của chủ xe theo quy định và xuất trình giấy tờ tùy thân theo quy định tại khoản 1, khoản 2 Điều này.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT79-2024-BCA/D10/K1)
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/D10/K1
+
+Điều 10. Giấy tờ của chủ xe
+1. Chủ xe là người Việt Nam: Sử dụng tài khoản định danh điện tử mức độ 2 để thực hiện đăng ký xe trên cổng dịch vụ công hoặc ứng dụng định danh quốc gia hoặc xuất trình căn cước hoặc thẻ căn cước công dân, hộ chiếu;
+Đối với lực lượng vũ trang: Xuất trình giấy chứng minh Công an nhân dân hoặc chứng minh Quân đội nhân dân hoặc giấy xác nhận của thủ trưởng cơ quan, đơn vị công tác từ cấp trung đoàn, phòng, hoặc tương đương trở lên (trường hợp chưa được cấp giấy chứng minh của lực lượng vũ trang).
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT79-2024-BCA/D10/K2)
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/D10/K2
+
+Điều 10. Giấy tờ của chủ xe
+2. Chủ xe là người nước ngoài
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Công ty tôi muốn đăng ký xe ô tô mới cho dịch vụ vận tải, tôi cần nộp giấy tờ gì và làm sao để nhận biển số?
+- Đáp: Bạn phải kê khai giấy khai đăng ký xe, nộp mã hồ sơ đăng ký xe, giấy tờ theo Điều 10, 11, 12 và nhận biển số sau khi cán bộ kiểm tra hồ sơ hợp lệ. (Điều 14, Điều 10, 11, 12 Thông tư 79/2024/TT-BCA)
+- Ghi chú: Giả định công ty là doanh nghiệp vận tải ô tô
+
+```json
+{"qid": "t3-da_buoc-002", "question": "Công ty tôi muốn đăng ký xe ô tô mới cho dịch vụ vận tải, tôi cần nộp giấy tờ gì và làm sao để nhận biển số?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "A", "answer": "Bạn phải kê khai giấy khai đăng ký xe, nộp mã hồ sơ đăng ký xe, giấy tờ theo Điều 10, 11, 12 và nhận biển số sau khi cán bộ kiểm tra hồ sơ hợp lệ. (Điều 14, Điều 10, 11, 12 Thông tư 79/2024/TT-BCA)", "gold_units": ["TT79-2024-BCA/D14/K2", "TT79-2024-BCA/D10", "TT79-2024-BCA/D11", "TT79-2024-BCA/D12"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-da_buoc-002:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi muốn đăng ký xe ô tô cho khách hàng, tôi cần chuẩn bị giấy tờ của chủ xe như thế nào?
+- Đáp: Bạn cần sử dụng tài khoản định danh điện tử mức độ 2, xuất trình căn cước công dân hoặc thẻ căn cước công dân, hộ chiếu, và nộp giấy tờ theo Điều 10. (Điều 10 Thông tư 79/2024/TT-BCA)
+- ⚠ da_buoc_it_hon_2_gold
+- Ghi chú: Giả định chủ xe là người Việt Nam
+
+```json
+{"qid": "t3-da_buoc-002", "question": "Công ty tôi muốn đăng ký xe ô tô cho khách hàng, tôi cần chuẩn bị giấy tờ của chủ xe như thế nào?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "A", "answer": "Bạn cần sử dụng tài khoản định danh điện tử mức độ 2, xuất trình căn cước công dân hoặc thẻ căn cước công dân, hộ chiếu, và nộp giấy tờ theo Điều 10. (Điều 10 Thông tư 79/2024/TT-BCA)", "gold_units": ["TT79-2024-BCA/D10/K1"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-da_buoc-002:2"}
+```
+
+### W3-da_buoc-003 · tier A · vai: chủ doanh nghiệp vận tải · kiểu: neu_van_ban · DAN_CHIEU → ND151-2024/D4
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Nghị định số 151/2024/NĐ-CP (Quy định chi tiết một số điều và biện pháp thi hành Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND151-2024/D7/K1, ND151-2024/D7/K1/a, ND151-2024/D7/K1/b, ND151-2024/D7/K1/c
+
+Điều 7. Trách nhiệm của Bộ Giáo dục và Đào tạo trong việc xây dựng, tích hợp, lồng ghép, tổ chức hoạt động dạy học về kiến thức pháp luật và quản lý việc chấp hành pháp luật về trật tự, an toàn giao thông đường bộ tại cơ sở giáo dục mầm non, cơ sở giáo dục phổ thông
+1. Bộ Giáo dục và Đào tạo chủ trì, phối hợp với Bộ Công an và các bộ, cơ quan ngang bộ có liên quan căn cứ quy định tại Điều 4 của Nghị định này có trách nhiệm:
+a) Xây dựng chương trình giảng dạy kiến thức pháp luật về trật tự, an toàn giao thông đường bộ phù hợp với từng cấp học;
+b) Xây dựng tài liệu, tích hợp, lồng ghép kiến thức pháp luật về trật tự, an toàn giao thông đường bộ vào chương trình chính khóa giáo dục mầm non, tiểu học, trung học cơ sở;
+c) Xây dựng môn học kiến thức pháp luật về trật tự, an toàn giao thông đường bộ theo nội dung kiến thức quy định tại khoản 4 Điều 4 của Nghị định này đối với cấp trung học phổ thông, cơ sở giáo dục nghề nghiệp.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND151-2024/D4)
+Mã điều khoản dùng được cho gold_units: ND151-2024/D4
+
+Điều 4. Nội dung giáo dục kiến thức pháp luật về trật tự, an toàn giao thông đường bộ trong các cơ sở giáo dục
+
+### Điều khoản được nguồn trên dẫn chiếu tới (ND151-2024/D4/K4)
+Mã điều khoản dùng được cho gold_units: ND151-2024/D4/K4
+
+Điều 4. Nội dung giáo dục kiến thức pháp luật về trật tự, an toàn giao thông đường bộ trong các cơ sở giáo dục
+4. Nội dung giáo dục kiến thức pháp luật về trật tự, an toàn giao thông đường bộ đối với học sinh trung học phổ thông, học sinh cơ sở giáo dục nghề nghiệp bao gồm:
+
+### Nguồn 2
+Văn bản: Nghị định số 151/2024/NĐ-CP (Quy định chi tiết một số điều và biện pháp thi hành Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND151-2024/D4/K1, ND151-2024/D4/K1/a, ND151-2024/D4/K1/b, ND151-2024/D4/K1/c, ND151-2024/D4/K1/d, ND151-2024/D4/K1/đ, ND151-2024/D4/K1/e
+
+Điều 4. Nội dung giáo dục kiến thức pháp luật về trật tự, an toàn giao thông đường bộ trong các cơ sở giáo dục
+1. Nội dung giáo dục kiến thức pháp luật về trật tự, an toàn giao thông đường bộ đối với trẻ em tại cơ sở giáo dục mầm non bao gồm:
+a) Nhận biết loại phương tiện giao thông đường bộ;
+b) Nhận biết đèn tín hiệu giao thông, ý nghĩa tín hiệu đèn và một số biển báo hiệu đường bộ thường gặp;
+c) An toàn khi đi bộ, trên các phương tiện giao thông đường bộ;
+d) Biết đội mũ bảo hiểm đúng cách;
+đ) Nơi vui chơi an toàn;
+e) Những nguy hiểm, hậu quả khi không tuân thủ quy định an toàn giao thông đường bộ.
+
+### Nguồn 3
+Văn bản: Nghị định số 151/2024/NĐ-CP (Quy định chi tiết một số điều và biện pháp thi hành Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND151-2024/D4/K2, ND151-2024/D4/K2/a, ND151-2024/D4/K2/b, ND151-2024/D4/K2/c, ND151-2024/D4/K2/d, ND151-2024/D4/K2/đ, ND151-2024/D4/K2/e, ND151-2024/D4/K2/g
+
+Điều 4. Nội dung giáo dục kiến thức pháp luật về trật tự, an toàn giao thông đường bộ trong các cơ sở giáo dục
+2. Nội dung giáo dục kiến thức pháp luật về trật tự, an toàn giao thông đường bộ đối với học sinh tiểu học bao gồm:
+a) Nhận biết hiệu lệnh của người điều khiển giao thông; tín hiệu đèn giao thông; biển báo hiệu đường bộ thường gặp;
+b) Một số quy tắc giao thông đường bộ thường gặp; nhận biết được sự cần thiết phải tuân thủ quy tắc giao thông đường bộ;
+c) Đi qua đường bộ an toàn;
+d) Chọn và đội mũ bảo hiểm đúng cách;
+đ) Lên, xuống xe đạp, xe gắn máy, xe mô tô an toàn;
+e) Làm quen với xe đạp và cách điều khiển xe đạp an toàn;
+g) Một số kỹ năng phòng tránh tai nạn giao thông đường bộ.
+
+### Nguồn 4
+Văn bản: Nghị định số 151/2024/NĐ-CP (Quy định chi tiết một số điều và biện pháp thi hành Luật Trật tự, an toàn giao thông đường bộ)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: ND151-2024/D4/K3, ND151-2024/D4/K3/a, ND151-2024/D4/K3/b, ND151-2024/D4/K3/c, ND151-2024/D4/K3/d, ND151-2024/D4/K3/đ, ND151-2024/D4/K3/e
+
+Điều 4. Nội dung giáo dục kiến thức pháp luật về trật tự, an toàn giao thông đường bộ trong các cơ sở giáo dục
+3. Nội dung giáo dục kiến thức pháp luật về trật tự, an toàn giao thông đường bộ đối với học sinh trung học cơ sở bao gồm:
+a) Quy tắc giao thông đường bộ;
+b) Nhận biết và chấp hành báo hiệu đường bộ;
+c) Đội mũ bảo hiểm đạt chuẩn và cài quai đúng quy cách khi tham gia giao thông đường bộ;
+d) An toàn khi ngồi trên xe cơ giới;
+đ) Cách điều khiển xe đạp, xe đạp điện an toàn;
+e) Phòng ngừa rủi ro, hậu quả của tai nạn giao thông và xử lý sự cố giao thông.
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Công ty tôi muốn hợp tác với trường để xây dựng chương trình giảng dạy kiến thức pháp luật về trật tự, an toàn giao thông cho học sinh trung học phổ thông, tôi cần biết trách nhiệm của Bộ Giáo dục và các bộ liên quan và nội dung giáo dục cần bao gồm?
+- Đáp: Công ty cần biết Bộ Giáo dục và Đào tạo chủ trì, phối hợp với Bộ Công an và các bộ, cơ quan ngang bộ xây dựng chương trình giảng dạy, tài liệu, lồng ghép kiến thức pháp luật về trật tự, an toàn giao thông vào chương trình chính khóa, và xây dựng môn học theo nội dung quy định. Nội dung giáo dục cho học sinh trung học phổ thông bao gồm quy tắc giao thông, nhận biết và chấp hành báo hiệu đường bộ, đội mũ bảo hiểm đạt chuẩn, an toàn khi ngồi trên xe cơ giới, cách điều khiển xe đạp, xe đạp điện an toàn, phòng ngừa rủi ro, hậu quả của tai nạn giao thông và xử lý sự cố giao thông. (Điều 7 Khoản 1 Nghị định 151/2024/NĐ-CP; Điều 4 Khoản 4 Nghị định 151/2024/NĐ-CP)
+- ⚠ qua_dai (55 từ); chep_nguyen_van: “chương trình giảng dạy kiến thức …”
+- Ghi chú: Trường trung học phổ thông
+
+```json
+{"qid": "t3-da_buoc-003", "question": "Công ty tôi muốn hợp tác với trường để xây dựng chương trình giảng dạy kiến thức pháp luật về trật tự, an toàn giao thông cho học sinh trung học phổ thông, tôi cần biết trách nhiệm của Bộ Giáo dục và các bộ liên quan và nội dung giáo dục cần bao gồm?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "A", "answer": "Công ty cần biết Bộ Giáo dục và Đào tạo chủ trì, phối hợp với Bộ Công an và các bộ, cơ quan ngang bộ xây dựng chương trình giảng dạy, tài liệu, lồng ghép kiến thức pháp luật về trật tự, an toàn giao thông vào chương trình chính khóa, và xây dựng môn học theo nội dung quy định. Nội dung giáo dục cho học sinh trung học phổ thông bao gồm quy tắc giao thông, nhận biết và chấp hành báo hiệu đường bộ, đội mũ bảo hiểm đạt chuẩn, an toàn khi ngồi trên xe cơ giới, cách điều khiển xe đạp, xe đạp điện an toàn, phòng ngừa rủi ro, hậu quả của tai nạn giao thông và xử lý sự cố giao thông. (Điều 7 Khoản 1 Nghị định 151/2024/NĐ-CP; Điều 4 Khoản 4 Nghị định 151/2024/NĐ-CP)", "gold_units": ["ND151-2024/D7/K1", "ND151-2024/D4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-da_buoc-003:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Công ty tôi muốn tổ chức lớp học về an toàn giao thông cho trẻ em tại cơ sở giáo dục mầm non, tôi cần biết trách nhiệm của Bộ Giáo dục và các bộ liên quan và nội dung giáo dục cần bao gồm?
+- Đáp: Công ty cần biết Bộ Giáo dục và Đào tạo chủ trì, phối hợp với Bộ Công an và các bộ, cơ quan ngang bộ xây dựng chương trình giảng dạy, tài liệu, lồng ghép kiến thức pháp luật về trật tự, an toàn giao thông vào chương trình chính khóa, và xây dựng môn học theo nội dung quy định. Nội dung giáo dục cho trẻ em tại mầm non bao gồm nhận biết loại phương tiện giao thông, nhận biết đèn tín hiệu giao thông và biển báo hiệu đường bộ thường gặp, an toàn khi đi bộ, trên các phương tiện giao thông, biết đội mũ bảo hiểm đúng cách, nơi vui chơi an toàn, và những nguy hiểm, hậu quả khi không tuân thủ quy định an toàn giao thông. (Điều 7 Khoản 1 Nghị định 151/2024/NĐ-CP; Điều 4 Khoản 1 Nghị định 151/2024/NĐ-CP)
+- ⚠ chep_nguyen_van: “cơ sở giáo dục mầm non …”
+- Ghi chú: Cơ sở giáo dục mầm non
+
+```json
+{"qid": "t3-da_buoc-003", "question": "Công ty tôi muốn tổ chức lớp học về an toàn giao thông cho trẻ em tại cơ sở giáo dục mầm non, tôi cần biết trách nhiệm của Bộ Giáo dục và các bộ liên quan và nội dung giáo dục cần bao gồm?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "A", "answer": "Công ty cần biết Bộ Giáo dục và Đào tạo chủ trì, phối hợp với Bộ Công an và các bộ, cơ quan ngang bộ xây dựng chương trình giảng dạy, tài liệu, lồng ghép kiến thức pháp luật về trật tự, an toàn giao thông vào chương trình chính khóa, và xây dựng môn học theo nội dung quy định. Nội dung giáo dục cho trẻ em tại mầm non bao gồm nhận biết loại phương tiện giao thông, nhận biết đèn tín hiệu giao thông và biển báo hiệu đường bộ thường gặp, an toàn khi đi bộ, trên các phương tiện giao thông, biết đội mũ bảo hiểm đúng cách, nơi vui chơi an toàn, và những nguy hiểm, hậu quả khi không tuân thủ quy định an toàn giao thông. (Điều 7 Khoản 1 Nghị định 151/2024/NĐ-CP; Điều 4 Khoản 1 Nghị định 151/2024/NĐ-CP)", "gold_units": ["ND151-2024/D7/K1", "ND151-2024/D4"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-da_buoc-003:2"}
+```
+
+### W3-da_buoc-004 · tier A · vai: người lớn tuổi đi xe đạp điện · kiểu: tinh_huong_ban_than · DAN_CHIEU → TT79-2024-BCA/PL3
+
+<details><summary>Nguồn và con số</summary>
+
+```text
+### Nguồn 1
+Văn bản: Thông tư số 79/2024/TT-BCA (Quy định về cấp, thu hồi chứng nhận đăng ký xe, biển số xe cơ giới, xe máy chuyên dùng)
+Hiệu lực của trạng thái này: 2025-01-01 → nay
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/D34/K1, TT79-2024-BCA/D34/K1/a, TT79-2024-BCA/D34/K1/b, TT79-2024-BCA/D34/K1/c, TT79-2024-BCA/D34/K1/d
+
+Điều 34. Phụ lục và biểu mẫu sử dụng trong đăng ký xe
+1. Ban hành kèm theo Thông tư này các phụ lục:
+a) Phụ lục số 01: Các cơ quan, đơn vị đăng ký xe ô tô, xe máy chuyên dùng tại Cục Cảnh sát giao thông;
+b) Phụ lục số 02: Ký hiệu biển số xe ô tô, xe mô tô, xe máy chuyên dùng trong nước;
+c) Phụ lục số 03: Ký hiệu biển số xe ô tô, xe mô tô, xe máy chuyên dùng của tổ chức, cá nhân nước ngoài;
+d) Phụ lục số 04: Quy định kích thước của biển số xe, chữ và số trên biển số xe ô tô, xe mô tô, rơmoóc, sơ mi rơmoóc, xe máy chuyên dùng của tổ chức, cá nhân trong nước và nước ngoài.
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT79-2024-BCA/PL1)
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/PL1
+
+PHỤ LỤC 01
+CÁC CƠ QUAN, ĐƠN VỊ ĐĂNG KÝ XE Ô TÔ, XE MÁY CHUYÊN DÙNG TẠI CỤC CẢNH SÁT GIAO THÔNG
+(Ban hành kèm theo Thông tư số 79/2024/TT-BCA ngày 15/11/2024 của Bộ trưởng Bộ Công an)
+STT | TÊN CƠ QUAN, ĐƠN VỊ
+1 | Văn phòng và các Ban của Trung ương Đảng
+2 | Văn phòng Chủ tịch nước
+3 | Văn phòng Quốc hội
+4 | Văn phòng các Bộ, cơ quan ngang Bộ, các cơ quan thuộc Chính phủ
+5 | Văn phòng cơ quan Trung ương các tổ chức chính trị-xã hội (Mặt trận Tổ quốc Việt Nam, Công đoàn Việt Nam, Đoàn Thanh niên Cộng sản Hồ Chí Minh, Hội Liên hiệp Phụ nữ Việt Nam, Hội Cựu chiến binh Việt Nam, Hội Nông dân Việt Nam
+6 | Văn phòng Viện Kiểm sát nhân dân tối cao
+7 | Văn phòng Toà án nhân dân tối cao
+8 | Văn phòng Kiểm toán Nhà nước
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT79-2024-BCA/PL2)
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/PL2
+
+PHỤ LỤC SỐ 02
+KÝ HIỆU BIỂN SỐ XE Ô TÔ, XE MÔ TÔ, XE MÁY CHUYÊN DÙNG TRONG NƯỚC
+(Ban hành kèm theo Thông tư số 79/2024/TT-BCA ngày 15/11/2024 của Bộ trưởng Bộ Công an)
+STT | Tên địa phương | Ký hiệu | STT | Tên địa phương | Ký hiệu
+1 | Cao Bằng | 11 | 33 | Cần Thơ | 65
+2 | Lạng Sơn | 12 | 34 | Đồng Tháp | 66
+3 | Quảng Ninh | 14 | 35 | An Giang | 67
+4 | Hải Phòng | 15-16 | 36 | Kiên Giang | 68
+5 | Thái Bình | 17 | 37 | Cà Mau | 69
+6 | Nam Định | 18 | 38 | Tây Ninh | 70
+7 | Phú Thọ | 19 | 39 | Bến Tre | 71
+8 | Thái Nguyên | 20 | 40 | Bà Rịa - Vũng Tàu | 72
+9 | Yên Bái | 21 | 41 | Quảng Bình | 73
+10 | Tuyên Quang | 22 | 42 | Quảng Trị | 74
+11 | Hà Giang | 23 | 43 | Thừa Thiên Huế | 75
+12 | Lào Cai | 24 | 44 | Quảng Ngãi | 76
+13 | Lai Châu | 25 | 45 | Bình Định | 77
+14 | Sơn La | 26 | 46 | Phú Yên | 78
+15 | Điện Biển | 27 | 47 | Khánh Hoà | 79
+16 | Hoà Bình | 28 | 48 | Cục Cảnh sát giao thông | 80
+17 | Hà Nội | Từ 29 đến 33 và 40 | 49 | Gia Lai | 81
+18 | Hải Dương | 34 | 50 | Kon Tum | 82
+19 | Ninh Bình | 35 | 51 | Sóc Trăng | 83
+20 | Thanh Hoá | 36 | 52 | Trà Vinh | 84
+21 | Nghệ An | 37 | 53 | Ninh Thuận | 85
+22 | Hà Tĩnh | 38 | 54 | Bình Thuận | 86
+23 | Đà Nẵng | 43 | 55 | Vĩnh Phúc | 88
+24 | Đắk Lắk | 47 | 56 | Hưng Yên | 89
+25 | Đắk Nông | 48 | 57 | Hà Nam | 90
+26 | Lâm Đồng | 49 | 58 | Quảng Nam | 92
+27 | TP. Hồ Chí Minh | 41; từ 50 đến 59 | 59 | Bình Phước | 93
+28 | Đồng Nai | 39; 60 | 60 | Bạc Liêu | 94
+29 | Bình Dương | 61 | 61 | Hậu Giang | 95
+…
+
+### Điều khoản được nguồn trên dẫn chiếu tới (TT79-2024-BCA/PL3)
+Mã điều khoản dùng được cho gold_units: TT79-2024-BCA/PL3
+
+PHỤ LỤC SỐ 03
+KÝ HIỆU BIỂN SỐ XE Ô TÔ, MÔ TÔ, XE MÁY CHUYÊN DÙNG CỦA TỔ CHỨC,
+CÁ NHÂN NƯỚC NGOÀI
+(Ban hành kèm theo Thông tư số 79/2024/TT-BCA ngày 15/11/2024 của Bộ trưởng Bộ Công an)
+STT | TÊN NƯỚC, VÙNG LÃNH THỔ, TỔ CHỨC QUỐC TẾ | KÝ HIỆU
+1. | ÁO | 001 - 005
+2. | AN BA NI | 006 - 010
+3. | ANH VÀ BẮC AILEN | 011 - 015
+4. | AI CẬP | 016 - 020
+5. | A ZEC BAI ZAN | 021 - 025
+6. | ẤN ĐỘ | 026 - 030
+7. | ĂNG GÔ LA | 031 - 035
+8. | AP GA NI XTAN | 036 - 040
+9. | AN GIÊ RI | 041 - 045
+10. | AC HEN TI NA | 046 - 050
+11. | ÁC MÊ NI A | 051 - 055
+12. | AI XƠ LEN | 056 - 060
+13. | BỈ | 061 - 065
+14. | BA LAN | 066 - 070
+15. | BỒ ĐÀO NHA | 071 - 075
+16. | BUN GA RI | 076 - 080
+17. | BUỐC KI NA PHA XÔ | 081 - 085
+18. | BRA XIN | 086 - 090
+19. | BĂNG LA ĐÉT | 091 - 095
+20. | BÊ LA RÚT | 096 - 100
+21. | BÔ LI VI A | 101 - 105
+22. | BÊ NANH | 106 - 110
+23. | BRU NÂY | 111 - 115
+24. | BU RUN ĐI | 116 - 120
+25. | CU BA | 121 - 125
+26. | CỐT ĐI VOA | 126 - 130
+27. | CÔNG GÔ (BRAZAVILLE-I) | 131 - 135
+28. | CÔNG GÔ (DA-I-A) | 136 - 140
+29. | CHI LÊ | 141 - 145
+30. | CÔ LÔM BI A | 146 - 150
+31. | CA MƠ RUN | 151 - 155
+32. | CA NA DA | 156 - 160
+33. | CÔ OÉT | 161 - 165
+34. | CAM PU CHIA | 166 -170
+35. | CƯ RƠ GƯ XTAN | 171 - 175
+36. | CA TA | 176 - 180
+37. | CÁP VE | 181 - 185
+38. | CỐT XTA RI CA | 186 - 190
+39. | ĐỨC | 191 - 195
+40. | DĂM BI A | 196 - 200
+41. | DIM BA BU Ê | 201 - 205
+42. | ĐAN MẠCH | 206 - 210
+43. | Ê CU A ĐO | 211 - 215
+44. | Ê RI TƠ RÊ | 216 - 220
+…
+
+(không có con số nào lấy được bằng rule — required_numbers_idx để rỗng)
+```
+
+</details>
+
+**Nháp 1**
+
+- Hỏi (2026-11-03): Tôi là người lớn tuổi, muốn đăng ký xe máy chuyên dùng tại Hà Nội, cần làm gì?
+- Đáp: Bạn cần nộp hồ sơ đăng ký xe máy chuyên dùng tại một trong các cơ quan, đơn vị đăng ký xe ô tô, xe máy chuyên dùng tại Cục Cảnh sát giao thông, bao gồm Văn phòng và các Ban của Trung ương Đảng, Văn phòng Chủ tịch nước, Văn phòng Quốc hội, Văn phòng các Bộ, cơ quan ngang Bộ, các cơ quan thuộc Chính phủ, Văn phòng cơ quan Trung ương các tổ chức chính trị-xã hội, Văn phòng Viện Kiểm sát nhân dân tối cao, Văn phòng Toà án nhân dân tối cao, Văn phòng Kiểm toán Nhà nước. Biển số xe sẽ được ký hiệu theo quy định của Phụ lục số 02, với ký hiệu 29-33 và 40 cho Hà Nội.
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-da_buoc-004", "question": "Tôi là người lớn tuổi, muốn đăng ký xe máy chuyên dùng tại Hà Nội, cần làm gì?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "A", "answer": "Bạn cần nộp hồ sơ đăng ký xe máy chuyên dùng tại một trong các cơ quan, đơn vị đăng ký xe ô tô, xe máy chuyên dùng tại Cục Cảnh sát giao thông, bao gồm Văn phòng và các Ban của Trung ương Đảng, Văn phòng Chủ tịch nước, Văn phòng Quốc hội, Văn phòng các Bộ, cơ quan ngang Bộ, các cơ quan thuộc Chính phủ, Văn phòng cơ quan Trung ương các tổ chức chính trị-xã hội, Văn phòng Viện Kiểm sát nhân dân tối cao, Văn phòng Toà án nhân dân tối cao, Văn phòng Kiểm toán Nhà nước. Biển số xe sẽ được ký hiệu theo quy định của Phụ lục số 02, với ký hiệu 29-33 và 40 cho Hà Nội.", "gold_units": ["TT79-2024-BCA/D34/K1", "TT79-2024-BCA/PL1", "TT79-2024-BCA/PL2"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-da_buoc-004:1"}
+```
+
+**Nháp 2**
+
+- Hỏi (2026-11-03): Tôi là người lớn tuổi, muốn đăng ký xe máy chuyên dùng cho tổ chức ANH VÀ BẮC AILEN, cần làm gì?
+- Đáp: Bạn cần nộp hồ sơ đăng ký xe máy chuyên dùng tại một trong các cơ quan, đơn vị đăng ký xe ô tô, xe máy chuyên dùng tại Cục Cảnh sát giao thông, bao gồm Văn phòng và các Ban của Trung ương Đảng, Văn phòng Chủ tịch nước, Văn phòng Quốc hội, Văn phòng các Bộ, cơ quan ngang Bộ, các cơ quan thuộc Chính phủ, Văn phòng cơ quan Trung ương các tổ chức chính trị-xã hội, Văn phòng Viện Kiểm sát nhân dân tối cao, Văn phòng Toà án nhân dân tối cao, Văn phòng Kiểm toán Nhà nước. Biển số xe sẽ được ký hiệu theo quy định của Phụ lục số 03, với ký hiệu 011-015 cho tổ chức ANH VÀ BẮC AILEN.
+- Ghi chú: Không có giả định đặc biệt
+
+```json
+{"qid": "t3-da_buoc-004", "question": "Tôi là người lớn tuổi, muốn đăng ký xe máy chuyên dùng cho tổ chức ANH VÀ BẮC AILEN, cần làm gì?", "as_of": "2026-11-03", "question_type": "da_buoc", "tier": "A", "answer": "Bạn cần nộp hồ sơ đăng ký xe máy chuyên dùng tại một trong các cơ quan, đơn vị đăng ký xe ô tô, xe máy chuyên dùng tại Cục Cảnh sát giao thông, bao gồm Văn phòng và các Ban của Trung ương Đảng, Văn phòng Chủ tịch nước, Văn phòng Quốc hội, Văn phòng các Bộ, cơ quan ngang Bộ, các cơ quan thuộc Chính phủ, Văn phòng cơ quan Trung ương các tổ chức chính trị-xã hội, Văn phòng Viện Kiểm sát nhân dân tối cao, Văn phòng Toà án nhân dân tối cao, Văn phòng Kiểm toán Nhà nước. Biển số xe sẽ được ký hiệu theo quy định của Phụ lục số 03, với ký hiệu 011-015 cho tổ chức ANH VÀ BẮC AILEN.", "gold_units": ["TT79-2024-BCA/D34/K1", "TT79-2024-BCA/PL1", "TT79-2024-BCA/PL3"], "required_numbers": [], "source": "llm:gpt-oss-20b+human", "draft_id": "W3-da_buoc-004:2"}
 ```
 
