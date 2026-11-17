@@ -8,6 +8,7 @@ Tập test do người dùng viết tay (CLAUDE.md mục 10, 16): công cụ ch�
 
 from __future__ import annotations
 
+import re
 import unicodedata
 from datetime import date
 from pathlib import Path
@@ -16,6 +17,9 @@ from typing import Any, Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 Split = Literal["test", "train", "val"]
+
+#: ``source`` của câu test chép từ bản nháp LLM rồi người sửa (quyết định người dùng 17/11/2026).
+DRAFT_SOURCE_RE = re.compile(r"^llm:([\w.\-/]+)\+human$")
 SPLITS: tuple[Split, ...] = ("test", "train", "val")
 
 Tier = Literal["A", "B", "C", "historical"]
@@ -86,7 +90,10 @@ class QAItem(BaseModel):
     bản ``*_resolved.jsonl`` (không sửa file gốc)."""
     required_numbers: list[RequiredNumber] = Field(default_factory=list)
     source: str = "human"
-    """``human`` (test) | ``llm:<model_id>`` (train/val)."""
+    """``human`` (test viết tay) | ``llm:<model_id>+human`` (test chép từ nháp LLM rồi người sửa,
+    kèm ``draft_id``) | ``llm:<model_id>`` (train/val)."""
+    draft_id: str | None = None
+    """Chỉ test: mã câu nháp gốc trong ``data/qa/test_drafts.jsonl`` (đo tỷ lệ sửa)."""
     pair_id: str | None = None
     """Câu ``theo_thoi_diem``: hai câu (trước/sau mốc) cùng ``pair_id``."""
     notes: str | None = None
@@ -117,6 +124,7 @@ def item_dict(item: QAItem) -> dict[str, Any]:
 
 
 __all__ = [
+    "DRAFT_SOURCE_RE",
     "QUESTION_TYPES",
     "QUESTION_TYPE_DOC",
     "SPLITS",

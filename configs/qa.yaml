@@ -12,6 +12,9 @@ paths:
   generate_summary: data/qa/generate_summary.md
   gen_dir: data/processed/qa_gen        # raw.jsonl, rejected.jsonl, runs.jsonl (artifact Release)
   validate_dir: data/processed/qa       # validate_<split>.json, <split>_resolved.jsonl
+  drafts: data/qa/test_drafts.jsonl     # nháp câu test (LLM viết, người sửa) — đo tỷ lệ sửa
+  drafts_md: data/qa/test_drafts.md     # bản đọc để chọn + sửa
+  draft_dir: data/processed/qa_test_draft   # raw.jsonl, runs.jsonl (artifact Release)
 
 as_of_default: 2026-11-03               # mốc chốt dữ liệu
 seed: 42
@@ -57,6 +60,39 @@ generate:
   val_fraction: 0.05                    # chia theo Điều
   seed: 42
   as_of_cutoff: 2026-11-03
+
+# Nháp câu test (người dùng quyết định 17/11/2026): LLM viết nháp từ gợi ý của phiếu viết, người
+# dùng sửa từng câu rồi chép vào test.jsonl (source = llm:<model>+human, draft_id). Model phải
+# KHÁC HỌ với model trả lời (qwen) và model judge (mistral). gemma3-12b: gated — cần được cấp
+# quyền trên HF + ghim revision trong serve.yaml trước khi chạy thật.
+draft:
+  provider: local
+  model_id: gemma3-12b
+  exclude_families_of: [qwen3-14b-awq, mistral-small-3.2]
+  prompt: qa_test_draft
+  n_drafts: 2
+  max_output_tokens: 2048
+  max_source_chars: 1500
+  chars_per_token: 1.74
+  min_words: 8
+  max_words: 50
+  verbatim_ngram: 6
+  seed: 42
+  personas:
+    - tài xế xe tải
+    - sinh viên đi xe máy
+    - chủ doanh nghiệp vận tải
+    - người mới học lái ô tô
+    - phụ huynh có con dưới 18 tuổi
+    - cán bộ phường
+    - tài xế công nghệ
+    - người lớn tuổi đi xe đạp điện
+  styles:
+    - {name: ngan, desc: "một câu ngắn, hỏi thẳng", weight: 0.2}
+    - {name: tinh_huong_ban_than, desc: "kể tình huống của chính mình (tôi …) rồi hỏi", weight: 0.4}
+    - {name: tinh_huong_nguoi_khac, desc: "kể lại chuyện của người khác (anh tôi, công ty bên cạnh …) rồi hỏi", weight: 0.2}
+    - {name: nhieu_dieu_kien, desc: "tình huống có nhiều chi tiết/điều kiện, người hỏi phải lọc ra điều quan trọng", weight: 0.1}
+    - {name: neu_van_ban, desc: "hỏi có nêu tên văn bản (vd 'theo Nghị định 168')", weight: 0.1}
 
 subsets:
   ablation_200: {n: 200}

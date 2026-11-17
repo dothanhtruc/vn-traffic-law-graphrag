@@ -13,17 +13,23 @@ Lỗi (``error`` → mã thoát 1):
 - Cặp ``theo_thoi_diem``: ``cap_thieu`` (≠ 2 câu), ``cap_cung_ngay``, ``cap_khong_doi_phien_ban``
   (không có ngày đổi phiên bản nào trong ``(ngày trước, ngày sau]``), ``dap_an_giong_nhau``.
 - ``trung_lap``: câu hỏi trùng sau chuẩn hoá (trừ hai câu cùng ``pair_id``).
-- test: ``thieu_dap_an``, ``nguon_khong_phai_nguoi`` (test phải viết tay).
+- test: ``thieu_dap_an``, ``nguon_khong_phai_nguoi`` (``source`` phải là ``human`` hoặc
+  ``llm:<model>+human``). Câu chép từ nháp (17/11/2026): ``thieu_draft_id``,
+  ``nguon_khong_khop`` (``draft_id`` với ``source = human``, hoặc model khác model của nháp),
+  ``nhap_khong_ton_tai``, ``nhap_dung_lai`` (hai câu cùng ``draft_id``), ``nhap_chua_sua`` (câu
+  hỏi giống hệt nháp sau chuẩn hoá).
 - train/val: ``ro_ri_test`` (cosine TF-IDF > ngưỡng với một câu test), ``val_tron_dieu``.
 
 Cảnh báo (chặn khi ``--strict``): ``gan_trung`` (cosine > ngưỡng trong cùng split),
 ``moc_khong_chuan`` (cặp đổi phiên bản ở ngày ngoài 4 mốc), ``da_buoc_khong_noi`` (các unit
 không nối bằng DAN_CHIEU/BI_XU_PHAT/BI_TRU_DIEM/HUONG_DAN), ``so_khong_co_trong_dap_an``,
-``vuot_han_muc``/``lech_phan_bo``, ``pair_id_sai_loai``, ``train_loi_thoi``.
+``vuot_han_muc``/``lech_phan_bo``, ``pair_id_sai_loai``, ``train_loi_thoi``, ``nhap_sua_rat_it``
+(câu hỏi giống nháp ≥ 0,95 theo difflib), ``dap_an_giu_nguyen_nhap``.
 """
 
 from __future__ import annotations
 
+import difflib
 from collections import Counter, defaultdict
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
@@ -33,7 +39,7 @@ from typing import Any, Literal
 
 from pydantic import ValidationError
 
-from trafficlaw.eval.qa_schema import QAItem, Split
+from trafficlaw.eval.qa_schema import DRAFT_SOURCE_RE, QAItem, Split
 from trafficlaw.eval.textsim import near_pairs, normalize
 from trafficlaw.graph.store import BaseGraphStore, GraphNode, unit_of_version_id
 from trafficlaw.utils.dates import parse_iso
@@ -95,6 +101,8 @@ class ValidateResult:
     issues: list[Issue]
     resolved: list[dict[str, Any]]
     distribution: dict[str, Any]
+    draft_stats: dict[str, Any] | None = None
+    """Tỷ lệ người sửa nháp (test; điền ở ``qa_tool``)."""
 
     @property
     def n_errors(self) -> int:
@@ -273,8 +281,18 @@ def _check_item(it: QAItem, split: Split, gv: GraphView) -> tuple[list[Issue], l
     if split == "test":
         if not it.answer:
             add("error", "thieu_dap_an", "test phải có đáp án")
-        if it.source != "human":
-            add("error", "nguon_khong_phai_nguoi", f"test phải viết tay (source = {it.source!r})")
+        if it.source == "human":
+            if it.draft_id:
+                add("error", "nguon_khong_khop", "có draft_id thì source phải là llm:<model>+human")
+        elif DRAFT_SOURCE_RE.match(it.source):
+            if not it.draft_id:
+                add("error", "thieu_draft_id", "câu chép từ nháp phải giữ draft_id")
+        else:
+            add(
+                "error",
+                "nguon_khong_phai_nguoi",
+                f"test phải do người viết hoặc người sửa nháp (source = {it.source!r})",
+            )
     if it.question_type == "ngoai_pham_vi":
         if it.gold_units:
             add("error", "ngoai_pham_vi_co_gold", "câu ngoài phạm vi không có gold_units")
@@ -500,6 +518,7 @@ def validate_items(
     *,
     test_questions: Sequence[str] | None = None,
     other_split_dieus: set[str] | None = None,
+    drafts: Mapping[str, Mapping[str, Any]] | None = None,
 ) -> ValidateResult:
     """Kiểm tra mọi bản ghi của một split. ``test_questions`` (train/val): dò rò rỉ;
     ``other_split_dieus``: Điều của split còn lại (train ↔ val) để kiểm tra chia theo Điều."""
@@ -533,6 +552,8 @@ def validate_items(
                     f"{len(both)} Điều có ở cả train và val (vd {both[:3]})",
                 )
             )
+    if split == "test":
+        issues += check_drafts(items, drafts or {})
     if split == "test" and cfg.targets is not None:
         issues += _check_distribution(items, cfg.targets)
     return ValidateResult(
@@ -550,6 +571,53 @@ def _dieu(unit_id: str) -> str:
     return "/".join(parts[:2]) if len(parts) >= 2 else unit_id
 
 
+def check_drafts(items: Sequence[QAItem], drafts: Mapping[str, Mapping[str, Any]]) -> list[Issue]:
+    """Câu test chép từ nháp LLM (``data/qa/test_drafts.jsonl``): nháp phải tồn tại, mỗi nháp
+    dùng một lần, cùng model với ``source``, và câu hỏi phải được người sửa."""
+    out: list[Issue] = []
+    used: Counter[str] = Counter(it.draft_id for it in items if it.draft_id)
+    for did, c in sorted(used.items()):
+        if c > 1:
+            out.append(Issue("error", "nhap_dung_lai", did, f"draft_id dùng cho {c} câu"))
+    for it in items:
+        if not it.draft_id:
+            continue
+        d = drafts.get(it.draft_id)
+        if d is None:
+            out.append(Issue("error", "nhap_khong_ton_tai", it.qid, f"không có nháp {it.draft_id}"))
+            continue
+        m = DRAFT_SOURCE_RE.match(it.source)
+        if m and m.group(1) != d.get("model_id"):
+            out.append(
+                Issue(
+                    "error",
+                    "nguon_khong_khop",
+                    it.qid,
+                    f"source {it.source!r} khác model của nháp ({d.get('model_id')})",
+                )
+            )
+        di = d.get("item") or {}
+        q0, q1 = normalize(str(di.get("question", ""))), normalize(it.question)
+        if q0 == q1:
+            out.append(
+                Issue("error", "nhap_chua_sua", it.qid, "câu hỏi giữ nguyên bản nháp — cần sửa")
+            )
+        elif difflib.SequenceMatcher(None, q0, q1).ratio() >= 0.95:
+            out.append(
+                Issue("warning", "nhap_sua_rat_it", it.qid, "câu hỏi gần như giữ nguyên bản nháp")
+            )
+        if normalize(str(di.get("answer", ""))) == normalize(it.answer or ""):
+            out.append(
+                Issue(
+                    "warning",
+                    "dap_an_giu_nguyen_nhap",
+                    it.qid,
+                    "đáp án giữ nguyên bản nháp — kiểm lại từng ý và con số",
+                )
+            )
+    return out
+
+
 __all__ = [
     "GraphView",
     "Issue",
@@ -557,6 +625,7 @@ __all__ = [
     "ValidateConfig",
     "ValidateResult",
     "as_decimal",
+    "check_drafts",
     "check_leakage",
     "distribution",
     "parse_items",

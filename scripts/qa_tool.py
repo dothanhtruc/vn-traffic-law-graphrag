@@ -9,9 +9,14 @@
     uv run python -m scripts.qa_tool subsets [--force]                      # tập con cho M13
     uv run python -m scripts.qa_tool review [--n 50]                        # train_review.md
     uv run python -m scripts.qa_tool summary                                # qa_summary.md
+    uv run python -m scripts.qa_tool draft-test --dry-run [--type T]        # nháp câu test: ước GPU
+    uv run python -m scripts.qa_tool draft-test [--workers 16] [--type T] [--limit N]
 
-Tập test do người dùng viết tay: công cụ chỉ đọc ``data/qa/test.jsonl`` (không tạo/sửa).
-``generate`` cần server vLLM qua tunnel (provider ``local``); các lệnh khác không cần GPU.
+Tập test do người dùng viết (hoặc sửa từ nháp ``draft-test``): công cụ chỉ đọc
+``data/qa/test.jsonl`` (không tạo/sửa). ``draft-test`` ghi ``data/qa/test_drafts.{jsonl,md}`` để
+người dùng chọn + sửa rồi tự chép vào test. ``generate``/``draft-test`` cần server vLLM qua
+tunnel (provider ``local``); các lệnh khác không cần GPU. ``draft-test --max-calls 0`` chỉ dựng
+lại file nháp từ ``raw.jsonl``.
 Mã thoát: 1 = có lỗi (hoặc cảnh báo khi ``--strict``); 3 = dừng sạch giữa chừng (chạy lại để tiếp).
 """
 
@@ -53,6 +58,7 @@ from trafficlaw.eval.qa_subsets import (
     qa_version,
     subsets_status,
 )
+from trafficlaw.eval.qa_test_draft import DraftConfig, edit_stats, load_drafts
 from trafficlaw.eval.qa_validate import (
     Targets,
     ValidateConfig,
@@ -147,15 +153,19 @@ def _write_json(p: Path, obj: Any) -> None:
 # --------------------------------------------------------------------------- plan / show
 
 
-def cmd_plan(env: QAEnv, args: argparse.Namespace) -> int:
+def plan_cfg(env: QAEnv, as_of: Any = None, factor: float | None = None) -> PlanConfig:
     pc = env.cfg.get("plan") or {}
-    cfg = PlanConfig(
-        as_of=_date(args.as_of or env.cfg.get("as_of_default", "2026-11-03")),
+    return PlanConfig(
+        as_of=_date(as_of or env.cfg.get("as_of_default", "2026-11-03")),
         seed=int(env.cfg.get("seed", 42)),
-        factor=float(args.factor if args.factor is not None else pc.get("factor", 1.0)),
+        factor=float(factor if factor is not None else pc.get("factor", 1.0)),
         max_text_chars=int(pc.get("max_text_chars", 1200)),
         milestones=env.milestones,
     )
+
+
+def cmd_plan(env: QAEnv, args: argparse.Namespace) -> int:
+    cfg = plan_cfg(env, args.as_of, args.factor)
     t0 = time.monotonic()
     sugs, stats = plan_suggestions(env.store, env.targets, cfg)
     text = render_worksheet(sugs, env.store, env.targets, cfg, stats)
@@ -190,9 +200,17 @@ def run_validate(env: QAEnv, split: str) -> ValidateResult:
         o = "val" if split == "train" else "train"
         items, _ = parse_items(list(read_jsonl(env.p(o))))
         other = {"/".join(u.split("/")[:2]) for it in items for u in it.gold_units}
+    drafts = load_drafts(env.p("drafts")) if split == "test" else None
     res = validate_items(
-        rows, split, env.store, env.validate_cfg, test_questions=tq, other_split_dieus=other
-    )  # type: ignore[arg-type]
+        rows,
+        split,  # type: ignore[arg-type]
+        env.store,
+        env.validate_cfg,
+        test_questions=tq,
+        other_split_dieus=other,
+        drafts=drafts,
+    )
+    draft_stats = edit_stats(res.items, drafts) if split == "test" and drafts is not None else None
     if split != "test" and env.p("manifest").is_file():
         m = json.loads(env.p("manifest").read_text(encoding="utf-8"))
         if m.get("test_sha256") != file_sha256(env.p("test")):
@@ -221,9 +239,11 @@ def run_validate(env: QAEnv, split: str) -> ValidateResult:
             "n_warnings": res.n_warnings,
             "issues_by_code": _count_codes(res),
             "distribution": res.distribution,
+            **({"draft_edit_stats": draft_stats} if draft_stats is not None else {}),
             "issues": [i.to_dict() for i in res.issues],
         },
     )
+    res.draft_stats = draft_stats
     return res
 
 
@@ -261,6 +281,14 @@ def cmd_validate(env: QAEnv, args: argparse.Namespace) -> int:
                 print(f"    {k:<22} {dist['question_type'].get(k, 0):>4} / {want}")
             for k, want in (tgt.get("tier") or {}).items():
                 print(f"    tier {k:<17} {dist['tier'].get(k, 0):>4} / {want:.0f}")
+            ds = res.draft_stats
+            if ds and ds.get("n_from_draft"):
+                print(
+                    f"  sửa từ nháp: {ds['n_from_draft']} câu (viết tay {ds['n_human']}) · "
+                    f"độ giống câu hỏi {ds['question_similarity_mean']:.2f} · đáp án "
+                    f"{ds['answer_similarity_mean']:.2f} · đổi gold {ds['gold_changed']:.0%} · đổi "
+                    f"số {ds['numbers_changed']:.0%}"
+                )
         if res.n_errors or (args.strict and res.n_warnings):
             rc = 1
     write_summary(env)
@@ -403,6 +431,182 @@ def cmd_generate(env: QAEnv, args: argparse.Namespace) -> int:
     if args.no_build:
         return 0
     return cmd_build(env, args, model_id=model_id)
+
+
+# --------------------------------------------------------------------------- draft-test
+
+
+def draft_guard(env: QAEnv, llm_cfg: Any, model_id: str, cfg: DraftConfig) -> str | None:
+    """Model viết nháp phải khác model + họ của model trả lời chính và mọi model trong
+    ``exclude_families_of`` (model judge)."""
+    from scripts._llm_local import family_of
+
+    others = [llm_cfg.main.model_id, *cfg.exclude_families_of]
+    fa = family_of(model_id, env.root)
+    for o in others:
+        if not o:
+            continue
+        if o == model_id:
+            return f"model viết nháp '{model_id}' trùng '{o}'"
+        fb = family_of(o, env.root)
+        if fa and fb and fa == fb:
+            return f"model viết nháp '{model_id}' cùng họ '{fa}' với '{o}'"
+    if fa is None:
+        return f"không biết họ của '{model_id}' (thêm vào configs/serve.yaml)"
+    return None
+
+
+def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
+    from scripts._llm_local import check_local_server, is_local, resolve_model, serve_config
+    from trafficlaw.eval.qa_test_draft import (
+        DRAFT_TYPES,
+        assemble,
+        build_inputs,
+        build_messages,
+        done_input_keys,
+        draft_key,
+        estimate,
+        input_key,
+        latest_parsed,
+        output_tokens_per_call,
+        render_markdown,
+        run_drafts,
+    )
+    from trafficlaw.llm import build_client, load_llm_config, load_prompt
+    from trafficlaw.llm.serve import gpu_hours
+    from trafficlaw.utils.env import load_dotenv
+
+    cfg = DraftConfig.model_validate(env.cfg.get("draft") or {})
+    llm_cfg = load_llm_config(env.root / env.paths_cfg.get("llm_config", "configs/llm.yaml"))
+    provider, model_id = resolve_model(
+        llm_cfg, args.provider or cfg.provider, args.model or cfg.model_id
+    )
+    if model_id is None:
+        print("draft-test: chưa có model (draft.model_id trong configs/qa.yaml)", file=sys.stderr)
+        return 1
+    guard = draft_guard(env, llm_cfg, model_id, cfg)
+    if guard and not args.dry_run:
+        print(f"draft-test: {guard} — chọn model khác họ", file=sys.stderr)
+        return 1
+    types = args.type or list(DRAFT_TYPES)
+    bad = sorted(set(types) - set(DRAFT_TYPES))
+    if bad:
+        print(f"draft-test: loại không hỗ trợ {bad} (có: {list(DRAFT_TYPES)})", file=sys.stderr)
+        return 1
+    t0 = time.monotonic()
+    sugs, _ = plan_suggestions(env.store, env.targets, plan_cfg(env))
+    inputs = build_inputs(env.store, [s for s in sugs if s.qtype in types], cfg)
+    if args.limit is not None:
+        inputs = inputs[: args.limit]
+    prompt = load_prompt(cfg.prompt)
+    key = draft_key(model_id, prompt, cfg)
+    raw = env.p("draft_dir") / "raw.jsonl"
+    done = done_input_keys(raw, key, retry_format_error=args.retry_format_error)
+    todo = [i for i in inputs if input_key(prompt, i) not in done]
+
+    if args.dry_run:
+        opc = output_tokens_per_call(raw)
+        est = estimate(todo, prompt, cfg, out_per_call=opc)
+        print(
+            f"dry-run: model {provider}:{model_id} · prompt {key.prompt_hash[:12]} · schema "
+            f"{key.schema_hash[:12]} · {len(inputs)} gợi ý · đã xong {len(inputs) - len(todo)} · "
+            f"{cfg.n_drafts} nháp/gợi ý · {opc:.0f} token ra/lượt · dựng đầu vào "
+            f"{time.monotonic() - t0:.1f} s"
+        )
+        if guard:
+            print(f"  CẢNH BÁO: {guard}")
+        for k, v in est.items():
+            print(
+                f"  {k:<28} {v['calls']:>5} lượt  ~{v['prompt_tokens']:>9,} token vào  "
+                f"~{v['output_tokens']:>8,} token ra"
+            )
+        tot = est.get("total", {"prompt_tokens": 0, "output_tokens": 0})
+        scfg = serve_config(env.root)
+        if scfg is not None and is_local(llm_cfg, provider):
+            h, vnd = gpu_hours(scfg, model_id, tot["prompt_tokens"], tot["output_tokens"])
+            print(
+                f"  → GPU tự host: ~{h:.2f} giờ ≈ {vnd:,} VND (chưa gồm cài đặt/tải model; "
+                f"{scfg.remote.price_vnd_per_hour:,} VND/giờ)"
+            )
+        if todo:
+            sample = build_messages(prompt, todo[0])[0]["content"]
+            print(f"  prompt mẫu ({todo[0].sid}, {len(sample)} ký tự):")
+            print("    " + sample.replace("\n", "\n    "))
+        return 0
+
+    if args.max_calls != 0 and todo:
+        load_dotenv(env.root / ".env")
+        meta = None
+        if is_local(llm_cfg, provider):
+            meta = check_local_server(llm_cfg, provider, model_id, env.root)
+            if meta is None:
+                return 1
+        client = build_client(llm_cfg, provider, model_id=model_id, root=env.root)
+        t1 = time.monotonic()
+        started = datetime.now().astimezone().isoformat(timespec="seconds")
+
+        def progress(i: int, n: int, inp: Any, r: Any) -> None:
+            if i % 20 == 0 or i == n or r.status != "ok":
+                print(
+                    f"  [{i}/{n}] {inp.sid:<26} {r.status:<12} {r.latency_ms:>6} ms "
+                    f"{r.usage.total_tokens:>5} tok  {time.monotonic() - t1:,.0f}s",
+                    flush=True,
+                )
+
+        out = run_drafts(
+            inputs,
+            cfg,
+            client,
+            raw,
+            prompt,
+            max_calls=args.max_calls,
+            retry_format_error=args.retry_format_error,
+            workers=args.workers,
+            git_commit=git_commit(env.root),
+            run_meta=meta,
+            progress=progress,
+        )
+        append_jsonl(
+            env.p("draft_dir") / "runs.jsonl",
+            {
+                "started_at": started,
+                "seconds": round(time.monotonic() - t1, 1),
+                "model_id": model_id,
+                "prompt_hash": key.prompt_hash,
+                "schema_hash": key.schema_hash,
+                "types": types,
+                "workers": args.workers,
+                "n_todo": out.n_todo,
+                "n_called": out.n_called,
+                "by_status": dict(out.by_status),
+                "serve": meta,
+                "git_commit": git_commit(env.root),
+            },
+        )
+        print(
+            f"draft-test: {out.n_inputs} gợi ý · {out.n_todo} cần chạy · đã gọi {out.n_called} · "
+            f"{dict(out.by_status)} · {time.monotonic() - t1:,.0f} s"
+        )
+        if out.stopped:
+            print(out.hint, file=sys.stderr)
+            return 3
+
+    # Dựng lại file nháp từ mọi gợi ý (không chỉ --type/--limit lần này) để file luôn đầy đủ.
+    all_inputs = build_inputs(env.store, sugs, cfg)
+    keys = {i.sid: input_key(prompt, i) for i in all_inputs}
+    parsed, by_status = latest_parsed(raw, key, keys)
+    records = assemble(all_inputs, parsed, key, cfg)
+    write_jsonl(env.p("drafts"), [r.to_dict() for r in records])
+    md = render_markdown(
+        all_inputs, records, {"model_id": model_id, "prompt_hash": key.prompt_hash}
+    )
+    env.p("drafts_md").write_bytes(md.encode("utf-8"))
+    n_flag = sum(1 for r in records if r.flags)
+    print(
+        f"nháp: {len(parsed)}/{len(all_inputs)} gợi ý có nháp ({dict(by_status)}) · "
+        f"{len(records)} câu · {n_flag} câu có cờ → {env.p('drafts_md')}"
+    )
+    return 0
 
 
 def cmd_build(env: QAEnv, args: argparse.Namespace, *, model_id: str | None = None) -> int:
@@ -612,6 +816,15 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("review", help="rà tay câu train")
     p.add_argument("--n", type=int)
     sub.add_parser("summary", help="qa_summary.md")
+    p = sub.add_parser("draft-test", help="nháp câu test (LLM viết, người sửa)")
+    p.add_argument("--provider")
+    p.add_argument("--model")
+    p.add_argument("--dry-run", action="store_true")
+    p.add_argument("--type", action="append", help="chỉ loại câu này (lặp lại được)")
+    p.add_argument("--limit", type=int, help="chỉ N gợi ý đầu (chạy thử)")
+    p.add_argument("--max-calls", type=int)
+    p.add_argument("--workers", type=int, default=1)
+    p.add_argument("--retry-format-error", action="store_true")
     args = ap.parse_args(argv)
     set_seed()
     setup_logging("WARNING")
@@ -628,6 +841,7 @@ def main(argv: list[str] | None = None) -> int:
         "subsets": cmd_subsets,
         "review": cmd_review,
         "summary": cmd_summary,
+        "draft-test": cmd_draft_test,
     }
     return cmds[args.cmd](env, args)
 
