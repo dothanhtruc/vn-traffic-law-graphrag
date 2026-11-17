@@ -62,6 +62,7 @@ from trafficlaw.verify.numbers import (
     drop_sentences,
     find_unverified_numbers,
     placeholders,
+    range_join_issues,
     render_numbers,
     unknown_placeholders,
 )
@@ -534,7 +535,11 @@ def scan_numbers(
     res: dict[str, list[NumberIssue]] = {}
     parts = [(f"p{i}", p.text) for i, p in enumerate(out.points)] + [("conclusion", out.conclusion)]
     for where, text in parts:
-        iss = find_unverified_numbers(text, allowed) + unknown_placeholders(text, table)
+        iss = (
+            find_unverified_numbers(text, allowed)
+            + unknown_placeholders(text, table)
+            + range_join_issues(text, table)
+        )
         if iss:
             res[where] = sorted(iss, key=lambda x: x.start)
     return res

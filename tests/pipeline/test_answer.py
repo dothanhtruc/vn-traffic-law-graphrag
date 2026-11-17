@@ -363,3 +363,21 @@ def test_repeated_placeholder_flagged(acfg, rctx, mini_store, mini_catalog) -> N
     client, _ = _client([ok(js)])
     res = answer(Q, D, "G", _actx(acfg, rctx, mini_store, mini_catalog, client))
     assert "ma_so_lap" in res.verify.flags
+
+
+def test_range_join_violation_triggers_repair(acfg, rctx, mini_store, mini_catalog) -> None:
+    """M13: "từ {N_a} đến {N_b}" với N_a đã là cả khung ⇒ vi phạm khoang_ghep ⇒ 1 lượt sửa;
+    "từ {N} đến {N}" (cùng mã) chỉ render một khung, không vi phạm."""
+    prep = prepare(Q, D, "G", _actx(acfg, rctx, mini_store, mini_catalog, None))
+    sid, fine = _ids(prep)
+    other = next(f.id for f in prep.table if f.id != fine)
+    bad = _good_json(sid, fine).replace("{" + fine + "}", "từ {" + fine + "} đến {" + other + "}")
+    client, fake = _client([ok(bad), ok(_good_json(sid, fine))])
+    res = answer(Q, D, "G", _actx(acfg, rctx, mini_store, mini_catalog, client), qid="r1")
+    assert res.verify.n_violations_before == 1 and res.verify.repaired
+    assert "khung" in fake.requests[1].messages[-1].content
+    same = _good_json(sid, fine).replace("{" + fine + "}", "từ {" + fine + "} đến {" + fine + "}")
+    client2, fake2 = _client([ok(same)])
+    res2 = answer(Q, D, "G", _actx(acfg, rctx, mini_store, mini_catalog, client2), qid="r2")
+    assert res2.verify.n_violations_before == 0 and fake2.n_calls == 1
+    assert "phạt tiền từ 800.000 đồng đến 1.000.000 đồng." in res2.answer

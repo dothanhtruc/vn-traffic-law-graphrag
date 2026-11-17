@@ -393,10 +393,56 @@ def placeholders(text: str) -> list[str]:
     return out
 
 
+#: "{Na} đến {Nb}" (có thể chen đơn vị "{Na} tháng đến {Nb}", "tới", gạch nối) — hai mã nối thành
+#: một khoảng.
+JOIN_RE = re.compile(
+    r"\{\s*(N\d+)\s*\}\s*(?:(?:đồng|tháng|điểm|ngày|năm)\s*)?(?:đến|tới|[-–])\s*\{\s*(N\d+)\s*\}"
+)
+
+
+def _same_value(a: str, b: str, table: Mapping[str, NumberFact]) -> bool:
+    fa, fb = table.get(a), table.get(b)
+    return a == b or (fa is not None and fb is not None and fa.rendered == fb.rendered)
+
+
+def is_range(f: NumberFact | None) -> bool:
+    """Giá trị đã là cả khung "từ X đến Y" (phạt tiền, tước quyền… có min ≠ max)."""
+    return f is not None and f.rendered.startswith("từ ") and " đến " in f.rendered
+
+
+def collapse_same_range(text: str, table: Mapping[str, NumberFact]) -> str:
+    """M13 (17/11/2026): "từ {N1} đến {N1}" với N1 đã là khung "từ X đến Y" → "từ {N1}" (render
+    thành một khung). Chỉ cùng một mã; hai mã khác nhau là ``khoang_ghep`` (verify)."""
+
+    def sub(m: re.Match[str]) -> str:
+        a, b = m.group(1), m.group(2)
+        return "{" + a + "}" if _same_value(a, b, table) and is_range(table.get(a)) else m.group(0)
+
+    return JOIN_RE.sub(sub, text)
+
+
+def range_join_issues(text: str, table: Mapping[str, NumberFact]) -> list[NumberIssue]:
+    """M13 (17/11/2026): hai mã **khác nhau** nối thành một khoảng mà ít nhất một mã đã là cả
+    khung ("từ {N1} đến {N2}", N1 = khung cá nhân, N2 = khung tổ chức; hoặc "{N1} đến {N2}" với
+    N2 = "04 điểm") — render kiểu gì cũng tạo khoảng không có trong văn bản ⇒ vi phạm con số."""
+    out = []
+    for m in JOIN_RE.finditer(text):
+        a, b = m.group(1), m.group(2)
+        fa, fb = table.get(a), table.get(b)
+        if fa is None or fb is None or _same_value(a, b, table):
+            continue
+        if is_range(fa) or is_range(fb):
+            out.append(
+                NumberIssue(kind="khoang_ghep", text=m.group(0), start=m.start(), end=m.end())
+            )
+    return out
+
+
 def render_numbers(text: str, table: Mapping[str, NumberFact]) -> str:
     """Thay ``{N#}`` bằng ``rendered``; mã không có trong bảng giữ nguyên (đã bị verify loại
     trước khi render). Không lặp chữ quanh chỗ giữ chỗ: "phạt tiền từ {N1}" với N1 = "từ X đồng
     đến Y đồng" → bỏ "từ" của giá trị; "{N2} điểm" với N2 = "02 điểm" → bỏ "điểm" của giá trị."""
+    text = collapse_same_range(text, table)
     out: list[str] = []
     pos = 0
     for m in PLACEHOLDER_RE.finditer(text):
@@ -422,7 +468,7 @@ def render_numbers(text: str, table: Mapping[str, NumberFact]) -> str:
 
 # --------------------------------------------------------------------------- dò số tự do
 
-IssueKind = Literal["chu_so", "ngay", "chu_viet", "ma_so_khong_ton_tai"]
+IssueKind = Literal["chu_so", "ngay", "chu_viet", "ma_so_khong_ton_tai", "khoang_ghep"]
 
 
 class NumberIssue(BaseModel):
@@ -591,4 +637,7 @@ __all__ = [
     "text_numbers",
     "to_decimal",
     "unknown_placeholders",
+    "range_join_issues",
+    "collapse_same_range",
+    "is_range",
 ]

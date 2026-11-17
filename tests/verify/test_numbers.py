@@ -13,6 +13,7 @@ from trafficlaw.graph.store import GraphNode
 from trafficlaw.retrieval.catalog import ChunkCatalog
 from trafficlaw.verify.numbers import (
     AllowedNumbers,
+    NumberFact,
     NumberIndex,
     SourceText,
     build_number_table,
@@ -215,3 +216,64 @@ def test_no_false_positive_codes_and_words() -> None:
         ("chu_viet", "hai mươi tư triệu đồng"),
         ("chu_so", "3"),
     ]
+
+
+# --------------------------------------------------------------------------- M13: ghép khoảng
+
+
+def _fact(i: str, rendered: str, kind: str = "phat_tien") -> NumberFact:
+    return NumberFact(
+        id=i,
+        kind=kind,  # type: ignore[arg-type]
+        values=[],
+        rendered=rendered,
+        description="d",
+        source="S1",
+        unit_id="X/D1/K1",
+        span=rendered,
+    )
+
+
+def test_same_range_code_collapsed_in_render() -> None:
+    from trafficlaw.verify.numbers import range_join_issues
+
+    t = {
+        "N1": _fact("N1", "từ 6.000.000 đồng đến 8.000.000 đồng"),
+        "N2": _fact("N2", "từ 10 tháng đến 12 tháng", "tuoc_quyen"),
+    }
+    assert render_numbers("Bị phạt tiền từ {N1} đến {N1}.", t) == (
+        "Bị phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng."
+    )
+    assert render_numbers("Tước GPLX từ {N2} đến {N2}.", t) == "Tước GPLX từ 10 tháng đến 12 tháng."
+    assert render_numbers("Phạt {N1} đồng đến {N1}.", t) == (
+        "Phạt từ 6.000.000 đồng đến 8.000.000 đồng."
+    )
+    assert range_join_issues("từ {N1} đến {N1}", t) == []
+    # chen đơn vị, hai mã khác nhau nhưng cùng giá trị khung
+    t["N3"] = _fact("N3", "từ 10 tháng đến 12 tháng", "tuoc_quyen")
+    assert render_numbers("Tước GPLX từ {N2} tháng đến {N3} tháng.", t) == (
+        "Tước GPLX từ 10 tháng đến 12 tháng."
+    )
+    assert range_join_issues("từ {N2} tháng đến {N3} tháng", t) == []
+
+
+def test_different_codes_joined_into_range_is_violation() -> None:
+    from trafficlaw.verify.numbers import range_join_issues
+
+    t = {
+        "N1": _fact("N1", "từ 4.000.000 đồng đến 5.000.000 đồng"),
+        "N2": _fact("N2", "từ 8.000.000 đồng đến 10.000.000 đồng"),
+        "N3": _fact("N3", "04 điểm", "tru_diem"),
+        "N4": _fact("N4", "800.000 đồng"),
+        "N5": _fact("N5", "1.000.000 đồng"),
+    }
+    text = "Phạt tiền từ {N1} đến {N2}. Phạt {N1} đến {N3}. Phạt từ {N4} đến {N5}."
+    assert [i.text for i in range_join_issues("từ {N1} đồng đến {N2} đồng", t)] == [
+        "{N1} đồng đến {N2}"
+    ]
+    iss = range_join_issues(text, t)
+    assert [i.text for i in iss] == ["{N1} đến {N2}", "{N1} đến {N3}"]
+    assert all(i.kind == "khoang_ghep" for i in iss)
+    assert text[iss[0].start : iss[0].end] == "{N1} đến {N2}"
+    # hai số đơn nối thành khoảng (đúng nghĩa) không phải vi phạm
+    assert range_join_issues("từ {N4} đến {N5}", t) == []
