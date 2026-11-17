@@ -200,3 +200,41 @@ subsets:
 
 review:
   n: 50
+
+# M13b (người dùng đồng ý 18/11/2026): TẬP DEV đa bước / theo thời điểm — chỉnh graph expand, từ chối,
+# prompt sửa số và chọn checkpoint M14 mà KHÔNG dùng test. Cùng cơ chế nháp như test (gpt-oss-20b viết,
+# validator, Claude rà/sửa, người dùng xác nhận). Không dùng bất kỳ Điều nào có trong gold của test
+# (kể cả đích dẫn chiếu của câu đa bước); unit đã gợi ý cho test ở các vòng trước được dùng lại nếu
+# Điều của nó không thuộc gold test. Chạy: `qa_tool draft-test --set dev`, `import-drafts --auto --set dev`.
+dev:
+  sid_prefix: WD                     # gợi ý WD-<loại>-NNN → qid tD-<loại>-NNN, cặp pD-NNN
+  profile: null                      # prompt v1 (tỷ lệ đạt khi rà 54% so với v2 42%)
+  so_sanh_min: 0.4
+  # Mức loại trừ so với gold test: dieu = mọi unit thuộc Điều có trong gold test (chặt — dùng cho loại
+  # câu để chỉnh graph expand / lọc hiệu lực); khoan = gold test + tổ tiên + con cháu (test đã phủ gần
+  # hết Điều xử phạt NĐ 168: loại theo Điều chỉ còn 2 gợi ý muc_phat, 0 so_sanh/tru_diem).
+  exclude_level:
+    default: dieu
+    muc_phat: khoan
+    tru_diem: khoan
+    so_sanh: khoan
+  question_type:                     # số gợi ý (≈ 2 × số câu cần, rà đạt ~50%)
+    da_buoc: 80
+    theo_thoi_diem: 40               # câu (= 20 cặp)
+    so_sanh: 30
+    muc_phat: 40
+    tru_diem: 20
+  quota:                             # số câu nhập tối đa
+    da_buoc: 40
+    theo_thoi_diem: 20               # câu (= 10 cặp)
+    so_sanh: 15
+    muc_phat: 15
+    tru_diem: 10
+  paths:
+    test: data/qa/dev_multi.jsonl
+    drafts: data/qa/dev_drafts.jsonl
+    drafts_md: data/qa/dev_drafts.md
+    test_review: data/qa/dev_review.jsonl
+    test_edits: data/qa/dev_edits.jsonl
+    draft_dir: data/processed/qa_dev_draft
+    validate_dir: data/processed/qa_dev
