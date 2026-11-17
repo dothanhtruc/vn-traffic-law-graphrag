@@ -719,6 +719,9 @@ def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
         print(f"import-drafts: chưa có {env.p('drafts')} (chạy draft-test)", file=sys.stderr)
         return 1
     items, skipped = select_auto(list(drafts.values()))
+    dcfg = DraftConfig.model_validate(env.cfg.get("draft") or {})
+    excluded = {e.qid: e.reason for e in dcfg.import_exclude}
+    items = [it for it in items if it["qid"] not in excluded]
     dropped: dict[str, list[str]] = {}
     for _ in range(10):
         res = validate_items(items, "test", env.store, env.validate_cfg, drafts=drafts)
@@ -749,6 +752,7 @@ def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
         "n_suggestions": len({d["sid"] for d in drafts.values()}),
         "n_imported": len(items),
         "n_skipped_flags": len(skipped),
+        "excluded": excluded,
         "n_dropped_validate": len(dropped),
         "skipped_flags": skipped,
         "dropped_validate": dropped,

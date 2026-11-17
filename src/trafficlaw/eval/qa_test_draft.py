@@ -125,6 +125,12 @@ class OOSCategory(BaseModel):
     desc: str
 
 
+class ExcludeSpec(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    qid: str
+    reason: str
+
+
 class DraftConfig(BaseModel):
     model_config = ConfigDict(extra="forbid")
     provider: str | None = "local"
@@ -153,6 +159,8 @@ class DraftConfig(BaseModel):
     oos_per_call: int = 5
     oos_near_dup: float = 0.8
     """Cosine TF-IDF với câu dev_out_of_scope / câu ngoai_pham_vi khác ≥ ngưỡng → cờ gần trùng."""
+    import_exclude: list[ExcludeSpec] = Field(default_factory=list)
+    """Câu nháp người dùng loại khi nhập tự động (theo ``qid``), kèm lý do."""
 
 
 # --------------------------------------------------------------------------- schema đầu ra

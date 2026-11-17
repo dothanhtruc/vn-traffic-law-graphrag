@@ -136,6 +136,13 @@ draft:
       reuse_units: true
       question_type:
         tru_diem: 6
+  # Câu loại khi nhập tự động (người dùng đồng ý 17/11/2026 sau khi Claude rà danh sách
+  # ngoai_pham_vi): câu "ngoài phạm vi" mà dữ liệu thật ra trả lời được (một phần).
+  import_exclude:
+    - {qid: t-oos-phap_luat_khac-1b, reason: "đổi giấy phép lái xe nước ngoài sang Việt Nam có trong dữ liệu (trong phạm vi)"}
+    - {qid: t-oos-phap_luat_khac-1c, reason: "ranh giới: hỏi các khoản phí phải nộp khi mua xe (lệ phí đăng ký xe có trong dữ liệu)"}
+    - {qid: t-oos-cong_nghe_ky_thuat-2a, reason: "ranh giới: nhắc tuổi học lái xe máy (độ tuổi người lái có trong dữ liệu)"}
+    - {qid: t-oos-tu_van_ca_nhan-2c, reason: "dùng giấy phép lái xe nước ngoài tại Việt Nam có trong dữ liệu (trong phạm vi)"}
   # Câu ngoai_pham_vi do LLM viết (người dùng yêu cầu 17/11/2026): mỗi nhóm × lượt × câu/lượt.
   oos_prompt: qa_test_draft_oos
   oos_calls_per_category: 2
