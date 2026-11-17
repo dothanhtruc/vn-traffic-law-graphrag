@@ -1,6 +1,6 @@
 # M13: bộ chạy đánh giá ba giai đoạn (retrieve → generate → score). Người dùng chốt 17/11/2026.
 # Xem CLAUDE.md "Quy ước bộ chạy đánh giá (M13)". Test KHÔNG dùng để chỉnh prompt/ngưỡng/tham số.
-run_id: m13-test                    # results/<run_id>/
+run_id: m13-test-v2                  # results/<run_id>/
 test: data/qa/test.jsonl
 subsets: data/qa/subsets.json
 drafts: data/qa/test_drafts.jsonl   # validator test kiểm draft_id
