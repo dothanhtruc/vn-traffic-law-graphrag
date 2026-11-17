@@ -657,9 +657,14 @@ def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
         bad: dict[str, list[str]] = {}
         for i in res.issues:
             if i.level == "error" and i.qid:
-                bad.setdefault(i.qid, []).append(f"{i.code}: {i.message}")
+                # lỗi theo cặp ghi qid dạng "a,b"
+                for q in i.qid.split(","):
+                    bad.setdefault(q, []).append(f"{i.code}: {i.message}")
         if not bad:
             break
+        if not any(it["qid"] in bad for it in items):
+            print(f"import-drafts: lỗi không gắn được câu: {sorted(bad)[:5]}", file=sys.stderr)
+            return 1
         pairs = {it["pair_id"] for it in items if it["qid"] in bad and it.get("pair_id")}
         keep = []
         for it in items:
