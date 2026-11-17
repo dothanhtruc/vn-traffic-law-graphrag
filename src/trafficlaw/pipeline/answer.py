@@ -373,6 +373,10 @@ class AnswerContext:
 
     def format_repair_hash(self) -> str | None:
         rp = getattr(self.client, "repair_prompt", None)
+        if self.client is None:
+            # dry-run (không client): LLMClient mặc định dùng ``format_repair`` ⇒ cùng prompt_hash
+            # với lần chạy thật, khoá resume khớp
+            rp = load_prompt("format_repair")
         return getattr(rp, "hash", None)
 
     def prompt_hash(self, config_name: str) -> str:

@@ -149,6 +149,10 @@ def test_load_eval_data_validates_and_rejects_stale(tmp_path: Path, mini_store) 
     pair = [it for it in data.items if it.pair_id == "sp-1"]
     assert {it.partner_gold for it in pair} == {(), (f"{K}/K1a",)}
     assert data.select("full") == data.items
+    union = data.select("ablation_200|judge_200")
+    assert {i.qid for i in union} == set(data.subsets["ablation_200"]) | set(
+        data.subsets["judge_200"]
+    )
     # câu lỗi validator bị loại + liệt kê
     bad = json.loads(SMOKE.read_text(encoding="utf-8").splitlines()[0])
     bad.update(qid="s-bad", gold_units=[f"{K}/K99"])

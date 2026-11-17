@@ -68,11 +68,15 @@ class EvalData:
         self.by_qid = {it.qid: it for it in self.items}
 
     def select(self, set_name: str) -> list[GoldItem]:
+        """``full`` | tên tập con | hợp nhiều tập con ``a|b`` (vd B1/A2 sinh trên
+        ``ablation_200|judge_200`` để judge chấm đủ ``judge_200``)."""
         if set_name == FULL:
             return list(self.items)
-        if set_name not in self.subsets:
-            raise KeyError(f"tập con {set_name!r} không có trong subsets.json")
-        keep = set(self.subsets[set_name])
+        keep: set[str] = set()
+        for name in set_name.split("|"):
+            if name not in self.subsets:
+                raise KeyError(f"tập con {name!r} không có trong subsets.json")
+            keep.update(self.subsets[name])
         return [it for it in self.items if it.qid in keep]
 
 

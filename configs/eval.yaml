@@ -13,10 +13,10 @@ generate:
   G: full
   B3: full
   B0: full
-  B1: ablation_200
+  B1: ablation_200|judge_200   # B1, A2 có trong judge ⇒ sinh thêm phần judge_200 (17/11)
   B2: ablation_200
   A1: ablation_200
-  A2: ablation_200
+  A2: ablation_200|judge_200
   # A3: hoãn tới sau M14 (hiện ≡ G); A4: M17
 
 # Giai đoạn 1 (chỉ truy hồi): mọi cấu hình RAG trên toàn bộ test.
