@@ -108,6 +108,17 @@ draft:
         theo_thoi_diem: 72          # câu (= 36 cặp)
         da_buoc: 50
         so_sanh: 32
+    # Vòng 3 (người dùng yêu cầu nới điều kiện 17/11/2026): dùng lại unit cho loại câu khác, hạ ngưỡng
+    # cặp so_sanh 0,5 → 0,4; ≈ 2 × phần còn thiếu sau vòng 2.
+    - round: 3
+      reuse_units: true
+      so_sanh_min: 0.4
+      question_type:
+        so_sanh: 40
+        tru_diem: 24
+        theo_thoi_diem: 30          # câu (= 15 cặp)
+        dinh_nghia: 6
+        da_buoc: 4
 
 subsets:
   ablation_200: {n: 200}

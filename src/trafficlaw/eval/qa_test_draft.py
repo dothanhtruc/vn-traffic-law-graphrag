@@ -96,6 +96,11 @@ class RoundSpec(BaseModel):
     model_config = ConfigDict(extra="forbid")
     round: int = Field(ge=2)
     question_type: dict[str, int]
+    reuse_units: bool = False
+    """Nới điều kiện: cho dùng lại unit đã gợi ý ở vòng trước cho **loại câu khác** (vẫn cấm lặp
+    unit trong cùng loại câu) — kho ``so_sanh``/``tru_diem`` cạn sau vòng 2."""
+    so_sanh_min: float | None = None
+    """Ngưỡng cosine tối thiểu của cặp ``so_sanh`` (mặc định ``PlanConfig.so_sanh_min`` 0,5)."""
 
 
 class DraftConfig(BaseModel):

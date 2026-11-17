@@ -460,19 +460,37 @@ def draft_guard(env: QAEnv, llm_cfg: Any, model_id: str, cfg: DraftConfig) -> st
 
 
 def draft_suggestions(env: QAEnv, cfg: DraftConfig) -> list[Any]:
-    """Gợi ý vòng 1 (đúng phiếu viết) + các vòng sinh thêm ``draft.rounds`` (mã ``W<n>-…``, không
-    dùng lại unit đã gợi ý ở vòng trước). Tất định."""
+    """Gợi ý vòng 1 (đúng phiếu viết) + các vòng sinh thêm ``draft.rounds`` (mã ``W<n>-…``). Mặc
+    định không dùng lại unit đã gợi ý ở vòng trước; ``reuse_units`` chỉ cấm lặp trong cùng loại câu.
+    Tất định."""
     from dataclasses import replace
+
+    def units_of(s: Any) -> set[str]:
+        return {c.unit_id for c in s.chunks} | set(s.gold_units or [])
 
     used: set[str] = set()
     base = plan_cfg(env)
     sugs, _ = plan_suggestions(env.store, env.targets, base, used)
+    by_type: dict[str, set[str]] = {}
+    for s in sugs:
+        by_type.setdefault(s.qtype, set()).update(units_of(s))
+    t = env.targets
     for r in sorted(cfg.rounds, key=lambda x: x.round):
-        t = env.targets
-        tr = Targets(
-            total=t.total, tier=t.tier, question_type=dict(r.question_type), tolerance=t.tolerance
-        )
-        more, _ = plan_suggestions(env.store, tr, replace(base, sid_prefix=f"W{r.round}"), used)
+        pc = replace(base, sid_prefix=f"W{r.round}")
+        if r.so_sanh_min is not None:
+            pc = replace(pc, so_sanh_min=r.so_sanh_min)
+        if not r.reuse_units:
+            tr = Targets(t.total, t.tier, dict(r.question_type), t.tolerance)
+            more, _ = plan_suggestions(env.store, tr, pc, used)
+        else:
+            more = []
+            for qt, n in r.question_type.items():
+                tr = Targets(t.total, t.tier, {qt: n}, t.tolerance)
+                part, _ = plan_suggestions(env.store, tr, pc, set(by_type.get(qt, set())))
+                more += part
+        for s in more:
+            used |= units_of(s)
+            by_type.setdefault(s.qtype, set()).update(units_of(s))
         sugs += more
     return sugs
 
