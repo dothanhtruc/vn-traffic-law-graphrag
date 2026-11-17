@@ -97,3 +97,168 @@
 {"qid": "t3-theo_thoi_diem-010b", "draft_id": "W3-theo_thoi_diem-010:2b", "verdict": "SAI_NOI_DUNG", "reason": "Nội dung sau mốc là Trung tâm quản lý, không phải camera giám sát hành trình", "reviewer": "claude", "reviewed_at": "2026-11-17"}
 {"qid": "t4-da_buoc-014", "draft_id": "W4-da_buoc-014:2", "verdict": "SAI_NOI_DUNG", "reason": "Báo cáo Cục trưởng/Trưởng phòng là quy trình nội bộ CSGT", "reviewer": "claude", "reviewed_at": "2026-11-17"}
 {"qid": "t4-da_buoc-015", "draft_id": "W4-da_buoc-015:2", "verdict": "SAI_NOI_DUNG", "reason": "Quy trình nội bộ CSGT gán cho chủ doanh nghiệp", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-dan_su_bao_hiem-2a", "draft_id": "O-01-dan_su_bao_hiem-2:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-giao_thong_khac-1a", "draft_id": "O-01-giao_thong_khac-1:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-nuoc_ngoai-2a", "draft_id": "O-01-nuoc_ngoai-2:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-phap_luat_khac-1a", "draft_id": "O-01-phap_luat_khac-1:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-phap_luat_khac-2a", "draft_id": "O-01-phap_luat_khac-2:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-so_lieu_thong_tin-1a", "draft_id": "O-01-so_lieu_thong_tin-1:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-so_lieu_thong_tin-2a", "draft_id": "O-01-so_lieu_thong_tin-2:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-tu_van_ca_nhan-1a", "draft_id": "O-01-tu_van_ca_nhan-1:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-tu_van_ca_nhan-2a", "draft_id": "O-01-tu_van_ca_nhan-2:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-cong_nghe_ky_thuat-1b", "draft_id": "O-02-cong_nghe_ky_thuat-1:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-cong_nghe_ky_thuat-2b", "draft_id": "O-02-cong_nghe_ky_thuat-2:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-nuoc_ngoai-2b", "draft_id": "O-02-nuoc_ngoai-2:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-phap_luat_khac-2b", "draft_id": "O-02-phap_luat_khac-2:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-tu_van_ca_nhan-2b", "draft_id": "O-02-tu_van_ca_nhan-2:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-cong_nghe_ky_thuat-1c", "draft_id": "O-03-cong_nghe_ky_thuat-1:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-cong_nghe_ky_thuat-2c", "draft_id": "O-03-cong_nghe_ky_thuat-2:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-dan_su_bao_hiem-2c", "draft_id": "O-03-dan_su_bao_hiem-2:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-giao_thong_khac-1c", "draft_id": "O-03-giao_thong_khac-1:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-giao_thong_khac-2c", "draft_id": "O-03-giao_thong_khac-2:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-nuoc_ngoai-1c", "draft_id": "O-03-nuoc_ngoai-1:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-nuoc_ngoai-2c", "draft_id": "O-03-nuoc_ngoai-2:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-phap_luat_khac-2c", "draft_id": "O-03-phap_luat_khac-2:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-so_lieu_thong_tin-2c", "draft_id": "O-03-so_lieu_thong_tin-2:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-oos-cong_nghe_ky_thuat-1d", "draft_id": "O-04-cong_nghe_ky_thuat-1:1", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-002", "draft_id": "W-bien_phap-002:2", "verdict": "SAI_NOI_DUNG", "reason": "Hỏi xe hết hạn đăng ký; gold là xe quá niên hạn sử dụng; đáp án bịa 'phí tịch thu'", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-003", "draft_id": "W-bien_phap-003:2", "verdict": "SAI_NOI_DUNG", "reason": "Đỗ xe trên vỉa hè không thuộc K14 Đ12 (hành vi 35–37 triệu); tước 22–24 tháng sai hành vi", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-004", "draft_id": "W-bien_phap-004:2", "verdict": "SAI_NOI_DUNG", "reason": "Điểm g khoản 8 không thuộc danh sách trừ điểm K21/a; đáp án nói 'mất điểm'", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-006", "draft_id": "W-bien_phap-006:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-007", "draft_id": "W-bien_phap-007:2", "verdict": "SAI_NOI_DUNG", "reason": "K4/a là đơn vị vận tải không cấp thẻ nhận dạng, không phải lái xe không có thẻ", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-008", "draft_id": "W-bien_phap-008:2", "verdict": "SAI_NOI_DUNG", "reason": "K18/c là tước chứng nhận kiểm định cho hành vi khác, không phải tước GPLX khi lắp thiết bị đổi biển số", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-009", "draft_id": "W-bien_phap-009:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-010", "draft_id": "W-bien_phap-010:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-014", "draft_id": "W-bien_phap-014:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-017", "draft_id": "W-bien_phap-017:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-021", "draft_id": "W-bien_phap-021:2", "verdict": "SAI_NOI_DUNG", "reason": "Xe đạp điện mang túi lớn ≠ xe chở hàng vượt khổ có giấy phép lưu hành; trừ điểm GPLX vô lý", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-022", "draft_id": "W-bien_phap-022:2", "verdict": "SAI_NOI_DUNG", "reason": "Gold là chủ xe đưa xe không có kiểm định (K11) + tước theo K18/c cho hành vi khác; không khớp tình huống", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-023", "draft_id": "W-bien_phap-023:2", "verdict": "SAI_NOI_DUNG", "reason": "Hành vi là K12/d; trừ điểm K21/a chỉ áp cho điểm a khoản 12 — đáp án sai 'trừ 02 điểm'", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-024", "draft_id": "W-bien_phap-024:2", "verdict": "SAI_NOI_DUNG", "reason": "K8/a bị trừ 10 điểm (K13/c Đ13); đáp án nói không có thông tin trừ điểm", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-025", "draft_id": "W-bien_phap-025:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-026", "draft_id": "W-bien_phap-026:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-027", "draft_id": "W-bien_phap-027:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-032", "draft_id": "W-bien_phap-032:2", "verdict": "MO_HO", "reason": "Hỏi có bị tước GPLX không; đáp án chỉ nêu mức phạt, không trả lời", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-bien_phap-035", "draft_id": "W-bien_phap-035:2", "verdict": "SAI_NOI_DUNG", "reason": "Người đi qua trạm không vi phạm; K2 Đ10 ND336 phạt tổ chức thu phí", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-002", "draft_id": "W-da_buoc-002:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-003", "draft_id": "W-da_buoc-003:2", "verdict": "MO_HO", "reason": "Tiền đề vô lý (cá nhân bật đèn ưu tiên trên xe máy); số liệu xe mô tô không kiểm được", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-005", "draft_id": "W-da_buoc-005:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-007", "draft_id": "W-da_buoc-007:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-009", "draft_id": "W-da_buoc-009:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-011", "draft_id": "W-da_buoc-011:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-012", "draft_id": "W-da_buoc-012:2", "verdict": "MO_HO", "reason": "Đáp án không nêu mức phạt; gold gồm điều thẩm quyền D41", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-014", "draft_id": "W-da_buoc-014:2", "verdict": "SAI_NOI_DUNG", "reason": "Điểm b khoản 8 không thuộc danh sách trừ điểm K21/a; đáp án nói trừ 02 điểm", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-016", "draft_id": "W-da_buoc-016:2", "verdict": "MO_HO", "reason": "Đáp án ghép điều kiện đầu tư cao tốc thành điều kiện trả phí; không có trong nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-017", "draft_id": "W-da_buoc-017:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-018", "draft_id": "W-da_buoc-018:2", "verdict": "SAI_NOI_DUNG", "reason": "Đáp án sai: TT53 không xếp xe thô sơ vào xe cơ giới năng lượng sạch", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-019", "draft_id": "W-da_buoc-019:2", "verdict": "SAI_NOI_DUNG", "reason": "Chứng chỉ bồi dưỡng dành cho xe máy chuyên dùng; gold là quy định xe tập lái", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-021", "draft_id": "W-da_buoc-021:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-023", "draft_id": "W-da_buoc-023:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-027", "draft_id": "W-da_buoc-027:2", "verdict": "SAI_NOI_DUNG", "reason": "Xe đạp điện không cần GPLX hạng B; đáp án ghép điều kiện nâng hạng B lên C1", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-035", "draft_id": "W-da_buoc-035:2", "verdict": "MO_HO", "reason": "Câu hỏi lẫn lộn thu hồi và hết hạn; đáp án hiển nhiên", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-037", "draft_id": "W-da_buoc-037:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-040", "draft_id": "W-da_buoc-040:2", "verdict": "MO_HO", "reason": "Xe viện trợ bàn giao là thủ tục của cơ quan, không phải cá nhân 'đăng ký lại'", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-041", "draft_id": "W-da_buoc-041:2", "verdict": "SAI_NOI_DUNG", "reason": "Đáp án bịa 'giữ lại biển số'; gold là hồ sơ thu hồi khi sang tên", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-043", "draft_id": "W-da_buoc-043:2", "verdict": "MO_HO", "reason": "Đáp án chung chung, không nêu hậu quả cụ thể", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-046", "draft_id": "W-da_buoc-046:2", "verdict": "SAI_NOI_DUNG", "reason": "Hỏi xe đạp điện; đáp án nói về xe buýt/taxi được ưu tiên — không trả lời, gây hiểu sai", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-050", "draft_id": "W-da_buoc-050:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-051", "draft_id": "W-da_buoc-051:2", "verdict": "MO_HO", "reason": "Nghĩa vụ khắc phục nút giao thuộc cơ quan/tổ chức, đáp án gán cho người hỏi", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-052", "draft_id": "W-da_buoc-052:2", "verdict": "MO_HO", "reason": "Hành khách không chịu trách nhiệm xe hợp pháp; 'biển hiệu' sai (là phù hiệu)", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-055", "draft_id": "W-da_buoc-055:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-059", "draft_id": "W-da_buoc-059:2", "verdict": "MO_HO", "reason": "Đáp án suy ra quyền yêu cầu cung cấp hồ sơ không có trong nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-da_buoc-060", "draft_id": "W-da_buoc-060:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-003", "draft_id": "W-dinh_nghia-003:2", "verdict": "SAI_NOI_DUNG", "reason": "DAT là dữ liệu học thực hành từ thiết bị DAT xe tập lái; ghi hành vi lái xe nói chung không phải DAT", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-009", "draft_id": "W-dinh_nghia-009:2", "verdict": "MO_HO", "reason": "Câu hỏi vô nghĩa (vượt xe vs tải trọng đường bộ)", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-013", "draft_id": "W-dinh_nghia-013:2", "verdict": "MO_HO", "reason": "Đáp án không trả lời câu hỏi", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-016", "draft_id": "W-dinh_nghia-016:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-017", "draft_id": "W-dinh_nghia-017:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-018", "draft_id": "W-dinh_nghia-018:2", "verdict": "SAI_NOI_DUNG", "reason": "Gold sai (K5 'xe tương tự'); xe mô tô/xe gắn máy là xe cơ giới theo K1 Đ34", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-020", "draft_id": "W-dinh_nghia-020:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-029", "draft_id": "W-dinh_nghia-029:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-030", "draft_id": "W-dinh_nghia-030:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-033", "draft_id": "W-dinh_nghia-033:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-036", "draft_id": "W-dinh_nghia-036:2", "verdict": "MO_HO", "reason": "Không xác định được từ nguồn; đáp án suy diễn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-dinh_nghia-038", "draft_id": "W-dinh_nghia-038:2", "verdict": "MO_HO", "reason": "Cơ quan nhượng quyền ký hợp đồng nhượng quyền, không phải nơi người dân thanh toán", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-004", "draft_id": "W-hanh_vi_cam_nghia_vu-004:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-005", "draft_id": "W-hanh_vi_cam_nghia_vu-005:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-007", "draft_id": "W-hanh_vi_cam_nghia_vu-007:2", "verdict": "SAI_NOI_DUNG", "reason": "Gold là quy định khi qua phà, câu hỏi/đáp án nói cầu phao; đáp án mâu thuẫn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-008", "draft_id": "W-hanh_vi_cam_nghia_vu-008:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-009", "draft_id": "W-hanh_vi_cam_nghia_vu-009:2", "verdict": "MO_HO", "reason": "Tiền đề vô lý (tài xế tự sửa kết cấu đường)", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-010", "draft_id": "W-hanh_vi_cam_nghia_vu-010:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-011", "draft_id": "W-hanh_vi_cam_nghia_vu-011:2", "verdict": "MO_HO", "reason": "Đáp án lẫn lộn chủ thể (người đi xe đạp vs người đặt biển quảng cáo)", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-012", "draft_id": "W-hanh_vi_cam_nghia_vu-012:2", "verdict": "SAI_NOI_DUNG", "reason": "Gold là điều kiện dự sát hạch; đáp án về biên bản vắng/trượt không có trong gold", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-013", "draft_id": "W-hanh_vi_cam_nghia_vu-013:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-015", "draft_id": "W-hanh_vi_cam_nghia_vu-015:2", "verdict": "SAI_NOI_DUNG", "reason": "30 km/h là của xe chở người bốn bánh có gắn động cơ, không phải xe tải", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-016", "draft_id": "W-hanh_vi_cam_nghia_vu-016:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-017", "draft_id": "W-hanh_vi_cam_nghia_vu-017:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-018", "draft_id": "W-hanh_vi_cam_nghia_vu-018:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-019", "draft_id": "W-hanh_vi_cam_nghia_vu-019:2", "verdict": "SAI_NOI_DUNG", "reason": "Nguồn không đặt nghĩa vụ gửi thống kê cho tài xế", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-021", "draft_id": "W-hanh_vi_cam_nghia_vu-021:2", "verdict": "SAI_NOI_DUNG", "reason": "Đáp án bịa quy định; gold chỉ nói thời hạn ghi theo niên hạn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-023", "draft_id": "W-hanh_vi_cam_nghia_vu-023:2", "verdict": "MO_HO", "reason": "Mốc 1/3/2025 sai (Luật hiệu lực 01/01/2025); đáp án chung chung", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-024", "draft_id": "W-hanh_vi_cam_nghia_vu-024:2", "verdict": "SAI_NOI_DUNG", "reason": "Căn cứ dừng xe là của CSGT; đáp án gán cho người hỏi", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-029", "draft_id": "W-hanh_vi_cam_nghia_vu-029:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-030", "draft_id": "W-hanh_vi_cam_nghia_vu-030:2", "verdict": "SAI_NOI_DUNG", "reason": "Đáp án bịa 'phải có phê duyệt'; gold là nghĩa vụ điều chỉnh công trình phụ trợ", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-031", "draft_id": "W-hanh_vi_cam_nghia_vu-031:2", "verdict": "MO_HO", "reason": "Người mới học lái không phải đơn vị vận tải; nguồn về kinh doanh vận tải", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-033", "draft_id": "W-hanh_vi_cam_nghia_vu-033:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-037", "draft_id": "W-hanh_vi_cam_nghia_vu-037:2", "verdict": "MO_HO", "reason": "Câu hỏi quá chung; đáp án không cụ thể", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-038", "draft_id": "W-hanh_vi_cam_nghia_vu-038:2", "verdict": "SAI_NOI_DUNG", "reason": "Đáp án nêu số 29–33, 40 không có trong nguồn đã trích", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-039", "draft_id": "W-hanh_vi_cam_nghia_vu-039:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-040", "draft_id": "W-hanh_vi_cam_nghia_vu-040:2", "verdict": "SAI_NOI_DUNG", "reason": "Gold điểm d là giấy đăng ký xe; đáp án nói bảo hiểm", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-041", "draft_id": "W-hanh_vi_cam_nghia_vu-041:2", "verdict": "SAI_NOI_DUNG", "reason": "Báo cáo vướng mắc là việc của Công an đơn vị, địa phương, không phải tài xế", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-042", "draft_id": "W-hanh_vi_cam_nghia_vu-042:2", "verdict": "SAI_NOI_DUNG", "reason": "Gold về mẫu giấy khám; đáp án bịa điều kiện lái xe", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-043", "draft_id": "W-hanh_vi_cam_nghia_vu-043:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-046", "draft_id": "W-hanh_vi_cam_nghia_vu-046:2", "verdict": "SAI_NOI_DUNG", "reason": "Đáp án sai: xe máy cần GPLX hạng A1/A, không phải 'GPLX máy chuyên dùng hoặc chứng chỉ bồi dưỡng'", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-049", "draft_id": "W-hanh_vi_cam_nghia_vu-049:2", "verdict": "MO_HO", "reason": "Câu hỏi đảo trường hợp của nguồn; vế 'dự lý thuyết kỳ sau' không có trong nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-050", "draft_id": "W-hanh_vi_cam_nghia_vu-050:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-052", "draft_id": "W-hanh_vi_cam_nghia_vu-052:2", "verdict": "SAI_NOI_DUNG", "reason": "Lấy thẩm quyền Cảnh sát cơ động cấp đại đội làm mức phạt tối đa", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-053", "draft_id": "W-hanh_vi_cam_nghia_vu-053:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-055", "draft_id": "W-hanh_vi_cam_nghia_vu-055:2", "verdict": "SAI_NOI_DUNG", "reason": "Gold là yêu cầu thiết kế nút giao đấu nối, không liên quan dừng xe trên cao tốc", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-056", "draft_id": "W-hanh_vi_cam_nghia_vu-056:2", "verdict": "SAI_NOI_DUNG", "reason": "Nghĩa vụ kiểm định, sửa chữa thuộc người quản lý đường cao tốc, không phải tài xế", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-059", "draft_id": "W-hanh_vi_cam_nghia_vu-059:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-061", "draft_id": "W-hanh_vi_cam_nghia_vu-061:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-064", "draft_id": "W-hanh_vi_cam_nghia_vu-064:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-065", "draft_id": "W-hanh_vi_cam_nghia_vu-065:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-067", "draft_id": "W-hanh_vi_cam_nghia_vu-067:2", "verdict": "MO_HO", "reason": "Tiền đề vô lý; đáp án suy ra cấm đoán không có trong nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-hanh_vi_cam_nghia_vu-069", "draft_id": "W-hanh_vi_cam_nghia_vu-069:2", "verdict": "SAI_NOI_DUNG", "reason": "Đáp án bịa điều kiện ('không vi phạm pháp luật giao thông'…) không có trong nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-001", "draft_id": "W-muc_phat-001:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-002", "draft_id": "W-muc_phat-002:2", "verdict": "SAI_NOI_DUNG", "reason": "Hành vi lệch: K8 Đ12 là cố ý thay đổi, xóa dấu vết hiện trường, không phải không dừng lại", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-004", "draft_id": "W-muc_phat-004:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-006", "draft_id": "W-muc_phat-006:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-007", "draft_id": "W-muc_phat-007:2", "verdict": "SAI_NOI_DUNG", "reason": "Đ16 là xe máy chuyên dùng; xe tải không biển số thuộc điều khác", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-009", "draft_id": "W-muc_phat-009:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-010", "draft_id": "W-muc_phat-010:2", "verdict": "SAI_NOI_DUNG", "reason": "Vi phạm là dừng trên phần đường xe chạy nơi có lề; câu hỏi nói dừng trên lề đường", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-012", "draft_id": "W-muc_phat-012:2", "verdict": "SAI_NOI_DUNG", "reason": "Xe máy vượt tốc độ; gold là chủ xe ô tô giao xe cho người vi phạm (Đ32 K14)", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-014", "draft_id": "W-muc_phat-014:2", "verdict": "SAI_NOI_DUNG", "reason": "Ô tô không có phanh thuộc Đ13; Đ15 K2 là loại xe khác", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-016", "draft_id": "W-muc_phat-016:2", "verdict": "MO_HO", "reason": "'Xe tải chở khách', người mới học lái; mức phạt K6 là của chủ phương tiện", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-018", "draft_id": "W-muc_phat-018:2", "verdict": "MO_HO", "reason": "Không nêu mức vượt trọng tải; K3 là hành vi xếp hàng vượt 50–100%", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-019", "draft_id": "W-muc_phat-019:2", "verdict": "SAI_NOI_DUNG", "reason": "Người đi xe đạp chứng kiến; đáp án nói 'bạn sẽ bị phạt'", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-020", "draft_id": "W-muc_phat-020:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-023", "draft_id": "W-muc_phat-023:2", "verdict": "SAI_NOI_DUNG", "reason": "Tước kiểm định K18/c chỉ áp cho điểm e khoản 7 có thùng xe sai; không áp cho không làm thủ tục đổi biển số", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-025", "draft_id": "W-muc_phat-025:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-027", "draft_id": "W-muc_phat-027:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-029", "draft_id": "W-muc_phat-029:2", "verdict": "SAI_NOI_DUNG", "reason": "Dừng xe trên vỉa hè giao hàng ≠ sử dụng tạm thời vỉa hè không có giấy phép (K12)", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-030", "draft_id": "W-muc_phat-030:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-031", "draft_id": "W-muc_phat-031:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-032", "draft_id": "W-muc_phat-032:2", "verdict": "SAI_NOI_DUNG", "reason": "Điểm a khoản 9 (nồng độ cồn) không thuộc danh sách trừ 04 điểm K16/b", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-034", "draft_id": "W-muc_phat-034:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-036", "draft_id": "W-muc_phat-036:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-038", "draft_id": "W-muc_phat-038:2", "verdict": "SAI_NOI_DUNG", "reason": "K2 Đ40 phạt cơ sở đăng kiểm, không phải chủ xe", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-039", "draft_id": "W-muc_phat-039:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-040", "draft_id": "W-muc_phat-040:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-041", "draft_id": "W-muc_phat-041:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-042", "draft_id": "W-muc_phat-042:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-045", "draft_id": "W-muc_phat-045:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-046", "draft_id": "W-muc_phat-046:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-047", "draft_id": "W-muc_phat-047:2", "verdict": "MO_HO", "reason": "Dừng xe dỡ hàng ≠ đặt, để chướng ngại vật trái phép", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-049", "draft_id": "W-muc_phat-049:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-050", "draft_id": "W-muc_phat-050:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-053", "draft_id": "W-muc_phat-053:2", "verdict": "SAI_NOI_DUNG", "reason": "Đáp án '150.000 đồng' sai khung (150.000–250.000); hành vi 'lùi tay' không có trong nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-054", "draft_id": "W-muc_phat-054:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-055", "draft_id": "W-muc_phat-055:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-056", "draft_id": "W-muc_phat-056:2", "verdict": "SAI_NOI_DUNG", "reason": "Đ7 K7 điểm b là xe mô tô đi vào cao tốc, không phải xe tải", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-058", "draft_id": "W-muc_phat-058:2", "verdict": "SAI_NOI_DUNG", "reason": "K2/a là xe không có dây đai an toàn (thiết bị), không phải không thắt dây", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-060", "draft_id": "W-muc_phat-060:2", "verdict": "SAI_NOI_DUNG", "reason": "Vượt trên 35 km/h (điểm a khoản 7) bị trừ 06 điểm (K16/c), đáp án nói 04", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-061", "draft_id": "W-muc_phat-061:2", "verdict": "SAI_NOI_DUNG", "reason": "K13 là hành vi K12 (lạng lách, đánh võng…) gây tai nạn, không phải vượt đèn đỏ", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-063", "draft_id": "W-muc_phat-063:2", "verdict": "MO_HO", "reason": "Câu hỏi khó hiểu ('buộc hàng vào lốp xe'); không khớp rõ điểm nào", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-065", "draft_id": "W-muc_phat-065:2", "verdict": "SAI_NOI_DUNG", "reason": "Gold là chăn thả gia súc ở mái đường (chủ gia súc), không phải người lái gặp bò", "reviewer": "claude", "reviewed_at": "2026-11-17"}
+{"qid": "t-muc_phat-069", "draft_id": "W-muc_phat-069:2", "verdict": "OK", "reason": "rà toàn bộ: khớp nguồn", "reviewer": "claude", "reviewed_at": "2026-11-17"}
