@@ -222,10 +222,10 @@ print(l('configs/serve.yaml').vllm_version or '')")"
         # Kiểm tra Python.h của python3.12 hệ thống (venv vLLM), không phải \`python3\` trong PATH:
         # image 10/11/2026 có miniconda (3.13, có Python.h) đứng trước trong PATH của shell login.
         PY_INC=\$(/usr/bin/python3.12 -c 'import sysconfig; print(sysconfig.get_paths()[\"include\"])' 2>/dev/null || echo /nonexistent)
-        if ! command -v tmux >/dev/null || ! command -v gcc >/dev/null || [ ! -f \"\$PY_INC/Python.h\" ]; then
+        if ! command -v tmux >/dev/null || ! command -v gcc >/dev/null || ! command -v aria2c >/dev/null || [ ! -f \"\$PY_INC/Python.h\" ]; then
             export DEBIAN_FRONTEND=noninteractive
             \$S apt-get update -qq
-            \$S apt-get install -y -qq tmux build-essential python3-dev >/dev/null
+            \$S apt-get install -y -qq tmux build-essential python3-dev aria2 >/dev/null
         fi
         command -v uv >/dev/null || curl -LsSf https://astral.sh/uv/install.sh | sh
         export PATH=\"\$HOME/.local/bin:\$PATH\"
