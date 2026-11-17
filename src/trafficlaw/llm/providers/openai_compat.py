@@ -42,6 +42,9 @@ _PARAM_MAP = {
     "top_p": "top_p",
     "max_output_tokens": "max_tokens",
     "seed": "seed",
+    # gpt-oss (vLLM Chat Completion): low | medium | high. Chỉ gửi khi được đặt (model khác bỏ
+    # qua); nằm trong params ⇒ thuộc khoá cache.
+    "reasoning_effort": "reasoning_effort",
 }
 
 

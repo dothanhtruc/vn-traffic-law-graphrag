@@ -326,7 +326,40 @@ def test_draft_guard_families() -> None:
     env = qa_tool.QAEnv(ROOT)
     llm_cfg = load_llm_config(ROOT / "configs/llm.yaml")
     cfg = DraftConfig.model_validate(env.cfg["draft"])
+    assert cfg.model_id == "gpt-oss-20b"
+    assert qa_tool.draft_guard(env, llm_cfg, "gpt-oss-20b", cfg) is None
     assert qa_tool.draft_guard(env, llm_cfg, "gemma3-12b", cfg) is None
     assert "cùng họ 'qwen'" in (qa_tool.draft_guard(env, llm_cfg, "qwen3-8b", cfg) or "")
     assert "trùng" in (qa_tool.draft_guard(env, llm_cfg, "mistral-small-3.2", cfg) or "")
     assert "không biết họ" in (qa_tool.draft_guard(env, llm_cfg, "model-la", cfg) or "")
+
+
+def test_reasoning_effort_sent_only_when_set(
+    store: EmbeddedStore, k5_chunk, tmp_path: Path
+) -> None:  # type: ignore[no-untyped-def]
+    from trafficlaw.llm.providers.openai_compat import OpenAICompatProvider
+    from trafficlaw.llm.types import LLMRequest, Message
+
+    prov = OpenAICompatProvider(
+        name="local", base_url="http://127.0.0.1:1/v1", model_id="m", api_key="k"
+    )
+    req = LLMRequest(
+        messages=[Message(role="user", content="x")],
+        params={"reasoning_effort": "low", "max_output_tokens": 9},
+    )
+    body = prov.build_body(req)
+    assert body["reasoning_effort"] == "low" and body["max_tokens"] == 9
+    assert "reasoning_effort" not in prov.build_body(LLMRequest(messages=req.messages, params={}))
+
+    inputs = build_inputs(store, [sug_muc_phat(k5_chunk)], CFG)
+    seen: list[dict[str, Any]] = []
+
+    def resp(r: LLMRequest) -> str:
+        seen.append(dict(r.params))
+        return json.dumps(_parsed("x", 1, []), ensure_ascii=False)
+
+    cfg = CFG.model_copy(update={"reasoning_effort": "low"})
+    run_drafts(
+        inputs, cfg, _client(responder=resp), tmp_path / "raw.jsonl", load_prompt(cfg.prompt)
+    )
+    assert seen and seen[0].get("reasoning_effort") == "low"

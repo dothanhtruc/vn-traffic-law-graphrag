@@ -63,15 +63,16 @@ generate:
 
 # Nháp câu test (người dùng quyết định 17/11/2026): LLM viết nháp từ gợi ý của phiếu viết, người
 # dùng sửa từng câu rồi chép vào test.jsonl (source = llm:<model>+human, draft_id). Model phải
-# KHÁC HỌ với model trả lời (qwen) và model judge (mistral). gemma3-12b: gated — cần được cấp
-# quyền trên HF + ghim revision trong serve.yaml trước khi chạy thật.
+# KHÁC HỌ với model trả lời (qwen) và model judge (mistral). gpt-oss-20b (họ gpt-oss, apache-2.0,
+# không gated, revision ghim trong serve.yaml) — người dùng chọn 17/11/2026 thay gemma3-12b (gated).
 draft:
   provider: local
-  model_id: gemma3-12b
+  model_id: gpt-oss-20b
   exclude_families_of: [qwen3-14b-awq, mistral-small-3.2]
   prompt: qa_test_draft
   n_drafts: 2
-  max_output_tokens: 2048
+  max_output_tokens: 3072                 # gồm token suy luận (gpt-oss)
+  reasoning_effort: low
   max_source_chars: 1500
   chars_per_token: 1.74
   min_words: 8

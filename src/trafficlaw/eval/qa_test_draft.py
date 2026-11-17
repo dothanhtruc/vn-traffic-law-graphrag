@@ -92,6 +92,9 @@ class DraftConfig(BaseModel):
     prompt: str = "qa_test_draft"
     n_drafts: int = 2
     max_output_tokens: int = 2048
+    """Gồm cả token suy luận của model có reasoning (gpt-oss)."""
+    reasoning_effort: str | None = None
+    """gpt-oss: ``low`` để phần suy luận ngắn; ``None`` = không gửi."""
     max_source_chars: int = 1500
     chars_per_token: float = 1.74
     """Ước token tiếng Việt cho ``--dry-run`` (đo ở M12)."""
@@ -474,7 +477,9 @@ def run_drafts(
     if max_calls is not None:
         todo = todo[: max(0, max_calls)]
     schema = output_schema(cfg.n_drafts)
-    params = {"max_output_tokens": cfg.max_output_tokens}
+    params: dict[str, Any] = {"max_output_tokens": cfg.max_output_tokens}
+    if cfg.reasoning_effort:
+        params["reasoning_effort"] = cfg.reasoning_effort
 
     def call(inp: DraftInput) -> LLMResult:
         return client.generate(build_messages(prompt, inp), json_schema=schema, params=params)
