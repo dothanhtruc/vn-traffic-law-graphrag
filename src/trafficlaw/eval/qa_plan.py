@@ -72,6 +72,8 @@ class PlanConfig:
     )
     so_sanh_min: float = 0.5
     so_sanh_max: float = 0.95
+    exclude_dieu_title: str | None = None
+    """Regex tiêu đề Điều không gợi ý (vd Điều thẩm quyền xử phạt — nháp test v2)."""
     sid_prefix: str = "W"
     """Tiền tố mã gợi ý: ``W`` = phiếu viết gốc; ``W2``, ``W3``… = vòng sinh thêm (nháp test)."""
 
@@ -265,6 +267,9 @@ def plan_suggestions(
     """``used_units``: unit đã dùng ở vòng trước (không gợi ý lại; tập được cập nhật tại chỗ)."""
     gv = GraphView(store)
     all_chunks = list(iter_chunks(store))
+    if cfg.exclude_dieu_title:
+        rx = re.compile(cfg.exclude_dieu_title)
+        all_chunks = [c for c in all_chunks if not rx.search(c.dieu_title or "")]
     rep = representative_chunks(all_chunks, cfg.as_of)
     active = [c for c, _ in rep]
     date_of = {c.chunk_id: d for c, d in rep}

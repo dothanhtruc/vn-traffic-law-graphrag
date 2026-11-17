@@ -91,6 +91,37 @@ TYPE_RULES: dict[str, str] = {
 }
 DRAFT_TYPES: tuple[str, ...] = tuple(TYPE_RULES)
 
+
+# Quy tắc theo loại câu của prompt v2 (17/11/2026, sau khi rà 534 câu nháp v1: 47% đạt).
+TYPE_RULES_V2: dict[str, str] = {
+    "muc_phat": "Hỏi mức phạt của người vi phạm đúng như nguồn (đúng loại xe, đúng hành vi của "
+    "Điểm/Khoản). Nếu nguồn nêu riêng mức cá nhân và tổ chức: hoặc hỏi rõ cá nhân, hoặc hỏi rõ "
+    "tổ chức và đáp mức tổ chức. Chỉ nói về trừ điểm khi nguồn có khoản trừ điểm liệt kê đúng "
+    "điểm/khoản của hành vi này.",
+    "tru_diem": "Hỏi số điểm bị trừ. Hành vi trong câu hỏi PHẢI là một hành vi mà khoản trừ "
+    "điểm liệt kê (đúng điểm, khoản), mô tả theo nguyên văn ở phần 'Điều khoản được nguồn trên "
+    "dẫn chiếu tới'. Số điểm đúng nguyên văn (02, 04, 06, 10). Nếu không thấy nguyên văn hành vi "
+    "trong nguồn thì hỏi chung theo số khoản/điểm thay vì tự nghĩ hành vi.",
+    "bien_phap": "Hỏi về hình thức xử phạt bổ sung (tước, tịch thu, đình chỉ) hoặc biện pháp "
+    "khắc phục hậu quả. Hành vi phải đúng là hành vi mà khoản biện pháp áp dụng (đúng điểm, "
+    "khoản được liệt kê). Phân biệt tước GPLX với tước phù hiệu, tước chứng nhận kiểm định.",
+    "hanh_vi_cam_nghia_vu": "Hỏi 'có được … không' hoặc 'phải làm gì khi …' về đúng chủ thể của "
+    "quy định. Đáp án nói rõ được/không được hoặc phải làm gì, rồi nêu điều kiện như nguồn.",
+    "dinh_nghia": "Không hỏi 'X là gì'. Hỏi 'trường hợp … có được coi là X không' sao cho trả lời "
+    "được chắc chắn từ định nghĩa (có/không và vì sao).",
+    "thu_tuc_tham_quyen": "Hỏi đúng điều nguồn quy định (hồ sơ gồm gì, nộp ở đâu, cơ quan nào, "
+    "thời hạn bao lâu, ai có trách nhiệm). Không hỏi phần nguồn không nêu. Nếu chủ thể là cơ "
+    "quan nhà nước/CSGT thì hỏi 'cơ quan nào…/… phải làm gì', không gán việc cho người hỏi.",
+    "theo_thoi_diem": TYPE_RULES["theo_thoi_diem"]
+    + " Phần khác nhau giữa hai trạng thái phải là nội dung câu hỏi hỏi tới.",
+    "da_buoc": TYPE_RULES["da_buoc"]
+    + " Kiểm tra mối nối: điều khoản thứ nhất phải thực sự dẫn chiếu tới điều khoản thứ hai.",
+    "so_sanh": "Nguồn có hai điều khoản cho hai loại xe hoặc hai chủ thể. Mỗi bên phải đúng loại "
+    "xe/chủ thể và đúng hành vi của điều khoản tương ứng (đúng tiêu đề Điều). Đáp án nêu con số "
+    "của cả hai bên và bên nào nặng hơn.",
+}
+TYPE_RULES_BY_VERSION: dict[str, dict[str, str]] = {"v1": TYPE_RULES, "v2": TYPE_RULES_V2}
+
 UNIT_NAMES = {"vnd": "đồng", "diem": "điểm", "thang": "tháng"}
 _STRUCT_REF_RE = re.compile(r"\b(?:điều|khoản|điểm)\s+\d+[a-z]?\b|\bđiểm\s+[a-zđ]\b", re.IGNORECASE)
 
@@ -102,6 +133,19 @@ class StyleSpec(BaseModel):
     weight: float = 1.0
 
 
+class ProfileSpec(BaseModel):
+    """Hồ sơ prompt cho vòng sinh thêm (v2: sửa 6 lỗi hệ thống của nháp v1)."""
+
+    model_config = ConfigDict(extra="forbid")
+    prompt: str
+    type_rules_version: str = "v1"
+    personas: list[str] | None = None
+    officer_docs: list[str] = Field(default_factory=list)
+    """Văn bản quy trình nội bộ của Công an: vai người hỏi = ``officer_persona``."""
+    officer_persona: str = "cán bộ Cảnh sát giao thông đang làm nhiệm vụ"
+    exclude_dieu_title: str | None = None
+
+
 class RoundSpec(BaseModel):
     """Vòng sinh thêm gợi ý (mã ``W<round>-…``), không dùng lại unit của các vòng trước."""
 
@@ -110,6 +154,8 @@ class RoundSpec(BaseModel):
     question_type: dict[str, int]
     tier: dict[str, float] | None = None
     """Trọng số tier của vòng (mặc định = hạn mức tier); vd chỉ B/C/historical để cân tier."""
+    profile: str | None = None
+    """Hồ sơ prompt (``draft.profiles``) của vòng; ``None`` = cấu hình gốc (v1)."""
     reuse_units: bool = False
     """Nới điều kiện: cho dùng lại unit đã gợi ý ở vòng trước cho **loại câu khác** (vẫn cấm lặp
     unit trong cùng loại câu) — kho ``so_sanh``/``tru_diem`` cạn sau vòng 2."""
@@ -154,6 +200,10 @@ class DraftConfig(BaseModel):
     styles: list[StyleSpec] = Field(default_factory=list)
     rounds: list[RoundSpec] = Field(default_factory=list)
     oos_prompt: str = "qa_test_draft_oos"
+    profiles: dict[str, ProfileSpec] = Field(default_factory=dict)
+    type_rules_version: str = "v1"
+    officer_docs: list[str] = Field(default_factory=list)
+    officer_persona: str = "cán bộ Cảnh sát giao thông đang làm nhiệm vụ"
     oos_categories: list[OOSCategory] = Field(default_factory=list)
     oos_calls_per_category: int = 2
     oos_per_call: int = 5
@@ -209,13 +259,31 @@ def draft_key(model_id: str, prompt: Prompt, cfg: DraftConfig) -> DraftKey:
     ph = sha256(
         {
             "prompt": prompt.hash,
-            "type_rules": TYPE_RULES,
+            "type_rules": TYPE_RULES_BY_VERSION[cfg.type_rules_version],
             "personas": cfg.personas,
             "styles": [s.model_dump() for s in cfg.styles],
             "reasoning_effort": cfg.reasoning_effort,
+            # chỉ thêm khi khác mặc định ⇒ khoá v1 không đổi
+            **({"officer_docs": cfg.officer_docs} if cfg.officer_docs else {}),
         }
     )
     return DraftKey(model_id, ph, sha256(output_schema(cfg.n_drafts).model_json_schema()))
+
+
+def profile_cfg(cfg: DraftConfig, name: str | None) -> DraftConfig:
+    """Cấu hình của một hồ sơ prompt (``""``/``None`` = gốc)."""
+    if not name:
+        return cfg
+    p = cfg.profiles[name]
+    upd: dict[str, Any] = {
+        "prompt": p.prompt,
+        "type_rules_version": p.type_rules_version,
+        "officer_docs": list(p.officer_docs),
+        "officer_persona": p.officer_persona,
+    }
+    if p.personas is not None:
+        upd["personas"] = list(p.personas)
+    return cfg.model_copy(update=upd)
 
 
 # --------------------------------------------------------------------------- đầu vào
@@ -255,6 +323,8 @@ class DraftInput:
     """``gold_units`` mặc định theo từng câu (1 câu; 2 câu cho ``theo_thoi_diem``)."""
     note: str = ""
     source_text: str = field(default="", repr=False)
+    rules: str = ""
+    """Đoạn quy tắc theo loại câu (rỗng = ``TYPE_RULES`` v1)."""
     """Toàn văn các nguồn (dò số lạ, chép nguyên văn)."""
 
     @property
@@ -418,6 +488,8 @@ def build_inputs(
         if s.qtype not in TYPE_RULES:
             continue
         persona, style = pick_style(s.sid, cfg)
+        if cfg.officer_docs and any(c.doc_id in cfg.officer_docs for c in s.chunks):
+            persona = cfg.officer_persona
         acc = _Acc()
         if s.qtype == "theo_thoi_diem":
             before = s.chunks[0] if len(s.chunks) == 2 else None
@@ -449,6 +521,9 @@ def build_inputs(
                 gold_default=gold,
                 note=s.note,
                 source_text="\n".join(acc.texts),
+                rules=TYPE_RULES_BY_VERSION[cfg.type_rules_version][s.qtype]
+                if cfg.type_rules_version != "v1"
+                else "",
             )
         )
     return out
@@ -463,7 +538,7 @@ def render_numbers(inp: DraftInput) -> str:
 def build_messages(prompt: Prompt, inp: DraftInput) -> list[dict[str, str]]:
     from string import Template
 
-    rules = TYPE_RULES[inp.qtype]
+    rules = inp.rules or TYPE_RULES[inp.qtype]
     if inp.qtype == "theo_thoi_diem":
         rules = Template(rules).safe_substitute(
             date_before=inp.dates[0].isoformat(), date_after=inp.dates[1].isoformat()
@@ -998,6 +1073,9 @@ __all__ = [
     "DRAFT_SOURCE_RE",
     "DRAFT_TYPES",
     "HEAVY_FLAGS",
+    "ProfileSpec",
+    "TYPE_RULES_V2",
+    "profile_cfg",
     "load_review",
     "OOSCategory",
     "OOSInput",

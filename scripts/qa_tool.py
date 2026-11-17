@@ -459,10 +459,10 @@ def draft_guard(env: QAEnv, llm_cfg: Any, model_id: str, cfg: DraftConfig) -> st
     return None
 
 
-def draft_suggestions(env: QAEnv, cfg: DraftConfig) -> list[Any]:
+def draft_suggestions(env: QAEnv, cfg: DraftConfig) -> tuple[list[Any], dict[str, str]]:
     """Gợi ý vòng 1 (đúng phiếu viết) + các vòng sinh thêm ``draft.rounds`` (mã ``W<n>-…``). Mặc
     định không dùng lại unit đã gợi ý ở vòng trước; ``reuse_units`` chỉ cấm lặp trong cùng loại câu.
-    Tất định."""
+    Trả (gợi ý, {sid: hồ sơ prompt}); vòng có ``profile`` lọc gợi ý theo hồ sơ đó. Tất định."""
     from dataclasses import replace
 
     def units_of(s: Any) -> set[str]:
@@ -471,6 +471,7 @@ def draft_suggestions(env: QAEnv, cfg: DraftConfig) -> list[Any]:
     used: set[str] = set()
     base = plan_cfg(env)
     sugs, _ = plan_suggestions(env.store, env.targets, base, used)
+    profile_of = {s.sid: "" for s in sugs}
     by_type: dict[str, set[str]] = {}
     for s in sugs:
         by_type.setdefault(s.qtype, set()).update(units_of(s))
@@ -479,6 +480,9 @@ def draft_suggestions(env: QAEnv, cfg: DraftConfig) -> list[Any]:
         pc = replace(base, sid_prefix=f"W{r.round}")
         if r.so_sanh_min is not None:
             pc = replace(pc, so_sanh_min=r.so_sanh_min)
+        prof = cfg.profiles.get(r.profile) if r.profile else None
+        if prof is not None and prof.exclude_dieu_title:
+            pc = replace(pc, exclude_dieu_title=prof.exclude_dieu_title)
         tw = dict(r.tier) if r.tier else t.tier
         if not r.reuse_units:
             tr = Targets(t.total, tw, dict(r.question_type), t.tolerance)
@@ -492,8 +496,9 @@ def draft_suggestions(env: QAEnv, cfg: DraftConfig) -> list[Any]:
         for s in more:
             used |= units_of(s)
             by_type.setdefault(s.qtype, set()).update(units_of(s))
+            profile_of[s.sid] = r.profile or ""
         sugs += more
-    return sugs
+    return sugs, profile_of
 
 
 def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
@@ -514,6 +519,7 @@ def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
         oos_messages,
         oos_schema,
         output_tokens_per_call,
+        profile_cfg,
         render_markdown,
         render_oos_markdown,
         run_drafts,
@@ -546,77 +552,84 @@ def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
         print("draft-test: ngoai_pham_vi chạy riêng (--type ngoai_pham_vi)", file=sys.stderr)
         return 1
     t0 = time.monotonic()
-    sugs = draft_suggestions(env, cfg)
+    sugs, profile_of = draft_suggestions(env, cfg)
     pick = [s for s in sugs if s.qtype in types]
     if args.round is not None:
         prefix = "W-" if args.round == 1 else f"W{args.round}-"
         pick = [s for s in pick if s.sid.startswith(prefix)]
     raw = env.p("draft_dir") / "raw.jsonl"
     oprompt = load_prompt(cfg.oos_prompt)
-    if oos:
-        inputs: list[Any] = list(build_oos_inputs(cfg))
-        prompt = oprompt
-        key = oos_key(model_id, prompt, cfg)
 
-        def mfn(i: Any) -> list[dict[str, str]]:
+    # Mỗi nhóm = (cấu hình hồ sơ, prompt, khoá, đầu vào, hàm messages, schema).
+    groups: list[tuple[DraftConfig, Any, Any, list[Any], Any, Any]] = []
+    if oos:
+        okey0 = oos_key(model_id, oprompt, cfg)
+
+        def omfn(i: Any) -> list[dict[str, str]]:
             return oos_messages(oprompt, i, cfg)
 
-        schema: Any = oos_schema(cfg.oos_per_call)
+        groups.append(
+            (cfg, oprompt, okey0, list(build_oos_inputs(cfg)), omfn, oos_schema(cfg.oos_per_call))
+        )
     else:
-        inputs = build_inputs(env.store, pick, cfg)
-        prompt = load_prompt(cfg.prompt)
-        key = draft_key(model_id, prompt, cfg)
+        for prof in sorted({profile_of.get(s.sid, "") for s in pick}):
+            pcfg = profile_cfg(cfg, prof)
+            prompt = load_prompt(pcfg.prompt)
+            gins = build_inputs(env.store, [s for s in pick if profile_of[s.sid] == prof], pcfg)
 
-        def mfn(i: Any) -> list[dict[str, str]]:
-            return build_messages(prompt, i)
+            def mfn(i: Any, _p: Any = prompt) -> list[dict[str, str]]:
+                return build_messages(_p, i)
 
-        schema = None
+            groups.append((pcfg, prompt, draft_key(model_id, prompt, pcfg), gins, mfn, None))
     if args.limit is not None:
-        inputs = inputs[: args.limit]
-    done = done_input_keys(raw, key, retry_format_error=args.retry_format_error)
-    todo = [i for i in inputs if sha256(mfn(i)[0]["content"]) not in done]
+        groups = [(*g[:3], g[3][: args.limit], *g[4:]) for g in groups]
+    todos = []
+    for _gcfg, _prompt, key, inputs, mfn, _schema in groups:
+        done = done_input_keys(raw, key, retry_format_error=args.retry_format_error)
+        todos.append([i for i in inputs if sha256(mfn(i)[0]["content"]) not in done])
 
     if args.dry_run:
         opc = output_tokens_per_call(raw)
-        if oos:
-            pt = sum(int(len(mfn(i)[0]["content"]) / cfg.chars_per_token) + 1 for i in todo)
-            est = {
-                "total": {
-                    "calls": len(todo),
-                    "prompt_tokens": pt,
-                    "output_tokens": round(opc) * len(todo),
-                }
-            }
-        else:
-            est = estimate(todo, prompt, cfg, out_per_call=opc)
-        print(
-            f"dry-run: model {provider}:{model_id} · prompt {key.prompt_hash[:12]} · schema "
-            f"{key.schema_hash[:12]} · {len(inputs)} gợi ý · đã xong {len(inputs) - len(todo)} · "
-            f"{cfg.n_drafts} nháp/gợi ý · {opc:.0f} token ra/lượt · dựng đầu vào "
-            f"{time.monotonic() - t0:.1f} s"
-        )
-        if guard:
-            print(f"  CẢNH BÁO: {guard}")
-        for k, v in est.items():
-            print(
-                f"  {k:<28} {v['calls']:>5} lượt  ~{v['prompt_tokens']:>9,} token vào  "
-                f"~{v['output_tokens']:>8,} token ra"
-            )
-        tot = est.get("total", {"prompt_tokens": 0, "output_tokens": 0})
         scfg = serve_config(env.root)
-        if scfg is not None and is_local(llm_cfg, provider):
-            h, vnd = gpu_hours(scfg, model_id, tot["prompt_tokens"], tot["output_tokens"])
+        for (gcfg, prompt, key, inputs, mfn, _s), todo in zip(groups, todos, strict=True):
+            if oos:
+                pt = sum(int(len(mfn(i)[0]["content"]) / gcfg.chars_per_token) + 1 for i in todo)
+                est = {
+                    "total": {
+                        "calls": len(todo),
+                        "prompt_tokens": pt,
+                        "output_tokens": round(opc) * len(todo),
+                    }
+                }
+            else:
+                est = estimate(todo, prompt, gcfg, out_per_call=opc)
             print(
-                f"  → GPU tự host: ~{h:.2f} giờ ≈ {vnd:,} VND (chưa gồm cài đặt/tải model; "
-                f"{scfg.remote.price_vnd_per_hour:,} VND/giờ)"
+                f"dry-run: model {provider}:{model_id} · prompt {key.prompt_hash[:12]} · schema "
+                f"{key.schema_hash[:12]} · {len(inputs)} gợi ý · đã xong "
+                f"{len(inputs) - len(todo)} · {opc:.0f} token ra/lượt · dựng đầu vào "
+                f"{time.monotonic() - t0:.1f} s"
             )
-        if todo:
-            sample = mfn(todo[0])[0]["content"]
-            print(f"  prompt mẫu ({todo[0].sid}, {len(sample)} ký tự):")
-            print("    " + sample.replace("\n", "\n    "))
+            if guard:
+                print(f"  CẢNH BÁO: {guard}")
+            for k, v in est.items():
+                print(
+                    f"  {k:<28} {v['calls']:>5} lượt  ~{v['prompt_tokens']:>9,} token vào  "
+                    f"~{v['output_tokens']:>8,} token ra"
+                )
+            tot = est.get("total", {"prompt_tokens": 0, "output_tokens": 0})
+            if scfg is not None and is_local(llm_cfg, provider):
+                h, vnd = gpu_hours(scfg, model_id, tot["prompt_tokens"], tot["output_tokens"])
+                print(
+                    f"  → GPU tự host: ~{h:.2f} giờ ≈ {vnd:,} VND (chưa gồm cài đặt/tải model; "
+                    f"{scfg.remote.price_vnd_per_hour:,} VND/giờ)"
+                )
+            if todo:
+                sample = mfn(todo[0])[0]["content"]
+                print(f"  prompt mẫu ({todo[0].sid}, {len(sample)} ký tự):")
+                print("    " + sample.replace("\n", "\n    "))
         return 0
 
-    if args.max_calls != 0 and todo:
+    if args.max_calls != 0 and any(todos):
         load_dotenv(env.root / ".env")
         meta = None
         if is_local(llm_cfg, provider):
@@ -624,65 +637,77 @@ def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
             if meta is None:
                 return 1
         client = build_client(llm_cfg, provider, model_id=model_id, root=env.root)
-        t1 = time.monotonic()
-        started = datetime.now().astimezone().isoformat(timespec="seconds")
+        for (gcfg, prompt, key, inputs, mfn, schema), todo in zip(groups, todos, strict=True):
+            if not todo:
+                continue
+            t1 = time.monotonic()
+            started = datetime.now().astimezone().isoformat(timespec="seconds")
 
-        def progress(i: int, n: int, inp: Any, r: Any) -> None:
-            if i % 20 == 0 or i == n or r.status != "ok":
-                print(
-                    f"  [{i}/{n}] {inp.sid:<26} {r.status:<12} {r.latency_ms:>6} ms "
-                    f"{r.usage.total_tokens:>5} tok  {time.monotonic() - t1:,.0f}s",
-                    flush=True,
-                )
+            def progress(i: int, n: int, inp: Any, r: Any, _t1: float = t1) -> None:
+                if i % 20 == 0 or i == n or r.status != "ok":
+                    print(
+                        f"  [{i}/{n}] {inp.sid:<26} {r.status:<12} {r.latency_ms:>6} ms "
+                        f"{r.usage.total_tokens:>5} tok  {time.monotonic() - _t1:,.0f}s",
+                        flush=True,
+                    )
 
-        out = run_drafts(
-            inputs,
-            cfg,
-            client,
-            raw,
-            prompt,
-            max_calls=args.max_calls,
-            retry_format_error=args.retry_format_error,
-            workers=args.workers,
-            git_commit=git_commit(env.root),
-            run_meta=meta,
-            progress=progress,
-            messages_fn=mfn,
-            schema=schema,
-            key=key,
-        )
-        append_jsonl(
-            env.p("draft_dir") / "runs.jsonl",
-            {
-                "started_at": started,
-                "seconds": round(time.monotonic() - t1, 1),
-                "model_id": model_id,
-                "prompt_hash": key.prompt_hash,
-                "schema_hash": key.schema_hash,
-                "types": types,
-                "workers": args.workers,
-                "n_todo": out.n_todo,
-                "n_called": out.n_called,
-                "by_status": dict(out.by_status),
-                "serve": meta,
-                "git_commit": git_commit(env.root),
-            },
-        )
-        print(
-            f"draft-test: {out.n_inputs} gợi ý · {out.n_todo} cần chạy · đã gọi {out.n_called} · "
-            f"{dict(out.by_status)} · {time.monotonic() - t1:,.0f} s"
-        )
-        if out.stopped:
-            print(out.hint, file=sys.stderr)
-            return 3
+            out = run_drafts(
+                inputs,
+                gcfg,
+                client,
+                raw,
+                prompt,
+                max_calls=args.max_calls,
+                retry_format_error=args.retry_format_error,
+                workers=args.workers,
+                git_commit=git_commit(env.root),
+                run_meta=meta,
+                progress=progress,
+                messages_fn=mfn,
+                schema=schema,
+                key=key,
+            )
+            append_jsonl(
+                env.p("draft_dir") / "runs.jsonl",
+                {
+                    "started_at": started,
+                    "seconds": round(time.monotonic() - t1, 1),
+                    "model_id": model_id,
+                    "prompt_hash": key.prompt_hash,
+                    "schema_hash": key.schema_hash,
+                    "types": types,
+                    "workers": args.workers,
+                    "n_todo": out.n_todo,
+                    "n_called": out.n_called,
+                    "by_status": dict(out.by_status),
+                    "serve": meta,
+                    "git_commit": git_commit(env.root),
+                },
+            )
+            print(
+                f"draft-test: {out.n_inputs} gợi ý · {out.n_todo} cần chạy · đã gọi "
+                f"{out.n_called} · {dict(out.by_status)} · {time.monotonic() - t1:,.0f} s"
+            )
+            if out.stopped:
+                print(out.hint, file=sys.stderr)
+                return 3
 
-    # Dựng lại file nháp từ mọi gợi ý (không chỉ --type/--limit lần này) để file luôn đầy đủ.
-    dprompt = load_prompt(cfg.prompt)
-    dkey = draft_key(model_id, dprompt, cfg)
-    all_inputs = build_inputs(env.store, sugs, cfg)
-    keys = {i.sid: input_key(dprompt, i) for i in all_inputs}
-    parsed, by_status = latest_parsed(raw, dkey, keys)
-    records = assemble(all_inputs, parsed, dkey, cfg)
+    # Dựng lại file nháp từ mọi gợi ý (mọi hồ sơ) để file luôn đầy đủ.
+    records: list[Any] = []
+    all_inputs: list[Any] = []
+    n_parsed = 0
+    for prof in sorted(set(profile_of.values())):
+        pcfg = profile_cfg(cfg, prof)
+        dprompt = load_prompt(pcfg.prompt)
+        dkey = draft_key(model_id, dprompt, pcfg)
+        ins = build_inputs(env.store, [s for s in sugs if profile_of[s.sid] == prof], pcfg)
+        keys = {i.sid: input_key(dprompt, i) for i in ins}
+        parsed, _ = latest_parsed(raw, dkey, keys)
+        n_parsed += len(parsed)
+        records += assemble(ins, parsed, dkey, pcfg)
+        all_inputs += ins
+    order = {s.sid: n for n, s in enumerate(sugs)}
+    all_inputs.sort(key=lambda i: order[i.sid])
     okey = oos_key(model_id, oprompt, cfg)
     o_inputs = build_oos_inputs(cfg)
     o_keys = {i.sid: sha256(oos_messages(oprompt, i, cfg)[0]["content"]) for i in o_inputs}
@@ -690,14 +715,13 @@ def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
     dev = [str(r.get("question") or "") for r in read_jsonl(env.p("dev_oos"))]
     o_records = assemble_oos(o_inputs, o_parsed, okey, cfg, plan_cfg(env).as_of, dev)
     write_jsonl(env.p("drafts"), [r.to_dict() for r in [*records, *o_records]])
-    md = render_markdown(
-        all_inputs, records, {"model_id": model_id, "prompt_hash": dkey.prompt_hash}
-    ) + render_oos_markdown(o_records)
+    md = render_markdown(all_inputs, records, {"model_id": model_id, "prompt_hash": "(nhiều)"})
+    md += render_oos_markdown(o_records)
     env.p("drafts_md").write_bytes(md.encode("utf-8"))
     n_flag = sum(1 for r in [*records, *o_records] if r.flags)
     print(
-        f"nháp: {len(parsed)}/{len(all_inputs)} gợi ý có nháp ({dict(by_status)}) · "
-        f"{len(records)} câu · {n_flag} câu có cờ → {env.p('drafts_md')}"
+        f"nháp: {n_parsed}/{len(all_inputs)} gợi ý có nháp · {len(records)} câu · "
+        f"{n_flag} câu có cờ → {env.p('drafts_md')}"
     )
     return 0
 
@@ -753,7 +777,33 @@ def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
             else:
                 keep.append(it)
         items = keep
-    items, over_quota = balance_quota(items, env.targets.question_type, env.targets.tier_expected())
+
+    # Hai lượt: câu đã rà đạt trước; phần còn trống của hạn mức mới lấy câu chưa rà (vòng mới
+    # trước). Cặp pair_id tính là đạt khi cả hai câu đạt.
+    def ok_of(it: dict[str, Any]) -> bool:
+        return review.get(it["qid"], {}).get("verdict") == "OK"
+
+    pair_ok: dict[str, bool] = {}
+    for it in items:
+        if it.get("pair_id"):
+            pair_ok[it["pair_id"]] = pair_ok.get(it["pair_id"], True) and ok_of(it)
+    is_ok = [(pair_ok[it["pair_id"]] if it.get("pair_id") else ok_of(it)) for it in items]
+    ok_items = [it for it, o in zip(items, is_ok, strict=True) if o]
+    rest = [it for it, o in zip(items, is_ok, strict=True) if not o]
+    rest.sort(key=lambda it: -int(str(it["qid"]).split("-")[0][1:] or 1))  # vòng mới trước
+    quota = dict(env.targets.question_type)
+    tier_t = env.targets.tier_expected()
+    kept_ok, drop_ok = balance_quota(ok_items, quota, tier_t)
+    left = dict(quota)
+    tier_left = dict(tier_t)
+    for it in kept_ok:
+        left[it["question_type"]] -= 1
+        if it.get("tier"):
+            tier_left[it["tier"]] = tier_left.get(it["tier"], 0) - 1
+    tier_left = {k: max(v, 0.5) for k, v in tier_left.items()}
+    kept_rest, drop_rest = balance_quota(rest, left, tier_left)
+    items = kept_ok + kept_rest
+    over_quota = drop_ok + drop_rest
     write_jsonl(test, items)
     report = {
         "imported_at": datetime.now().astimezone().isoformat(timespec="seconds"),

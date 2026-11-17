@@ -137,6 +137,20 @@ draft:
       reuse_units: true
       question_type:
         tru_diem: 6
+    # Vòng 6 (prompt v2): bù phần thiếu sau khi rà (≈ 1,8 × số câu đạt còn thiếu mỗi loại).
+    - round: 6
+      profile: v2
+      reuse_units: true
+      question_type:
+        muc_phat: 60
+        tru_diem: 24
+        bien_phap: 42
+        hanh_vi_cam_nghia_vu: 70
+        dinh_nghia: 24
+        thu_tuc_tham_quyen: 80
+        theo_thoi_diem: 56          # câu (= 28 cặp)
+        da_buoc: 64
+        so_sanh: 32
   # Câu loại khi nhập tự động (người dùng đồng ý 17/11/2026 sau khi Claude rà danh sách
   # ngoai_pham_vi): câu "ngoài phạm vi" mà dữ liệu thật ra trả lời được (một phần).
   import_exclude:
@@ -144,6 +158,25 @@ draft:
     - {qid: t-oos-phap_luat_khac-1c, reason: "ranh giới: hỏi các khoản phí phải nộp khi mua xe (lệ phí đăng ký xe có trong dữ liệu)"}
     - {qid: t-oos-cong_nghe_ky_thuat-2a, reason: "ranh giới: nhắc tuổi học lái xe máy (độ tuổi người lái có trong dữ liệu)"}
     - {qid: t-oos-tu_van_ca_nhan-2c, reason: "dùng giấy phép lái xe nước ngoài tại Việt Nam có trong dữ liệu (trong phạm vi)"}
+  # Hồ sơ prompt v2 (người dùng đồng ý 17/11/2026 sau khi rà 534 câu v1: 47% đạt). Sửa 6 lỗi hệ
+  # thống: chủ thể/vai, thẩm quyền ≠ mức phạt, loại xe theo Điều, trừ điểm theo danh sách, không
+  # bịa ngoài nguồn, tiền đề hợp lý. Bỏ Điều thẩm quyền xử phạt khỏi gợi ý; văn bản quy trình nội
+  # bộ Công an → vai cán bộ CSGT. Vòng 1–5 giữ cấu hình gốc (khoá resume không đổi).
+  profiles:
+    v2:
+      prompt: qa_test_draft_v2
+      type_rules_version: v2
+      personas:
+        - người lái ô tô cá nhân
+        - tài xế xe tải
+        - tài xế xe khách
+        - người đi xe máy
+        - chủ doanh nghiệp vận tải
+        - người đi xe đạp điện
+        - người dân
+        - chủ xe
+      officer_docs: [TT69-2024-BCA, TT72-2024-BCA, TT73-2024-BCA, TT83-2024-BCA]
+      exclude_dieu_title: "^(Phân định thẩm quyền xử phạt|Thẩm quyền xử phạt|Nguyên tắc xác định thẩm quyền xử phạt)"
   # Câu ngoai_pham_vi do LLM viết (người dùng yêu cầu 17/11/2026): mỗi nhóm × lượt × câu/lượt.
   oos_prompt: qa_test_draft_oos
   oos_calls_per_category: 2
