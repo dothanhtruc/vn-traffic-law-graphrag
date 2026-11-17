@@ -96,11 +96,21 @@ class RoundSpec(BaseModel):
     model_config = ConfigDict(extra="forbid")
     round: int = Field(ge=2)
     question_type: dict[str, int]
+    tier: dict[str, float] | None = None
+    """Trọng số tier của vòng (mặc định = hạn mức tier); vd chỉ B/C/historical để cân tier."""
     reuse_units: bool = False
     """Nới điều kiện: cho dùng lại unit đã gợi ý ở vòng trước cho **loại câu khác** (vẫn cấm lặp
     unit trong cùng loại câu) — kho ``so_sanh``/``tru_diem`` cạn sau vòng 2."""
     so_sanh_min: float | None = None
     """Ngưỡng cosine tối thiểu của cặp ``so_sanh`` (mặc định ``PlanConfig.so_sanh_min`` 0,5)."""
+
+
+class OOSCategory(BaseModel):
+    """Nhóm chủ đề câu ``ngoai_pham_vi`` (người dùng yêu cầu sinh tự động 17/11/2026)."""
+
+    model_config = ConfigDict(extra="forbid")
+    name: str
+    desc: str
 
 
 class DraftConfig(BaseModel):
@@ -125,6 +135,12 @@ class DraftConfig(BaseModel):
     personas: list[str] = Field(default_factory=list)
     styles: list[StyleSpec] = Field(default_factory=list)
     rounds: list[RoundSpec] = Field(default_factory=list)
+    oos_prompt: str = "qa_test_draft_oos"
+    oos_categories: list[OOSCategory] = Field(default_factory=list)
+    oos_calls_per_category: int = 2
+    oos_per_call: int = 5
+    oos_near_dup: float = 0.8
+    """Cosine TF-IDF với câu dev_out_of_scope / câu ngoai_pham_vi khác ≥ ngưỡng → cờ gần trùng."""
 
 
 # --------------------------------------------------------------------------- schema đầu ra
@@ -514,21 +530,31 @@ def run_drafts(
     git_commit: str | None = None,
     run_meta: Mapping[str, Any] | None = None,
     resume_cmd: str = "uv run python -m scripts.qa_tool draft-test",
-    progress: Callable[[int, int, DraftInput, LLMResult], None] | None = None,
+    progress: Callable[[int, int, Any, LLMResult], None] | None = None,
+    messages_fn: Callable[[Any], list[dict[str, str]]] | None = None,
+    schema: type[BaseModel] | None = None,
+    key: DraftKey | None = None,
 ) -> DraftRunOutcome:
-    key = draft_key(client.model_id, prompt, cfg)
+    """Gọi LLM cho mỗi đầu vào chưa xong. Mặc định: gợi ý phiếu viết (``build_messages``);
+    đợt ``ngoai_pham_vi`` truyền ``messages_fn``/``schema``/``key`` riêng."""
+    msgs = messages_fn or (lambda inp: build_messages(prompt, inp))
+    key = key or draft_key(client.model_id, prompt, cfg)
+    schema = schema or output_schema(cfg.n_drafts)
+
+    def ikey(inp: Any) -> str:
+        return sha256(msgs(inp)[0]["content"])
+
     done = done_input_keys(raw, key, retry_format_error=retry_format_error)
-    todo = [i for i in inputs if input_key(prompt, i) not in done]
+    todo = [i for i in inputs if ikey(i) not in done]
     out = DraftRunOutcome(n_inputs=len(inputs), n_todo=len(todo))
     if max_calls is not None:
         todo = todo[: max(0, max_calls)]
-    schema = output_schema(cfg.n_drafts)
     params: dict[str, Any] = {"max_output_tokens": cfg.max_output_tokens}
     if cfg.reasoning_effort:
         params["reasoning_effort"] = cfg.reasoning_effort
 
-    def call(inp: DraftInput) -> LLMResult:
-        return client.generate(build_messages(prompt, inp), json_schema=schema, params=params)
+    def call(inp: Any) -> LLMResult:
+        return client.generate(msgs(inp), json_schema=schema, params=params)
 
     with JsonlWriter(raw) as w:
         for inp, r in map_parallel(todo, call, workers):
@@ -539,7 +565,7 @@ def run_drafts(
             w.write(
                 {
                     "sid": inp.sid,
-                    "input_key": input_key(prompt, inp),
+                    "input_key": ikey(inp),
                     "model_id": r.model_id,
                     "provider": r.provider,
                     "prompt_hash": key.prompt_hash,
@@ -942,6 +968,15 @@ __all__ = [
     "DRAFT_SOURCE_RE",
     "DRAFT_TYPES",
     "HEAVY_FLAGS",
+    "OOSCategory",
+    "OOSInput",
+    "assemble_oos",
+    "balance_quota",
+    "build_oos_inputs",
+    "oos_key",
+    "oos_messages",
+    "oos_schema",
+    "render_oos_markdown",
     "RoundSpec",
     "cap_quota",
     "pair_id_for",
@@ -1001,4 +1036,215 @@ def cap_quota(
             keep += [dict(x) for x in g]
         else:
             dropped += [str(x["qid"]) for x in g]
+    return keep, dropped
+
+
+# --------------------------------------------------------------------------- ngoai_pham_vi
+
+
+@dataclass(frozen=True)
+class OOSInput:
+    sid: str
+    category: OOSCategory
+    call: int
+    persona: str
+    style: StyleSpec
+
+
+def build_oos_inputs(cfg: DraftConfig) -> list[OOSInput]:
+    out = []
+    for cat in cfg.oos_categories:
+        for c in range(1, cfg.oos_calls_per_category + 1):
+            sid = f"O-{cat.name}-{c}"
+            persona, style = pick_style(sid, cfg)
+            out.append(OOSInput(sid, cat, c, persona, style))
+    return out
+
+
+class OOSQuestion(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    question: str
+    answer: str
+
+
+def oos_schema(n: int) -> type[BaseModel]:
+    from pydantic import create_model
+
+    return create_model(
+        "OOSOut",
+        __config__=ConfigDict(extra="forbid"),
+        questions=(list[OOSQuestion], Field(min_length=1, max_length=n)),
+    )
+
+
+def oos_messages(prompt: Prompt, inp: OOSInput, cfg: DraftConfig) -> list[dict[str, str]]:
+    content = prompt.render(
+        n=str(cfg.oos_per_call),
+        category=inp.category.name,
+        category_desc=inp.category.desc,
+        persona=inp.persona,
+        style=f"{inp.style.name} — {inp.style.desc}",
+    )
+    return [{"role": "user", "content": content}]
+
+
+def oos_key(model_id: str, prompt: Prompt, cfg: DraftConfig) -> DraftKey:
+    ph = sha256(
+        {
+            "prompt": prompt.hash,
+            "categories": [c.model_dump() for c in cfg.oos_categories],
+            "personas": cfg.personas,
+            "styles": [s.model_dump() for s in cfg.styles],
+            "reasoning_effort": cfg.reasoning_effort,
+        }
+    )
+    return DraftKey(model_id, ph, sha256(oos_schema(cfg.oos_per_call).model_json_schema()))
+
+
+def assemble_oos(
+    inputs: Sequence[OOSInput],
+    parsed_by_sid: Mapping[str, Mapping[str, Any]],
+    key: DraftKey,
+    cfg: DraftConfig,
+    as_of: date,
+    dev_questions: Sequence[str] = (),
+) -> list[DraftRecord]:
+    """Mỗi câu một bản ghi (``sid = O-<thứ tự trong lượt>-<nhóm>-<lượt>`` ⇒ sắp theo ``sid`` là
+    xen kẽ các nhóm). Cờ: độ dài, gần trùng câu dev_out_of_scope, gần trùng câu trước đó."""
+    from trafficlaw.eval.textsim import near_pairs
+
+    rows: list[tuple[OOSInput, int, str, str]] = []
+    for inp in inputs:
+        parsed = parsed_by_sid.get(inp.sid) or {}
+        for i, q in enumerate(parsed.get("questions") or [], 1):
+            rows.append(
+                (inp, i, str(q.get("question") or "").strip(), str(q.get("answer") or "").strip())
+            )
+    rows.sort(key=lambda r: (r[1], r[0].category.name, r[0].call))
+    texts = [r[2] for r in rows]
+    dup_dev: set[int] = set()
+    if dev_questions and texts:
+        dup_dev = {
+            i for i, _, _ in near_pairs(texts, list(dev_questions), threshold=cfg.oos_near_dup)
+        }
+    dup_self: set[int] = set()
+    if len(texts) > 1:
+        for i, j, _ in near_pairs(texts, texts, threshold=cfg.oos_near_dup, same=True):
+            dup_self.add(max(i, j))
+    out = []
+    for n, (inp, i, q, a) in enumerate(rows):
+        flags = []
+        w = len(q.split())
+        if w < cfg.min_words:
+            flags.append(f"qua_ngan ({w} từ)")
+        if w > cfg.max_words:
+            flags.append(f"qua_dai ({w} từ)")
+        if n in dup_dev:
+            flags.append("gan_trung_dev_oos")
+        if n in dup_self:
+            flags.append("gan_trung")
+        if not q or not a:
+            flags.append("so_cau_sai (rỗng)")
+        sid = f"O-{i:02d}-{inp.category.name}-{inp.call}"
+        item = {
+            "qid": f"t-oos-{inp.category.name}-{inp.call}{'abcdefghij'[i - 1]}",
+            "question": q,
+            "as_of": as_of.isoformat(),
+            "question_type": "ngoai_pham_vi",
+            "tier": None,
+            "answer": a,
+            "gold_units": [],
+            "required_numbers": [],
+            "source": f"llm:{key.model_id}+human",
+            "draft_id": f"{sid}:1",
+        }
+        out.append(
+            DraftRecord(
+                draft_id=f"{sid}:1",
+                sid=sid,
+                k=1,
+                j=0,
+                qtype="ngoai_pham_vi",
+                tier="",
+                persona=inp.persona,
+                style=inp.style.name,
+                model_id=key.model_id,
+                prompt_hash=key.prompt_hash,
+                item=item,
+                flags=flags,
+                ghi_chu=inp.category.desc,
+                nghi_ngo="",
+            )
+        )
+    return out
+
+
+def render_oos_markdown(records: Sequence[DraftRecord]) -> str:
+    lines = [
+        "## ngoai_pham_vi — câu ngoài phạm vi (LLM viết theo nhóm chủ đề)",
+        "",
+        "Kiểm kỹ: câu phải thật sự nằm ngoài dữ liệu (không văn bản nào trong danh mục trả lời).",
+        "",
+    ]
+    for r in records:
+        it = r.item
+        lines += [f"### {r.sid} · nhóm: {r.ghi_chu} · vai: {r.persona}", ""]
+        lines += [f"- Hỏi: {it['question']}", f"- Đáp: {it['answer']}"]
+        if r.flags:
+            lines.append("- ⚠ " + "; ".join(r.flags))
+        lines += ["", "```json", json.dumps(it, ensure_ascii=False), "```", ""]
+    return "\n".join(lines) + "\n"
+
+
+# --------------------------------------------------------------------------- cân tier
+
+
+def _tier_score(tier: Any, target: Mapping[str, float], count: Mapping[str, int]) -> float:
+    """Thiếu tương đối của tier (cao = cần thêm); không tier → 0; tier không có hạn mức → −1."""
+    if not tier:
+        return 0.0
+    tgt = target.get(str(tier), 0.0)
+    return (tgt - count.get(str(tier), 0)) / tgt if tgt > 0 else -1.0
+
+
+def balance_quota(
+    items: Sequence[Mapping[str, Any]],
+    type_quota: Mapping[str, int],
+    tier_target: Mapping[str, float],
+) -> tuple[list[dict[str, Any]], list[str]]:
+    """Chọn câu (cặp ``pair_id`` đi cùng nhau) không vượt hạn mức loại câu, ưu tiên tier đang
+    thiếu nhiều nhất so với ``tier_target`` (thiếu tương đối); hoà → thứ tự đầu vào (vòng trước
+    trước). Câu không có tier (``ngoai_pham_vi``) chỉ theo thứ tự. Tham lam, tất định."""
+    groups: list[list[Mapping[str, Any]]] = []
+    index: dict[str, int] = {}
+    for it in items:
+        k = str(it.get("pair_id") or it["qid"])
+        if k not in index:
+            index[k] = len(groups)
+            groups.append([])
+        groups[index[k]].append(it)
+    n_type: Counter[str] = Counter()
+    n_tier: Counter[str] = Counter()
+    chosen = [False] * len(groups)
+    while True:
+        best, best_score = -1, 0.0
+        for gi, g in enumerate(groups):
+            if chosen[gi]:
+                continue
+            qt = str(g[0]["question_type"])
+            if n_type[qt] + len(g) > type_quota.get(qt, 0):
+                continue
+            tier = g[0].get("tier")
+            score = _tier_score(tier, tier_target, n_tier)
+            if best < 0 or score > best_score:
+                best, best_score = gi, score
+        if best < 0:
+            break
+        chosen[best] = True
+        g = groups[best]
+        n_type[str(g[0]["question_type"])] += len(g)
+        if g[0].get("tier"):
+            n_tier[str(g[0]["tier"])] += len(g)
+    keep = [dict(x) for gi, g in enumerate(groups) if chosen[gi] for x in g]
+    dropped = [str(x["qid"]) for gi, g in enumerate(groups) if not chosen[gi] for x in g]
     return keep, dropped

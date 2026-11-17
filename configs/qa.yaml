@@ -14,6 +14,7 @@ paths:
   validate_dir: data/processed/qa       # validate_<split>.json, <split>_resolved.jsonl
   drafts: data/qa/test_drafts.jsonl     # nháp câu test (LLM viết, người sửa) — đo tỷ lệ sửa
   drafts_md: data/qa/test_drafts.md     # bản đọc để chọn + sửa
+  dev_oos: data/qa/dev_out_of_scope.jsonl   # câu ngoài phạm vi dùng hiệu chỉnh τ (M12) — chống trùng
   draft_dir: data/processed/qa_test_draft   # raw.jsonl, runs.jsonl (artifact Release)
 
 as_of_default: 2026-11-03               # mốc chốt dữ liệu
@@ -119,6 +120,35 @@ draft:
         theo_thoi_diem: 30          # câu (= 15 cặp)
         dinh_nghia: 6
         da_buoc: 4
+    # Vòng 4 (người dùng yêu cầu cân tier 17/11/2026): chỉ tier B/C/historical (tier A đã vượt hạn
+    # mức) cho các loại có ứng viên ở các tier đó; import-drafts chọn theo tier đang thiếu.
+    - round: 4
+      tier: {B: 2, C: 1, historical: 1}
+      question_type:
+        hanh_vi_cam_nghia_vu: 40
+        thu_tuc_tham_quyen: 50
+        da_buoc: 24
+        muc_phat: 10
+        bien_phap: 6
+        dinh_nghia: 8
+    # Vòng 5: tru_diem còn thiếu (chỉ có ở tier A; dùng lại unit cho loại khác).
+    - round: 5
+      reuse_units: true
+      question_type:
+        tru_diem: 6
+  # Câu ngoai_pham_vi do LLM viết (người dùng yêu cầu 17/11/2026): mỗi nhóm × lượt × câu/lượt.
+  oos_prompt: qa_test_draft_oos
+  oos_calls_per_category: 2
+  oos_per_call: 5
+  oos_near_dup: 0.8
+  oos_categories:
+    - {name: giao_thong_khac, desc: "giao thông đường sắt, đường thủy nội địa, hàng hải, hàng không"}
+    - {name: phap_luat_khac, desc: "lĩnh vực pháp luật khác không liên quan giao thông đường bộ: hình sự, hôn nhân gia đình, đất đai, thuế, lao động, thừa kế"}
+    - {name: dan_su_bao_hiem, desc: "tranh chấp dân sự, hợp đồng mua bán, bảo hiểm thương mại, bồi thường theo hợp đồng giữa các bên (không phải xử phạt hành chính)"}
+    - {name: tu_van_ca_nhan, desc: "xin lời khuyên cá nhân, dự đoán kết quả, đánh giá một cán bộ hay một vụ việc cụ thể, chọn mua xe nào, nên học lái ở trường nào"}
+    - {name: so_lieu_thong_tin, desc: "số liệu thống kê, giá cả thị trường, thông tin doanh nghiệp, lịch làm việc hay địa chỉ của cơ quan, tình hình giao thông hôm nay"}
+    - {name: nuoc_ngoai, desc: "luật giao thông của nước khác áp dụng tại nước đó (Mỹ, Nhật, Hàn Quốc, châu Âu…), không liên quan Việt Nam"}
+    - {name: cong_nghe_ky_thuat, desc: "kỹ thuật sửa chữa xe, so sánh động cơ, phần mềm bản đồ, cách lái xe tiết kiệm nhiên liệu — câu hỏi kỹ thuật, không phải câu hỏi pháp luật"}
 
 subsets:
   ablation_200: {n: 200}

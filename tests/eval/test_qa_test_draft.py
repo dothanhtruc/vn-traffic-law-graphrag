@@ -450,3 +450,64 @@ def test_plan_round2_excludes_used_units() -> None:
     assert all(s.sid.startswith("W2-") for s in r2)
     again, _ = plan_suggestions(st, t, PlanConfig())
     assert [s.sid for s in again] == [s.sid for s in r1]
+
+
+def test_balance_quota_prefers_missing_tier() -> None:
+    from trafficlaw.eval.qa_test_draft import balance_quota
+
+    items = [
+        {"qid": "a1", "question_type": "x", "tier": "A"},
+        {"qid": "a2", "question_type": "x", "tier": "A"},
+        {"qid": "a3", "question_type": "x", "tier": "A"},
+        {"qid": "b1", "question_type": "x", "tier": "B"},
+        {"qid": "p1", "question_type": "y", "tier": "B", "pair_id": "p"},
+        {"qid": "p2", "question_type": "y", "tier": "B", "pair_id": "p"},
+        {"qid": "o1", "question_type": "ngoai_pham_vi", "tier": None},
+        {"qid": "o2", "question_type": "ngoai_pham_vi", "tier": None},
+    ]
+    keep, dropped = balance_quota(items, {"x": 3, "y": 2, "ngoai_pham_vi": 1}, {"A": 3.0, "B": 3.0})
+    kept = {x["qid"] for x in keep}
+    assert "b1" in kept and {"p1", "p2"} <= kept and "o1" in kept
+    assert len([q for q in kept if q.startswith("a")]) == 2
+    assert set(dropped) == {"a3", "o2"}
+
+
+def test_assemble_oos_flags_and_items() -> None:
+    from trafficlaw.eval.qa_test_draft import (
+        OOSCategory,
+        assemble_oos,
+        build_oos_inputs,
+        oos_messages,
+    )
+
+    cfg = CFG.model_copy(
+        update={
+            "oos_categories": [
+                OOSCategory(name="duong_sat", desc="đường sắt"),
+                OOSCategory(name="nuoc_ngoai", desc="nước ngoài"),
+            ],
+            "oos_calls_per_category": 1,
+        }
+    )
+    inputs = build_oos_inputs(cfg)
+    assert [i.sid for i in inputs] == ["O-duong_sat-1", "O-nuoc_ngoai-1"]
+    msg = oos_messages(load_prompt(cfg.oos_prompt), inputs[0], cfg)[0]["content"]
+    assert "duong_sat" in msg and "$" not in msg
+    q1 = "Vé tàu hỏa từ Hà Nội vào Sài Gòn hoàn lại thì bị trừ bao nhiêu phần trăm?"
+    parsed = {
+        "O-duong_sat-1": {"questions": [{"question": q1, "answer": "Ngoài phạm vi."}]},
+        "O-nuoc_ngoai-1": {
+            "questions": [
+                {"question": "Ở Nhật?", "answer": "Ngoài phạm vi."},
+                {"question": q1 + " ạ", "answer": "Ngoài phạm vi."},
+            ]
+        },
+    }
+    key = draft_key("fake-model", load_prompt(cfg.prompt), cfg)
+    recs = assemble_oos(inputs, parsed, key, cfg, AS_OF, dev_questions=[q1])
+    assert [r.sid for r in recs] == ["O-01-duong_sat-1", "O-01-nuoc_ngoai-1", "O-02-nuoc_ngoai-1"]
+    assert "gan_trung_dev_oos" in recs[0].flags
+    assert any(f.startswith("qua_ngan") for f in recs[1].flags)
+    assert "gan_trung" in recs[2].flags
+    it = QAItem.model_validate(recs[0].item)
+    assert it.question_type == "ngoai_pham_vi" and it.tier is None and not it.gold_units

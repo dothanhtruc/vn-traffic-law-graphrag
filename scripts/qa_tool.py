@@ -479,13 +479,14 @@ def draft_suggestions(env: QAEnv, cfg: DraftConfig) -> list[Any]:
         pc = replace(base, sid_prefix=f"W{r.round}")
         if r.so_sanh_min is not None:
             pc = replace(pc, so_sanh_min=r.so_sanh_min)
+        tw = dict(r.tier) if r.tier else t.tier
         if not r.reuse_units:
-            tr = Targets(t.total, t.tier, dict(r.question_type), t.tolerance)
+            tr = Targets(t.total, tw, dict(r.question_type), t.tolerance)
             more, _ = plan_suggestions(env.store, tr, pc, used)
         else:
             more = []
             for qt, n in r.question_type.items():
-                tr = Targets(t.total, t.tier, {qt: n}, t.tolerance)
+                tr = Targets(t.total, tw, {qt: n}, t.tolerance)
                 part, _ = plan_suggestions(env.store, tr, pc, set(by_type.get(qt, set())))
                 more += part
         for s in more:
@@ -500,16 +501,23 @@ def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
     from trafficlaw.eval.qa_test_draft import (
         DRAFT_TYPES,
         assemble,
+        assemble_oos,
         build_inputs,
         build_messages,
+        build_oos_inputs,
         done_input_keys,
         draft_key,
         estimate,
         input_key,
         latest_parsed,
+        oos_key,
+        oos_messages,
+        oos_schema,
         output_tokens_per_call,
         render_markdown,
+        render_oos_markdown,
         run_drafts,
+        sha256,
     )
     from trafficlaw.llm import build_client, load_llm_config, load_prompt
     from trafficlaw.llm.serve import gpu_hours
@@ -528,9 +536,14 @@ def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
         print(f"draft-test: {guard} — chọn model khác họ", file=sys.stderr)
         return 1
     types = args.type or list(DRAFT_TYPES)
-    bad = sorted(set(types) - set(DRAFT_TYPES))
+    allowed = [*DRAFT_TYPES, "ngoai_pham_vi"]
+    bad = sorted(set(types) - set(allowed))
     if bad:
-        print(f"draft-test: loại không hỗ trợ {bad} (có: {list(DRAFT_TYPES)})", file=sys.stderr)
+        print(f"draft-test: loại không hỗ trợ {bad} (có: {allowed})", file=sys.stderr)
+        return 1
+    oos = "ngoai_pham_vi" in types
+    if oos and len(types) > 1:
+        print("draft-test: ngoai_pham_vi chạy riêng (--type ngoai_pham_vi)", file=sys.stderr)
         return 1
     t0 = time.monotonic()
     sugs = draft_suggestions(env, cfg)
@@ -538,18 +551,44 @@ def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
     if args.round is not None:
         prefix = "W-" if args.round == 1 else f"W{args.round}-"
         pick = [s for s in pick if s.sid.startswith(prefix)]
-    inputs = build_inputs(env.store, pick, cfg)
+    raw = env.p("draft_dir") / "raw.jsonl"
+    oprompt = load_prompt(cfg.oos_prompt)
+    if oos:
+        inputs: list[Any] = list(build_oos_inputs(cfg))
+        prompt = oprompt
+        key = oos_key(model_id, prompt, cfg)
+
+        def mfn(i: Any) -> list[dict[str, str]]:
+            return oos_messages(oprompt, i, cfg)
+
+        schema: Any = oos_schema(cfg.oos_per_call)
+    else:
+        inputs = build_inputs(env.store, pick, cfg)
+        prompt = load_prompt(cfg.prompt)
+        key = draft_key(model_id, prompt, cfg)
+
+        def mfn(i: Any) -> list[dict[str, str]]:
+            return build_messages(prompt, i)
+
+        schema = None
     if args.limit is not None:
         inputs = inputs[: args.limit]
-    prompt = load_prompt(cfg.prompt)
-    key = draft_key(model_id, prompt, cfg)
-    raw = env.p("draft_dir") / "raw.jsonl"
     done = done_input_keys(raw, key, retry_format_error=args.retry_format_error)
-    todo = [i for i in inputs if input_key(prompt, i) not in done]
+    todo = [i for i in inputs if sha256(mfn(i)[0]["content"]) not in done]
 
     if args.dry_run:
         opc = output_tokens_per_call(raw)
-        est = estimate(todo, prompt, cfg, out_per_call=opc)
+        if oos:
+            pt = sum(int(len(mfn(i)[0]["content"]) / cfg.chars_per_token) + 1 for i in todo)
+            est = {
+                "total": {
+                    "calls": len(todo),
+                    "prompt_tokens": pt,
+                    "output_tokens": round(opc) * len(todo),
+                }
+            }
+        else:
+            est = estimate(todo, prompt, cfg, out_per_call=opc)
         print(
             f"dry-run: model {provider}:{model_id} · prompt {key.prompt_hash[:12]} · schema "
             f"{key.schema_hash[:12]} · {len(inputs)} gợi ý · đã xong {len(inputs) - len(todo)} · "
@@ -572,7 +611,7 @@ def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
                 f"{scfg.remote.price_vnd_per_hour:,} VND/giờ)"
             )
         if todo:
-            sample = build_messages(prompt, todo[0])[0]["content"]
+            sample = mfn(todo[0])[0]["content"]
             print(f"  prompt mẫu ({todo[0].sid}, {len(sample)} ký tự):")
             print("    " + sample.replace("\n", "\n    "))
         return 0
@@ -608,6 +647,9 @@ def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
             git_commit=git_commit(env.root),
             run_meta=meta,
             progress=progress,
+            messages_fn=mfn,
+            schema=schema,
+            key=key,
         )
         append_jsonl(
             env.p("draft_dir") / "runs.jsonl",
@@ -635,16 +677,24 @@ def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
             return 3
 
     # Dựng lại file nháp từ mọi gợi ý (không chỉ --type/--limit lần này) để file luôn đầy đủ.
+    dprompt = load_prompt(cfg.prompt)
+    dkey = draft_key(model_id, dprompt, cfg)
     all_inputs = build_inputs(env.store, sugs, cfg)
-    keys = {i.sid: input_key(prompt, i) for i in all_inputs}
-    parsed, by_status = latest_parsed(raw, key, keys)
-    records = assemble(all_inputs, parsed, key, cfg)
-    write_jsonl(env.p("drafts"), [r.to_dict() for r in records])
+    keys = {i.sid: input_key(dprompt, i) for i in all_inputs}
+    parsed, by_status = latest_parsed(raw, dkey, keys)
+    records = assemble(all_inputs, parsed, dkey, cfg)
+    okey = oos_key(model_id, oprompt, cfg)
+    o_inputs = build_oos_inputs(cfg)
+    o_keys = {i.sid: sha256(oos_messages(oprompt, i, cfg)[0]["content"]) for i in o_inputs}
+    o_parsed, _ = latest_parsed(raw, okey, o_keys)
+    dev = [str(r.get("question") or "") for r in read_jsonl(env.p("dev_oos"))]
+    o_records = assemble_oos(o_inputs, o_parsed, okey, cfg, plan_cfg(env).as_of, dev)
+    write_jsonl(env.p("drafts"), [r.to_dict() for r in [*records, *o_records]])
     md = render_markdown(
-        all_inputs, records, {"model_id": model_id, "prompt_hash": key.prompt_hash}
-    )
+        all_inputs, records, {"model_id": model_id, "prompt_hash": dkey.prompt_hash}
+    ) + render_oos_markdown(o_records)
     env.p("drafts_md").write_bytes(md.encode("utf-8"))
-    n_flag = sum(1 for r in records if r.flags)
+    n_flag = sum(1 for r in [*records, *o_records] if r.flags)
     print(
         f"nháp: {len(parsed)}/{len(all_inputs)} gợi ý có nháp ({dict(by_status)}) · "
         f"{len(records)} câu · {n_flag} câu có cờ → {env.p('drafts_md')}"
@@ -655,7 +705,7 @@ def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
 def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
     """Nhập tự động nháp đã đọc duyệt (không sửa) vào ``test.jsonl``: chọn nháp không có cờ nặng,
     bỏ câu validator báo lỗi (bỏ cả cặp ``theo_thoi_diem``), lặp tới khi sạch lỗi."""
-    from trafficlaw.eval.qa_test_draft import HEAVY_FLAGS, cap_quota, select_auto
+    from trafficlaw.eval.qa_test_draft import HEAVY_FLAGS, balance_quota, select_auto
 
     if not args.auto:
         print("import-drafts: hiện chỉ hỗ trợ --auto (chọn + lọc tự động)", file=sys.stderr)
@@ -691,7 +741,7 @@ def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
             else:
                 keep.append(it)
         items = keep
-    items, over_quota = cap_quota(items, env.targets.question_type)
+    items, over_quota = balance_quota(items, env.targets.question_type, env.targets.tier_expected())
     write_jsonl(test, items)
     report = {
         "imported_at": datetime.now().astimezone().isoformat(timespec="seconds"),
