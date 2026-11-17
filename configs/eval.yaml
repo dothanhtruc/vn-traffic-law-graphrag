@@ -1,0 +1,68 @@
+# M13: bộ chạy đánh giá ba giai đoạn (retrieve → generate → score). Người dùng chốt 17/11/2026.
+# Xem CLAUDE.md "Quy ước bộ chạy đánh giá (M13)". Test KHÔNG dùng để chỉnh prompt/ngưỡng/tham số.
+run_id: m13-test                    # results/<run_id>/
+test: data/qa/test.jsonl
+subsets: data/qa/subsets.json
+drafts: data/qa/test_drafts.jsonl   # validator test kiểm draft_id
+results_dir: results
+seed: 42
+today: 2026-11-03                   # "hôm nay" của analyzer (as_of mặc định khi câu hỏi không nêu)
+
+# Ma trận sinh câu trả lời: cấu hình → tập câu (full = cả test, hoặc tên tập con của subsets.json).
+generate:
+  G: full
+  B3: full
+  B0: full
+  B1: ablation_200
+  B2: ablation_200
+  A1: ablation_200
+  A2: ablation_200
+  # A3: hoãn tới sau M14 (hiện ≡ G); A4: M17
+
+# Giai đoạn 1 (chỉ truy hồi): mọi cấu hình RAG trên toàn bộ test.
+retrieve:
+  configs: [G, B3, B1, B2, A1, A2]
+  set: full
+
+judge:
+  model_id: mistral-small-3.2       # served_model_name (configs/serve.yaml), họ mistral ≠ qwen
+  prompt: judge                     # llm/prompts/judge.md
+  configs: [B0, B1, B3, G, A2]
+  subset: judge_200
+  max_output_tokens: 1024
+  output_tokens_estimate: 250       # --dry-run khi chưa có bản ghi ok
+
+variance:
+  config: G
+  subset: variance_100
+  seeds: [42, 43, 44]               # mỗi seed một file answers_G_seed<s>.jsonl, use_cache = false
+
+judge_check:
+  n: 40
+  seed_key: m13_judge_check         # sha256(42:m13_judge_check:qid), lấy từ judge_200
+  config: G
+
+metrics:
+  k: [1, 5, 10, 20]
+
+stats:
+  bootstrap: 1000
+  seed: 42
+  compare_to: G                     # G so với từng cấu hình trên cùng tập câu đã xong
+  wilcoxon_zero: pratt
+  multiple: holm
+
+# Regression thủ công (người dùng chọn (a) 17/11/2026): Recall@5 G trên regression_100.
+regression:
+  config: G
+  subset: regression_100
+  k: 5
+  max_drop: 0.02
+  baseline: data/qa/retrieval_baseline_test.json
+
+smoke:
+  test: tests/fixtures/eval/smoke_test.jsonl
+  graph_dir: tests/fixtures/mini_graph
+  run_id: smoke
+
+output_tokens_estimate: 350         # token ra/câu (sinh) cho --dry-run khi chưa có bản ghi ok

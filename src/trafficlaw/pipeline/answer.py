@@ -310,6 +310,8 @@ class AnswerResult(BaseModel):
     git_commit: str | None = None
     data_version: str | None = None
     timestamp: str
+    llm_params: dict[str, Any] | None = None
+    """Tham số LLM ghi đè của lần chạy (M13 dao động: ``{"seed": 43}``); ``None`` = mặc định."""
 
 
 # --------------------------------------------------------------------------- ngữ cảnh chạy
@@ -335,8 +337,13 @@ class AnswerContext:
         serve: dict[str, Any] | None = None,
         budget_profile: Literal["default", "shared"] = "default",
         prompts: dict[str, Prompt] | None = None,
+        llm_params: dict[str, Any] | None = None,
+        use_cache: bool = True,
     ) -> None:
         self.cfg = cfg
+        self.llm_params = dict(llm_params or {})
+        """Tham số LLM ghi đè (M13 đo dao động: ``seed``); ghi vào ``AnswerResult.llm_params``."""
+        self.use_cache = use_cache
         self.store = store
         self.catalog = catalog
         self.retrieval = retrieval
@@ -622,8 +629,10 @@ def answer(
     )
     no_rag = ctx.is_no_rag(config_name)
     schema: type[BaseModel] = AnswerOutNoRag if no_rag else AnswerOut
-    params = {"max_output_tokens": ctx.cfg.max_output_tokens}
-    res: LLMResult = ctx.client.generate(prep.messages, json_schema=schema, params=params)
+    params = {"max_output_tokens": ctx.cfg.max_output_tokens, **ctx.llm_params}
+    res: LLMResult = ctx.client.generate(
+        prep.messages, json_schema=schema, params=params, use_cache=ctx.use_cache
+    )
     base = {
         "run_id": ctx.run_id,
         "config_name": config_name,
@@ -643,6 +652,7 @@ def answer(
         "git_commit": ctx.git_commit,
         "data_version": ctx.data_version,
         "timestamp": _now(),
+        "llm_params": ctx.llm_params or None,
     }
     usage, latency, attempts, cached, n_calls = (
         res.usage,
@@ -688,7 +698,9 @@ def answer(
             {"role": "assistant", "content": res.text},
             {"role": "user", "content": msg},
         ]
-        res2: LLMResult = ctx.client.generate(msgs2, json_schema=AnswerOut, params=params)
+        res2: LLMResult = ctx.client.generate(
+            msgs2, json_schema=AnswerOut, params=params, use_cache=ctx.use_cache
+        )
         n_calls += 1
         usage = _add_usage(usage, res2.usage)
         latency += res2.latency_ms
