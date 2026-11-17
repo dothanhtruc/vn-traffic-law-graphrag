@@ -814,9 +814,14 @@ def edit_stats(items: Sequence[Any], drafts: Mapping[str, Mapping[str, Any]]) ->
     """So câu test với nháp gốc: độ giống (difflib trên chuỗi chuẩn hoá) câu hỏi/đáp án, tỷ lệ
     đổi ``gold_units``/``required_numbers``. ``items`` là ``QAItem``."""
     rows = []
+    n_reviewed = 0
     for it in items:
         d = drafts.get(getattr(it, "draft_id", None) or "")
         if not d:
+            continue
+        m = DRAFT_SOURCE_RE.match(it.source)
+        if m and m.group(2) == "reviewed":
+            n_reviewed += 1
             continue
         di = d.get("item") or {}
         num = sorted(
@@ -833,11 +838,12 @@ def edit_stats(items: Sequence[Any], drafts: Mapping[str, Mapping[str, Any]]) ->
         )
     n_human = sum(1 for it in items if not getattr(it, "draft_id", None))
     if not rows:
-        return {"n_from_draft": 0, "n_human": n_human}
+        return {"n_from_draft": 0, "n_human": n_human, "n_reviewed_unedited": n_reviewed}
     n = len(rows)
     return {
         "n_from_draft": n,
         "n_human": n_human,
+        "n_reviewed_unedited": n_reviewed,
         "question_similarity_mean": round(sum(r["q"] for r in rows) / n, 4),
         "answer_similarity_mean": round(sum(r["a"] for r in rows) / n, 4),
         "question_similarity_ge_0_9": round(sum(r["q"] >= 0.9 for r in rows) / n, 4),
@@ -851,9 +857,68 @@ def load_drafts(path: Path) -> dict[str, dict[str, Any]]:
     return {str(r["draft_id"]): r for r in read_jsonl(path)} if path.is_file() else {}
 
 
+# --------------------------------------------------------------------------- nhập tự động
+
+#: Cờ loại bỏ khi nhập tự động (``import-drafts --auto``, người dùng chọn "lọc chặt" 17/11/2026):
+#: mọi cờ của hậu kiểm, kể cả chép nguyên văn (câu bám chữ luật có lợi cho BM25).
+HEAVY_FLAGS: tuple[str, ...] = (
+    "so_la",
+    "chi_so_so_sai",
+    "so_cau_sai",
+    "dap_an_cap_giong_nhau",
+    "da_buoc_it_hon_2_gold",
+    "gold_mac_dinh",
+    "gold_ngoai_nguon",
+    "as_of_sua",
+    "tham_chieu_ngu_canh",
+    "neu_dieu_khoan",
+    "chep_nguyen_van",
+    "qua_ngan",
+    "qua_dai",
+)
+
+
+def flag_code(flag: str) -> str:
+    return flag.split(" ")[0].rstrip(":")
+
+
+def select_auto(
+    records: Sequence[Mapping[str, Any]], heavy: Sequence[str] = HEAVY_FLAGS
+) -> tuple[list[dict[str, Any]], dict[str, list[str]]]:
+    """Mỗi gợi ý lấy nháp ``k`` nhỏ nhất mà mọi câu của nó (1, hoặc 2 với cặp) không có cờ nặng.
+    Trả (các dòng test với ``source = llm:<model>+reviewed``, {sid bị bỏ: cờ của các nháp})."""
+    by: dict[str, dict[int, list[Mapping[str, Any]]]] = defaultdict(lambda: defaultdict(list))
+    for r in records:
+        by[str(r["sid"])][int(r["k"])].append(r)
+    out: list[dict[str, Any]] = []
+    skipped: dict[str, list[str]] = {}
+    for sid in sorted(by):
+        chosen = None
+        seen: list[str] = []
+        for k in sorted(by[sid]):
+            group = sorted(by[sid][k], key=lambda r: int(r.get("j", 0)))
+            codes = sorted({flag_code(f) for r in group for f in r.get("flags") or []})
+            bad = [c for c in codes if c in heavy]
+            if not bad:
+                chosen = group
+                break
+            seen.append(f"nháp {k}: {', '.join(bad)}")
+        if chosen is None:
+            skipped[sid] = seen
+            continue
+        for r in chosen:
+            item = dict(r["item"])
+            item["source"] = f"llm:{r['model_id']}+reviewed"
+            out.append(item)
+    return out, skipped
+
+
 __all__ = [
     "DRAFT_SOURCE_RE",
     "DRAFT_TYPES",
+    "HEAVY_FLAGS",
+    "flag_code",
+    "select_auto",
     "TYPE_RULES",
     "Draft",
     "DraftConfig",

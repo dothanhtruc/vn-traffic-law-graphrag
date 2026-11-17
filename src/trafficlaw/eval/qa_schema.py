@@ -18,8 +18,9 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 Split = Literal["test", "train", "val"]
 
-#: ``source`` của câu test chép từ bản nháp LLM rồi người sửa (quyết định người dùng 17/11/2026).
-DRAFT_SOURCE_RE = re.compile(r"^llm:([\w.\-/]+)\+human$")
+#: ``source`` của câu test lấy từ bản nháp LLM (quyết định người dùng 17/11/2026):
+#: ``+human`` = người đã sửa câu; ``+reviewed`` = người đọc duyệt, KHÔNG sửa (nhập tự động).
+DRAFT_SOURCE_RE = re.compile(r"^llm:([\w.\-/]+)\+(human|reviewed)$")
 SPLITS: tuple[Split, ...] = ("test", "train", "val")
 
 Tier = Literal["A", "B", "C", "historical"]

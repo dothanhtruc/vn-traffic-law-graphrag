@@ -573,7 +573,8 @@ def _dieu(unit_id: str) -> str:
 
 def check_drafts(items: Sequence[QAItem], drafts: Mapping[str, Mapping[str, Any]]) -> list[Issue]:
     """Câu test chép từ nháp LLM (``data/qa/test_drafts.jsonl``): nháp phải tồn tại, mỗi nháp
-    dùng một lần, cùng model với ``source``, và câu hỏi phải được người sửa."""
+    dùng một lần, cùng model với ``source``; ``+human`` → câu hỏi phải được người sửa;
+    ``+reviewed`` (nhập tự động, không sửa) → phải giữ nguyên nháp."""
     out: list[Issue] = []
     used: Counter[str] = Counter(it.draft_id for it in items if it.draft_id)
     for did, c in sorted(used.items()):
@@ -598,6 +599,19 @@ def check_drafts(items: Sequence[QAItem], drafts: Mapping[str, Mapping[str, Any]
             )
         di = d.get("item") or {}
         q0, q1 = normalize(str(di.get("question", ""))), normalize(it.question)
+        a0, a1 = normalize(str(di.get("answer", ""))), normalize(it.answer or "")
+        if m and m.group(2) == "reviewed":
+            # Nhập tự động, người chỉ đọc duyệt: phải giữ nguyên nháp (đã sửa → khai +human).
+            if q0 != q1 or a0 != a1:
+                out.append(
+                    Issue(
+                        "error",
+                        "reviewed_nhung_da_sua",
+                        it.qid,
+                        "câu đã sửa so với nháp — đổi source thành llm:<model>+human",
+                    )
+                )
+            continue
         if q0 == q1:
             out.append(
                 Issue("error", "nhap_chua_sua", it.qid, "câu hỏi giữ nguyên bản nháp — cần sửa")
@@ -606,7 +620,7 @@ def check_drafts(items: Sequence[QAItem], drafts: Mapping[str, Mapping[str, Any]
             out.append(
                 Issue("warning", "nhap_sua_rat_it", it.qid, "câu hỏi gần như giữ nguyên bản nháp")
             )
-        if normalize(str(di.get("answer", ""))) == normalize(it.answer or ""):
+        if a0 == a1:
             out.append(
                 Issue(
                     "warning",

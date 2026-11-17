@@ -11,9 +11,12 @@
     uv run python -m scripts.qa_tool summary                                # qa_summary.md
     uv run python -m scripts.qa_tool draft-test --dry-run [--type T]        # nháp câu test: ước GPU
     uv run python -m scripts.qa_tool draft-test [--workers 16] [--type T] [--limit N]
+    uv run python -m scripts.qa_tool import-drafts --auto [--force]         # nháp → test
 
 Tập test do người dùng viết (hoặc sửa từ nháp ``draft-test``): công cụ chỉ đọc
-``data/qa/test.jsonl`` (không tạo/sửa). ``draft-test`` ghi ``data/qa/test_drafts.{jsonl,md}`` để
+``data/qa/test.jsonl``, trừ ``import-drafts --auto`` (người dùng yêu cầu 17/11/2026: nhập nháp đã
+đọc duyệt, không sửa, ``source = llm:<model>+reviewed``; từ chối ghi đè test có sẵn nếu thiếu
+``--force``). ``draft-test`` ghi ``data/qa/test_drafts.{jsonl,md}`` để
 người dùng chọn + sửa rồi tự chép vào test. ``generate``/``draft-test`` cần server vLLM qua
 tunnel (provider ``local``); các lệnh khác không cần GPU. ``draft-test --max-calls 0`` chỉ dựng
 lại file nháp từ ``raw.jsonl``.
@@ -609,6 +612,64 @@ def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
+    """Nhập tự động nháp đã đọc duyệt (không sửa) vào ``test.jsonl``: chọn nháp không có cờ nặng,
+    bỏ câu validator báo lỗi (bỏ cả cặp ``theo_thoi_diem``), lặp tới khi sạch lỗi."""
+    from trafficlaw.eval.qa_test_draft import HEAVY_FLAGS, select_auto
+
+    if not args.auto:
+        print("import-drafts: hiện chỉ hỗ trợ --auto (chọn + lọc tự động)", file=sys.stderr)
+        return 1
+    test = env.p("test")
+    if test.is_file() and test.stat().st_size > 0 and not args.force:
+        print(f"import-drafts: {test} đã có dữ liệu — dùng --force để ghi đè", file=sys.stderr)
+        return 1
+    drafts = load_drafts(env.p("drafts"))
+    if not drafts:
+        print(f"import-drafts: chưa có {env.p('drafts')} (chạy draft-test)", file=sys.stderr)
+        return 1
+    items, skipped = select_auto(list(drafts.values()))
+    dropped: dict[str, list[str]] = {}
+    for _ in range(10):
+        res = validate_items(items, "test", env.store, env.validate_cfg, drafts=drafts)
+        bad: dict[str, list[str]] = {}
+        for i in res.issues:
+            if i.level == "error" and i.qid:
+                bad.setdefault(i.qid, []).append(f"{i.code}: {i.message}")
+        if not bad:
+            break
+        pairs = {it["pair_id"] for it in items if it["qid"] in bad and it.get("pair_id")}
+        keep = []
+        for it in items:
+            if it["qid"] in bad or (it.get("pair_id") and it["pair_id"] in pairs):
+                dropped[it["qid"]] = bad.get(it["qid"], ["bỏ theo cặp"])
+            else:
+                keep.append(it)
+        items = keep
+    write_jsonl(test, items)
+    report = {
+        "imported_at": datetime.now().astimezone().isoformat(timespec="seconds"),
+        "heavy_flags": list(HEAVY_FLAGS),
+        "n_suggestions": len({d["sid"] for d in drafts.values()}),
+        "n_imported": len(items),
+        "n_skipped_flags": len(skipped),
+        "n_dropped_validate": len(dropped),
+        "skipped_flags": skipped,
+        "dropped_validate": dropped,
+    }
+    _write_json(env.p("validate_dir") / "import_drafts.json", report)
+    by: dict[str, int] = {}
+    for it in items:
+        by[it["question_type"]] = by.get(it["question_type"], 0) + 1
+    print(
+        f"import-drafts: {len(items)} câu → {test} · bỏ {len(skipped)} gợi ý vì cờ · bỏ "
+        f"{len(dropped)} câu vì validator → {env.p('validate_dir') / 'import_drafts.json'}"
+    )
+    for k, want in env.targets.question_type.items():
+        print(f"  {k:<22} {by.get(k, 0):>4} / {want}")
+    return 0
+
+
 def cmd_build(env: QAEnv, args: argparse.Namespace, *, model_id: str | None = None) -> int:
     from trafficlaw.llm import load_prompt
 
@@ -816,6 +877,9 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("review", help="rà tay câu train")
     p.add_argument("--n", type=int)
     sub.add_parser("summary", help="qa_summary.md")
+    p = sub.add_parser("import-drafts", help="nhập nháp đã duyệt (không sửa) vào test")
+    p.add_argument("--auto", action="store_true", help="chọn nháp không có cờ nặng + lọc lỗi")
+    p.add_argument("--force", action="store_true", help="ghi đè test.jsonl đã có")
     p = sub.add_parser("draft-test", help="nháp câu test (LLM viết, người sửa)")
     p.add_argument("--provider")
     p.add_argument("--model")
@@ -842,6 +906,7 @@ def main(argv: list[str] | None = None) -> int:
         "review": cmd_review,
         "summary": cmd_summary,
         "draft-test": cmd_draft_test,
+        "import-drafts": cmd_import_drafts,
     }
     return cmds[args.cmd](env, args)
 

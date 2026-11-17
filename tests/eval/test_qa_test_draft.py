@@ -363,3 +363,50 @@ def test_reasoning_effort_sent_only_when_set(
         inputs, cfg, _client(responder=resp), tmp_path / "raw.jsonl", load_prompt(cfg.prompt)
     )
     assert seen and seen[0].get("reasoning_effort") == "low"
+
+
+# --------------------------------------------------------------------------- nhập tự động
+
+
+def _rec(sid: str, k: int, j: int, flags: list[str], qid: str) -> dict[str, Any]:
+    return {
+        "sid": sid,
+        "k": k,
+        "j": j,
+        "flags": flags,
+        "model_id": "fake-model",
+        "draft_id": f"{sid}:{k}",
+        "item": {"qid": qid, "source": "llm:fake-model+human"},
+    }
+
+
+def test_select_auto_strict() -> None:
+    from trafficlaw.eval.qa_test_draft import select_auto
+
+    recs = [
+        _rec("W-a-001", 1, 0, ["chep_nguyen_van: “x …”"], "t-a-001"),
+        _rec("W-a-001", 2, 0, [], "t-a-001"),
+        _rec("W-a-002", 1, 0, ["so_la: 7"], "t-a-002"),
+        _rec("W-a-002", 2, 0, ["qua_dai (60 từ)"], "t-a-002"),
+        _rec("W-t-001", 1, 0, [], "t-t-001a"),
+        _rec("W-t-001", 1, 1, ["as_of_sua (x → y)"], "t-t-001b"),
+        _rec("W-t-001", 2, 1, [], "t-t-001b"),
+        _rec("W-t-001", 2, 0, [], "t-t-001a"),
+    ]
+    items, skipped = select_auto(recs)
+    assert [it["qid"] for it in items] == ["t-a-001", "t-t-001a", "t-t-001b"]
+    assert all(it["source"] == "llm:fake-model+reviewed" for it in items)
+    assert set(skipped) == {"W-a-002"} and len(skipped["W-a-002"]) == 2
+
+
+def test_validator_reviewed(store: EmbeddedStore, k5_chunk) -> None:  # type: ignore[no-untyped-def]
+    d = _draft_rec(store, k5_chunk)
+    drafts = {d["draft_id"]: d}
+    reviewed = dict(d["item"], source="llm:fake-model+reviewed")
+    codes = _codes(validate_items([reviewed], "test", store, drafts=drafts).issues)
+    assert not ({"nhap_chua_sua", "reviewed_nhung_da_sua", "nguon_khong_phai_nguoi"} & codes)
+    changed = dict(reviewed, question="Câu hỏi đã được sửa khác hẳn bản nháp gốc rồi nhé?")
+    codes = _codes(validate_items([changed], "test", store, drafts=drafts).issues)
+    assert "reviewed_nhung_da_sua" in codes
+    s = edit_stats([QAItem.model_validate(reviewed)], drafts)
+    assert s["n_reviewed_unedited"] == 1 and s["n_from_draft"] == 0
