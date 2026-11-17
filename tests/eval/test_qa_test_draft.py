@@ -410,3 +410,43 @@ def test_validator_reviewed(store: EmbeddedStore, k5_chunk) -> None:  # type: ig
     assert "reviewed_nhung_da_sua" in codes
     s = edit_stats([QAItem.model_validate(reviewed)], drafts)
     assert s["n_reviewed_unedited"] == 1 and s["n_from_draft"] == 0
+
+
+def test_round_ids_and_quota_cap() -> None:
+    from trafficlaw.eval.qa_test_draft import cap_quota, pair_id_for, qid_for
+
+    assert qid_for("W-muc_phat-001", 0, 1) == "t-muc_phat-001"
+    assert qid_for("W2-muc_phat-001", 0, 1) == "t2-muc_phat-001"
+    assert qid_for("W2-theo_thoi_diem-007", 1, 2) == "t2-theo_thoi_diem-007b"
+    assert pair_id_for("W-theo_thoi_diem-003") == "p-003"
+    assert pair_id_for("W2-theo_thoi_diem-003") == "p2-003"
+    items = [
+        {"qid": "a", "question_type": "muc_phat"},
+        {"qid": "b", "question_type": "muc_phat"},
+        {"qid": "c1", "question_type": "theo_thoi_diem", "pair_id": "p-1"},
+        {"qid": "c2", "question_type": "theo_thoi_diem", "pair_id": "p-1"},
+        {"qid": "d1", "question_type": "theo_thoi_diem", "pair_id": "p-2"},
+        {"qid": "d2", "question_type": "theo_thoi_diem", "pair_id": "p-2"},
+    ]
+    keep, dropped = cap_quota(items, {"muc_phat": 1, "theo_thoi_diem": 3})
+    assert [x["qid"] for x in keep] == ["a", "c1", "c2"]
+    assert dropped == ["b", "d1", "d2"]
+
+
+def test_plan_round2_excludes_used_units() -> None:
+    from dataclasses import replace
+
+    from trafficlaw.eval.qa_plan import PlanConfig, plan_suggestions
+    from trafficlaw.eval.qa_validate import Targets
+
+    st = EmbeddedStore.from_dir(MINI)
+    t = Targets(total=10, tier={"A": 1}, question_type={"hanh_vi_cam_nghia_vu": 3})
+    used: set[str] = set()
+    r1, _ = plan_suggestions(st, t, PlanConfig(), used)
+    r2, _ = plan_suggestions(st, t, replace(PlanConfig(), sid_prefix="W2"), used)
+    u1 = {c.unit_id for s in r1 for c in s.chunks}
+    u2 = {c.unit_id for s in r2 for c in s.chunks}
+    assert r1 and not (u1 & u2)
+    assert all(s.sid.startswith("W2-") for s in r2)
+    again, _ = plan_suggestions(st, t, PlanConfig())
+    assert [s.sid for s in again] == [s.sid for s in r1]

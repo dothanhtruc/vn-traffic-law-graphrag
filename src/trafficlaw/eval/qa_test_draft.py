@@ -90,6 +90,14 @@ class StyleSpec(BaseModel):
     weight: float = 1.0
 
 
+class RoundSpec(BaseModel):
+    """Vòng sinh thêm gợi ý (mã ``W<round>-…``), không dùng lại unit của các vòng trước."""
+
+    model_config = ConfigDict(extra="forbid")
+    round: int = Field(ge=2)
+    question_type: dict[str, int]
+
+
 class DraftConfig(BaseModel):
     model_config = ConfigDict(extra="forbid")
     provider: str | None = "local"
@@ -111,6 +119,7 @@ class DraftConfig(BaseModel):
     seed: int = 42
     personas: list[str] = Field(default_factory=list)
     styles: list[StyleSpec] = Field(default_factory=list)
+    rounds: list[RoundSpec] = Field(default_factory=list)
 
 
 # --------------------------------------------------------------------------- schema đầu ra
@@ -621,9 +630,20 @@ class DraftRecord:
         }
 
 
+def _sid_parts(sid: str) -> tuple[str, str]:
+    """``W-muc_phat-001`` → ("", "muc_phat-001"); ``W2-muc_phat-001`` → ("2", "muc_phat-001")."""
+    prefix, rest = sid.split("-", 1)
+    return prefix[1:], rest
+
+
 def qid_for(sid: str, j: int, n_questions: int) -> str:
-    base = "t-" + sid.removeprefix("W-")
-    return base + ("ab"[j] if n_questions == 2 else "")
+    rnd, rest = _sid_parts(sid)
+    return f"t{rnd}-{rest}" + ("ab"[j] if n_questions == 2 else "")
+
+
+def pair_id_for(sid: str) -> str:
+    rnd, rest = _sid_parts(sid)
+    return f"p{rnd}-{rest.rsplit('-', 1)[1]}"
 
 
 def assemble(
@@ -694,7 +714,7 @@ def assemble(
                     "draft_id": draft_id,
                 }
                 if inp.n_questions == 2:
-                    item["pair_id"] = "p-" + inp.sid.removeprefix("W-theo_thoi_diem-")
+                    item["pair_id"] = pair_id_for(inp.sid)
                 out.append(
                     DraftRecord(
                         draft_id=draft_id,
@@ -917,6 +937,9 @@ __all__ = [
     "DRAFT_SOURCE_RE",
     "DRAFT_TYPES",
     "HEAVY_FLAGS",
+    "RoundSpec",
+    "cap_quota",
+    "pair_id_for",
     "flag_code",
     "select_auto",
     "TYPE_RULES",
@@ -947,3 +970,30 @@ __all__ = [
     "render_markdown",
     "run_drafts",
 ]
+
+
+def cap_quota(
+    items: Sequence[Mapping[str, Any]], quota: Mapping[str, int]
+) -> tuple[list[dict[str, Any]], list[str]]:
+    """Giữ câu theo thứ tự (vòng 1 trước) tới hạn mức mỗi loại; cặp ``pair_id`` giữ/bỏ cùng nhau.
+    Trả (câu giữ, qid bỏ vì đủ hạn mức)."""
+    groups: dict[str, list[Mapping[str, Any]]] = {}
+    order: list[str] = []
+    for it in items:
+        k = str(it.get("pair_id") or it["qid"])
+        if k not in groups:
+            groups[k] = []
+            order.append(k)
+        groups[k].append(it)
+    count: Counter[str] = Counter()
+    keep: list[dict[str, Any]] = []
+    dropped: list[str] = []
+    for k in order:
+        g = groups[k]
+        qt = str(g[0]["question_type"])
+        if count[qt] + len(g) <= quota.get(qt, 0):
+            count[qt] += len(g)
+            keep += [dict(x) for x in g]
+        else:
+            dropped += [str(x["qid"]) for x in g]
+    return keep, dropped

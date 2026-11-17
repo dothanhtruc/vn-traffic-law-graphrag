@@ -459,6 +459,24 @@ def draft_guard(env: QAEnv, llm_cfg: Any, model_id: str, cfg: DraftConfig) -> st
     return None
 
 
+def draft_suggestions(env: QAEnv, cfg: DraftConfig) -> list[Any]:
+    """Gợi ý vòng 1 (đúng phiếu viết) + các vòng sinh thêm ``draft.rounds`` (mã ``W<n>-…``, không
+    dùng lại unit đã gợi ý ở vòng trước). Tất định."""
+    from dataclasses import replace
+
+    used: set[str] = set()
+    base = plan_cfg(env)
+    sugs, _ = plan_suggestions(env.store, env.targets, base, used)
+    for r in sorted(cfg.rounds, key=lambda x: x.round):
+        t = env.targets
+        tr = Targets(
+            total=t.total, tier=t.tier, question_type=dict(r.question_type), tolerance=t.tolerance
+        )
+        more, _ = plan_suggestions(env.store, tr, replace(base, sid_prefix=f"W{r.round}"), used)
+        sugs += more
+    return sugs
+
+
 def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
     from scripts._llm_local import check_local_server, is_local, resolve_model, serve_config
     from trafficlaw.eval.qa_test_draft import (
@@ -497,8 +515,12 @@ def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
         print(f"draft-test: loại không hỗ trợ {bad} (có: {list(DRAFT_TYPES)})", file=sys.stderr)
         return 1
     t0 = time.monotonic()
-    sugs, _ = plan_suggestions(env.store, env.targets, plan_cfg(env))
-    inputs = build_inputs(env.store, [s for s in sugs if s.qtype in types], cfg)
+    sugs = draft_suggestions(env, cfg)
+    pick = [s for s in sugs if s.qtype in types]
+    if args.round is not None:
+        prefix = "W-" if args.round == 1 else f"W{args.round}-"
+        pick = [s for s in pick if s.sid.startswith(prefix)]
+    inputs = build_inputs(env.store, pick, cfg)
     if args.limit is not None:
         inputs = inputs[: args.limit]
     prompt = load_prompt(cfg.prompt)
@@ -615,7 +637,7 @@ def cmd_draft_test(env: QAEnv, args: argparse.Namespace) -> int:
 def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
     """Nhập tự động nháp đã đọc duyệt (không sửa) vào ``test.jsonl``: chọn nháp không có cờ nặng,
     bỏ câu validator báo lỗi (bỏ cả cặp ``theo_thoi_diem``), lặp tới khi sạch lỗi."""
-    from trafficlaw.eval.qa_test_draft import HEAVY_FLAGS, select_auto
+    from trafficlaw.eval.qa_test_draft import HEAVY_FLAGS, cap_quota, select_auto
 
     if not args.auto:
         print("import-drafts: hiện chỉ hỗ trợ --auto (chọn + lọc tự động)", file=sys.stderr)
@@ -646,6 +668,7 @@ def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
             else:
                 keep.append(it)
         items = keep
+    items, over_quota = cap_quota(items, env.targets.question_type)
     write_jsonl(test, items)
     report = {
         "imported_at": datetime.now().astimezone().isoformat(timespec="seconds"),
@@ -656,6 +679,8 @@ def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
         "n_dropped_validate": len(dropped),
         "skipped_flags": skipped,
         "dropped_validate": dropped,
+        "n_over_quota": len(over_quota),
+        "over_quota": over_quota,
     }
     _write_json(env.p("validate_dir") / "import_drafts.json", report)
     by: dict[str, int] = {}
@@ -663,7 +688,8 @@ def cmd_import_drafts(env: QAEnv, args: argparse.Namespace) -> int:
         by[it["question_type"]] = by.get(it["question_type"], 0) + 1
     print(
         f"import-drafts: {len(items)} câu → {test} · bỏ {len(skipped)} gợi ý vì cờ · bỏ "
-        f"{len(dropped)} câu vì validator → {env.p('validate_dir') / 'import_drafts.json'}"
+        f"{len(dropped)} câu vì validator · {len(over_quota)} câu vượt hạn mức → "
+        f"{env.p('validate_dir') / 'import_drafts.json'}"
     )
     for k, want in env.targets.question_type.items():
         print(f"  {k:<22} {by.get(k, 0):>4} / {want}")
@@ -886,6 +912,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--dry-run", action="store_true")
     p.add_argument("--type", action="append", help="chỉ loại câu này (lặp lại được)")
     p.add_argument("--limit", type=int, help="chỉ N gợi ý đầu (chạy thử)")
+    p.add_argument("--round", type=int, help="chỉ vòng này (1 = phiếu viết; ≥ 2 = draft.rounds)")
     p.add_argument("--max-calls", type=int)
     p.add_argument("--workers", type=int, default=1)
     p.add_argument("--retry-format-error", action="store_true")
