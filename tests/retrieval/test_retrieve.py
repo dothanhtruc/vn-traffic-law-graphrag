@@ -157,3 +157,32 @@ def test_reserved_slot_in_config(ctx, mini_catalog: ChunkCatalog) -> None:
     if graph_only:
         assert any(h.chunk_id in graph_only for h in r.hits)
     assert set(r.ranked) <= mini_catalog.ids_at(d)
+
+
+def test_per_config_expand_override(tmp_path: Path, cfg, mini_store, mini_catalog, tables) -> None:
+    """M13c: ``SystemSpec.expand`` ghi đè bảng expand chung cho riêng cấu hình đó."""
+    from trafficlaw.retrieval.config import ExpandRule, ExpandSpec
+
+    c = cfg.model_copy(deep=True)
+    only_dc = c.system("G").model_copy(
+        update={"expand": ExpandSpec(default=ExpandRule(edge_types=["DAN_CHIEU"]), by_type={})}
+    )
+    c.configs["XT"] = only_dc
+    ctx = make_ctx(tmp_path, c, mini_store, mini_catalog, tables)
+    q = "Điều khiển xe không quan sát gây tai nạn giao thông bị trừ bao nhiêu điểm?"
+    d = date(2026, 1, 1)
+    g = ctx.retrieve(q, d, "G")
+    x = ctx.retrieve(q, d, "XT")
+    assert g.analysis.question_type == x.analysis.question_type == "tru_diem"
+    edges = lambda r: {s.edge_type for p in r.pool for s in p.sources if s.source == "graph"}  # noqa: E731
+    assert edges(g) & {"BI_XU_PHAT", "BI_TRU_DIEM"}
+    assert edges(x) <= {"DAN_CHIEU"}
+
+
+def test_dev_variants_declared(cfg) -> None:
+    """Biến thể M13c chỉ khác G ở expand / reserved_graph_slots."""
+    g = cfg.system("G").model_dump(exclude={"description", "expand", "reserved_graph_slots"})
+    for name in ("XG_r1", "XG_all2", "XG_all2_r1"):
+        x = cfg.system(name).model_dump(exclude={"description", "expand", "reserved_graph_slots"})
+        assert x == g, name
+    assert cfg.system("XG_all2").expand.rule_for("muc_phat").hops == 2

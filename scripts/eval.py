@@ -42,6 +42,7 @@ from trafficlaw.eval.runner import (
     load_eval_data,
     load_retrievals,
     retrieve_path,
+    scores_path,
 )
 from trafficlaw.pipeline.answer import load_answer_config
 from trafficlaw.retrieval.analyze import MissingLLMAnalysisError
@@ -50,7 +51,7 @@ from trafficlaw.retrieval.index_pipeline import MissingVectorsError, now_iso
 from trafficlaw.retrieval.rerank import MissingRerankScoresError
 from trafficlaw.utils.env import load_dotenv
 from trafficlaw.utils.git import git_commit
-from trafficlaw.utils.jsonl import append_jsonl
+from trafficlaw.utils.jsonl import append_jsonl, read_jsonl
 from trafficlaw.utils.logging import setup_logging
 from trafficlaw.utils.seed import set_seed
 
@@ -72,7 +73,8 @@ def load_data(root: Path, ecfg: EvalConfig, store: Any) -> EvalData:
 
     drafts = load_drafts(root / ecfg.drafts) if ecfg.drafts else None
     sub = root / ecfg.subsets if ecfg.subsets else None
-    data = load_eval_data(root / ecfg.test, sub, store, drafts=drafts)
+    oos = root / ecfg.oos if ecfg.oos else None
+    data = load_eval_data(root / ecfg.test, sub, store, drafts=drafts, oos_path=oos)
     if data.invalid:
         print(f"loại {len(data.invalid)} câu test lỗi validator: {data.invalid}", file=sys.stderr)
     return data
@@ -328,7 +330,7 @@ def answer_env(root: Path, args: argparse.Namespace, *, need_server: bool):
     from scripts.answer import _env_key, build_actx, llm_setup
 
     _env_key()
-    acfg = load_answer_config(root / "configs" / "answer.yaml")
+    acfg = load_answer_config(root / args.answer_config_resolved)
     a2 = argparse.Namespace(
         model=None,
         cache_only=args.cache_only,
@@ -753,12 +755,57 @@ def cmd_smoke(root: Path, ecfg: EvalConfig, args: argparse.Namespace) -> int:
 # --------------------------------------------------------------------------- main
 
 
+def _run_cfg(root: Path, ecfg: EvalConfig, spec: str) -> tuple[str, list[dict[str, Any]]]:
+    """``[nhãn=]<run_id>:<cấu hình>`` → (nhãn, dòng scores)."""
+    label, _, ref = spec.rpartition("=")
+    run, _, cfg = ref.partition(":")
+    p = scores_path(ecfg.run_dir(root, run), cfg)
+    if not p.is_file():
+        raise FileNotFoundError(f"{p}: chưa có — chạy `scripts.eval score` cho lượt chạy {run}")
+    return (label or f"{run}:{cfg}"), list(read_jsonl(p))
+
+
+def cmd_compare_runs(root: Path, ecfg: EvalConfig, args: argparse.Namespace) -> int:
+    """So biến thể ở các lượt chạy khác nhau trên cùng câu (M13c, tập dev)."""
+    from trafficlaw.eval.report import compare_runs, render_compare_runs_md
+
+    if not args.base or not args.others:
+        print("cần --base và --others", file=sys.stderr)
+        return 2
+    try:
+        bl, base = _run_cfg(root, ecfg, args.base)
+        others = dict(_run_cfg(root, ecfg, x) for x in args.others.split(","))
+    except FileNotFoundError as e:
+        print(str(e), file=sys.stderr)
+        return 2
+    md = []
+    for types in [None] + [t.split("+") for t in (args.types or [])]:
+        res = compare_runs(
+            base, others, question_types=types, n_boot=ecfg.stats.bootstrap, seed=ecfg.stats.seed
+        )
+        md.append(render_compare_runs_md(res, {"base": bl}))
+    text = "\n".join(md)
+    print(text)
+    if args.out:
+        Path(args.out).write_text(text, encoding="utf-8")
+    return 0
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     ap = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
     ap.add_argument(
-        "command", choices=["retrieve", "generate", "score", "judge-check", "regression", "smoke"]
+        "command",
+        choices=[
+            "retrieve",
+            "generate",
+            "score",
+            "judge-check",
+            "regression",
+            "smoke",
+            "compare-runs",
+        ],
     )
     ap.add_argument("--config", type=Path, default=REPO_ROOT / "configs" / "eval.yaml")
     ap.add_argument("--run-id")
@@ -777,7 +824,15 @@ def main(argv: Sequence[str] | None = None) -> int:
     ap.add_argument("--no-judge", action="store_true", help="score: bỏ hẳn chỉ số judge")
     ap.add_argument("--write-baseline", action="store_true")
     ap.add_argument("--fake", action="store_true")
-    ap.add_argument("--out", help="smoke: thư mục kết quả (mặc định thư mục tạm)")
+    ap.add_argument("--out", help="smoke: thư mục kết quả; compare-runs: file .md")
+    ap.add_argument("--base", help="compare-runs: [nhãn=]<run_id>:<cấu hình>")
+    ap.add_argument("--others", help="compare-runs: danh sách [nhãn=]<run_id>:<cấu hình>, phẩy")
+    ap.add_argument(
+        "--types",
+        type=lambda s: [x for x in s.split(",") if x],
+        default=None,
+        help="compare-runs: thêm bảng theo nhóm loại câu (vd da_buoc,muc_phat+tru_diem)",
+    )
     args = ap.parse_args(argv)
     setup_logging()
     load_dotenv(REPO_ROOT / ".env")
@@ -786,6 +841,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     set_seed(ecfg.seed)
     args.today = ecfg.today
     args.run_id_resolved = args.run_id or ecfg.run_id
+    args.answer_config_resolved = ecfg.answer_config
     try:
         if args.command == "smoke":
             return cmd_smoke(root, ecfg, args)
@@ -805,6 +861,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             if args.dry_run:
                 return cmd_judge_dry_run(root, ecfg, args)
             return cmd_score(root, ecfg, args)
+        if args.command == "compare-runs":
+            return cmd_compare_runs(root, ecfg, args)
         if args.command == "judge-check":
             return cmd_judge_check(root, ecfg, args)
         return cmd_regression(root, ecfg, args)

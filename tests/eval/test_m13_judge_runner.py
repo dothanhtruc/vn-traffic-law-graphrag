@@ -221,3 +221,28 @@ def test_smoke_end_to_end(tmp_path: Path) -> None:
     # phiếu kiểm định không lộ điểm/lý do của judge (judge giả ghi ly_do = "smoke")
     assert "smoke" not in (rd / "judge_check.md").read_text(encoding="utf-8")
     assert s["judge_check"]["status"] == "cho_xac_nhan"
+
+
+def test_load_eval_data_oos_extra(tmp_path: Path, mini_store) -> None:  # noqa: F811
+    """M13c: câu ngoai_pham_vi bổ sung (không đáp án) không qua validator test."""
+    test = tmp_path / "test.jsonl"
+    shutil.copy(SMOKE, test)
+    oos = tmp_path / "oos.jsonl"
+    row = {
+        "qid": "oos-x",
+        "question": "Thủ tục đăng ký tàu cá gồm những gì?",
+        "as_of": "2026-11-03",
+        "question_type": "ngoai_pham_vi",
+        "gold_units": [],
+        "required_numbers": [],
+        "source": "llm:claude-opus-5-5",
+    }
+    oos.write_text(json.dumps(row, ensure_ascii=False) + "\n", encoding="utf-8")
+    data = load_eval_data(test, None, mini_store, oos_path=oos)
+    assert data.by_qid["oos-x"].question_type == "ngoai_pham_vi" and len(data.items) == 21
+    oos.write_text(
+        json.dumps({**row, "question_type": "muc_phat"}, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError):
+        load_eval_data(test, None, mini_store, oos_path=oos)

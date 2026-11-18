@@ -323,7 +323,8 @@ def retrieve(
     graph_docs: list[SourceInfo] = []
     if sc.graph_expand:
         t0 = time.perf_counter()
-        rule = cfg.expand.rule_for(analysis.question_type)
+        xs = sc.expand or cfg.expand
+        rule = xs.rule_for(analysis.question_type)
         seeds = [(c, ctx.catalog.get(c).unit_id) for c in order]
         exps = expand_candidates(
             ctx.store,
@@ -332,9 +333,9 @@ def retrieve(
             rule=rule,
             catalog=ctx.catalog,
             sanctions=ctx.sanctions,
-            max_chunks=cfg.expand.max_chunks,
-            per_node_max=cfg.expand.per_node_max,
-            reverse=cfg.expand.reverse_sanctions,
+            max_chunks=xs.max_chunks,
+            per_node_max=xs.per_node_max,
+            reverse=xs.reverse_sanctions,
         )
         for x in exps:
             info = SourceInfo(

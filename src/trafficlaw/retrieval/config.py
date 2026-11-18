@@ -155,6 +155,9 @@ class SystemSpec(BaseModel):
     rerank). 0 = rerank tự do (người dùng chốt 15/11/2026 sau đo val/train); M13 có thể so như
     biến thể khai báo trước."""
     final_k: int = 5
+    expand: ExpandSpec | None = None
+    """Ghi đè bảng graph expand chung (``expand`` của ``retrieval.yaml``) cho riêng cấu hình
+    này — biến thể chỉnh trên tập dev (M13c); ``None`` = dùng bảng chung."""
 
     @model_validator(mode="after")
     def _check(self) -> SystemSpec:
