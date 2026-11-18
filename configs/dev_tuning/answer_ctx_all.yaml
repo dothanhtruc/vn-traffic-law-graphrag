@@ -1,0 +1,47 @@
+# M13c biến thể HẬU KIỂM (thêm sau khi xem dev: analyzer không gán da_buoc cho câu đa bước nào ⇒
+# chunk đồ thị bổ sung không được dùng): graph_extra_types = mọi loại câu, max_graph_extra 3.
+prompt: answer
+prompt_no_rag: answer_no_rag
+number_repair_prompt: answer_number_repair
+no_rag_config: B0
+max_output_tokens: 1536
+max_points: 6
+context:
+  graph_extra_types:
+  - muc_phat
+  - tru_diem
+  - bien_phap
+  - hanh_vi_cam_nghia_vu
+  - dinh_nghia
+  - thu_tuc_tham_quyen
+  - theo_thoi_diem
+  - da_buoc
+  - so_sanh
+  - ngoai_pham_vi
+  max_graph_extra: 3
+  graph_edge_priority:
+  - BI_XU_PHAT
+  - BI_TRU_DIEM
+  - DAN_CHIEU
+  dan_chieu_outgoing_only: true
+  token_budget: 6000
+  token_budget_shared: 4000
+  chars_per_token: 1.74
+  min_lines_truncated: 3
+numbers:
+  max_text_numbers_per_source: 25
+  text_chars_budget: 4000
+  repair: true
+refusal:
+  tau: -1.625
+eval:
+  val: data/qa/val.jsonl
+  dev_out_of_scope: data/qa/dev_out_of_scope.jsonl
+  retrieval_from: data/index/retrieval_eval
+  results_dir: results
+  out_dir: data/answer
+  run_id: m12-dev
+  sample_n: null
+  seed: 42
+  review_n: 30
+  output_tokens_estimate: 350
