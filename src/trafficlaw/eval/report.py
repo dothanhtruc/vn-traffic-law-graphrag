@@ -7,8 +7,11 @@ Quy tắc:
 - So sánh: ``compare_to`` (G) với từng cấu hình, **chỉ trên câu cả hai đã có giá trị** của chỉ
   số đó. Chỉ số đúng/sai (``BINARY_METRICS``) → McNemar chính xác; còn lại → Wilcoxon Pratt.
   Holm hiệu chỉnh trong **từng chỉ số** (họ = các cấu hình được so với G); báo cả p thô.
-- Từ chối: precision = câu ``ngoai_pham_vi`` bị từ chối / mọi câu bị từ chối; recall = câu
-  ``ngoai_pham_vi`` bị từ chối / mọi câu ``ngoai_pham_vi``.
+- Từ chối: câu **nên từ chối** = ``ngoai_pham_vi`` + câu có gold rỗng (câu "trước mốc" của cặp
+  ``theo_thoi_diem``: điều khoản chưa có hiệu lực — sửa M13c 18/11/2026, trước đó bị tính là từ
+  chối nhầm). precision = câu nên từ chối bị từ chối / mọi câu bị từ chối (``precision_oos``: chỉ
+  tính ``ngoai_pham_vi`` như M13 cũ); recall = câu ``ngoai_pham_vi`` bị từ chối / mọi câu
+  ``ngoai_pham_vi``; ``tu_choi_sai`` = câu có gold bị từ chối / mọi câu có gold.
 """
 
 from __future__ import annotations
@@ -136,15 +139,24 @@ def breakdown(
 def refusal_stats(rows: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
     done = [r for r in rows if r["metrics"].get("tu_choi") is not None]
     oos = [r for r in done if r["question_type"] == "ngoai_pham_vi"]
-    ref = [r for r in done if r["metrics"]["tu_choi"] == 1.0]
-    tp = sum(1 for r in oos if r["metrics"]["tu_choi"] == 1.0)
+    empty = [r for r in done if r.get("gold_rong")]
+    has_gold = [r for r in done if r["question_type"] != "ngoai_pham_vi" and not r.get("gold_rong")]
+
+    def refused(rs: Sequence[Mapping[str, Any]]) -> int:
+        return sum(1 for r in rs if r["metrics"]["tu_choi"] == 1.0)
+
+    n_ref = refused(done)
+    tp = refused(oos)
     return {
         "n": len(done),
         "n_ngoai_pham_vi": len(oos),
-        "n_tu_choi": len(ref),
-        "precision": tp / len(ref) if ref else None,
+        "n_gold_rong": len(empty),
+        "n_tu_choi": n_ref,
+        "precision": (tp + refused(empty)) / n_ref if n_ref else None,
+        "precision_oos": tp / n_ref if n_ref else None,
         "recall": tp / len(oos) if oos else None,
-        "tu_choi_sai": (len(ref) - tp) / (len(done) - len(oos)) if len(done) > len(oos) else None,
+        "tu_choi_gold_rong": refused(empty) / len(empty) if empty else None,
+        "tu_choi_sai": refused(has_gold) / len(has_gold) if has_gold else None,
     }
 
 
@@ -192,6 +204,95 @@ def compare(
         for (cfg, _), pa_ in zip(tested, adj, strict=True):
             res[cfg][m]["p_holm"] = pa_
     return res
+
+
+DEV_METRICS = (
+    "judge_dung",
+    "judge_diem",
+    "so_du",
+    "so_recall",
+    "trich_gold",
+    "phien_ban_dung",
+    "db_top5",
+    "db_ngu_canh",
+    "db_du",
+    "r@5",
+    "tu_choi",
+    "tu_choi_dung",
+    "vp_sau",
+    "cau_bo",
+)
+"""Chỉ số so biến thể trên tập dev (M13c); ``tu_choi`` chỉ tính trên câu trả lời được."""
+
+
+def compare_runs(
+    base: Sequence[Mapping[str, Any]],
+    others: Mapping[str, Sequence[Mapping[str, Any]]],
+    *,
+    question_types: Sequence[str] | None = None,
+    metrics: Sequence[str] = DEV_METRICS,
+    n_boot: int = 1000,
+    seed: int = 42,
+) -> dict[str, Any]:
+    """So các biến thể (có thể ở lượt chạy khác nhau) với ``base`` trên cùng câu.
+
+    ``tu_choi`` chỉ lấy câu không phải ``ngoai_pham_vi`` (= tỷ lệ từ chối nhầm); ``tu_choi_dung``
+    giữ mọi câu. Lọc ``question_types`` trước khi ghép cặp."""
+
+    def keep(rows: Sequence[Mapping[str, Any]]) -> list[Mapping[str, Any]]:
+        return [r for r in rows if not question_types or r["question_type"] in question_types]
+
+    def answerable(rows: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
+        out = []
+        for r in rows:
+            m = dict(r["metrics"])
+            if r["question_type"] == "ngoai_pham_vi":
+                m["tu_choi"] = None
+            out.append({**r, "metrics": m})
+        return out
+
+    kb = keep(base)
+    ko = {k: keep(v) for k, v in others.items()}
+    b = answerable(kb)
+    o = {k: answerable(v) for k, v in ko.items()}
+    present = [m for m in metrics if any(r["metrics"].get(m) is not None for r in b)]
+    return {
+        "question_types": list(question_types or []),
+        "n_base": len(b),
+        "describe": {
+            name: describe(rows, present, n_boot=n_boot, seed=seed)
+            for name, rows in {"base": b, **o}.items()
+        },
+        "refusal": {name: refusal_stats(rows) for name, rows in {"base": kb, **ko}.items()},
+        "compare": compare(b, o, present, n_boot=n_boot, seed=seed),
+    }
+
+
+def render_compare_runs_md(res: Mapping[str, Any], labels: Mapping[str, str]) -> str:
+    names = list(res["describe"])
+    head = ["Chỉ số"] + [labels.get(n, n) for n in names]
+    lines = [
+        f"Loại câu: {', '.join(res['question_types']) or 'tất cả'} · n = {res['n_base']}",
+        "",
+        "| " + " | ".join(head) + " |",
+        "|" + "---|" * len(head),
+    ]
+    metrics = list(res["describe"]["base"])
+    for m in metrics:
+        cells = [LABELS.get(m, m)]
+        for n in names:
+            d = res["describe"][n].get(m) or {}
+            cell = _cell(d, m, with_ci=False)
+            c = res["compare"].get(n, {}).get(m) if n != "base" else None
+            if c:
+                cell += f" (p {_p(c.get('p'))})"
+            cells.append(cell)
+        lines.append("| " + " | ".join(cells) + " |")
+    lines += ["", "| Từ chối | " + " | ".join(labels.get(n, n) for n in names) + " |"]
+    lines.append("|" + "---|" * (len(names) + 1))
+    for k in ("precision", "precision_oos", "recall", "tu_choi_gold_rong", "tu_choi_sai"):
+        lines.append(f"| {k} | " + " | ".join(_pct(res["refusal"][n].get(k)) for n in names) + " |")
+    return "\n".join(lines) + "\n"
 
 
 def pair_summary(pair_flags: Mapping[str, float]) -> dict[str, Any]:
@@ -303,10 +404,11 @@ def render_summary_md(s: Mapping[str, Any]) -> str:
             + " |"
         )
     md.append(
-        "| Từ chối: precision / recall | "
+        "| Từ chối: precision / recall / từ chối nhầm câu có gold | "
         + " | ".join(
             f"{_pct(cfgs[c]['refusal'].get('precision'))}"
             f" / {_pct(cfgs[c]['refusal'].get('recall'))}"
+            f" / {_pct(cfgs[c]['refusal'].get('tu_choi_sai'))}"
             for c in names
         )
         + " |"

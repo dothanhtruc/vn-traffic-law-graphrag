@@ -144,3 +144,25 @@ configs:
     reranker: true
     reranker_model: aiteamvn-reranker
     graph_expand: true
+  # M13c — biến thể CHỈ đo trên tập dev (data/qa/dev_multi.jsonl), khai báo trước khi chạy.
+  # Chọn theo dev; test chỉ đo lần cuối. Mọi biến thể = G + đúng một thay đổi (hoặc hai, ghi rõ).
+  XG_r1: {description: G + 1 chỗ top-5 dành cho chunk đồ thị, bm25: true, dense: true, reranker: true, graph_expand: true, reserved_graph_slots: 1}
+  XG_all2:
+    description: G với bảng expand đa bước (4 loại cạnh, 2 hop) cho mọi loại câu (analyzer có thể gán nhầm loại)
+    bm25: true
+    dense: true
+    reranker: true
+    graph_expand: true
+    expand:
+      default: {edge_types: [DAN_CHIEU, BI_XU_PHAT, BI_TRU_DIEM, HUONG_DAN], hops: 2}
+      by_type: {}
+  XG_all2_r1:
+    description: XG_all2 + 1 chỗ top-5 dành cho chunk đồ thị
+    bm25: true
+    dense: true
+    reranker: true
+    graph_expand: true
+    reserved_graph_slots: 1
+    expand:
+      default: {edge_types: [DAN_CHIEU, BI_XU_PHAT, BI_TRU_DIEM, HUONG_DAN], hops: 2}
+      by_type: {}

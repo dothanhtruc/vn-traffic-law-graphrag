@@ -117,8 +117,12 @@ def load_eval_data(
     *,
     drafts: Mapping[str, Mapping[str, Any]] | None = None,
     require_subsets: bool = True,
+    oos_path: Path | None = None,
 ) -> EvalData:
-    """Validate test (M9) rồi giải gold; tập con phải khớp test hiện hành."""
+    """Validate test (M9) rồi giải gold; tập con phải khớp test hiện hành.
+
+    ``oos_path``: câu ``ngoai_pham_vi`` bổ sung (vd ``dev_out_of_scope.jsonl``, không có đáp án
+    tham chiếu ⇒ không qua validator test), chỉ để đo từ chối đúng trên tập dev (M13c)."""
     rows = list(read_jsonl(test_path))
     try:
         split = split_of(test_path)
@@ -133,6 +137,16 @@ def load_eval_data(
     if bad:
         logger.warning("loại %d câu test lỗi validator: %s", len(bad), sorted(bad))
     items = to_gold_items([r for r in res.resolved if str(r["qid"]) not in bad])
+    if oos_path is not None:
+        extra = to_gold_items(list(read_jsonl(oos_path)))
+        seen = {it.qid for it in items}
+        for it in extra:
+            if it.question_type != "ngoai_pham_vi" or it.gold_units:
+                raise ValueError(f"{oos_path}: {it.qid} không phải câu ngoai_pham_vi không gold")
+            if it.qid in seen:
+                raise ValueError(f"{oos_path}: qid {it.qid} trùng")
+            seen.add(it.qid)
+        items += extra
     subsets: dict[str, list[str]] = {}
     if subsets_path is not None:
         st = subsets_status(subsets_path, test_path)
@@ -146,7 +160,11 @@ def load_eval_data(
 
             raw = json.loads(subsets_path.read_text(encoding="utf-8"))
             subsets = {k: [q for q in v["qids"] if q not in bad] for k, v in raw["subsets"].items()}
-    paths = [test_path] + ([subsets_path] if subsets_path is not None else [])
+    paths = (
+        [test_path]
+        + ([subsets_path] if subsets_path is not None else [])
+        + ([oos_path] if oos_path is not None else [])
+    )
     return EvalData(
         items=items,
         invalid=[{"qid": q, "codes": sorted(set(codes[q]))} for q in sorted(bad)],

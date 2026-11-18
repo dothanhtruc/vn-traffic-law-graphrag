@@ -75,6 +75,10 @@ class EvalConfig(BaseModel):
     test: str = "data/qa/test.jsonl"
     subsets: str | None = "data/qa/subsets.json"
     drafts: str | None = "data/qa/test_drafts.jsonl"
+    oos: str | None = None
+    """Câu ``ngoai_pham_vi`` bổ sung, không qua validator test (tập dev M13c)."""
+    answer_config: str = "configs/answer.yaml"
+    """Cấu hình sinh câu trả lời (biến thể prompt/τ trên tập dev M13c)."""
     results_dir: str = "results"
     seed: int = 42
     today: date = date(2026, 11, 3)

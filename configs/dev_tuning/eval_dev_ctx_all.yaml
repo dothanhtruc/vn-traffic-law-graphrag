@@ -1,0 +1,49 @@
+# M13c: chỉnh graph expand / từ chối / prompt sửa số trên TẬP DEV (không dùng test).
+# Tập: data/qa/dev_multi.jsonl (75 câu: đa bước, theo thời điểm, mức phạt, so sánh, trừ điểm)
+#    + data/qa/dev_out_of_scope.jsonl (40 câu ngoai_pham_vi Claude viết ở M12 — đã dùng hiệu chỉnh τ ⇒
+#      recall từ chối trên tập này lạc quan; chỉ dùng so tương đối giữa biến thể).
+# Biến thể truy hồi: configs/retrieval.yaml (XG_*). Biến thể sinh: configs/dev_tuning/answer_*.yaml,
+# mỗi biến thể một run_id (--run-id, --config-answer qua file eval_dev_<tên>.yaml), dùng chung retrieve_G.
+run_id: m13c-dev-ctx_all
+test: data/qa/dev_multi.jsonl
+subsets: null
+drafts: data/qa/dev_drafts.jsonl
+oos: data/qa/dev_out_of_scope.jsonl
+answer_config: configs/dev_tuning/answer_ctx_all.yaml
+results_dir: results
+seed: 42
+today: 2026-11-03
+
+generate:
+  G: full
+
+retrieve:
+  configs: [G]
+  set: full
+
+judge:
+  model_id: mistral-small-3.2
+  prompt: judge
+  configs: [G]
+  subset: full
+  max_output_tokens: 1024
+  output_tokens_estimate: 250
+
+variance:
+  config: G
+  subset: full
+  seeds: []
+
+judge_check:
+  n: 0
+  seed_key: m13c_judge_check
+  config: G
+
+stats:
+  bootstrap: 1000
+  seed: 42
+  compare_to: G
+  wilcoxon_zero: pratt
+  multiple: holm
+
+output_tokens_estimate: 350

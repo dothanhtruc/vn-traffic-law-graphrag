@@ -11,8 +11,9 @@ Chỉ số (khoá ``dict``):
 - Truy hồi (câu có ``gold_units``; RAG): ``r@1/5/10/20``, ``mrr@10``, ``ndcg@10`` — như M10/M11:
   chunk đúng = chunk hiệu lực tại ``as_of`` chứa gold (unit / tổ tiên / con cháu); recall cấp unit.
 - ``tu_choi_dung`` (mọi câu): ``ngoai_pham_vi`` → đúng ⇔ ``answer_status`` ∈ {insufficient,
-  out_of_scope}; câu khác → đúng ⇔ ``answered``. ``tu_choi`` = hệ thống từ chối (để tính
-  precision/recall từ chối ở báo cáo).
+  out_of_scope}; câu khác → đúng ⇔ ``answered``; câu gold rỗng ("trước mốc" của
+  ``theo_thoi_diem``) → ``None`` (từ chối hay trả lời "chưa có quy định" đều đúng; sửa M13c).
+  ``tu_choi`` = hệ thống từ chối (để tính precision/recall từ chối ở báo cáo).
 - Con số (câu có ``required_numbers``): tập số tìm được = số trong câu trả lời đã render (bỏ nhãn
   trích dẫn ``[...]``; ``400.000`` = 400000, ``02`` = 2) ∪ giá trị của mã ``N#`` đã dùng; so theo
   **giá trị** (Decimal), không so đơn vị. ``so_recall`` = tỷ lệ số yêu cầu tìm được; ``so_du`` =
@@ -151,7 +152,9 @@ def answer_scores(
     out: dict[str, float | None] = {
         "ok": 1.0 if ok else 0.0,
         "tu_choi": 1.0 if refused else 0.0,
-        "tu_choi_dung": 1.0 if ok and (refused == oos) else 0.0,
+        "tu_choi_dung": None
+        if not oos and not item.gold_units
+        else (1.0 if ok and (refused == oos) else 0.0),
     }
     gold = list(item.gold_units)
     cites = shown_citations(res) if ok else []
@@ -232,6 +235,7 @@ def score_row(
         "tier": item.tier,
         "source_kind": item.source_kind,
         "pair_id": item.pair_id,
+        "gold_rong": item.question_type != "ngoai_pham_vi" and not item.gold_units,
         "answer_status": res.answer_status if res else None,
         "status": res.status if res else None,
     }

@@ -185,6 +185,14 @@ def test_refusal_and_format_error(mini_catalog) -> None:  # noqa: F811
     ]
     rs = refusal_stats(rows)
     assert rs["precision"] == 0.5 and rs["recall"] == 0.5 and rs["tu_choi_sai"] == 0.5
+    empty = gold(question_type="theo_thoi_diem", gold_units=())
+    for st in ("insufficient", "answered"):
+        assert answer_scores(empty, ans(answer_status=st), mini_catalog)["tu_choi_dung"] is None
+    # M13c: câu "trước mốc" gold rỗng — từ chối là đúng, không tính vào tu_choi_sai
+    rows.append({"question_type": "theo_thoi_diem", "gold_rong": True, "metrics": {"tu_choi": 1.0}})
+    rs = refusal_stats(rows)
+    assert rs["precision"] == pytest.approx(2 / 3) and rs["precision_oos"] == pytest.approx(1 / 3)
+    assert rs["tu_choi_sai"] == 0.5 and rs["tu_choi_gold_rong"] == 1.0 and rs["recall"] == 0.5
 
 
 def test_da_buoc_and_b0(mini_catalog) -> None:  # noqa: F811
