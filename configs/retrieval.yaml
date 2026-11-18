@@ -132,7 +132,9 @@ expand:
 configs:
   B1: {description: BM25, bm25: true, dense: false, analyzer_llm: false}
   B2: {description: vector gốc, bm25: false, dense: true, dense_model: aiteamvn-vi-emb, analyzer_llm: false}
-  B3: {description: hybrid + rerank, bm25: true, dense: true, reranker: true, analyzer_llm: false}
+  # B3 = hybrid + rerank với model GỐC ghi tường minh (người dùng chọn 18/11/2026): sau M14, G vs B3
+  # = đồ thị + fine-tune; A3 tách riêng fine-tune; A1 tách riêng expand.
+  B3: {description: hybrid + rerank (model gốc), bm25: true, dense: true, dense_model: aiteamvn-vi-emb, reranker: true, reranker_model: aiteamvn-reranker, analyzer_llm: false}
   G: {description: Graph RAG đầy đủ, bm25: true, dense: true, reranker: true, graph_expand: true}
   A1: {description: G bỏ graph expand, bm25: true, dense: true, reranker: true, graph_expand: false}
   A2: {description: G bỏ lọc hiệu lực, bm25: true, dense: true, reranker: true, graph_expand: true, validity_filter: false}
