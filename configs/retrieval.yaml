@@ -10,8 +10,8 @@ bm25: {k1: 1.5, b: 0.75, bigrams: true}
 top_k: 20
 rrf_k: 60
 
-# Model gốc đã chốt (M11/M13/M14 dùng; người dùng chốt 14/11/2026 theo data/index/model_selection.md).
-model_key: aiteamvn-vi-emb
+# Model của G/A1/A2 (M14: bản fine-tune; gốc aiteamvn-vi-emb chốt 14/11/2026 — A3, B2, B3 ghi tường minh).
+model_key: aiteamvn-vi-emb-ft
 
 # Ứng viên so sánh trên val (người dùng chốt 13/11/2026).
 candidates: [aiteamvn-vi-emb, bge-m3, qwen3-emb-0.6b, me5-large-instruct, qwen3-emb-4b]
@@ -100,7 +100,7 @@ regression:
 # apache-2.0, không gated, fine-tune từ BAAI/bge-reranker-v2-m3. Điểm = logit thô (không sigmoid).
 # Repo không có tokenizer.json ⇒ tách cửa sổ bằng tokenizer.json của model gốc bge-reranker-v2-m3
 # (cùng sentencepiece XLM-R); máy thuê kiểm tra số token trùng tokenizer của reranker.
-reranker_key: aiteamvn-reranker
+reranker_key: aiteamvn-reranker-ft   # M14 (gốc aiteamvn-reranker: A3, B3 ghi tường minh)
 rerankers:
   aiteamvn-reranker:
     hf_repo: AITeamVN/Vietnamese_Reranker
@@ -114,6 +114,22 @@ rerankers:
       hf_repo: BAAI/bge-reranker-v2-m3
       revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
     pairs_per_s: 150     # ước tính thận trọng, thay bằng số đo (data/index/rerank/<key>/runs.jsonl)
+    load_min: 1.5
+  # M14: fine-tune từ aiteamvn-reranker (scripts.train_reranker, lưới lr × 2 epoch; chọn theo val
+  # rerank-only trên pool G cố định, R@5 → MRR@10: trafficlaw-rerank-lr2e5 bước 220,
+  # data/train/reranker_selection.md). Cùng tokenizer bge-reranker-v2-m3 (repo có tokenizer.json).
+  aiteamvn-reranker-ft:
+    hf_repo: dothanhtruc/trafficlaw-rerank-lr2e5
+    revision: 65bbe71164dc4c1d4743a1c1eceac659289b6534
+    params_b: 0.57
+    license: apache-2.0
+    family: xlm-roberta
+    max_length: 512
+    batch_size: 32
+    count_tokenizer:
+      hf_repo: BAAI/bge-reranker-v2-m3
+      revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+    pairs_per_s: 150
     load_min: 1.5
 
 # Phân tích câu hỏi: rule trước; LLM main (configs/llm.yaml) chỉ khi rule không chắc.
@@ -138,7 +154,7 @@ expand:
   reverse_sanctions: true
 
 # Cấu hình truy hồi (CLAUDE.md mục 10). dense_model/reranker_model null → model_key/reranker_key
-# (M14 thay hai khoá này bằng bản fine-tune ⇒ G dùng bản fine-tune, A3 giữ bản gốc ghi tường minh).
+# (từ M14 = bản fine-tune ⇒ G, A1, A2 dùng bản fine-tune; A3, B2, B3 giữ bản gốc ghi tường minh).
 configs:
   B1: {description: BM25, bm25: true, dense: false, analyzer_llm: false}
   B2: {description: vector gốc, bm25: false, dense: true, dense_model: aiteamvn-vi-emb, analyzer_llm: false}
@@ -149,7 +165,7 @@ configs:
   A1: {description: G bỏ graph expand, bm25: true, dense: true, reranker: true, graph_expand: false}
   A2: {description: G bỏ lọc hiệu lực, bm25: true, dense: true, reranker: true, graph_expand: true, validity_filter: false}
   A3:
-    description: G với embedding/reranker gốc (chưa có bản fine-tune ⇒ trùng G tới M14)
+    description: G với embedding/reranker gốc (G dùng bản fine-tune M14)
     bm25: true
     dense: true
     dense_model: aiteamvn-vi-emb

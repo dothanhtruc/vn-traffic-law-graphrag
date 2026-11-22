@@ -100,7 +100,7 @@ def test_real_configs_load() -> None:
     rr = load_train_config(ROOT / "configs/train_reranker.yaml")
     mine = load_mining_config(ROOT / "configs/hard_negatives.yaml")
     assert emb.kind == "embedding" and rr.kind == "reranker"
-    assert emb.train.batch_size == 128 and emb.train.mini_batch_size == 32
+    assert emb.train.batch_size == 128 and emb.train.mini_batch_size == 16  # dry-run 22/11
     assert rr.train.batch_size == 16 and rr.train.grad_accum == 2
     assert emb.grid and rr.grid
     for cfg in (emb, rr):
