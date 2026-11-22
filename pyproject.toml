@@ -26,6 +26,9 @@ embed = [
     "tokenizers>=0.23.3",
     "torch>=2.15.0",
 ]
+report = [
+    "matplotlib>=3.11.2",
+]
 tok = [
     "tokenizers>=0.23.3",
 ]

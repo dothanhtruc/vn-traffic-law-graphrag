@@ -1,0 +1,91 @@
+# M16 — báo cáo tự động (scripts.report). Chỉ đọc file kết quả có sẵn; không GPU, không LLM.
+# Mọi con số trong báo cáo sinh từ các file dưới đây (sources.json ghi sha256 + trường đã đọc).
+
+out_dir: reports            # báo cáo ghi vào <out_dir>/<run_id>/
+run_id: m14-test            # run đánh giá chính thức (test)
+variance_run: m13-test-v2   # dao động seed + kiểm định judge (m14-test không đo lại)
+dev_run: m14-dev            # tập dev (G vs A3, M14)
+alpha: 0.05                 # ngưỡng p Holm để gọi "khác biệt có ý nghĩa"
+config_order: [G, A1, A2, A3, B3, B2, B1, B0]
+compare_metrics: [r@5, mrr@10, judge_dung, judge_diem, so_du, trich_gold, phien_ban_dung, tu_choi_dung]
+retrieval_metrics: [r@5, mrr@10]       # chỉ số "truy hồi" khi viết kết luận
+answer_metrics: [judge_dung, judge_diem, so_du, trich_gold, phien_ban_dung]   # chỉ số "câu trả lời"
+breakdown_configs: [G, A3, B3]
+figure_dpi: 150
+
+configs:                    # mô tả cấu hình (không có số)
+  G: Graph RAG đầy đủ (embedding + reranker fine-tune)
+  A1: G bỏ graph expand
+  A2: G bỏ lọc hiệu lực
+  A3: G với embedding + reranker gốc
+  B3: hybrid + rerank (model gốc)
+  B2: vector (model gốc)
+  B1: BM25
+  B0: không RAG
+
+# id → file. Thư mục results/ và data/ (trừ data/qa, data/registry) gitignored: có ở máy local
+# và GitHub Release tương ứng (ghi ở cột release). Thiếu file ⇒ báo cáo ghi "thiếu nguồn".
+sources:
+  registry:        {path: data/registry/documents.yaml, kind: yaml, module: M1}
+  ingest:          {path: data/interim/manifest.jsonl, kind: jsonl, module: M2}
+  structure:       {path: data/processed/structure_report.jsonl, kind: jsonl, module: M3}
+  amendment:       {path: data/processed/amendment_report.jsonl, kind: jsonl, module: M4}
+  vbhn:            {path: data/processed/vbhn_compare.jsonl, kind: jsonl, module: M4}
+  vbhn_map:        {path: data/registry/vbhn_map.yaml, kind: yaml, module: M4}
+  graph:           {path: data/graph/graph_report.jsonl, kind: jsonl, module: M5}
+  graph_nodes:     {path: data/graph/nodes.jsonl, kind: hash, module: M5}
+  graph_edges_struct: {path: data/graph/edges_struct.jsonl, kind: hash, module: M5}
+  graph_edges_legal:  {path: data/graph/edges_legal.jsonl, kind: hash, module: M5}
+  parity:          {path: data/graph/store_parity.jsonl, kind: jsonl_first, module: M6}
+  extraction:      {path: data/graph/extraction_report.jsonl, kind: jsonl, module: M8, release: m08-extract-v1}
+  extract_cfg:     {path: configs/extract.yaml, kind: yaml, module: M8}
+  extraction_eval: {path: data/processed/extraction/eval_report.json, kind: json, module: M8}
+  validate_test:   {path: data/processed/qa/validate_test.json, kind: json, module: M9}
+  train_manifest:  {path: data/qa/train_manifest.json, kind: json, module: M9}
+  subsets:         {path: data/qa/subsets.json, kind: json, module: M9}
+  test:            {path: data/qa/test.jsonl, kind: hash, module: M9}
+  unit_versions:   {path: data/processed/unit_versions.jsonl, kind: hash, module: M4}
+  units_added:     {path: data/processed/units_added.jsonl, kind: hash, module: M4}
+  model_selection: {path: data/index/model_selection.json, kind: json, module: M10, release: m10-index-v1}
+  retrieval_eval:  {path: data/index/retrieval_eval.json, kind: json, module: M11, release: m11-retrieval-v1}
+  answer_dev:      {path: data/answer/dev_eval.json, kind: json, module: M12, release: m12-answer-v1}
+  tau:             {path: data/answer/tau.json, kind: json, module: M12}
+  summary:         {path: "results/{run_id}/summary.json", kind: json, module: M14, release: m14-finetune-v1}
+  variance_summary: {path: "results/{variance_run}/summary.json", kind: json, module: M13, release: m13-eval-v2}
+  dev_summary:     {path: "results/{dev_run}/summary.json", kind: json, module: M14, release: m14-finetune-v1}
+  hard_negatives:  {path: data/train/hard_negatives_summary.json, kind: json, module: M14, release: m14-finetune-v1}
+  emb_selection:   {path: data/train/embedding_selection.json, kind: json, module: M14, release: m14-finetune-v1}
+  rerank_selection: {path: data/train/reranker_selection.json, kind: json, module: M14, release: m14-finetune-v1}
+  retrieval_eval_m14: {path: data/index/retrieval_eval_m14.json, kind: json, module: M14, release: m14-finetune-v1}
+  baseline_bm25:   {path: data/qa/retrieval_baseline.json, kind: json, module: M10}
+  baseline_g:      {path: data/qa/retrieval_baseline_test.json, kind: json, module: M13}
+  eval_cfg:        {path: configs/eval.yaml, kind: yaml, module: M13}
+  claude_md:     {path: CLAUDE.md, kind: text, module: —}
+  doc_m14:         {path: docs/m14_finetune.md, kind: text, module: M14}
+  doc_m13c:        {path: docs/m13c_dev_tuning.md, kind: text, module: M13}
+
+# Chương hạn chế: trích NGUYÊN VĂN từ nguồn (không diễn giải, không thêm số).
+#  - `start`: đoạn mở đầu phải có đúng một lần trong file; lấy tới `end` (gồm cả `end`) hoặc hết dòng.
+#  - `section`: lấy mọi gạch đầu dòng của mục Markdown có đúng tiêu đề đó.
+# Không tìm thấy ⇒ báo cáo ghi "không tìm thấy" (nguồn đã đổi, phải cập nhật danh sách này).
+limitations:
+  - {module: M8, title: Trích xuất thực thể, source: claude_md,
+     start: "**Hạn chế phải nêu trong đồ án**: regex, hậu kiểm"}
+  - {module: M9, title: Tập test, source: claude_md,
+     start: "**Hạn chế phải nêu trong đồ án**: không câu test nào do người viết hay sửa"}
+  - {module: M9, title: Tập test (dùng lại unit), source: claude_md,
+     start: "Hạn chế thêm: câu dùng lại unit", end: "trong test."}
+  - {module: M10, title: Chọn embedding, source: claude_md,
+     start: "Hạn chế: câu val do Mistral sinh từ chính chunk", end: "không phản ánh câu hỏi thật."}
+  - {module: M11, title: Truy hồi, source: claude_md,
+     start: "Hạn chế: câu val/train sinh từ một chunk"}
+  - {module: M12, title: Sinh câu trả lời, source: claude_md,
+     start: "Hạn chế: bộ dò số / đọc nhãn trích dẫn", end: "(judge M13)."}
+  - {module: M13, title: Prompt sửa số v2, source: claude_md,
+     start: "**Hạn chế phải nêu**: prompt sửa số mới", end: "sau khi xem so sánh."}
+  - {module: M13, title: Tập dev, source: claude_md,
+     start: "**Hạn chế**: 81% câu dev do Claude sửa", end: "không báo cáo như kết quả chính."}
+  - {module: M13, title: Chỉnh trên dev, source: doc_m13c, section: "## Hạn chế"}
+  - {module: M14, title: Fine-tune, source: doc_m14, section: "## 6. Hạn chế phải nêu"}
+  - {module: LLM, title: Model tự host, source: claude_md,
+     start: "Hạn chế ghi trong đồ án: model mở"}
