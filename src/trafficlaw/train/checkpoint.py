@@ -107,6 +107,12 @@ def prune_checkpoints(run_dir: Path, keep: int = 2, protect: Path | None = None)
         shutil.rmtree(p, ignore_errors=True)
 
 
+def _err(e: Exception) -> str:
+    """Mô tả lỗi ngắn (dòng đầu thông điệp; không chứa token)."""
+    first = (str(e).strip().splitlines() or [""])[0]
+    return f"{type(e).__name__}: {first[:200]}"
+
+
 class HubSync:
     """Đẩy/kéo HF Hub. ``api`` = ``huggingface_hub.HfApi`` (token đọc từ ``HF_TOKEN``, không in);
     test truyền api giả. ``enabled=False`` → mọi thao tác là no-op."""
@@ -130,6 +136,7 @@ class HubSync:
         self._future: Future | None = None
         self.uploading: Path | None = None
         self._created: set[str] = set()
+        self.last_error: str | None = None
 
     @property
     def api(self) -> Any:
@@ -168,7 +175,12 @@ class HubSync:
         if self.busy():
             return False
         self.wait()
-        self._ensure(self.ckpt_repo)
+        try:
+            self._ensure(self.ckpt_repo)
+        except Exception as e:  # token thiếu quyền / mạng: huấn luyện vẫn tiếp tục
+            self.last_error = _err(e)
+            logger.warning("HF Hub: không tạo được repo checkpoint — %s", self.last_error)
+            return False
         self.uploading = ckpt
         assert self._pool is not None
         self._future = self._pool.submit(
@@ -187,7 +199,8 @@ class HubSync:
         try:
             return self._future.result()
         except Exception as e:  # mạng/HF lỗi: checkpoint cục bộ vẫn còn
-            logger.warning("Đẩy checkpoint lên HF Hub lỗi: %s", type(e).__name__)
+            self.last_error = _err(e)
+            logger.warning("Đẩy checkpoint lên HF Hub lỗi: %s", self.last_error)
             return None
         finally:
             self._future = None

@@ -203,7 +203,7 @@ def run_loop(
         prune_checkpoints(run_dir, keep=2, protect=hub.uploading)
         log.event(
             "checkpoint", step=s, path=str(p), save_s=round(time.perf_counter() - t0, 2),
-            hub_push=started, hub_busy=not started and hub.enabled and hub.push_checkpoints,
+            hub_push=started, hub_busy=hub.busy(), hub_error=hub.last_error,
         )  # fmt: skip
 
     n_run = 0
@@ -225,7 +225,9 @@ def run_loop(
                 opt.zero_grad(set_to_none=True)
                 torch.cuda.empty_cache()
                 state["micro"] = max(1, int(state["micro"]) // 2)
-                log.event("oom", step=step, new_micro=state["micro"])
+                log.event("oom", step=step, new_micro=state["micro"], peak_vram_gb=_peak_gb())
+                if torch.cuda.is_available():
+                    torch.cuda.reset_peak_memory_stats()
         if scaler is not None:
             scaler.unscale_(opt)
         gn = torch.nn.utils.clip_grad_norm_(model.parameters(), params.max_grad_norm)
@@ -255,14 +257,18 @@ def run_loop(
     best_commit = None
     if push_best and state["best_step"] is not None and (run_dir / "best").is_dir():
         t0 = time.perf_counter()
-        best_commit = hub.push_model(run_dir / "best", f"best step {state['best_step']}")
+        try:
+            best_commit = hub.push_model(run_dir / "best", f"best step {state['best_step']}")
+        except Exception as e:  # giữ bản cục bộ, đẩy lại sau (scripts --push-best)
+            log.event("hub_error", what="best", error=f"{type(e).__name__}")
+            best_commit = None
         log.event(
             "hub", what="best", step=state["best_step"], commit=best_commit,
             repo=hub.model_repo if hub.enabled else None,
             seconds=round(time.perf_counter() - t0, 1),
         )  # fmt: skip
         last = latest_checkpoint(run_dir)
-        if last is not None and hub.enabled:
+        if last is not None and hub.enabled and best_commit is not None:
             c = hub.push_model(last / "model", f"final step {step}", repo=hub.ckpt_repo,
                                path_in_repo="final")  # fmt: skip
             log.event("hub", what="final", step=step, commit=c)

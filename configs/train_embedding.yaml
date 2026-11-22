@@ -25,7 +25,7 @@ train:
   mini_batch_size: 32              # mini-batch GradCache; OOM → giảm một nửa
   n_neg: 1                         # hard negative/câu (+ in-batch negatives)
   scale: 20.0
-  gradient_checkpointing: false    # bật nếu dry-run vượt 22 GB
+  gradient_checkpointing: true     # dry-run 22/11: mini 32 không checkpointing → OOM (23,0 GB)
   dtype: bf16
   save_steps: 30                   # + cuối mỗi epoch (~56 bước/epoch)
   eval_steps: null                 # đánh giá val cuối mỗi epoch
