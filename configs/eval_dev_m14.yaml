@@ -1,0 +1,46 @@
+# M14: so G (embedding + reranker fine-tune) với A3 (model gốc) trên TẬP DEV (không dùng test).
+# A3 ≡ G của m13c-dev (cùng model gốc) ⇒ lượt LLM của A3 trúng cache; kiểm tra tái lập.
+run_id: m14-dev
+test: data/qa/dev_multi.jsonl
+subsets: null
+drafts: data/qa/dev_drafts.jsonl
+oos: data/qa/dev_out_of_scope.jsonl
+answer_config: configs/answer.yaml
+results_dir: results
+seed: 42
+today: 2026-11-03
+
+generate:
+  G: full
+  A3: full
+
+retrieve:
+  configs: [G, A3]
+  set: full
+
+judge:
+  model_id: mistral-small-3.2
+  prompt: judge
+  configs: [G, A3]
+  subset: full
+  max_output_tokens: 1024
+  output_tokens_estimate: 250
+
+variance:
+  config: G
+  subset: full
+  seeds: []
+
+judge_check:
+  n: 0
+  seed_key: m13c_judge_check
+  config: G
+
+stats:
+  bootstrap: 1000
+  seed: 42
+  compare_to: G
+  wilcoxon_zero: pratt
+  multiple: holm
+
+output_tokens_estimate: 350

@@ -30,6 +30,16 @@ models:
     family: xlm-roberta
     encode_tps: 60000
     load_min: 1.5
+  # M14: fine-tune từ aiteamvn-vi-emb (scripts.train_embedding, lưới lr × 3 epoch; chọn theo val
+  # dense-only R@5 → MRR@10: trafficlaw-emb-lr2e5 bước 57, data/train/embedding_selection.md).
+  aiteamvn-vi-emb-ft:
+    hf_repo: dothanhtruc/trafficlaw-emb-lr2e5
+    revision: 1ebdce99a63c11f75b1621014cded651b222cabe
+    params_b: 0.57
+    license: apache-2.0
+    family: xlm-roberta
+    encode_tps: 60000
+    load_min: 1.5
   bge-m3:
     hf_repo: BAAI/bge-m3
     revision: 5617a9f61b028005a4858fdac845db406aefb181
