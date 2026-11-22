@@ -231,7 +231,7 @@ def cmd_eval(root: Path, cfg: RetrievalConfig, args: argparse.Namespace) -> int:
     )
     ctx = build_context(root, cfg, an, gpu=args.gpu)
     sets = query_sets(root, cfg, args.sets)
-    out_dir = root / cfg.index_dir / "retrieval_eval"
+    out_dir = root / cfg.index_dir / args.out_name
     t_start = time.perf_counter()
     report: dict[str, Any] = {"sets": {}, "configs": {}}
     for name in args.configs:
@@ -275,7 +275,7 @@ def cmd_eval(root: Path, cfg: RetrievalConfig, args: argparse.Namespace) -> int:
                 root / cfg.index_dir / "rerank" / key / "runs.jsonl",
                 {**st.to_dict(), **report["meta"]["gpu"], "finished_at": now_iso()},
             )
-    path = root / cfg.index_dir / "retrieval_eval.json"
+    path = root / cfg.index_dir / f"{args.out_name}.json"
     path.write_text(
         json.dumps(report, ensure_ascii=False, indent=2, default=str),
         encoding="utf-8",
@@ -556,6 +556,11 @@ def main(argv: Sequence[str] | None = None) -> int:
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--no-llm", action="store_true", help="tắt LLM dự phòng của analyzer")
     ap.add_argument("--gpu", action="store_true", help="nạp model khi thiếu cache (máy thuê)")
+    ap.add_argument(
+        "--out-name",
+        default="retrieval_eval",
+        help="--eval: data/index/<tên>/ + <tên>.{json,md} (M14: retrieval_eval_m14, giữ bản M11)",
+    )
     ap.add_argument("--model", help="model LLM (mặc định main)")
     ap.add_argument("--workers", type=int, default=16)
     ap.add_argument("--today", type=date.fromisoformat, default=date.today())
