@@ -51,6 +51,9 @@ def main(kind: str, default_config: str, argv: Sequence[str] | None = None) -> i
     g.add_argument("--dry-run", action="store_true")
     g.add_argument("--estimate", action="store_true")
     g.add_argument("--report", action="store_true")
+    g.add_argument(
+        "--push-best", action="store_true", help="đẩy bù best/ + final lên HF Hub (máy thuê)"
+    )
     ap.add_argument("--no-hub", action="store_true", help="không đẩy/kéo HF Hub")
     ap.add_argument("--device", default=None)
     args = ap.parse_args(argv)
@@ -61,6 +64,8 @@ def main(kind: str, default_config: str, argv: Sequence[str] | None = None) -> i
         print(f"{args.config}: kind={cfg.kind}, cần {kind}", file=sys.stderr)
         return 1
     rcfg = load_retrieval_config(REPO_ROOT / args.retrieval_config)
+    if args.push_best:
+        return push_best(REPO_ROOT, cfg, args.grid_id)
     if args.report:
         return report(REPO_ROOT, cfg, rcfg)
     if args.estimate:
@@ -315,6 +320,36 @@ def base_metrics(root: Path, cfg: TrainConfig, rcfg: RetrievalConfig) -> dict[st
         return idx.search(qv, 20, allowed=list(allowed))
 
     return summarize(run_retriever(retr, val, catalog, filtered=True), ci_metrics=CI_METRICS)
+
+
+def push_best(root: Path, cfg: TrainConfig, grid_id: str | None) -> int:
+    """Đẩy ``best/`` (repo ``<run>``) và trọng số checkpoint cuối (``<run>-ckpt/final``) của một
+    run đã xong — dùng khi lần đẩy cuối run lỗi (vd token thiếu quyền ghi). Ghi sự kiện ``hub``
+    vào log của run (``--report`` đọc commit từ đây)."""
+    from trafficlaw.train.checkpoint import HubSync, latest_checkpoint
+    from trafficlaw.train.run_log import RunLog
+
+    name = cfg.run_name(grid_id)
+    run_dir = root / cfg.output_dir / name
+    ends = read_events(root / cfg.log_dir / f"{name}.jsonl", "end")
+    if not ends or not (run_dir / "best").is_dir():
+        print(f"{name}: chưa xong hoặc thiếu {run_dir / 'best'}", file=sys.stderr)
+        return 2
+    hub = HubSync(name, private=cfg.hub.private)
+    log = RunLog(root / cfg.log_dir / f"{name}.jsonl")
+    step = ends[-1].get("best_step")
+    t0 = time.perf_counter()
+    commit = hub.push_model(run_dir / "best", f"best step {step}")
+    log.event("hub", what="best", step=step, commit=commit, repo=hub.model_repo,
+              seconds=round(time.perf_counter() - t0, 1), late=True)  # fmt: skip
+    last = latest_checkpoint(run_dir)
+    if last is not None:
+        c = hub.push_model(last / "model", f"final step {ends[-1].get('steps')}",
+                           repo=hub.ckpt_repo, path_in_repo="final")  # fmt: skip
+        log.event("hub", what="final", step=ends[-1].get("steps"), commit=c, late=True)
+    hub.close()
+    print(f"{name}: best bước {step} → {hub.model_repo}@{commit}")
+    return 0
 
 
 def report(root: Path, cfg: TrainConfig, rcfg: RetrievalConfig) -> int:
