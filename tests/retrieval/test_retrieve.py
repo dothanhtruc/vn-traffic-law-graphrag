@@ -121,18 +121,26 @@ def test_offline_reads_cache(
     with pytest.raises(MissingVectorsError):
         offline.retrieve("câu hỏi chưa encode", date(2026, 1, 1), "G")
     # Câu mới đã có vector (encode trên "máy thuê") nhưng chưa có điểm rerank → lỗi rõ ràng.
-    assert cfg.model_key
-    online.encoder.encode(cfg.model_key, ["câu mới về dừng xe"])
+    b3_key = cfg.dense_key(cfg.system("B3"))  # B3 dùng model gốc (M14)
+    assert b3_key
+    online.encoder.encode(b3_key, ["câu mới về dừng xe"])
     fresh = make_ctx(tmp_path, cfg, mini_store, mini_catalog, tables, with_models=False)
     with pytest.raises(MissingRerankScoresError):
         fresh.retrieve("câu mới về dừng xe", date(2026, 1, 1), "B3")
     assert fresh.retrieve("câu mới về dừng xe", date(2026, 1, 1), "B1").hits
 
 
-def test_a3_equals_g_until_m14(ctx) -> None:
+def test_a3_uses_base_models_g_uses_finetuned(ctx) -> None:
+    """M14: G dùng model_key/reranker_key (bản fine-tune); A3, B3 ghi tường minh model gốc."""
+    cfg = ctx.cfg
     g = ctx.retrieve(Q_LANE, date(2026, 1, 1), "G")
     a3 = ctx.retrieve(Q_LANE, date(2026, 1, 1), "A3")
-    assert g.ranked == a3.ranked
+    b3 = ctx.retrieve(Q_LANE, date(2026, 1, 1), "B3")
+    assert g.embedding.key == cfg.model_key == "aiteamvn-vi-emb-ft"
+    assert g.reranker.key == cfg.reranker_key == "aiteamvn-reranker-ft"
+    for r in (a3, b3):
+        assert r.embedding.key == "aiteamvn-vi-emb" and r.reranker.key == "aiteamvn-reranker"
+    assert g.embedding.revision != a3.embedding.revision
 
 
 def test_reserve_graph_slots_unit() -> None:

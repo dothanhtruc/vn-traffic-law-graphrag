@@ -1,0 +1,22 @@
+# M14: khai thác hard negative (scripts.mine_negatives → data/train/hard_negatives.jsonl).
+# Khai báo TRƯỚC khi chạy; đổi tham số ⇒ params_hash đổi ⇒ khai thác lại (cache vector/rerank giữ).
+# Xem src/trafficlaw/train/hard_negatives.py.
+data:
+  train: data/qa/train.jsonl
+  train_manifest: data/qa/train_manifest.json
+  test: data/qa/test.jsonl
+  # Câu train có positive là gold / tổ tiên / con cháu gold của các tập này bị loại (người dùng 18/11/2026).
+  exclude_gold: [data/qa/test.jsonl, data/qa/dev_multi.jsonl]
+  chunks: data/index/chunks.jsonl
+  windows: data/index/vectors/aiteamvn-vi-emb/windows.jsonl
+  negatives: data/train/hard_negatives.jsonl
+
+embed_key: aiteamvn-vi-emb        # model GỐC cho nguồn dense (FAISS M10 + cache vector câu hỏi)
+reranker_key: aiteamvn-reranker   # reranker GỐC chấm để loại negative giả (cache điểm M11)
+dense_k: 30
+bm25_k: 30
+siblings_k: 5                     # Khoản cùng Điều, gần positive nhất
+max_candidates: 20                # ứng viên/câu đưa vào reranker (vòng tròn dense → bm25 → anh em)
+delta: 1.0                        # bỏ negative có điểm rerank ≥ điểm positive − 1,0 (logit)
+keep: 7                           # negative lưu/câu (khó nhất trước); reranker dùng 7, embedder 1
+seed: 42

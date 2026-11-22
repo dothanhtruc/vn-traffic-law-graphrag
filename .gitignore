@@ -52,3 +52,6 @@ id_rsa*
 # Log job GPU kéo về (gpu.sh pull logs/…); lưu trong Release khi cần
 logs/
 data/answer/retrieval/
+
+# M14: hard negative, log chọn checkpoint (artifact → GitHub Release)
+data/train/

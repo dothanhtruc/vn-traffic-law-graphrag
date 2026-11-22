@@ -1,0 +1,45 @@
+# M14: fine-tune reranker (scripts.train_reranker). CLAUDE.md mục 9; người dùng chốt 18/11/2026.
+# Chọn checkpoint theo val rerank-only trên pool cố định (truy hồi G M11) — R@5, hoà → MRR@10 →
+# bản sớm hơn. KHÔNG dùng test.
+kind: reranker
+base_key: aiteamvn-reranker        # configs/retrieval.yaml rerankers (tokenizer = bge-reranker-v2-m3)
+run_prefix: trafficlaw-rerank
+
+data:
+  train: data/qa/train.jsonl
+  val: data/qa/val.jsonl
+  train_manifest: data/qa/train_manifest.json
+  test: data/qa/test.jsonl
+  exclude_gold: [data/qa/test.jsonl, data/qa/dev_multi.jsonl]
+  chunks: data/index/chunks.jsonl
+  windows: data/index/vectors/aiteamvn-vi-emb/windows.jsonl
+  negatives: data/train/hard_negatives.jsonl
+
+train:
+  epochs: 2
+  lr: 2.0e-5
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  batch_size: 16                   # nhóm (câu hỏi + 1 positive + n_neg negative)
+  grad_accum: 2                    # ⇒ 32 nhóm/bước tối ưu
+  mini_batch_size: 2               # nhóm/lượt forward (16 cặp); OOM → giảm một nửa
+  n_neg: 7
+  gradient_checkpointing: false
+  dtype: bf16
+  save_steps: 50                   # + cuối mỗi epoch (~220 bước/epoch)
+  eval_steps: null
+  eval_at_start: false             # số gốc tính ở local từ điểm rerank M11 trong pool
+  seed: 42
+  log_steps: 10
+
+grid:
+  lr1e5: {lr: 1.0e-5}
+  lr2e5: {lr: 2.0e-5}
+
+hub: {enabled: true, private: true, push_checkpoints: true}
+dry_run: {steps: 20, n_items: 1000, n_val: 60}
+output_dir: checkpoints
+log_dir: logs/train
+eval_pool: data/index/retrieval_eval/val/G.jsonl
+train_factor: 3.5

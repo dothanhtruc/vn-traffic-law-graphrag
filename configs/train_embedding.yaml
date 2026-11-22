@@ -1,0 +1,44 @@
+# M14: fine-tune embedding (scripts.train_embedding). CLAUDE.md mục 9; người dùng chốt 18/11/2026.
+# Lưới khai báo TRƯỚC khi chạy; chọn checkpoint theo val (dense-only R@5, hoà → MRR@10 → bản sớm
+# hơn), xác nhận end-to-end trên val + dev. KHÔNG dùng test.
+kind: embedding
+base_key: aiteamvn-vi-emb          # configs/retrieval.yaml models
+run_prefix: trafficlaw-emb         # repo HF private: <namespace whoami>/<run_prefix>-<grid>[-ckpt]
+
+data:
+  train: data/qa/train.jsonl
+  val: data/qa/val.jsonl
+  train_manifest: data/qa/train_manifest.json
+  test: data/qa/test.jsonl
+  exclude_gold: [data/qa/test.jsonl, data/qa/dev_multi.jsonl]
+  chunks: data/index/chunks.jsonl
+  windows: data/index/vectors/aiteamvn-vi-emb/windows.jsonl
+  negatives: data/train/hard_negatives.jsonl
+
+train:
+  epochs: 3
+  lr: 2.0e-5
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  batch_size: 128                  # batch hiệu dụng (CachedMultipleNegativesRankingLoss)
+  mini_batch_size: 16              # mini-batch GradCache (kết quả như 32); OOM → giảm một nửa
+  n_neg: 1                         # hard negative/câu (+ in-batch negatives)
+  scale: 20.0
+  gradient_checkpointing: false    # dry-run 22/11: mini 32 OOM (23,0 GB); mini 16 17,3 GB, 8 s/bước; checkpointing 11 GB, 12 s/bước
+  dtype: bf16
+  save_steps: 30                   # + cuối mỗi epoch (~56 bước/epoch)
+  eval_steps: null                 # đánh giá val cuối mỗi epoch
+  eval_at_start: false             # số gốc đã có ở M10 (dense val R@5 86,5)
+  seed: 42
+  log_steps: 5
+
+grid:
+  lr1e5: {lr: 1.0e-5}
+  lr2e5: {lr: 2.0e-5}
+
+hub: {enabled: true, private: true, push_checkpoints: true}
+dry_run: {steps: 20, n_items: 1000, n_val: 60}
+output_dir: checkpoints
+log_dir: logs/train
+train_factor: 4.0                  # GradCache: 2 forward + 1 backward ≈ 4 × suy luận
